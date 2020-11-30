@@ -16,6 +16,7 @@ class CreateFormationsTable extends Migration
         Schema::create('formations', function (Blueprint $table) {
             $table->bigIncrements('id_form');
             $table->string('n_facture', 50)->nullable();
+            $table->date('dt_facture')->nullable();
             $table->integer('groupe')->default(0);
             $table->string('nb_benif', 50);
             $table->string('hr_debut', 50);

@@ -15,7 +15,8 @@ class CreateDemandeRemboursementGiacs extends Migration
     {
         Schema::create('demande_remboursement_giacs', function (Blueprint $table) {
             $table->bigIncrements('n_drb');
-            $table->string('n_facture ', 50)->nullable();
+            $table->string('n_facture', 50)->nullable();
+            $table->date('dt_facture')->nullable();
             $table->string('fact_cab_entr', 50)->default("non préparé");
             $table->string('relv_banc_cab', 50)->default("non préparé");
             $table->string('relv_banc_entrp', 50)->default("non préparé");
