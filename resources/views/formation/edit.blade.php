@@ -185,10 +185,12 @@
     @endphp
     <div class="row" id="datesInput">
       <div class="form-group col-12"><!--**************HR**************--><hr></div>
-      {{-- @php $nbjour = App\PlanFormation::select('nb_jour')->where('n_form', $formation['n_form_fk'])->first(); @endphp
-      @for ($i = 0; $i < $nbjour["nb_jour"]; $i++)
+      @for ($i = 0; $i < count($dates); $i++)
         <div class="form-group col-lg-3 col-sm-12">
-          <label for="{{$dates[$i]}}">@php $jour_numero = (int) filter_var($dates[$i], FILTER_SANITIZE_NUMBER_INT); @endphp {{ substr_replace($dates[$i], "Jour", -6)." ".$jour_numero}}</label>
+          <label for="{{$dates[$i]}}">
+            @php $jour_numero = (int) filter_var($dates[$i], FILTER_SANITIZE_NUMBER_INT); @endphp
+            {{ substr_replace($dates[$i], "Jour", -6)." ".$jour_numero}}
+          </label>
           <input class="form-control {{$errors->has($dates[$i]) ? 'is-invalid' : ''}}" type="date" value="{{$formation->$dates[$i]}}" name="{{$dates[$i]}}" onmouseover="(this.type='date')" placeholder="{{$dates[$i]}}">
             @if ($errors->has($dates[$i]))
               <span class="invalid-feedback" role="alert">
@@ -196,7 +198,7 @@
               </span>
             @endif
           </div>
-      @endfor --}}
+      @endfor
     </div>
 
     <div class="row">
@@ -241,57 +243,57 @@
 $(document).ready(function() {
 
   // APPELER LES FONCTIONS EN ORDRE
-  MakeInputDates();
+  // MakeInputDates();
   FindPersonnel();
   FindPersonnelFormation();
   FindPersonnelFormationDeja();
 
-  function MakeInputDates() {
-    var datesInput = $('#datesInput');
-    var nForm = $('#n_form').val();
-    var nbJour = 0;
-    $.ajax({
-      type: 'get',
-      url: '{!! URL::to('/findnbjours') !!}',
-      data: {'nForm': nForm},
-      success: function(data) {
-        console.log('success nb_jour !!');
-        console.log(data);
-        nbJour = data[0].nb_jour;
-      },
-      error: function(msg) { console.log('error getting nb_jour !!'); }
-    }); //ajax
-    //chercher le nb de jours associé au "Plan de formation" choisi dans "Formations"
-    $.ajax({
-        type: 'get',
-        url: '{!! URL::to('/finddates') !!}',
-        data: {'nForm': nForm},
-        success: function(data) {
-          console.log('success dates !!');
-          console.log(data);
-          var createDateInput = '';
-          for (var i = 1; i <= nbJour; i++) {
-            createDateInput +=
-            `<div class="form-group col-lg-3 col-sm-12">
-            <label for="date`+i+`">Jour `+i+`</label>
-            <input class="form-control {{ $errors->has('date`+i+`') ? 'is-invalid' : '' }}" type="date" value="`+data[0]["date"+i]+`" name="date`+i+`" onmouseover="(this.type='date')" placeholder="date`+i+`" >
-              @if ($errors->has('date`+i+`'))
-                <span class="invalid-feedback" role="alert">
-                  <strong>{{ $errors->first('date`+i+`') }}</strong>
-                </span>
-              @endif
-            </div>`;
-        }
-        $('#datesInput').html(""); //clear input values
-        $('#datesInput').append(createDateInput);
-      },
-      error: function(msg) { console.log('error getting dates !!'); }
-    }); //ajax
-  }
+  // function MakeInputDates() {
+  //   var datesInput = $('#datesInput');
+  //   var nForm = $('#n_form').val();
+  //   var nbJour = 0;
+  //   $.ajax({
+  //     type: 'get',
+  //     url: '{!! URL::to('/findnbjours') !!}',
+  //     data: {'nForm': nForm},
+  //     success: function(data) {
+  //       console.log('success nb_jour !!');
+  //       console.log(data);
+  //       nbJour = data[0].nb_jour;
+  //     },
+  //     error: function(msg) { console.log('error getting nb_jour !!'); }
+  //   }); //ajax
+  //   //chercher le nb de jours associé au "Plan de formation" choisi dans "Formations"
+  //   $.ajax({
+  //       type: 'get',
+  //       url: '{!! URL::to('/finddates') !!}',
+  //       data: {'nForm': nForm},
+  //       success: function(data) {
+  //         console.log('success dates !!');
+  //         console.log(data);
+  //         var createDateInput = '';
+  //         for (var i = 1; i <= nbJour; i++) {
+  //           createDateInput +=
+  //           `<div class="form-group col-lg-3 col-sm-12">
+  //           <label for="date`+i+`">Jour `+i+`</label>
+  //           <input class="form-control {{ $errors->has('date`+i+`') ? 'is-invalid' : '' }}" type="date" value="`+data[0]["date"+i]+`" name="date`+i+`" onmouseover="(this.type='date')" placeholder="date`+i+`" >
+  //             @if ($errors->has('date`+i+`'))
+  //               <span class="invalid-feedback" role="alert">
+  //                 <strong>{{ $errors->first('date`+i+`') }}</strong>
+  //               </span>
+  //             @endif
+  //           </div>`;
+  //       }
+  //       $('#datesInput').html(""); //clear input values
+  //       $('#datesInput').append(createDateInput);
+  //     },
+  //     error: function(msg) { console.log('error getting dates !!'); }
+  //   }); //ajax
+  // }
 
-  $('#n_form').on('change', function() {
-    MakeInputDates();
-  });
+  // $('#n_form').on('change', function() {
+  //   MakeInputDates();
+  // });
 
   function FindPersonnel() {
     //---------- personnels ----------

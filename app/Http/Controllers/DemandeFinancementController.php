@@ -435,20 +435,32 @@ class DemandeFinancementController extends Controller
                 $request->session()->flash('info', '2) Demande de remboursement GIAC initié');
                 $drb->save();
             }
-            else if (mb_strtolower($request->input('etat')) == "délivré" && $c == 0) {
-              $drb = new DemandeRemboursementOfppt();
-
-              $drb->nrc_e = $request->input('nrc_e');
-
+            // modifier la DRB avec les nouveaux montants et quote part
+            else {
               $bdg_acc = $request->input('bdg_accord');
               $quote_part = $request->input('cote_part_entrp');
+              $drb_montant_rb = null;
+              $drb_part_giac = null;
 
-              $drb->montant_entrp_ht = $bdg_acc;
-              $drb->montant_entrp_ttc = $quote_part;
+              if ($request->input('prc_cote_part') == "20%") {
+                  $drb_montant_rb = $bdg_acc * .8;
+                  $drb_part_giac = "80%";
+              }
+              else if ($request->input('prc_cote_part') == "30%") {
+                  $drb_montant_rb = $bdg_acc * .7;
+                  $drb_part_giac = "70%";
+              }
 
-              $request->session()->flash('updated', '1) Modifié ajouté avec succès');
-              $request->session()->flash('info', '2) Demande de remboursement GIAC initié');
-              $drb->save();
+              DB::table('demande_remboursement_giacs as drb_gc')
+                ->join('demande_financements', 'demande_financements.n_df', 'drb_gc.n_df')
+                ->where('drb_gc.n_df', $ndf)
+                ->update([
+                  'drb_gc.montant_entrp_ht' => $bdg_acc,
+                  'drb_gc.montant_entrp_ttc' => $quote_part,
+                  'drb_gc.montant_rb' => $drb_montant_rb,
+                  'drb_gc.part_giac' => $drb_part_giac
+                ]);
+              $request->session()->flash('info', 'Demande de remboursement GIAC modifié');
             }
             //***************************** DRB ********************************/
             //******************************************************************/

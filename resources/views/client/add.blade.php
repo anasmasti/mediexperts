@@ -374,7 +374,7 @@
                 </div>
                 <div class="custom-control custom-checkbox">
                     <input type="checkbox" name="DS1_2" id="DS1_2" class="custom-control-input" value="Réalisée">
-                    <label for="DS1_2" class="custom-control-label">Diagnostique Stratégique</label>
+                    <label for="DS1_2" class="custom-control-label">diagnostic stratégique</label>
                 </div>
                 <div class="custom-control custom-checkbox">
                     <input type="checkbox" name="PF1_3" id="PF1_3" class="custom-control-input" value="Réalisée">
@@ -391,7 +391,7 @@
                 </div>
                 <div class="custom-control custom-checkbox">
                     <input type="checkbox" name="DS2_2" id="DS2_2" class="custom-control-input" value="Réalisée">
-                    <label for="DS2_2" class="custom-control-label">Diagnostique Stratégique</label>
+                    <label for="DS2_2" class="custom-control-label">diagnostic stratégique</label>
                 </div>
                 <div class="custom-control custom-checkbox">
                     <input type="checkbox" name="PF2_3" id="PF2_3" class="custom-control-input" value="Réalisée">
@@ -408,7 +408,7 @@
                 </div>
                 <div class="custom-control custom-checkbox">
                     <input type="checkbox" name="DS3_2" id="DS3_2" class="custom-control-input" value="Réalisée">
-                    <label for="DS3_2" class="custom-control-label">Diagnostique Stratégique</label>
+                    <label for="DS3_2" class="custom-control-label">diagnostic stratégique</label>
                 </div>
                 <div class="custom-control custom-checkbox">
                     <input type="checkbox" name="PF3_3" id="PF3_3" class="custom-control-input" value="Réalisée">

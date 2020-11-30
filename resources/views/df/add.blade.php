@@ -94,9 +94,9 @@
                 <label>Type Mission</label>
                 <select class="form-control {{ $errors->has('type_miss') ? ' is-invalid' : '' }}" name="type_miss" id="type_miss" onchange="checkEtat()">
                     <option disabled selected>*</option>
-                    <option value="Diagnostique stratégique">Diagnostique stratégique</option>
+                    <option value="diagnostic stratégique">diagnostic stratégique</option>
                     <option value="Ingénierie de formation">Ingénierie de formation</option>
-                    {{-- <option value="Diagnostique stratégique et ingénierie de formation">Diagnostique stratégique et ingénierie de formation</option> --}}
+                    {{-- <option value="diagnostic stratégique et ingénierie de formation">diagnostic stratégique et ingénierie de formation</option> --}}
                     {{-- <option value="Plan de formation">Plan de formation</option> --}}
                 </select>
                     @if ($errors->has('type_miss'))
@@ -1175,7 +1175,7 @@
                 @endif
             </div>
             <div class="form-group col-lg-3 col-md-6 col-12"><label>Budget accordé</label>
-                <input class="form-control {{ $errors->has('bdg_accord') ? ' is-invalid' : '' }}" value="{{old('bdg_accord')}}" type="text" name="bdg_accord" id="bdg_accord" onkeyup="CalcQuotePart()" min="0" maxlength="15" onkeypress="return isNumberKey(event)" placeholder="en DH (HT)">
+                <input class="form-control {{ $errors->has('bdg_accord') ? ' is-invalid' : '' }}" value="{{old('bdg_accord')}}" type="text" name="bdg_accord" id="bdg_accord" min="0" maxlength="15" onkeypress="return isNumberKey(event)" placeholder="en DH (HT)">
                 @if ($errors->has('bdg_accord'))
                     <span class="invalid-feedback" role="alert">
                     {{ $errors->first('bdg_accord') }}
@@ -1192,7 +1192,7 @@
             </div>
             <div class="form-group col-lg-3 col-md-6 col-12">
                 <label for="prc_cote_part">Poucentage quote part</label>
-                <select class="form-control {{ $errors->has('prc_cote_part') ? ' is-invalid' : '' }}" onmouseout="CalcQuotePart()" name="prc_cote_part" id="prc_cote_part">
+                <select class="form-control {{ $errors->has('prc_cote_part') ? ' is-invalid' : '' }}" onchange="CalcQuotePart()" name="prc_cote_part" id="prc_cote_part">
                     @php $percent = ["20%", "30%"]; @endphp
                     <option selected disabled><span class="text-danger">*</span></option>
                     @foreach ($percent as $perc)
@@ -1423,6 +1423,11 @@ $(document).ready(function() {
       });
     });
 
+    setInterval(() => {
+      checkEtat();
+      CalcQuotePart();
+      CalcBdgAccordTTC();
+    }, 500);
 
 });
 

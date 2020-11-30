@@ -366,6 +366,15 @@ Route::get('/print-avis-aff', 'FormulaireController@print_avis_aff')->name('Acti
 /********************************************************************/
 
 
+//*************** FICHES DES MISSION ***************
+Route::get('/print-att-reference-df-cab', 'FicheMissionController@print_att_reference_df_cab')->name('DF.print_att_reference_df_cab');
+Route::get('/print-att-reference-df-inv', 'FicheMissionController@print_att_reference_df_inv')->name('DF.print_att_reference_df_inv');
+Route::get('/fill-df-list', 'FicheMissionController@FillDFList')->name('DF.FillDFList');
+Route::get('/find-df-info', 'FicheMissionController@FindDFInfo')->name('DF.FindDFInfo');
+Route::get('/find-cab-info', 'FicheMissionController@FindCabinetInfo')->name('DF.FindCabinetInfo');
+Route::get('/find-inv-info', 'FicheMissionController@FindIntervInfo')->name('DF.FindIntervInfo');
+
+
 }); //end middlware verified
 
 

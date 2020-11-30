@@ -135,7 +135,7 @@ function checkEtat() {
 
     //---------------------------------------------------------------------------------------------------------------------------------------
     //--- DS
-    else if (typeMiss == "diagnostique stratégique") {
+    else if (typeMiss == "diagnostic stratégique") {
         //*** SHOW DS ***
         //with radio
         $('#tr_f_etude_DS').fadeIn(200);
@@ -204,7 +204,7 @@ function checkEtatRb() {
     let giac = document.getElementById('giac').value.toLowerCase();
     let typemiss = document.getElementById('typemiss').value.toLowerCase();
 
-    if (giac == "giac tertiaire" && typemiss == "diagnostique stratégique") {
+    if (giac == "giac tertiaire" && typemiss == "diagnostic stratégique") {
         $('label[for=drb_if], input#drb_if').fadeOut(200);
         $('label[for=drb_ds], input#drb_ds').fadeIn(200);
     }

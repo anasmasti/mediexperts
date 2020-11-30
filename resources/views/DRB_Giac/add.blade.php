@@ -40,13 +40,13 @@
                     <span>{{$errors}}</span>
                 </div>
             @endif
-            
+
             <div class="form-group col-12">
                 <label for="n_df">Demande financement</label>
                 @if (count($df)==0)
                     <a class="btn bu5 bu-sm btn-sm" href="/add-df"><i class="fa fa-plus"></i></a>
                 @endif
-                <select class="form-control {{ $errors->has('n_df') ? ' is-invalid' : '' }}" onmousemove="checkEtatRb()" id="n_df" name="n_df" value="{{old('n_df')}}">
+                <select class="form-control {{ $errors->has('n_df') ? ' is-invalid' : '' }}" id="n_df" name="n_df" value="{{old('n_df')}}">
                     <option selected disabled></option>
                     @foreach ($df as $d)
                         <option value="{{$d->n_df}}">{{$d->n_df}}</option>
@@ -65,26 +65,26 @@
             <div class="form-group col-lg-4 col-sm-12">
             <label>Documents</label>
                 <div class="custom-control custom-checkbox">
-                    <input type="checkbox" name="fact_cab_entr" onmousemove="checkEtatRb()" id="fact_cab_entr" class="custom-control-input" value="Préparé">
+                    <input type="checkbox" name="fact_cab_entr" id="fact_cab_entr" class="custom-control-input" value="Préparé">
                     <label for="fact_cab_entr" class="custom-control-label">Facture cabinet entreprise</label>
                 </div>
 
                 <div class="custom-control custom-checkbox">
-                    <input type="checkbox" name="relv_banc_cab" onmousemove="checkEtatRb()" id="relv_banc_cab" class="custom-control-input" value="Préparé">
+                    <input type="checkbox" name="relv_banc_cab" id="relv_banc_cab" class="custom-control-input" value="Préparé">
                     <label for="relv_banc_cab" class="custom-control-label">Relevé bancaire cabinet</label>
                 </div>
 
                 <div class="custom-control custom-checkbox">
-                    <input type="checkbox" name="relv_banc_entrp" onmousemove="checkEtatRb()" id="relv_banc_entrp" class="custom-control-input" value="Préparé">
+                    <input type="checkbox" name="relv_banc_entrp" id="relv_banc_entrp" class="custom-control-input" value="Préparé">
                     <label for="relv_banc_entrp" class="custom-control-label">Relevé bancaire entreprise</label>
                 </div>
                 {{-- DR --}}
                 <div class="custom-control custom-checkbox">
-                    <input type="checkbox" name="drb_ds" onmousemove="checkEtatRb()" id="drb_ds" class="custom-control-input" value="Préparé">
+                    <input type="checkbox" name="drb_ds" id="drb_ds" class="custom-control-input" value="Préparé">
                     <label for="drb_ds" class="custom-control-label">Dem. rembours. DS</label>
                 </div>
                 <div class="custom-control custom-checkbox">
-                    <input type="checkbox" name="drb_if" onmousemove="checkEtatRb()" id="drb_if" class="custom-control-input" value="Préparé">
+                    <input type="checkbox" name="drb_if" id="drb_if" class="custom-control-input" value="Préparé">
                     <label for="drb_if" class="custom-control-label">Dem. rembours. IF</label>
                 </div>
             </div>
@@ -156,7 +156,7 @@
 
             <div class="form-group col-lg-3 col-sm-12">
             <label>Part GIAC</label>
-                <select class="form-control {{ $errors->has('part_giac') ? ' is-invalid' : '' }}" onmousemove="checkEtatRb()" id="part_giac" name="part_giac" value="{{old('part_giac')}}">
+                <select class="form-control {{ $errors->has('part_giac') ? ' is-invalid' : '' }}" id="part_giac" name="part_giac" value="{{old('part_giac')}}">
                     <option selected disabled>-part giac</option>
                     <option value="70 %">70 %</option>
                     <option value="80 %">80 %</option>
@@ -166,7 +166,7 @@
 
             <div class="form-group col-lg-3 col-sm-12">
                 <label>Date paiement entreprise</label>
-                <input class="form-control {{ $errors->has('dt_pay_entrp') ? ' is-invalid' : '' }}" value="{{old('dt_pay_entrp')}}" type="text" name="dt_pay_entrp" onmouseover="(this.type='date')" onmousemove="checkEtatRb()" id="dt_pay_entrp" onchange="checkDate()" placeholder="date payement">
+                <input class="form-control {{ $errors->has('dt_pay_entrp') ? ' is-invalid' : '' }}" value="{{old('dt_pay_entrp')}}" type="text" name="dt_pay_entrp" onmouseover="(this.type='date')" id="dt_pay_entrp" onchange="checkDate()" placeholder="date payement">
                 @if ($errors->has('dt_pay_entrp'))
                     <span class="invalid-feedback" role="alert">
                     {{ $errors->first('dt_pay_entrp') }}
@@ -175,7 +175,7 @@
             </div>
             <div class="form-group col-lg-3 col-sm-12">
                 <label>Montant HT (Quote part. - TVA)</label>
-                <input class="form-control {{ $errors->has('montant_entrp_ht') ? ' is-invalid' : '' }}" value="{{old('montant_entrp_ht')}}" type="text" onmousemove="checkEtatRb()" id="montant_entrp_ht" name="montant_entrp_ht" min="0" maxlength="15" onkeypress="return isNumberKey(event)" placeholder="Montant HT">
+                <input class="form-control {{ $errors->has('montant_entrp_ht') ? ' is-invalid' : '' }}" value="{{old('montant_entrp_ht')}}" type="text" id="montant_entrp_ht" name="montant_entrp_ht" min="0" maxlength="15" onkeypress="return isNumberKey(event)" placeholder="Montant HT">
                 @if ($errors->has('montant_entrp_ht'))
                     <span class="invalid-feedback" role="alert">
                     {{ $errors->first('montant_entrp_ht') }}
@@ -184,7 +184,7 @@
             </div>
             <div class="form-group col-lg-3 col-sm-12">
                 <label>Montant paiement TTC (Quote part entrp.)</label>
-                <input class="form-control {{ $errors->has('montant_entrp_ttc') ? ' is-invalid' : '' }}" value="{{old('montant_entrp_ttc')}}" type="text" onmousemove="checkEtatRb()" id="montant_entrp_ttc" name="montant_entrp_ttc" min="0" maxlength="15" onkeypress="return isNumberKey(event)" placeholder="Montant TTC">
+                <input class="form-control {{ $errors->has('montant_entrp_ttc') ? ' is-invalid' : '' }}" value="{{old('montant_entrp_ttc')}}" type="text" id="montant_entrp_ttc" name="montant_entrp_ttc" min="0" maxlength="15" onkeypress="return isNumberKey(event)" placeholder="Montant TTC">
                 @if ($errors->has('montant_entrp_ttc'))
                     <span class="invalid-feedback" role="alert">
                     {{ $errors->first('montant_entrp_ttc') }}
@@ -196,7 +196,7 @@
 
             <div class="form-group col-lg-12 col-sm-12">
                 <label>Date dépôt dem. rembours.</label>
-                <input class="form-control {{ $errors->has('dt_depo_drb') ? ' is-invalid' : '' }}" value="{{old('dt_depo_drb')}}" type="text" onmousemove="checkEtatRb()" id="dt_depo_drb" name="dt_depo_drb" onmouseover="(this.type='date')" onchange="checkDate()" placeholder="date dépôt">
+                <input class="form-control {{ $errors->has('dt_depo_drb') ? ' is-invalid' : '' }}" value="{{old('dt_depo_drb')}}" type="text" id="dt_depo_drb" name="dt_depo_drb" onmouseover="(this.type='date')" onchange="checkDate()" placeholder="date dépôt">
                 @if ($errors->has('dt_depo_drb'))
                     <span class="invalid-feedback" role="alert">
                     {{ $errors->first('dt_depo_drb') }}
@@ -208,14 +208,14 @@
 
             <div class="form-group col-lg-3 col-sm-12">
                 <label>Date remboursement</label>
-                <input class="form-control {{ $errors->has('dt_rb') ? ' is-invalid' : '' }}" value="{{old('dt_rb')}}" type="text" name="dt_rb" onmousemove="checkEtatRb()" id="dt_rb" onchange="checkDate()" onmouseover="(this.type='date')" placeholder="date rembours.">
+                <input class="form-control {{ $errors->has('dt_rb') ? ' is-invalid' : '' }}" value="{{old('dt_rb')}}" type="text" name="dt_rb" id="dt_rb" onchange="checkDate()" onmouseover="(this.type='date')" placeholder="date rembours.">
                 @if ($errors->has('dt_rb'))
                     <span class="invalid-feedback" role="alert">
                     {{ $errors->first('dt_rb') }}
                     </span>
                 @endif
             </div>
-            <div class="form-group col-lg-3 col-sm-12"><label>Montant remboursement</label><input class="form-control {{ $errors->has('montant_rb') ? ' is-invalid' : '' }}" value="{{old('montant_rb')}}" type="text" onmousemove="checkEtatRb()" id="montant_rb" name="montant_rb" min="0" maxlength="15" onkeypress="return isNumberKey(event)" placeholder="Montant Rembours.">
+            <div class="form-group col-lg-3 col-sm-12"><label>Montant remboursement</label><input class="form-control {{ $errors->has('montant_rb') ? ' is-invalid' : '' }}" value="{{old('montant_rb')}}" type="text" id="montant_rb" name="montant_rb" min="0" maxlength="15" onkeypress="return isNumberKey(event)" placeholder="Montant Rembours.">
                 @if ($errors->has('montant_rb'))
                     <span class="invalid-feedback" role="alert">
                     {{ $errors->first('montant_rb') }}
@@ -225,7 +225,7 @@
 
             <div class="form-group col-lg-3 col-sm-12">
                 <label>Ref. moyen paiement</label>
-                <input class="form-control {{ $errors->has('ref_paiem') ? ' is-invalid' : '' }}" onmousemove="checkEtatRb()" id="ref_paiem" value="{{old('ref_paiem')}}" type="text" name="ref_paiem" onmousemove="checkEtatRb()" min="0" maxlength="15" placeholder="ref.">
+                <input class="form-control {{ $errors->has('ref_paiem') ? ' is-invalid' : '' }}" id="ref_paiem" value="{{old('ref_paiem')}}" type="text" name="ref_paiem" min="0" maxlength="15" placeholder="ref.">
                 @if ($errors->has('ref_paiem'))
                     <span class="invalid-feedback" role="alert">
                     {{ $errors->first('ref_paiem') }}

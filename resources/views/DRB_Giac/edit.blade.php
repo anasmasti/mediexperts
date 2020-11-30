@@ -128,7 +128,7 @@
           <label for="fact_cab_entr" class="custom-control-label">Facture cabinet entreprise</label>
         </div>
         {{-- POUR GIAC AGRO --}}
-        @if (mb_strtolower($drb->gc_rattach) == 'giac agroalimentaire' && mb_strtolower($drb->type_miss) == 'diagnostique stratégique')
+        @if (mb_strtolower($drb->gc_rattach) == 'giac agroalimentaire' && mb_strtolower($drb->type_miss) == 'diagnostic stratégique')
           <div class="custom-control custom-checkbox">
             <input type="checkbox" name="drb_ds" id="drb_ds" class="custom-control-input" {{ (mb_strtolower($drb->drb_ds)=="préparé") ? 'checked' : '' }} value="préparé" >
             <label for="drb_ds" class="custom-control-label">Dem. rembours. DS</label>

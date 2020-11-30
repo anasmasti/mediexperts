@@ -32,6 +32,10 @@
                 ->join('demande_remboursement_giacs', 'demande_financements.n_df', 'demande_remboursement_giacs.n_df')
                 ->where('demande_remboursement_giacs.n_df', $drb->n_df)
                 ->first();
+            $entrp = \App\Client::select('clients.nrc_entrp', 'clients.raisoci')
+              ->join('demande_financements', 'clients.nrc_entrp', 'demande_financements.nrc_e')
+              ->where('clients.nrc_entrp', $demande['nrc_entrp'])
+              ->first();
         @endphp
 
         <h3 class="card-title card-h3">
@@ -44,10 +48,10 @@
                 {{ $demande['raisoci'] }}
             </a>
         </h3>
-
+        <a class="btn btn-sm btn-info float-right" href="/print-facture-drb/{{$drb->n_drb}}/{{$entrp['nrc_entrp']}}"><i class="fa fa-print"></i></a>
         @if (Auth::user()->type_user != "comptable")
-        <a class="btn btn-sm bua bu-ic" a="/del-drb-gc/{{ $drb->n_drb }}" onclick="confirmDelete({{$drb->n_drb}}, 'drb-gc/')"><i class="fa fa-trash-alt"></i></a>
-        <a class="btn btn-sm buaj bu-ic" href="/edit-drb-gc/{{ $drb->n_drb }}"><i class="fa fa-edit"></i></a>
+        <a class="btn btn-sm btn-danger float-right" onclick="confirmDelete({{$drb->n_drb}}, 'drb-gc/')"><i class="fa fa-trash-alt"></i></a>
+        <a class="btn btn-sm btn-warning float-right" href="/edit-drb-gc/{{ $drb->n_drb }}"><i class="fa fa-edit"></i></a>
         @endif
     </div>
     <!-- /.card-header -->

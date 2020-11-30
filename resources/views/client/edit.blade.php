@@ -377,7 +377,7 @@
                 </div>
                 <div class="custom-control custom-checkbox">
                     <input type="checkbox" name="DS1_2" id="DS1_2" class="custom-control-input" value="{{$client->DS1_2}}" @if($client->DS1_2==='réalisée')  checked="1" @endif/>
-                    <label for="DS1_2" class="custom-control-label">Diagnostique Stratégique</label>
+                    <label for="DS1_2" class="custom-control-label">diagnostic stratégique</label>
                 </div>
                 <div class="custom-control custom-checkbox">
                     <input type="checkbox" name="PF1_3" id="PF1_3" class="custom-control-input" value="{{$client->PF1_3}}" @if($client->PF1_3==='réalisée')  checked="1" @endif/>
@@ -394,7 +394,7 @@
                     </div>
                     <div class="custom-control custom-checkbox">
                         <input class="custom-control-input" type="checkbox" name="DS2_2" id="DS2_2" value="{{$client->DS2_2}}" @if($client->DS2_2==='réalisée')  checked="1" @endif/>
-                        <label for="DS2_2" class="custom-control-label">Diagnostique Stratégique</label>
+                        <label for="DS2_2" class="custom-control-label">diagnostic stratégique</label>
                     </div>
                     <div class="custom-control custom-checkbox">
                         <input class="custom-control-input" type="checkbox" name="PF2_3" id="PF2_3" value="{{$client->PF2_3}}" @if($client->PF2_3==='réalisée')  checked="1" @endif/>
@@ -411,7 +411,7 @@
                     </div>
                     <div class="custom-control custom-checkbox">
                         <input class="custom-control-input" type="checkbox" name="DS3_2" id="DS3_2" value="{{$client->DS3_2}}" @if($client->DS3_2==='réalisée')  checked="1" @endif/>
-                        <label for="DS3_2" class="custom-control-label">Diagnostique Stratégique</label>
+                        <label for="DS3_2" class="custom-control-label">diagnostic stratégique</label>
                     </div>
                     <div class="custom-control custom-checkbox">
                         <input class="custom-control-input" type="checkbox" name="PF3_3" id="PF3_3" value="{{$client->PF3_3}}" @if($client->PF3_3==='réalisée')  checked="1" @endif/>

@@ -174,6 +174,10 @@
       {{-- here where date inputs will appear --}}
     </div><!--./row-->
 
+    <i class="fa fa-plus-circle text-warning" id="addDateInput" style="font-size: 24px; cursor: pointer;">
+      {{-- BUTTON --}}
+    </i>
+
     <div class="row">
       <div class="form-group col-12"><!--**************HR**************--><hr></div>
     </div>
@@ -182,9 +186,6 @@
       {{-- here where personnel inputs will appear --}}
     </div><!--./row-->
 
-    <div class="row">
-      <div class="form-group col-12"><!--**************HR**************--><hr></div>
-    </div>
 
     <div class="row">
       <div class="form-group col-12">
@@ -223,6 +224,26 @@
   //chercher le nom d'entreprise, nom domaine/theme associé au Plan de Formation
   $(document).ready(function() {
 
+    $('#addDateInput').click(function() {
+      var selDatesInput = document.querySelectorAll('.formation-date');
+      var lastIndex = selDatesInput.length + 1;
+      if (lastIndex <= 30) {
+        var newInput =
+        `<div class="form-group col-lg-3 col-sm-12">
+          <label for="date${lastIndex}">Jour ${lastIndex}</label>
+          <input class="form-control {{ $errors->has('date${lastIndex}') ? 'is-invalid' : '' }} formation-date" type="text" value="" name="date${lastIndex}" onmouseover="(this.type='date')" placeholder="date${lastIndex}" >
+          @if ($errors->has('date${lastIndex}'))
+            <span class="invalid-feedback" role="alert">
+              <strong>{{ $errors->first('date${lastIndex}') }}</strong>
+            </span>
+          @endif
+        </div>`;
+        $('#datesInput').append(newInput);
+      } else {
+        $('#addDateInput').prop('disabled', true);
+      }
+    });
+
     var nForm = $('#n_form').val();
     $.ajax({
       type: 'get',
@@ -246,10 +267,10 @@
 
   //chercher le nb de jours associé au "Plan de formation" choisi dans "Formations"
   $(document).on('change', '#n_form', function() {
-    $('#add').prop('disabled', false);
+    // $('#add').show(100);
     var nForm = $(this).val();
     //---------- dates ----------
-    var datesInput = $('#datesInput')
+    var datesInput = $('#datesInput');
     $.ajax({
       type: 'get',
       url: '{!! URL::to('/findnbjours') !!}',
@@ -269,7 +290,7 @@
             createDateInput +=
                 `<div class="form-group col-lg-3 col-sm-12">
                 <label for="date${i}">Jour ${i}</label>
-                <input class="form-control {{ $errors->has('date${i}') ? 'is-invalid' : '' }}" type="text" value="${date_debut_fin}" name="date${i}" onmouseover="(this.type='date')" placeholder="date${i}" >
+                <input class="form-control {{ $errors->has('date${i}') ? 'is-invalid' : '' }} formation-date" type="text" value="${date_debut_fin}" name="date${i}" onmouseover="(this.type='date')" placeholder="date${i}" >
                   @if ($errors->has('date${i}'))
                     <span class="invalid-feedback" role="alert">
                       <strong>{{ $errors->first('date${i}') }}</strong>

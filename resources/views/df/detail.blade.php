@@ -11,7 +11,7 @@
   @endforeach --}}
 
   @php
-    $ds = "diagnostique stratégique";
+    $ds = "diagnostic stratégique";
     $if = "ingénierie de formation";
     $gcagro = "giac agroalimentaire";
     $cl = "client";

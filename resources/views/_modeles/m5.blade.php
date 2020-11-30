@@ -141,6 +141,7 @@
       </div>
       <div style="width:75%;">
         <select name="formation" id="formation" class="select highlighted">
+          {{-- auto filled --}}
         </select>
       </div>
     </div>

@@ -109,7 +109,7 @@
   {{-- ENTREPRISE --}}
   <div style="width:100%; display:flex; flex-wrap:nowrap;">
     <div style="width:30%;">
-      <span>Nom de l’entreprise &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; :</span>
+      <span>Nom de l’entreprise &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; :</span>
     </div>
     <div class="" style="width:70%;">
       <span type="text" id="entrp">
@@ -119,7 +119,7 @@
   </div>
 
   {{-- ORGANISME --}}
-  <div style="width:100%; display:flex; flex-wrap:nowrap;">
+  <div style="width:100%; display:flex; flex-wrap:nowrap; padding-bottom: 10px;">
     <div style="width:30%">
       <span>Nom de l’organisme de formation :</span>
     </div>
@@ -131,32 +131,32 @@
   </div>
 
   {{-- INFOS --}}
-  <div class="bordered" style="width:100%; display:flex; flex-wrap:wrap; align-items:center; padding:5px; font-size: 14px;">
+  <div class="bordered" style="width:100%; display:flex; flex-wrap:wrap; align-items:center; padding:5px;">
     <div style="width:10%">
         <span>Thème :</span>
     </div>
-    <div style="width:40%">
-        <select id="formation" class="select highlighted">
+    <div style="width:55%">
+        <select id="formation" class="select highlighted" style="font-size: 12px;">
           {{-- auto filled --}}
         </select>
     </div>
 
     <div style="width:1%"><!--space--></div>
 
-    <div style="width:17%">
-        <span style="font-size: 13px;">Nombre de participants :</span>
+    <div style="width:10%">
+        <span style="font-size: 12px;">Nombre de participants :</span>
     </div>
-    <div style="width:4%">
+    <div style="width:3%">
         <input type="text" id="nbParticip" value="..." readonly>
     </div>
 
     <div style="width:5%"><!--space--></div>
 
-    <div style="width:15%">
+    <div style="width:10%">
         <span>N° du Groupe :</span>
     </div>
-    <div style="width:1%">
-        <input type="text" id="groupe" value="..." readonly>
+    <div style="width:3%">
+        <input type="text" id="groupe" value="..." style="font-size: 12px;" readonly>
     </div>
     <div style="width:2%"><!--space--></div>
 
@@ -165,16 +165,15 @@
       <span>Dates :</span>
     </div>
     <div style="width:90%">
-      <input type="text" id="dates" value="..." readonly>
+      <input type="text" id="dates" value="..." style="font-size: 12px;" readonly>
     </div>
 
     {{-- LIEU --}}
     <div style="width:10%">
       <span>Lieu :</span>
     </div>
-    <div style="width:20%">
-      <span type="text" id="lieu">
-
+    <div style="width:35%">
+      <span id="lieu">
       </span>
     </div>
 
@@ -184,18 +183,18 @@
     <div style="width:8%">
       <span>Ville :</span>
     </div>
-    <div style="width:20%">
-      <input type="text" id="ville" value="..." readonly>
+    <div style="width:15%">
+      <input type="text" id="ville" value="..." style="font-size: 12px;" readonly>
     </div>
 
     <div style="width:2%"><!--space--></div>
 
     {{-- ANIMATEUR --}}
-    <div style="width:12%">
+    <div style="width:10%">
       <span>Animateur :</span>
     </div>
-    <div style="width:20%">
-      <input type="text" id="animateur" value="..." readonly>
+    <div style="width:17%">
+      <input type="text" id="animateur" value="..." style="font-size: 12px;" readonly>
     </div>
 
   </div>
@@ -383,7 +382,7 @@
           $('#formation').html("");
           $('#formation').append(fillFormation);
           $('#entrp').html(data[0]['raisoci'].toUpperCase());
-          $('#organisme').val(data[0]['raisoci_cab'].toUpperCase());
+          $('#organisme').html(data[0]['raisoci_cab'].toUpperCase());
           $('#lieu').html(data[0]['lieu'].toUpperCase());
           $('#ville').val(data[0]['local_2'].toUpperCase());
           $('#animateur').val(data[0]['nom_interv'].toUpperCase()+" "+data[0]['prenom_interv'].toUpperCase());

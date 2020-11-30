@@ -105,7 +105,7 @@
     <div class="form-group col-lg-3 col-md-6 col-sm-6 col-12">
         <label>Type Mission</label>
         <select class="form-control {{ $errors->has('type_miss') ? ' is-invalid' : '' }}" name="type_miss" id="type_miss" onchange="checkEtat()">
-          @php $typemission = ["diagnostique stratégique", "ingénierie de formation"]; @endphp
+          @php $typemission = ["diagnostic stratégique", "ingénierie de formation"]; @endphp
           @foreach ($typemission as $mission)
             @if (mb_strtolower($mission) == mb_strtolower($df->type_miss))
               <option value="{{$mission}}" selected>{{ucfirst($mission)}}</option>
@@ -1179,7 +1179,7 @@
         @endif
     </div>
     <div class="form-group col-lg-3 col-md-6 col-sm-6 col-12"><label>Budget accordé</label>
-        <input class="form-control {{ $errors->has('bdg_accord') ? ' is-invalid' : '' }}" value="{{$df->bdg_accord}}" type="text" name="bdg_accord" id="bdg_accord" onkeyup="CalcBdgAccordTTC()" min="0" maxlength="15" onkeypress="return isNumberKey(event)" placeholder="en DH (HT)">
+        <input class="form-control {{ $errors->has('bdg_accord') ? ' is-invalid' : '' }}" value="{{$df->bdg_accord}}" type="text" name="bdg_accord" id="bdg_accord" min="0" maxlength="15" onkeypress="return isNumberKey(event)" placeholder="en DH (HT)">
         @if ($errors->has('bdg_accord'))
             <span class="invalid-feedback" role="alert">
             {{ $errors->first('bdg_accord') }}
@@ -1187,7 +1187,7 @@
         @endif
     </div>
     <div class="form-group col-lg-3 col-md-6 col-sm-6 col-12"><label>Budget en lettre (TTC)</label>
-        <input class="form-control {{ $errors->has('bdg_letter') ? ' is-invalid' : '' }}" type="text" name="bdg_letter" id="bdg_letter" min="0" maxlength="200" placeholder="budget (TTC)">
+        <input class="form-control {{ $errors->has('bdg_letter') ? ' is-invalid' : '' }}" type="text" name="bdg_letter" id="bdg_letter" min="0" maxlength="200" value="{{$df->bdg_letter}}" placeholder="budget (TTC)">
         @if ($errors->has('bdg_letter'))
             <span class="invalid-feedback" role="alert">
             {{ $errors->first('bdg_letter') }}
@@ -1196,7 +1196,7 @@
     </div>
     <div class="form-group col-lg-3 col-md-6 col-sm-6 col-12">
       <label for="prc_cote_part">Pourcentage quote part</label>
-      <select class="form-control {{ $errors->has('prc_cote_part') ? 'is-invalid' : '' }}" name="prc_cote_part" id="prc_cote_part">
+      <select class="form-control {{ $errors->has('prc_cote_part') ? 'is-invalid' : '' }}" onchange="CalcQuotePart()"  name="prc_cote_part" id="prc_cote_part">
         @php $percent = ["20%", "30%"]; @endphp
             <option selected disabled><span class="text-danger">*</span></option>
             @foreach ($percent as $perc)
@@ -1409,31 +1409,30 @@
 <script type="text/javascript">
 
   $(document).ready(function() {
-
-      // VERIFIER LES ETATS DE LA 'DEMANDE FINANCEMENTS'
-      $('#cardDf').on('mousemove', function() {
-        checkEtat();
-      });
-
-      $(document).ready(function() {
       //chercher le giac associé au client choisi dans "DF"
       // $(document).on('change', '#nrc_e', function(){
-        var nrc = $('#nrc_e').val();
+      var nrc = $('#nrc_e').val();
 
-        $.ajax({
-            type: 'get',
-            url: '{!! URL::to('/findgiacsclient') !!}',
-            data: {'nrc': nrc},
-            success:function(data) {
-                console.log('success !!');
-                console.log(data);
-                $('#gc_rattach').val(data.giac_rattach);
-            },
-            error:function(msg) {
-                console.log('error getting data !!');
-            }
-        });
+      $.ajax({
+          type: 'get',
+          url: '{!! URL::to('/findgiacsclient') !!}',
+          data: {'nrc': nrc},
+          success:function(data) {
+              console.log('success !!');
+              console.log(data);
+              $('#gc_rattach').val(data.giac_rattach);
+          },
+          error:function(msg) {
+              console.log('error getting data !!');
+          }
       });
+
+      // calculer quote part et ecrire bdg en lettres
+      setInterval(() => {
+        checkEtat();
+        CalcQuotePart();
+        CalcBdgAccordTTC();
+      }, 500);
 
   });
 

@@ -36,7 +36,6 @@ class FormulaireController extends Controller
     public function FillClientPlans(Request $request) {
       $data = Client::select('plan_formations.*', 'themes.nom_theme', 'plans.annee',
         'cabinets.raisoci as raisoci_cab', 'cabinets.ncnss as ncnss_cab', 'clients.raisoci as raisoci')
-        // ->join('plan_formations', 'clients.nrc_entrp', 'plan_formations.nrc_e')
         ->join('plans', 'clients.nrc_entrp', '=', 'plans.nrc_e')
         ->join('plan_formations', 'plans.id_plan', '=', 'plan_formations.id_plan')
         ->join('themes', 'plan_formations.id_thm', 'themes.id_theme')
@@ -73,7 +72,6 @@ class FormulaireController extends Controller
         ->first();
       $formation = Formation::select('clients.raisoci', 'clients.ice', 'themes.nom_theme','plan_formations.*', 'formations.*')
           ->join('plan_formations', 'plan_formations.n_form', 'formations.n_form')
-          // ->join('clients', 'plan_formations.nrc_e', 'clients.nrc_entrp')
           ->join('plans', 'plans.id_plan', '=', 'plan_formations.id_plan')
           ->join('clients', 'clients.nrc_entrp', '=', 'plans.nrc_e')
           ->join('themes', 'themes.id_theme', 'plan_formations.id_thm')
@@ -93,7 +91,6 @@ class FormulaireController extends Controller
     public function FillFormationF4(Request $request) {
       $data = Formation::select('formations.*', 'themes.nom_theme', 'clients.raisoci', 'clients.ville', 'clients.local_2')
         ->join('plan_formations', 'formations.n_form', 'plan_formations.n_form')
-        // ->join('clients', 'plan_formations.nrc_e', 'clients.nrc_entrp')
         ->join('plans', 'plans.id_plan', '=', 'plan_formations.id_plan')
         ->join('Clients', 'clients.nrc_entrp', '=', 'plans.nrc_e')
         ->join('themes', 'plan_formations.id_thm', 'themes.id_theme')
@@ -127,14 +124,6 @@ class FormulaireController extends Controller
 
     //FORMULAIRE 2
     public function print_f2() {
-    //   $plan = PlanFormation::select('plan_formations.*', 'themes.nom_theme as nom_theme',
-    //     'domaines.nom_domain', 'clients.nrc_entrp', 'clients.raisoci')
-    //     ->join('formations', 'plan_formations.n_form', 'formations.n_form')
-    //     ->join('plans', 'plans.id_plan', 'plan_formations.id_plan')
-    //     ->join('Clients', 'clients.nrc_entrp', 'plans.nrc_e')
-    //     ->join('themes', 'plan_formations.id_thm', 'themes.id_theme')
-    //     ->join('domaines', 'themes.id_dom', 'domaines.id_domain')
-    //     ->get();
       $plans = Plan::select('plans.*', 'clients.raisoci', 'clients.rais_abrev')
         ->join('clients', 'plans.nrc_e', 'clients.nrc_entrp')
         ->get();
@@ -152,13 +141,6 @@ class FormulaireController extends Controller
       return response()->json($data);
     }
     public function FillFormationF2(Request $request) {
-      // $data = Formation::select('formations.*', 'themes.nom_theme', 'clients.raisoci')
-      //   ->join('plan_formations', 'formations.n_form', 'plan_formations.n_form')
-      //   ->join('clients', 'plan_formations.nrc_e', 'clients.nrc_entrp')
-      //   ->join('themes', 'plan_formations.id_thm', 'themes.id_theme')
-      //   ->where('plan_formations.n_form', $request->nForm)
-      //   ->get();
-
       $id_theme = Theme::select('themes.id_theme')
         ->join('plan_formations', 'themes.id_theme', 'plan_formations.id_thm')
         ->where('plan_formations.n_form', $request->nForm)
@@ -185,20 +167,6 @@ class FormulaireController extends Controller
         ->get();
       return response()->json($data);
     }
-    // public function FillFormationInfo(Request $request) {
-    //   $data = Formation::select('formations.*', 'themes.*', 'domaines.nom_domain', 'clients.raisoci',
-    //     'plan_formations.lieu', 'plan_formations.type_form', 'plan_formations.bdg_total',
-    //     'cabinets.raisoci as raisoci_cab', 'cabinets.ncnss')
-    //     ->join('plan_formations', 'formations.n_form', 'plan_formations.n_form')
-    //     ->join('intervenants', 'plan_formations.id_inv', 'intervenants.id_interv')
-    //     ->join('cabinets', 'intervenants.nrc_c', 'cabinets.nrc_cab')
-    //     ->join('clients', 'plan_formations.nrc_e', 'clients.nrc_entrp')
-    //     ->join('themes', 'plan_formations.id_thm', 'themes.id_theme')
-    //     ->join('domaines', 'themes.id_dom', 'domaines.id_domain')
-    //     ->where('plan_formations.n_Form', $request->nForm)
-    //     ->first();
-    //   return response()->json($data);
-    // }
 
     //PLAN FORMATION
     public function print_pf(Request $request) {
@@ -217,7 +185,6 @@ class FormulaireController extends Controller
     public function FillPlansByReference(Request $request) {
       $data = Client::select('plan_formations.*', 'themes.nom_theme','domaines.nom_domain','plans.*',
         'cabinets.raisoci as raisoci_cab', 'cabinets.ncnss as ncnss_cab')
-        // ->join('plan_formations', 'clients.nrc_entrp', 'plan_formations.nrc_e')
         ->join('plans', 'clients.nrc_entrp', '=', 'plans.nrc_e')
         ->join('plan_formations', 'plans.id_plan', '=', 'plan_formations.id_plan')
         ->join('themes', 'plan_formations.id_thm', 'themes.id_theme')
@@ -225,7 +192,7 @@ class FormulaireController extends Controller
         ->join('intervenants', 'plan_formations.id_inv', 'intervenants.id_interv')
         ->join('cabinets', 'intervenants.nrc_c', 'cabinets.nrc_cab')
         ->where('plans.id_plan', $request->idPlan)
-        ->orderBy('plan_formations.n_form', 'asc')
+        // ->orderBy('plan_formations.n_form', 'asc')
         ->get();
       return response()->json($data);
     }
@@ -242,12 +209,11 @@ class FormulaireController extends Controller
     }
     public function FillPlanTheme(Request $request) {
       $data = Client::select('plan_formations.*', 'themes.nom_theme', 'clients.*','plans.annee')
-        // ->join('plan_formations', 'clients.nrc_entrp', 'plan_formations.nrc_e')
         ->join('plans', 'clients.nrc_entrp', '=', 'plans.nrc_e')
         ->join('plan_formations', 'plans.id_plan', '=', 'plan_formations.id_plan')
         ->join('themes', 'plan_formations.id_thm', 'themes.id_theme')
-        // ->where('plan_formations.etat', "réalisé")
-        ->where('clients.nrc_entrp', $request->nrcEntrp)
+        ->where(['clients.nrc_entrp', $request->nrcEntrp], ['plan_formations.etat', "réalisé"])
+        ->orWhere(['clients.nrc_entrp', $request->nrcEntrp], ['plan_formations.etat', "planifié"])
         ->get();
       return response()->json($data);
     }
@@ -268,7 +234,6 @@ class FormulaireController extends Controller
        'clients.raisoci', 'clients.ville','clients.local_2', 'intervenants.nom as nom_interv', 'intervenants.prenom as prenom_interv',
        'cabinets.raisoci as raisoci_cab')
         ->join('formations', 'formations.n_form', 'plan_formations.n_form')
-        // ->join('clients', 'plan_formations.nrc_e', 'clients.nrc_entrp')
         ->join('plans', 'plans.id_plan', '=', 'plan_formations.id_plan')
         ->join('Clients', 'clients.nrc_entrp', '=', 'plans.nrc_e')
         ->join('intervenants', 'plan_formations.id_inv', 'intervenants.id_interv')
@@ -282,28 +247,4 @@ class FormulaireController extends Controller
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // public function download_f3($nrc) {
-    //     $cabinet = Cabinet::findOrFail($nrc);
-    //     $f3_pdf = PDF::loadView('_formulaires.f3', ['cabinet' => $cabinet]);
-    //     return $f3_pdf->stream('f3.pdf');
-    // }
 }

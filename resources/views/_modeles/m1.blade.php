@@ -166,10 +166,6 @@
     // }); //promise
   } //fun
 
-  // async function DatesPlanAsync(data) {
-  //   return fillDates = await DatesPlan(data);
-  // }
-
   $(document).ready(function() {
 
     $('#client').on('change', function() {

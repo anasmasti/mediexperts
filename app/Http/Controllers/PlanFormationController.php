@@ -389,6 +389,7 @@ class PlanFormationController extends Controller
             $plan->dt_fin = $request->input("dt_fin");
             $old_nb_jour = $plan->nb_jour;
             $plan->nb_jour = $request->input("nb_jour");
+            // gérer les dates des formation relatives au action
             $dates =
             [
               'date1', 'date2', 'date3', 'date4', 'date5',
@@ -398,21 +399,21 @@ class PlanFormationController extends Controller
               'date21', 'date22', 'date23', 'date24', 'date25',
               'date26', 'date27', 'date28', 'date29', 'date30'
             ];
-            $cur_nb_jour = $request->input("nb_jour");
-            if ($old_nb_jour > $cur_nb_jour) {
-              //supprimer les dates après le nombre de jours
-              for ($i=$cur_nb_jour; $i < count($dates) ; $i++) {
-                $cur_date = 'formations.'.$dates[$i];
-                DB::table('formations')
-                ->join('plan_formations', 'plan_formations.n_form', 'formations.n_form')
-                ->where('plan_formations.n_form', $plan->n_form)
-                ->update([$cur_date => null]);
-              }
-              $request->session()->flash('info', 'Des dates sont supprimés lors de la diminution de nombre de jours de "plan formation"');
-            }
-            else if ($old_nb_jour < $cur_nb_jour) {
-              $request->session()->flash('warning', 'Veuillez mettre à jour les dates de formations. Car vous avez changer le nombre de jour du "Plan Formation"');
-            }
+            // $cur_nb_jour = $request->input("nb_jour");
+            // if ($old_nb_jour > $cur_nb_jour) {
+            //   //supprimer les dates après le nombre de jours
+            //   for ($i=$cur_nb_jour; $i < count($dates) ; $i++) {
+            //     $cur_date = 'formations.'.$dates[$i];
+            //     DB::table('formations')
+            //     ->join('plan_formations', 'plan_formations.n_form', 'formations.n_form')
+            //     ->where('plan_formations.n_form', $plan->n_form)
+            //     ->update([$cur_date => null]);
+            //   }
+            //   $request->session()->flash('info', 'Des dates sont supprimés lors de la diminution de nombre de jours de "plan formation"');
+            // }
+            // else if ($old_nb_jour < $cur_nb_jour) {
+            //   $request->session()->flash('warning', 'Veuillez mettre à jour les dates de formations. Car vous avez changer le nombre de jour du "Plan Formation"');
+            // }
             //verifier si les dates sont saisies dependant le nombre de jours
             $nb_filled_date = 0;
             $counter=0;
