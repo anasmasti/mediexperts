@@ -97,7 +97,7 @@ class PlanFormationController extends Controller
 
     //find theme of domain when selecting the domain
     public function FindThemesDomain(Request $request) {
-        $data = Theme::select('id_theme', 'nom_theme', 'domaines.cout')
+        $data = Theme::select('Themes.id_theme', 'Themes.nom_theme', 'domaines.cout')
                 ->join('Domaines', 'Themes.id_dom', '=', 'Domaines.id_domain')
                 ->where('Domaines.id_domain', $request->idDomain)
                 ->get();
@@ -210,15 +210,12 @@ class PlanFormationController extends Controller
             $plan->nb_ouvrier = $request->input("nb_ouvrier");
             $plan->bdg_total = $request->input("bdg_total");
             $plan->bdg_jour = $request->input("bdg_jour");
-
             $plan->bdg_letter = $request->input("bdg_letter");
-
             $plan->commentaire = $request->input("commentaire");
             $plan->etat = $request->input("etat");
 
             $docs = ['model5', 'model3', 'f4', 'fiche_eval',
                     'support_form', 'cv_inv', 'avis_affich'];
-
             foreach ($docs as $doc) {
                 if ($request->input($doc) != null) {
                     $plan->$doc = $request->input($doc);
@@ -293,7 +290,6 @@ class PlanFormationController extends Controller
         // $cabinet = Cabinet::all();
 
         $plan_props = Client::select('clients.raisoci','clients.nrc_entrp','intervenants.nom','intervenants.prenom', 'plans.refpdf')
-                    // ->join('clients', 'clients.nrc_entrp', '=', 'plan_formations.nrc_e')
                     ->join('plans', 'clients.nrc_entrp', '=', 'plans.nrc_e')
                     ->join('plan_formations', 'plans.id_plan', '=', 'plan_formations.id_plan')
                     ->join('intervenants', 'intervenants.id_interv', '=', 'plan_formations.id_inv')
@@ -389,46 +385,6 @@ class PlanFormationController extends Controller
             $plan->dt_fin = $request->input("dt_fin");
             $old_nb_jour = $plan->nb_jour;
             $plan->nb_jour = $request->input("nb_jour");
-            // gérer les dates des formation relatives au action
-            $dates =
-            [
-              'date1', 'date2', 'date3', 'date4', 'date5',
-              'date6', 'date7', 'date8', 'date9', 'date10',
-              'date11', 'date12', 'date13', 'date14', 'date15',
-              'date16', 'date17', 'date18', 'date19', 'date20',
-              'date21', 'date22', 'date23', 'date24', 'date25',
-              'date26', 'date27', 'date28', 'date29', 'date30'
-            ];
-            // $cur_nb_jour = $request->input("nb_jour");
-            // if ($old_nb_jour > $cur_nb_jour) {
-            //   //supprimer les dates après le nombre de jours
-            //   for ($i=$cur_nb_jour; $i < count($dates) ; $i++) {
-            //     $cur_date = 'formations.'.$dates[$i];
-            //     DB::table('formations')
-            //     ->join('plan_formations', 'plan_formations.n_form', 'formations.n_form')
-            //     ->where('plan_formations.n_form', $plan->n_form)
-            //     ->update([$cur_date => null]);
-            //   }
-            //   $request->session()->flash('info', 'Des dates sont supprimés lors de la diminution de nombre de jours de "plan formation"');
-            // }
-            // else if ($old_nb_jour < $cur_nb_jour) {
-            //   $request->session()->flash('warning', 'Veuillez mettre à jour les dates de formations. Car vous avez changer le nombre de jour du "Plan Formation"');
-            // }
-            //verifier si les dates sont saisies dependant le nombre de jours
-            $nb_filled_date = 0;
-            $counter=0;
-            for ($i=0; $i < count($dates) ; $i++) {
-              $cur_date = 'formations.'.$dates[$i];
-              $date = DB::table('formations')
-                ->join('plan_formations', 'plan_formations.n_form', 'formations.n_form')
-                ->where('plan_formations.n_form', $plan->n_form)
-                ->select($cur_date);
-              ($date == null) ?? $counter++;
-            }
-            if ($nb_filled_date < $cur_nb_jour) {
-              $request->session()->flash('warning', 'Vous n\'avez pas encore met à jour les dates de "Formation"');
-            }
-            //end
             $plan->type_form = $request->input("type_form");
             $plan->organisme = $request->input("organisme");
             $plan->lieu = $request->input("lieu");
@@ -440,25 +396,89 @@ class PlanFormationController extends Controller
             $plan->nb_ouvrier = $request->input("nb_ouvrier");
             $plan->bdg_total = $request->input("bdg_total");
             $plan->bdg_jour = $request->input("bdg_jour");
-
             $plan->bdg_letter = $request->input("bdg_letter");
-
             $plan->commentaire = $request->input("commentaire");
             $plan->etat = $request->input('etat');
 
             $docs = ['model5', 'model3', 'f4', 'fiche_eval',
                     'support_form', 'cv_inv', 'avis_affich'];
-
             foreach ($docs as $doc) {
-                if ($request->input($doc) != null) {
-                    // $plan->$doc = $request->input($doc);
-                    $plan->$doc = "préparé";
-                }
-                else {
-                    $plan->$doc = "non préparé";
-                }
+                if ($request->input($doc) != null) { $plan->$doc = "préparé"; }
+                else { $plan->$doc = "non préparé"; }
             }
 
+            $dates =
+            [
+              'date1', 'date2', 'date3', 'date4', 'date5',
+              'date6', 'date7', 'date8', 'date9', 'date10',
+              'date11', 'date12', 'date13', 'date14', 'date15',
+              'date16', 'date17', 'date18', 'date19', 'date20',
+              'date21', 'date22', 'date23', 'date24', 'date25',
+              'date26', 'date27', 'date28', 'date29', 'date30'
+            ];
+            // gérer les dates des formation relatives au action
+            $cur_nb_jour = $request->input("nb_jour");
+            if ($old_nb_jour > $cur_nb_jour) {
+              // supprimer les dates saisis après le nombre de jours
+              // +(ex: nb jour == 3, supprimer date4,5,6.. dans 'Formations')
+              for ($i=$cur_nb_jour; $i < count($dates) ; $i++) {
+                $cur_date = 'formations.'.$dates[$i];
+                DB::table('formations')
+                ->join('plan_formations', 'plan_formations.n_form', 'formations.n_form')
+                ->where('plan_formations.n_form', $plan->n_form)
+                ->update([$cur_date => null]); //retirer la valeur de date
+              }
+              $request->session()->flash('info', 'Des dates sont supprimés lors de la diminution de nombre de jours de "plan formation"');
+            }
+            else if ($old_nb_jour < $cur_nb_jour) {
+              $request->session()->flash('warning', 'Veuillez mettre à jour les dates de formations. Car vous avez changer le nombre de jour du "Plan Formation"');
+            }
+
+            $nb_filled_date = 0;
+            $nb_empty_dates=0;
+            for ($i=0; $i < count($dates) ; $i++) {
+              // Récupérer le nombre de date non nulls (ex: 3 dates avec valeur / le reste est null) == 3
+              $cur_date_index = 'formations.'.$dates[$i]; //ex: date1
+              $cur_date_val = PlanFormation::select('plan_formations.dt_debut', $cur_date_index)
+                ->join('formations', 'plan_formations.n_form', 'formations.n_form')
+                ->where([['formations.n_form', $plan->n_form], ['formations.groupe', 1]])
+                ->first();
+              ($cur_date_val == null) ?? $nb_empty_dates++;
+
+              //get last nonull date (dernière date de formation)
+              // $follow_date_val = null;
+              // if ($plan->nb_grp == 1 && $i < 29) {
+              //   $follow_date_index = 'formations.'.$dates[($i+1)];
+              //   $follow_date_val = PlanFormation::select('plan_formations.dt_debut', $follow_date_index)
+              //     ->join('formations', 'plan_formations.n_form', 'formations.n_form')
+              //     ->where([['formations.n_form', $plan->n_form], ['formations.groupe', 1]])
+              //     ->first();
+              // } //endif
+              // // modify lastnonull date
+              // if ($cur_date_val->$cur_date_index != null && $follow_date_val->$follow_date_index == null && $plan->nb_grp == 1) {
+              //     PlanFormation::select('plan_formations.dt_debut', $cur_date_index)
+              //       ->join('formations', 'plan_formations.n_form', 'formations.n_form')
+              //       ->where('plan_formations.n_form', $plan->n_form)
+              //       ->update([$cur_date_index => $plan->dt_fin]);
+              // } //endif
+            } //endfor
+
+            // Afficher un message si l'utilisateur a augmenter le nombre de jours
+            // + mais n'a pas ajouter les dates dans "Formations"
+            if ($nb_filled_date < $nb_empty_dates) {
+              $request->session()->flash('warning', 'Vous n\'avez pas encore met à jour les dates de "Formation"');
+            }
+
+            // apporter les modification de l'"action_formation" sur "formations" s'il y a un seul groupe
+            if ($plan->nb_grp == 1) {
+              DB::table('plan_formations')
+                ->join('formations', 'plan_formations.n_form', 'formations.n_form')
+                ->where('plan_formations.n_form', $plan->n_form)
+                ->update([
+                    'formations.date1' => $plan->dt_debut,
+                    'formations.nb_benif' => $plan->nb_partcp_total
+                    ]);
+            }
             $plan->save();
 
             //*** UPDATE INTERVENANT ***/
@@ -468,7 +488,6 @@ class PlanFormationController extends Controller
                 $interv->module = $nom_theme;
                 $interv->save();
             }
-
 
             $request->session()->flash('updated', 'Modifié avec succès');
             return redirect('/detail-pf/'.$nform)->with('success');

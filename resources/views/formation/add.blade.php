@@ -283,7 +283,8 @@
             if (i === 1) {
                 // affecter la date de début de l'action de formation
                 date_debut_fin = data[0].dt_debut;
-            } else if (i === data[0].nb_jour) {
+            }
+            else if (i == data[0].nb_jour) {
                 // ou affecter la date de début de l'action de formation
                 date_debut_fin = data[0].dt_fin;
             }

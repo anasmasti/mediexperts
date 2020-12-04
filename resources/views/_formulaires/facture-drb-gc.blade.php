@@ -6,6 +6,18 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf_token" content="{{ csrf_token() }}" />
     <script src={{ asset('js/jquery.js') }}></script>
+    @php
+      $infos_drb = \App\DemandeRemboursementGiac::select('demande_financements.type_miss', 'clients.rais_abrev', 'demande_remboursement_giacs.n_facture')
+              ->join('demande_financements', 'demande_remboursement_giacs.n_df', 'demande_financements.n_df')
+              ->join('clients', 'demande_financements.nrc_e', 'clients.nrc_entrp')
+              ->where('demande_financements.n_df', $drb->n_df)
+              ->first();
+      $typeMiss = ($infos_drb->type_miss == "diagnostic stratégique") ? "DS" : "IF"
+    @endphp
+    <title>
+
+      {{ $typeMiss." - ".$infos_drb->rais_abrev." -  Facture N ".$infos_drb->n_facture }}
+    </title>
 </head>
 
 <body>
@@ -73,16 +85,16 @@
     @media print {
       .hide-from-print { display: none !important; }
       .highlighted { background-color: #fff !important; }
+      .display-in-print { display: inline-block !important; }
+      input[type="date"]::-webkit-calendar-picker-indicator,
+      input[type="date"]::-webkit-inner-spin-button{
+          display: none !important;
+      }
       #footer {
           display: flex !important;
       }
     }
     .display-in-print { display: none; }
-    @media print {
-      .hide-from-print { display: none !important; }
-      .highlighted { background-color: #fff !important; }
-      .display-in-print { display: inline-block !important; }
-    }
 </style>
 
 <div class="hide-from-print">

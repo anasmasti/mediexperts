@@ -68,6 +68,10 @@
       .hide-from-print { display: none; }
       .highlighted { background-color: #fff !important; }
       .display-in-print { display: inline-block !important; }
+      input[type="date"]::-webkit-calendar-picker-indicator,
+      input[type="date"]::-webkit-inner-spin-button{
+          display: none !important;
+      }
       #footer {
           display: flex !important;
       }

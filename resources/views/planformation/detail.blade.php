@@ -25,8 +25,9 @@
     <div class="card-header">
       <a class="btn btn-dark btn-sm bu-lg-ic" href="/planformation"><i class="fa fa-arrow-left"></i></a>
       <h3 class="card-title card-h3">Action N° {{ $plan->n_form }} > {{ $plan_props['raisoci'] }}</h3>
-      <a class="btn btn-sm bua bu-ic" onclick="confirmDelete({{$plan->n_form}}, 'pf/')"><i class="fa fa-trash-alt"></i></a>
-      <a class="btn btn-sm buaj bu-ic" href="/edit-pf/{{ $plan->n_form }}"><i class="fa fa-edit"></i></a>
+      <a class="btn btn-sm btn-danger bu-ic" onclick="confirmDelete({{$plan->n_form}}, 'pf/')"><i class="fa fa-trash-alt"></i></a>
+      <a class="btn btn-sm btn-warning bu-ic" href="/edit-pf/{{ $plan->n_form }}"><i class="fa fa-edit"></i></a>
+      <a class="btn btn-sm btn-secondary bu-ic" href="/detail-action-formation/{{ $plan->n_form }}"><i class="fa fa-list-alt"></i></a>
     </div>
     <!-- /.card-header -->
     <div class="card-body table-striped p-0">

@@ -72,7 +72,7 @@ class CreateDemandeFinancementsTable extends Migration
             $table->double('cote_part_entrp')->nullable();
             $table->string('prc_cote_part', 100)->nullable();
             $table->double('bdg_accord')->nullable();
-            $table->double('bdg_letter')->nullable();
+            $table->string('bdg_letter', 200)->nullable();
             $table->string('av_realis_DS', 100)->default("non préparé");
             $table->string('av_realis_IF', 100)->default("non préparé");
             $table->date('dt_envoi_av')->nullable();

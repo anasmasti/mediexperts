@@ -111,6 +111,13 @@
   </div><!-- ./card-body -->
 
   <div class="card-footer">
+    @if (!count($drb))
+      <tr>
+        <td>
+          <h3 class="text-secondary text-center">Aucun résultat</h3>
+        </td>
+      </tr>
+    @endif
   </div>
 </div><!-- ./CARD -->
 

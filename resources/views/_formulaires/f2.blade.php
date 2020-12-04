@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Formulaire 2</title>
+  <title id="docTitle">Formulaire 2</title>
   <script src={{ asset('js/jquery.js') }}></script>
   <script src={{ asset('js/myjs.js') }}></script>
 </head>
@@ -12,11 +12,12 @@
 <body>
 
   <style>
+    * { box-sizing: border-box; }
     .paper {
       padding:20px; height:27.9cm; width:21cm; padding-left:.25px;
     }
-    input, textarea { width:98%; padding: .2rem; margin: .1rem; border: none !important; outline: none !important; }
-    .select { width:99%; padding: .2rem; border-color: #fff !important; outline-color: #fff !important;
+    input, textarea { width:97%; padding: .2rem; margin: .1rem; border: none !important; outline: none !important; }
+    .select { width:97%; padding: .2rem; border-color: #fff !important; outline-color: #fff !important;
       -moz-appearance:none; /* Firefox */
       -webkit-appearance:none; /* Safari and Chrome */
       appearance:none;
@@ -58,8 +59,10 @@
       border-radius: 10px;
       background-position: left;
     }
+    .display-in-print { display: none; }
     @media print {
       .hide-from-print { display: none; }
+      .display-in-print { display: block; }
       .highlighted { background-color: #fff !important; }
       textarea { resize: none; width: 99%; padding: .2rem; }
     }
@@ -105,7 +108,7 @@
 
 
 {{-- PAPER --}}
-<div class="" style="font-family:Calibri, 'Segoe UI', Geneva, Verdana, sans-serif; font-size: 15.5px !important; background-color: #fff; font-size: 12px">
+<div class="paper" style="font-family:Calibri, 'Segoe UI', Geneva, Verdana, sans-serif; background-color: #fff;">
 
   {{-- <div style="width:100%; height:20px;"><!--space--></div> --}}
 
@@ -154,7 +157,7 @@
         <th colspan="4" style="text-align:initial;">Objectif (compétence visée) :</th>
         <tr>
           <td>
-            <textarea name="objectif" id="objectif" rows="3" readonly></textarea>
+            <textarea name="objectif" id="objectif" rows="3" style="font-size:12px" readonly></textarea>
           </td>
         </tr>
       </tr>
@@ -163,7 +166,7 @@
         <th colspan="4" style="text-align:initial;">Contenu indicatif :</th>
         <tr>
           <td>
-            <textarea name="contenu" id="contenu" rows="10" readonly></textarea>
+            <textarea name="contenu" id="contenu" rows="10" style="font-size:12px" readonly></textarea>
           </td>
         </tr>
       </tr>
@@ -264,9 +267,6 @@
       {{-- auto filled --}}
     </tbody>
   </table>
-
-  <div style="width:100%; height:8px;"><!--space--></div>
-
   <div class="container">
     <span id="pause">
         <strong>NB</strong> :
@@ -274,17 +274,21 @@
     </span>
   </div>
 
-  <div class="container">
-    <span style="font-size: 12px;">
-      - *NDF: Nomenclature des Domaines de Formation. <br>
-      - **Ex: "13/11 et 16-17/11" au lieu de "13-17/11" s'il n'y a pas de formation les 14 et 15/11. <br>
-      - L'entreprise est tenue d'aviser l'Unité de Gestion au moins trois (3) jours ouvrables de toute annulation ou <br>
-      modification apportée à l'Action de Formation selon le Modèle 3. <br>
-      {{-- Ce formulaire est disponible sous format PDF sur le Portail des CSF à l'adresse: http://csf.ofppt.org.ma. <br>
-      Il peut être rempli sur l'écran en tant que formulaire PDF avant d'être imprimé. --}}
-    </span>
-  </div>
+  <div style="width:100%; height:8px;"><!--space--></div>
 
+  <div class="container display-in-print" style="position: fixed; bottom: 0;">
+
+    {{-- <div class="container">
+      <span style="font-size: 12px;">
+        - *NDF: Nomenclature des Domaines de Formation. <br>
+        - **Ex: "13/11 et 16-17/11" au lieu de "13-17/11" s'il n'y a pas de formation les 14 et 15/11. <br>
+        - L'entreprise est tenue d'aviser l'Unité de Gestion au moins trois (3) jours ouvrables de toute annulation ou <br>
+        modification apportée à l'Action de Formation selon le Modèle 3. <br>
+        {{-- Ce formulaire est disponible sous format PDF sur le Portail des CSF à l'adresse: http://csf.ofppt.org.ma. <br>
+        Il peut être rempli sur l'écran en tant que formulaire PDF avant d'être imprimé.
+      </span>
+    </div>
+  </div>--}}
 
 </div>
 {{-- END PAPER --}}
@@ -370,6 +374,7 @@
             $('#cabinet').val(data[0]['raisoci_cab']);
             $('#cnss').val(data[0]['ncnss']);
             $('#nAction').html(data[0]['n_action']);
+            $('#docTitle').html(`${data[0]['refpdf']} - ${data[0]['n_action']} - ${data[0]['nom_theme']}`);
 
             // affecter la pause a partir du 1er groupe
             if (data[0].pse_debut != "00:00" && data[0].pse_fin != "00:00") {

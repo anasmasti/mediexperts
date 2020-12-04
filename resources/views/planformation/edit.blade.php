@@ -63,6 +63,15 @@
                     </span>
                @endif
             </div> --}}
+            @php
+              $client = \App\Client::select('clients.nrc_entrp')
+                ->join('plans', 'clients.nrc_entrp', 'plans.nrc_e')
+                ->join('plan_formations', 'plans.id_plan', 'plan_formations.id_plan')
+                ->where('plans.id_plan', $plan->id_plan)
+                ->first();
+            @endphp
+
+            <input type="hidden" name="nrc_e" id="nrc_e" value="{{$client->nrc_entrp}}" readonly>
 
 
             <div class="form-group col-lg-6 col-md-6 col-12">
@@ -405,59 +414,20 @@
 
 $(document).ready(function() {
 
+  // calls
+  FindDomaineVilleClient('#nrc_e');
+  FindThemesDomaine();
+
         //chercher domain dont la ville est la même du "Client" choisi dans "Plan de formation"
         $(document).on('change', '#nrc_e', function() {
-            var nrc = $(this).val();
-
-            $.ajax({
-                type: 'get',
-                url: '{!! URL::to('/finddomaindependvilleclient') !!}',
-                data: {'nrc': nrc},
-                success: function(data) {
-                    console.log('success !!');
-                    console.log(data);
-                    console.log(data.length);
-
-                    var fillDropDown = '<option selected disabled>Sélectionner le domaine</option>';
-                    for (var i = 0; i < data.length; i++) {
-                        fillDropDown += '<option value="'+ data[i].id_domain + '">' + data[i].nom_domain + data.data[i].ville + '</option>';
-                    }
-                    $('#id_dom').html(""); //clear input values
-                    $('#id_dom').append(fillDropDown);
-                },
-                error: function(msg) {
-                    console.log('error getting data !!');
-                }
-            });
+            var nrc = $('#nrc_e').val();
+            FindDomaineVilleClient(nrc);
         });
 
         //chercher le domaine associé au "Thème" choisi dans "Plan de formation"
         $(document).on('change', '#id_dom', function() {
-            var idDomain = $(this).val();
-
-            $.ajax({
-                type: 'get',
-                url: '{!! URL::to('/findthemesdomain') !!}',
-                data: {'idDomain': idDomain},
-                success: function(data) {
-                    console.log('success !!');
-                    console.log(data);
-
-                    var fillDropDown = '<option selected disabled>Sélectionner le thème</option>';
-                    for (var i = 0; i < data.length; i++) {
-                        fillDropDown += '<option value="'+ data[i].id_theme + '">' + data[i].nom_theme + '</option>';
-                    }
-                    $('#bdg_jour').val(data[0].cout); //clear input values
-                    $('#id_thm').html(""); //clear input values
-                    $('#id_thm').append(fillDropDown);
-                },
-                error: function(msg) {
-                    console.log('error getting data !!');
-                }
-            });
+            FindThemesDomaine();
         });
-
-
 
         //chercher l'organisme avec l'id de l'intervenant
         $(document).on('change', '#id_inv', function() {
@@ -484,6 +454,61 @@ $(document).ready(function() {
                 }
             });
         });
+
+
+    function FindDomaineVilleClient(nrc) {
+        var nrc = $(nrc).val();
+        $.ajax({
+          type: 'get',
+          url: '{!! URL::to('/finddomaindependvilleclient') !!}',
+          data: {'nrc': nrc},
+          success: function(data, client) {
+              console.log('success !!', data.data, data.client);
+              console.log();
+
+              var fillDropDown = '<option selected disabled>Sélectionner le domaine</option>';
+              for (var i = 0; i < data.data.length; i++) {
+                //get current domaine id
+                let idDomain = $('#id_dom').val();
+                fillDropDown += `<option value="${data.data[i].id_domain}" ${(data.data[i].id_domain == idDomain) ? 'selected' : ''}>${data.data[i].nom_domain}</option>`;
+              }
+              if (data.data.length == 0) {
+              fillDropDown = '<option selected>veuillez ajouter un domaine avec la ville du client</option>';
+              }
+              $('#lieu').val(data.client.raisoci);
+              $('#nom_resp').val(data.client.nom_resp);
+              $('#id_dom').html(""); //clear input values
+              $('#id_dom').append(fillDropDown);
+          },
+          error: function(msg) {
+              console.log('error getting data !!');
+          }
+        });
+    }
+
+    function FindThemesDomaine() {
+      var idDomain = $('#id_dom').val();
+      var idTheme = $('#id_thm').val();
+      $.ajax({
+        type: 'get',
+        url: '{!! URL::to('/findthemesdomain') !!}',
+        data: {'idDomain': idDomain},
+        success: function(data) {
+            console.log('success themesDomaine !!', data);
+
+            var fillDropDown = '<option selected disabled>Sélectionner le thème</option>';
+            for (var i = 0; i < data.length; i++) {
+                fillDropDown += `<option value="${data[i].id_theme}" ${(data[i].id_theme == idTheme) ? 'selected' : ''}>${data[i].nom_theme}</option>`;
+            }
+            $('#bdg_jour').val(data[0].cout); //clear input values
+            $('#id_thm').html(""); //clear input values
+            $('#id_thm').append(fillDropDown);
+        },
+        error: function(msg) {
+            console.log('error getting data !!');
+        }
+      });
+    }
 
 
     }); //ready

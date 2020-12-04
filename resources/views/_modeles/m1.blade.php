@@ -138,34 +138,6 @@
 
 
 <script type="text/javascript">
-  var count_td = 0;
-  DatesPlan = (data) => {
-    // return new Promise(resolve => {
-      setTimeout(() => {
-        var fillDates = "";
-        let lastIndex = 0;
-        for (let k = 0; k < data.length; k++) {
-          if (Object.keys(data[k]).length != 0) {
-            for (let x = 0; x < Object.keys(data[k]).length; x++) {
-              let index = "date"+(x+1)+"";
-              console.log((k+1)+"- "+index+" : "+data[k][index]);
-              if (data[k][index] != null) {
-                fillDates += '<span style="padding:.3rem;">'+DateFormat(data[k][index])+'</span><br>';
-              } //endif
-            } //endfor
-            // $('#year').val((data[0]['date1']).getFullYear());
-          }
-          else {
-            fillDates = `<span style="padding:.3rem;">(vide) vérifiez que vous avez saisi les dates ou la formation</span>`;
-          } //endif
-        } //endfor
-        count_td++;
-        $(`#td`+(count_td)).append(fillDates);
-        console.log("fillDates ajax2 : " + fillDates);
-      }, 500);
-    // }); //promise
-  } //fun
-
   $(document).ready(function() {
 
     $('#client').on('change', function() {
@@ -235,7 +207,36 @@
         error: function(error) { console.log("error getting plan formations !!", error); }
       }); //ajax
       count_td = 0;
-    }); //onChange "client"
+      }); //onChange "plans"
+
+      var count_td = 0;
+      DatesPlan = (data) => {
+      // return new Promise(resolve => {
+        setTimeout(() => {
+          var fillDates = "";
+          let lastIndex = 0;
+          for (let k = 0; k < data.length; k++) {
+            if (Object.keys(data[k]).length != 0) {
+              for (let x = 0; x < Object.keys(data[k]).length; x++) {
+                let index = "date"+(x+1)+"";
+                console.log((k+1)+"- "+index+" : "+data[k][index]);
+                if (data[k][index] != null) {
+                  fillDates += '<span style="padding:.3rem;">'+DateFormat(data[k][index])+'</span><br>';
+                } //endif
+              } //endfor
+              // $('#year').val((data[0]['date1']).getFullYear());
+            }
+            else {
+              fillDates = `<span style="padding:.3rem;">(vide) vérifiez que vous avez saisi les dates ou la formation</span>`;
+            } //endif
+          } //endfor
+          count_td++;
+          $(`#td`+(count_td)).append(fillDates);
+          console.log("fillDates ajax2 : " + fillDates);
+        }, 500);
+      // }); //promise
+    } //fun
+
 
   }); //ready
 </script>

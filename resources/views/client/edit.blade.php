@@ -248,7 +248,7 @@
         <div class="form-group col-lg-12 col-sm-12">{{--**************HR**************--}}<hr></div>
 
         <div class="form-group col-lg-3 col-sm-12"><label>Chiffre d'affaire - 1</label>
-            <input class="form-control {{ $errors->has('chif_aff_1') ? ' is-invalid' : '' }}" type="text" value="{{$client->chif_aff_1}}" name="chif_aff_1" min="0" maxlength="13" onkeypress="return isNumberKey(event)" placeholder="en DH" >
+            <input class="form-control {{ $errors->has('chif_aff_1') ? ' is-invalid' : '' }}" type="number" value="{{$client->chif_aff_1}}" name="chif_aff_1" min="0" maxlength="13" onkeypress="return isNumberKey(event)" placeholder="en DH" >
             @if ($errors->has('chif_aff_1'))
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $errors->first('chif_aff_1') }}</strong>
@@ -257,7 +257,7 @@
         </div>
 
         <div class="form-group col-lg-3 col-sm-12"><label>Chiffre d'affaire - 2</label>
-            <input class="form-control {{ $errors->has('chif_aff_2') ? ' is-invalid' : '' }}" type="text" value="{{$client->chif_aff_2}}" name="chif_aff_2" min="0" maxlength="13" onkeypress="return isNumberKey(event)" placeholder="en DH" >
+            <input class="form-control {{ $errors->has('chif_aff_2') ? ' is-invalid' : '' }}" type="number" value="{{$client->chif_aff_2}}" name="chif_aff_2" min="0" maxlength="13" onkeypress="return isNumberKey(event)" placeholder="en DH" >
             @if ($errors->has('chif_aff_2'))
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $errors->first('chif_aff_2') }}</strong>
@@ -266,7 +266,7 @@
         </div>
 
         <div class="form-group col-lg-3 col-sm-12"><label>Chiffre d'affaire - 3</label>
-            <input class="form-control {{ $errors->has('chif_aff_3') ? ' is-invalid' : '' }}" type="text" value="{{$client->chif_aff_3}}" name="chif_aff_3" min="0"maxlength="13" onkeypress="return isNumberKey(event)" placeholder="en DH" >
+            <input class="form-control {{ $errors->has('chif_aff_3') ? ' is-invalid' : '' }}" type="number" value="{{$client->chif_aff_3}}" name="chif_aff_3" min="0"maxlength="13" onkeypress="return isNumberKey(event)" placeholder="en DH" >
             @if ($errors->has('chif_aff_3'))
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $errors->first('chif_aff_3') }}</strong>
@@ -275,7 +275,7 @@
         </div>
 
         <div class="form-group col-lg-3 col-sm-12"><label>Chiffre d'affaire - 4</label>
-            <input class="form-control {{ $errors->has('chif_aff_4') ? ' is-invalid' : '' }}" type="text" value="{{$client->chif_aff_4}}" name="chif_aff_4" min="0" maxlength="13" onkeypress="return isNumberKey(event)" placeholder="en DH" >
+            <input class="form-control {{ $errors->has('chif_aff_4') ? ' is-invalid' : '' }}" type="number" value="{{$client->chif_aff_4}}" name="chif_aff_4" min="0" maxlength="13" onkeypress="return isNumberKey(event)" placeholder="en DH" >
             @if ($errors->has('chif_aff_4'))
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $errors->first('chif_aff_4') }}</strong>
@@ -284,7 +284,7 @@
         </div>
 
         <div class="form-group col-lg-3 col-sm-12"><label>Masse salarial</label>
-            <input class="form-control {{ $errors->has('mass_salar') ? ' is-invalid' : '' }}" type="text" value="{{$client->mass_salar}}" name="mass_salar" min="0" maxlength="20" onkeypress="return isNumberKey(event)" placeholder="en DH" >
+            <input class="form-control {{ $errors->has('mass_salar') ? ' is-invalid' : '' }}" type="number" value="{{$client->mass_salar}}" name="mass_salar" min="0" maxlength="20" onkeypress="return isNumberKey(event)" placeholder="en DH" >
             @if ($errors->has('mass_salar'))
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $errors->first('mass_salar') }}</strong>
@@ -293,7 +293,7 @@
         </div>
 
         <div class="form-group col-lg-3 col-sm-12"><label>Tax formation personnel</label>
-            <input class="form-control {{ $errors->has('tax_form_pers') ? ' is-invalid' : '' }}" value="{{$client->tax_form_pers}}" type="text" name="tax_form_pers" min="0" maxlength="13" onkeypress="return isNumberKey(event)" placeholder="en DH" >
+            <input class="form-control {{ $errors->has('tax_form_pers') ? ' is-invalid' : '' }}" value="{{$client->tax_form_pers}}" type="number" name="tax_form_pers" min="0" maxlength="13" onkeypress="return isNumberKey(event)" placeholder="en DH" >
             @if ($errors->has('tax_form_pers'))
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $errors->first('tax_form_pers') }}</strong>
@@ -302,7 +302,7 @@
         </div>
 
         <div class="form-group col-lg-3 col-sm-12"><label>Dernière année CSF</label>
-            <input class="form-control {{ $errors->has('der_annee_csf') ? ' is-invalid' : '' }}" value="{{$client->der_annee_csf}}" type="text" name="der_annee_csf" min="0" maxlength="4" onkeypress="return isNumberKey(event)" placeholder="une année" >
+            <input class="form-control {{ $errors->has('der_annee_csf') ? ' is-invalid' : '' }}" value="{{$client->der_annee_csf}}" type="number" name="der_annee_csf" min="0" maxlength="4" onkeypress="return isNumberKey(event)" placeholder="une année" >
             @if ($errors->has('der_annee_csf'))
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $errors->first('der_annee_csf') }}</strong>
@@ -313,7 +313,7 @@
         <div class="form-group col-lg-12 col-sm-12">{{--**************HR**************--}}<hr></div>
 
         <div class="form-group col-lg-3 col-sm-12"><label>Effectif</label>
-            <input class="form-control {{ $errors->has('effectif') ? ' is-invalid' : '' }}" type="text" name="effectif" value="{{$client->effectif}}" min="0" maxlength="10" onkeypress="return isNumberKey(event)" placeholder="Effectif" >
+            <input class="form-control {{ $errors->has('effectif') ? ' is-invalid' : '' }}" type="number" name="effectif" value="{{$client->effectif}}" min="0" maxlength="10" onkeypress="return isNumberKey(event)" placeholder="Effectif" >
             @if ($errors->has('effectif'))
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $errors->first('effectif') }}</strong>
@@ -322,7 +322,7 @@
         </div>
 
         <div class="form-group col-lg-3 col-sm-12"><label>Nb. permanents</label>
-            <input class="form-control {{ $errors->has('nb_permanent') ? ' is-invalid' : '' }}" type="text" value="{{$client->nb_permanent}}" name="nb_permanent" min="0" maxlength="10" onkeypress="return isNumberKey(event)" placeholder="nombre" >
+            <input class="form-control {{ $errors->has('nb_permanent') ? ' is-invalid' : '' }}" type="number" value="{{$client->nb_permanent}}" name="nb_permanent" min="0" maxlength="10" onkeypress="return isNumberKey(event)" placeholder="nombre" >
             @if ($errors->has('nb_permanent'))
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $errors->first('nb_permanent') }}</strong>
@@ -331,7 +331,7 @@
         </div>
 
         <div class="form-group col-lg-3 col-sm-12"><label>Nb. employés</label>
-            <input class="form-control {{ $errors->has('nb_employe') ? ' is-invalid' : '' }}" type="text" value="{{$client->nb_employe}}" name="nb_employe" min="0" maxlength="10" onkeypress="return isNumberKey(event)" placeholder="nombre" >
+            <input class="form-control {{ $errors->has('nb_employe') ? ' is-invalid' : '' }}" type="number" value="{{$client->nb_employe}}" name="nb_employe" min="0" maxlength="10" onkeypress="return isNumberKey(event)" placeholder="nombre" >
             @if ($errors->has('nb_employe'))
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $errors->first('nb_employe') }}</strong>
@@ -340,7 +340,7 @@
         </div>
 
         <div class="form-group col-lg-3 col-sm-12"><label>Nb. occasionnels</label>
-            <input class="form-control {{ $errors->has('nb_occasional') ? ' is-invalid' : '' }}" type="text" value="{{$client->nb_occasional}}" name="nb_occasional" min="0" maxlength="10" onkeypress="return isNumberKey(event)" placeholder="nombre" >
+            <input class="form-control {{ $errors->has('nb_occasional') ? ' is-invalid' : '' }}" type="number" value="{{$client->nb_occasional}}" name="nb_occasional" min="0" maxlength="10" onkeypress="return isNumberKey(event)" placeholder="nombre" >
             @if ($errors->has('nb_occasional'))
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $errors->first('nb_occasional') }}</strong>
@@ -349,7 +349,7 @@
         </div>
 
         <div class="form-group col-lg-3 col-sm-12"><label>Nb. Ouvriers</label>
-            <input class="form-control {{ $errors->has('nb_ouvrier') ? ' is-invalid' : '' }}" type="text" value="{{$client->nb_ouvrier}}" name="nb_ouvrier" min="0" maxlength="10" onkeypress="return isNumberKey(event)" placeholder="nombre" >
+            <input class="form-control {{ $errors->has('nb_ouvrier') ? ' is-invalid' : '' }}" type="number" value="{{$client->nb_ouvrier}}" name="nb_ouvrier" min="0" maxlength="10" onkeypress="return isNumberKey(event)" placeholder="nombre" >
             @if ($errors->has('nb_ouvrier'))
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $errors->first('nb_ouvrier') }}</strong>
@@ -358,7 +358,7 @@
         </div>
 
         <div class="form-group col-lg-3 col-sm-12"><label>Nb. Cadres</label>
-            <input class="form-control {{ $errors->has('nb_cadre') ? ' is-invalid' : '' }}" type="text" value="{{$client->nb_cadre}}" name="nb_cadre" min="0" maxlength="10" onkeypress="return isNumberKey(event)" placeholder="nombre" >
+            <input class="form-control {{ $errors->has('nb_cadre') ? ' is-invalid' : '' }}" type="number" value="{{$client->nb_cadre}}" name="nb_cadre" min="0" maxlength="10" onkeypress="return isNumberKey(event)" placeholder="nombre" >
             @if ($errors->has('nb_cadre'))
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $errors->first('nb_cadre') }}</strong>
@@ -424,7 +424,7 @@
         <div class="form-group col-lg-12 col-sm-12">{{--**************HR**************--}}<hr></div>
 
         <div class="form-group col-lg-3 col-sm-12"><label>Année Missions 1</label>
-            <input class="form-control {{ $errors->has('annee_deja1') ? ' is-invalid' : '' }}" type="text" value="{{$client->annee_deja1}}" name="annee_deja1" min="0" maxlength="4" onkeypress="return isNumberKey(event)" placeholder="année" >
+            <input class="form-control {{ $errors->has('annee_deja1') ? ' is-invalid' : '' }}" type="number" value="{{$client->annee_deja1}}" name="annee_deja1" min="0" maxlength="4" onkeypress="return isNumberKey(event)" placeholder="année" >
             @if ($errors->has('annee_deja1'))
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $errors->first('annee_deja1') }}</strong>
@@ -433,7 +433,7 @@
         </div>
 
         <div class="form-group col-lg-3 col-sm-12"><label>Année Missions 2</label>
-            <input class="form-control {{ $errors->has('annee_deja2') ? ' is-invalid' : '' }}" type="text" value="{{$client->annee_deja2}}" name="annee_deja2" min="0" maxlength="4" onkeypress="return isNumberKey(event)" placeholder="année" >
+            <input class="form-control {{ $errors->has('annee_deja2') ? ' is-invalid' : '' }}" type="number" value="{{$client->annee_deja2}}" name="annee_deja2" min="0" maxlength="4" onkeypress="return isNumberKey(event)" placeholder="année" >
             @if ($errors->has('annee_deja2'))
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $errors->first('annee_deja2') }}</strong>
@@ -442,7 +442,7 @@
         </div>
 
         <div class="form-group col-lg-3 col-sm-12"><label>Année Missions 3</label>
-            <input class="form-control {{ $errors->has('annee_deja3') ? ' is-invalid' : '' }}" type="text" value="{{$client->annee_deja3}}" name="annee_deja3" min="0" maxlength="4" onkeypress="return isNumberKey(event)" placeholder="année" >
+            <input class="form-control {{ $errors->has('annee_deja3') ? ' is-invalid' : '' }}" type="number" value="{{$client->annee_deja3}}" name="annee_deja3" min="0" maxlength="4" onkeypress="return isNumberKey(event)" placeholder="année" >
             @if ($errors->has('annee_deja3'))
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $errors->first('annee_deja3') }}</strong>

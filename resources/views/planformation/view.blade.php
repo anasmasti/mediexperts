@@ -45,6 +45,7 @@
       <thead class="thead">
         <tr>
           <th>État</th>
+          {{-- <th>N</th> --}}
           <th>Réf. plan<span>&nbsp;&nbsp;<i class="fas fa-tag"></i></span></th>
           <th>N° action</th>
           <th>Intervenant<span>&nbsp;&nbsp;<i class="fas fa-tag"></i></span></th>
@@ -79,6 +80,7 @@
           @endphp
 
           <td class="{{ ($pf->etat == "réalisé") ? 'font-weight-bold badge-success' : ($pf->etat == "planifié" ? 'font-weight-bold badge-warning' : 'font-weight-bold badge-danger') }}">{{ ucfirst($pf->etat) }}</td>
+          {{-- <td>{{ $pf["n_form"] }}</td> --}}
           <td>{{ $refpdf["refpdf"] }}</td>
           <td>{{ $pf->n_action }}</td>
           <td>{{ $nom_interv['nom']}} {{$nom_interv['prenom'] }}</td>

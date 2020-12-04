@@ -55,6 +55,8 @@ class FormulaireController extends Controller
       'formations.date26','formations.date27','formations.date28','formations.date29','formations.date30')
         ->join('formations', 'plan_formations.n_form', 'formations.n_form')
         ->where('formations.n_form', $request->nForm)
+        ->orderBy('plan_formations.dt_debut', 'asc')
+        ->orderBy('plan_formations.created_at', 'asc')
         ->get();
       return response()->json($data);
     }
@@ -152,7 +154,7 @@ class FormulaireController extends Controller
       ->first();
 
       $data = Formation::select('formations.*', 'domaines.*', 'themes.*', 'clients.raisoci', 'clients.raisoci',
-        'plan_formations.*',
+        'plan_formations.*', 'plans.*',
         'cabinets.raisoci as raisoci_cab', 'cabinets.ncnss')
         ->join('plan_formations', 'formations.n_form', 'plan_formations.n_form')
         ->join('intervenants', 'plan_formations.id_inv', 'intervenants.id_interv')
@@ -185,14 +187,15 @@ class FormulaireController extends Controller
     public function FillPlansByReference(Request $request) {
       $data = Client::select('plan_formations.*', 'themes.nom_theme','domaines.nom_domain','plans.*',
         'cabinets.raisoci as raisoci_cab', 'cabinets.ncnss as ncnss_cab')
-        ->join('plans', 'clients.nrc_entrp', '=', 'plans.nrc_e')
-        ->join('plan_formations', 'plans.id_plan', '=', 'plan_formations.id_plan')
+        ->join('plans', 'clients.nrc_entrp', 'plans.nrc_e')
+        ->join('plan_formations', 'plans.id_plan', 'plan_formations.id_plan')
         ->join('themes', 'plan_formations.id_thm', 'themes.id_theme')
         ->join('domaines', 'themes.id_dom', 'domaines.id_domain')
         ->join('intervenants', 'plan_formations.id_inv', 'intervenants.id_interv')
         ->join('cabinets', 'intervenants.nrc_c', 'cabinets.nrc_cab')
         ->where('plans.id_plan', $request->idPlan)
-        // ->orderBy('plan_formations.n_form', 'asc')
+        // ->orderBy('plan_formations.dt_debut')
+        ->orderBy('plan_formations.n_form', 'asc')
         ->get();
       return response()->json($data);
     }

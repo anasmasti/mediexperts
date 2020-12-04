@@ -72,8 +72,10 @@
               @endif
             @endforeach
 
-          <td class="progress-bar progress-bar-striped {{ mb_strtolower($d->etat=='approuvé') ? 'bg-light' : 'bg-warning progress-bar-animated' }}">
-            @if (mb_strtolower($d->etat) == "initié")
+          <td class="progress-bar progress-bar-striped {{ mb_strtolower($d->etat=='approuvé') ? 'bg-light' : (mb_strtolower($d->etat=='annulé') ? 'bg-danger' : 'bg-warning progress-bar-animated') }}">
+            @if (mb_strtolower($d->etat) == "annulé")
+              <i class="fa fa-times"></i>
+            @elseif (mb_strtolower($d->etat) == "initié")
               <i class="fa fa-battery-quarter"></i>
             @elseif (mb_strtolower($d->etat) == "instruction dossier")
               <i class="fa fa-hourglass-half"></i>

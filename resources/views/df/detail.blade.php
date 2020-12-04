@@ -57,14 +57,13 @@
     <div class="card-header">
       <a class="btn btn-dark btn-sm bu-lg-ic" href="/df"><i class="fa fa-arrow-left"></i></a></th>
       <h3 class="card-title card-h3">Demande Financ. > {{ucfirst($df->type_miss)}} > {{$client[0]['raisoci']}}</h3>
-
-
-    @if ($A==true | $B==true)
-      <a class="btn btn-sm bua bu-ic" onclick="IsChild()"><i class="fa fa-trash-alt"></i></a>
-    @elseif ($A==false | $B==false)
-      <a class="btn btn-sm bua bu-ic" onclick="confirmDelete({{$df->n_df}}, 'df/')" a="/del-df/{{ $df->n_df }}"><i class="fa fa-trash-alt"></i></a>
-    @endif
-    <a class="btn btn-sm buaj bu-ic" href="/edit-df/{{ $df->n_df }}"><i class="fa fa-edit"></i></a>
+      @if ($A==true | $B==true)
+        <a class="btn btn-sm btn-danger bu-ic" onclick="IsChild()"><i class="fa fa-trash-alt"></i></a>
+      @elseif ($A==false | $B==false)
+        <a class="btn btn-sm btn-danger bu-ic" onclick="confirmDelete({{$df->n_df}}, 'df/')"><i class="fa fa-trash-alt"></i></a>
+      @endif
+      <a class="btn btn-sm btn-warning bu-ic" href="/edit-df/{{ $df->n_df }}"><i class="fa fa-edit"></i></a>
+      <a class="btn btn-sm btn-secondary bu-ic" href="/drb-df-gc/{{ $df->n_df }}"><i class="fa fa-list-alt"></i></a>
     </div>
 
     <!--card-body-->
@@ -73,7 +72,8 @@
         <thead class="thead">
           <tr>
             <div class="progress" style="height: 20px;">
-              <div class="progress-bar progress-bar-striped {{ mb_strtolower($df->etat=='approuvé') ? 'bg-success' : 'bg-warning progress-bar-animated' }}"
+              <div class="progress-bar progress-bar-striped {{ mb_strtolower($df->etat=='approuvé') ? 'bg-success' : (mb_strtolower($df->etat=='annulé') ? 'bg-danger' : 'bg-warning progress-bar-animated') }}"
+                @if (mb_strtolower($df->etat) == "annulé") style="width: 100%" @endif
                 @if (mb_strtolower($df->etat) == "initié") style="width: 16%" @endif
                 @if (mb_strtolower($df->etat) == "instruction dossier") style="width: 32%" @endif
                 @if (mb_strtolower($df->etat) == "déposé") style="width: 64%" @endif
@@ -90,9 +90,28 @@
           <tr>
             <th>ÉTAT DEMANDE</th>
             <td class="th-det text-capitalize">
-              @if (mb_strtolower($df->etat) == "approuvé")
+              @if (mb_strtolower($df->etat) == "annulé")
+                <i class="fa fa-times"></i>
+                {{$df->etat}}
+              @elseif (mb_strtolower($df->etat) == "initié")
+                <i class="fa fa-battery-quarter"></i>
+                {{$df->etat}}
+              @elseif (mb_strtolower($df->etat) == "instruction dossier")
+                <i class="fa fa-hourglass-half"></i>
+                {{$df->etat}}
+              @elseif (mb_strtolower($df->etat) == "déposé")
+                <i class="fa fa-folder-open"></i>
+                {{$df->etat}}
+              @elseif (mb_strtolower($df->etat) == "accordé")
+                <i class="fa fa-signature"></i>
+                {{$df->etat}}
+              @elseif (mb_strtolower($df->etat) == "réalisé")
+                <i class="fa fa-check-square"></i>
+                {{$df->etat}}
+              @elseif (mb_strtolower($df->etat) == "approuvé")
                 <i class="fa fa-check-circle"></i>
-              @endif {{ mb_strtolower($df->etat) }}</td>
+                {{$df->etat}}
+              @endif
           </tr>
           <tr>
             <th>Entreprise&nbsp;<i class="fas fa-tag"></i></th>

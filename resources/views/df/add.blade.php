@@ -1352,7 +1352,7 @@
                     <label class="btn btn-warning">
                         Initié
                         <i class="fas fa-battery-quarter"></i>
-                        <input type="radio" name="etat" id="option1" autocomplete="off" value="initié">
+                        <input type="radio" name="etat" id="option1" autocomplete="off" value="initié" checked>
                     </label>
                     <label class="btn btn-warning">
                         Instruction dossier
@@ -1378,6 +1378,11 @@
                         Approuvé
                         <i class="fas fa-check-double"></i>
                         <input type="radio" name="etat" id="option6" autocomplete="off" value="approuvé">
+                    </label>
+                    <label class="btn btn-danger">
+                        Annulé
+                        <i class="fas fa-times"></i>
+                        <input type="radio" name="etat" id="option0" autocomplete="off" value="annulé">
                     </label>
                 </div>
             </div>

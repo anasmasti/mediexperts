@@ -224,7 +224,9 @@
               url: '{!! URL::to('/fill-dates-plan') !!}',
               data: {'nForm': nForm},
               success: function(data) {
-                DatesPlan(data);
+                setTimeout(() => {
+                  DatesPlan(data);
+                }, 1000);
               },
               error: function(err) { console.log("error getting dates !!", err); },
             }); //endajax

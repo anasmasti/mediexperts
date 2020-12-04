@@ -199,8 +199,8 @@ class DemandeFinancementController extends Controller
             $request->session()->flash('added', 'Ajouté avec succès');
             $df->save();
 
-            //If etat df "approuvé" -> auto add new drb giac
-            if (mb_strtolower($request->input('etat')) == "approuvé") {
+            //If etat df "accordé" -> auto add new drb giac
+            if (mb_strtolower($request->input('etat')) == "accordé") {
                 $drb = new DemandeRemboursementGiac();
                 $drb->n_df = $df->n_df;
                 $drb->etat = "initié";
@@ -401,17 +401,16 @@ class DemandeFinancementController extends Controller
             //******************************************************************/
             //******************************************************************/
             //***************************** DRB ********************************/
-            //add new record after DF->etat == "clôturé" (à modifier)
+            //add new record after DF->etat == "accordé et +" (à modifier)
             $drb = DemandeRemboursementGiac::all(); //all existed data
-            //If etat df "clôturé" -> auto add new DRB giac
-            $c = 0;
-            foreach ($drb as $dr) {
-                if ($df->n_df == $dr->n_df) {
-                    $c = $c + 1;
-                }
-            }
-            //avoid to duplicate data when updating and "etat" equal to "clôturé"
-            if (mb_strtolower($request->input('etat')) == "approuvé" && $c == 0) {
+            //If etat df "accordé et +" -> auto add new DRB giac
+            $drb_gc = DemandeRemboursementGiac::select('demande_remboursement_giacs.*')
+                    ->join('demande_financements', 'demande_financements.n_df', 'demande_remboursement_giacs.n_df')
+                    ->where('demande_remboursement_giacs.n_df', $ndf)
+                    ->get();
+            $etat_demande = mb_strtolower($request->input('etat'));
+            // éviter la duplication de DRB GIAC lorsque "etat" equal to "accordé et +"
+            if (($etat_demande == "accordé" || $etat_demande == "réalisé" || $etat_demande == "approuvé") && count($drb_gc) == 0) {
                 $drb = new DemandeRemboursementGiac();
                 $drb->n_df = $df->n_df;
                 $drb->etat = "initié";
@@ -436,7 +435,7 @@ class DemandeFinancementController extends Controller
                 $drb->save();
             }
             // modifier la DRB avec les nouveaux montants et quote part
-            else {
+            else if (($etat_demande == "accordé" || $etat_demande == "réalisé" || $etat_demande == "approuvé") && count($drb_gc) > 0) {
               $bdg_acc = $request->input('bdg_accord');
               $quote_part = $request->input('cote_part_entrp');
               $drb_montant_rb = null;
@@ -461,6 +460,14 @@ class DemandeFinancementController extends Controller
                   'drb_gc.part_giac' => $drb_part_giac
                 ]);
               $request->session()->flash('info', 'Demande de remboursement GIAC modifié');
+            }
+            // supprimer DRB GIAC si l'état est avant "accordé"
+            else if (($etat_demande != "accordé" || $etat_demande != "réalisé" || $etat_demande != "approuvé") && count($drb_gc) > 0) {
+              DB::table('demande_remboursement_giacs as drb_gc')
+                ->join('demande_financements', 'demande_financements.n_df', 'drb_gc.n_df')
+                ->where('drb_gc.n_df', $ndf)
+                ->delete();
+              $request->session()->flash('error', 'Demande de remboursement GIAC supprimé!');
             }
             //***************************** DRB ********************************/
             //******************************************************************/
