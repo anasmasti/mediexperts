@@ -24,8 +24,9 @@
 
 </head>
 
-<body class="">
-    {{-- <div id="app"> --}}
+<body>
+
+    <div id="app">
     <div class="wrappercus-bg background"> <!--modified-->
         <nav class="navbar navbar-expand navbar-light"><!--cus-nav-->
                 {{-- <a class="navbar-brand" href="{{ url('/') }}">
@@ -91,6 +92,7 @@
             @yield('content')
         </main>
     </div>
-{{-- </div> app --}}
+</div>
+{{-- end app --}}
 </body>
 </html>

@@ -124,9 +124,8 @@
       <span>Nom de l’organisme de formation :</span>
     </div>
     <div class="" style="width:70%">
-      <span type="text" id="organisme">
+      <input type="text" id="organisme" placeholder="organisme" />
         {{-- auto-filled --}}
-      </span>
     </div>
   </div>
 
@@ -382,7 +381,7 @@
           $('#formation').html("");
           $('#formation').append(fillFormation);
           $('#entrp').html(data[0]['raisoci'].toUpperCase());
-          $('#organisme').html(data[0]['raisoci_cab'].toUpperCase());
+          $('#organisme').val(data[0]['raisoci_cab'].toUpperCase());
           $('#lieu').html(data[0]['lieu'].toUpperCase());
           $('#ville').val(data[0]['local_2'].toUpperCase());
           $('#animateur').val(data[0]['nom_interv'].toUpperCase()+" "+data[0]['prenom_interv'].toUpperCase());
