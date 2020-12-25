@@ -30,8 +30,14 @@ class FormulaireController extends Controller
 
     // MODEL 1
     public function print_m1(Request $request) {
-      $client = Client::all();
-      return view('_modeles.m1', ['client' => $client]);
+      // $client = Client::all();
+      return view('_modeles.m1'
+      //, ['client' => $client]
+      );
+    }
+    public function FillClients(Request $request) {
+      $data = Client::all();
+      return response()->json($data);
     }
     public function FillClientPlans(Request $request) {
       $data = Client::select('plan_formations.*', 'themes.nom_theme', 'plans.annee',
@@ -47,7 +53,7 @@ class FormulaireController extends Controller
       return response()->json($data);
     }
     public function FillDatesPlan(Request $request) {
-      $data = PlanFormation::select('formations.date1','formations.date2','formations.date3','formations.date4','formations.date5',
+      $data = PlanFormation::select('formations.n_form', 'formations.date1','formations.date2','formations.date3','formations.date4','formations.date5',
       'formations.date6','formations.date7','formations.date8','formations.date9','formations.date10',
       'formations.date11','formations.date12','formations.date13','formations.date14','formations.date15',
       'formations.date16','formations.date17','formations.date18','formations.date19','formations.date20',
@@ -211,12 +217,12 @@ class FormulaireController extends Controller
       return view('_modeles.m6', ['client' => $client, 'cabinet' => $cabinet]);
     }
     public function FillPlanTheme(Request $request) {
-      $data = Client::select('plan_formations.*', 'themes.nom_theme', 'clients.*','plans.annee')
+      $data = Client::select('plan_formations.*', 'themes.nom_theme', 'clients.*', 'plans.annee')
         ->join('plans', 'clients.nrc_entrp', '=', 'plans.nrc_e')
         ->join('plan_formations', 'plans.id_plan', '=', 'plan_formations.id_plan')
         ->join('themes', 'plan_formations.id_thm', 'themes.id_theme')
-        ->where(['clients.nrc_entrp', $request->nrcEntrp], ['plan_formations.etat', "réalisé"])
-        ->orWhere(['clients.nrc_entrp', $request->nrcEntrp], ['plan_formations.etat', "planifié"])
+        ->where([['plans.id_plan', $request->idPlan], ['plan_formations.etat', "réalisé"]])
+        ->orWhere([['plans.id_plan', $request->idPlan], ['plan_formations.etat', "planifié"]])
         ->get();
       return response()->json($data);
     }

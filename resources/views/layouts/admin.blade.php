@@ -24,6 +24,7 @@
   <link rel="stylesheet" href={{ asset('/css/app.css') }}>
   <link rel="stylesheet" href={{ asset('/css/custom.css') }}>
   <link rel="stylesheet" href={{ asset('/css/modal.css') }}>
+
   {{-- <link rel="stylesheet" href={{ asset('/css/animate.css') }}> --}}
   <!-- Sweet Alert Animation -->
   {{-- <link rel="stylesheet" href="{{asset('https://daneden.github.io/animate.css/animate.min.css')}}"> --}}
@@ -795,13 +796,16 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/4.0.2/echarts-en.min.js" charset="utf-8"></script>
 <script src="https://cdn.jsdelivr.net/npm/frappe-charts@1.1.0/dist/frappe-charts.min.iife.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.7.0/d3.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.6.7/c3.min.js"></script>
+{{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.6.7/c3.min.js"></script> --}}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" charset="utf-8"></script>
 
 <script src="{{ asset('/js/NumberToLetter.js') }}"></script>
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" charset="utf-8"></script>
 
 {{-- <script src={{ asset("js/app.js") }}></script> --}}
+<script src={{ mix("js/app.js") }}></script>
+
 <!-- IONICONS -->
 <script src="https://unpkg.com/ionicons@4.5.1/dist/ionicons.js"></script>

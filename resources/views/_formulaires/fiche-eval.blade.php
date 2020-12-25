@@ -108,7 +108,7 @@
 
   {{-- ENTREPRISE --}}
   <div style="width:100%; display:flex; flex-wrap:nowrap;">
-    <div style="width:30%;">
+    <div style="width:30%; margin-bottom: 5px;">
       <span>Nom de l’entreprise &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; :</span>
     </div>
     <div class="" style="width:70%;">
@@ -120,11 +120,11 @@
 
   {{-- ORGANISME --}}
   <div style="width:100%; display:flex; flex-wrap:nowrap; padding-bottom: 10px;">
-    <div style="width:30%">
+    <div style="width:30%;">
       <span>Nom de l’organisme de formation :</span>
     </div>
     <div class="" style="width:70%">
-      <input type="text" id="organisme" placeholder="organisme" />
+      <input type="text" id="organisme" placeholder="organisme" style="font-size: 12px" />
         {{-- auto-filled --}}
     </div>
   </div>
@@ -171,7 +171,7 @@
     <div style="width:10%">
       <span>Lieu :</span>
     </div>
-    <div style="width:35%">
+    <div style="min-width: 20%; max-width:35%">
       <span id="lieu">
       </span>
     </div>
@@ -192,8 +192,8 @@
     <div style="width:10%">
       <span>Animateur :</span>
     </div>
-    <div style="width:17%">
-      <input type="text" id="animateur" value="..." style="font-size: 12px;" readonly>
+    <div style="width:20%">
+      <input type="text" id="animateur" value="..." style="font-size: 11px;" readonly>
     </div>
 
   </div>

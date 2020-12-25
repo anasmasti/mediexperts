@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <script src={{ asset('js/jquery.js') }}></script>
-  <title>Modèle 6</title>
+  <script src={{ asset('js/myjs.js') }}></script>
+  <title id="docTitle">Modèle 6</title>
 </head>
 
 <body>
@@ -79,29 +80,26 @@
 {{-- PRINT - CANCEL --}}
 <div class="hide-from-print">
   <div style="display:flex; justify-content:space-between;">
-    <a class="bu-print" id="back" href="/">Retour</a>
-    <a class="bu-print" id="buPrintF2" href="#" onclick="window.print()">Imprimer le formulaire</a>
+    <a class="bu-print" id="backBtn" href="/">Retour</a>
+    <a class="bu-print" id="buPrintM6" href="#" onclick="window.print()">Imprimer le formulaire</a>
   </div>
 
   <div style="width:100%;">
-    <label for="client">Veuillez sélectionner l'entreprise :</label>
+    <label for="client">Entreprise :</label>
     <select name="client" id="client" style="width:100%; padding: .5rem; border: 1px solid #000;">
-      <option selected disabled>--sélectionner l'entreprise</option>
+      <option selected disabled>--sélectionner l'Entreprise ..</option>
       @foreach ($client as $cl)
         <option value="{{$cl->nrc_entrp}}">{{$cl->raisoci}}</option>
       @endforeach
     </select>
   </div>
 
-  {{-- <div style="width:100%;">
-    <label for="cabinet">Veuillez sélectionner le cabinet :</label>
-    <select name="cabinet" id="cabinet" style="width:100%; padding: .5rem; border: 1px solid #000;">
-      <option selected disabled>--sélectionner le cabinet</option>
-      @foreach ($cabinet as $cab)
-        <option value="{{$cab->nrc_cab}}">{{$cab->raisoci}}</option>
-      @endforeach
+  <div style="width:100%;">
+    <label for="plans">Réference plan de formation :</label>
+    <select name="plans" id="plans" style="width:100%; padding: .5rem; border: 1px solid #000;">
+      {{-- auto filled --}}
     </select>
-  </div> --}}
+  </div>
 
 </div>
 
@@ -163,16 +161,40 @@
 </div>
 {{-- END PAPER --}}
 
-
 <script type="text/javascript">
   $(document).ready(function() {
+
     $('#client').on('change', function() {
-      let nrcEntrp = $('#client').val();
+      var nrcEntrp = $('#client').val();
+      $.ajax({
+        type: 'GET',
+        url: '{!! URL::to('/fill-reference-plan') !!}',
+        data: {'nrcEntrp': nrcEntrp},
+        success: function(data) {
+          console.log("success ref pdf !!", data);
+          fillReference = '<option selected disabled>--sélectionner le réference</option>';
+          if (data) {
+            for (let i = 0; i < data.length; i++) {
+              fillReference += `<option value="${data[i].id_plan}">${data[i].refpdf}</option>`;
+            }
+          } else {
+            fillReference = '<option selected disabled>(vide) aucun plan pour l\'entreprise sélectionné</option>';
+          }
+          $('#entrp').html(data[0]['raisoci'].toUpperCase());
+          $('#plans').html("");
+          $('#plans').append(fillReference);
+        },
+        error: function(error) { console.log("error getting reference plans !!", error); }
+      }); //ajax
+    }); //onChange "client"
+
+    $('#plans').on('change', function() {
+      let idPlan = $('#plans').val();
       let fillThemes = "";
       $.ajax({
         type: 'GET',
         url: '/fill-plan-theme',
-        data: {'nrcEntrp': nrcEntrp},
+        data: {'idPlan': idPlan},
         success: function(data) {
           console.log("success themes !!", data);
           if (data) {
@@ -190,6 +212,7 @@
             $('#qualite2').html(data[0]['fonct_dg1']);
             $('#annee').html(data[0]['annee']);
             $('#themes').html(fillThemes);
+            $('#docTitle').html(`Modèle 6 - ${data[0]['raisoci']} - ${data[0]['annee']}`);
           } //if data
           else {
             fillThemes = `<span class="container" style="padding:5px !important;">aucune formation à afficher</span><br>`;
@@ -197,29 +220,12 @@
         },
         error: function(err) { console.log("error getting themes !!", err); }
       }); //ajax
-    }); //onChange 'client'
-
-    // $('#cabinet').on('change', function() {
-    //   let nrcCab = $('#cabinet').val();
-    //   let fillThemes = "";
-    //   $.ajax({
-    //     type: 'GET',
-    //     url: '{!! URL::to('/fill-cabinet') !!}',
-    //     data: {'nrcCab': nrcCab},
-    //     success: function(data) {
-    //       console.log("success cabinet !!", data);
-    //       let dgs = `<option>`+data['nom_gr1']+" "+ data['pren_gr1']+`</option>`
-    //       + `<option>`+data['nom_gr2']+" "+data['pren_gr2']+`</option>`;
-    //       let qualite = `<option>`+data['qualit_gr1']+`</option>`
-    //       + `<option>`+data['qualit_gr2']+`</option>`;
-    //       $('#dirigeant').html("");
-    //       $('#dirigeant').append(dgs);
-    //       $('#qualite').html("");
-    //       $('#qualite').append(qualite);
-    //     },
-    //     error: function(err) { console.log("error getting themes !!", err); }
-    //   }); //ajax
-    // }); //onChange 'cabinet'
+    }); //onChange 'plans'
 
   }); //ready
 </script>
+
+
+
+</body>
+</html>

@@ -327,6 +327,7 @@ Route::get('/print-f2', 'FormulaireController@index_f2')->name('personnel.index_
 Route::get('/print-f3/{nrc}', 'FormulaireController@print_f3')->name('F3.print_f3');
 
 Route::get('/print-m1', 'FormulaireController@print_m1')->name('M1.print_m1');
+Route::get('/fill-clients', 'FormulaireController@FillClients')->name('M1.print_m1');
 Route::get('/fill-client-plans', 'FormulaireController@FillClientPlans')->name('M1.FillClientPlans');
 
 Route::get('/print-m4/{idform}', 'FormulaireController@print_m4')->name('M4.print_m4');
