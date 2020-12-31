@@ -28,6 +28,7 @@ class PlanFormation extends Model
         'dt_debut',
         'dt_fin',
         'nb_jour',
+        'nb_heure',
         'type_form',
         'organisme',
         'lieu',

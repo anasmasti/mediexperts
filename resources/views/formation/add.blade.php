@@ -174,9 +174,8 @@
       {{-- here where date inputs will appear --}}
     </div><!--./row-->
 
-    <i class="fa fa-plus-circle text-warning" id="addDateInput" style="font-size: 24px; cursor: pointer;">
-      {{-- BUTTON --}}
-    </i>
+    {{-- <i class="fa fa-plus-circle text-warning" id="addDateInput" style="font-size: 24px; cursor: pointer;">
+    </i> --}}
 
     <div class="row">
       <div class="form-group col-12"><!--**************HR**************--><hr></div>

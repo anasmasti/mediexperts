@@ -134,30 +134,36 @@
     <tr>
       <td>{{ $formation["nom_theme"] }}</td>
       <td>
-        @if ($formation["date1"] != null) <p class="dates"> {{ Carbon\Carbon::parse($formation["date1"])->format('d/m/Y') }}</p> @endif
-        @if ($formation["date2"] != null) <p class="dates"> {{ Carbon\Carbon::parse($formation["date2"])->format('d/m/Y') }}</p> @endif
-        @if ($formation["date3"] != null) <p class="dates"> {{ Carbon\Carbon::parse($formation["date3"])->format('d/m/Y') }}</p> @endif
-        @if ($formation["date4"] != null) <p class="dates"> {{ Carbon\Carbon::parse($formation["date4"])->format('d/m/Y') }}</p> @endif
-        @if ($formation["date5"] != null) <p class="dates"> {{ Carbon\Carbon::parse($formation["date5"])->format('d/m/Y') }}</p> @endif
-        @if ($formation["date6"] != null) <p class="dates"> {{ Carbon\Carbon::parse($formation["date6"])->format('d/m/Y') }}</p> @endif
-        @if ($formation["date7"] != null) <p class="dates"> {{ Carbon\Carbon::parse($formation["date7"])->format('d/m/Y') }}</p> @endif
-        @if ($formation["date8"] != null) <p class="dates"> {{ Carbon\Carbon::parse($formation["date8"])->format('d/m/Y') }}</p> @endif
-        @if ($formation["date9"] != null) <p class="dates"> {{ Carbon\Carbon::parse($formation["date9"])->format('d/m/Y') }}</p> @endif
-        @if ($formation["date11"] != null) <p class="dates"> {{ Carbon\Carbon::parse($formation["date10"])->format('d/m/Y') }}</p> @endif
-        @if ($formation["date12"] != null) <p class="dates"> {{ Carbon\Carbon::parse($formation["date11"])->format('d/m/Y') }}</p> @endif
-        @if ($formation["date13"] != null) <p class="dates"> {{ Carbon\Carbon::parse($formation["date6"])->format('d/m/Y') }}</p> @endif
-        @if ($formation["date14"] != null) <p class="dates"> {{ Carbon\Carbon::parse($formation["date4"])->format('d/m/Y') }}</p> @endif
-        @if ($formation["date15"] != null) <p class="dates"> {{ Carbon\Carbon::parse($formation["date5"])->format('d/m/Y') }}</p> @endif
-        @if ($formation["date16"] != null) <p class="dates"> {{ Carbon\Carbon::parse($formation["date6"])->format('d/m/Y') }}</p> @endif
-        @if ($formation["date17"] != null) <p class="dates"> {{ Carbon\Carbon::parse($formation["date4"])->format('d/m/Y') }}</p> @endif
-        @if ($formation["date18"] != null) <p class="dates"> {{ Carbon\Carbon::parse($formation["date5"])->format('d/m/Y') }}</p> @endif
-        @if ($formation["date19"] != null) <p class="dates"> {{ Carbon\Carbon::parse($formation["date6"])->format('d/m/Y') }}</p> @endif
-        @if ($formation["date20"] != null) <p class="dates"> {{ Carbon\Carbon::parse($formation["date4"])->format('d/m/Y') }}</p> @endif
-        @if ($formation["date21"] != null) <p class="dates"> {{ Carbon\Carbon::parse($formation["date5"])->format('d/m/Y') }}</p> @endif
-        @if ($formation["date22"] != null) <p class="dates"> {{ Carbon\Carbon::parse($formation["date6"])->format('d/m/Y') }}</p> @endif
-        @if ($formation["date23"] != null) <p class="dates"> {{ Carbon\Carbon::parse($formation["date4"])->format('d/m/Y') }}</p> @endif
-        @if ($formation["date24"] != null) <p class="dates"> {{ Carbon\Carbon::parse($formation["date5"])->format('d/m/Y') }}</p> @endif
-        @if ($formation["date25"] != null) <p class="dates"> {{ Carbon\Carbon::parse($formation["date6"])->format('d/m/Y') }}</p> @endif
+        @if ($formation["date1"] != null) <span class="dates"> {{ Carbon\Carbon::parse($formation["date1"])->format('d/m/Y') }}</span> @endif
+        @if ($formation["date2"] != null) <span class="dates"> {{ Carbon\Carbon::parse($formation["date2"])->format('d/m/Y') }}</span> @endif
+        @if ($formation["date3"] != null) <span class="dates"> {{ Carbon\Carbon::parse($formation["date3"])->format('d/m/Y') }}</span> @endif
+        @if ($formation["date4"] != null) <span class="dates"> {{ Carbon\Carbon::parse($formation["date4"])->format('d/m/Y') }}</span> @endif
+        @if ($formation["date5"] != null) <span class="dates"> {{ Carbon\Carbon::parse($formation["date5"])->format('d/m/Y') }}</span> @endif
+        @if ($formation["date6"] != null) <span class="dates"> {{ Carbon\Carbon::parse($formation["date6"])->format('d/m/Y') }}</span> @endif
+        @if ($formation["date7"] != null) <span class="dates"> {{ Carbon\Carbon::parse($formation["date7"])->format('d/m/Y') }}</span> @endif
+        @if ($formation["date8"] != null) <span class="dates"> {{ Carbon\Carbon::parse($formation["date8"])->format('d/m/Y') }}</span> @endif
+        @if ($formation["date9"] != null) <span class="dates"> {{ Carbon\Carbon::parse($formation["date9"])->format('d/m/Y') }}</span> @endif
+        @if ($formation["date10"] != null) <span class="dates"> {{ Carbon\Carbon::parse($formation["date10"])->format('d/m/Y') }}</span> @endif
+        @if ($formation["date11"] != null) <span class="dates"> {{ Carbon\Carbon::parse($formation["date11"])->format('d/m/Y') }}</span> @endif
+        @if ($formation["date12"] != null) <span class="dates"> {{ Carbon\Carbon::parse($formation["date12"])->format('d/m/Y') }}</span> @endif
+        @if ($formation["date13"] != null) <span class="dates"> {{ Carbon\Carbon::parse($formation["date13"])->format('d/m/Y') }}</span> @endif
+        @if ($formation["date14"] != null) <span class="dates"> {{ Carbon\Carbon::parse($formation["date14"])->format('d/m/Y') }}</span> @endif
+        @if ($formation["date15"] != null) <span class="dates"> {{ Carbon\Carbon::parse($formation["date15"])->format('d/m/Y') }}</span> @endif
+        @if ($formation["date16"] != null) <span class="dates"> {{ Carbon\Carbon::parse($formation["date16"])->format('d/m/Y') }}</span> @endif
+        @if ($formation["date17"] != null) <span class="dates"> {{ Carbon\Carbon::parse($formation["date17"])->format('d/m/Y') }}</span> @endif
+        @if ($formation["date18"] != null) <span class="dates"> {{ Carbon\Carbon::parse($formation["date18"])->format('d/m/Y') }}</span> @endif
+        @if ($formation["date19"] != null) <span class="dates"> {{ Carbon\Carbon::parse($formation["date19"])->format('d/m/Y') }}</span> @endif
+        @if ($formation["date20"] != null) <span class="dates"> {{ Carbon\Carbon::parse($formation["date20"])->format('d/m/Y') }}</span> @endif
+        @if ($formation["date21"] != null) <span class="dates"> {{ Carbon\Carbon::parse($formation["date21"])->format('d/m/Y') }}</span> @endif
+        @if ($formation["date22"] != null) <span class="dates"> {{ Carbon\Carbon::parse($formation["date22"])->format('d/m/Y') }}</span> @endif
+        @if ($formation["date23"] != null) <span class="dates"> {{ Carbon\Carbon::parse($formation["date23"])->format('d/m/Y') }}</span> @endif
+        @if ($formation["date24"] != null) <span class="dates"> {{ Carbon\Carbon::parse($formation["date24"])->format('d/m/Y') }}</span> @endif
+        @if ($formation["date25"] != null) <span class="dates"> {{ Carbon\Carbon::parse($formation["date25"])->format('d/m/Y') }}</span> @endif
+        @if ($formation["date26"] != null) <span class="dates"> {{ Carbon\Carbon::parse($formation["date26"])->format('d/m/Y') }}</span> @endif
+        @if ($formation["date27"] != null) <span class="dates"> {{ Carbon\Carbon::parse($formation["date27"])->format('d/m/Y') }}</span> @endif
+        @if ($formation["date28"] != null) <span class="dates"> {{ Carbon\Carbon::parse($formation["date28"])->format('d/m/Y') }}</span> @endif
+        @if ($formation["date29"] != null) <span class="dates"> {{ Carbon\Carbon::parse($formation["date29"])->format('d/m/Y') }}</span> @endif
+        @if ($formation["date30"] != null) <span class="dates"> {{ Carbon\Carbon::parse($formation["date30"])->format('d/m/Y') }}</span> @endif
       </td>
       <td>{{ $formation["nb_benif"] }}</td>
       <td>{{ $formation["bdg_jour"] }} DH</td>
@@ -205,8 +211,7 @@
 
   <div style="width:100%; height:25px;"><!--space--></div>
 
-
-  <div id="footer" class="container" style="position:fixed !important; bottom:0; width:100%; padding-bottom:150px;">
+  <div id="footer" class="container" style="position:fixed !important; bottom:0; width:100%; padding-bottom:100px;">
     <p style="margin: 20px; margin-left: 60%">RAID SOUFIANE, Gérant Associé </p>
   </div>
 

@@ -353,7 +353,7 @@
               fillForm =
               `<tr>`+
                 `<td>`+data[i]['groupe']+`</td>`+
-                `<td>`+data[i]['nb_partcp_total']+`</td>`+
+                `<td>`+data[i]['nb_benif']+`</td>`+
                 `<td style="max-width: 200px;">` +
                   fillDates +
                 `</td>`+
@@ -370,7 +370,7 @@
             $('#domaine').val(data[0]['nom_domain']);
             $('#objectif').val(data[0]['objectif']);
             $('#contenu').val(data[0]['contenu']);
-            $('#coutForm').val(data[0]['bdg_total'] + " DH");
+            $('#coutForm').val((data[0]['bdg_total'] * data[0]['nb_grp']) + " DH");
             $('#cabinet').val(data[0]['raisoci_cab']);
             $('#cnss').val(data[0]['ncnss']);
             $('#nAction').html(data[0]['n_action']);

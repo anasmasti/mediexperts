@@ -31,6 +31,7 @@ class CreatePlanFormationsTable extends Migration
             $table->date('dt_debut');
             $table->date('dt_fin');
             $table->integer('nb_jour');
+            $table->integer('nb_heure')->nullable();
             $table->string('type_form', 50);
             $table->string('organisme', 50);
             $table->string('lieu', 200);

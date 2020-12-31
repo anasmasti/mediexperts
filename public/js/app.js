@@ -1713,6 +1713,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
@@ -1729,6 +1731,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       actions_by_ref: [],
       plan_formation: [],
       dates_actions: [],
+      current_dates: null,
       isAllLoaded: false
     };
   },
@@ -1736,6 +1739,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     this.FillClients();
   },
   methods: {
+    DateFormat: function DateFormat(date) {
+      var datestring = date.replace(/[^\w\s]/gi, '');
+      var year = datestring.charAt(0) + datestring.charAt(1) + datestring.charAt(2) + datestring.charAt(3);
+      var month = datestring.charAt(4) + datestring.charAt(5);
+      var day = datestring.charAt(6) + datestring.charAt(7);
+      return day + '/' + month + '/' + year;
+    },
     FillClients: function FillClients() {
       var _this = this;
 
@@ -1793,8 +1803,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _context3.next = 2;
                 return axios.get("/fill-plans-by-reference?idPlan=".concat(_this3.id_plan)).then(function (res) {
                   _this3.actions_by_ref = res.data;
-                  console.log("actions_by_ref : ", _this3.actions_by_ref); // fill dates action
-
+                  console.log("actions_by_ref : ", _this3.actions_by_ref);
+                }).then(function () {
+                  // fill dates action
                   _this3.actions_by_ref.forEach(function (action) {
                     _this3.FillDates(action.n_form);
                   });
@@ -1804,7 +1815,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 2:
                 _this3.isAllLoaded = true;
-                console.log("isallloaded", _this3.isAllLoaded); // await this.AssignDates();
+                console.log("isallloaded", _this3.isAllLoaded);
 
               case 4:
               case "end":
@@ -1825,6 +1836,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _context4.next = 2;
                 return axios.get("/fill-dates-plan?nForm=".concat(nform)).then(function (res) {
                   _this4.dates_actions = res.data;
+                }).then(function () {
+                  _this4.AssignDates(nform);
                 })["catch"](function (err) {
                   return console.error("err FillDates", err);
                 });
@@ -1837,31 +1850,34 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee4);
       }))();
     },
-    AssignDates: function AssignDates(nForm) {
+    AssignDates: function AssignDates(nform) {
       var _this5 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
-        var fillDates;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
           while (1) {
             switch (_context5.prev = _context5.next) {
               case 0:
-                fillDates = "";
-                _context5.next = 3;
-                return _this5.dates_actions.forEach(function (forma) {
-                  if (forma.n_form == nForm) {
-                    fillDates += "<span>".concat(forma.n_form, "</span><br />");
+                _this5.actions_by_ref.forEach(function (action) {
+                  if (action.n_form == nform) {
+                    _this5.dates_actions.forEach(function (forma) {
+                      if (forma.n_form == nform) {
+                        Object.assign(action, {
+                          dates: {}
+                        });
 
-                    for (var i = 1; i < 30; i++) {
-                      var date_index = "date".concat(i);
-                      if (forma[date_index]) fillDates += "<span>".concat(DateFormat(forma[date_index]), "</span><br />");
-                    }
+                        for (var i = 1; i < 30; i++) {
+                          //************************ vvv [dynamic key assignement] vvv */
+                          Object.assign(action.dates, _defineProperty({}, "date".concat(i), forma["date".concat(i)]));
+                        }
+                      }
+
+                      console.log("assign dates action: ", action);
+                    });
                   }
-
-                  document.getElementById(nForm).innerHTML += fillDates;
                 });
 
-              case 3:
+              case 1:
               case "end":
                 return _context5.stop();
             }
@@ -1869,7 +1885,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee5);
       }))();
     }
-  } // methods
+  },
+  // methods
+  computed: {} // computed
 
 });
 
@@ -38369,7 +38387,11 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _c("td", { attrs: { id: action.n_form } }),
+                _c("td", { attrs: { id: action.n_form } }, [
+                  _vm._v(
+                    "\n            " + _vm._s(action.dates) + "\n          "
+                  )
+                ]),
                 _vm._v(" "),
                 _c("td", [
                   _vm._v(

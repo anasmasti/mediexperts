@@ -145,6 +145,7 @@ class PlanFormationController extends Controller
                 'dt_debut' => 'required|date|before_or_equal:dt_fin',
                 'dt_fin' => 'required|date',
                 'nb_jour' => 'required|max:3',
+                'nb_heure' => 'required|max:4',
                 'type_form' => 'required|max:50',
                 'organisme' => 'required|max:50',
                 'lieu' => 'required|max:100',
@@ -199,6 +200,7 @@ class PlanFormationController extends Controller
             $plan->dt_debut = $request->input("dt_debut");
             $plan->dt_fin = $request->input("dt_fin");
             $plan->nb_jour = $request->input("nb_jour");
+            $plan->nb_heure = $request->input("nb_heure");
             $plan->type_form = $request->input("type_form");
             $plan->organisme = $request->input("organisme");
             $plan->lieu = $request->input("lieu");
@@ -344,6 +346,7 @@ class PlanFormationController extends Controller
                 'dt_debut' => 'required|date|before_or_equal:dt_fin',
                 'dt_fin' => 'required|date',
                 'nb_jour' => 'required|max:3',
+                'nb_heure' => 'required|max:4',
                 'type_form' => 'required|max:50',
                 'organisme' => 'required|max:50',
                 'lieu' => 'required|max:100',
@@ -385,6 +388,7 @@ class PlanFormationController extends Controller
             $plan->dt_fin = $request->input("dt_fin");
             $old_nb_jour = $plan->nb_jour;
             $plan->nb_jour = $request->input("nb_jour");
+            $plan->nb_heure = $request->input("nb_heure");
             $plan->type_form = $request->input("type_form");
             $plan->organisme = $request->input("organisme");
             $plan->lieu = $request->input("lieu");

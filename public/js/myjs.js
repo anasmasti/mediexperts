@@ -45,8 +45,9 @@ function CalcBdgJourn() {
     let bdgTotal = document.getElementById("bdg_total");
     let bdgJour = document.getElementById("bdg_jour");
     let nbJour = document.getElementById("nb_jour");
+    let nbHeure = document.getElementById("nb_heure");
 
-    bdgTotal.value = (bdgJour.value * nbJour.value).toFixed(2);
+    bdgTotal.value = (((nbHeure.value * nbJour.value) / 6) * bdgJour.value).toFixed(2);
     bdgLetter.value = NumberToLetter(((bdgJour.value * nbJour.value) + bdgTotal.value * .2).toFixed(2), "DIRHAM", "Centimes").toUpperCase();
 }
 function DateFormat(date) {

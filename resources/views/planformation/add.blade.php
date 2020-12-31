@@ -223,6 +223,15 @@
         @endif
       </div>
 
+      <div class="form-group col-lg-3 col-md-6 col-12"><label>Nb. heures (durée total)</label>
+        <input class="form-control {{ $errors->has('nb_heure') ? ' is-invalid' : '' }}" value="{{old('nb_heure')}}" type="text" name="nb_heure" id="nb_heure" min="0" maxlength="15" onkeyup="CalcBdgJourn()" onkeypress="return isNumberKey(event)" placeholder="nb. jour" >
+        @if ($errors->has('nb_heure'))
+          <span class="invalid-feedback" role="alert">
+            {{ $errors->first('nb_heure') }}
+          </span>
+        @endif
+      </div>
+
       <div class="form-group col-lg-3 col-md-6 col-12">
         <label for="type_form">Type formation</label>
         <?php $typeform =

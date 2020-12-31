@@ -10,6 +10,7 @@ export default {
       actions_by_ref: [],
       plan_formation: [],
       dates_actions: [],
+      current_dates: null,
       isAllLoaded: false,
     }
   },
@@ -17,6 +18,13 @@ export default {
     this.FillClients();
   },
   methods: {
+    DateFormat(date) {
+      let datestring = date.replace(/[^\w\s]/gi, '');
+      let year = datestring.charAt(0) + datestring.charAt(1) + datestring.charAt(2) + datestring.charAt(3);
+      let month = datestring.charAt(4) + datestring.charAt(5);
+      let day = datestring.charAt(6) + datestring.charAt(7);
+      return (day+'/'+month+'/'+year);
+    },
     async FillClients() {
       await axios.get('/fill-clients')
         .then((res) => {
@@ -38,6 +46,8 @@ export default {
         .then((res) => {
           this.actions_by_ref = res.data;
           console.log("actions_by_ref : ", this.actions_by_ref)
+        })
+        .then(() => {
           // fill dates action
           this.actions_by_ref.forEach((action) => {
             this.FillDates(action.n_form);
@@ -46,30 +56,36 @@ export default {
         .catch((err) => console.error("err FillPlanByReference", err));
       this.isAllLoaded = true;
       console.log("isallloaded", this.isAllLoaded);
-      // await this.AssignDates();
     },
     async FillDates(nform) {
       await axios.get(`/fill-dates-plan?nForm=${nform}`)
         .then((res) => {
           this.dates_actions = res.data;
         })
+        .then(() => {
+          this.AssignDates(nform);
+        })
         .catch((err) => console.error("err FillDates", err));
     },
-    async AssignDates(nForm) {
-      var fillDates = "";
-      await this.dates_actions.forEach(forma => {
-        if (forma.n_form == nForm) {
-          fillDates += `<span>${forma.n_form}</span><br />`;
-          for (let i = 1; i < 30; i++) {
-            let date_index = `date${i}`;
-            if (forma[date_index])
-              fillDates += `<span>${DateFormat(forma[date_index])}</span><br />`;
-          }
+    async AssignDates(nform) {
+      this.actions_by_ref.forEach(action => {
+        if (action.n_form == nform) {
+          this.dates_actions.forEach(forma => {
+            if (forma.n_form == nform) {
+              Object.assign(action, {dates: {}});
+              for (let i = 1; i < 30; i++) {
+                //************************ vvv [dynamic key assignement] vvv */
+                Object.assign(action.dates, {[`date${i}`]: forma[`date${i}`]});
+              }
+            }
+            console.log("assign dates action: ", action);
+          });
         }
-        document.getElementById(nForm).innerHTML += fillDates;
       });
-    }
-  } // methods
+    },
+  }, // methods
+  computed: {
+  } // computed
 }
 </script>
 
@@ -142,7 +158,7 @@ export default {
 
         <tbody id="tableFormation" class="center">
           <!-- {{-- auto filled --}} -->
-          <tr v-for="(action, idx) in actions_by_ref" :key="'plan'+idx">
+          <tr v-for="(action, idx) in actions_by_ref" :key="`plan${idx}`">
             <td>
               {{action.n_action}}
             </td>
@@ -150,14 +166,9 @@ export default {
               {{action.nom_theme}}
             </td>
             <td :id="action.n_form">
-              <!-- <span v-for="(forma, idx) in dates_actions" :key="`forma${idx}`">
-                <span v-if="action.n_form == forma.n_form">
-                  <span v-for="item in items" :key="item.id">
-                    {{ item }}
-                  </span>
-                </span>
-              </span> -->
-              <!-- {{ AssignDates(action.n_form) }} -->
+              {{
+                action.dates
+              }}
             </td>
             <td>
               {{action.organisme}}
