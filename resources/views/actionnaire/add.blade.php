@@ -105,11 +105,11 @@
 
         <div class="card-footer text-center">
             @if (count($client)!=0)
-                <button class="btn buaj2" type="submit" id="add"><i class="fas fa-plus-circle"></i>&nbsp;Ajouter</button>
+                <button class="btn bu-add" type="submit" id="add"><i class="fas fa-plus-circle"></i>&nbsp;Ajouter</button>
             @else
-                <a class="btn buaj2" href="/add-cl"><i class="fas fa-plus-circle"></i>&nbsp;Ajouter Entreprise</a>
+                <a class="btn bu-add" href="/add-cl"><i class="fas fa-plus-circle"></i>&nbsp;Ajouter Entreprise</a>
             @endif
-            <a class="btn bua2" href="/actionnaire"><i class="fas fa-window-close"></i>&nbsp;Annuler</a>
+            <a class="btn bu-danger" href="/actionnaire"><i class="fas fa-window-close"></i>&nbsp;Annuler</a>
         </div>
 
         </form>

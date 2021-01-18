@@ -83,16 +83,16 @@
 
         <div class="card-footer text-center">
             @if (count($df)!=0 && count($interv)!=0)
-                <button class="btn buaj2" type="submit" id="add"><i class="fa fa-plus-circle"></i>&nbsp;Ajouter</button>
+                <button class="btn bu-add" type="submit" id="add"><i class="fa fa-plus-circle"></i>&nbsp;Ajouter</button>
             @elseif (count($df)==0 && count($interv)==0)
-                <a class="btn buaj2" href="/add-df" target="blank"><i class="fa fa-plus-circle"></i>&nbsp;D.F</a>
-                <a class="btn buaj2" href="/add-inv" target="blank"><i class="fa fa-plus-circle"></i>&nbsp;Intervenant</a>
+                <a class="btn bu-add" href="/add-df" target="blank"><i class="fa fa-plus-circle"></i>&nbsp;D.F</a>
+                <a class="btn bu-add" href="/add-inv" target="blank"><i class="fa fa-plus-circle"></i>&nbsp;Intervenant</a>
             @elseif (count($df)==0 && count($interv)!=0)
-                <a class="btn buaj2" href="/add-df" target="blank"><i class="fa fa-plus-circle"></i>&nbsp;D.F</a>
+                <a class="btn bu-add" href="/add-df" target="blank"><i class="fa fa-plus-circle"></i>&nbsp;D.F</a>
             @elseif (count($df)!=0 && count($interv)==0)
-                <a class="btn buaj2" href="/add-inv" target="blank"><i class="fa fa-plus-circle"></i>&nbsp;Intervenant</a>
+                <a class="btn bu-add" href="/add-inv" target="blank"><i class="fa fa-plus-circle"></i>&nbsp;Intervenant</a>
             @endif
-            <a class="btn bua2" href="/mis-inv"><i class="fas fa-window-close"></i>&nbsp;Annuler</a>
+            <a class="btn bu-danger" href="/mis-inv"><i class="fas fa-window-close"></i>&nbsp;Annuler</a>
         </div>
 
         </form>

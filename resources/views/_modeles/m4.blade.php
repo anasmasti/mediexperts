@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf_token" content="{{ csrf_token() }}" />
     <script src={{ asset('js/jquery.js') }}></script>
+    <script src={{ asset('js/myjs.js') }}></script>
+    <script src={{ asset('js/NumberToLetter.js') }}></script>
 </head>
 
 <body>
@@ -85,7 +87,7 @@
   </div>
 </div>
 
-<div class="" style="font-family:Calibri, 'Segoe UI', Geneva, Verdana, sans-serif; background-color: #fff;">
+<div class="" id="paper" style="font-family:Calibri, 'Segoe UI', Geneva, Verdana, sans-serif; background-color: #fff;">
 
   <div style="width:100%; height:130px;"><!--space--></div>
 
@@ -132,7 +134,18 @@
       <th style="width:20%;">Montant HT / Jour</th>
     </tr>
     <tr>
-      <td>{{ $formation["nom_theme"] }}</td>
+      <td>
+        {{ $formation["nom_theme"] }} <br />
+        @php
+          $action = \App\PlanFormation::select('plan_formations.nb_grp')
+            ->join('formations', 'plan_formations.n_form', 'formations.n_form')
+            ->where('plan_formations.n_form', $formation["n_form"])
+            ->first();
+        @endphp
+        @if ($action["nb_grp"] > 1)
+          Groupe {{ $formation["groupe"] }}
+        @endif
+      </td>
       <td>
         @if ($formation["date1"] != null) <span class="dates"> {{ Carbon\Carbon::parse($formation["date1"])->format('d/m/Y') }}</span> @endif
         @if ($formation["date2"] != null) <span class="dates"> {{ Carbon\Carbon::parse($formation["date2"])->format('d/m/Y') }}</span> @endif
@@ -199,14 +212,21 @@
 
   <div class="container">
     <span class="text-bold">Arrêtée la présente facture à la somme de : </span>
-    <input type="text" id="montant_text" class="highlighted" value="@php if ($formation["bdg_letter"]) echo (mb_strtoupper($formation["bdg_letter"])." DIRHAMS"); else echo ""; @endphp" style="display: inline !important; width:50%" readonly>
+    {{-- BUDGET TTC --}}
+    <input type="text" class="highlighted" id="bdgLetter" name="bdgLetter" value=""
+      style="display: inline !important; width:50%" readonly />
+      {{-- HIDDEN BUDGET TTC LETTER --}}
+      <input type="hidden" name="bdgTTC" id="bdgTTC" value="{{($formation["bdg_total"] * .2 + $formation["bdg_total"])}}" />
+      {{-- HIDDEN BUDGET TTC LETTER --}}
+
   </div>
 
   <div style="width:100%; height:20px;"><!--space--></div>
 
   <div class="container">
     <span class="text-bold">Mode et référence de paiement : </span>
-    <input type="text" id="type_paiement_ref" class="highlighted" placeholder="........" style="display: inline !important; width:50%">
+    <input type="text" id="type_paiement_ref" class="highlighted" style="display: inline !important; width:50%"
+      placeholder=". . . . . . . . . . . . . . . ." />
   </div>
 
   <div style="width:100%; height:25px;"><!--space--></div>
@@ -220,12 +240,18 @@
 
 {{-- script to print page --}}
 <script type="text/javascript">
+    function getBdgTTCLetter() {
+      let bdgTTC = $("#bdgTTC").val();
+      console.log(bdgTTC);
+      let result = NumberToLetter(bdgTTC).toUpperCase() + " DIRHAMS";
+      $('#bdgLetter').val(result);
+      console.log(result);
+    }
     $(document).ready(function () {
-      // var {dates} = $('.dates').val();
-      // $('.dates').forEach(curDate => {
-      //   dates = DateFormat(curDate);
-
-      // });
+      // BUDGET TTC EN LETTRE
+      getBdgTTCLetter();
+      // $('#paper').on('mousemove', function() {
+      // })
       $('#saveBtn').on('click', function() {
         var idForm = $('#idForm').val();
         var nFacture = $('#nFacture').val();
@@ -271,7 +297,6 @@
     });
 </script>
 {{-- ******************** --}}
-
 
 
 </body>

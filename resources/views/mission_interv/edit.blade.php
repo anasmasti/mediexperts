@@ -96,8 +96,8 @@
 
 
     <div class="card-footer text-center">
-        <button class="btn buaj2" type="submit" id="edit"><i class="fa fa-edit"></i>&nbsp;Modifier</button>
-        <a class="btn bua2" href="/mis-inv"><i class="fas fa-window-close"></i>&nbsp;Annuler</a>
+        <button class="btn bu-add" type="submit" id="edit"><i class="fa fa-edit"></i>&nbsp;Modifier</button>
+        <a class="btn bu-danger" href="/mis-inv"><i class="fas fa-window-close"></i>&nbsp;Annuler</a>
     </div>
 
     </form>

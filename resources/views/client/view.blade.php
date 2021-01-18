@@ -23,7 +23,8 @@
 <div class="card card-dark">
     <!-- card-header -->
     <div class="card-header">
-        <a class="btn bu5 bu-sm btn-sm" href="/add-cl"><i class="fa fa-plus"></i></a>
+        <a class="btn bu-icon bu-sm btn-sm" href="/add-cl"><i class="fa fa-plus"></i></a>
+        <a class="btn bu-icon bu-sm btn-sm" href="/import-client"><i class="fa fa-upload"></i></a>
         <div class="d-flex h-100"><h3 class="card-title">Clients</h3>
         <div class="container h-100">
             <form action="/searchclient" method="GET">
@@ -58,7 +59,7 @@
                     <td>{{ $cl->raisoci }}</td>
                     <td>{{ $cl->formjury }}</td>
                     <td class="th-last d-inline-block text-truncate">{{ $cl->commentaire }}</td>
-                    
+
                     <?php $hasAction = false; $hasDf = false; $hasDrb = false; $hasPf = false; ?>
                     @foreach($action as $act)
                         @if($cl->nrc_entrp==$act->nrc_e)
@@ -91,14 +92,14 @@
                     </td>
 
                     {{-- <td class="action">
-                        <a class="btn btn-sm bu5" href="/detail-cl/{{ $cl->nrc_entrp }}"><i class="fa fa-eye"></i></a>
-                        <a class="btn btn-sm bu5" href="/edit-cl/{{ $cl->nrc_entrp }}"><i class="fa fa-edit"></i></a>
+                        <a class="btn btn-sm bu-icon" href="/detail-cl/{{ $cl->nrc_entrp }}"><i class="fa fa-eye"></i></a>
+                        <a class="btn btn-sm bu-icon" href="/edit-cl/{{ $cl->nrc_entrp }}"><i class="fa fa-edit"></i></a>
                         @if ($hasAction==true | $hasDf==true | $hasDrb==true | $hasPf==true)
-                            <a class="btn btn-sm bu5" onclick="IsChild()"><i class="fa fa-trash-alt"></i></a>
+                            <a class="btn btn-sm bu-icon" onclick="IsChild()"><i class="fa fa-trash-alt"></i></a>
                         @elseif ($hasAction==false && $hasDf==false && $hasDrb==false && $hasPf==false)
-                            <a class="btn btn-sm bu5" onclick="confirmDelete({{$cl->nrc_entrp}}, 'cl/')"><i class="fa fa-trash-alt"></i></a>
+                            <a class="btn btn-sm bu-icon" onclick="confirmDelete({{$cl->nrc_entrp}}, 'cl/')"><i class="fa fa-trash-alt"></i></a>
                         @endif
-                        <a class="btn btn-sm bu5 info" href="/print-f1/{{ $cl->nrc_entrp }}"><i class="fa fa-print"></i></a>
+                        <a class="btn btn-sm bu-icon info" href="/print-f1/{{ $cl->nrc_entrp }}"><i class="fa fa-print"></i></a>
                     </td> --}}
 
                 </tr>

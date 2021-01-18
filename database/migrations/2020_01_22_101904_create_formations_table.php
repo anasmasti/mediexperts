@@ -54,8 +54,14 @@ class CreateFormationsTable extends Migration
             $table->date('date29')->nullable();
             $table->date('date30')->nullable();
             $table->unsignedBigInteger('n_form');
-            $table->string('commentaire', 5000)->nullable();;
-            $table->timestamps();
+            $table->unsignedBigInteger('id_inv');
+            $table->string('commentaire', 5000)->nullable();
+
+            $table->foreign('id_inv')
+            ->references('id_interv')
+            ->on('intervenants')
+            ->onUpdate('cascade')
+            ->onDelete('cascade');
 
 
             $table->foreign('n_form')
@@ -63,6 +69,7 @@ class CreateFormationsTable extends Migration
             ->on('plan_formations')
             ->onUpdate('cascade')
             ->onDelete('cascade');
+            $table->timestamps();
         });
     }
 

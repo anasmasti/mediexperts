@@ -421,8 +421,8 @@
 
         <div class="card-footer text-center">
         {{-- @if (count($cabinet)<1) --}}
-            <button class="btn buaj2" type="submit" id="add" ><i class="fas fa-plus-circle"></i>&nbsp;Ajouter</button>
-            <a class="btn bua2" href="/cabinet"><i class="fas fa-window-close"></i>&nbsp;Annuler</a>
+            <button class="btn bu-add" type="submit" id="add" ><i class="fas fa-plus-circle"></i>&nbsp;Ajouter</button>
+            <a class="btn bu-danger" href="/cabinet"><i class="fas fa-window-close"></i>&nbsp;Annuler</a>
         {{-- @endif --}}
         </div>
 

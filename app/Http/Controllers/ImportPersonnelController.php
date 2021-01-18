@@ -2,14 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Imports\PersonnelsImport;
-use Illuminate\Support\Facades\Validator;
-use App\Personnel;
 use Illuminate\Http\Request;
+use App\Imports\PersonnelsImport;
 use DB;
 use Excel;
-use File;
-use Illuminate\Validation\Rule;
 
 class ImportPersonnelController extends Controller
 {

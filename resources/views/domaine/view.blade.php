@@ -24,7 +24,7 @@
 <div class="card card-dark">
     <!-- card-header -->
     <div class="card-header">
-        <a class="btn bu5 bu-sm btn-sm" href="/add-domain"><i class="fa fa-plus"></i></a>
+        <a class="btn bu-icon bu-sm btn-sm" href="/add-domain"><i class="fa fa-plus"></i></a>
         <div class="d-flex h-100">  <h3 class="card-title">Domaines</h3>
         <div class="container h-100">
             <form action="/search-domain" method="GET">

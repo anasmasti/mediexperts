@@ -23,7 +23,7 @@
 <div class="card card-dark">
   <!--card-header-->
   <div class="card-header">
-  <a class="btn bu5 bu-sm btn-sm" href="/add-df"><i class="fa fa-plus"></i></a>
+  <a class="btn bu-icon bu-sm btn-sm" href="/add-df"><i class="fa fa-plus"></i></a>
   <div class="d-flex h-100"> <h3 class="card-title">Demande&nbsp;financement</h3>
     <div class="container">
       <form action="/searchdf" method="GET">

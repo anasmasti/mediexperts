@@ -173,8 +173,8 @@
     </div><!--./card-body-->
 
     <div class="card-footer text-center">
-      <button class="btn buaj2" type="submit" id="edit" ><i class="fas fa-pen-square icon"></i>Modifier</button>
-      <a class="btn bua2" href="/detail-pers/{{ $personnel->cin }}"><i class="fas fa-window-close icon"></i>Annuler</a>
+      <button class="btn bu-add" type="submit" id="edit" ><i class="fas fa-pen-square icon"></i>Modifier</button>
+      <a class="btn bu-danger" href="/detail-pers/{{ $personnel->cin }}"><i class="fas fa-window-close icon"></i>Annuler</a>
     </div>
 
   </form>

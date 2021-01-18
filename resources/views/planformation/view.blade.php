@@ -24,7 +24,7 @@
 <div class="card card-dark">
   <!-- card-header -->
   <div class="card-header">
-    <a class="btn bu5 bu-sm btn-sm" href="/add-pf"><i class="fa fa-plus"></i></a>
+    <a class="btn bu-icon bu-sm btn-sm" href="/add-pf"><i class="fa fa-plus"></i></a>
 
     <div class="d-flex h-100">
       <h3 class="card-title">Actions&nbsp;de&nbsp;formation</h3>
@@ -88,11 +88,11 @@
           <td class="th-last">{{ $pf->commentaire ? substr($pf->commentaire, 0, 50).'...' : "--" }}</td>
 
           {{-- <td class="action">
-            <a class="btn btn-sm bu5" href="/detail-pf/{{ $pf->n_form }}"><i class="fa fa-eye"></i></a>
-            <a class="btn btn-sm bu5" href="/edit-pf/{{ $pf->n_form }}"><i class="fa fa-edit"></i></a>
-            <a class="btn btn-sm bu5" a="/del-pf/{{ $pf->n_form }}" onclick="confirmDelete({{$pf->n_form}}, 'pf/')"><i class="fa fa-trash-alt"></i></a>
+            <a class="btn btn-sm bu-icon" href="/detail-pf/{{ $pf->n_form }}"><i class="fa fa-eye"></i></a>
+            <a class="btn btn-sm bu-icon" href="/edit-pf/{{ $pf->n_form }}"><i class="fa fa-edit"></i></a>
+            <a class="btn btn-sm bu-icon" a="/del-pf/{{ $pf->n_form }}" onclick="confirmDelete({{$pf->n_form}}, 'pf/')"><i class="fa fa-trash-alt"></i></a>
 
-            <a class="btn btn-sm bu5" id="buPrintM1" href="/print-m1/{{ $nrc }}"><i class="fa fa-print"></i></a>
+            <a class="btn btn-sm bu-icon" id="buPrintM1" href="/print-m1/{{ $nrc }}"><i class="fa fa-print"></i></a>
           </td> --}}
           <td class="action py-0 align-middle">
             <div class="btn-group btn-group-sm">

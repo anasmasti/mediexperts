@@ -33,7 +33,7 @@
             <div class="row">
                 {{ csrf_field() }}
 
-                
+
                 @if (count($errors) > 0)
                     <div class="alert alert-danger alert-dismissible col-12">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
@@ -188,8 +188,8 @@
         </div><!--./card-body-->
 
         <div class="card-footer text-center">
-            <button class="btn buaj2" type="submit" id="add" ><i class="fas fa-plus-circle"></i>&nbsp;Ajouter</button>
-            <a class="btn bua2" href="/giac"><i class="fas fa-window-close"></i>&nbsp;Annuler</a>
+            <button class="btn bu-add" type="submit" id="add" ><i class="fas fa-plus-circle"></i>&nbsp;Ajouter</button>
+            <a class="btn bu-danger" href="/giac"><i class="fas fa-window-close"></i>&nbsp;Annuler</a>
             {{-- <a class="btn" onclick="toastr.info('Hi! I am info message.');">TOASTR</a> --}}
         </div>
 

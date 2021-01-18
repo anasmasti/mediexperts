@@ -67,6 +67,32 @@
             </span>
           @endif
       </div>
+
+
+
+      <div class="form-group col-lg-6 col-md-6 col-12">
+          <label for="id_inv">Intervenant</label>
+          <select class="form-control {{ $errors->has('id_inv') ? 'is-invalid' : '' }}" name="id_inv" id="id_inv" value="{{$formation->id_inv}}">
+              <option selected disabled>{{--vide--}}</option>
+              @foreach ($interv as $inv)
+                  @if ($formation->id_inv == $inv->id_interv)
+                  {{-- @if ($formation->id_inv == $inv->id_interv && mb_strtolower($inv->etat) == "occupé") --}}
+                      <option selected value="{{$inv->id_interv}}">{{$inv->nom}} {{$inv->prenom}} @if (mb_strtolower($inv->etat) == "occupé") {{"(occupé pour cette mission)"}} @endif</option>
+                  {{-- @elseif ($formation->id_inv != $inv->id_interv && mb_strtolower($inv->etat) == "occupé") --}}
+                  {{-- @elseif ($formation->id_inv != $inv->id_interv)
+                      <option disabled value="{{$inv->id_interv}}">{{$inv->nom}} {{$inv->prenom}} (occupé)</option> --}}
+                  @else
+                      <option value="{{$inv->id_interv}}">{{$inv->nom}} {{$inv->prenom}}</option>
+                  @endif
+              @endforeach
+          </select>
+          @if ($errors->has('id_inv'))
+          <span class="invalid-feedback" role="alert">
+              {{ $errors->first('id_inv') }}
+          </span>
+          @endif
+      </div>
+
       {{-- <div class="form-group col-lg-3 col-sm-12"><label>ID Formation</label>
         <input class="form-control {{ $errors->has('id_form') ? 'is-invalid' : '' }}" value="{{$formation->id_form}}" type="text" id="id_form" name="id_form" min="0" maxlength="20" placeholder="ID formation" readonly>
       </div> --}}
@@ -230,8 +256,8 @@
 
   </div><!--./card-body-->
   <div class="card-footer text-center">
-    <button class="btn buaj2" type="submit" id="add"><i class="fas fa-edit"></i>&nbsp;Modifier</button>
-    <a class="btn bua2" href="/intervenant"><i class="fas fa-window-close"></i>&nbsp;Annuler</a>
+    <button class="btn bu-add" type="submit" id="add"><i class="fas fa-edit"></i>&nbsp;Modifier</button>
+    <a class="btn bu-danger" href="/intervenant"><i class="fas fa-window-close"></i>&nbsp;Annuler</a>
   </div>
 
   </form>

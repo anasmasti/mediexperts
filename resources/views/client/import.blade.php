@@ -5,12 +5,12 @@
 
 @section('content-wrapper')
 <div class="col-sm-6">
-        <h1 class="m-0 text-dark">Mission intervenant</h1>
+        <h1 class="m-0 text-dark">Importation</h1>
     </div><!-- /.col -->
     <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="/mis-inv">Mission intervenant</a></li>
-            <li class="breadcrumb-item active">Liste</li>
+            <li class="breadcrumb-item"><a href="/client">Client</a></li>
+            <li class="breadcrumb-item active">Importer</li>
         </ol>
     </div><!-- /.col -->
 @endsection
@@ -22,78 +22,65 @@
 
 <!-- CARD -->
 <div class="card card-dark">
-    <!-- card-header -->
-    <div class="card-header">
-        {{-- add button --}}
-        <a class="btn bu-icon bu-sm btn-sm" href="/add-mis-inv"><i class="fa fa-plus"></i></a>
-        {{-- search form --}}
-        <div class="d-flex">
-            <h3 class="card-title">Mission&nbsp;intervenant</h3>
-            <div class="container h-100">
-            <form action="/searchmiss" method="GET">
-            <div class="searchbar bu-sm">
-                <input class="search_input" type="text" name="searchmiss" placeholder="Rechercher par id..">
-                <button type="submit"  class="search_icon btn"><i class="fas fa-search"></i></button>
-            </div>
-        </form>
+        <!-- card-header -->
+        <div class="card-header">
+            <h3 class="card-title">Ajout Client</h3>
         </div>
-    </div>
+        <!-- /.card-header -->
+        <form enctype="multipart/form-data" role="form" action="{{ url('/import/import-client') }}" method="POST">
+        <div class="card-body">
+            <div class="row">
+                {{ csrf_field() }}
 
+                @if (count($errors) > 0)
+                    <div class="alert alert-danger alert-dismissible col-12">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <h5><i class="icon fas fa-ban"></i> Erreur!</h5>
+                        Le fichier n'a pas été importé ou il contient des données invalides!
+                        <span>{{$errors}}</span>
+                    </div>
+                @endif
+                @if (session()->has('success'))
+                    <div class="alert alert-success alert-dismissible col-12">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <h5><i class="icon fas fa-check"></i> Succès!</h5>
+                        {{ session()->get('success')}}
+                    </div>
+                @endif
 
+                {{-- MAIN --}}
+                <div class="form-group col-lg-12 col-sm-12">
+                    <label>Importer un fichier Excel</label>
+                    <input class="form-control {{ $errors->has('client_file') ? ' is-invalid' : '' }}" type="file" name="client_file" id="client_file">
+                    @if ($errors->has('client_file'))
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('client_file') }}</strong>
+                        </span>
+                        @isset($err_file)
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $err_file }}</strong>
+                            </span>
+                        @endisset
+                    @endif
+                </div>
 
+                <div class="form-group col-lg-12 col-sm-12 text-center">
+                    <button class="btn btn-warning" type="submit" name="upload" id="upload"><i class="fas fa-upload"></i>&nbsp;Importer</button>
+                    <a class="btn bu-danger" href="/client"><i class="fas fa-window-close"></i>&nbsp;Annuler</a>
+                </div>
+                {{-- MAIN --}}
 
+            </div><!--./row-->
+        </div><!--./card-body-->
 
+        {{-- <div class="card-footer text-center">
+            <button class="btn bu-add" type="submit" id="add" ><i class="fas fa-plus-circle"></i>&nbsp;Ajouter</button>
+            <a class="btn bu-danger" href="/client"><i class="fas fa-window-close"></i>&nbsp;Annuler</a>
+        </div> --}}
 
-    </div>
-    <!-- /.card-header -->
-    <div class="card-body table-striped p-0">
-        <table class="table table-md">
-            <thead class="thead">
-                <tr>
-                    <th>ID mission</th>
-                    <th>Intervenant&nbsp;&nbsp;<i class="fas fa-tag"></th>
-                    <th>N° demande financement&nbsp;&nbsp;<i class="fas fa-tag"></th>
-                    <th class="action">Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($misinv as $miss)
-                <tr>
-                        @foreach($interv as $inv)
-                            @if ($inv->id_interv==$miss->id_interv)
-                                <?php $id = $inv->id_interv ?>
-                                <?php $nom = $inv->nom ?>
-                            @endif
-                        @endforeach
+        </form>
 
-                        @foreach($df as $d)
-                            @if ($d->n_df==$miss->n_df)
-                                <?php $ndf = $d->n_df ?>
-                            @endif
-                        @endforeach
-
-                    <td>{{ $miss->id }}</td>
-                    <td>{{ $miss->n_df }}</td>
-                    <td>{{ $nom }} {{ $miss->id_interv }}</td>
-
-                    <td class="action">
-                        {{-- <a class="btn btn-sm bu-iconcon" href="/detail-mis-inv/{{ $miss->id }}"><i class="fa fa-eye"></i></a>
-                        <a class="btn btn-sm bu-iconcon" href="/edit-mis-inv/{{ $miss->id }}"><i class="fa fa-edit"></i></a>
-                        <a class="btn btn-sm bu-iconcon" a="/del-mis-inv/{{ $miss->id }}" onclick="confirmDelete({{$miss->id}}, 'mis-inv/')"><i class="fa fa-trash-alt"></i></a> --}}
-
-                        <a href="/detail-mis-inv/{{ $miss->id }}" class="btn btn-primary"><i class="fas fa-eye"></i></a>
-                        <a href="/edit-mis-inv/{{ $miss->id }}" class="btn btn-warning"><i class="fas fa-edit"></i></a>
-                        <a href="#" class="btn btn-danger" onclick="confirmDelete({{$miss->id}}, 'mis-inv/')"><i class="fas fa-trash-alt"></i></a>
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
-    </div><!-- ./card-body -->
-
-    <div class="card-footer">
-    </div>
-</div><!-- ./CARD -->
+    </div><!-- ./CARD -->
 
 
 

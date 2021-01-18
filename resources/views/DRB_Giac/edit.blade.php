@@ -309,9 +309,9 @@
 
   <div class="card-footer text-center">
     @if (count($df)!=0)
-      <button class="btn buaj2" type="submit" id="add"><i class="fas fa-pen-square icon"></i>Modifier</button>
+      <button class="btn bu-add" type="submit" id="add"><i class="fas fa-pen-square icon"></i>Modifier</button>
     @endif
-    <a class="btn bua2" href="/drb-gc"><i class="fas fa-window-close icon"></i>Annuler</a>
+    <a class="btn bu-danger" href="/drb-gc"><i class="fas fa-window-close icon"></i>Annuler</a>
   </div>
 
   </form>

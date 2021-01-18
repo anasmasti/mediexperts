@@ -56,10 +56,11 @@ body, input {
 .card-h3 {
     float: left;
 }
-.bu5
- {border-radius: 50% !important;
-background-color: #ffc107;
-color: black !important;}
+.bu-icon {
+  border-radius: 100rem !important;
+  background-color: #ffc107 !important;
+  color: black !important;
+}
 .buaj
  {border-radius: 35% !important;
 background-color: #ffc107;
@@ -70,12 +71,12 @@ background-color: #df2525;
 color: beige !important;}
 
 
-.buaj2{
+.bu-add{
 
 background-color: #ffc107 !important;
 color: black !important;}
 
-.bua2
+.bu-danger
  {
 background-color: #df2525;
 color: beige !important;}

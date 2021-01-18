@@ -22,7 +22,7 @@
 <div class="card card-dark">
     <!-- card-header -->
     <div class="card-header">
-        <a class="btn bu5 bu-sm btn-sm" href="/add-act"><i class="fa fa-plus"></i></a>
+        <a class="btn bu-icon bu-sm btn-sm" href="/add-act"><i class="fa fa-plus"></i></a>
         <div class="d-flex h-100">
             <h3 class="card-title">Actionnaires</h3>
 
@@ -64,9 +64,9 @@
                     <td>{{$name}} ({{ $act->nrc_e }})</td>
 
                     <td class="action">
-                        <a class="btn btn-sm bu5" href="/detail-act/{{ $act->id_act }}/{{$nrc}}"><i class="fa fa-eye"></i></a>
-                        <a class="btn btn-sm bu5" href="/edit-act/{{ $act->id_act }}/{{$nrc}}"><i class="fa fa-edit"></i></a>
-                        <a class="btn btn-sm bu5" a="/del-act/{{ $act->id_act }}" onclick="confirmDelete({{$act->id_act}}, 'act/')"><i class="fa fa-trash-alt"></i></a>
+                        <a class="btn btn-sm bu-iconcon" href="/detail-act/{{ $act->id_act }}/{{$nrc}}"><i class="fa fa-eye"></i></a>
+                        <a class="btn btn-sm bu-iconcon" href="/edit-act/{{ $act->id_act }}/{{$nrc}}"><i class="fa fa-edit"></i></a>
+                        <a class="btn btn-sm bu-iconcon" a="/del-act/{{ $act->id_act }}" onclick="confirmDelete({{$act->id_act}}, 'act/')"><i class="fa fa-trash-alt"></i></a>
                     </td>
                 </tr>
                 @endforeach

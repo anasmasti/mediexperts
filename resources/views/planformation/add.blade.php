@@ -43,7 +43,7 @@
       @endif
 
       {{-- <div class="form-group col-lg-3 col-md-6 col-12"><label>N° plan</label>
-        <input class="form-control {{ $errors->has('n_form') ? ' is-invalid' : '' }}" name="n_form" type="text" min="0" maxlength="15" value="{{old('n_form')}}" placeholder="n° formation" >
+        <input class="form-control {{ $errors->has('n_form') ? 'is-invalid' : '' }}" name="n_form" type="text" min="0" maxlength="15" value="{{old('n_form')}}" placeholder="n° formation" >
         @if ($errors->has('n_form'))
           <span class="invalid-feedback" role="alert">
             {{ $errors->first('n_form') }}
@@ -54,9 +54,9 @@
       <div class="form-group col-lg-6 col-12">
         <label for="id_plan">RÉF. Plan formation</label>
         @if (count($plans)==0)
-          <a class="btn bu5 bu-sm btn-sm" href="/add-cl"><i class="fa fa-plus"></i></a> <!--button add-->
+          <a class="btn bu-icon bu-sm btn-sm" href="/add-cl"><i class="fa fa-plus"></i></a> <!--button add-->
         @endif
-        <select class="form-control {{ $errors->has('id_plan') ? ' is-invalid' : '' }}" name="id_plan" id="id_plan" value="{{old('id_plan')}}">
+        <select class="form-control {{ $errors->has('id_plan') ? 'is-invalid' : '' }}" name="id_plan" id="id_plan" value="{{old('id_plan')}}">
           <option selected disabled class="text-danger">*</option>
           @foreach ($plans as $pdf)
             <option value="{{$pdf->id_plan}}">{{$pdf['refpdf']}}</option>
@@ -78,9 +78,9 @@
       <div class="form-group col-lg-6 col-12">
         <label for="id_inv">Intervenant</label>
         @if (count($interv)==0)
-          <a class="btn bu5 bu-sm btn-sm" href="/add-inv"><i class="fa fa-plus"></i></a> {{--button add--}}
+          <a class="btn bu-icon bu-sm btn-sm" href="/add-inv"><i class="fa fa-plus"></i></a> {{--button add--}}
         @endif
-        <select class="form-control {{ $errors->has('id_inv') ? ' is-invalid' : '' }}" name="id_inv" id="id_inv" value="{{old('id_inv')}}">
+        <select class="form-control {{ $errors->has('id_inv') ? 'is-invalid' : '' }}" name="id_inv" id="id_inv" value="{{old('id_inv')}}">
           <option selected disabled>{{--vide--}}</option>
           @php $nbIntervAvailable = 0; @endphp
           @foreach ($interv as $inv)
@@ -107,7 +107,7 @@
           @endif
       </div>
 
-      {{-- <div class="form-group col-lg-3 col-md-6 col-12"><label>Réference</label><input class="form-control {{ $errors->has('refpdf') ? ' is-invalid' : '' }}" value="{{old('refpdf')}}" type="text" name="refpdf" maxlength="30" placeholder="Réf." >
+      {{-- <div class="form-group col-lg-3 col-md-6 col-12"><label>Réference</label><input class="form-control {{ $errors->has('refpdf') ? 'is-invalid' : '' }}" value="{{old('refpdf')}}" type="text" name="refpdf" maxlength="30" placeholder="Réf." >
       @if ($errors->has('refpdf'))
         <span class="invalid-feedback" role="alert">
           {{ $errors->first('refpdf') }}
@@ -119,9 +119,9 @@
       {{-- ***************** DOMAINES ***************** --}}
       <div class="form-group col-lg-6 col-12"><label>Domaines</label>
         @if (count($domain)==0)
-          <a class="btn bu5 bu-sm btn-sm" href="/add-domain"><i class="fa fa-plus"></i></a>
+          <a class="btn bu-icon bu-sm btn-sm" href="/add-domain"><i class="fa fa-plus"></i></a>
         @endif
-        <select class="form-control {{ $errors->has('id_dom') ? ' is-invalid' : '' }}" name="id_dom" id="id_dom">
+        <select class="form-control {{ $errors->has('id_dom') ? 'is-invalid' : '' }}" name="id_dom" id="id_dom">
           {{-- <option selected disabled>chargement..</option> --}}
           {{-- <option selected disabled><!--vide--></option>
           @foreach ($domain as $dom)
@@ -141,9 +141,9 @@
       {{-- ***************** THEMES ***************** --}}
       <div class="form-group col-lg-6 col-12"><label>Thème</label>
         @if (count($theme)==0)
-          <a class="btn bu5 bu-sm btn-sm" href="/add-theme"><i class="fa fa-plus"></i></a> <!--button add-->
+          <a class="btn bu-icon bu-sm btn-sm" href="/add-theme"><i class="fa fa-plus"></i></a> <!--button add-->
         @endif
-        <select class="form-control {{ $errors->has('id_thm') ? ' is-invalid' : '' }}" name="id_thm" id="id_thm">
+        <select class="form-control {{ $errors->has('id_thm') ? 'is-invalid' : '' }}" name="id_thm" id="id_thm">
           {{-- <option selected disabled><!--vide--></option>
           @foreach ($theme as $th)
             <option value="{{$th->id_theme}}">{{$th->nom_theme}}</option>
@@ -197,7 +197,7 @@
       {{-- ./ DOCS --}}
 
       <div class="form-group col-lg-3 col-md-6 col-12"><label>Date début</label>
-        <input class="form-control {{ $errors->has('dt_debut') ? ' is-invalid' : '' }}" value="{{old('dt_debut')}}" type="text" name="dt_debut" onmouseover="(this.type='date')" id="" onchange="checkDate()" placeholder="Date début" >
+        <input class="form-control {{ $errors->has('dt_debut') ? 'is-invalid' : '' }}" value="{{old('dt_debut')}}" type="text" name="dt_debut" onmouseover="(this.type='date')" id="" onchange="checkDate()" placeholder="Date début" >
         @if ($errors->has('dt_debut'))
           <span class="invalid-feedback" role="alert">
             {{ $errors->first('dt_debut') }}
@@ -206,7 +206,7 @@
       </div>
 
       <div class="form-group col-lg-3 col-md-6 col-12"><label>Date fin</label>
-        <input class="form-control {{ $errors->has('dt_fin') ? ' is-invalid' : '' }}" value="{{old('dt_fin')}}" type="text" name="dt_fin" onmouseover="(this.type='date')" id="" onchange="checkDate()" placeholder="Date fin" >
+        <input class="form-control {{ $errors->has('dt_fin') ? 'is-invalid' : '' }}" value="{{old('dt_fin')}}" type="text" name="dt_fin" onmouseover="(this.type='date')" id="" onchange="checkDate()" placeholder="Date fin" >
         @if ($errors->has('dt_fin'))
           <span class="invalid-feedback" role="alert">
             {{ $errors->first('dt_fin') }}
@@ -215,7 +215,7 @@
       </div>
 
       <div class="form-group col-lg-3 col-md-6 col-12"><label>Nb. jours (durée/groupe)</label>
-        <input class="form-control {{ $errors->has('nb_jour') ? ' is-invalid' : '' }}" value="{{old('nb_jour')}}" type="text" name="nb_jour" id="nb_jour" min="0" maxlength="15" onkeyup="CalcBdgJourn()" onkeypress="return isNumberKey(event)" placeholder="nb. jour" >
+        <input class="form-control {{ $errors->has('nb_jour') ? 'is-invalid' : '' }}" value="{{old('nb_jour')}}" type="text" name="nb_jour" id="nb_jour" min="0" maxlength="15" onkeyup="CalcBdgJourn()" onkeypress="return isNumberKey(event)" placeholder="nb. jour" >
         @if ($errors->has('nb_jour'))
           <span class="invalid-feedback" role="alert">
             {{ $errors->first('nb_jour') }}
@@ -224,7 +224,7 @@
       </div>
 
       <div class="form-group col-lg-3 col-md-6 col-12"><label>Nb. heures (durée total)</label>
-        <input class="form-control {{ $errors->has('nb_heure') ? ' is-invalid' : '' }}" value="{{old('nb_heure')}}" type="text" name="nb_heure" id="nb_heure" min="0" maxlength="15" onkeyup="CalcBdgJourn()" onkeypress="return isNumberKey(event)" placeholder="nb. jour" >
+        <input class="form-control {{ $errors->has('nb_heure') ? 'is-invalid' : '' }}" value="{{old('nb_heure')}}" type="text" name="nb_heure" id="nb_heure" min="0" maxlength="15" onkeyup="CalcBdgJourn()" onkeypress="return isNumberKey(event)" placeholder="nb. jour" >
         @if ($errors->has('nb_heure'))
           <span class="invalid-feedback" role="alert">
             {{ $errors->first('nb_heure') }}
@@ -237,7 +237,7 @@
         <?php $typeform =
           ["Intra-entreprise", "Inter-entreprises"];
         ?>
-        <select class="form-control {{ $errors->has('type_form') ? ' is-invalid' : '' }}" id="type_form" name="type_form" value="{{old('type_form')}}">
+        <select class="form-control {{ $errors->has('type_form') ? 'is-invalid' : '' }}" id="type_form" name="type_form" value="{{old('type_form')}}">
           {{-- <option selected disabled>vide</option> --}}
           @foreach ($typeform as $typef)
             <option value="{{$typef}}">{{$typef}}</option>
@@ -250,7 +250,7 @@
           @endif
       </div>
 
-      {{-- <div class="form-group col-lg-3 col-md-6 col-12"><label>Organisme</label><input class="form-control {{ $errors->has('organisme') ? ' is-invalid' : '' }}" value="{{old('organisme')}}" type="text" name="organisme" maxlength="30" placeholder="Organisme" >
+      {{-- <div class="form-group col-lg-3 col-md-6 col-12"><label>Organisme</label><input class="form-control {{ $errors->has('organisme') ? 'is-invalid' : '' }}" value="{{old('organisme')}}" type="text" name="organisme" maxlength="30" placeholder="Organisme" >
       @if ($errors->has('organisme'))
         <span class="invalid-feedback" role="alert">
           {{ $errors->first('organisme') }}
@@ -259,7 +259,7 @@
       </div> --}}
 
       <div class="form-group col-lg-3 col-md-6 col-12"><label>Organisme</label>
-        <select class="form-control {{ $errors->has('organisme') ? ' is-invalid' : '' }}" name="organisme" id="organisme" readonly>
+        <select class="form-control {{ $errors->has('organisme') ? 'is-invalid' : '' }}" name="organisme" id="organisme" readonly>
           <option selected disabled>-</option>
           {{-- @foreach ($cabinet as $cab)
             <option value="{{$cab->raisoci}}">{{$cab->raisoci}}</option>
@@ -272,7 +272,7 @@
         @endif
       </div>
 
-      <div class="form-group col-lg-3 col-md-6 col-12"><label>Lieu</label><input class="form-control {{ $errors->has('lieu') ? ' is-invalid' : '' }}" value="{{old('lieu')}}" type="text" id="lieu" name="lieu" maxlength="30" placeholder="Lieu" readonly>
+      <div class="form-group col-lg-3 col-md-6 col-12"><label>Lieu</label><input class="form-control {{ $errors->has('lieu') ? 'is-invalid' : '' }}" value="{{old('lieu')}}" type="text" id="lieu" name="lieu" maxlength="30" placeholder="Lieu" readonly>
       @if ($errors->has('lieu'))
         <span class="invalid-feedback" role="alert">
           {{ $errors->first('lieu') }}
@@ -280,7 +280,7 @@
       @endif
       </div>
 
-      <div class="form-group col-lg-3 col-md-6 col-12"><label>Nom responsable</label><input class="form-control {{ $errors->has('nom_resp') ? ' is-invalid' : '' }}" value="{{old('nom_resp')}}" type="text" id="nom_resp" name="nom_resp" maxlength="30" placeholder="nom resp." readonly>
+      <div class="form-group col-lg-3 col-md-6 col-12"><label>Nom responsable</label><input class="form-control {{ $errors->has('nom_resp') ? 'is-invalid' : '' }}" value="{{old('nom_resp')}}" type="text" id="nom_resp" name="nom_resp" maxlength="30" placeholder="nom resp." readonly>
       @if ($errors->has('nom_resp'))
         <span class="invalid-feedback" role="alert">
           {{ $errors->first('nom_resp') }}
@@ -288,7 +288,7 @@
       @endif
       </div>
 
-      <div class="form-group col-lg-3 col-md-6 col-12"><label>Nb. groupes</label><input class="form-control {{ $errors->has('nb_grp') ? ' is-invalid' : '' }}" value="{{old('nb_grp')}}" type="text" name="nb_grp" min="0" maxlength="15" onkeypress="return isNumberKey(event)" placeholder="Nombre" >
+      <div class="form-group col-lg-3 col-md-6 col-12"><label>Nb. groupes</label><input class="form-control {{ $errors->has('nb_grp') ? 'is-invalid' : '' }}" value="{{old('nb_grp')}}" type="text" name="nb_grp" min="0" maxlength="15" onkeypress="return isNumberKey(event)" placeholder="Nombre" >
       @if ($errors->has('nb_grp'))
         <span class="invalid-feedback" role="alert">
           {{ $errors->first('nb_grp') }}
@@ -297,7 +297,7 @@
       </div>
 
       <div class="form-group col-lg-3 col-md-6 col-12"><label>Nb. total participants</label>
-        <input class="form-control {{ $errors->has('nb_partcp_total') ? ' is-invalid' : '' }}" value="{{old('nb_partcp_total')}}" type="text" name="nb_partcp_total" min="0" maxlength="3" onkeypress="return isNumberKey(event)" placeholder="Nombre" >
+        <input class="form-control {{ $errors->has('nb_partcp_total') ? 'is-invalid' : '' }}" value="{{old('nb_partcp_total')}}" type="text" name="nb_partcp_total" min="0" maxlength="3" onkeypress="return isNumberKey(event)" placeholder="Nombre" >
         @if ($errors->has('nb_partcp_total'))
           <span class="invalid-feedback" role="alert">
             {{ $errors->first('nb_partcp_total') }}
@@ -306,7 +306,7 @@
       </div>
 
       <div class="form-group col-lg-3 col-md-6 col-12"><label>Nb. Cadres</label>
-        <input class="form-control {{ $errors->has('nb_cadre') ? ' is-invalid' : '' }}" value="{{old('nb_cadre')}}" type="text" name="nb_cadre" min="0" maxlength="3" onkeypress="return isNumberKey(event)" placeholder="Nombre" >
+        <input class="form-control {{ $errors->has('nb_cadre') ? 'is-invalid' : '' }}" value="{{old('nb_cadre')}}" type="text" name="nb_cadre" min="0" maxlength="3" onkeypress="return isNumberKey(event)" placeholder="Nombre" >
         @if ($errors->has('nb_cadre'))
           <span class="invalid-feedback" role="alert">
             {{ $errors->first('nb_cadre') }}
@@ -315,7 +315,7 @@
       </div>
 
       <div class="form-group col-lg-3 col-md-6 col-12"><label>Nb. employés</label>
-        <input class="form-control {{ $errors->has('nb_employe') ? ' is-invalid' : '' }}" value="{{old('nb_employe')}}" type="text" name="nb_employe" min="0" maxlength="3" onkeypress="return isNumberKey(event)" placeholder="Nombre" >
+        <input class="form-control {{ $errors->has('nb_employe') ? 'is-invalid' : '' }}" value="{{old('nb_employe')}}" type="text" name="nb_employe" min="0" maxlength="3" onkeypress="return isNumberKey(event)" placeholder="Nombre" >
         @if ($errors->has('nb_employe'))
           <span class="invalid-feedback" role="alert">
             {{ $errors->first('nb_employe') }}
@@ -324,7 +324,7 @@
       </div>
 
       <div class="form-group col-lg-3 col-md-6 col-12"><label>Nb. ouvriers</label>
-        <input class="form-control {{ $errors->has('nb_ouvrier') ? ' is-invalid' : '' }}" value="{{old('nb_ouvrier')}}" type="text" name="nb_ouvrier" min="0" maxlength="3" onkeypress="return isNumberKey(event)" placeholder="Nombre" >
+        <input class="form-control {{ $errors->has('nb_ouvrier') ? 'is-invalid' : '' }}" value="{{old('nb_ouvrier')}}" type="text" name="nb_ouvrier" min="0" maxlength="3" onkeypress="return isNumberKey(event)" placeholder="Nombre" >
         @if ($errors->has('nb_ouvrier'))
           <span class="invalid-feedback" role="alert">
             {{ $errors->first('nb_ouvrier') }}
@@ -333,7 +333,7 @@
       </div>
 
       <div class="form-group col-lg-3 col-md-6 col-12"><label>Budget total (HT)</label>
-        <input class="form-control {{ $errors->has('bdg_total') ? ' is-invalid' : '' }}" value="{{old('bdg_total')}}" type="text" name="bdg_total" id="bdg_total" min="0" maxlength="5" onkeyup="CalcBdgJourn()" onkeypress="return isNumberKey(event)" placeholder="">
+        <input class="form-control {{ $errors->has('bdg_total') ? 'is-invalid' : '' }}" value="{{old('bdg_total')}}" type="text" name="bdg_total" id="bdg_total" min="0" maxlength="5" onkeyup="CalcBdgJourn()" onkeypress="return isNumberKey(event)" placeholder="">
         @if ($errors->has('bdg_total'))
           <span class="invalid-feedback" role="alert">
             {{ $errors->first('bdg_total') }}
@@ -342,7 +342,7 @@
       </div>
 
       <div class="form-group col-lg-3 col-md-6 col-12"><label>Budget en Lettre (TTC)</label>
-        <input class="form-control {{ $errors->has('bdg_total') ? ' is-invalid' : '' }}" value="{{old('bdg_letter')}}" type="text" name="bdg_letter" id="bdg_letter" min="0" maxlength="15" onkeyup="CalcBdgJourn()" onkeypress="return isNumberKey(event)" placeholder="budget en lettre" readonly>
+        <input class="form-control {{ $errors->has('bdg_total') ? 'is-invalid' : '' }}" value="{{old('bdg_letter')}}" type="text" name="bdg_letter" id="bdg_letter" min="0" maxlength="15" onkeyup="CalcBdgJourn()" onkeypress="return isNumberKey(event)" placeholder="budget en lettre" readonly>
         @if ($errors->has('bdg_letter'))
           <span class="invalid-feedback" role="alert">
             {{ $errors->first('bdg_letter') }}
@@ -351,7 +351,7 @@
       </div>
 
       <div class="form-group col-lg-3 col-md-6 col-12"><label>Budget journalier</label>
-        <input class="form-control {{ $errors->has('bdg_jour') ? ' is-invalid' : '' }}" value="{{old('bdg_jour')}}" type="text" name="bdg_jour" id="bdg_jour" min="0" maxlength="5" onkeypress="return isNumberKey(event)" placeholder="0" readonly>
+        <input class="form-control {{ $errors->has('bdg_jour') ? 'is-invalid' : '' }}" value="{{old('bdg_jour')}}" type="text" name="bdg_jour" id="bdg_jour" min="0" maxlength="5" onkeypress="return isNumberKey(event)" placeholder="0" readonly>
         @if ($errors->has('bdg_jour'))
           <span class="invalid-feedback" role="alert">
             {{ $errors->first('bdg_jour') }}
@@ -360,7 +360,7 @@
       </div>
 
       <div class="form-group col-lg-3 col-md-6 col-12"><label>État</label>
-        <select class="form-control {{ $errors->has('etat') ? ' is-invalid' : '' }}" name="etat" id="etat" value="{{old('etat')}}">
+        <select class="form-control {{ $errors->has('etat') ? 'is-invalid' : '' }}" name="etat" id="etat" value="{{old('etat')}}">
           <option selected disabled class="text-danger">*</option>
           @php $etat_plan = ['planifié', 'réalisé', 'annulé']; @endphp
           @foreach ($etat_plan as $etat)
@@ -384,9 +384,9 @@
 
   <div class="card-footer text-center">
     @if (count($client) != 0 && $nbIntervAvailable >= 1)
-      <button class="btn buaj2" type="submit" id="add"><i class="fas fa-plus-circle"></i> Ajouter</button>
+      <button class="btn bu-add" type="submit" id="add"><i class="fas fa-plus-circle"></i> Ajouter</button>
     @endif
-    <a class="btn bua2" href="/planformation"><i class="fas fa-window-close"></i> Annuler</a>
+    <a class="btn bu-danger" href="/planformation"><i class="fas fa-window-close"></i> Annuler</a>
   </div>
 
   </form>

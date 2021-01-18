@@ -77,7 +77,7 @@
             <div class="form-group col-lg-6 col-md-6 col-12">
                 <label for="id_plan">RÉF. Action formation</label>
                 @if (count($plans)==0)
-                <a class="btn bu5 bu-sm btn-sm" href="/add-cl"><i class="fa fa-plus"></i></a> <!--button add-->
+                <a class="btn bu-icon bu-sm btn-sm" href="/add-cl"><i class="fa fa-plus"></i></a> <!--button add-->
                 @endif
                 <select class="form-control {{ $errors->has('id_plan') ? ' is-invalid' : '' }}" name="id_plan" id="id_plan" value="{{old('id_plan')}}" readonly>
                 <option selected disabled class="text-danger">*</option>
@@ -409,8 +409,8 @@
 
 
     <div class="card-footer">
-        <button class="btn buaj2" type="submit" id="edit"><i class="fas fa-pen-square icon"></i>Modifier</button>
-        <a class="btn bua2" href="/planformation"><i class="fas fa-window-close icon"></i>Annuler</a>
+        <button class="btn bu-add" type="submit" id="edit"><i class="fas fa-pen-square icon"></i>Modifier</button>
+        <a class="btn bu-danger" href="/planformation"><i class="fas fa-window-close icon"></i>Annuler</a>
     </div>
 
     </form>

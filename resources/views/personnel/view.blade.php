@@ -24,8 +24,8 @@
 <div class="card card-dark">
   <!--card-header-->
   <div class="card-header">
-    <a class="btn bu5 bu-sm btn-sm" href="/import"><i class="fa fa-upload"></i></a>
-    <a class="btn bu5 bu-sm btn-sm" href="/add-pers"><i class="fa fa-plus"></i></a>
+    <a class="btn bu-icon bu-sm btn-sm" href="/import"><i class="fa fa-upload"></i></a>
+    <a class="btn bu-icon bu-sm btn-sm" href="/add-pers"><i class="fa fa-plus"></i></a>
     <div class="d-flex h-100">
       <h3 class="card-title">Personnels</h3>
       <div class="container h-100">
@@ -95,7 +95,7 @@
 </form>
 
   <div class="card-footer d-flex justify-content-center">
-    
+
     @if (!count($personnel))
       <tr>
           <td>
@@ -110,7 +110,7 @@
     @endif
   </div>
 
-  
+
 
 </div>
 <!-- CARD -->

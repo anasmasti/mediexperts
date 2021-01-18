@@ -35,6 +35,7 @@
     .flex-column { display: flex; flex-flow: column wrap; width:100%; }
     .flex-row { display: flex; flex-flow: row wrap; width:100%; }
     .flex-nowrap { display: flex; flex-wrap: nowrap; width:100%; }
+    .align-items-center { align-items: center; }
     .container { width:100%; padding: .2rem; }
     .bordered { border: 1px solid #000; }
     .highlighted { background-color: #ffff99 !important; }
@@ -131,47 +132,48 @@
 
   {{-- INFOS --}}
   <div class="bordered" style="width:100%; display:flex; flex-wrap:wrap; align-items:center; padding:5px;">
-    <div style="width:10%">
-        <span>Thème :</span>
-    </div>
-    <div style="width:55%">
-        <select id="formation" class="select highlighted" style="font-size: 12px;">
-          {{-- auto filled --}}
-        </select>
-    </div>
+    <div class="flex-nowrap align-items-center">
+      <div style="width:7%">
+          <span>Thème :</span>
+      </div>
+      <div style="min-width: 40%; max-width:50%">
+          <select id="formation" class="select highlighted" style="font-size: 12px;">
+            {{-- auto filled --}}
+          </select>
+      </div>
 
-    <div style="width:1%"><!--space--></div>
+      <div style="width:1%"><!--space--></div>
 
-    <div style="width:10%">
-        <span style="font-size: 12px;">Nombre de participants :</span>
-    </div>
-    <div style="width:3%">
-        <input type="text" id="nbParticip" value="..." readonly>
-    </div>
+      <div style="min-width: 10%; max-width:17%">
+          <span style="font-size: 12px;">Nombre de participants :</span>
+      </div>
+      <div style="width:3%">
+          <input type="text" id="nbParticip" value="..." readonly>
+      </div>
 
-    <div style="width:5%"><!--space--></div>
+      <div style="width:5%"><!--space--></div>
 
-    <div style="width:10%">
-        <span>N° du Groupe :</span>
+      <div style="width:10%">
+          <span>N° du Groupe :</span>
+      </div>
+      <div style="width:3%">
+          <input type="text" id="groupe" value="..." style="font-size: 12px;" readonly>
+      </div>
     </div>
-    <div style="width:3%">
-        <input type="text" id="groupe" value="..." style="font-size: 12px;" readonly>
-    </div>
-    <div style="width:2%"><!--space--></div>
 
     {{-- DATES --}}
-    <div style="width:10%">
+    <div style="width:7%">
       <span>Dates :</span>
     </div>
-    <div style="width:90%">
+    <div style="width:93%">
       <input type="text" id="dates" value="..." style="font-size: 12px;" readonly>
     </div>
 
     {{-- LIEU --}}
-    <div style="width:10%">
+    <div style="width:7%">
       <span>Lieu :</span>
     </div>
-    <div style="min-width: 20%; max-width:35%">
+    <div style="min-width: 20%; max-width:37%">
       <span id="lieu">
       </span>
     </div>
@@ -179,10 +181,10 @@
     <div style="width:2%"><!--space--></div>
 
     {{-- VILLE --}}
-    <div style="width:8%">
+    <div style="width:5%">
       <span>Ville :</span>
     </div>
-    <div style="width:15%">
+    <div style="width:18%">
       <input type="text" id="ville" value="..." style="font-size: 12px;" readonly>
     </div>
 

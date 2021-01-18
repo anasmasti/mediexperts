@@ -69,7 +69,7 @@
                 </div>
 
                 <div class="form-group col-lg-12 col-sm-12 text-center">
-                    <button class="btn buaj2" type="submit" name="upload" id="upload"><i class="fas fa-upload"></i>&nbsp;Envoyer</button>
+                    <button class="btn bu-add" type="submit" name="upload" id="upload"><i class="fas fa-upload"></i>&nbsp;Envoyer</button>
                 </div>
                 {{-- MAIN --}}
 
@@ -77,8 +77,8 @@
         </div><!--./card-body-->
 
         {{-- <div class="card-footer text-center">
-            <button class="btn buaj2" type="submit" id="add" ><i class="fas fa-plus-circle"></i>&nbsp;Ajouter</button>
-            <a class="btn bua2" href="/personnel"><i class="fas fa-window-close"></i>&nbsp;Annuler</a>
+            <button class="btn bu-add" type="submit" id="add" ><i class="fas fa-plus-circle"></i>&nbsp;Ajouter</button>
+            <a class="btn bu-danger" href="/personnel"><i class="fas fa-window-close"></i>&nbsp;Annuler</a>
         </div> --}}
 
         </form>

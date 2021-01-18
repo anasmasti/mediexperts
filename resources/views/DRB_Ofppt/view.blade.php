@@ -23,7 +23,7 @@
 <div class="card card-dark">
   <!-- card-header -->
   <div class="card-header">
-    <a class="btn bu5 bu-sm btn-sm" href="/add-drb-of"><i class="fa fa-plus"></i></a>
+    <a class="btn bu-icon bu-sm btn-sm" href="/add-drb-of"><i class="fa fa-plus"></i></a>
     <div class="d-flex h-100">
       <h3 class="card-title">Demandes&nbsp;remboursement&nbsp;OFPPT</h3>
       <div class="container h-100 ">
@@ -65,9 +65,9 @@
           <td class="th-last d-inline-block text-truncate">{{ $dr->commentaire }}</td>
 
           <td class="action">
-            <a class="btn btn-sm bu5" href="/detail-drb-of/{{ $dr->n_drb }}"><i class="fa fa-eye"></i></a>
-            <a class="btn btn-sm bu5" href="/edit-drb-of/{{ $dr->n_drb }}"><i class="fa fa-edit"></i></a>
-            <a class="btn btn-sm bu5" a="/del-drb-of/{{ $dr->n_drb }}" onclick="confirmDelete({{$dr->n_drb}}, 'drb-of/')"><i class="fa fa-trash-alt"></i></a>
+            <a class="btn btn-sm bu-iconcon" href="/detail-drb-of/{{ $dr->n_drb }}"><i class="fa fa-eye"></i></a>
+            <a class="btn btn-sm bu-iconcon" href="/edit-drb-of/{{ $dr->n_drb }}"><i class="fa fa-edit"></i></a>
+            <a class="btn btn-sm bu-iconcon" a="/del-drb-of/{{ $dr->n_drb }}" onclick="confirmDelete({{$dr->n_drb}}, 'drb-of/')"><i class="fa fa-trash-alt"></i></a>
           </td>
         </tr>
         @endforeach

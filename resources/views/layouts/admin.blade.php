@@ -29,7 +29,6 @@
   <!-- Sweet Alert Animation -->
   {{-- <link rel="stylesheet" href="{{asset('https://daneden.github.io/animate.css/animate.min.css')}}"> --}}
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
   <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
 
 </head>
@@ -264,18 +263,24 @@
               </a>
                 <!-- * ITEMS SUB MENU -->
                 <ul class="nav nav-treeview ml-3">
-                <li class="nav-item">
-                  <a href="/add-cl" class="nav-link">
-                  <i class="fa fa-plus-circle nav-icon"></i>
-                  <p>Ajout</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="/client" class="nav-link">
-                  <i class="fa fa-list nav-icon"></i>
-                  <p>Liste</p>
-                  </a>
-                </li>
+                  <li class="nav-item">
+                    <a href="/import-client" class="nav-link">
+                    <i class="fa fa-upload nav-icon"></i>
+                    <p>Importer un fichier</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="/add-cl" class="nav-link">
+                    <i class="fa fa-plus-circle nav-icon"></i>
+                    <p>Ajout</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="/client" class="nav-link">
+                    <i class="fa fa-list nav-icon"></i>
+                    <p>Liste</p>
+                    </a>
+                  </li>
                 </ul><!-- * ITEMS SUB MENU -->
 
               {{-- ACTIONNAIRE --}}

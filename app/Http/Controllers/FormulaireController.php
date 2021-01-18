@@ -7,7 +7,6 @@ use App\{DemandeFinancement,Client,Cabinet,DemandeRemboursementGiac,Plan,PlanFor
 use PDF;
 use DB;
 
-
 class FormulaireController extends Controller
 {
 
@@ -85,8 +84,9 @@ class FormulaireController extends Controller
           ->join('themes', 'themes.id_theme', 'plan_formations.id_thm')
           ->where([['formations.id_form', $idform], ['themes.id_theme', $id_theme["id_theme"]]])
           ->first();
+      // $bdg_letter = \App\Helper\Helper::NumberToLetter(($formation["bdg_total"] * .2 + $formation["bdg_total"]));
 
-      return view('_modeles.m4', ['formation' => $formation]);
+      return view('_modeles.m4', ['formation' => $formation/*, 'bdg_letter' => $bdg_letter*/]);
     }
 
     //FORMULAIRE 4
@@ -178,8 +178,8 @@ class FormulaireController extends Controller
 
     //PLAN FORMATION
     public function print_pf(Request $request) {
-      $client = Client::all();
-      return view('_formulaires.plans', ['client' => $client]);
+      // $client = Client::all();
+      return view('_formulaires.plans'/*, ['client' => $client]*/);
     }
 
     public function FillReferencesPlan(Request $request) {

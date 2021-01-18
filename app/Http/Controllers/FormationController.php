@@ -188,6 +188,7 @@ class FormationController extends Controller
 
             $plan = PlanFormation::all();
             $client = Client::all();
+            $interv = Intervenant::all();
 
             $formation = Formation::create($request->except('cin'));
 
@@ -235,8 +236,9 @@ class FormationController extends Controller
         else {
             $plan = PlanFormation::all();
             $client = Client::all();
+            $interv = Intervenant::all();
 
-            return view('formation.add', ['plan' => $plan, 'client' => $client]);
+            return view('formation.add', ['plan' => $plan, 'interv' => $interv, 'client' => $client]);
         }
     }
 
@@ -360,7 +362,7 @@ class FormationController extends Controller
             ->join('themes', 'plan_formations.id_thm', 'themes.id_theme')
             // ->join('clients', 'plan_formations.nrc_e', 'clients.nrc_entrp')
             ->join('plans', 'plans.id_plan', '=', 'plan_formations.id_plan')
-            ->join('Clients', 'clients.nrc_entrp', '=', 'plans.nrc_e')
+            ->join('clients', 'clients.nrc_entrp', '=', 'plans.nrc_e')
             ->get();
           // $personnel = Personnel::select('personnels.*', 'formation_personnels.*')
           //   ->join('formation_personnels', 'personnels.cin', 'formation_personnels.cin')
@@ -375,7 +377,9 @@ class FormationController extends Controller
             ->orWhere([['plan_formations.n_form', $request->input('n_form')], ['personnels.dt_demiss', '<', 'personnels.dt_embch']])
             ->get();
 
-          return view('formation.edit', ['formation' => $formation, 'plan' => $plan, 'personnel' => $personnel]);
+          $interv = Intervenant::all();
+
+          return view('formation.edit', ['formation' => $formation, 'plan' => $plan, 'personnel' => $personnel, 'interv' => $interv]);
         }
     }
 

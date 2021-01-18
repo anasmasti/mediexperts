@@ -2,11 +2,13 @@
 <script>
 export default {
   runtimeCompiler: true,
+  name: 'plan-formation',
   data() {
     return {
       clients: [],
       curr_client: null,
       curr_annee: null,
+      coutTotalPlan: 0,
       nrc_entrp: undefined, id_plan: undefined,
       reference_plan: [],
       actions_by_ref: [],
@@ -34,6 +36,7 @@ export default {
       }
     },
     async FillClients() {
+      this.coutTotalPlan = 0;
       await axios.get('/fill-clients')
         .then((res) => {
           this.clients = res.data;
@@ -42,7 +45,7 @@ export default {
         .catch((err) => console.error("err FillClients", err));
     },
     async FillReferencesPlan() {
-      console.log('nrc_entrp', this.nrc_entrp)
+      console.log('nrc_entrp', this.nrc_entrp);
       await axios.get(`/fill-reference-plan?nrcEntrp=${this.nrc_entrp}`)
         .then((res) => {
           this.reference_plan = res.data;
@@ -61,6 +64,8 @@ export default {
         .then(() => {
           // fill dates action
           this.actions_by_ref.forEach((action) => {
+            // calculer le cout estimatif
+            this.coutTotalPlan += action.bdg_total;
             this.FillDates(action.n_form);
           });
         })
@@ -94,14 +99,18 @@ export default {
         }
       });
     },
+    ResetCoutTotalPlan() {
+      this.coutTotalPlan = 0;
+    }
   }, // methods
   computed: {
+
   } // computed
 }
 </script>
 
 <template>
-  <div class="model1">
+  <div class="plan-formation">
     <!-- {{-- PRINT - CANCEL --}} -->
     <div class="hide-from-print">
       <div style="display:flex; justify-content:space-between;">
@@ -125,7 +134,7 @@ export default {
       <div style="width:100%;">
         <label for="plans">Réference plan de formation :</label>
         <select name="plans" id="plans" style="width:100%; padding: .5rem; border: 1px solid #000;"
-          v-if="reference_plan && reference_plan.length" v-on:change="FillPlanByReference()" v-model="id_plan">
+          v-if="reference_plan && reference_plan.length" v-on:change="FillPlanByReference(); ResetCoutTotalPlan();" v-model="id_plan">
 
           <!-- {{-- auto filled --}} -->
           <option selected disabled>-- sélectionner le plan</option>
@@ -137,7 +146,7 @@ export default {
       </div>
 
       <div class="btn-group">
-        <button class="btn-btn-primary" id="dateBtn" v-on:click="FillReferencesPlan()" style="background: #00ff11; margin: .5rem 0; padding: .5rem;">
+        <button class="btn-btn-primary" id="dateBtn" v-on:click="FillReferencesPlan();" style="background: #00ff11; margin: .5rem 0; padding: .5rem;">
           Remplir les dates
         </button>
       </div>
@@ -146,42 +155,37 @@ export default {
     </div>
     <!-- **************************** -->
 
-    <!-- {{-- PAPER Model 1 --}} -->
-    <div class="paper" style="padding:.5rem; font-family:Calibri, 'Segoe UI', Geneva, Verdana, sans-serif; background-color: #fff;">
+    <div class="" style="padding:.5rem; font-family: Calibri, 'Segoe UI', Geneva, Verdana, sans-serif; background-color: #fff; font-size: 13px;">
 
-      <div class="container center">
-        <h2 style="padding: 5px !important; margin:0;">Modèle 1</h2>
-        <p>Fiche récapitulative des Actions de Formations et des Organismes de Formation leur correspondant</p>
-      </div>
+      <div class="hide-from-print" style="width:100%; height:10px;"><!--space--></div>
 
-      <div class="container d-flex flex-nowrap" style="justify-content: space-between;">
-        <input class="text-bold" style="width: 45%; text-align:end;" type="text" id="entrp" :value="curr_client ? curr_client : '--'" readonly>
-        <input class="text-bold" style="width: 45%; text-align:initial;" type="text" id="year" :value="curr_annee ? curr_annee : '--'" readonly>
-      </div>
-
-      <div style="width:100%; height:15px;"><!--space--></div>
-
-      <!-- {{-- FORMATIONS --}} -->
       <table>
-        <thead style="text-align:left; font-size:14px;">
+        <thead>
           <tr>
-            <th style="width:10%">N° Action</th>
-            <th style="width:35%">Thème de l'action</th>
-            <th style="width:15%">Dates de réalisation</th>
-            <th style="width:10%">Organismes de formation</th>
-            <th style="width:10%">N° CNSS de l’organisme</th>
+            <td style="width: 3%;" class="td">N° Action</td>
+            <td style="width: 10%;" class="td">Domaine</td>
+            <td style="width: 10%;" class="td">Thème</td>
+            <td style="width: 5%;" class="td">Dates de réalisation</td>
+            <td style="width: 5%;" class="td">Organisme de formation</td>
+            <td style="width: 5%;" class="td">N° CNSS de l'organisme</td>
+            <td style="width: 3%;" class="td">Effectif</td>
+            <td style="width: 3%;" class="td">Cadres</td>
+            <td style="width: 3%;" class="td">Employés</td>
+            <td style="width: 3%;" class="td">Ouvriers</td>
+            <td style="width: 3%;" class="td">Durée par groupe</td>
+            <td style="width: 10%;" class="td">Lieu de formation</td>
+            <td style="width: 3%;" class="td">Nbre de groupe</td>
+            <td style="width: 4%;" class="td">Coût unitaire (DH)</td>
+            <td style="width: 4%;" class="td">Coût estimatif (DH)</td>
           </tr>
         </thead>
 
-        <tbody id="tableFormation" class="center" v-if="actions_by_ref">
+        <tbody id="tableActions" class="center" v-if="actions_by_ref">
           <!-- {{-- auto filled --}} -->
           <tr v-for="(action, idx) in actions_by_ref" :key="`plan${idx}`">
-            <td>
-              {{action.n_action}}
-            </td>
-            <td>
-              {{action.nom_theme}}
-            </td>
+            <td>{{action.n_action}}</td>
+            <td>{{action.nom_domain}}</td>
+            <td>{{action.nom_theme}}</td>
             <td :id="action.n_form">
               {{ action.dates && DateFormat(action.dates.date1) || "" }}
               {{ action.dates && DateFormat(action.dates.date2) || "" }}
@@ -214,22 +218,45 @@ export default {
               {{ action.dates && DateFormat(action.dates.date29) || "" }}
               {{ action.dates && DateFormat(action.dates.date30) || "" }}
             </td>
+            <td>{{action.organisme}}</td>
+            <td>{{action.ncnss_cab}}</td>
+            <td>{{action.nb_partcp_total}}</td>
+            <td>{{action.nb_cadre}}</td>
+            <td>{{action.nb_employe}}</td>
+            <td>{{action.nb_ouvrier}}</td>
+            <td>{{action.nb_jour}}</td>
+            <td>{{action.lieu}}</td>
+            <td>{{action.nb_grp}}</td>
+            <td>{{action.bdg_jour}}</td>
+            <td>{{ (action.bdg_total * action.nb_grp) }}</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
             <td>
-              {{action.organisme}}
-            </td>
-            <td>
-              {{action.ncnss_cab}}
+              <strong>
+                {{"Total " + coutTotalPlan}}
+              </strong>
             </td>
           </tr>
         </tbody>
+
       </table>
-
-
     </div>
     <!-- {{-- END PAPER --}} -->
-
   </div>
-  <!-- end-model1 -->
 
 
 </template>

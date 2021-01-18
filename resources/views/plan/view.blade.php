@@ -24,7 +24,7 @@
 <div class="card card-dark">
     <!-- card-header -->
     <div class="card-header">
-        <a class="btn bu5 bu-sm btn-sm" href="/add-plan"><i class="fa fa-plus"></i></a>
+        <a class="btn bu-icon bu-sm btn-sm" href="/add-plan"><i class="fa fa-plus"></i></a>
 
         <div class="d-flex h-100">
             <h3 class="card-title">Plans&nbsp;de&nbsp;formation</h3>
@@ -84,7 +84,7 @@
                 <td>
                     <h3 class="text-secondary">Aucun résultat</h3>
                 </td>
-            </tr>    
+            </tr>
         @endif
     </div>
 </div><!-- ./CARD -->

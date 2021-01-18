@@ -24,7 +24,7 @@
 <div class="card card-dark">
     <!-- card-header -->
     <div class="card-header">
-        <a class="btn bu5 bu-sm btn-sm" href="/add-cab"><i class="fa fa-plus"></i></a>
+        <a class="btn bu-icon bu-sm btn-sm" href="/add-cab"><i class="fa fa-plus"></i></a>
         <div class="d-flex h-100">  <h3 class="card-title">Cabinets</h3>
         <div class="container h-100 ">
             <form action="/searchcabinet" method="GET">
@@ -79,18 +79,18 @@
                           </div>
                         </td>
 
-                        {{-- <a class="btn btn-sm bu5" href="/detail-cab/{{ $cab->nrc_cab }}"><i class="fa fa-eye"></i></a>
-                        <a class="btn btn-sm bu5" href="/edit-cab/{{ $cab->nrc_cab }}"><i class="fa fa-edit "></i></a>
+                        {{-- <a class="btn btn-sm bu-icon" href="/detail-cab/{{ $cab->nrc_cab }}"><i class="fa fa-eye"></i></a>
+                        <a class="btn btn-sm bu-icon" href="/edit-cab/{{ $cab->nrc_cab }}"><i class="fa fa-edit "></i></a>
 
                         @if ($hasInterv==true)
-                            <a class="btn btn-sm bu5" onclick="IsChild()"><i class="fa fa-trash-alt"></i></a>
+                            <a class="btn btn-sm bu-icon" onclick="IsChild()"><i class="fa fa-trash-alt"></i></a>
                         @else
-                            <a class="btn btn-sm bu5" onclick="confirmDelete({{$cab->nrc_cab}}, 'cab/')"><i class="fa fa-trash-alt"></i></a>
+                            <a class="btn btn-sm bu-icon" onclick="confirmDelete({{$cab->nrc_cab}}, 'cab/')"><i class="fa fa-trash-alt"></i></a>
                         @endif
-                        <a class="btn btn-sm bu5 info" href="/print-f3/{{ $cab->nrc_cab }}"><i class="fa fa-print"></i></a> --}}
+                        <a class="btn btn-sm bu-icon info" href="/print-f3/{{ $cab->nrc_cab }}"><i class="fa fa-print"></i></a> --}}
 
-                        {{-- <a class="btn btn-sm bu5" href="cabinet/pdfcabinet/{{ $cab->nrc_cab }}"><i class="fa fa-download"></i></a> --}}
-                        {{-- <a class="btn btn-sm bu5 info" id="buPrintF3" href="/download-f3/{{ $cab->nrc_cab }}"><i class="fa fa-print"></i></a> --}}
+                        {{-- <a class="btn btn-sm bu-icon" href="cabinet/pdfcabinet/{{ $cab->nrc_cab }}"><i class="fa fa-download"></i></a> --}}
+                        {{-- <a class="btn btn-sm bu-icon info" id="buPrintF3" href="/download-f3/{{ $cab->nrc_cab }}"><i class="fa fa-print"></i></a> --}}
                 </tr>
                 @endforeach
             </tbody>

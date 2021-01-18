@@ -57,11 +57,11 @@
 
                         {{-- if the same user is connected --}}
                         @elseif (Auth::user()->id == $user->id && Auth::user()->type_user == "user")
-                            <a class="btn btn-sm bu5 sweet-tooltip" id="tooltip" title="Vous êtes l'utilisateur connecté !"><i class="fa fa-user"></i></a>
+                            <a class="btn btn-sm btn-icon sweet-tooltip" id="tooltip" title="Vous êtes l'utilisateur connecté !"><i class="fa fa-user"></i></a>
 
                         {{-- if the admin is connected AND the record is for the user --}}
                         @elseif (Auth::user()->type_user == "admin" && Auth::user()->id != $user->id)
-                            <a class="btn btn-sm bu5" onclick="confirmDelete({{$user->id}}, 'user/')"><i class="fa fa-trash-alt del"></i></a>
+                            <a class="btn btn-sm bu-iconcon" onclick="confirmDelete({{$user->id}}, 'user/')"><i class="fa fa-trash-alt del"></i></a>
                         @endif
                     </td>
                 </tr>

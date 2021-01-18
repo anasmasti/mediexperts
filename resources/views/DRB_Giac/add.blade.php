@@ -44,7 +44,7 @@
             <div class="form-group col-12">
                 <label for="n_df">Demande financement</label>
                 @if (count($df)==0)
-                    <a class="btn bu5 bu-sm btn-sm" href="/add-df"><i class="fa fa-plus"></i></a>
+                    <a class="btn bu-icon bu-sm btn-sm" href="/add-df"><i class="fa fa-plus"></i></a>
                 @endif
                 <select class="form-control {{ $errors->has('n_df') ? ' is-invalid' : '' }}" id="n_df" name="n_df" value="{{old('n_df')}}">
                     <option selected disabled></option>
@@ -256,9 +256,9 @@
 
     <div class="card-footer text-center">
         @if (count($df)!=0)
-            <button class="btn buaj2" type="submit" id="add"><i class="fas fa-plus-circle"></i>&nbsp;Ajouter</button>
+            <button class="btn bu-add" type="submit" id="add"><i class="fas fa-plus-circle"></i>&nbsp;Ajouter</button>
         @endif
-        <a class="btn bua2" href="/drb-gc"><i class="fas fa-window-close"></i>&nbsp;Annuler</a>
+        <a class="btn bu-danger" href="/drb-gc"><i class="fas fa-window-close"></i>&nbsp;Annuler</a>
     </div>
 
     </form>

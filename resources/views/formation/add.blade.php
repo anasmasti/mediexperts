@@ -46,7 +46,7 @@
       <div class="form-group col-lg-6 col-sm-12">
         <label for="n_form">Action de formation<span>&nbsp;<i class="fas fa-tag"></i></span></label>
         @if (count($plan)==0)
-          <a class="btn bu5 bu-sm btn-sm" href="/add-pf"><i class="fa fa-plus"></i></a>
+          <a class="btn bu-icon bu-sm btn-sm" href="/add-pf"><i class="fa fa-plus"></i></a>
         @endif
         <select class="form-control {{ $errors->has('n_form') ? 'is-invalid' : '' }}" name="n_form" id="n_form" value="{{old('n_form')}}">
           <option selected disabled>{{--selection--}}</option>
@@ -68,6 +68,38 @@
             <span class="invalid-feedback" role="alert">
               <strong>{{ $errors->first('n_form') }}</strong>
             </span>
+          @endif
+      </div>
+
+      <div class="form-group col-lg-6 col-12">
+        <label for="id_inv">Intervenant</label>
+        @if (count($interv)==0)
+          <a class="btn bu-icon bu-sm btn-sm" href="/add-inv"><i class="fa fa-plus"></i></a> {{--button add--}}
+        @endif
+        <select class="form-control {{ $errors->has('id_inv') ? 'is-invalid' : '' }}" name="id_inv" id="id_inv" value="{{old('id_inv')}}">
+          <option selected disabled>{{--vide--}}</option>
+          @php $nbIntervAvailable = 0; @endphp
+          @foreach ($interv as $inv)
+            {{-- @if (mb_strtolower($inv->etat) == "occupé") --}}
+              {{-- <option disabled value="{{$inv->id_interv}}">{{$inv->nom}} {{$inv->prenom}} (occupé)</option> --}}
+            {{-- @else --}}
+              <option value="{{$inv->id_interv}}">{{$inv->nom}} {{$inv->prenom}}</option>
+              @php $nbIntervAvailable += 1; @endphp
+            {{-- @endif --}}
+          @endforeach
+        </select>
+        @if (count($interv)==0)
+        <div class="text-danger txt-sm">Veuillez d'abord ajouter un intervenant</div>
+        @endif
+        @if ($nbIntervAvailable == 0)
+        <div class="text-danger txt-sm"><a href="/add-inv">
+          Aucun intervenant n'est disponible. Souhaitez-vous l'ajouter ?</a></div>
+        @endif
+
+          @if ($errors->has('id_inv'))
+          <span class="invalid-feedback" role="alert">
+            {{ $errors->first('id_inv') }}
+          </span>
           @endif
       </div>
 
@@ -196,8 +228,8 @@
   </div><!--./card-body-->
 
   <div class="card-footer text-center">
-    <button class="btn buaj2" type="submit" id="add"><i class="fas fa-plus-circle"></i>&nbsp;Ajouter</button>
-    <a class="btn bua2" href="/formation"><i class="fas fa-window-close"></i>&nbsp;Annuler</a>
+    <button class="btn bu-add" type="submit" id="add"><i class="fas fa-plus-circle"></i>&nbsp;Ajouter</button>
+    <a class="btn bu-danger" href="/formation"><i class="fas fa-window-close"></i>&nbsp;Annuler</a>
   </div>
 </form>
 

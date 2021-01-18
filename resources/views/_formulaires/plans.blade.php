@@ -12,6 +12,10 @@
 <body>
 
 <style>
+  * {
+    box-sizing: border-box;
+    padding: 0;
+  }
   .paper {
     padding:20px; height:27.9cm; width:21cm; padding-left:.25px;
   }
@@ -72,7 +76,7 @@
 </style>
 
 {{-- PRINT - CANCEL --}}
-<div class="hide-from-print">
+{{-- <div class="hide-from-print">
   <div style="display:flex; justify-content:space-between;">
     <a class="bu-print" id="back" href="/">Retour</a>
     <a class="bu-print" id="buPrintF2" href="#" onclick="window.print()">Imprimer le formulaire</a>
@@ -87,12 +91,12 @@
       @endforeach
     </select>
   </div>
-  
+
 
   <div style="width:100%;">
     <label for="plans">Réference plan de formation :</label>
     <select name="plans" id="plans" style="width:100%; padding: .5rem; border: 1px solid #000;">
-      {{-- auto filled --}}
+
     </select>
   </div>
 
@@ -100,9 +104,8 @@
 </div>
 
 
-{{-- PAPER --}}
 <div class="" style="padding:.5rem; font-family: Calibri, 'Segoe UI', Geneva, Verdana, sans-serif; background-color: #fff; font-size: 13px;">
-  
+
   <div class="hide-from-print" style="width:100%; height:10px;"><!--space--></div>
 
   <table>
@@ -127,18 +130,23 @@
     </thead>
 
     <tbody id="tablePlans">
-      {{-- auto filled --}}
+
     </tbody>
 
   </table>
+</div> --}}
+
+
+
+<div id="app">
+  <plan-formation></plan-formation>
 </div>
-{{-- END PAPER --}}
+
+<script src="{{ mix('js/app.js')}}">
+</script>
 
 
-
-
-
-<script type="text/javascript">
+{{-- <script type="text/javascript">
   var count_td = 0;
   DatesPlan = (data) => {
       setTimeout(() => {
@@ -191,7 +199,7 @@
     }); //onChange "client"
 
     $('#plans').on('change', function() {
-      
+
       var idPlan = $('#plans').val();
       $.ajax({
         type: 'GET',
@@ -235,7 +243,7 @@
             console.log("fill dates finally : " + fillDates);
           } //endfor
           // ajouter la somme des montants après la boucle du tableau
-          fillFormations +=  
+          fillFormations +=
             `<tr>
               <td></td>
               <td></td>
@@ -262,7 +270,7 @@
     }); //onChange "plans"
 
   }); //ready
-</script>
+</script> --}}
 
 
 

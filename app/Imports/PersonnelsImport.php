@@ -30,7 +30,6 @@ class PersonnelsImport implements ToModel, WithValidation, WithHeadingRow
             'etat' => $row["etat"],
             'nrc_e' => $row["nrc_e"],
         ]);
-        $request->session()->flash('added', 'La liste importée a été saisie avec succès');
     }
 
     public function rules(): array {

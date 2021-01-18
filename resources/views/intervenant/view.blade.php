@@ -24,7 +24,7 @@
 <div class="card card-dark">
   <!-- card-header -->
   <div class="card-header">
-    <a class="btn bu5 bu-sm btn-sm" href="/add-inv"><i class="fa fa-plus"></i></a>
+    <a class="btn bu-icon bu-sm btn-sm" href="/add-inv"><i class="fa fa-plus"></i></a>
     <div class="d-flex h-100">
       <h3 class="card-title">Intervenants</h3>
       <div class="container h-100">
@@ -96,8 +96,8 @@
           </td>
 
           {{-- <td class="action">
-            <a class="btn btn-sm bu5" href="/detail-inv/{{$inv->id_interv}}/{{$nrc}}"><i class="fa fa-eye"></i></a>
-            <a class="btn btn-sm bu5" href="/edit-inv/{{$inv->id_interv}}/{{$nrc}}"><i class="fa fa-edit"></i></a>
+            <a class="btn btn-sm bu-iconcon" href="/detail-inv/{{$inv->id_interv}}/{{$nrc}}"><i class="fa fa-eye"></i></a>
+            <a class="btn btn-sm bu-iconcon" href="/edit-inv/{{$inv->id_interv}}/{{$nrc}}"><i class="fa fa-edit"></i></a>
 
             @php $A = false; $B = false; @endphp
 
@@ -114,9 +114,9 @@
             @endforeach
 
             @if ($A==true | $B==true)
-              <a class="btn btn-sm bu5" onclick="IsChild()"><i class="fa fa-trash-alt"></i></a>
+              <a class="btn btn-sm bu-iconcon" onclick="IsChild()"><i class="fa fa-trash-alt"></i></a>
             @elseif ($A==false | $B==false)
-              <a class="btn btn-sm bu5" onclick="confirmDelete({{$inv->id_interv}}, 'inv/')"><i class="fa fa-trash-alt"></i></a>
+              <a class="btn btn-sm bu-iconcon" onclick="confirmDelete({{$inv->id_interv}}, 'inv/')"><i class="fa fa-trash-alt"></i></a>
             @endif
           </td> --}}
         </tr>

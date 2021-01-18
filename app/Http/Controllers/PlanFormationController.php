@@ -439,7 +439,7 @@ class PlanFormationController extends Controller
             }
 
             $nb_filled_date = 0;
-            $nb_empty_dates=0;
+            $nb_empty_dates = 0;
             for ($i=0; $i < count($dates) ; $i++) {
               // Récupérer le nombre de date non nulls (ex: 3 dates avec valeur / le reste est null) == 3
               $cur_date_index = 'formations.'.$dates[$i]; //ex: date1

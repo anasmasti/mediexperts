@@ -91,7 +91,6 @@ class ClientController extends Controller
                 'giac_rattach'=> 'required|max:50',
                 'ice'=> 'required|unique:clients|max:50',
                 'id_fiscal'=> 'required|unique:clients|max:15',
-                // 'id_entrp' => 'required|unique:clients|max:15',
                 'ncnss' => 'required|unique:clients|max:15',
                 'npatente' => 'required|unique:clients|max:8',
                 'sg_soci' => 'required|max:100',
@@ -164,7 +163,6 @@ class ClientController extends Controller
             $client->giac_rattach = $request->input('giac_rattach');
             $client->ice = $request->input('ice');
             $client->id_fiscal = $request->input('id_fiscal');
-            // $client->id_entrp = $request->input('id_entrp');
             $client->ncnss = $request->input('ncnss');
             $client->npatente = $request->input('npatente');
             $client->chif_aff_1 = $request->input('chif_aff_1');
@@ -301,7 +299,6 @@ class ClientController extends Controller
                 'giac_rattach'=> 'required|max:50',
                 'ice'=> 'required|max:50|unique:clients,ice,'.$client->nrc_entrp.',nrc_entrp',
                 'id_fiscal'=> 'required|max:15|unique:clients,id_fiscal,'.$client->nrc_entrp.',nrc_entrp',
-                // 'id_entrp' => 'required|max:15|unique:clients,id_entrp,'.$client->nrc_entrp.',nrc_entrp',
                 'ncnss' => 'required|max:15|unique:clients,ncnss,'.$client->nrc_entrp.',nrc_entrp',
                 'npatente' => 'required|max:8|unique:clients,npatente,'.$client->nrc_entrp.',nrc_entrp',
                 'sg_soci' => 'required|max:100',
@@ -374,7 +371,6 @@ class ClientController extends Controller
             $client->giac_rattach = $request->input('giac_rattach');
             $client->ice = $request->input('ice');
             $client->id_fiscal = $request->input('id_fiscal');
-            // $client->id_entrp = $request->input('id_entrp');
             $client->ncnss = $request->input('ncnss');
             $client->npatente = $request->input('npatente');
             $client->sg_soci = $request->input('sg_soci');

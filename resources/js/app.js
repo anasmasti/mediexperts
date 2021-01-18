@@ -22,6 +22,8 @@ const Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('model-1', require('./components/Model1.vue').default);
+Vue.component('plan-formation', require('./components/PlanFormation.vue').default);
+Vue.component('avis-affichage', require('./components/AvisAffichage.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

@@ -46,7 +46,7 @@
       <div class="form-group col-lg-9 col-sm-12">
         <label for="nrc_e">Entreprise</label>
         @if (count($client)==0)
-          <a class="btn bu5 bu-sm btn-sm" href="/add-cl"><i class="fa fa-plus"></i></a> <!--button add-->
+          <a class="btn bu-icon bu-sm btn-sm" href="/add-cl"><i class="fa fa-plus"></i></a> <!--button add-->
         @endif
         <select class="form-control {{ $errors->has('nrc_e') ? 'is-invalid' : '' }}" name="nrc_e" id="nrc_e" value="{{old('nrc_e')}}">
           <option selected disabled class="text-danger">*</option>
@@ -248,8 +248,8 @@
 
 
   <div class="card-footer text-center">
-    <button class="btn buaj2" type="submit" id="add"><i class="fas fa-plus-circle"></i> Ajouter</button>
-    <a class="btn bua2" href="/planformation"><i class="fas fa-window-close"></i> Annuler</a>
+    <button class="btn bu-add" type="submit" id="add"><i class="fas fa-plus-circle"></i> Ajouter</button>
+    <a class="btn bu-danger" href="/planformation"><i class="fas fa-window-close"></i> Annuler</a>
   </div>
 
   </form>

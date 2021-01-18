@@ -54,7 +54,7 @@
             <div class="form-group col-lg-9 col-12">
                 <label>Entreprise</label>
                 @if (count($client)==0)
-                    <a class="btn bu5 bu-sm btn-sm" href="/add-cl"><i class="fa fa-plus"></i></a>
+                    <a class="btn bu-icon bu-sm btn-sm" href="/add-cl"><i class="fa fa-plus"></i></a>
                 @endif
                 <select class="form-control {{ $errors->has('nrc_e') ? ' is-invalid' : '' }}" name="nrc_e" id="nrc_e" onchange="checkEtat()">
                     <option disabled selected></option>
@@ -1394,7 +1394,7 @@
 
         <div class="card-footer text-center">
             @if (count($client)!=0)
-                <button class="btn buaj2" type="submit" id="add"><i class="fas fa-plus-circle"></i>&nbsp;Ajouter</button>
+                <button class="btn bu-add" type="submit" id="add"><i class="fas fa-plus-circle"></i>&nbsp;Ajouter</button>
             @endif
             <a class="btn btn-danger" href="/df"><i class="fas fa-window-close"></i>&nbsp;Annuler</a>
         </div>

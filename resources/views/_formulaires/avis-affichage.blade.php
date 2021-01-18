@@ -72,7 +72,7 @@
   </style>
 
 {{-- PRINT - CANCEL --}}
-<div class="hide-from-print">
+{{-- <div class="hide-from-print">
   <div style="display:flex; justify-content:space-between;">
     <a class="bu-print" id="back" href="/">Retour</a>
     <a class="bu-print" id="buPrintF2" href="#" onclick="window.print()">Imprimer le formulaire</a>
@@ -93,16 +93,16 @@
   <div style="width:100%;">
     <label for="plans">Réference plan de formation :</label>
     <select name="plans" id="plans" style="width:100%; padding: .5rem; border: 1px solid #000;">
-      {{-- auto filled --}}
+      <!-- auto filled -->
     </select>
   </div>
 
   <div style="width:100%; height:50px;"><!--space--></div>
-</div>
+</div> --}}
 
 
 {{-- PAPER --}}
-<div class="paper" style="padding:.5rem; font-family:Calibri, 'Segoe UI', Geneva, Verdana, sans-serif; background-color: #fff;">
+{{-- <div class="paper" style="padding:.5rem; font-family:Calibri, 'Segoe UI', Geneva, Verdana, sans-serif; background-color: #fff;">
 
   <div class="container center">
     <h1 style="padding: 5px !important; margin:0; font-size: 24px;">
@@ -126,7 +126,7 @@
     <span>Nous informons l’ensemble du personnel que le plan de formation relatif à l’année <span id="year2">(année)</span> se présente comme suit :</span>
   </div>
 
-  {{-- FORMATIONS --}}
+  <!-- FORMATIONS -->
   <table>
     <thead style="font-size:14px;">
       <tr>
@@ -136,16 +136,28 @@
     </thead>
 
     <tbody id="tableFormation" class="center">
-      {{-- auto filled --}}
+      <!-- auto filled -->
     </tbody>
   </table>
 
 
-</div>
+</div> --}}
 {{-- END PAPER --}}
 
 
 
+<div id="app">
+  <avis-affichage></avis-affichage>
+</div>
+
+<script src="{{ mix('js/app.js')}}">
+</script>
+
+
+
+
+
+{{--
 <script type="text/javascript">
   var count_td = 0;
   DatesPlan = (data) => {
@@ -252,7 +264,7 @@
 
   }); //ready
 </script>
-
+ --}}
 
 
 

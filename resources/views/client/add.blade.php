@@ -107,7 +107,7 @@
         <div class="form-group col-lg-3 col-sm-12">
             <label for="giac_rattach">GIAC rattachement</label>
             @if (count($giac)==0)
-                <a href="/add-gc"><a class="btn bu5 bu-sm btn-sm" href="/add-gc"><i class="fa fa-plus"></i></a></a>
+                <a href="/add-gc"><a class="btn bu-icon bu-sm btn-sm" href="/add-gc"><i class="fa fa-plus"></i></a></a>
             @endif
             <select class="form-control {{ $errors->has('giac_rattach') ? ' is-invalid' : '' }}" name="giac_rattach">
                 <option selected disabled>--</option>
@@ -698,9 +698,9 @@
 
     <div class="card-footer text-center">
         @if (count($giac)!=0)
-            <button class="btn buaj2" type="submit" id="add"><i class="fas fa-plus-circle"></i>&nbsp;Ajouter</button>
+            <button class="btn bu-add" type="submit" id="add"><i class="fas fa-plus-circle"></i>&nbsp;Ajouter</button>
         @endif
-        <a class="btn bua2" href="/client"><i class="fas fa-window-close"></i>&nbsp;Annuler</a>
+        <a class="btn bu-danger" href="/client"><i class="fas fa-window-close"></i>&nbsp;Annuler</a>
     </div>
 
     </form><!-- END FORM -->

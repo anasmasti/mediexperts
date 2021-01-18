@@ -25,7 +25,7 @@
     <!--card-header-->
     <div class="card-header">
 
-        <a class="btn bu5 bu-sm btn-sm" href="/add-gc"><i class="fa fa-plus"></i></a>
+        <a class="btn bu-icon bu-sm btn-sm" href="/add-gc"><i class="fa fa-plus"></i></a>
         <div class="d-flex  h-100">
             <h3 class="card-title">GIACs</h3>
             <div class="container h-100">
@@ -60,9 +60,9 @@
                     <td>{{ $gc->adlocal_1 }}</td>
 
                     <td class="text-center">
-                        <a class="btn btn-sm bu5" href="/detail-gc/{{ $gc->code_giac }}"><i class="fa fa-eye"></i></a>
-                        <a class="btn btn-sm bu5" href="/edit-gc/{{ $gc->code_giac }}"><i class="fa fa-edit "></i></a>
-                        <a class="btn btn-sm bu5" a="/del-gc/{{ $gc->code_giac }}" onclick="confirmDelete({{$gc->code_giac}}, 'gc/')"><i class="fa fa-trash-alt "></i></a>
+                        <a class="btn btn-sm bu-iconcon" href="/detail-gc/{{ $gc->code_giac }}"><i class="fa fa-eye"></i></a>
+                        <a class="btn btn-sm bu-iconcon" href="/edit-gc/{{ $gc->code_giac }}"><i class="fa fa-edit "></i></a>
+                        <a class="btn btn-sm bu-iconcon" a="/del-gc/{{ $gc->code_giac }}" onclick="confirmDelete({{$gc->code_giac}}, 'gc/')"><i class="fa fa-trash-alt "></i></a>
                     </td>
                 </tr>
                 @endforeach

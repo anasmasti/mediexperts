@@ -55,6 +55,9 @@ Route::get('/edit-cl/{nrc}', 'ClientController@update')->name('client.update');
 Route::post('/edit-cl/{nrc}', 'ClientController@update')->name('client.update');
 Route::get('/searchclient', 'ClientController@searchclient');
 Route::get('/del-cl/{nrc}', 'ClientController@destroy')->name('client.destroy');
+
+Route::get('/import-client', 'Import\ImportClientController@index')->name('client.index-import');
+Route::post('/import/import-client', 'Import\ImportClientController@import')->name('client.import');
 /********************************************************************/
 
 
