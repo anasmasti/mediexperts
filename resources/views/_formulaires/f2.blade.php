@@ -70,7 +70,7 @@
       font-weight: 700; text-align: center;
     }
     .date-f2:not(:last-child)::after {
-      content: " -"
+      content: " ;"
     }
   </style>
 

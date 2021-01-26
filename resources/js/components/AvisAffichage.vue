@@ -50,7 +50,6 @@ export default {
         .then((res) => {
           this.reference_plan = res.data;
           this.curr_client = res.data[0].raisoci;
-          this.curr_annee = res.data[0].annee;
           console.log("reference_plan : ", this.reference_plan)
         })
         .catch((err) => console.log("err FillReferencesPlan", err));
@@ -59,6 +58,7 @@ export default {
       await axios.get(`/fill-plans-by-reference?idPlan=${this.id_plan}`)
         .then((res) => {
           this.actions_by_ref = res.data;
+          this.curr_annee = res.data[0].annee;
           console.log("actions_by_ref : ", this.actions_by_ref)
         })
         .then(() => {

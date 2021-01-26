@@ -59,7 +59,7 @@
                         ->where('plans.nrc_e', $pdf->nrc_e)
                         ->first(); ?>
 
-                    <td class="{{ ($pdf->etat == "planifié") ? 'font-weight-bold badge-success' : ($pdf->etat == "réalisé" ? 'font-weight-bold badge-warning' : 'font-weight-bold badge-danger') }}">{{ ucfirst($pdf->etat) }}</td>
+                    <td class="{{ ($pdf->etat == "planifié") ? 'font-weight-bold badge-warning' : ($pdf->etat == "réalisé" ? 'font-weight-bold badge-success' : 'font-weight-bold badge-danger') }}">{{ ucfirst($pdf->etat) }}</td>
                     <td>{{$pdf->refpdf}}</td>
                     <td class="td-4"><a href="/act-form-cl/{{$entrp['nrc_entrp']}}/{{$pdf->annee}}">Actions : </a> {{$entrp['raisoci']}}</td>
                     <td class="th-last">{{ $pdf->commentaire ? substr($pdf->commentaire, 0, 50).'...' : "--" }}</td>
