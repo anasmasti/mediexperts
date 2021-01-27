@@ -2249,7 +2249,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return axios.get("/fill-reference-plan?nrcEntrp=".concat(_this2.nrc_entrp)).then(function (res) {
                   _this2.reference_plan = res.data;
                   _this2.curr_client = res.data[0].raisoci;
-                  _this2.curr_annee = res.data[0].annee;
                   console.log("reference_plan : ", _this2.reference_plan);
                 })["catch"](function (err) {
                   return console.log("err FillReferencesPlan", err);
@@ -2274,6 +2273,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _context3.next = 2;
                 return axios.get("/fill-plans-by-reference?idPlan=".concat(_this3.id_plan)).then(function (res) {
                   _this3.actions_by_ref = res.data;
+                  _this3.curr_annee = res.data[0].annee;
                   console.log("actions_by_ref : ", _this3.actions_by_ref);
                 }).then(function () {
                   // fill dates action
@@ -2456,7 +2456,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return axios.get("/fill-reference-plan?nrcEntrp=".concat(_this2.nrc_entrp)).then(function (res) {
                   _this2.reference_plan = res.data;
                   _this2.curr_client = res.data[0].raisoci;
-                  _this2.curr_annee = res.data[0].annee;
                   console.log("reference_plan : ", _this2.reference_plan);
                 })["catch"](function (err) {
                   return console.log("err FillReferencesPlan", err);
@@ -2481,6 +2480,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _context3.next = 2;
                 return axios.get("/fill-plans-by-reference?idPlan=".concat(_this3.id_plan)).then(function (res) {
                   _this3.actions_by_ref = res.data;
+                  _this3.curr_annee = res.data[0].annee;
                   console.log("actions_by_ref : ", _this3.actions_by_ref);
                 }).then(function () {
                   // fill dates action
@@ -2660,7 +2660,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return axios.get("/fill-reference-plan?nrcEntrp=".concat(_this2.nrc_entrp)).then(function (res) {
                   _this2.reference_plan = res.data;
                   _this2.curr_client = res.data[0].raisoci;
-                  _this2.curr_annee = res.data[0].annee;
                   console.log("reference_plan : ", _this2.reference_plan);
                 })["catch"](function (err) {
                   return console.log("err FillReferencesPlan", err);
@@ -2685,6 +2684,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _context3.next = 2;
                 return axios.get("/fill-plans-by-reference?idPlan=".concat(_this3.id_plan)).then(function (res) {
                   _this3.actions_by_ref = res.data;
+                  _this3.curr_annee = res.data[0].annee;
                   console.log("actions_by_ref : ", _this3.actions_by_ref);
                 }).then(function () {
                   // fill dates action
@@ -53764,8 +53764,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\ayman\mediexperts\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\ayman\mediexperts\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\MediExperts\mediexperts\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\MediExperts\mediexperts\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

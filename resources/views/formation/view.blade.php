@@ -42,6 +42,7 @@
       <thead class="thead">
         <tr>
           <th>Réf. PF</th>
+          <th>N. Action</th>
           <th class="th-last">Thème</th>
           <th>Groupe</th>
           <th>Nb. bénificiaires</th>
@@ -55,7 +56,7 @@
         <tr>
 
           @php
-            $theme = App\PlanFormation::select('themes.nom_theme')
+            $pdf = App\PlanFormation::select('themes.nom_theme', 'plan_formations.n_action')
             ->join('themes', 'plan_formations.id_thm', 'themes.id_theme')
             ->join('formations', 'plan_formations.n_form', 'formations.n_form')
             ->where('formations.id_form', $fm->id_form)
@@ -68,7 +69,8 @@
           @endphp
 
           <td class="text-bold">{{ $reference['refpdf'] }}</td>
-          <td class="">{{ $theme['nom_theme'] }}</td>
+          <td class="">{{ $pdf['n_action'] }}</td>
+          <td class="">{{ $pdf['nom_theme'] }}</td>
           <td class="">{{ $fm->groupe }}</td>
           <td class="">{{ $fm->nb_benif }}</td>
           <td class="th-last d-inline-block text-truncate">{{ $fm->commentaire }}</td>

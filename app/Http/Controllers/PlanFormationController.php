@@ -404,6 +404,7 @@ class PlanFormationController extends Controller
             $plan->commentaire = $request->input("commentaire");
             $plan->etat = $request->input('etat');
 
+
             $docs = ['model5', 'model3', 'f4', 'fiche_eval',
                     'support_form', 'cv_inv', 'avis_affich'];
             foreach ($docs as $doc) {
