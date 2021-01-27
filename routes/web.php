@@ -368,7 +368,7 @@ Route::get('/fill-action-form', 'FormulaireController@FillActionFormation')->nam
 Route::get('/print-avis-aff', 'FormulaireController@print_avis_aff')->name('ActionFormation.print_avis_aff');
 
 Route::get('/print-att-reference-plan', 'FormulaireController@print_att_reference_plan')->name('ActionFormation.print_att_reference_plan');
-
+Route::get('/fill-cabinet-info', 'FormulaireController@FillCabinetInfo')->name('ActionFormation.FillCabinetInfo');
 /********************************************************************/
 
 

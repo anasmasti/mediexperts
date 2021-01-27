@@ -34,6 +34,9 @@
       border: 1px solid #000;
       padding: .2rem; border-collapse: collapse;
     }
+    th {
+      text-align: center;
+    }
     .flex-column { display: flex; flex-flow: column wrap; width:100%; }
     .flex-row { display: flex; flex-flow: row wrap; width:100%; }
     .flex-nowrap { display: flex; flex-wrap: nowrap; width:100%; }
@@ -46,6 +49,7 @@
     .d-flex { display: flex; }
     span { padding: .1rem; }
     .highlighted { background-color: #ffff99 !important; }
+    .highlighted-danger { background-color: #ffe8e8 !important; }
     .bu-print {
       padding:0; margin:0 0 50px 0;
       display: inline-block; width:47%; height:50px;
@@ -66,6 +70,7 @@
     @media print {
       .hide-from-print { display: none; }
       .highlighted { background-color: #fff !important; }
+      .highlighted-danger { background-color: #fff !important; }
       .select {
         border-color: #fff !important; outline-color: #fff !important;
         -moz-appearance:none; /* Firefox */

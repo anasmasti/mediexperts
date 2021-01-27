@@ -183,7 +183,7 @@ class FormulaireController extends Controller
     }
 
     public function FillReferencesPlan(Request $request) {
-      $data = Plan::select('plans.*', 'clients.raisoci')
+      $data = Plan::select('plans.*', 'clients.*')
         ->join('clients', 'plans.nrc_e', 'clients.nrc_entrp')
         ->where('plans.nrc_e', $request->nrcEntrp)
         ->get();
@@ -255,6 +255,13 @@ class FormulaireController extends Controller
 
     public function print_att_reference_plan() {
       return view('_formulaires.att-reference-plan');
+    }
+
+    public function FillCabinetInfo(Request $request) {
+      $data = Cabinet::select('cabinets.*')
+        ->where('cabinets.raisoci', 'LIKE', $request->raisociCab)
+        ->first();
+      return response()->json($data);
     }
 
 

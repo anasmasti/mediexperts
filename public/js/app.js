@@ -1981,11 +1981,31 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   runtimeCompiler: true,
   data: function data() {
     return {
+      // clients data
       clients: [],
-      curr_client: null,
-      curr_annee: null,
       nrc_entrp: undefined,
+      curr_client: null,
+      curr_client_raisoci: null,
+      curr_client_nrc: null,
+      curr_client_formjury: null,
+      curr_client_capt_soci: null,
+      curr_client_sg_soci: null,
+      curr_client_ville: null,
+      curr_client_fonct_dg1: null,
+      curr_client_nom_dg1: null,
+      // cabinet data
+      curr_cabinet_nrc: null,
+      curr_cabinet_raisoci: null,
+      curr_cabinet_capt_soci: null,
+      curr_cabinet_formjury: null,
+      curr_cabinet_ncnss: null,
+      curr_cabinet_adress: null,
+      curr_cabinet_ville: null,
+      // plan data
       id_plan: undefined,
+      curr_annee: null,
+      curr_nb_jour: null,
+      curr_bdg_total: 0,
       reference_plan: [],
       actions_by_ref: [],
       plan_formation: [],
@@ -2040,18 +2060,26 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
+                _this2.ChangeFontSize();
+
                 console.log('nrc_entrp', _this2.nrc_entrp);
-                _context2.next = 3;
+                _context2.next = 4;
                 return axios.get("/fill-reference-plan?nrcEntrp=".concat(_this2.nrc_entrp)).then(function (res) {
                   _this2.reference_plan = res.data;
-                  _this2.curr_client = res.data[0].raisoci;
-                  _this2.curr_annee = res.data[0].annee;
+                  _this2.curr_client_nrc = _this2.clients.nrc_entrp;
+                  _this2.curr_client_capt_soci = res.data[0].capt_soci;
+                  _this2.curr_client_ville = res.data[0].ville;
+                  _this2.curr_client_raisoci = res.data[0].raisoci.toUpperCase();
+                  _this2.curr_client_formjury = res.data[0].formjury;
+                  _this2.curr_client_sg_soci = res.data[0].sg_soci;
+                  _this2.curr_client_fonct_dg1 = res.data[0].fonct_dg1;
+                  _this2.curr_client_nom_dg1 = res.data[0].nom_dg1;
                   console.log("reference_plan : ", _this2.reference_plan);
                 })["catch"](function (err) {
                   return console.log("err FillReferencesPlan", err);
                 });
 
-              case 3:
+              case 4:
               case "end":
                 return _context2.stop();
             }
@@ -2068,23 +2096,37 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context3.prev = _context3.next) {
               case 0:
                 _context3.next = 2;
+                return _this3.ResetAll();
+
+              case 2:
+                _context3.next = 4;
                 return axios.get("/fill-plans-by-reference?idPlan=".concat(_this3.id_plan)).then(function (res) {
                   _this3.actions_by_ref = res.data;
+                  _this3.curr_annee = res.data[0].annee;
+                  _this3.curr_cabinet_raisoci = res.data[0].organisme;
+
+                  _this3.FillCabinetInfo();
+
                   console.log("actions_by_ref : ", _this3.actions_by_ref);
                 }).then(function () {
                   // fill dates action
                   _this3.actions_by_ref.forEach(function (action) {
-                    _this3.FillDates(action.n_form);
+                    // affecter les dates de chaque formation
+                    _this3.FillDates(action.n_form); // calculer le budget total
+
+
+                    _this3.curr_bdg_total += action.bdg_total;
+                    _this3.curr_nb_jour += action.nb_jour;
                   });
                 })["catch"](function (err) {
                   return console.error("err FillPlanByReference", err);
                 });
 
-              case 2:
+              case 4:
                 _this3.isAllLoaded = true;
                 console.log("isallloaded", _this3.isAllLoaded);
 
-              case 4:
+              case 6:
               case "end":
                 return _context3.stop();
             }
@@ -2092,7 +2134,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee3);
       }))();
     },
-    FillDates: function FillDates(nform) {
+    FillCabinetInfo: function FillCabinetInfo() {
       var _this4 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
@@ -2101,12 +2143,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context4.prev = _context4.next) {
               case 0:
                 _context4.next = 2;
-                return axios.get("/fill-dates-plan?nForm=".concat(nform)).then(function (res) {
-                  _this4.dates_actions = res.data;
-                }).then(function () {
-                  _this4.AssignDates(nform);
+                return axios.get("/fill-cabinet-info?raisociCab=".concat(_this4.curr_cabinet_raisoci)).then(function (res) {
+                  _this4.curr_cabinet_nrc = res.data.nrc_cab;
+                  _this4.curr_cabinet_raisoci = res.data.raisoci.toUpperCase();
+                  _this4.curr_cabinet_capt_soci = res.data.cap_soci;
+                  _this4.curr_cabinet_formjury = res.data.formjury;
+                  _this4.curr_cabinet_ncnss = res.data.ncnss;
+                  _this4.curr_cabinet_adress = res.data.adress;
+                  _this4.curr_cabinet_ville = res.data.ville;
+                  console.log('cabinet :', res.data);
                 })["catch"](function (err) {
-                  return console.error("err FillDates", err);
+                  return console.error("err FillCabinetInfo", err);
                 });
 
               case 2:
@@ -2117,7 +2164,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee4);
       }))();
     },
-    AssignDates: function AssignDates(nform) {
+    FillDates: function FillDates(nform) {
       var _this5 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
@@ -2126,9 +2173,34 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context5.prev = _context5.next) {
               case 0:
                 _context5.next = 2;
-                return _this5.actions_by_ref.forEach(function (action) {
+                return axios.get("/fill-dates-plan?nForm=".concat(nform)).then(function (res) {
+                  _this5.dates_actions = res.data;
+
+                  _this5.AssignDates(nform);
+                })["catch"](function (err) {
+                  return console.error("err FillDates", err);
+                });
+
+              case 2:
+              case "end":
+                return _context5.stop();
+            }
+          }
+        }, _callee5);
+      }))();
+    },
+    AssignDates: function AssignDates(nform) {
+      var _this6 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee6() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee6$(_context6) {
+          while (1) {
+            switch (_context6.prev = _context6.next) {
+              case 0:
+                _context6.next = 2;
+                return _this6.actions_by_ref.forEach(function (action) {
                   if (action.n_form == nform) {
-                    _this5.dates_actions.forEach(function (forma) {
+                    _this6.dates_actions.forEach(function (forma) {
                       if (forma.n_form == nform) {
                         Object.assign(action, {
                           dates: {}
@@ -2136,7 +2208,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                         for (var i = 1; i < 30; i++) {
                           //************************ vvv [dynamic key assignement] vvv */
-                          Object.assign(action.dates, _defineProperty({}, "date".concat(i), forma["date".concat(i)]));
+                          if (i == 1) {
+                            Object.assign(action.dates, _defineProperty({}, "date_debut", _this6.DateFormat(forma["date".concat(i)])));
+                            console.log("date_debut", action.dates.date_debut);
+                          }
+
+                          if (forma["date".concat(i)]) {
+                            Object.assign(action.dates, _defineProperty({}, "date_fin", _this6.DateFormat(forma["date".concat(i)])));
+                            console.log("date_fin", action.dates.date_fin);
+                          }
                         }
                       }
 
@@ -2147,11 +2227,37 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 2:
               case "end":
-                return _context5.stop();
+                return _context6.stop();
             }
           }
-        }, _callee5);
+        }, _callee6);
       }))();
+    },
+    ResetAll: function ResetAll() {
+      var _this7 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee7() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee7$(_context7) {
+          while (1) {
+            switch (_context7.prev = _context7.next) {
+              case 0:
+                // rétablir bdg total à 0
+                _this7.curr_bdg_total = _this7.curr_nb_jour = 0;
+
+              case 1:
+              case "end":
+                return _context7.stop();
+            }
+          }
+        }, _callee7);
+      }))();
+    },
+    ChangeFontSize: function ChangeFontSize() {
+      if (this.actions_by_ref.length <= 5) {
+        document.querySelector('.paper').setAttribute('style', 'font-size: 18px; line-height: 2rem');
+      } else {
+        document.querySelector('.paper').setAttribute('style', 'font-size: 15.5px; line-height: initial');
+      }
     }
   }
 }, "computed", {}));
@@ -39235,40 +39341,10 @@ var render = function() {
       _c("div", { staticStyle: { width: "100%", height: "50px" } })
     ]),
     _vm._v(" "),
-    _vm._m(1)
-  ])
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticStyle: { display: "flex", "justify-content": "space-between" } },
-      [
-        _c("a", { staticClass: "bu-print", attrs: { id: "back", href: "/" } }, [
-          _vm._v("Retour")
-        ]),
-        _vm._v(" "),
-        _c(
-          "a",
-          {
-            staticClass: "bu-print",
-            attrs: { id: "buPrintF2", href: "#", onclick: "window.print()" }
-          },
-          [_vm._v("Imprimer le formulaire")]
-        )
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
+    _c(
       "div",
       {
+        staticClass: "paper",
         staticStyle: {
           padding: ".5rem",
           "font-family": "Calibri, 'Segoe UI', Geneva, Verdana, sans-serif",
@@ -39282,10 +39358,315 @@ var staticRenderFns = [
             "h3",
             {
               staticClass: "text-center",
-              staticStyle: { "text-decoration": "underline", padding: "50px 0" }
+              staticStyle: { "text-decoration": "underline", padding: "40px 0" }
             },
             [_vm._v("ATTESTATION DE REFERENCE")]
           ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticStyle: {
+                "text-align": "justify",
+                "text-justify": "initial",
+                "font-weight": "300"
+              }
+            },
+            [
+              _vm._v("\n        Nous soussignés,\n        « "),
+              _c(
+                "strong",
+                { staticClass: "highlighted-danger", attrs: { id: "entrp" } },
+                [_vm._v(_vm._s(_vm.curr_client_raisoci || "(Entreprise)"))]
+              ),
+              _vm._v(" »,\n\n        "),
+              _c(
+                "span",
+                {
+                  staticClass: "highlighted-danger",
+                  attrs: { id: "entrpFormJury" }
+                },
+                [
+                  _vm._v(
+                    "\n          " +
+                      _vm._s(
+                        _vm.curr_client_formjury || "(forme juridique entrp.)"
+                      ) +
+                      "\n        "
+                  )
+                ]
+              ),
+              _vm._v("\n\n        au capital de\n        "),
+              _c(
+                "span",
+                {
+                  staticClass: "highlighted-danger",
+                  attrs: { id: "entrpCapital" }
+                },
+                [
+                  _vm._v(
+                    "\n          " +
+                      _vm._s(_vm.curr_client_capt_soci || "(capital entrp.)") +
+                      "\n        "
+                  )
+                ]
+              ),
+              _vm._v(" Dirhams,\n\n        dont le siège est sis à\n        "),
+              _c(
+                "span",
+                {
+                  staticClass: "highlighted-danger",
+                  attrs: { id: "entrpSiege" }
+                },
+                [
+                  _vm._v(
+                    "\n          " +
+                      _vm._s(_vm.curr_client_sg_soci || "(siège entreprise)") +
+                      "\n        "
+                  )
+                ]
+              ),
+              _vm._v("\n\n        représentée par Son\n        "),
+              _c(
+                "span",
+                {
+                  staticClass: "highlighted-danger",
+                  attrs: { id: "entrpDgFonction" }
+                },
+                [
+                  _vm._v(
+                    "\n          " +
+                      _vm._s(
+                        _vm.curr_client_fonct_dg1 ||
+                          "(fonction directeur entrp.)"
+                      ) +
+                      "\n        "
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _vm._m(1),
+              _vm._v(" "),
+              _c(
+                "span",
+                {
+                  staticClass: "highlighted-danger",
+                  attrs: { id: "entrpDgNom" }
+                },
+                [
+                  _vm._v(
+                    "\n          " +
+                      _vm._s(
+                        _vm.curr_client_nom_dg1 || "(nom directeur entrp.)"
+                      ) +
+                      "\n        "
+                  )
+                ]
+              ),
+              _vm._v(
+                ",\n\n        attestons par la présente que le Cabinet\n        "
+              ),
+              _c(
+                "span",
+                {
+                  staticClass: "select text-bold highlighted-danger",
+                  staticStyle: { "font-size": "18px" },
+                  attrs: { id: "cabinet" }
+                },
+                [
+                  _vm._v(
+                    "\n          " +
+                      _vm._s(_vm.curr_cabinet_raisoci || "(organisme)") +
+                      "\n        "
+                  )
+                ]
+              ),
+              _vm._v(",\n\n        "),
+              _c(
+                "span",
+                {
+                  staticClass: "highlighted-danger",
+                  attrs: { id: "cabinetFormJury" }
+                },
+                [
+                  _vm._v(
+                    "\n          " +
+                      _vm._s(
+                        _vm.curr_cabinet_formjury || "(organisme forme jury)"
+                      ) +
+                      "\n        "
+                  )
+                ]
+              ),
+              _vm._v("\n\n        au capital de\n        "),
+              _c(
+                "span",
+                {
+                  staticClass: "highlighted-danger",
+                  attrs: { id: "cabinetCapital" }
+                },
+                [
+                  _vm._v(
+                    "\n          " +
+                      _vm._s(
+                        _vm.curr_cabinet_capt_soci || "(capital organisme)"
+                      ) +
+                      "\n        "
+                  )
+                ]
+              ),
+              _vm._v(
+                " Dirhams,\n\n        inscrit au registre de commerce de\n        "
+              ),
+              _c("span", [
+                _vm._v(
+                  "\n          " +
+                    _vm._s(_vm.curr_client_ville || "(ville)") +
+                    "\n        "
+                )
+              ]),
+              _vm._v(" sous le numéro\n        "),
+              _c(
+                "span",
+                {
+                  staticClass: "highlighted-danger",
+                  attrs: { id: "cabinetRC" }
+                },
+                [
+                  _vm._v(
+                    "\n          " +
+                      _vm._s(_vm.curr_cabinet_nrc || "(RC organisme)") +
+                      "\n        "
+                  )
+                ]
+              ),
+              _vm._v(
+                "\n\n        et inscrit à la CNSS sous le numéro\n        "
+              ),
+              _c(
+                "span",
+                {
+                  staticClass: "highlighted-danger",
+                  attrs: { id: "cabinetCnss" }
+                },
+                [
+                  _vm._v(
+                    "\n          " +
+                      _vm._s(_vm.curr_cabinet_ncnss || "(CNSS organisme)") +
+                      "\n        "
+                  )
+                ]
+              ),
+              _vm._v(",\n\n        dont le siège social est sis au\n        "),
+              _c("span", { staticClass: "highlighted-danger" }, [
+                _vm._v(
+                  "\n          " +
+                    _vm._s(_vm.curr_cabinet_adress || "(adresse organisme)") +
+                    "\n        "
+                )
+              ]),
+              _vm._v(
+                "\n\n        a réalisé pour le compte de notre société au titre de l’année\n        "
+              ),
+              _c(
+                "span",
+                {
+                  staticClass: "highlighted-danger",
+                  attrs: { id: "anneeMiss" }
+                },
+                [
+                  _vm._v(
+                    "\n          " +
+                      _vm._s(_vm.curr_annee || "(année)") +
+                      "\n        "
+                  )
+                ]
+              ),
+              _vm._v(",\n\n        d’un budget de\n        "),
+              _c("strong", { staticClass: "highlighted-danger" }, [
+                _vm._v(
+                  "\n          " +
+                    _vm._s(
+                      _vm.curr_bdg_total + " Dirhams" || false
+                    ) +
+                    "\n        "
+                )
+              ]),
+              _vm._v("\n        sur\n        "),
+              _c(
+                "span",
+                {
+                  staticClass: "highlighted-danger",
+                  attrs: { id: "jourMiss" }
+                },
+                [
+                  _vm._v(
+                    "\n          " +
+                      _vm._s(_vm.curr_nb_jour || "(nb jours)") +
+                      "\n        "
+                  )
+                ]
+              ),
+              _vm._v(" jours de formation.\n      ")
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "p",
+            {
+              staticStyle: {
+                "text-align": "justify",
+                "text-justify": "initial",
+                "font-weight": "300"
+              }
+            },
+            [
+              _vm._v(
+                "\n        L’ensemble des séminaires ayant été assurés se présentent comme suit :\n      "
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c("table", [
+            _vm._m(2),
+            _vm._v(" "),
+            _vm.actions_by_ref
+              ? _c(
+                  "tbody",
+                  { staticClass: "center", attrs: { id: "tableFormation" } },
+                  _vm._l(_vm.actions_by_ref, function(action, idx) {
+                    return _c("tr", { key: "plan" + idx }, [
+                      _c("td", [
+                        _vm._v(
+                          "\n              " +
+                            _vm._s(action.nom_theme) +
+                            "\n            "
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { attrs: { id: action.n_form } }, [
+                        _vm._v(
+                          "\n              De " +
+                            _vm._s(action.dates && action.dates.date_debut) +
+                            " à " +
+                            _vm._s(action.dates && action.dates.date_fin) +
+                            "\n            "
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("td", [
+                        _vm._v(
+                          "\n              " +
+                            _vm._s(action.nb_jour) +
+                            "\n            "
+                        )
+                      ])
+                    ])
+                  }),
+                  0
+                )
+              : _vm._e()
+          ]),
           _vm._v(" "),
           _c(
             "p",
@@ -39298,123 +39679,14 @@ var staticRenderFns = [
               }
             },
             [
-              _vm._v("\n        Nous soussignés,\n        « "),
-              _c("strong", { attrs: { id: "entrp" } }, [
-                _vm._v("(Entreprise)")
+              _vm._v("\n        Le cabinet conseil\n        "),
+              _c("strong", { attrs: { id: "cabinet_2" } }, [
+                _vm._v(
+                  "\n          " +
+                    _vm._s(_vm.curr_cabinet_raisoci || "(organisme)") +
+                    "\n        "
+                )
               ]),
-              _vm._v(" » ,\n        "),
-              _c("span", { attrs: { id: "entrpFormJury" } }, [
-                _vm._v("(forme juridique entrp.)")
-              ]),
-              _vm._v("\n        au capital de\n        "),
-              _c("span", { attrs: { id: "entrpCapital" } }, [
-                _vm._v("(capital entrp.)")
-              ]),
-              _vm._v(" Dirhams,\n        dont le siège est sis à\n        "),
-              _c("span", { attrs: { id: "entrpSiege" } }, [
-                _vm._v("(siège entreprise)")
-              ]),
-              _vm._v("\n        représentée par Son\n        "),
-              _c("span", { attrs: { id: "entrpDgFonction" } }, [
-                _vm._v("(fonction directeur entrp.)")
-              ]),
-              _vm._v(" "),
-              _c(
-                "select",
-                {
-                  staticClass: "select highlighted",
-                  staticStyle: { "font-size": "18px" }
-                },
-                [
-                  _c("option", { attrs: { value: "" } }, [_vm._v("M.")]),
-                  _vm._v(" "),
-                  _c("option", { attrs: { value: "" } }, [_vm._v("Mme.")])
-                ]
-              ),
-              _vm._v(" "),
-              _c("span", { attrs: { id: "entrpDgNom" } }, [
-                _vm._v("(nom directeur entrp.)")
-              ]),
-              _vm._v(
-                ",\n\n        attestons par la présente que le Cabinet\n        "
-              ),
-              _c(
-                "select",
-                {
-                  staticClass: "select text-bold highlighted",
-                  staticStyle: { "font-size": "18px" },
-                  attrs: { id: "cabinet" }
-                },
-                [_vm._v("\n          ...\n        ")]
-              ),
-              _vm._v(",\n        "),
-              _c("span", { attrs: { id: "cabinetFormJury" } }, [
-                _vm._v("\n          ...\n        ")
-              ]),
-              _vm._v("\n        au capital de\n        "),
-              _c("span", { attrs: { id: "cabinetCapital" } }, [
-                _vm._v("\n          ...\n        ")
-              ]),
-              _vm._v(
-                " Dirhams,\n        inscrit au registre de commerce de Casablanca sous le numéro\n        "
-              ),
-              _c("span", { attrs: { id: "cabinetRC" } }, [_vm._v("...")]),
-              _vm._v("\n        et inscrit à la CNSS sous le numéro\n        "),
-              _c("span", { attrs: { id: "cabinetCnss" } }, [_vm._v("...")]),
-              _vm._v(",\n        dont le siège social est sis au\n        "),
-              _c("span", { attrs: { id: "cabinetAdress" } }, [_vm._v("...")]),
-              _vm._v(
-                "\n\n        a réalisé pour le compte de notre société au titre de l’année\n        "
-              ),
-              _c("span", { attrs: { id: "anneeMiss" } }, [
-                _vm._v("(année mission)")
-              ]),
-              _vm._v(",\n        d’un budget de\n        "),
-              _c("strong", { attrs: { id: "montantMiss" } }, [
-                _vm._v("(montant HT mission)")
-              ]),
-              _vm._v(" "),
-              _c("strong", [_vm._v(" Dirhams")]),
-              _vm._v("\n        sur\n        "),
-              _c("span", { attrs: { id: "jourMiss" } }, [
-                _vm._v("(nb. jour mission)")
-              ]),
-              _vm._v(" jours de formation.\n      ")
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "p",
-            {
-              staticStyle: {
-                "text-align": "justify",
-                "text-justify": "initial",
-                "line-height": "1.7rem",
-                "font-weight": "300",
-                padding: "40px 0px 10px 0px"
-              }
-            },
-            [
-              _vm._v(
-                "\n        L’ensemble des séminaires ayant été assurés se présentent comme suit :\n      "
-              )
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "p",
-            {
-              staticStyle: {
-                "text-align": "justify",
-                "text-justify": "initial",
-                "line-height": "1.7rem",
-                "font-weight": "300",
-                padding: "40px 0px 10px 0px"
-              }
-            },
-            [
-              _vm._v("\n        Le cabinet conseil "),
-              _c("strong", { attrs: { id: "cabinet_2" } }, [_vm._v("...")]),
               _vm._v(
                 " a répondu à nos attentes et a donné entière satisfaction.\n      "
               )
@@ -39446,7 +39718,7 @@ var staticRenderFns = [
                 position: "fixed !important",
                 bottom: "0",
                 width: "100%",
-                "padding-bottom": "150px"
+                "padding-bottom": "130px"
               },
               attrs: { id: "footer" }
             },
@@ -39455,9 +39727,17 @@ var staticRenderFns = [
                 "p",
                 { staticStyle: { margin: "20px", "margin-left": "50%" } },
                 [
-                  _vm._v("\n          Fait à Casablanca le\n          "),
+                  _vm._v("\n          Fait à\n          "),
+                  _c("span", [
+                    _vm._v(
+                      "\n            " +
+                        _vm._s(_vm.curr_client_ville || "(ville)") +
+                        "\n          "
+                    )
+                  ]),
+                  _vm._v(" le\n          "),
                   _c("input", {
-                    staticStyle: { width: "50%", "font-size": "17px" },
+                    staticStyle: { width: "45%", "font-size": "17px" },
                     attrs: { type: "date", name: "", id: "lastDate" }
                   })
                 ]
@@ -39470,29 +39750,27 @@ var staticRenderFns = [
                 },
                 [
                   _c(
-                    "select",
+                    "span",
                     {
                       staticClass: "select highlighted",
-                      staticStyle: { "font-size": "18px" }
+                      staticStyle: { "font-size": "16px" }
                     },
-                    [
-                      _c("option", { attrs: { value: "" } }, [_vm._v("M.")]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "" } }, [_vm._v("Mme.")])
-                    ]
+                    [_vm._v("\n              Direction\n            ")]
                   ),
-                  _vm._v(" "),
-                  _c("span", { attrs: { id: "entrpDgNom2" } }, [
-                    _vm._v("(.......)")
-                  ]),
                   _vm._v(" "),
                   _c(
                     "p",
                     {
-                      staticStyle: { display: "block" },
-                      attrs: { id: "entrpDgFonction2" }
+                      staticClass: "highlighted-danger",
+                      staticStyle: { display: "block" }
                     },
-                    [_vm._v("(.......)")]
+                    [
+                      _vm._v(
+                        "\n              " +
+                          _vm._s(_vm.curr_client_raisoci || "(entreprise)") +
+                          "\n            "
+                      )
+                    ]
                   )
                 ]
               )
@@ -39501,6 +39779,62 @@ var staticRenderFns = [
         ])
       ]
     )
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticStyle: { display: "flex", "justify-content": "space-between" } },
+      [
+        _c("a", { staticClass: "bu-print", attrs: { id: "back", href: "/" } }, [
+          _vm._v("Retour")
+        ]),
+        _vm._v(" "),
+        _c(
+          "a",
+          {
+            staticClass: "bu-print",
+            attrs: { id: "buPrintF2", href: "#", onclick: "window.print()" }
+          },
+          [_vm._v("Imprimer le formulaire")]
+        )
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "select",
+      {
+        staticClass: "select highlighted",
+        staticStyle: { "font-size": "16px" }
+      },
+      [
+        _c("option", { attrs: { value: "" } }, [_vm._v("M.")]),
+        _vm._v(" "),
+        _c("option", { attrs: { value: "" } }, [_vm._v("Mme.")])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", { staticStyle: { "text-align": "left" } }, [
+      _c("tr", [
+        _c("th", { staticStyle: { width: "50%" } }, [_vm._v("Thème")]),
+        _vm._v(" "),
+        _c("th", { staticStyle: { width: "30%" } }, [_vm._v("Dates")]),
+        _vm._v(" "),
+        _c("th", { staticStyle: { width: "20%" } }, [_vm._v("Nombre de jours")])
+      ])
+    ])
   }
 ]
 render._withStripped = true
@@ -53764,8 +54098,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\MediExperts\mediexperts\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\MediExperts\mediexperts\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\ayman\mediexperts\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\ayman\mediexperts\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
