@@ -98,7 +98,7 @@ export default {
             // affecter les dates de chaque formation
             this.FillDates(action.n_form);
             // calculer le budget total
-            this.curr_bdg_total += action.bdg_total;
+            this.curr_bdg_total += (action.bdg_total * action.nb_grp);
             this.curr_nb_jour += action.nb_jour;
           });
         })
@@ -156,8 +156,11 @@ export default {
       this.curr_bdg_total = this.curr_nb_jour = 0;
     },
     ChangeFontSize() {
-      if (this.actions_by_ref.length <= 5) {
+      if (this.actions_by_ref.length <= 3) {
         document.querySelector('.paper').setAttribute('style', 'font-size: 18px; line-height: 2rem; font-family: \'Arial\', sans-serif;');
+      }
+      else if (this.actions_by_ref.length <= 5) {
+        document.querySelector('.paper').setAttribute('style', 'font-size: 16px; line-height: 2rem; font-family: \'Arial\', sans-serif;');
       } else {
         document.querySelector('.paper').setAttribute('style', 'font-size: 15.5px; line-height: initial; font-family: \'Arial\', sans-serif;');
       }
@@ -359,7 +362,7 @@ export default {
           </tbody>
         </table>
 
-        <p style="text-align: justify; text-justify: initial; line-height: 1.7rem; font-weight: 300;">
+        <p style="text-align: justify; text-justify: initial; line-height: 1.7rem; font-weight: 300; margin-top: 50px">
           Le cabinet conseil
           <strong id="cabinet_2">
             {{ curr_cabinet_raisoci || '(organisme)' }}

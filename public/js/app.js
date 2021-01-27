@@ -2115,7 +2115,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     _this3.FillDates(action.n_form); // calculer le budget total
 
 
-                    _this3.curr_bdg_total += action.bdg_total;
+                    _this3.curr_bdg_total += action.bdg_total * action.nb_grp;
                     _this3.curr_nb_jour += action.nb_jour;
                   });
                 })["catch"](function (err) {
@@ -2253,8 +2253,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }))();
     },
     ChangeFontSize: function ChangeFontSize() {
-      if (this.actions_by_ref.length <= 5) {
+      if (this.actions_by_ref.length <= 3) {
         document.querySelector('.paper').setAttribute('style', 'font-size: 18px; line-height: 2rem; font-family: \'Arial\', sans-serif;');
+      } else if (this.actions_by_ref.length <= 5) {
+        document.querySelector('.paper').setAttribute('style', 'font-size: 16px; line-height: 2rem; font-family: \'Arial\', sans-serif;');
       } else {
         document.querySelector('.paper').setAttribute('style', 'font-size: 15.5px; line-height: initial; font-family: \'Arial\', sans-serif;');
       }
@@ -2796,7 +2798,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   // fill dates action
                   _this3.actions_by_ref.forEach(function (action) {
                     // calculer le cout estimatif
-                    _this3.coutTotalPlan += action.bdg_total;
+                    _this3.coutTotalPlan += action.bdg_total * action.nb_grp;
 
                     _this3.FillDates(action.n_form);
                   });
@@ -39675,7 +39677,8 @@ var render = function() {
                 "text-align": "justify",
                 "text-justify": "initial",
                 "line-height": "1.7rem",
-                "font-weight": "300"
+                "font-weight": "300",
+                "margin-top": "50px"
               }
             },
             [

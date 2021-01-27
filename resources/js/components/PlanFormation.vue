@@ -65,7 +65,7 @@ export default {
           // fill dates action
           this.actions_by_ref.forEach((action) => {
             // calculer le cout estimatif
-            this.coutTotalPlan += action.bdg_total;
+            this.coutTotalPlan += (action.bdg_total * action.nb_grp);
             this.FillDates(action.n_form);
           });
         })
