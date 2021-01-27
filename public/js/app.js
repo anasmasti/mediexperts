@@ -2254,9 +2254,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     ChangeFontSize: function ChangeFontSize() {
       if (this.actions_by_ref.length <= 5) {
-        document.querySelector('.paper').setAttribute('style', 'font-size: 18px; line-height: 2rem');
+        document.querySelector('.paper').setAttribute('style', 'font-size: 18px; line-height: 2rem; font-family: \'Arial\', sans-serif;');
       } else {
-        document.querySelector('.paper').setAttribute('style', 'font-size: 15.5px; line-height: initial');
+        document.querySelector('.paper').setAttribute('style', 'font-size: 15.5px; line-height: initial; font-family: \'Arial\', sans-serif;');
       }
     }
   }
