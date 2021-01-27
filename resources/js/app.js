@@ -21,9 +21,10 @@ const Vue = require('vue');
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('model-1', require('./components/Model1.vue').default);
-Vue.component('plan-formation', require('./components/PlanFormation.vue').default);
-Vue.component('avis-affichage', require('./components/AvisAffichage.vue').default);
+Vue.component('model-1', require('../js/components/Model1.vue').default);
+Vue.component('plan-formation', require('../js/components/PlanFormation.vue').default);
+Vue.component('avis-affichage', require('../js/components/AvisAffichage.vue').default);
+Vue.component('att-reference-plan', require('../js/components/AttReferencePlan.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

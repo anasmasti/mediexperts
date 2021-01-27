@@ -253,6 +253,10 @@ class FormulaireController extends Controller
     return response()->json($data);
     }
 
+    public function print_att_reference_plan() {
+      return view('_formulaires.att-reference-plan');
+    }
+
 
 
 
