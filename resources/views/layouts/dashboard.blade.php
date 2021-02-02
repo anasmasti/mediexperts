@@ -492,6 +492,18 @@
             <span class="info-box-icon"><i class="fas fa-print"></i></span>
 
             <div class="info-box-content">
+              <span class="info-box-text">Factures DRB GIAC 2</span>
+              <span class="info-box-number"><a href="/drb-gc">Imprimer</a></span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-sm-12 col-md-4">
+          <div class="info-box mb-3 bg-light">
+            <span class="info-box-icon"><i class="fas fa-print"></i></span>
+
+            <div class="info-box-content">
               <span class="info-box-text">Attes. référence cabinet</span>
               <span class="info-box-number"><a href="/print-att-reference-df-cab">Imprimer</a></span>
             </div>

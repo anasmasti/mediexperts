@@ -90,7 +90,7 @@
             </a>
           </td>
           <td class="td-1">{{ $demande['annee_exerc'] }}</td>
-          <td class="th-last d-inline-block text-truncate">{{ $dr->commentaire }}</td>
+          <td class="th-last">{{ $dr->commentaire }}</td>
 
           <td class="action py-0 align-middle">
             <div class="btn-group btn-group-sm">
@@ -98,10 +98,21 @@
 
               @if (Auth::user()->type_user != "comptable")
               <a class="btn btn-warning" href="/edit-drb-gc/{{ $dr->n_drb }}"><i class="fa fa-edit"></i></a>
-              <a class="btn btn-danger" href="#" onclick="confirmDelete({{$dr->n_drb}}, 'drb-gc/')"><i class="fa fa-trash-alt"></i></a>
+              <a class="btn btn-danger" href="#" onclick="confirmDelete({{$dr->n_drb}}, 'drb-gc/')">
+                <i class="fa fa-trash-alt"></i>
+              </a>
               @endif
 
-              <a class="btn btn-info" href="/print-facture-drb/{{$dr->n_drb}}/{{$entrp['nrc_entrp']}}"><i class="fa fa-print"></i></a>
+              <a class="btn btn-info" href="/print-facture-drb/{{$dr->n_drb}}/{{$entrp['nrc_entrp']}}">
+                <i class="fa fa-print"></i>
+                <abbr>G10</abbr>
+              </a>
+
+              <a class="btn btn-dark" href="/print-facture-drb-2/{{$dr->n_drb}}/{{$entrp['nrc_entrp']}}">
+                <i class="fa fa-print"></i>
+                <abbr>Pro-forma</abbr>
+              </a>
+
             </div>
           </td>
         </tr>

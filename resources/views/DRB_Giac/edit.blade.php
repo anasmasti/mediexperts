@@ -69,64 +69,28 @@
       {{-- Hidden input --}}
       <input type="text" name="giac" id="giac" value="{{$demande['gc_rattach']}}" hidden />
       <input type="text" name="type_miss" id="type_miss" value="{{$demande['type_miss']}}" hidden />
+      {{-- Hidden input --}}
 
-      {{--******************************* Moyen de paiement *******************************--}}
-      <div class="form-group col-lg-3 col-sm-12">
-      <label>Moyen de paiement</label>
-        <div class="form-group">
-          <div class="custom-control custom-radio">
-            <input type="radio" name="moyen_fin" id="cheque" class="custom-control-input" {{ (mb_strtolower($drb->moyen_fin)=="chèque") ? 'checked' : '' }} value="chèque" />
-            <label for="cheque" class="custom-control-label">Chèque</label>
-          </div>
-          <div class="custom-control custom-radio">
-            <input type="radio" name="moyen_fin" id="virement" class="custom-control-input" {{ (mb_strtolower($drb->moyen_fin)=="virement") ? 'checked' : '' }} value="virement" />
-            <label for="virement" class="custom-control-label">Ordre de virement</label>
-          </div>
-          <div class="custom-control custom-radio">
-            <input type="radio" name="moyen_fin" id="effet" class="custom-control-input" {{ (mb_strtolower($drb->moyen_fin)=="effet") ? 'checked' : '' }} value="effet" />
-            <label for="effet" class="custom-control-label">Effet</label>
-          </div>
-          <div class="custom-control custom-radio">
-            <input type="radio" name="moyen_fin" id="no_fin" class="custom-control-input" {{ (mb_strtolower($drb->moyen_fin)=="non préparé") ? 'checked' : '' }} value="non préparé" />
-            <label for="no_fin" class="custom-control-label">Pas encore</label>
-          </div>
-        </div>
-      </div>
 
       <div class="form-group col-lg-3 col-sm-12">
-        <label>Reçus de paiement</label>
-        <div class="form-group">
-          <div class="custom-control custom-radio">
-            <input type="radio" name="avis_remise_fin" id="avis_opera" class="custom-control-input" {{ (mb_strtolower($drb->avis_remise_fin)=="remise") ? 'checked' : '' }} value="remise" />
-            <label for="avis_opera" class="custom-control-label">Avis d'opération</label>
-          </div>
-          <div class="custom-control custom-radio">
-            <input type="radio" name="avis_remise_fin" id="remise" class="custom-control-input" {{ (mb_strtolower($drb->avis_remise_fin)=="avis") ? 'checked' : '' }} value="avis" />
-            <label for="remise" class="custom-control-label">Remise</label>
-          </div>
-          <div class="custom-control custom-radio">
-            <input type="radio" name="avis_remise_fin" id="no_avis_remise_fin" class="custom-control-input" {{ (mb_strtolower($drb->avis_remise_fin)=="non préparé") ? 'checked' : '' }} value="non préparé" />
-            <label for="no_avis_remise_fin" class="custom-control-label">Pas encore</label>
-          </div>
-          <hr />
-          <div class="custom-control custom-checkbox">
-            <input type="checkbox" name="relv_banc_entrp" id="relv_banc_entrp" class="custom-control-input" {{ (mb_strtolower($drb->relv_banc_entrp)=="préparé") ? 'checked' : '' }} value="préparé" >
-            <label for="relv_banc_entrp" class="custom-control-label">Relevé entreprise</label>
-          </div>
-          <div class="custom-control custom-checkbox">
-            <input type="checkbox" name="relv_banc_cab" id="relv_banc_cab" class="custom-control-input" {{ (mb_strtolower($drb->relv_banc_cab)=="préparé") ? 'checked' : '' }} value="préparé" >
-            <label for="relv_banc_cab" class="custom-control-label">Relevé cabinet</label>
-          </div>
-        </div>
-      </div>
-      {{-- ./ FIN Moyen de paiement --}}
 
-      <div class="form-group col-lg-3 col-sm-12">
-      <label>Vérification</label>
-        <div class="custom-control custom-checkbox">
-          <input type="checkbox" name="fact_cab_entr" id="fact_cab_entr" class="custom-control-input" {{ (mb_strtolower($drb->fact_cab_entr)=="préparé") ? 'checked' : '' }} value="préparé" >
-          <label for="fact_cab_entr" class="custom-control-label">Facture cabinet entreprise</label>
+        <label class="h5">Vérification</label>
+
+        <label>Facture cabinet entreprise + Date</label>
+        <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                <input type="checkbox" name="fact_cab_entr" id="fact_cab_entr" {{ (mb_strtolower($drb->fact_cab_entr)=="préparé") ? 'checked' : '' }} value="préparé">
+              </span>
+            </div>
+            <input class="form-control {{ $errors->has('dt_fact_cab_entr') ? ' is-invalid' : '' }}" value="{{$drb->dt_fact_cab_entr}}" type="text" name="dt_fact_cab_entr" id="dt_fact_cab_entr" onmouseover="(this.type='date')" placeholder="Date réalisation">
+            @if ($errors->has('dt_fact_cab_entr'))
+              <span class="invalid-feedback" role="alert">
+                {{ $errors->first('dt_fact_cab_entr') }}
+              </span>
+            @endif
         </div>
+
         {{-- POUR GIAC AGRO --}}
         @if (mb_strtolower($drb->gc_rattach) == 'giac agroalimentaire' && mb_strtolower($drb->type_miss) == 'diagnostic stratégique')
           <div class="custom-control custom-checkbox">
@@ -151,11 +115,22 @@
 
 
       <div class="form-group col-lg-3 col-sm-12">
-        <label>Réf. moyen paiement</label>
-        <input class="form-control {{ $errors->has('ref_fin') ? ' is-invalid' : '' }}" id="ref_fin" value="{{ $drb->ref_fin }}" type="text" name="ref_fin" min="0" maxlength="20" placeholder="référence">
-        @if ($errors->has('ref_fin'))
+        <label>Montant Total HT</label>
+        <input class="form-control {{ $errors->has('montant_entrp_ht') ? ' is-invalid' : '' }}" value="{{ $drb->montant_entrp_ht }}" type="text" id="montant_entrp_ht" name="montant_entrp_ht" min="0" maxlength="15" onkeypress="return isNumberKey(event)" placeholder="Montant HT" readonly>
+        @if ($errors->has('montant_entrp_ht'))
+        <span class="invalid-feedback" role="alert">
+          {{ $errors->first('montant_entrp_ht') }}
+        </span>
+        @endif
+      </div>
+
+
+      <div class="form-group col-lg-3 col-sm-12">
+        <label>Montant paiement TTC</label>
+        <input class="form-control {{ $errors->has('montant_entrp_ttc') ? ' is-invalid' : '' }}" value="{{ $drb->montant_entrp_ttc }}" type="text" id="montant_entrp_ttc" name="montant_entrp_ttc" min="0" maxlength="15" onkeypress="return isNumberKey(event)" placeholder="Montant TTC" readonly>
+        @if ($errors->has('montant_entrp_ttc'))
           <span class="invalid-feedback" role="alert">
-          {{ $errors->first('ref_fin') }}
+          {{ $errors->first('montant_entrp_ttc') }}
           </span>
         @endif
       </div>
@@ -170,27 +145,73 @@
         @endif
       </div>
 
+
+      {{--******************************* Moyen de paiement *******************************--}}
       <div class="form-group col-lg-3 col-sm-12">
-        <label>Montant HT</label>
-        <input class="form-control {{ $errors->has('montant_entrp_ht') ? ' is-invalid' : '' }}" value="{{ $drb->montant_entrp_ht }}" type="text" id="montant_entrp_ht" name="montant_entrp_ht" min="0" maxlength="15" onkeypress="return isNumberKey(event)" placeholder="Montant HT" readonly>
-        @if ($errors->has('montant_entrp_ht'))
-        <span class="invalid-feedback" role="alert">
-          {{ $errors->first('montant_entrp_ht') }}
-        </span>
-        @endif
+      <label class="h5">Moyen de paiement</label>
+        <div class="form-group">
+          <div class="custom-control custom-radio">
+            <input type="radio" name="moyen_fin" id="cheque" class="custom-control-input" {{ (mb_strtolower($drb->moyen_fin)=="chèque") ? 'checked' : '' }} value="chèque" />
+            <label for="cheque" class="custom-control-label">Chèque</label>
+          </div>
+          <div class="custom-control custom-radio">
+            <input type="radio" name="moyen_fin" id="virement" class="custom-control-input" {{ (mb_strtolower($drb->moyen_fin)=="virement") ? 'checked' : '' }} value="virement" />
+            <label for="virement" class="custom-control-label">Ordre de virement</label>
+          </div>
+          <div class="custom-control custom-radio">
+            <input type="radio" name="moyen_fin" id="effet" class="custom-control-input" {{ (mb_strtolower($drb->moyen_fin)=="effet") ? 'checked' : '' }} value="effet" />
+            <label for="effet" class="custom-control-label">Effet</label>
+          </div>
+          <div class="custom-control custom-radio">
+            <input type="radio" name="moyen_fin" id="no_fin" class="custom-control-input" {{ (mb_strtolower($drb->moyen_fin)=="non préparé") ? 'checked' : '' }} value="non préparé" />
+            <label for="no_fin" class="custom-control-label">Pas encore</label>
+          </div>
+        </div>
       </div>
+      {{-- ./ FIN Moyen de paiement --}}
 
       <div class="form-group col-lg-3 col-sm-12">
-        <label>Montant paiement TTC</label>
-        <input class="form-control {{ $errors->has('montant_entrp_ttc') ? ' is-invalid' : '' }}" value="{{ $drb->montant_entrp_ttc }}" type="text" id="montant_entrp_ttc" name="montant_entrp_ttc" min="0" maxlength="15" onkeypress="return isNumberKey(event)" placeholder="Montant TTC" readonly>
-        @if ($errors->has('montant_entrp_ttc'))
+        <label>Réf. moyen paiement</label>
+        <input class="form-control {{ $errors->has('ref_fin') ? ' is-invalid' : '' }}" id="ref_fin" value="{{ $drb->ref_fin }}" type="text" name="ref_fin" min="0" maxlength="20" placeholder="référence">
+        @if ($errors->has('ref_fin'))
           <span class="invalid-feedback" role="alert">
-          {{ $errors->first('montant_entrp_ttc') }}
+          {{ $errors->first('ref_fin') }}
           </span>
         @endif
       </div>
 
-      <div class="form-group col-12">{{--**************HR**************--}}<hr></div>
+
+      <div class="form-group col-lg-3 col-sm-12">
+        <label class="h5">Reçus de paiement</label>
+        <div class="form-group">
+          <div class="custom-control custom-radio">
+            <input type="radio" name="avis_remise_fin" id="avis_opera" class="custom-control-input" {{ (mb_strtolower($drb->avis_remise_fin)=="remise") ? 'checked' : '' }} value="remise" />
+            <label for="avis_opera" class="custom-control-label">Avis d'opération</label>
+          </div>
+          <div class="custom-control custom-radio">
+            <input type="radio" name="avis_remise_fin" id="remise" class="custom-control-input" {{ (mb_strtolower($drb->avis_remise_fin)=="avis") ? 'checked' : '' }} value="avis" />
+            <label for="remise" class="custom-control-label">Remise</label>
+          </div>
+          <div class="custom-control custom-radio">
+            <input type="radio" name="avis_remise_fin" id="no_avis_remise_fin" class="custom-control-input" {{ (mb_strtolower($drb->avis_remise_fin)=="non préparé") ? 'checked' : '' }} value="non préparé" />
+            <label for="no_avis_remise_fin" class="custom-control-label">Pas encore</label>
+          </div>
+          <hr />
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" name="relv_banc_entrp" id="relv_banc_entrp" class="custom-control-input" {{ (mb_strtolower($drb->relv_banc_entrp)=="préparé") ? 'checked' : '' }} value="préparé" >
+            <label for="relv_banc_entrp" class="custom-control-label">Relevé entreprise</label>
+          </div>
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" name="relv_banc_cab" id="relv_banc_cab" class="custom-control-input" {{ (mb_strtolower($drb->relv_banc_cab)=="préparé") ? 'checked' : '' }} value="préparé" >
+            <label for="relv_banc_cab" class="custom-control-label">Relevé cabinet</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group col-12">{{--********************************************HR********************************************--}}<hr></div>
+
+
+
 
       <div class="form-group col-12">
         <label>Date dépôt dem. rembours.</label>

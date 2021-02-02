@@ -17,7 +17,10 @@ class CreateDemandeRemboursementGiacs extends Migration
             $table->bigIncrements('n_drb');
             $table->string('n_facture', 50)->nullable();
             $table->date('dt_facture')->nullable();
+            $table->string('n_facture_2', 50)->nullable();
+            $table->date('dt_facture_2')->nullable();
             $table->string('fact_cab_entr', 50)->default("non préparé");
+            $table->date('dt_fact_cab_entr')->nullable();
             $table->string('relv_banc_cab', 50)->default("non préparé");
             $table->string('relv_banc_entrp', 50)->default("non préparé");
             $table->string('drb_ds', 50)->default("non préparé"); //+

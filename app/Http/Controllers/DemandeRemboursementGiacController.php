@@ -47,6 +47,24 @@ class DemandeRemboursementGiacController extends Controller
       return response()->json(['msg' => "Enregistré", $data]);
     }
 
+    public function FactureDrbGiac2($ndrb, $nrc) {
+      $drb = DemandeRemboursementGiac::select('clients.*', 'demande_financements.*', 'demande_remboursement_giacs.*')
+            ->join('demande_financements', 'demande_remboursement_giacs.n_df', 'demande_financements.n_df')
+            ->join('clients', 'demande_financements.nrc_e', 'clients.nrc_entrp')
+            ->where([['demande_remboursement_giacs.n_drb', $ndrb], ['clients.nrc_entrp', $nrc]])
+            ->first();
+      return view('_formulaires.facture-drb-gc-2', ['drb' => $drb]);
+    }
+
+    public function SaveNFactureGiac2(Request $request) {
+      DB::table('demande_remboursement_giacs')
+            ->where('n_drb', $request->ndrb)
+            ->update(['n_facture_2' => $request->nFacture2, 'dt_facture_2' => $request->dtFacture2]);
+      // check data
+      $data = DemandeRemboursementGiac::find($request->ndrb);
+      return response()->json(['msg' => "Enregistré", $data]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -100,7 +118,7 @@ class DemandeRemboursementGiacController extends Controller
                 }
             }
 
-            // $drb->part_giac = $request->input('part_giac');
+            $drb->dt_fact_cab_entr = $request->input('dt_fact_cab_entr');
             $drb->dt_pay_entrp = $request->input('dt_pay_entrp');
             $drb->moyen_fin = $request->input('moyen_fin');
             $drb->ref_fin = $request->input('ref_fin');
@@ -197,7 +215,7 @@ class DemandeRemboursementGiacController extends Controller
                 }
             }
 
-            // $drb->part_giac = $request->input('part_giac');
+            $drb->dt_fact_cab_entr = $request->input('dt_fact_cab_entr');
             $drb->dt_pay_entrp = $request->input('dt_pay_entrp');
             $drb->moyen_fin = $request->input('moyen_fin');
             $drb->ref_fin = $request->input('ref_fin');
