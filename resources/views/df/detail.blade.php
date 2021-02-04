@@ -160,6 +160,10 @@
             <th>Budget demandé</th>
             <td class="th-det text-capitalize">{{ ($df->bdg_demande) ? $df->bdg_demande." dhs" : "--" }}</td>
           </tr>
+          <tr>
+            <th>Pourcentage Quote part demandé</th>
+            <td class="th-det text-capitalize">{{ $df->prc_cote_part }}</td>
+          </tr>
 
           <!-- Dossier Giac -->
           <tr>

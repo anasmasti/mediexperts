@@ -480,8 +480,8 @@
             <span class="info-box-icon"><i class="fas fa-print"></i></span>
 
             <div class="info-box-content">
-              <span class="info-box-text">Factures DRB GIAC</span>
-              <span class="info-box-number"><a href="/drb-gc">Imprimer</a></span>
+              <span class="info-box-text">Factures Proforma</span>
+              <span class="info-box-number"><a href="/df">Imprimer</a></span>
             </div>
             <!-- /.info-box-content -->
           </div>
@@ -492,7 +492,7 @@
             <span class="info-box-icon"><i class="fas fa-print"></i></span>
 
             <div class="info-box-content">
-              <span class="info-box-text">Factures DRB GIAC 2</span>
+              <span class="info-box-text">Factures G10</span>
               <span class="info-box-number"><a href="/drb-gc">Imprimer</a></span>
             </div>
             <!-- /.info-box-content -->

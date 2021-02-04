@@ -8,16 +8,16 @@
     <script src={{ asset('js/jquery.js') }}></script>
     <script src={{ asset('js/NumberToLetter.js') }}></script>
     @php
-      $infos_drb = \App\DemandeRemboursementGiac::select('demande_financements.type_miss', 'clients.rais_abrev', 'demande_remboursement_giacs.n_facture_2')
+      $infos_drb = \App\DemandeRemboursementGiac::select('demande_financements.type_miss', 'clients.rais_abrev', 'demande_remboursement_giacs.n_facture')
               ->join('demande_financements', 'demande_remboursement_giacs.n_df', 'demande_financements.n_df')
               ->join('clients', 'demande_financements.nrc_e', 'clients.nrc_entrp')
-              ->where('demande_financements.n_df', $drb->n_df)
+              ->where('demande_financements.n_df', $df->n_df)
               ->first();
       $typeMiss = ($infos_drb->type_miss == "diagnostic stratégique") ? "DS" : "IF"
     @endphp
     <title>
 
-      {{ $typeMiss." - ".$infos_drb->rais_abrev." -  Facture N ".$infos_drb->n_facture_2 }}
+      {{ $typeMiss." - ".$infos_drb->rais_abrev." -  Facture N ".$infos_drb->n_facture }}
     </title>
 </head>
 
@@ -100,7 +100,7 @@
 
 <div class="hide-from-print">
   <div style="display:flex; justify-content:space-between;">
-    <a class="bu-print" id="" href="/drb-gc">Retour</a>
+    <a class="bu-print" id="" href="/df-gc">Retour</a>
     <a class="bu-print" id="" href="#" onclick="window.print()">Imprimer le formulaire</a>
   </div>
 </div>
@@ -109,23 +109,23 @@
 
   <div class="" style="width:100%; height:100px;"><!--space--></div>
 
-  <input type="hidden" id="ndrb" value="{{$drb->n_drb}}" readonly>
+  <input type="hidden" id="ndf" value="{{$df->n_df}}" readonly>
 
   <div style="width: 100%; text-align: end">
     <div style="margin-left: auto">
       <span style="font-size: 18px;">
         Casablanca le
-        <input type="date" name="date" id="dtFacture2" style="font-size: 16px; width: 23%" value={{($drb['dt_facture_2'] != null) ? $drb['dt_facture_2'] : $drb['dt_fin_miss']}}>
+        <input type="date" name="date" id="dtFacture" style="font-size: 16px; width: 23%" value={{($df['dt_facture'] != null) ? $df['dt_facture'] : $df['dt_fin_miss']}}>
       </span>
     </div>
   </div>
 
   <div class="text-center">
     <h2 style="margin-bottom: 0 !important">
-      {{"« ".$drb['raisoci']." »"}}
+      {{"« ".$df['raisoci']." »"}}
     </h2>
     <h3 style="margin-top: 0 !important">
-      {{-- I.C.E: {{ $drb['ice'] }} --}}
+      {{-- I.C.E: {{ $df['ice'] }} --}}
     </h3>
   </div>
 
@@ -133,7 +133,7 @@
     <span class="text-bold">
       Facture Pro-forma N°
     </span>
-    <input type="text" id="nFacture2" class="highlighted" maxlength="30" value="{{$drb['n_facture_2']}}" style="width: 30%; font-size: 18px;">
+    <input type="text" id="nFacture" class="highlighted" maxlength="30" value="{{$df['n_facture']}}" style="width: 30%; font-size: 18px;">
     <button class="hide-from-print" type="submit" id="saveBtn">Enregister</button>
   </div>
 
@@ -147,53 +147,61 @@
     <tr>
       <td style="padding: 2rem;">
         Réalisation d’une étude de <br />
-        <strong>{{ ucfirst($drb["type_miss"]) }}</strong> <br /><br />
-        Excercice : {{$drb["annee_exerc"]}} <br /><br />
-        {{-- Du {{ Carbon\Carbon::parse($drb["dt_debut_miss"])->format('d/m/Y') }} au {{ Carbon\Carbon::parse($drb["dt_fin_miss"])->format('d/m/Y')}} --}}
+        <strong>{{ ucfirst($df["type_miss"]) }}</strong> <br /><br />
+        Excercice : {{$df["annee_exerc"]}} <br /><br />
+        {{-- Du {{ Carbon\Carbon::parse($df["dt_debut_miss"])->format('d/m/Y') }} au {{ Carbon\Carbon::parse($df["dt_fin_miss"])->format('d/m/Y')}} --}}
       </td>
       <td style="padding: 1rem;">
         {{-- Prix unitaire (bdg_demandeé/jour_homme_validé) --}}
-        {{ ($drb["bdg_demande"] / $drb["jr_hm_valid"]) }} <br />
+        {{ ($df["bdg_demande"] / $df["jr_hm_demande"]) }} <br />
       </td>
-      <td style="padding: 1rem;">{{ $drb["jr_hm_valid"] }}</td>
+      <td style="padding: 1rem;">{{ $df["jr_hm_demande"] }}</td>
       <td style="padding: 1rem;">
-        {{$drb["bdg_demande"]}}
+        {{$df["bdg_demande"]}}
       </td>
     </tr>
 
     <tr>
       {{-- Prix total x 20% --}}
       <th colspan="3" style="padding: 1rem;">TVA 20%</th>
-      <th>{{ ($drb["bdg_demande"] * .2) }} DH</th>
+      <th>{{ ($df["bdg_demande"] * .2) }} DH</th>
     </tr>
     <tr>
       {{-- Prix total + TVA Prix total --}}
       <th colspan="3" style="padding: 1rem;">TOTAL TTC</th>
       <th>
-        {{ $drb['bdg_demande'] + ($drb['bdg_demande'] * .2) }} DH
+        {{ $df['bdg_demande'] + ($df['bdg_demande'] * .2) }} DH
       </th>
     </tr>
     <tr>
       {{-- Prix total x Part GIAC --}}
       <th colspan="3" style="padding: 1rem;">QUOTE PART GIAC TIERS PAYANT H.T.</th>
       <th>
-        @if ($drb['part_giac'] == "70%")
-          {{ ($drb["bdg_demande"] * .7) }} DH
-        @elseif ($drb['part_giac'] == "80%")
-          {{ ($drb["bdg_demande"] * .8) }} DH
+        @if ($df['part_giac'] == "70%")
+          {{ ($df["bdg_demande"] * .7) }} DH
+        @elseif ($df['part_giac'] == "80%")
+          {{ ($df["bdg_demande"] * .8) }} DH
         @endif
       </th>
     </tr>
     <tr>
       <th colspan="3" style="padding: 1rem;">
         QUOTE PART ENTREPRISE TTC
-        (<span id="prcQuotePartGiac">{{ $drb['prc_cote_part'] }}</span> du montant Total H.T + TVA du montant global)
+        (<span id="prcQuotePartGiac">
+
+          @if ($df['prc_cote_part'] == "30%")
+            {{ ($df["bdg_demande"] * .7) }} DH
+          @elseif ($df['prc_cote_part'] == "20%")
+            {{ ($df["bdg_demande"] * .8) }} DH
+          @endif
+
+        </span> du montant Total H.T + TVA du montant global)
       </th>
       <th>
-        @if ($drb['prc_cote_part'] == "30%")
-          {{ ($drb["bdg_demande"] * .2) + ($drb["bdg_demande"] * .3) }} DH
-        @elseif ($drb['prc_cote_part'] == "20%")
-          {{ ($drb["bdg_demande"] * .2) + ($drb["bdg_demande"] * .2) }} DH
+        @if ($df['prc_cote_part_demande'] == "30%")
+          {{ ($df["bdg_demande"] * .2) + ($df["bdg_demande"] * .3) }} DH
+        @elseif ($df['prc_cote_part_demande'] == "20%")
+          {{ ($df["bdg_demande"] * .2) + ($df["bdg_demande"] * .2) }} DH
         @endif
       </th>
     </tr>
@@ -209,7 +217,7 @@
 
   {{-- <div class="container">
     <span class="text-bold">Mode et référence de paiement : </span>
-    <input type="text" id="montant_text" class="highlighted" placeholder="........" style="display: inline !important; width:50%" value="{{ucfirst($drb['moyen_fin']).' '.$drb['ref_fin']}}">
+    <input type="text" id="montant_text" class="highlighted" placeholder="........" style="display: inline !important; width:50%" value="{{ucfirst($df['moyen_fin']).' '.$df['ref_fin']}}">
   </div> --}}
 
   <div style="width:100%; height:25px;"><!--space--></div>
@@ -220,7 +228,7 @@
 
 </div>
 
-@php $bdgTTCLetter = ($drb['bdg_demande'] + ($drb['bdg_demande'] * .2)); @endphp
+@php $bdgTTCLetter = ($df['bdg_demande'] + ($df['bdg_demande'] * .2)); @endphp
 
 {{-- script to print page --}}
 <script type="text/javascript">
@@ -232,16 +240,16 @@
 
 
       $('#saveBtn').on('click', function() {
-        var ndrb = $('#ndrb').val();
-        var nFacture2 = $('#nFacture2').val();
-        var dtFacture2 = $('#dtFacture2').val();
-        console.log("nFacture2 : "+nFacture2+", ndrb : "+ndrb, 'dtFacture2 :'+dtFacture2);
+        var ndf = $('#ndf').val();
+        var nFacture = $('#nFacture').val();
+        var dtFacture = $('#dtFacture').val();
+        console.log("nFacture : "+nFacture+", ndf : "+ndf, 'dtFacture :'+dtFacture);
         $.ajax({
           type: 'POST',
-          url: '{!! URL::to('/save-nfacture-giac-2') !!}',
+          url: '{!! URL::to('/save-nfacture-df') !!}',
           data: {
             "_token": "{{ csrf_token() }}",
-            'nFacture2': nFacture2, 'ndrb': ndrb, 'dtFacture2': dtFacture2
+            'nFacture': nFacture, 'ndf': ndf, 'dtFacture': dtFacture
           },
           contentType: "application/x-www-form-urlencoded",
           success: function(data) {

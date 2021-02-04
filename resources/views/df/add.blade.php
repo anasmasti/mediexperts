@@ -84,10 +84,22 @@
                     </span>
                 @endif
             </div>
-            {{-- @foreach ($client as $cl)
-                <input id="gc_entrp" value="{{$cl->giac_rattach}}" type="hidden" name="gc_entrp" readonly>
-            @endforeach --}}
-            {{-- HIDDEN INPIT FOR GIAC --}}
+
+            <div class="form-group col-lg-3 col-md-6 col-12">
+                <label for="prc_cote_part_demande">Poucent. quote part demandé</label>
+                <select class="form-control {{ $errors->has('prc_cote_part_demande') ? ' is-invalid' : '' }}" name="prc_cote_part_demande" id="prc_cote_part_demande">
+                    @php $percent = ["20%", "30%"]; @endphp
+                    <option selected disabled><span class="text-danger">*</span></option>
+                    @foreach ($percent as $perc)
+                        <option value="{{$perc}}">{{$perc}}</option>
+                    @endforeach
+                </select>
+                @if ($errors->has('prc_cote_part_demande'))
+                    <span class="invalid-feedback" role="alert">
+                        {{ $errors->first('prc_cote_part_demande') }}
+                    </span>
+                @endif
+            </div>
 
 
             <div class="form-group col-lg-3 col-md-6 col-12">

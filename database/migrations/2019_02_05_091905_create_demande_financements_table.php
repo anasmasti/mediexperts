@@ -24,6 +24,7 @@ class CreateDemandeFinancementsTable extends Migration
             $table->date('dt_df')->nullable();
             $table->integer('jr_hm_demande')->nullable();
             $table->double('bdg_demande')->nullable();
+            $table->string('prc_cote_part_demande', 10)->nullable();
 
             $table->string('d_bulltin_adhes', 100)->default("non préparé");
             $table->string('d_df_DS', 100)->default("non préparé");
@@ -95,6 +96,9 @@ class CreateDemandeFinancementsTable extends Migration
             $table->string('commentaire', 10000)->nullable();
             $table->string('etat', 100);
             $table->string('nrc_e', 100);
+
+            $table->string('n_facture', 50)->nullable();
+            $table->date('dt_facture')->nullable();
 
             $table->foreign('nrc_e')
             ->references('nrc_entrp')

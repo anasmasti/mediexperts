@@ -12,6 +12,26 @@ use App\Rules\validGiac;
 
 class DemandeFinancementController extends Controller
 {
+
+    // ***** FORMULAIRES *****
+    public function FactureDF($ndf, $nrc) {
+      $df = DemandeFinancement::select('clients.*', 'demande_financements.*')
+            ->join('clients', 'demande_financements.nrc_e', 'clients.nrc_entrp')
+            ->where([['demande_financements.n_df', $ndf], ['clients.nrc_entrp', $nrc]])
+            ->first();
+      return view('_formulaires.facture-df', ['df' => $df]);
+    }
+
+    public function SaveNFactureDF(Request $request) {
+      DB::table('demande_financements')
+            ->where('n_df', $request->ndf)
+            ->update(['n_facture' => $request->nFacture, 'dt_facture' => $request->dtFacture]);
+      // check data
+      $data = DemandeFinancement::find($request->ndf);
+      return response()->json(['msg' => "Enregistré", $data]);
+    }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -104,6 +124,7 @@ class DemandeFinancementController extends Controller
                 'dt_df' => 'nullable|date', //2
                 'jr_hm_demande' => 'nullable|max:15', //2
                 'bdg_demande' => 'nullable|max:6', //2
+                'prc_cote_part_demande' => 'nullable|lte:bdg_demande', //4
                 'dt_depos_df' => 'nullable|date|before_or_equal:'.date('Y-m-d'), //3+
                 'dt_accord' => 'nullable|date|before_or_equal:'.date('Y-m-d'), //4
                 'dt_dep_contrat' => 'nullable|date|before_or_equal:'.date('Y-m-d'), //4
@@ -133,6 +154,7 @@ class DemandeFinancementController extends Controller
             $df->dt_df = $request->input('dt_df');
             $df->jr_hm_demande = $request->input('jr_hm_demande');
             $df->bdg_demande = $request->input('bdg_demande');
+            $df->prc_cote_part_demande = $request->input('prc_cote_part_demande');
             $df->d_bulltin_adhes = $request->input('d_bulltin_adhes');
             $df->d_df_DS = $request->input('d_df_DS');
             $df->d_df_IF = $request->input('d_df_IF');
@@ -300,6 +322,7 @@ class DemandeFinancementController extends Controller
                 'dt_df' => 'nullable|date', //2
                 'jr_hm_demande' => 'nullable|max:15', //2
                 'bdg_demande' => 'nullable|max:6', //2
+                'prc_cote_part_demande' => 'nullable|lte:bdg_demande', //4
                 'dt_depos_df' => 'nullable|date|before_or_equal:'.date('Y-m-d'), //3+
                 'dt_accord' => 'nullable|date|before_or_equal:'.date('Y-m-d'), //4
                 'dt_dep_contrat' => 'nullable|date|before_or_equal:'.date('Y-m-d'), //4
@@ -332,6 +355,7 @@ class DemandeFinancementController extends Controller
             $df->dt_df = $request->input('dt_df');
             $df->jr_hm_demande = $request->input('jr_hm_demande');
             $df->bdg_demande = $request->input('bdg_demande');
+            $df->prc_cote_part_demande = $request->input('prc_cote_part_demande');
             $df->d_bulltin_adhes = $request->input('d_bulltin_adhes');
             $df->d_df_DS = $request->input('d_df_DS');
             $df->d_df_IF = $request->input('d_df_IF');

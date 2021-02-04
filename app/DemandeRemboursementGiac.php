@@ -12,9 +12,7 @@ class DemandeRemboursementGiac extends Model
     [
         'n_drb', //1
         'n_facture',
-        'n_facture_2',
         'dt_facture',
-        'dt_facture_2',
         'fact_cab_entr', //1
         'dt_fact_cab_entr', //1
         'relv_banc_cab',

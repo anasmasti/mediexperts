@@ -72,6 +72,13 @@
               @endif
             @endforeach
 
+          @php
+            $entrp = \App\Client::select('clients.nrc_entrp', 'clients.raisoci')
+              ->join('demande_financements', 'clients.nrc_entrp', 'demande_financements.nrc_e')
+              ->where('clients.nrc_entrp', $d->nrc_e)
+              ->first();
+          @endphp
+
           <td class="progress-bar progress-bar-striped {{ mb_strtolower($d->etat=='approuvé') ? 'bg-light' : (mb_strtolower($d->etat=='annulé') ? 'bg-danger' : 'bg-warning progress-bar-animated') }}">
             @if (mb_strtolower($d->etat) == "annulé")
               <i class="fa fa-times"></i>
@@ -108,6 +115,11 @@
           @elseif ($A==false | $B==false)
             <a href="#" class="btn btn-danger" a="/del-df/{{ $d->n_df }}" onclick="confirmDelete({{$d->n_df}}, 'df/')"><i class="fa fa-trash-alt"></i></a>
           @endif
+
+          <a class="btn btn-dark" href="/print-facture-df/{{$d->n_df}}/{{$entrp['nrc_entrp']}}">
+            <i class="fa fa-print"></i>
+            <abbr>Pro-forma</abbr>
+          </a>
 
           </td>
         </tr>

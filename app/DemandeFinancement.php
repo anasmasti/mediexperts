@@ -19,6 +19,7 @@ class DemandeFinancement extends Model
     'dt_df', //2
     'jr_hm_demande', //2
     'bdg_demande', //2
+    'prc_cote_part_demande',
 
     //docs
     'd_bulltin_adhes', //2
@@ -94,6 +95,10 @@ class DemandeFinancement extends Model
     'model_1', //6+++++ ••••
     'rpt_depose', //6 ••••
     'dt_depos_rpt', //6
+
+
+    'n_facture',
+    'dt_facture',
 
     'commentaire',
     'etat',

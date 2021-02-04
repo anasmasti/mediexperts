@@ -108,11 +108,6 @@
                 <abbr>G10</abbr>
               </a>
 
-              <a class="btn btn-dark" href="/print-facture-drb-2/{{$dr->n_drb}}/{{$entrp['nrc_entrp']}}">
-                <i class="fa fa-print"></i>
-                <abbr>Pro-forma</abbr>
-              </a>
-
             </div>
           </td>
         </tr>
