@@ -15,6 +15,7 @@ class CreatePlansTable extends Migration
     {
         Schema::create('plans', function (Blueprint $table) {
             $table->bigIncrements('id_plan');
+            $table->string('n_contrat', 100)->nullable();
             $table->string('refpdf', 100);
             $table->string('annee', 20);
 

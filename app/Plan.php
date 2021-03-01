@@ -14,6 +14,7 @@ class Plan extends Model
         'refpdf',
         'nrc_e',
         'annee',
+        'n_contrat',
 
         //PF OFPPT
         'dt_recep_ct',

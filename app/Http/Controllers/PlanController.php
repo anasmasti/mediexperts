@@ -63,6 +63,7 @@ class PlanController extends Controller
             $request->validate([
                 'nrc_e' => 'required',
                 'annee' => 'required|min:4|starts_with:20',
+                'n_contrat' => 'nullable|max:15',
 
                 //PF OFPPT
                 'dt_contrat_PFOPT' => 'nullable|date|before_or_equal:'.date('Y-m-d'),
@@ -156,6 +157,7 @@ class PlanController extends Controller
             $request->validate([
                 'nrc_e' => 'required|max:15',
                 'annee' => 'required|min:4|starts_with:20',
+                'n_contrat' => 'nullable|max:15',
 
                 'dt_contrat_PFOPT' => 'nullable|date|before_or_equal:'.date('Y-m-d'), //7
                 'dt_accuse_PFOPT' => 'nullable|date|before_or_equal:'.date('Y-m-d'), //7

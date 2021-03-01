@@ -32,7 +32,7 @@
 <div class="card card-dark">
     <!-- card-header -->
     <div class="card-header">
-        <h3 class="card-title">Modifier plan N° {{ $plans->id_plan }} > {{$entrp['raisoci']}}</h3>
+        <h3 class="card-title">Modifier plan N° {{ $plans->id_plan }} > {{$entrp['raisoci']}} > {{$plans->refpdf}}</h3>
     </div>
     <!-- /.card-header -->
     <form role="form" action="/edit-plan/{{ $plans->id_plan }}" method="POST">
@@ -72,12 +72,14 @@
                 @endif
             </div>
 
-            <div class="form-group col-lg-3 col-sm-12"><label>Réference</label><input class="form-control {{ $errors->has('refpdf') ? 'is-invalid' : '' }}" value="{{$plans->refpdf}}" type="text" name="refpdf" maxlength="30" placeholder="Réf." disabled>
-            @if ($errors->has('refpdf'))
-                <span class="invalid-feedback" role="alert">
-                    {{ $errors->first('refpdf') }}
-                </span>
-            @endif
+
+            <div class="form-group col-lg-3 col-sm-12"><label>N° Contrat</label>
+              <input class="form-control {{ $errors->has('n_contrat') ? ' is-invalid' : 'n_contrat' }}" value="{{old('n_contrat')}}" type="text" name="n_contrat" id="n_contrat" min="4" maxlength="15" placeholder="N° Contrat">
+              @if ($errors->has('n_contrat'))
+                  <span class="invalid-feedback" role="alert">
+                  {{ $errors->first('n_contrat') }}
+                  </span>
+              @endif
             </div>
 
 

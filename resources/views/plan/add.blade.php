@@ -43,7 +43,7 @@
       @endif
 
 
-      <div class="form-group col-lg-9 col-sm-12">
+      <div class="form-group col-lg-6 col-sm-12">
         <label for="nrc_e">Entreprise</label>
         @if (count($client)==0)
           <a class="btn bu-icon bu-sm btn-sm" href="/add-cl"><i class="fa fa-plus"></i></a> <!--button add-->
@@ -78,6 +78,16 @@
         @if ($errors->has('annee'))
             <span class="invalid-feedback" role="alert">
             {{ $errors->first('annee') }}
+            </span>
+        @endif
+      </div>
+
+
+      <div class="form-group col-lg-3 col-sm-12"><label>N° Contrat</label>
+        <input class="form-control {{ $errors->has('n_contrat') ? ' is-invalid' : 'n_contrat' }}" value="{{$plans->n_contrat}}" type="text" name="n_contrat" id="n_contrat" min="4" maxlength="15" placeholder="N° Contrat">
+        @if ($errors->has('n_contrat'))
+            <span class="invalid-feedback" role="alert">
+            {{ $errors->first('n_contrat') }}
             </span>
         @endif
       </div>
