@@ -220,7 +220,7 @@
     <div style="width:100%">
       <span class="p-0">Nom et prénom de la personne habilitée à représenter légalement l'entreprise :</span>
       <div class="bordered">
-        {{ $client->nom_resp }}
+        {{ $client->nom_dg1 }}
       </div>
     </div>
 
@@ -305,11 +305,11 @@
         </div>
         <span class="p-0" style="font-size:16px;">Nom et prénom :</span>
         <div class="bordered">
-          {{ $client->nom_resp }}
+          {{ $client->nom_dg1 }}
         </div>
         <span class="p-0" style="font-size:16px;">Qualité :</span>
         <div class="bordered">
-          {{ $client->fonct_resp }}
+          {{ $client->fonct_dg1 }}
         </div>
         <span style="font-size:12px; font-weight:600;">
           * Pour les personnes physiques, joindre une attestation d'inscription au rôle des Patentes
