@@ -17,17 +17,17 @@ class CreateDemandeRemboursementGiacs extends Migration
             $table->bigIncrements('n_drb');
             $table->string('n_facture', 50)->nullable();
             $table->date('dt_facture')->nullable();
-            $table->string('fact_cab_entr', 50)->default("non préparé");
+            $table->string('fact_cab_entr', 50)->default("non préparé")->nullable();
             $table->date('dt_fact_cab_entr')->nullable();
-            $table->string('relv_banc_cab', 50)->default("non préparé");
-            $table->string('relv_banc_entrp', 50)->default("non préparé");
-            $table->string('drb_ds', 50)->default("non préparé"); //+
-            $table->string('drb_if', 50)->default("non préparé"); //+
-            $table->string('frai_doss', 50)->default("non préparé");
+            $table->string('relv_banc_cab', 50)->default("non préparé")->nullable();
+            $table->string('relv_banc_entrp', 50)->default("non préparé")->nullable();
+            $table->string('drb_ds', 50)->default("non préparé")->nullable(); //+
+            $table->string('drb_if', 50)->default("non préparé")->nullable(); //+
+            $table->string('frai_doss', 50)->default("non préparé")->nullable();
             $table->date('dt_pay_entrp', 50)->nullable();
-            $table->string('moyen_fin', 200)->default("non préparé");
+            $table->string('moyen_fin', 200)->default("non préparé")->nullable();
             $table->string('ref_fin', 200)->nullable();
-            $table->string('avis_remise_fin', 200)->default("non préparé");
+            $table->string('avis_remise_fin', 200)->default("non préparé")->nullable();
             $table->string('part_giac', 50)->nullable(); //+
             $table->string('montant_entrp_ttc', 50)->nullable();
             $table->string('montant_entrp_ht', 50)->nullable();
@@ -35,8 +35,8 @@ class CreateDemandeRemboursementGiacs extends Migration
             $table->date('dt_depo_drb')->nullable();
 
             $table->date('dt_rb')->nullable();
-            $table->string('moyen_rb', 200)->default("non préparé");
-            $table->string('ref_rb', 200)->default("non préparé");
+            $table->string('moyen_rb', 200)->default("non préparé")->nullable();
+            $table->string('ref_rb', 200)->default("non préparé")->nullable();
             $table->string('montant_rb')->nullable();
 
             $table->string('etat', 50)->default('initié');
