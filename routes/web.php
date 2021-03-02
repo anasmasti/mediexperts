@@ -326,13 +326,15 @@ Route::delete('/del-mult-pers', 'PersonnelController@deleteMultiple')->name('per
 //*************** FORMULAIRES ***************
 Route::get('/print-f1/{nrc}', 'FormulaireController@print_f1')->name('personnel.print_f1');
 Route::get('/index-f1/{nrc}', 'FormulaireController@index_f1')->name('personnel.index_f1');
-Route::get('/download-f1/{nrc}', 'FormulaireController@download_f1')->name('personnel.download_f1');
+// Route::get('/download-f1/{nrc}', 'FormulaireController@download_f1')->name('personnel.download_f1');
 
 Route::get('/print-f2', 'FormulaireController@index_f2')->name('personnel.index_f2');
 
 Route::get('/print-f3/{nrc}', 'FormulaireController@print_f3')->name('F3.print_f3');
 
 Route::get('/print-m1', 'FormulaireController@print_m1')->name('M1.print_m1');
+Route::get('/print-m3', 'FormulaireController@print_m3')->name('M3.print_m3');
+
 Route::get('/fill-clients', 'FormulaireController@FillClients')->name('M1.print_m1');
 Route::get('/fill-client-plans', 'FormulaireController@FillClientPlans')->name('M1.FillClientPlans');
 

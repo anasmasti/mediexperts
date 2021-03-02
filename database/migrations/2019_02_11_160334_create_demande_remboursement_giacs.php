@@ -26,7 +26,7 @@ class CreateDemandeRemboursementGiacs extends Migration
             $table->string('frai_doss', 50)->default("non préparé");
             $table->date('dt_pay_entrp', 50)->nullable();
             $table->string('moyen_fin', 200)->default("non préparé");
-            $table->string('ref_fin', 200)->default("non préparé");
+            $table->string('ref_fin', 200)->nullable();
             $table->string('avis_remise_fin', 200)->default("non préparé");
             $table->string('part_giac', 50)->nullable(); //+
             $table->string('montant_entrp_ttc', 50)->nullable();

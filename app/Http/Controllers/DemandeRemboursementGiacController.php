@@ -75,7 +75,8 @@ class DemandeRemboursementGiacController extends Controller
             $request->validate([
                 'n_drb' => 'required|unique:demande_remboursement_giacs|max:15',
                 'n_df' => 'required|max:50',
-                'dt_pay_entrp' => 'required|date',
+                'dt_pay_entrp' => 'nullable|date',
+                'ref_fin' => 'nullable|max:30',
                 'montant_entrp_ttc' => 'required|max:15',
                 'montant_entrp_ht' => 'required|max:15',
                 // 'dt_depo_drb' => 'date',
@@ -171,7 +172,7 @@ class DemandeRemboursementGiacController extends Controller
             $request->validate([
                 // 'n_df' => 'required|max:50',
                 // 'part_giac' => 'required|max:10',
-                'dt_pay_entrp' => 'required|date',
+                'dt_pay_entrp' => 'nullable|date',
                 'montant_entrp_ttc' => 'required|max:15',
                 'montant_entrp_ht' => 'required|max:15',
                 // 'dt_depo_drb' => 'date',

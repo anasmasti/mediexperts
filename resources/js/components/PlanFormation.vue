@@ -1,6 +1,10 @@
 
 <script>
+import PrintButton from './PrintButton.vue';
 export default {
+  components: {
+    'print-button': PrintButton
+  },
   runtimeCompiler: true,
   name: 'plan-formation',
   data() {
@@ -111,12 +115,9 @@ export default {
 
 <template>
   <div class="plan-formation">
-    <!-- {{-- PRINT - CANCEL --}} -->
     <div class="hide-from-print">
-      <div style="display:flex; justify-content:space-between;">
-        <a class="bu-print" id="back" href="/">Retour</a>
-        <a class="bu-print" id="buPrintF2" href="#" onclick="window.print()">Imprimer le formulaire</a>
-      </div>
+      <!-- {{-- PRINT - CANCEL --}} -->
+      <print-button :backLink="'/'"></print-button>
 
       <div style="width:100%;">
         <label for="client">Entreprise :</label>

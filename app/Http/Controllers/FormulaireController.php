@@ -34,6 +34,13 @@ class FormulaireController extends Controller
       //, ['client' => $client]
       );
     }
+    // MODEL 1
+    public function print_m3(Request $request) {
+      // $client = Client::all();
+      return view('_modeles.m3'
+      //, ['client' => $client]
+      );
+    }
     public function FillClients(Request $request) {
       $data = Client::all();
       return response()->json($data);

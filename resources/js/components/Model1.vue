@@ -67,7 +67,7 @@ export default {
         })
         .catch((err) => console.error("err FillPlanByReference", err));
       this.isAllLoaded = true;
-      console.log("isallloaded", this.isAllLoaded);
+      console.log("isAllLoaded", this.isAllLoaded);
     },
     async FillDates(nform) {
       await axios.get(`/fill-dates-plan?nForm=${nform}`)
@@ -113,7 +113,7 @@ export default {
       <div style="width:100%;">
         <label for="client">Entreprise :</label>
         <select name="client" id="client" style="width:100%; padding: .5rem; border: 1px solid #000;"
-          v-on:change="FillReferencesPlan()" v-model="nrc_entrp">
+          @change="FillReferencesPlan()" v-model="nrc_entrp">
 
           <option selected disabled>--sélectionner l'Entreprise ..</option>
           <!-- @foreach ($client as $cl)
@@ -126,7 +126,7 @@ export default {
       <div style="width:100%;">
         <label for="plans">Réference plan de formation :</label>
         <select name="plans" id="plans" style="width:100%; padding: .5rem; border: 1px solid #000;"
-          v-if="reference_plan && reference_plan.length" v-on:change="FillPlanByReference()" v-model="id_plan">
+          v-if="reference_plan && reference_plan.length" @change="FillPlanByReference()" v-model="id_plan">
 
           <!-- {{-- auto filled --}} -->
           <option selected disabled>-- sélectionner le plan</option>
@@ -138,7 +138,7 @@ export default {
       </div>
 
       <div class="btn-group">
-        <button class="btn-btn-primary" id="dateBtn" v-on:click="FillReferencesPlan()" style="background: #00ff11; margin: .5rem 0; padding: .5rem;">
+        <button class="btn-btn-primary" id="dateBtn" @click="FillReferencesPlan()" style="background: #00ff11; margin: .5rem 0; padding: .5rem;">
           Remplir les dates
         </button>
       </div>
