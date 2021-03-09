@@ -8,7 +8,7 @@ use App\{PlanFormation,Plan,Formation,Intervenant,Client,Domaine,Theme,Cabinet};
 use Illuminate\Support\Str;
 use DB;
 use Alert;
-
+// Action De Formation //
 class PlanFormationController extends Controller
 {
     /**
