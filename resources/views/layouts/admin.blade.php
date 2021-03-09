@@ -8,6 +8,11 @@
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <link rel="icon" href="{{ URL::asset('logo3.png') }}">
   <title>{{ config('app.name') }}</title>
+  <!-- UKIT Packages-->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.6.17/dist/css/uikit.min.css" />
+  <!-- UIkit JS -->
+  <script src="https://cdn.jsdelivr.net/npm/uikit@3.6.17/dist/js/uikit.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/uikit@3.6.17/dist/js/uikit-icons.min.js"></script>
   <!-- IonIcons -->
   {{-- <link href="https://unpkg.com/ionicons@4.5.1/dist/css/ionicons.css" rel="stylesheet"> --}}
   <!-- Bootstrap 4 -->
@@ -87,23 +92,33 @@
               </li>
             @endif
           @else
-            <li class="nav-item dropdown">
+          <button class="uk-button uk-button-default" type="button">{{ Auth::user()->name }}</button>
+<div uk-dropdown>
+    <ul class="uk-nav uk-dropdown-nav">
+        <li class=uk-dropdown="animation: uk-animation-slide-top-small; duration: 500">
+          <a href="/logout">
+  
+                  {{ __('Déconnexion') }}
+          </a>
+        </li>   
+    </ul>
+</div>
+            <!--<li class="nav-item dropdown">
               <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                 {{ Auth::user()->name }} <span class="caret"></span>
               </a>
-
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item"  href="{{ route('logout') }}"
                    onclick="event.preventDefault();
                          document.getElementById('logout-form').submit();">
+                       
                   {{ __('Déconnexion') }}
                 </a>
-
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none; ">
                   @csrf
                 </form>
               </div>
-            </li>
+            </li>-->
           @endguest
       </ul>
       <!-- Right navbar links -->

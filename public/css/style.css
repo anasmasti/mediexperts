@@ -84,8 +84,9 @@ color: black !important;}
 
 .bu-danger
  {
-background-color: #df2525;
-color: beige !important;}
+    background-color: #df2525 !important;
+    color: beige !important;
+}
 
 .btn-cus {
     position: absolute;

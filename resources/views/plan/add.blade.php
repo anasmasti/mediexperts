@@ -84,7 +84,7 @@
 
 
       <div class="form-group col-lg-3 col-sm-12"><label>N° Contrat</label>
-        <input class="form-control {{ $errors->has('n_contrat') ? ' is-invalid' : 'n_contrat' }}" value="{{$plans->n_contrat}}" type="text" name="n_contrat" id="n_contrat" min="4" maxlength="15" placeholder="N° Contrat">
+        <input class="form-control {{ $errors->has('n_contrat') ? ' is-invalid' : 'n_contrat' }}" value="{{old('n_contrat')}}" type="text" name="n_contrat" id="n_contrat" min="4" maxlength="15" placeholder="N° Contrat">
         @if ($errors->has('n_contrat'))
             <span class="invalid-feedback" role="alert">
             {{ $errors->first('n_contrat') }}
@@ -259,7 +259,8 @@
 
   <div class="card-footer text-center">
     <button class="btn bu-add" type="submit" id="add"><i class="fas fa-plus-circle"></i> Ajouter</button>
-    <a class="btn bu-danger" href="/planformation"><i class="fas fa-window-close"></i> Annuler</a>
+    
+    <a class="btn bu-danger" href="/plan"><i class="fas fa-window-close"></i> Annuler</a>
   </div>
 
   </form>

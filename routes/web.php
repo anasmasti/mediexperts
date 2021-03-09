@@ -34,6 +34,7 @@ Route::get('/users', 'HomeController@index')->name('users.index');
 // Route::get('/', 'HomeController@index')->name('home.dashboard');
 /*--------------------------------------------------------------*/
 
+Route::get('/logout','\App\Http\Controllers\Auth\LoginController@logout');
 
 //*************** ADMIN ROUTES ***************
 Route::get('/', 'AdminController@index')->name('dashboard');
