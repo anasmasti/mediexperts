@@ -118,7 +118,7 @@
 
           <a class="btn btn-dark" href="/print-facture-df/{{$d->n_df}}/{{$entrp['nrc_entrp']}}">
             <i class="fa fa-print"></i>
-            <abbr>Pro-forma</abbr>
+            <abbr></abbr>
           </a>
 
           </td>

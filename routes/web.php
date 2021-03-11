@@ -11,6 +11,8 @@
 |
 */
 
+use App\Http\Controllers\FormulaireController;
+
 Auth::routes(['verify' => true]);
 
 // Route::group(['middleware' => ['auth', 'admin']], function() { //begin */
@@ -375,6 +377,7 @@ Route::get('/print-avis-aff', 'FormulaireController@print_avis_aff')->name('Acti
 
 Route::get('/print-att-reference-plan', 'FormulaireController@print_att_reference_plan')->name('ActionFormation.print_att_reference_plan');
 Route::get('/fill-cabinet-info', 'FormulaireController@FillCabinetInfo')->name('ActionFormation.FillCabinetInfo');
+Route::get('/fill-plan-by-client', 'FormulaireController@FillPlansByClient')->name('PlanByClinet');
 /********************************************************************/
 
 

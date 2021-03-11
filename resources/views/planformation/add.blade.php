@@ -214,7 +214,7 @@
         @endif
       </div>
 
-      <div class="form-group col-lg-3 col-md-6 col-12"><label>Nb. jours (durée/groupe)</label>
+      <div class="form-group col-lg-3 col-md-6 col-12"><label>Nb. de jours </label>
         <input class="form-control {{ $errors->has('nb_jour') ? 'is-invalid' : '' }}" value="{{old('nb_jour')}}" type="text" name="nb_jour" id="nb_jour" min="0" maxlength="15" onkeyup="CalcBdgJourn()" onkeypress="return isNumberKey(event)" placeholder="nb. jour" >
         @if ($errors->has('nb_jour'))
           <span class="invalid-feedback" role="alert">
@@ -223,8 +223,8 @@
         @endif
       </div>
 
-      <div class="form-group col-lg-3 col-md-6 col-12"><label>Nb. heures (durée total)</label>
-        <input class="form-control {{ $errors->has('nb_heure') ? 'is-invalid' : '' }}" value="{{old('nb_heure')}}" type="text" name="nb_heure" id="nb_heure" min="0" maxlength="15" onkeyup="CalcBdgJourn()" onkeypress="return isNumberKey(event)" placeholder="nb. jour" >
+      <div class="form-group col-lg-3 col-md-6 col-12"><label>Nb. d’heures par jour </label>
+        <input class="form-control bg-warning {{ $errors->has('nb_heure') ? 'is-invalid' : '' }}" value="6" type="text" name="nb_heure" id="nb_heure" min="0" maxlength="15" onkeyup="CalcBdgJourn()" onkeypress="return isNumberKey(event)" placeholder="nb. jour" >
         @if ($errors->has('nb_heure'))
           <span class="invalid-feedback" role="alert">
             {{ $errors->first('nb_heure') }}
@@ -259,7 +259,7 @@
       </div> --}}
 
       <div class="form-group col-lg-3 col-md-6 col-12"><label>Organisme</label>
-        <select class="form-control {{ $errors->has('organisme') ? 'is-invalid' : '' }}" name="organisme" id="organisme" readonly>
+        <select class="form-control {{ $errors->has('organisme') ? 'is-invalid' : '' }}" name="organisme"  id="organisme" readonly >
           <option selected disabled>-</option>
           {{-- @foreach ($cabinet as $cab)
             <option value="{{$cab->raisoci}}">{{$cab->raisoci}}</option>
@@ -288,7 +288,7 @@
       @endif
       </div>
 
-      <div class="form-group col-lg-3 col-md-6 col-12"><label>Nb. groupes</label><input class="form-control {{ $errors->has('nb_grp') ? 'is-invalid' : '' }}" value="{{old('nb_grp')}}" type="text" name="nb_grp" min="0" maxlength="15" onkeypress="return isNumberKey(event)" placeholder="Nombre" >
+      <div class="form-group col-lg-3 col-md-6 col-12"><label>Nb. groupes</label><input class="form-control bg-warning {{ $errors->has('nb_grp') ? 'is-invalid' : '' }}" value="1" type="text" name="nb_grp" min="0" maxlength="15" onkeypress="return isNumberKey(event)" placeholder="Nombre" >
       @if ($errors->has('nb_grp'))
         <span class="invalid-feedback" role="alert">
           {{ $errors->first('nb_grp') }}
@@ -297,7 +297,7 @@
       </div>
 
       <div class="form-group col-lg-3 col-md-6 col-12"><label>Nb. total participants</label>
-        <input class="form-control {{ $errors->has('nb_partcp_total') ? 'is-invalid' : '' }}" value="{{old('nb_partcp_total')}}" type="text" name="nb_partcp_total" min="0" maxlength="3" onkeypress="return isNumberKey(event)" placeholder="Nombre" >
+        <input class="form-control bg-warning {{ $errors->has('nb_partcp_total') ? 'is-invalid' : '' }}" value="5" type="text" name="nb_partcp_total" min="0" maxlength="3" onkeypress="return isNumberKey(event)" placeholder="Nombre" >
         @if ($errors->has('nb_partcp_total'))
           <span class="invalid-feedback" role="alert">
             {{ $errors->first('nb_partcp_total') }}

@@ -75,7 +75,7 @@
 
 
             <div class="form-group col-lg-6 col-md-6 col-12">
-                <label for="id_plan">RÉF. Action formation</label>
+                <label for="id_plan">Réf. plan de formation </label>
                 @if (count($plans)==0)
                 <a class="btn bu-icon bu-sm btn-sm" href="/add-cl"><i class="fa fa-plus"></i></a> <!--button add-->
                 @endif

@@ -74,13 +74,15 @@
       </div> --}}
 
       <div class="form-group col-lg-3 col-sm-12"><label>Année d'exercice</label>
-        <input class="form-control {{ $errors->has('annee') ? ' is-invalid' : 'annee' }}" value="{{old('annee')}}" type="text" name="annee" id="annee" min="4" maxlength="4" onkeypress="return isNumberKey(event)" placeholder="Année">
+        <input class="form-control  {{ $errors->has('annee') ? ' is-invalid' : 'annee' }} " value="{{old('annee')}}" type="text" name="annee" id="annee" min="4" maxlength="4" onkeypress="return isNumberKey(event)" placeholder="Année">
         @if ($errors->has('annee'))
             <span class="invalid-feedback" role="alert">
             {{ $errors->first('annee') }}
             </span>
         @endif
       </div>
+
+
 
 
       <div class="form-group col-lg-3 col-sm-12"><label>N° Contrat</label>
@@ -105,11 +107,11 @@
                 </div>
                 <div class="custom-control custom-checkbox">
                     <input type="checkbox" name="at_approb_PFOPT" id="at_approb_PFOPT" class="custom-control-input" value="Préparé">
-                    <label for="at_approb_PFOPT" class="custom-control-label">Attestation d'approbation</label>
+                    <label for="at_approb_PFOPT" class="custom-control-label">Attestation d'approbation IF</label>
                 </div>
                 <div class="custom-control custom-checkbox">
                     <input type="checkbox" name="rpt_DS_PFOPT" id="rpt_DS_PFOPT" class="custom-control-input" value="Préparé">
-                    <label for="rpt_DS_PFOPT" class="custom-control-label">Rapport DS</label>
+                    <label for="rpt_DS_PFOPT" class="custom-control-label">Attestation d'approbation DS</label>
                 </div>
                 <div class="custom-control custom-checkbox">
                     <input type="checkbox" name="rpt_IF_PFOPT" id="rpt_IF_PFOPT" class="custom-control-input" value="Préparé">
@@ -259,7 +261,7 @@
 
   <div class="card-footer text-center">
     <button class="btn bu-add" type="submit" id="add"><i class="fas fa-plus-circle"></i> Ajouter</button>
-    
+
     <a class="btn bu-danger" href="/plan"><i class="fas fa-window-close"></i> Annuler</a>
   </div>
 

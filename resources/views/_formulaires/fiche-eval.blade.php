@@ -76,14 +76,24 @@
   </div>
 
   <div style="width:100%;">
-    <label for="plans">Sélectionner le plan de formation :</label>
+    <label for="plans">Sélectionner la société :</label>
     <select name="plans" id="plans" style="width:100%; padding: .5rem; border: 1px solid #000;">
-      <option selected disabled>--sélectionner le plan</option>
+      <option selected disabled>--sélectionner la société--</option>
       @foreach ($plans as $pdf)
-        <option value="{{$pdf->id_plan}}">Réf. {{$pdf->refpdf}} {{">"}} {{$pdf->raisoci}}</option>
+        <option value="{{$pdf->id_plan}}">{{$pdf->raisoci}}</option>
       @endforeach
     </select>
   </div>
+
+  {{-- <div style="width:100%;">
+    <label for="plans">Sélectionner le Réf :</label>
+    <select name="plans" id="plans" style="width:100%; padding: .5rem; border: 1px solid #000;">
+      <option selected disabled>--sélectionner le Réf--</option>
+      @foreach ($plans as $pdf)
+        <option value="{{$pdf->id_plan}}">{{$pdf->refpdf}}</option>
+      @endforeach
+    </select>
+  </div> --}}
 
   <div style="width:100%;">
     <label for="plan">Sélectionner l'action de formation :</label>
@@ -344,7 +354,7 @@
         .done((data) => {
           console.log("success action !!", data);
           data.forEach(elem => {
-            fillDropdown += `<option value="${elem.n_form}">${elem.n_action} > ${elem.nom_theme} </option>`;
+            fillDropdown += `<option value="${elem.n_form}">${elem.annee} > ${elem.nom_theme} </option>`;
           });
 
           // affecter les données dans select

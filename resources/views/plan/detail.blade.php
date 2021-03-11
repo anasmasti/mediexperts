@@ -193,7 +193,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <th>Date d'accusation (PF)</th>
+                    <th>Date dêpot DF/PF</th>
                     <td class="th-det text-capitalize">
                         {{ \Carbon\Carbon::parse($plans->dt_accuse_PFOPT)->format('d/m/Y') }}
                     </td>

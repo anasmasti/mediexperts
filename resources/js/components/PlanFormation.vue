@@ -22,6 +22,8 @@ export default {
       isAllLoaded: false,
     }
   },
+
+  //une fois le composant est monté
   mounted() {
     this.FillClients();
   },
@@ -39,6 +41,7 @@ export default {
         // console.error("date is", date)
       }
     },
+    //async 
     async FillClients() {
       this.coutTotalPlan = 0;
       await axios.get('/fill-clients')
