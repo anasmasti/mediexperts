@@ -97,10 +97,10 @@
     <ul class="uk-nav uk-dropdown-nav">
         <li class=uk-dropdown="animation: uk-animation-slide-top-small; duration: 500">
           <a href="/logout">
-  
+
                   {{ __('Déconnexion') }}
           </a>
-        </li>   
+        </li>
     </ul>
 </div>
             <!--<li class="nav-item dropdown">
@@ -111,7 +111,7 @@
                 <a class="dropdown-item"  href="{{ route('logout') }}"
                    onclick="event.preventDefault();
                          document.getElementById('logout-form').submit();">
-                       
+
                   {{ __('Déconnexion') }}
                 </a>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none; ">
