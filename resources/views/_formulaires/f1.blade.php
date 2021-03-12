@@ -11,6 +11,9 @@
 <body>
 
 <style>
+  * {
+    box-sizing: border-box
+  }
   .paper {
     padding:20px; height:27.9cm; width:21cm; padding-left:.25px;
   }
@@ -33,6 +36,7 @@
   padding: .2rem; border-collapse: collapse;
   }
   .bordered { border: 1px solid #000 !important; padding: .2rem; }
+  .text-center { text-align: center; }
   .bu-print {
     padding:0; margin:0 0 50px 0;
     display: inline-block; width:47%; height:50px;
@@ -63,7 +67,7 @@
 </div>
 
 
-<div class="" style="font-family:Calibri, 'Segoe UI', Geneva, Verdana, sans-serif; background-color: #fff;">
+<div class="paper" style="padding: 0 50px; font-family:Calibri, 'Segoe UI', Geneva, Verdana, sans-serif; background-color: #fff;">
 
   <div style="width: 100%;">
     <p style="padding:0; margin:0; font-weight:600; font-size:20px;">Contrats Spéciaux de Formation</p>
@@ -116,7 +120,7 @@
         <span class="p-0">Téléphone :</span>
       </div>
       <div style="width:33%">
-        <div class="bordered">
+        <div class="bordered text-center">
           {{ $client->tel_1 }}
         </div>
       </div>
@@ -127,7 +131,7 @@
         <span class="p-0">Fax :</span>
       </div>
       <div style="width:33%">
-        <div class="bordered">
+        <div class="bordered text-center">
           {{ $client->fax_1 }}
         </div>
       </div>
@@ -147,65 +151,80 @@
       </div>
     </div>
 
-    <div style="width:100%; height:5px;"><!-- *** line space ***--></div>
+    <div style="width:100%; height:20px;"><!-- *** line space ***--></div>
 
-    {{-- Date création & Patente --}}
+    {{-- Date création --}}
     <div style="width:100%; display:flex; flex-wrap:nowrap;">
       <div style="width:15%">
-        <span class="p-0" style="font-size:13px;">Date de création :</span>
+        <span class="p-r" style="font-size:13px;">Date de création :</span>
       </div>
       <div style="width:33%">
-        <div class="bordered">
-          {{ $client->dt_creat }}
-        </div>
-      </div>
-      <div style="width:4%;">
-        <div style=""><!--space--></div>
-      </div>
-      <div style="width:15%">
-        <span class="p-0" style="font-size:13px;">Identifiant fiscal :</span>
-      </div>
-      <div style="width:33%">
-        <div class="bordered">
-          {{ $client->id_fiscal }}
+        <div class="bordered text-center">
+          {{ Carbon\Carbon::parse($client->dt_creat)->format('d/m/Y') }}
         </div>
       </div>
     </div>
 
     <div style="width:100%; height:5px;"><!-- *** line space ***--></div>
 
-    {{-- Patente & CNSS --}}
+    {{-- PATENTE & ID FISCALE --}}
     <div style="width:100%; display:flex; flex-wrap:nowrap;">
       <div style="width:15%">
         <span class="p-0">Patente :</span>
       </div>
       <div style="width:33%">
-        <div class="bordered">
+        <div class="bordered text-center">
           {{ $client->npatente }}
         </div>
       </div>
+
       <div style="width:4%">
         <div style=""><!--space--></div>
       </div>
+
+      <div style="width:15%">
+        <span class="p-r" style="font-size:13px;">Identifiant fiscal :</span>
+      </div>
+      <div style="width:33%">
+        <div class="bordered text-center">
+          {{ $client->id_fiscal }}
+        </div>
+      </div>
+
+    </div>
+
+    <div style="width:100%; height:5px;"><!-- *** line space ***--></div>
+
+    {{-- RC & CNSS --}}
+    <div style="width:100%; display:flex; flex-wrap:nowrap;">
+
+      {{-- N° RC --}}
+      <div style="width:15%">
+        <span class="p-0">N° RC</span>
+      </div>
+      <div style="width:33%">
+        <div class="bordered text-center">
+          {{ $client->nrc_entrp }}
+        </div>
+      </div>
+
+      <div style="width:4%">
+        <div style=""><!--space--></div>
+      </div>
+
+      {{-- CNSS --}}
       <div style="width:15%">
         <span class="p-0">N° CNSS :</span>
       </div>
       <div style="width:33%">
-        <div class="bordered">
+        <div class="bordered text-center">
           {{ $client->ncnss }}
         </div>
       </div>
     </div>
 
-    <div style="width:100%; height:5px;"><!-- *** line space ***--></div>
 
-    {{-- N° RC --}}
-    <div style="width:100%">
-      <span class="p-0">N° RC :</span>
-      <div class="bordered">
-        {{ $client->nrc_entrp }}
-      </div>
-    </div>
+    <div style="width:100%; height:5px;"><!-- *** line space ***--></div>
 
     <div style="width:100%; height:5px;"><!-- *** line space ***--></div>
 
@@ -224,7 +243,7 @@
       </div>
     </div>
 
-    <div style="width:100%; height:5px;"><!-- *** line space ***--></div>
+    <div style="width:100%; height:20px;"><!-- *** line space ***--></div>
 
     {{-- Effectif de l'entreprise --}}
     <div style="width:100%">
@@ -238,8 +257,8 @@
         <thead>
           <tr>
             <th>Cadres</th>
-            <th>Employé</th>
-            <th>Ouvries</th>
+            <th>Employés</th>
+            <th>Ouvriers</th>
             <th>Total</th>
           </tr>
         </thead>
@@ -287,7 +306,7 @@
     {{-- Signature Cachet --}}
     <div style="width:100%; display:flex; flex-wrap:nowrap;">
       <div style="width:45%">
-        <span class="p-0" style="font-size:16px;">Fait à :</span>
+        <span class="p-r" style="font-size:16px;">Fait à :</span>
         <div class="bordered">
           {{-- {{ $client->ville }} --}}
           @php $villes =
@@ -303,17 +322,14 @@
             @endforeach
           </select>
         </div>
-        <span class="p-0" style="font-size:16px;">Nom et prénom :</span>
+        <span class="p-r" style="font-size:16px;">Nom et prénom :</span>
         <div class="bordered">
           {{ $client->nom_dg1 }}
         </div>
-        <span class="p-0" style="font-size:16px;">Qualité :</span>
+        <span class="p-r" style="font-size:16px;">Qualité :</span>
         <div class="bordered">
           {{ $client->fonct_dg1 }}
         </div>
-        <span style="font-size:12px; font-weight:600;">
-          * Pour les personnes physiques, joindre une attestation d'inscription au rôle des Patentes
-        </span>
       </div>
       <div style="width:10%">
         <div style=""><!--space--></div>
@@ -342,7 +358,8 @@
 
   {{-- Footer --}}
   <div style="position:relative; bottom:0; font-size:13px; position:fixed;">
-    <p>Ce formulaire est disponible sur le Portail des CSF à l'adresse: <span><a href="http://csf.ofppt.org.ma">http://csf.ofppt.org.ma.</a></span> Il peut être rempli sur l'écran en tant que
+    <p>Ce formulaire est disponible sur le Portail des CSF à l'adresse: <span><a href="http://csf.ofppt.org.ma">http://csf.ofppt.org.ma.</a></span>
+      <br />Il peut être rempli sur l'écran en tant que
       formulaire PDF avant d'être imprimé.</p>
   </div>
 </div>
