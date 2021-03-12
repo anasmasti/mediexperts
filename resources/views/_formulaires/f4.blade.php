@@ -72,21 +72,30 @@
   </div>
 
   <div style="width:100%;">
-    <label for="plans">Sélectionner le plan de formation :</label>
-    <select name="plans" id="plans" style="width:100%; padding: .5rem; border: 1px solid #000;">
-      <option selected disabled>--sélectionner le plan</option>
-      @foreach ($plans as $pdf)
-        <option value="{{$pdf->id_plan}}">Réf. {{$pdf->refpdf}} {{">"}} {{$pdf->raisoci}}</option>
+    <label for="client">Sélectionner la societe :</label>
+    <select name="client" id="client" style="width:100%; padding: .5rem; border: 1px solid #000;">
+      <option selected disabled>--sélectionner la societe</option>
+      @foreach ($clients as $clt)
+        <option value="{{$clt->nrc_entrp}}"> {{$clt->raisoci}} </option>
       @endforeach
     </select>
   </div>
 
   <div style="width:100%;">
-    <label for="plan">Sélectionner l'action de formation :</label>
+    <label for="plan">Sélectionner Annee :</label>
     <select name="plan" id="plan" style="width:100%; padding: .5rem; border: 1px solid #000;">
       {{-- auto filled --}}
     </select>
   </div>
+
+</div>
+
+<div style="width:100%;">
+  <label for="action">Sélectionner l'action de formation :</label>
+  <select name="action" id="action" style="width:100%; padding: .5rem; border: 1px solid #000;">
+    {{-- auto filled --}}
+  </select>
+</div>
 
 </div>
 
@@ -118,7 +127,7 @@
     </p>
   </div>
 
-  
+
   <div style="width:100%; display:flex; flex-wrap:nowrap;">
     {{-- THEME --}}
     <div style="width:47%">
@@ -402,18 +411,18 @@
     //   }); //ajax
     // }); //onChange
 
-    $('#plans').on('change', function() {
+    $('#client').on('change', function() {
       // initialize
       $('#cin').html(""); $('#nom').val(""); $('#prenom').val(""); $('#groupe').val("");
       $('#nCnss').val("");  $('#plan').html(""); $('#dates').val(""); $('#formation').html("");
 
-      let idPlan = $('#plans').val();
+      let nrc = $('#client').val();
       let fillDropdown = '';
-      $.get('/fill-action-form', {'idPlan': idPlan})
+      $.get('/fill-plan-by-client', {'nrc': nrc})
         .done((data) => {
           console.log("success action !!", data);
           data.forEach(elem => {
-            fillDropdown += `<option value="${elem.n_form}">${elem.n_action} > ${elem.nom_theme} </option>`;
+            fillDropdown += `<option value="${elem.id_plan}">${elem.refpdf}  </option>`;
           });
 
           // affecter les données dans select
@@ -431,7 +440,7 @@
     }); //onChange "plans"
 
     // FORMATION
-    $('#plan').on('change', function() {
+    $('#action').on('change', function() {
       let nForm = $(this).val();
       let formation = $('#formation');
       let cin = $('#cin'); let nom = $('#nom'); let prenom = $('#prenom'); let nCnss = $('#nCnss');
@@ -463,6 +472,26 @@
       }); //ajax
     }); //onChange
 
+    $('#plan').on('change',function() {
+      let idPlan = $(this).val();
+      $.ajax({
+        type:'GET',
+        url : '{!! URL::to('/fill-action-form') !!}',
+        data: {'idPlan': idPlan},
+        success: function(data){
+          console.log('success Action', data);
+          let fillAction = '<option selected disabled>--veuillez sélectionner une action</option>';
+          for ( let i =0; i<data.length;i++){
+          if(data.length >0){
+            fillAction += `<option value="`+data[i].n_form+`">`+data[i].nom_theme+`</option>`
+          }
+         }
+         $('#action').html('');
+         $('#action').append(fillAction);
+        }
+      })
+
+    })
     // Trouver les personnels
     $('#formation').on('change', function() {
       let idForm = $(this).val();

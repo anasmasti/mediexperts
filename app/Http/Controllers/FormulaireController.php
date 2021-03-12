@@ -98,11 +98,11 @@ class FormulaireController extends Controller
 
     //FORMULAIRE 4
     public function print_f4(Request $request) {
-      $plans = Plan::select('plans.*', 'clients.raisoci', 'clients.rais_abrev')
-        ->join('clients', 'plans.nrc_e', 'clients.nrc_entrp')
-        ->get();
-      return view('_formulaires.f4', ['plans' => $plans]);
+      $clients = Client::all();
+
+      return view('_formulaires.f4', ['clients' => $clients]);
     }
+
     public function FillFormationF4(Request $request) {
       $data = Formation::select('formations.*', 'themes.nom_theme', 'clients.raisoci', 'clients.ville', 'clients.local_2')
         ->join('plan_formations', 'formations.n_form', 'plan_formations.n_form')
@@ -122,7 +122,7 @@ class FormulaireController extends Controller
       return response()->json($data);
     }
     public function FillPersonInfoF4(Request $request) {
-      $data = Personnel::select('personnels.*', 'plans.annee')
+      $data = Personnel::select('personnels.*')
         ->where('personnels.cin', $request->cin)
         ->first();
       return response()->json($data);
@@ -137,12 +137,12 @@ class FormulaireController extends Controller
     }
 
     //FORMULAIRE 2
-    public function print_f2() {
-      $plans = Plan::select('plans.*', 'clients.raisoci', 'clients.rais_abrev')
-        ->join('clients', 'plans.nrc_e', 'clients.nrc_entrp')
-        ->get();
-      return view('_formulaires.f2', ['plans' => $plans]);
+      public function print_f2() {
+        $clients = Client::all();
+
+      return view('_formulaires.f2', ['clients' => $clients]);
     }
+
     public function FillActionFormation(Request $request) {
       $data = PlanFormation::select('plan_formations.*', 'themes.nom_theme as nom_theme', 'domaines.nom_domain', 'clients.raisoci' , 'plans.annee')
         ->join('plans', 'plans.id_plan', 'plan_formations.id_plan')
@@ -171,7 +171,7 @@ class FormulaireController extends Controller
         ->join('plan_formations', 'formations.n_form', 'plan_formations.n_form')
         ->join('intervenants', 'plan_formations.id_inv', 'intervenants.id_interv')
         ->join('cabinets', 'intervenants.nrc_c', 'cabinets.nrc_cab')
-        // ->join('clients', 'plan_formations.nrc_e', 'clients.nrc_entrp')
+        //*->join('clients', 'plan_formations.nrc_e', 'clients.nrc_entrp')
         ->join('plans', 'plans.id_plan', '=', 'plan_formations.id_plan')
         ->join('Clients', 'clients.nrc_entrp', '=', 'plans.nrc_e')
         ->join('themes', 'themes.id_theme', 'plan_formations.id_thm')
@@ -242,6 +242,7 @@ class FormulaireController extends Controller
         $client = Client::all();
       return view('_formulaires.fiche-eval', ['client' => $client]);
     }
+
     public function FillFicheEval(Request $request) {
       $data = PlanFormation::select('formations.*', 'plan_formations.lieu', 'themes.nom_theme',
        'clients.raisoci', 'clients.ville','clients.local_2', 'intervenants.nom as nom_interv',
@@ -270,7 +271,7 @@ class FormulaireController extends Controller
 
     public function FillPlansByClient(Request $request)
     {
-      $data = Plan::select('plans.*')
+      $data = Plan::select('plans.*','clients.raisoci')
       ->join('Clients', 'clients.nrc_entrp', '=', 'plans.nrc_e')
       ->where('clients.nrc_entrp', $request->nrc)->get();
       return response()->json($data);

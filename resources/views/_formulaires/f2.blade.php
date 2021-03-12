@@ -82,17 +82,17 @@
   </div>
 
   <div style="width:100%;">
-    <label for="plans">Sélectionner le plan de formation :</label>
-    <select name="plans" id="plans" style="width:100%; padding: .5rem; border: 1px solid #000;">
-      <option selected disabled>--sélectionner le plan</option>
-      @foreach ($plans as $pdf)
-        <option value="{{$pdf->id_plan}}">Réf. {{$pdf->refpdf}} {{">"}} {{$pdf->raisoci}}</option>
+    <label for="client">Sélectionner la societe :</label>
+    <select name="client" id="client" style="width:100%; padding: .5rem; border: 1px solid #000;">
+      <option selected disabled>--sélectionner la societe</option>
+      @foreach ($clients as $clt)
+        <option value="{{$clt->nrc_entrp}}" > {{$clt->raisoci}} </option>
       @endforeach
     </select>
   </div>
 
   <div style="width:100%;">
-    <label for="plan">Sélectionner l'action de formation :</label>
+    <label for="plan">Sélectionner Annee :</label>
     <select name="plan" id="plan" style="width:100%; padding: .5rem; border: 1px solid #000;">
       {{-- <option selected disabled>--sélectionner l'action</option>
       @foreach ($plan as $pf)
@@ -298,14 +298,14 @@
 <script type="text/javascript">
   $(document).ready(function() {
 
-    $('#plans').on('change', function() {
-      let idPlan = $('#plans').val();
+    $('#client').on('change', function() {
+      let nrc = $('#client').val();
       let fillDropdown = '';
-      $.get('/fill-action-form', {'idPlan': idPlan})
+      $.get('/fill-plan-by-client', {'nrc': nrc})
         .done((data) => {
           console.log("success action !!", data);
           data.forEach(elem => {
-            fillDropdown += `<option value="${elem.n_form}">${elem.n_action} > ${elem.nom_theme} </option>`;
+            fillDropdown += `<option value="${elem.id_plan}">${elem.refpdf}</option>`;
           });
           // affecter les données dans select
           $('#plan').html("");
