@@ -228,7 +228,7 @@ class FormulaireController extends Controller
         ->join('plan_formations', 'plans.id_plan', '=', 'plan_formations.id_plan')
         ->join('themes', 'plan_formations.id_thm', 'themes.id_theme')
         ->where([['plans.id_plan', $request->idPlan], ['plan_formations.etat', "réalisé"]])
-        ->orWhere([['plans.id_plan', $request->idPlan], ['plan_formations.etat', "planifié"]])
+        ->orWhere([['plans.id_plan', $request->idPlan], ['plan_formations.etat', "modifié"]])
         ->get();
       return response()->json($data);
     }

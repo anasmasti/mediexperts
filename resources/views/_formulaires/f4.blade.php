@@ -60,7 +60,7 @@
     background-position: left;
   }
   @media print {
-    .hide-from-print { display: none!important; }
+    .hide-from-print { display: none !important; }
     .highlighted { background-color: #fff !important; }
   }
 </style>
@@ -428,12 +428,12 @@
           // affecter les données dans select
           $('#plan').html("");
           if (data.length) {
-            $('#plan').append('<option selected disabled>--sélectionner une action</option>');
+            $('#plan').append('<option selected disabled>--sélectionner Annee</option>');
             $('#plan').append(fillDropdown);
             $('#entrp').val(data[0].raisoci);
           }
           else {
-            $('#plan').append('<option selected disabled>(vide) aucune action</option>');
+            $('#plan').append('<option selected disabled>(vide) aucune Annee</option>');
           }
         }) // done
         .catch(err => console.log("error getting actions !!", error));
@@ -453,7 +453,7 @@
           console.log('success formations !!', data);
           if (data.length > 0) {
             for (let i = 0; i < data.length; i++) {
-              fillFormation += `<option value="`+data[i].id_form+`">${data[i].nom_theme}  </option>`;
+              fillFormation += `<optgroup label=" groupe: ${data[i].groupe}"><option value="`+data[i].id_form+`"> ${data[i].nom_theme}  </option></optgroup>`;
             }
             formation.html("");
             formation.append(fillFormation);
@@ -483,7 +483,7 @@
           let fillAction = '<option selected disabled>--veuillez sélectionner une action</option>';
           for ( let i =0; i<data.length;i++){
           if(data.length >0){
-            fillAction += `<option value="`+data[i].n_form+`">`+data[i].nom_theme+`</option>`
+            fillAction += `<option value="`+data[i].n_form+`">`+data[i].n_action+` {{'>'}}`+data[i].nom_theme+`</option>`
           }
          }
          $('#action').html('');

@@ -481,11 +481,7 @@
     </div><!-- /.container-fluid -->
 
     <div class="content-header">
-<<<<<<< HEAD
       <h1 class="m-0 text-dark">Documents GIAC</h1>
-=======
-      <h1 class="m-0 text-dark">Formulaire GIAC</h1>
->>>>>>> 80938ec (12/03/2021__migrationupdate)
     </div>
     {{-- ------ --}}
     <div class="container-fluid">
