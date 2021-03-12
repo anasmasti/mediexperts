@@ -96,8 +96,8 @@
                 <label for="l_tierpay_PF" class="custom-control-label">Lettre de tiers-payant PF</label>
                 </div>
                 <div class="custom-control custom-checkbox">
-                <input type="checkbox" name="at_approb_PFOPT" id="at_approb_PFOPT" class="custom-control-input" {{ (mb_strtolower($plans->at_approb_PFOPT)=="préparé") ? 'checked' : '' }}>
-                <label for="at_approb_PFOPT" class="custom-control-label">Attestation d'approbation</label>
+                <input type="checkbox" name="at_approb_ds" id="at_approb_ds" class="custom-control-input" {{ (mb_strtolower($plans->at_approb_ds)=="préparé") ? 'checked' : '' }}>
+                <label for="at_approb_ds" class="custom-control-label">Attestation d'approbation</label>
                 </div>
                 <div class="custom-control custom-checkbox">
                 <input type="checkbox" name="rpt_DS_PFOPT" id="rpt_DS_PFOPT" class="custom-control-input" {{ (mb_strtolower($plans->rpt_DS_PFOPT)=="préparé") ? 'checked' : '' }}>

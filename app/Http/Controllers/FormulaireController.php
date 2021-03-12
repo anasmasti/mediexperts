@@ -239,10 +239,8 @@ class FormulaireController extends Controller
 
     // FICHE D'ÉVALUATION
     public function print_fiche_evaluation(Request $request) {
-        $plans = Plan::select('plans.*', 'clients.raisoci', 'clients.rais_abrev' , 'plans.annee')
-        ->join('clients', 'plans.nrc_e', 'clients.nrc_entrp')
-        ->get();
-      return view('_formulaires.fiche-eval', ['plans' => $plans]);
+        $client = Client::all();
+      return view('_formulaires.fiche-eval', ['client' => $client]);
     }
     public function FillFicheEval(Request $request) {
       $data = PlanFormation::select('formations.*', 'plan_formations.lieu', 'themes.nom_theme',

@@ -23,7 +23,7 @@ class CreatePlansTable extends Migration
             $table->date('dt_recep_ct')->nullable();
             $table->date('dt_contrat_PFOPT')->nullable();
             $table->string('l_tierpay_PF', 100)->default("non préparé");
-            $table->string('at_approb_PFOPT', 100)->default("non préparé");
+            $table->string('at_approb_ds', 100)->default("non préparé");
             $table->string('rpt_DS_PFOPT', 100)->default("non préparé");
             $table->string('rpt_IF_PFOPT', 100)->default("non préparé");
             $table->string('f2_PFOPT', 100)->default("non préparé");

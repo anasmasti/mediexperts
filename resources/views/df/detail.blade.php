@@ -1109,8 +1109,8 @@
           <tr>
             <th>Attestation d'approbation (PF)</th>
             <td class="th-det text-capitalize">
-              {{ $df->at_approb_PFOPT }}
-              @if ($df->at_approb_PFOPT=="préparé")
+              {{ $df->at_approb_ds }}
+              @if ($df->at_approb_ds=="préparé")
                 <i class="fas fa-check-circle"></i>
               @else
                 <i class="fas fa-times-circle"></i>

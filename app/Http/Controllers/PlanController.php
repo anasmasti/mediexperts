@@ -8,7 +8,7 @@ use DB;
 use App\{Plan,Client, Intervenant};
 use Dotenv\Validator;
 
-//Plan Formation 
+//Plan Formation
 class PlanController extends Controller
 {
     /**
@@ -75,7 +75,7 @@ class PlanController extends Controller
 
             $plans = new Plan();
 
-            $docs = ['l_tierpay_PF','at_approb_PFOPT','rpt_DS_PFOPT','rpt_IF_PFOPT','f2_PFOPT',
+            $docs = ['l_tierpay_PF','at_approb_ds','at_approb_if','rpt_IF_PFOPT','f2_PFOPT',
                 'model1_PFOPT','rib_PFOPT','f3_PFOPT','at_qualif_PFOPT',
                 'eligib_cab_PFOPT','accuse_PFOPT'];
             foreach ($docs as $doc) {
@@ -165,7 +165,7 @@ class PlanController extends Controller
                 'etat' => 'required|max:50',
             ]);
 
-            $docs = ['l_tierpay_PF','at_approb_PFOPT','rpt_DS_PFOPT','rpt_IF_PFOPT','f2_PFOPT',
+            $docs = ['l_tierpay_PF','at_approb_ds','at_approb_if','rpt_IF_PFOPT','f2_PFOPT',
                 'model1_PFOPT','rib_PFOPT','f3_PFOPT','at_qualif_PFOPT',
                 'eligib_cab_PFOPT','accuse_PFOPT'];
             foreach ($docs as $doc) {

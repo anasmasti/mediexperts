@@ -85,8 +85,8 @@
                 <tr>
                     <th>Attestation d'approbation (PF)</th>
                     <td class="th-det text-capitalize">
-                    {{ $plans->at_approb_PFOPT }}
-                    @if ($plans->at_approb_PFOPT=="préparé")
+                    {{ $plans->at_approb_ds }}
+                    @if ($plans->at_approb_ds=="préparé")
                         <i class="fas fa-check"></i>
                     @else
                         <i class="fas fa-times"></i>

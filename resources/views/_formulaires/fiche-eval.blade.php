@@ -76,12 +76,20 @@
   </div>
 
   <div style="width:100%;">
-    <label for="plans">Sélectionner la société :</label>
-    <select name="plans" id="plans" style="width:100%; padding: .5rem; border: 1px solid #000;">
-      <option selected disabled>--sélectionner la société--</option>
-      @foreach ($plans as $pdf)
-        <option value="{{$pdf->id_plan}}">{{$pdf->raisoci}}</option>
+    <label for="client">Sélectionner la société :</label>
+    <select name="client" id="client" style="width:100%; padding: .5rem; border: 1px solid #000;">
+      <option selected disabled>--sélectionner la société</option>
+      @foreach ($client as $clt)
+        <option value="{{$clt->nrc_entrp}}" > {{$clt->raisoci}} </option>
       @endforeach
+    </select>
+  </div>
+
+  <div style="width:100%;">
+    <label for="plans">Sélectionner le plan de formation :</label>
+    <select name="plans" id="plans" style="width:100%; padding: .5rem; border: 1px solid #000;">
+      <option selected disabled>--sélectionner le plan de formation</option>
+
     </select>
   </div>
 
@@ -96,8 +104,8 @@
   </div> --}}
 
   <div style="width:100%;">
-    <label for="plan">Sélectionner l'action de formation :</label>
-    <select name="plan" id="plan" style="width:100%; padding: .5rem; border: 1px solid #000;">
+    <label for="action">Sélectionner l'action de formation :</label>
+    <select name="action" id="action" style="width:100%; padding: .5rem; border: 1px solid #000;">
       {{-- auto filled --}}
     </select>
   </div>
@@ -347,6 +355,28 @@
 <script type="text/javascript">
   $(document).ready(function() {
 
+    $('#client').on('change', function() {
+      let nrc = $('#client').val();
+      let fillDropdown = '';
+      $.get('/fill-plan-by-client', {'nrc': nrc})
+        .done((data) => {
+          console.log("success action !!", data);
+          data.forEach(elem => {
+            fillDropdown += `<option value="${elem.id_plan}"> ${elem.refpdf}  </option>`;
+          });
+          // affecter les données dans select
+          $('#plans').html("");
+          if (data.length) {
+            $('#plans').append('<option selected disabled>--sélectionner une action</option>');
+            $('#plans').append(fillDropdown);
+          }
+          else {
+            $('#plans').append('<option selected disabled>(vide) aucune action</option>');
+          }
+        }) //done
+        .catch(err => console.log("error getting actions !!", error));
+    });
+
     $('#plans').on('change', function() {
       let idPlan = $('#plans').val();
       let fillDropdown = '';
@@ -358,23 +388,23 @@
           });
 
           // affecter les données dans select
-          $('#plan').html("");
+          $('#action').html("");
           if (data.length) {
-            $('#plan').append('<option selected disabled>--sélectionner une action</option>');
-            $('#plan').append(fillDropdown);
+            $('#action').append('<option selected disabled>--sélectionner une action</option>');
+            $('#action').append(fillDropdown);
           }
           else {
-            $('#plan').append('<option selected disabled>(vide) aucune action</option>');
+            $('#action').append('<option selected disabled>(vide) aucune action</option>');
           }
         }) // done
         .catch(err => console.log("error getting actions !!", error));
     }); //onChange "plans"
 
-    $('#plan').on('change', function() {
+    $('#action').on('change', function() {
       // vider les champs
       $('#formation').html("");
       $('#cabinet').val("");
-      let nForm = $('#plan').val();
+      let nForm = $('#action').val();
       $.ajax({
         type: 'GET',
         url: '{!! URL::to('/fill-fiche-evaluation') !!}',

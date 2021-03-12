@@ -106,12 +106,12 @@
                     <label for="l_tierpay_PF" class="custom-control-label">Lettre de tiers-payant PF</label>
                 </div>
                 <div class="custom-control custom-checkbox">
-                    <input type="checkbox" name="at_approb_PFOPT" id="at_approb_PFOPT" class="custom-control-input" value="Préparé">
-                    <label for="at_approb_PFOPT" class="custom-control-label">Attestation d'approbation IF</label>
+                    <input type="checkbox" name="at_approb_if" id="at_approb_if" class="custom-control-input" value="Préparé">
+                    <label for="at_approb_if" class="custom-control-label">Attestation d'approbation IF</label>
                 </div>
                 <div class="custom-control custom-checkbox">
-                    <input type="checkbox" name="rpt_DS_PFOPT" id="rpt_DS_PFOPT" class="custom-control-input" value="Préparé">
-                    <label for="rpt_DS_PFOPT" class="custom-control-label">Attestation d'approbation DS</label>
+                    <input type="checkbox" name="at_approb_ds" id="at_approb_ds" class="custom-control-input" value="Préparé">
+                    <label for="at_approb_ds" class="custom-control-label">Attestation d'approbation DS</label>
                 </div>
                 <div class="custom-control custom-checkbox">
                     <input type="checkbox" name="rpt_IF_PFOPT" id="rpt_IF_PFOPT" class="custom-control-input" value="Préparé">

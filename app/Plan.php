@@ -21,8 +21,8 @@ class Plan extends Model
         'ct_PF',
         'dt_contrat_PFOPT',
         'l_tierpay_PF', //7 ••••
-        'at_approb_PFOPT', //7 ••••
-        'rpt_DS_PFOPT', //7 ••••
+        'at_approb_ds', //7 ••••
+        'at_approb_if', //7 ••••
         'rpt_IF_PFOPT', //7 ••••
         'f2_PFOPT', //7 ••••
         'model1_PFOPT', //7 ••••
