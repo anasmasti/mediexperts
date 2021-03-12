@@ -481,7 +481,7 @@
     </div><!-- /.container-fluid -->
 
     <div class="content-header">
-      <h1 class="m-0 text-dark">Factures GIAC</h1>
+      <h1 class="m-0 text-dark">Documents GIAC</h1>
     </div>
     {{-- ------ --}}
     <div class="container-fluid">

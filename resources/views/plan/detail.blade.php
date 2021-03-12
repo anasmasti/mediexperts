@@ -83,10 +83,10 @@
                     </td>
                 </tr>
                 <tr>
-                    <th>Attestation d'approbation (PF)</th>
+                    <th>Attestation d'approbation IF </th>
                     <td class="th-det text-capitalize">
-                    {{ $plans->at_approb_ds }}
-                    @if ($plans->at_approb_ds=="préparé")
+                    {{ $plans->at_approb_if }}
+                    @if ($plans->at_approb_if=="préparé")
                         <i class="fas fa-check"></i>
                     @else
                         <i class="fas fa-times"></i>
@@ -94,10 +94,10 @@
                     </td>
                 </tr>
                 <tr>
-                    <th>Rapport DS (PF)</th>
+                    <th> Attestation d'approbation DS</th>
                     <td class="th-det text-capitalize">
-                    {{ $plans->rpt_DS_PFOPT }}
-                    @if ($plans->rpt_DS_PFOPT=="préparé")
+                    {{ $plans->at_approb_ds }}
+                    @if ($plans->at_approb_ds=="préparé")
                         <i class="fas fa-check"></i>
                     @else
                         <i class="fas fa-times"></i>

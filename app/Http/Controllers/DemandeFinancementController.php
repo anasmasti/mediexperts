@@ -68,7 +68,7 @@ class DemandeFinancementController extends Controller
 
     public function searchdf(Request $request)
     {   $searchdf = $request->input ('searchdf');
-        $df = DemandeFinancement::where('n_df', 'LIKE', '%'. $searchdf . '%')->get();
+        $df = DemandeFinancement::where('annee_exerc', 'LIKE', '%'. $searchdf . '%')->get();
 
         $client = Client::all();
         $drb = DemandeRemboursementGiac::all();
@@ -119,7 +119,7 @@ class DemandeFinancementController extends Controller
                 'nrc_e' => 'required',
                 'type_miss' => 'required|max:150',
                 'annee_exerc' => 'required|min:4|starts_with:20',
-
+                'bdg_pf' => 'nullable|max:20',
                 'nb_interv' => 'nullable|max:3', //2
                 'dt_df' => 'nullable|date', //2
                 'jr_hm_demande' => 'nullable|max:15', //2
@@ -136,9 +136,10 @@ class DemandeFinancementController extends Controller
                 'prc_cote_part' => $validatePrcQuote, //4
                 'dt_envoi_av' => 'nullable|date|before_or_equal:'.date('Y-m-d'), //5
                 'dt_fin_realis' => 'nullable|date|before_or_equal:'.date('Y-m-d'), //5
-
+                'n_contrat' => 'required|max:20',
                 'dt_approb' => 'nullable|date|before_or_equal:'.date('Y-m-d'), //6
                 'dt_depos_rpt' => 'nullable|date|before_or_equal:'.date('Y-m-d'), //6
+                'dt_at_csf' => 'nullable|date|before_or_equal:'.date('Y-m-d'),
 
                 'etat' => 'required|max:50',
                 'commentaire' => 'max:4900'
@@ -200,6 +201,7 @@ class DemandeFinancementController extends Controller
             $df->dt_fin_realis = $request->input('dt_fin_realis');
             $df->dt_approb = $request->input('dt_approb');
             $df->dt_depos_rpt = $request->input('dt_depos_rpt');
+            $df->n_contrat = $request->input('n_contrat');
 
             $docs = ['d_eligib_csf_entrp','d_model6_n_1','d_model6_n_2','d_honor_act_form','accus_depos',
                     'at_csf_entrp','av_realis_DS','av_realis_IF','planing_DS','planing_IF',

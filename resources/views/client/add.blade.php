@@ -641,34 +641,7 @@
             @endif
         </div>
 
-        <div class="form-group col-lg-12 col-sm-12">{{--**************HR**************--}}<hr></div>
 
-        <div class="form-group col-lg-3 col-sm-12"><label>Estim. budget DS</label>
-            <input class="form-control {{ $errors->has('estim_bgd_DS') ? ' is-invalid' : '' }}" type="text" value="{{old('estim_bgd_DS')}}" name="estim_bgd_DS" min="0" maxlength="13" onkeypress="return isNumberKey(event)" placeholder="en DH" >
-            @if ($errors->has('estim_bgd_DS'))
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $errors->first('estim_bgd_DS') }}</strong>
-                </span>
-            @endif
-        </div>
-
-        <div class="form-group col-lg-3 col-sm-12"><label>Estim. budget IF</label>
-            <input class="form-control {{ $errors->has('estim_bdg_IF') ? ' is-invalid' : '' }}" type="text" value="{{old('estim_bdg_IF')}}" name="estim_bdg_IF" min="0" maxlength="13" onkeypress="return isNumberKey(event)" placeholder="en DH" >
-            @if ($errors->has('estim_bdg_IF'))
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $errors->first('estim_bdg_IF') }}</strong>
-                </span>
-            @endif
-        </div>
-
-        <div class="form-group col-lg-3 col-sm-12"><label>Estim. budget PF</label>
-            <input class="form-control {{ $errors->has('estim_bdg_PF') ? ' is-invalid' : '' }}" type="text" value="{{old('estim_bdg_PF')}}" name="estim_bdg_PF" min="0" maxlength="13" onkeypress="return isNumberKey(event)" placeholder="en DH" >
-            @if ($errors->has('estim_bdg_PF'))
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $errors->first('estim_bdg_PF') }}</strong>
-                </span>
-            @endif
-        </div>
 
         <div class="form-group col-lg-12 col-sm-12">{{--**************HR**************--}}<hr></div>
 

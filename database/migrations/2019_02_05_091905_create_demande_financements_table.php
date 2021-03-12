@@ -48,8 +48,8 @@ class CreateDemandeFinancementsTable extends Migration
             $table->string('at_domic_banc', 100)->default("non préparé");
             $table->string('d_pouvoir', 100)->default("non préparé");
             $table->string('at_csf_entrp', 100)->default("non préparé");
-            $table->string('dt_at_csf', 100)->default("non préparé");
-            $table->string('bdg_pf', 100)->default("non préparé");
+            $table->string('dt_at_csf', 100)->nullable();
+            $table->string('bdg_pf', 100)->nullable();
             $table->string('at_qual_cab', 100)->default("non préparé");
             $table->string('at_compte', 100)->default("non préparé");
             $table->string('f_renseign_cab', 100)->default("non préparé");

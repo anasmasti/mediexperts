@@ -791,6 +791,7 @@
             </td>
           </tr>
           @elseif (mb_strtolower($df->type_miss) == $if)
+
           <tr>
             <th>
               <i class="fas fa-file-contract"></i>
@@ -810,6 +811,10 @@
             </td>
           </tr>
           @endif
+          <tr>
+            <th>N Contrat</th>
+            <td class="th-det text-capitalize">{{ $df->n_contrat }}</td>
+          </tr>
           <tr>
             <th>
               Date dépôt demande

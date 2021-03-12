@@ -74,9 +74,9 @@
 
       <div class="form-group col-lg-3 col-sm-12">
 
-        <label class="h5">Vérification</label>
+        <label class="h5">Vérification :</label>
 
-        <label>Facture cabinet entreprise + Date</label>
+        <label>Facture + Date Facturion</label>
         <div class="input-group">
             <div class="input-group-prepend">
               <span class="input-group-text">

@@ -28,7 +28,7 @@
     <div class="container">
       <form action="/searchdf" method="GET">
         <div class="searchbar bu-sm">
-          <input class="search_input" type="text" name="searchdf" placeholder="Rechercher par N°">
+          <input class="search_input" type="text" name="searchdf" placeholder="Rechercher par Année">
           <button type="submit"  class="search_icon btn"><i class="fas fa-search"></i></button>
         </div>
       </form>
