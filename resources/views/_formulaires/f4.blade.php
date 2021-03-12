@@ -60,7 +60,7 @@
     background-position: left;
   }
   @media print {
-    .hide-from-print { display: none; }
+    .hide-from-print { display: none!important; }
     .highlighted { background-color: #fff !important; }
   }
 </style>
@@ -453,7 +453,7 @@
           console.log('success formations !!', data);
           if (data.length > 0) {
             for (let i = 0; i < data.length; i++) {
-              fillFormation += `<option value="`+data[i].id_form+`">`+data[i].nom_theme+`</option>`;
+              fillFormation += `<option value="`+data[i].id_form+`">${data[i].nom_theme}  </option>`;
             }
             formation.html("");
             formation.append(fillFormation);
