@@ -3,11 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Input;
 use App\{PlanFormation,Plan,Formation,Intervenant,Client,Domaine,Theme,Cabinet};
 use Illuminate\Support\Str;
-use DB;
-use Alert;
+use Illuminate\Support\Facades\DB;
+
 // Action De Formation //
 class PlanFormationController extends Controller
 {
