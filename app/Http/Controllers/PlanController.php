@@ -84,11 +84,13 @@ class PlanController extends Controller
             }
             $plans->nrc_e = $request->input("nrc_e");
             $plans->annee = $request->input("annee");
+            $plans->n_contrat = $request->input("n_contrat");
             //Génerer le Ref pdf
             $rais_abrev = Client::select('clients.rais_abrev')
                 ->where('clients.nrc_entrp', $request->input("nrc_e"))
                 ->first();
             $plans->refpdf = $rais_abrev['rais_abrev'] . "/" . $plans->annee;
+
             $plans->dt_contrat_PFOPT = $request->input("dt_contrat_PFOPT");
             $plans->dt_recep_ct = $request->input("dt_recep_ct");
             $plans->dt_accuse_PFOPT = $request->input("dt_accuse_PFOPT");
@@ -97,8 +99,8 @@ class PlanController extends Controller
             $plans->commentaire = $request->input("commentaire");
 
             // eviter le doublant de référence pdf
-            $plans_2 = Plan::where('refpdf', $plans->refpdf)->count();
-            if ($plans_2 > 0) {
+            $count_refpdf_deja = Plan::where('refpdf', $plans->refpdf)->count();
+            if ($count_refpdf_deja > 0) {
               $request->session()->flash('error', 'Vous avez déjà saisi un plan avec la même année!');
               return view('plan.add', ['plans' => $plans, 'client' => $client])->with('error');
             }
@@ -174,9 +176,11 @@ class PlanController extends Controller
             }
             $plans->nrc_e = $request->input("nrc_e");
             $plans->annee = $request->input("annee");
+            $plans->n_contrat = $request->input("n_contrat");
+
             //Génerer le Ref pf
             $rais_abrev = Client::select('clients.rais_abrev')
-                ->where('clients.nrc_entrp', $request->input("nrc_e"))
+                ->where('clients.nrc_entrp', $plans->nrc_e)
                 ->first();
             $plans->refpdf = $rais_abrev['rais_abrev'] . "/" . $plans->annee;
             $plans->dt_recep_ct = $request->input("dt_recep_ct");
@@ -186,7 +190,7 @@ class PlanController extends Controller
             $plans->etat = $request->input("etat");
             $plans->commentaire = $request->input("commentaire");
 
-            // si l'action est réaliser! mettre à jour l'etat de toutes les formations
+            // si le "plan" est réalisé! mettre à jour l'etat de toutes les "actions formations"
             if (mb_strtolower($plans->etat) === "réalisé") {
               DB::table('plan_formations')
                 ->join('plans', 'plan_formations.id_plan', 'plans.id_plan')

@@ -119,6 +119,11 @@ function checkEtat() {
         $('label[for=planing_DS], input#planing_DS').fadeOut(200);
         $('label[for=p_garde_DS], input#p_garde_DS').fadeOut(200);
 
+        // giac 1
+        if (gcRattach.toLowerCase() == "giac 1") {
+          $('#tr_d_df_IF').fadeIn(200);
+        }
+
         //giac agroalimentaire
         if (gcRattach.toLowerCase() == "giac agroalimentaire") {
             $('#tr_d_df_IF').fadeIn(200);
@@ -165,6 +170,10 @@ function checkEtat() {
         $('label[for=planing_IF], input#planing_IF').fadeOut(200);
         $('label[for=p_garde_IF], input#p_garde_IF').fadeOut(200);
 
+        // giac 1
+        if (gcRattach.toLowerCase() == "giac 1") {
+          $('#tr_d_df_DS').fadeIn(200);
+        }
         //giac agroalimentaire
         if (gcRattach.toLowerCase() == "giac agroalimentaire") {
             $('#tr_d_df_DS').fadeIn(200);

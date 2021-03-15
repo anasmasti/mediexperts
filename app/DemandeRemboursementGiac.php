@@ -37,7 +37,7 @@ class DemandeRemboursementGiac extends Model
         'montant_rb',//3
         'commentaire',
         'etat',
-        // 'n_df'
+        'n_df'
     ];
 
     public function demande_financements() {

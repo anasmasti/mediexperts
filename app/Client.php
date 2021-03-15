@@ -21,7 +21,6 @@ class Client extends Model
     'giac_rattach',
     'ice',
     'id_fiscal',
-    'id_entrp',
     'ncnss',
     'npatente',
     'sg_soci',
@@ -73,9 +72,6 @@ class Client extends Model
     'email_resp',
     'rib',
     'agence_banc',
-    'estim_bgd_DS',
-    'estim_bdg_IF',
-    'estim_bdg_PF',
     'dt_relation',
     'tag1',
     'commentaire'];

@@ -11,7 +11,6 @@ class PlanFormation extends Model
     protected $fillable =
     [
         'n_form',
-        'refpdf',
         'n_action',
 
         //docs
