@@ -40,7 +40,7 @@ export default {
       await axios.get('/fill-clients')
         .then((res) => {
           this.clients = res.data;
-          // console.log("clients : ", this.clients)
+          //console.log("clients : ", this.clients)
         })
         .catch((err) => console.error("err FillClients", err));
     },
@@ -194,15 +194,15 @@ export default {
         <tr v-for="(action, idx) in actions_by_ref" :key="`plan${idx}`">
           <td class="padding: .3rem;">{{action.nom_theme}}</td>
           <td :id="action.n_form">
-            <p style="margin: .1rem !important;">{{ action.dates && DateFormat(action.dates.date1) || "" }}</p>
-            <p style="margin: .1rem !important;">{{ action.dates && DateFormat(action.dates.date2) || "" }}</p>
-            <p style="margin: .1rem !important;">{{ action.dates && DateFormat(action.dates.date3) || "" }}</p>
-            <p style="margin: .1rem !important;">{{ action.dates && DateFormat(action.dates.date4) || "" }}</p>
-            <p style="margin: .1rem !important;">{{ action.dates && DateFormat(action.dates.date5) || "" }}</p>
-            <p style="margin: .1rem !important;">{{ action.dates && DateFormat(action.dates.date6) || "" }}</p>
-            <p style="margin: .1rem !important;">{{ action.dates && DateFormat(action.dates.date7) || "" }}</p>
-            <p style="margin: .1rem !important;">{{ action.dates && DateFormat(action.dates.date8) || "" }}</p>
-            <p style="margin: .1rem !important;">{{ action.dates && DateFormat(action.dates.date9) || "" }}</p>
+            <p style="margin: .1rem !important;">{{ action.dates && DateFormat(action.dates.date1)  || "" }}</p>
+            <p style="margin: .1rem !important;">{{ action.dates && DateFormat(action.dates.date2)  || "" }}</p>
+            <p style="margin: .1rem !important;">{{ action.dates && DateFormat(action.dates.date3)  || "" }}</p>
+            <p style="margin: .1rem !important;">{{ action.dates && DateFormat(action.dates.date4)  || "" }}</p>
+            <p style="margin: .1rem !important;">{{ action.dates && DateFormat(action.dates.date5)  || "" }}</p>
+            <p style="margin: .1rem !important;">{{ action.dates && DateFormat(action.dates.date6)  || "" }}</p>
+            <p style="margin: .1rem !important;">{{ action.dates && DateFormat(action.dates.date7)  || "" }}</p>
+            <p style="margin: .1rem !important;">{{ action.dates && DateFormat(action.dates.date8)  || "" }}</p>
+            <p style="margin: .1rem !important;">{{ action.dates && DateFormat(action.dates.date9)  || "" }}</p>
             <p style="margin: .1rem !important;">{{ action.dates && DateFormat(action.dates.date10) || "" }}</p>
             <p style="margin: .1rem !important;">{{ action.dates && DateFormat(action.dates.date11) || "" }}</p>
             <p style="margin: .1rem !important;">{{ action.dates && DateFormat(action.dates.date12) || "" }}</p>

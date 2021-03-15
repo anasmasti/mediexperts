@@ -82,9 +82,9 @@
   </div>
 
   <div style="width:100%;">
-    <label for="client">Sélectionner la societe :</label>
+    <label for="client">Sélectionner Société :</label>
     <select name="client" id="client" style="width:100%; padding: .5rem; border: 1px solid #000;">
-      <option selected disabled>--sélectionner la societe</option>
+      <option selected disabled>--sélectionner Société</option>
       @foreach ($clients as $clt)
         <option value="{{$clt->nrc_entrp}}" > {{$clt->raisoci}} </option>
       @endforeach
@@ -92,7 +92,7 @@
   </div>
 
   <div style="width:100%;">
-    <label for="plan">Sélectionner Annee :</label>
+    <label for="plan">Sélectionner plan de formation :</label>
     <select name="plan" id="plan" style="width:100%; padding: .5rem; border: 1px solid #000;">
       {{-- <option selected disabled>--sélectionner l'action</option>
       @foreach ($plan as $pf)
@@ -310,11 +310,11 @@
           // affecter les données dans select
           $('#plan').html("");
           if (data.length) {
-            $('#plan').append('<option selected disabled>--sélectionner une action</option>');
+            $('#plan').append('<option selected disabled>--sélectionner plan de formation</option>');
             $('#plan').append(fillDropdown);
           }
           else {
-            $('#plan').append('<option selected disabled>(vide) aucune action</option>');
+            $('#plan').append('<option selected disabled>(vide) aucune plan de formation</option>');
           }
         }) //done
         .catch(err => console.log("error getting actions !!", error));

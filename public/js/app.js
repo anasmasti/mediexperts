@@ -2331,7 +2331,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _this.coutTotalPlan = 0;
                 _context.next = 3;
                 return axios.get('/fill-clients').then(function (res) {
-                  _this.clients = res.data; // console.log("clients : ", this.clients)
+                  _this.clients = res.data; //console.log("clients : ", this.clients)
                 })["catch"](function (err) {
                   return console.error("err FillClients", err);
                 });
@@ -2773,6 +2773,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       isAllLoaded: false
     };
   },
+  //une fois le composant est monté
   mounted: function mounted() {
     this.FillClients();
   },
@@ -2788,6 +2789,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       } else {// console.error("date is", date)
       }
     },
+    //async 
     FillClients: function FillClients() {
       var _this = this;
 
@@ -40094,7 +40096,7 @@ var render = function() {
               }
             }
           },
-          [_vm._v("\r\n        Remplir les dates\r\n      ")]
+          [_vm._v("\n        Remplir les dates\n      ")]
         )
       ]),
       _vm._v(" "),
@@ -40451,9 +40453,9 @@ var staticRenderFns = [
           }
         },
         [
-          _vm._v("\r\n        « Société\r\n        "),
+          _vm._v("\n        « Société\n        "),
           _c("strong", { attrs: { id: "entrp" } }, [_vm._v("(Entreprise)")]),
-          _vm._v("\r\n        »\r\n      ")
+          _vm._v("\n        »\n      ")
         ]
       )
     ])
@@ -40473,7 +40475,7 @@ var staticRenderFns = [
           }
         },
         [
-          _vm._v("\r\n        Plan de formation\r\n        "),
+          _vm._v("\n        Plan de formation\n        "),
           _c("span", { attrs: { name: "year", id: "year" } }, [
             _vm._v("(année)")
           ])
@@ -56308,8 +56310,8 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_2__["default"].Store({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\ayman\mediexperts\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\ayman\mediexperts\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\badre\mediexperts\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\badre\mediexperts\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

@@ -74,7 +74,7 @@
   <div style="width:100%;">
     <label for="client">Sélectionner la societe :</label>
     <select name="client" id="client" style="width:100%; padding: .5rem; border: 1px solid #000;">
-      <option selected disabled>--sélectionner la societe</option>
+      <option selected disabled>--sélectionner la société</option>
       @foreach ($clients as $clt)
         <option value="{{$clt->nrc_entrp}}"> {{$clt->raisoci}} </option>
       @endforeach
@@ -82,7 +82,7 @@
   </div>
 
   <div style="width:100%;">
-    <label for="plan">Sélectionner Annee :</label>
+    <label for="plan">Sélectionner plan de formation :</label>
     <select name="plan" id="plan" style="width:100%; padding: .5rem; border: 1px solid #000;">
       {{-- auto filled --}}
     </select>
@@ -151,7 +151,7 @@
   <div style="width:100%; display:flex; flex-wrap:nowrap;">
     {{-- THEME --}}
     <div style="width:47%">
-      <span>Thème de l'Action de Formation :</span><br>
+      <span>Thème de l'Action de Formation Par Groupe  :</span><br>
       <div class="bordered">
         <select name="formation" id="formation" class="select highlighted">
           {{-- auto filled --}}
@@ -428,12 +428,12 @@
           // affecter les données dans select
           $('#plan').html("");
           if (data.length) {
-            $('#plan').append('<option selected disabled>--sélectionner Annee</option>');
+            $('#plan').append('<option selected disabled>--sélectionner plan de formation</option>');
             $('#plan').append(fillDropdown);
             $('#entrp').val(data[0].raisoci);
           }
           else {
-            $('#plan').append('<option selected disabled>(vide) aucune Annee</option>');
+            $('#plan').append('<option selected disabled>(vide) aucune plan de formation</option>');
           }
         }) // done
         .catch(err => console.log("error getting actions !!", error));
@@ -449,7 +449,7 @@
         url : '{!! URL::to('/fill-form-f4') !!}',
         data: {'nForm': nForm},
         success: function(data) {
-          let fillFormation = '<option selected disabled>--veuillez sélectionner la formation</option>';
+          let fillFormation = '<option selected disabled>--veuillez sélectionner le thème </option>';
           console.log('success formations !!', data);
           if (data.length > 0) {
             for (let i = 0; i < data.length; i++) {
