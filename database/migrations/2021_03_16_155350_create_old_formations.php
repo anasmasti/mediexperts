@@ -59,6 +59,7 @@ class CreateOldFormations extends Migration
 
           $table->foreign('id_form')
           ->references('id_form')
+          ->on('formations')
           ->onUpdate('cascade')
           ->onDelete('cascade');
 

@@ -52,6 +52,7 @@ class CreateOldActionFormations extends Migration
 
           $table->foreign('n_form')
           ->references('n_form')
+          ->on('plan_formations')
           ->onUpdate('cascade')
           ->onDelete('cascade');
 
