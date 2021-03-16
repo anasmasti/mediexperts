@@ -7,6 +7,8 @@ export default {
   runtimeCompiler: true,
   data() {
     return {
+      id_plan: null,
+      curr_annee: null,
       selected_nrc_entrp: null
     }
   },
@@ -18,12 +20,31 @@ export default {
     clients() { return store.state.clients; },
     reference_plans() { return store.state.reference_plans; },
     actions_by_plan() { return store.state.actions_by_plan; },
-    curr_annee_plan() { return store.state.curr_annee_plan; }
+    curr_annee_plan() { return store.state.curr_annee_plan; },
+
   },
   methods: {
     handleAction (actionName, value) {
       store.dispatch(actionName, value);
-    }
+    },
+     async FillPlanByReference() {
+      await axios.get(`/fill-plans-by-reference?idPlan=${this.id_plan}`)
+        .then((res) => {
+          this.actions_by_ref = res.data;
+          //this.curr_annee = res.data[0].annee;
+          console.log("actions_by_ref : ", this.actions_by_ref)
+        })
+        .then(() => {
+          // fill dates action
+          this.actions_by_ref.forEach((action) => {
+            //this.FillDates(action.n_form);
+          });
+        })
+        .catch((err) => console.error("err FillPlanByReference", err));
+      this.isAllLoaded = true;
+      console.log("isAllLoaded", this.isAllLoaded);
+    },
+
   },
 }
 </script>
@@ -54,7 +75,7 @@ export default {
           @change="FillPlanByReference()" v-model="id_plan">
 
           <option selected disabled>-- sélectionner le plan</option>
-          <option v-for="pdf in reference_plan" :value="pdf.id_plan" :key="pdf.id_plan">{{ pdf.refpdf }}</option>
+          <option v-for="pdf in reference_plans" :value="pdf.id_plan" :key="pdf.id_plan">{{ pdf.refpdf }}</option>
         </select>
         <!--  -->
         <select v-else name="plans" id="plans" style="width:100%; padding: .5rem; border: 1px solid #000;">

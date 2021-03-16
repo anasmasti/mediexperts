@@ -4,9 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Giac;
-use Alert;
-use Session;
-use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Session;
 
 class GiacController extends Controller
 {

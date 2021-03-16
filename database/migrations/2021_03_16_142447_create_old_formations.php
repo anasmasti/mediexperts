@@ -14,7 +14,7 @@ class CreateOldFormations extends Migration
     public function up()
     {
         Schema::create('old_formations', function (Blueprint $table) {
-          $table->bigIncrements('old_id_form');
+          $table->unsignedBigInteger('id_form');
           $table->string('old_n_facture', 50)->nullable();
           $table->date('old_dt_facture')->nullable();
           $table->integer('old_groupe')->default(0);
@@ -57,6 +57,13 @@ class CreateOldFormations extends Migration
           $table->unsignedBigInteger('old_id_inv');
           $table->string('commentaire', 5000)->nullable();
 
+          $table->foreign('id_form')
+          ->references('id_form')
+          ->onUpdate('cascade')
+          ->onDelete('cascade');
+
+          $table->primary('id_form');
+
 
           $table->foreign('old_id_inv')
           ->references('id_interv')
@@ -84,3 +91,4 @@ class CreateOldFormations extends Migration
         Schema::dropIfExists('old_formations');
     }
 }
+

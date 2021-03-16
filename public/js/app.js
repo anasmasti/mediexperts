@@ -2686,43 +2686,86 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _PrintButton_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PrintButton.vue */ "./resources/js/components/PrintButton.vue");
-/* harmony import */ var _store_store__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../store/store */ "./resources/js/store/store.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _PrintButton_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PrintButton.vue */ "./resources/js/components/PrintButton.vue");
+/* harmony import */ var _store_store__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../store/store */ "./resources/js/store/store.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    PrintButton: _PrintButton_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+    PrintButton: _PrintButton_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   runtimeCompiler: true,
   data: function data() {
     return {
+      id_plan: null,
+      curr_annee: null,
       selected_nrc_entrp: null
     };
   },
   mounted: function mounted() {
-    _store_store__WEBPACK_IMPORTED_MODULE_1__["store"].dispatch('FetchClients');
+    _store_store__WEBPACK_IMPORTED_MODULE_2__["store"].dispatch('FetchClients');
   },
   computed: {
     curr_nrc_entrp: function curr_nrc_entrp() {
-      return _store_store__WEBPACK_IMPORTED_MODULE_1__["store"].state.curr_nrc_entrp;
+      return _store_store__WEBPACK_IMPORTED_MODULE_2__["store"].state.curr_nrc_entrp;
     },
     clients: function clients() {
-      return _store_store__WEBPACK_IMPORTED_MODULE_1__["store"].state.clients;
+      return _store_store__WEBPACK_IMPORTED_MODULE_2__["store"].state.clients;
     },
     reference_plans: function reference_plans() {
-      return _store_store__WEBPACK_IMPORTED_MODULE_1__["store"].state.reference_plans;
+      return _store_store__WEBPACK_IMPORTED_MODULE_2__["store"].state.reference_plans;
     },
     actions_by_plan: function actions_by_plan() {
-      return _store_store__WEBPACK_IMPORTED_MODULE_1__["store"].state.actions_by_plan;
+      return _store_store__WEBPACK_IMPORTED_MODULE_2__["store"].state.actions_by_plan;
     },
     curr_annee_plan: function curr_annee_plan() {
-      return _store_store__WEBPACK_IMPORTED_MODULE_1__["store"].state.curr_annee_plan;
+      return _store_store__WEBPACK_IMPORTED_MODULE_2__["store"].state.curr_annee_plan;
     }
   },
   methods: {
     handleAction: function handleAction(actionName, value) {
-      _store_store__WEBPACK_IMPORTED_MODULE_1__["store"].dispatch(actionName, value);
+      _store_store__WEBPACK_IMPORTED_MODULE_2__["store"].dispatch(actionName, value);
+    },
+    FillPlanByReference: function FillPlanByReference() {
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return axios.get("/fill-plans-by-reference?idPlan=".concat(_this.id_plan)).then(function (res) {
+                  _this.actions_by_ref = res.data; //this.curr_annee = res.data[0].annee;
+
+                  console.log("actions_by_ref : ", _this.actions_by_ref);
+                }).then(function () {
+                  // fill dates action
+                  _this.actions_by_ref.forEach(function (action) {//this.FillDates(action.n_form);
+                  });
+                })["catch"](function (err) {
+                  return console.error("err FillPlanByReference", err);
+                });
+
+              case 2:
+                _this.isAllLoaded = true;
+                console.log("isAllLoaded", _this.isAllLoaded);
+
+              case 4:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
     }
   }
 });
@@ -40096,7 +40139,7 @@ var render = function() {
               }
             }
           },
-          [_vm._v("\n        Remplir les dates\n      ")]
+          [_vm._v("\r\n        Remplir les dates\r\n      ")]
         )
       ]),
       _vm._v(" "),
@@ -40453,9 +40496,9 @@ var staticRenderFns = [
           }
         },
         [
-          _vm._v("\n        « Société\n        "),
+          _vm._v("\r\n        « Société\r\n        "),
           _c("strong", { attrs: { id: "entrp" } }, [_vm._v("(Entreprise)")]),
-          _vm._v("\n        »\n      ")
+          _vm._v("\r\n        »\r\n      ")
         ]
       )
     ])
@@ -40475,7 +40518,7 @@ var staticRenderFns = [
           }
         },
         [
-          _vm._v("\n        Plan de formation\n        "),
+          _vm._v("\r\n        Plan de formation\r\n        "),
           _c("span", { attrs: { name: "year", id: "year" } }, [
             _vm._v("(année)")
           ])
@@ -41190,7 +41233,7 @@ var render = function() {
                     _vm._v("-- sélectionner le plan")
                   ]),
                   _vm._v(" "),
-                  _vm._l(_vm.reference_plan, function(pdf) {
+                  _vm._l(_vm.reference_plans, function(pdf) {
                     return _c(
                       "option",
                       { key: pdf.id_plan, domProps: { value: pdf.id_plan } },

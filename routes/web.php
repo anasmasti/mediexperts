@@ -378,6 +378,7 @@ Route::get('/print-avis-aff', 'FormulaireController@print_avis_aff')->name('Acti
 Route::get('/print-att-reference-plan', 'FormulaireController@print_att_reference_plan')->name('ActionFormation.print_att_reference_plan');
 Route::get('/fill-cabinet-info', 'FormulaireController@FillCabinetInfo')->name('ActionFormation.FillCabinetInfo');
 Route::get('/fill-plan-by-client', 'FormulaireController@FillPlansByClient')->name('PlanByClinet');
+Route::get('/print-G6', ' FormulaireController@_G6')->name('G6');
 /********************************************************************/
 
 

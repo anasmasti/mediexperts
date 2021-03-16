@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\{DemandeFinancement,Client,Cabinet,DemandeRemboursementGiac,Plan,PlanFormation,Formation,Personnel,MissionIntervenant,Giac,Domaine,Theme};
+//use Knp\Snappy\Pdf;
+use Illuminate\Support\Facades\DB;
 use PDF;
-use DB;
 
 class FormulaireController extends Controller
 {
@@ -40,6 +41,11 @@ class FormulaireController extends Controller
       return view('_modeles.m3'
       //, ['client' => $client]
       );
+    }
+    public function _G6 (Request $request) {
+
+      return view('_formulaires.G6');
+
     }
     public function FillClients(Request $request) {
       $data = Client::all();
