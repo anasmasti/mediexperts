@@ -60,5 +60,4 @@ class OldFormation extends Model
   public function formations() {
     return $this->belongsTo(Formation::class);
 }
-
 }
