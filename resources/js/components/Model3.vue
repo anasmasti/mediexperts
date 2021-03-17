@@ -27,24 +27,6 @@ export default {
     handleAction (actionName, value) {
       store.dispatch(actionName, value);
     },
-     async FillPlanByReference() {
-      await axios.get(`/fill-plans-by-reference?idPlan=${this.id_plan}`)
-        .then((res) => {
-          this.actions_by_ref = res.data;
-          //this.curr_annee = res.data[0].annee;
-          console.log("actions_by_ref : ", this.actions_by_ref)
-        })
-        .then(() => {
-          // fill dates action
-          this.actions_by_ref.forEach((action) => {
-            //this.FillDates(action.n_form);
-          });
-        })
-        .catch((err) => console.error("err FillPlanByReference", err));
-      this.isAllLoaded = true;
-      console.log("isAllLoaded", this.isAllLoaded);
-    },
-
   },
 }
 </script>
@@ -63,8 +45,7 @@ export default {
       <select name="client" id="client" style="width:100%; padding: .5rem; border: 1px solid #000;"
         @change="handleAction('FetchReferencesPlan', selected_nrc_entrp); handleAction('SetNrcEntrp', selected_nrc_entrp)"
         v-model="selected_nrc_entrp">
-
-        <option selected disabled>--sélectionner l'Entreprise ..</option>
+        <option selected disabled>--sélectionner l'Entreprise</option>
         <option v-for="cl in clients" :value="cl.nrc_entrp" :key="cl.nrc_entrp">{{ cl.raisoci }}</option>
       </select>
 
@@ -72,8 +53,7 @@ export default {
       <div style="width:100%;">
         <label for="plans">Réference plan de formation :</label>
         <select v-if="reference_plans && reference_plans.length" name="plans" id="plans" style="width:100%; padding: .5rem; border: 1px solid #000;"
-          @change="FillPlanByReference()" v-model="id_plan">
-
+           v-model="id_plan">
           <option selected disabled>-- sélectionner le plan</option>
           <option v-for="pdf in reference_plans" :value="pdf.id_plan" :key="pdf.id_plan">{{ pdf.refpdf }}</option>
         </select>
@@ -84,9 +64,6 @@ export default {
       </div>
 
     </div>
-
-
-
     <!-- PAPER -->
     <div class="paper">
 
@@ -140,17 +117,17 @@ export default {
 
           <div style="margin-left: auto">
             <label>Planifiée</label>
-            <input type="checkbox" />
+            <input type="checkbox" name="etat"/>
           </div>
 
           <div style="margin-left: auto">
             <label>Non Planifiée</label>
-            <input type="checkbox" />
+            <input type="checkbox" name="etat"/>
           </div>
 
           <div style="margin-left: auto">
             <label>Alpha</label>
-            <input type="checkbox" />
+            <input type="checkbox" name="etat"/>
           </div>
         </div>
         <!-- END NATURE DE L'ACTION -->
@@ -168,7 +145,7 @@ export default {
           <input type="text" class="highlighted" value="..." />
         </div>
         <div class="d-flex" style="margin-top: 10px">
-          <span>Nouvel Organisme de formation : </span>
+          <span>• Nouvel Organisme de formation : </span>
           <select class="select highlighted" style="width: fit-content; font-size: 16px">
             <option selected disabled>--select organisme</option>
           </select>
@@ -181,9 +158,23 @@ export default {
           <input type="text" class="highlighted" value="..." />
         </div>
         <div class="d-flex" style="margin-top: 10px">
-          <span>Nouveau lieu : </span>
+          <span>• Nouveau lieu : </span>
           <select class="select highlighted" style="width: fit-content; font-size: 16px">
             <option selected disabled>--select organisme</option>
+          </select>
+        </div>
+
+        <div class="d-flex" style="margin-top: 10px">
+          <label for="gp_meme_date">• Groupes avec meme date</label>
+          <input type="radio" name="date" style="position: relative;margin-left:10px;margin-top:7px">
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <label for="gp_meme_date" >• Groupes avec different date</label>
+          <input type="radio" name="date" style="position: relative;margin-left:10px;margin-top:7px">
+        </div>
+        <div class="d-flex" style="margin-top:10px">
+          <label for="nm_group">• Choisir le groupe :&nbsp;</label>
+          <select name="nm_group" style="width:100px">
+            <option value=""></option>
           </select>
         </div>
         <!-- END LIEU -->

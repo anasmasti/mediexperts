@@ -1,3 +1,5 @@
+import { data } from 'jquery';
+import { then } from 'laravel-mix';
 import Vue from 'vue';
 import Vuex from 'vuex';
 
@@ -75,6 +77,31 @@ export const store = new Vuex.Store({
         })
         .catch((err) => console.error("err FillPlanByReference", err));
     },
+    async FillPlanByReference() {
+      await axios.get(`/fill-plans-by-reference?idPlan=${this.id_plan}`)
+        .then((res) => {
+          this.actions_by_ref = res.data;
+          //this.curr_annee = res.data[0].annee;
+          console.log("actions_by_ref : ", this.actions_by_ref)
+        })
+        .then(() => {
+          // fill dates action
+          this.actions_by_ref.forEach((action) => {
+            //this.FillDates(action.n_form);
+          });
+        })
+        .catch((err) => console.error("err FillPlanByReference", err));
+      this.isAllLoaded = true;
+      console.log("isAllLoaded", this.isAllLoaded);
+    },
+    //async FillActionByPlan(){
+    //   await axios.get(`fill-action-form`, {params: {idPlan : idPlan}})
+    //     .then(({data}) => {
+    //       this.commit('SET_ACTION_BY_PLAN' , data)
+    //       console.log('Actions :' , data)
+    //     });
+    // }
+    //---------------------------------------------------------------------------------
     // récupérer les dates de l'action actuel
     // async FetchDatesPlan({commit}, nForm) {
     //   await axios.get(`/fill-dates-plan`, {params: {nForm: nForm}})
