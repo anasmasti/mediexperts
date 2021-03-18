@@ -14,7 +14,6 @@ class CreateOldFormations extends Migration
     public function up()
     {
         Schema::create('old_formations', function (Blueprint $table) {
-
           $table->unsignedBigInteger('old_id_form');
           $table->string('old_n_facture', 50)->nullable();
           $table->date('old_dt_facture')->nullable();
