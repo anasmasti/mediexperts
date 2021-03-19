@@ -552,4 +552,9 @@ class PlanFormationController extends Controller
         return back();
     }
 
+    public function avismodif(Request $request)
+    {
+      return view('planformation.avis-modif');
+    }
+
 }

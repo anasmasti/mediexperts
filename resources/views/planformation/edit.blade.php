@@ -368,7 +368,7 @@
 
         <div class="form-group col-lg-3 col-md-6 col-12"><label>État</label>
             <select class="form-control {{ $errors->has('etat') ? 'is-invalid' : '' }}" name="etat" id="etat" value="{{$plan->etat}}">
-              <?php $etat_plan = ['planifié', 'réalisé', 'annulé']; ?>
+              <?php $etat_plan = ['planifié', 'réalisé', 'annulé' , 'modifié']; ?>
               @foreach ($etat_plan as $etat)
                 <option {{($plan->etat == $etat) ? 'selected' : ''}} value="{{$etat}}">{{ucfirst($etat)}}</option>
               @endforeach

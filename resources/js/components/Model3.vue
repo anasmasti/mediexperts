@@ -52,7 +52,7 @@ export default {
       <div style="width:100%;">
         <label for="plans">Réference plan de formation :</label>
         <select v-if="reference_plans && reference_plans.length" name="plans" id="plans" style="width:100%; padding: .5rem; border: 1px solid #000;"
-          @change="handleAction('FillPlanByReference', id_plan)" v-model="id_plan">
+          @change="handleAction()" v-model="id_plan">
 
           <option selected disabled>-- sélectionner le plan</option>
           <option v-for="pdf in reference_plans" :value="pdf.id_plan" :key="pdf.id_plan">{{ pdf.refpdf }}</option>
@@ -81,7 +81,7 @@ export default {
         <tr>
           <th style="width: 30%" rowspan="6">Avis</th>
           <th style="width: 30%">Anulation</th>
-          <th style="width: 30%" colspan="2">--</th>
+          <th style="width: 30%" colspan="2"> <input type="checkbox"> </th>
         </tr>
 
         <tr>
@@ -90,19 +90,19 @@ export default {
 
         <tr>
           <th style="width: 15%">De la date de Réalisation</th>
-          <th>----</th>
+          <th> <input type="checkbox"> </th>
         </tr>
         <tr>
           <th style="width: 15%">De l’organisme de formation</th>
-          <th>----</th>
+          <th> <input type="checkbox"> </th>
         </tr>
         <tr>
-          <th style="width: 15%">De l’organisme de formation</th>
-          <th>----</th>
+          <th style="width: 15%">De lieu de formation</th>
+          <th> <input type="checkbox"> </th>
         </tr>
         <tr>
           <th style="width: 15%">Organisation horaire</th>
-          <th>----</th>
+          <th> <input type="checkbox"> </th>
         </tr>
       </table>
       <!-- END TABLE -->
@@ -111,19 +111,26 @@ export default {
       <div style="padding-left: 20px">
         <div style="margin-top: 20px">
           <strong>Thème de l’action :</strong>
-          <input type="text" class="highlighted" style="width: 70%" />
+
+             <!-- <select  name="plans" id="plans" style="width:100%; padding: .5rem; border: 1px solid #000;"
+          @change="handleAction('FetchActionByPlan', id_plan)" v-model="id_plan">
+
+          <option selected disabled>-- sélectionner le thème</option>
+          <option v-for="thm in actions_by_plan" :value="thm.n_form" :key="thm.id_plan">{{ thm.n_form }}</option>
+        </select> -->
+
         </div>
 
         <!-- NATURE DE L'ACTION -->
         <div class="d-flex" style="margin-top: 20px">
           <strong>Nature de l’action :</strong>
 
-          <div style="margin-left: auto">
+          <div style="margin-left: 100px">
             <label>Planifiée</label>
-            <input type="checkbox" />
+            <input type="checkbox" checked />
           </div>
 
-          <div style="margin-left: auto">
+          <!-- <div style="margin-left: auto">
             <label>Non Planifiée</label>
             <input type="checkbox" />
           </div>
@@ -131,7 +138,7 @@ export default {
           <div style="margin-left: auto">
             <label>Alpha</label>
             <input type="checkbox" />
-          </div>
+          </div> -->
         </div>
         <!-- END NATURE DE L'ACTION -->
 

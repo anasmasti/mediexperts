@@ -41181,10 +41181,7 @@ var render = function() {
                           : $$selectedVal[0]
                       },
                       function($event) {
-                        return _vm.handleAction(
-                          "FillPlanByReference",
-                          _vm.id_plan
-                        )
+                        return _vm.handleAction()
                       }
                     ]
                   }
@@ -41251,7 +41248,7 @@ var staticRenderFns = [
           _c("th", { staticStyle: { width: "30%" } }, [_vm._v("Anulation")]),
           _vm._v(" "),
           _c("th", { staticStyle: { width: "30%" }, attrs: { colspan: "2" } }, [
-            _vm._v("--")
+            _c("input", { attrs: { type: "checkbox" } })
           ])
         ]),
         _vm._v(" "),
@@ -41264,7 +41261,7 @@ var staticRenderFns = [
             _vm._v("De la date de Réalisation")
           ]),
           _vm._v(" "),
-          _c("th", [_vm._v("----")])
+          _c("th", [_c("input", { attrs: { type: "checkbox" } })])
         ]),
         _vm._v(" "),
         _c("tr", [
@@ -41272,15 +41269,15 @@ var staticRenderFns = [
             _vm._v("De l’organisme de formation")
           ]),
           _vm._v(" "),
-          _c("th", [_vm._v("----")])
+          _c("th", [_c("input", { attrs: { type: "checkbox" } })])
         ]),
         _vm._v(" "),
         _c("tr", [
           _c("th", { staticStyle: { width: "15%" } }, [
-            _vm._v("De l’organisme de formation")
+            _vm._v("De lieu de formation")
           ]),
           _vm._v(" "),
-          _c("th", [_vm._v("----")])
+          _c("th", [_c("input", { attrs: { type: "checkbox" } })])
         ]),
         _vm._v(" "),
         _c("tr", [
@@ -41288,19 +41285,13 @@ var staticRenderFns = [
             _vm._v("Organisation horaire")
           ]),
           _vm._v(" "),
-          _c("th", [_vm._v("----")])
+          _c("th", [_c("input", { attrs: { type: "checkbox" } })])
         ])
       ]),
       _vm._v(" "),
       _c("div", { staticStyle: { "padding-left": "20px" } }, [
         _c("div", { staticStyle: { "margin-top": "20px" } }, [
-          _c("strong", [_vm._v("Thème de l’action :")]),
-          _vm._v(" "),
-          _c("input", {
-            staticClass: "highlighted",
-            staticStyle: { width: "70%" },
-            attrs: { type: "text" }
-          })
+          _c("strong", [_vm._v("Thème de l’action :")])
         ]),
         _vm._v(" "),
         _c(
@@ -41309,22 +41300,10 @@ var staticRenderFns = [
           [
             _c("strong", [_vm._v("Nature de l’action :")]),
             _vm._v(" "),
-            _c("div", { staticStyle: { "margin-left": "auto" } }, [
+            _c("div", { staticStyle: { "margin-left": "100px" } }, [
               _c("label", [_vm._v("Planifiée")]),
               _vm._v(" "),
-              _c("input", { attrs: { type: "checkbox" } })
-            ]),
-            _vm._v(" "),
-            _c("div", { staticStyle: { "margin-left": "auto" } }, [
-              _c("label", [_vm._v("Non Planifiée")]),
-              _vm._v(" "),
-              _c("input", { attrs: { type: "checkbox" } })
-            ]),
-            _vm._v(" "),
-            _c("div", { staticStyle: { "margin-left": "auto" } }, [
-              _c("label", [_vm._v("Alpha")]),
-              _vm._v(" "),
-              _c("input", { attrs: { type: "checkbox" } })
+              _c("input", { attrs: { type: "checkbox", checked: "" } })
             ])
           ]
         ),
@@ -56133,6 +56112,7 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_2__["default"].Store({
     // liste contenant les références du plan
     actions_by_plan: [],
     // list des action de formations
+    // actions_by_ref: [],
     curr_annee_plan: null // année du plan actuel
 
   },
@@ -56247,7 +56227,7 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_2__["default"].Store({
       }))();
     },
     // récupérer les réferences plan à partir du client sélectionné
-    FetchPlanByReference: function FetchPlanByReference(_ref6, idPlan) {
+    FetchActionByPlan: function FetchActionByPlan(_ref6, idPlan) {
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
         var commit;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
@@ -56278,39 +56258,6 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_2__["default"].Store({
             }
           }
         }, _callee4);
-      }))();
-    },
-    FillPlanByReference: function FillPlanByReference() {
-      var _this2 = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
-          while (1) {
-            switch (_context5.prev = _context5.next) {
-              case 0:
-                _context5.next = 2;
-                return axios.get("/fill-plans-by-reference?idPlan=".concat(_this2.id_plan)).then(function (res) {
-                  _this2.actions_by_ref = res.data;
-                  console.log("actions_by_ref : ", _this2.actions_by_ref);
-                }).then(function () {
-                  // fill dates action
-                  _this2.actions_by_ref.forEach(function (action) {
-                    _this2.FillDates(action.n_form);
-                  });
-                })["catch"](function (err) {
-                  return console.error("err FillPlanByReference", err);
-                });
-
-              case 2:
-                _this2.isAllLoaded = true;
-                console.log("isAllLoaded", _this2.isAllLoaded);
-
-              case 4:
-              case "end":
-                return _context5.stop();
-            }
-          }
-        }, _callee5);
       }))();
     } // récupérer les dates de l'action actuel
     // async FetchDatesPlan({commit}, nForm) {
@@ -56347,8 +56294,8 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_2__["default"].Store({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\badre\mediexperts\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\badre\mediexperts\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\Youssef\mediexperts\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\Youssef\mediexperts\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

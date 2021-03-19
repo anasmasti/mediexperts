@@ -222,6 +222,7 @@ Route::get('/finddomaindependvilleclient', 'PlanFormationController@FindDomainDe
 Route::get('/findorganismeinterv', 'PlanFormationController@FindOrganismeInterv');
 
 Route::get('/del-pf/{nform}/{id_plan}', 'PlanFormationController@destroy')->name('PF.destroy');
+Route::get('/avis-modif','PlanFormationController@avismodif')->name('av.modification');
 /********************************************************************/
 
 
