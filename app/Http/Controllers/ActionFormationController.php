@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\{PlanFormation,Plan,Formation,Intervenant,Client,Domaine,Theme,Cabinet};
+use App\{ActionFormation,Plan,Formation,Intervenant,Client,Domaine,Theme,Cabinet};
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 
@@ -21,13 +21,13 @@ class PlanFormationController extends Controller
         $request->session()->forget(['added', 'updated']);
         $request->session()->forget(['success', 'info', 'warning', 'error']);
 
-        $plan = PlanFormation::all();
+        $plan = ActionFormation::all();
         $client = Client::all();
         $interv = Intervenant::all();
         $theme = Theme::all();
         $domain = Domaine::all();
 
-        return view('planformation.view', [
+        return view('ActionFormation.view', [
             'plan' => $plan,
             'client' => $client,
             'interv' => $interv,
@@ -36,32 +36,32 @@ class PlanFormationController extends Controller
     }
     public function searchplan(Request $request)
     {   $search_input = $request->input ( 'search_input' );
-        $plan = Plan::select('plan_formations.*')
-            ->join('plan_formations', 'plan_formations.id_plan', 'plans.id_plan')
-            ->join('intervenants', 'plan_formations.id_inv', 'intervenants.id_interv')
-            ->join('themes', 'plan_formations.id_thm', 'themes.id_theme')
+        $plan = Plan::select('action_formations.*')
+            ->join('action_formations', 'action_formations.id_plan', 'plans.id_plan')
+            ->join('intervenants', 'action_formations.id_inv', 'intervenants.id_interv')
+            ->join('themes', 'action_formations.id_thm', 'themes.id_theme')
             ->where('plans.refpdf', 'LIKE', '%'. $search_input . '%')
             ->orWhere('themes.nom_theme', 'LIKE', '%'. $search_input . '%')
-            ->orWhere('plan_formations.dt_debut', 'LIKE', '%'. $search_input . '%')
-            ->orWhere('plan_formations.dt_fin', 'LIKE', '%'. $search_input . '%')
+            ->orWhere('action_formations.dt_debut', 'LIKE', '%'. $search_input . '%')
+            ->orWhere('action_formations.dt_fin', 'LIKE', '%'. $search_input . '%')
             ->orWhere('intervenants.nom', 'LIKE', '%'. $search_input . '%')
             ->orWhere('intervenants.prenom', 'LIKE', '%'. $search_input . '%')
             ->get();
         //get client
         $client = Client::all();
         $interv = Intervenant::all();
-        return view('planformation.view', ['plan'=>$plan, 'client'=>$client, 'interv'=>$interv]);
+        return view('ActionFormation.view', ['plan'=>$plan, 'client'=>$client, 'interv'=>$interv]);
     }
 
     public function ActionFormationClient(Request $request)
     {
-        $plan = PlanFormation::select('plan_formations.*')
-        ->join('plans', 'plans.id_plan', '=', 'plan_formations.id_plan')
+        $plan = ActionFormation::select('action_formations.*')
+        ->join('plans', 'plans.id_plan', '=', 'action_formations.id_plan')
         ->join('clients', 'clients.nrc_entrp', '=', 'plans.nrc_e')
         ->where([['clients.nrc_entrp', '=', $request->nrc], ['plans.annee', '=', $request->annee]])
         ->get();
 
-        return view('planformation.view', ['plan' => $plan]);
+        return view('ActionFormation.view', ['plan' => $plan]);
     }
 
     /**
@@ -135,8 +135,8 @@ class PlanFormationController extends Controller
             $plans = Plan::all();
 
             $request->validate([
-                // 'n_form' => 'required|unique:plan_formations|max:15',
-                // 'refpdf' => 'required|unique:plan_formations|max:15',
+                // 'n_form' => 'required|unique:action_formations|max:15',
+                // 'refpdf' => 'required|unique:action_formations|max:15',
                 'id_plan' => 'required|max:15',
                 'id_inv' => 'required|max:15',
                 'id_dom' => 'required|max:15',
@@ -159,7 +159,7 @@ class PlanFormationController extends Controller
                 'etat' => 'required',
             ]);
 
-            $plan = new PlanFormation();
+            $plan = new ActionFormation();
 
             //find nom_theme
             $nom_theme = Theme::find($request->input("id_thm"))->nom_theme;
@@ -168,15 +168,15 @@ class PlanFormationController extends Controller
             // $plan->refpdf = $request->input("refpdf");
 
             // Génerer numèro d'action
-            $last_n_action = Plan::select('plan_formations.*')
-                            ->join('plan_formations', 'plan_formations.id_plan', 'plans.id_plan')
-                            ->where('plan_formations.id_plan', $request->input("id_plan"))
+            $last_n_action = Plan::select('action_formations.*')
+                            ->join('action_formations', 'action_formations.id_plan', 'plans.id_plan')
+                            ->where('action_formations.id_plan', $request->input("id_plan"))
                             ->count();
 
             $plan->n_action = "TF".($last_n_action + 1);
 
             //// chercher si l'intervenant est occupé dans les dates précisés
-            // $actionformation = PlanFormation::where('id_plan', $request->input("id_plan"))->get();
+            // $actionformation = ActionFormation::where('id_plan', $request->input("id_plan"))->get();
             // for ($i=0; $i < count($actionformation); $i++) {
             //     if ($request->input("dt_debut") >= $actionformation[$i]['dt_debut'] &&
             //         $request->input("dt_debut") <= $actionformation[$i]['dt_fin'] ||
@@ -232,13 +232,13 @@ class PlanFormationController extends Controller
             //*** UPDATE INTERVENANT ***/
             // if ($request->input("etat") != "annulé" && $request->input("etat") != "réalisé") {
                 // $interv = Intervenant::findOrFail($request->input("id_inv"));
-                // $inv_occupé = PlanFormation::select('plan_formations.*')
-                //     ->join('intervenants', 'plan_formations.id_inv', 'intervenants.id_interv')
-                //     ->whereRaw('plan_formations.id_inv = '.$request->input("id_inv"),
-                //         'plan_formations.dt_debut < '.$request->input("dt_debut"),
-                //         'plan_formations.dt_debut > '.$request->input("dt_fin"),
-                //         'plan_formations.dt_fin < '.$request->input("dt_debut"),
-                //         'plan_formations.dt_fin > '.$request->input("dt_fin")
+                // $inv_occupé = ActionFormation::select('action_formations.*')
+                //     ->join('intervenants', 'action_formations.id_inv', 'intervenants.id_interv')
+                //     ->whereRaw('action_formations.id_inv = '.$request->input("id_inv"),
+                //         'action_formations.dt_debut < '.$request->input("dt_debut"),
+                //         'action_formations.dt_debut > '.$request->input("dt_fin"),
+                //         'action_formations.dt_fin < '.$request->input("dt_debut"),
+                //         'action_formations.dt_fin > '.$request->input("dt_fin")
                 //     )->count();
                 // if ($inv_occupé == 1) {
                     // $interv->etat = "occupé 2 actions";
@@ -251,14 +251,14 @@ class PlanFormationController extends Controller
             // }
 
             $request->session()->flash('added', 'Ajouté avec succès');
-            return view('planformation.add', [
+            return view('ActionFormation.add', [
                     'plan' => $plan, 'plans' => $plans,
                     'client' => $client, 'cabinet' => $cabinet,
                     'interv' => $interv, 'domain' => $domain,
                     'theme' => $theme])->with('success');
         }
         else {
-            $plan = PlanFormation::all();
+            $plan = ActionFormation::all();
             $client = Client::all();
             $cabinet = Cabinet::all();
             $interv = Intervenant::all();
@@ -266,7 +266,7 @@ class PlanFormationController extends Controller
             $theme = Theme::all();
             $plans = Plan::all();
 
-            return view('planformation.add', [
+            return view('ActionFormation.add', [
                 'plan' => $plan, 'plans' => $plans,
                 'client' => $client, 'cabinet' => $cabinet,
                 'interv' => $interv, 'domain' => $domain,
@@ -283,21 +283,21 @@ class PlanFormationController extends Controller
     // afficher en details
     public function show(Request $request, $nform)
     {
-        $plan = PlanFormation::findOrFail($nform);
+        $plan = ActionFormation::findOrFail($nform);
 
         $plan_props = Client::select('clients.raisoci','clients.nrc_entrp','intervenants.nom','intervenants.prenom', 'plans.refpdf')
                     ->join('plans', 'clients.nrc_entrp', '=', 'plans.nrc_e')
-                    ->join('plan_formations', 'plans.id_plan', '=', 'plan_formations.id_plan')
-                    ->join('intervenants', 'intervenants.id_interv', '=', 'plan_formations.id_inv')
-                    ->where('plan_formations.n_form', '=', $nform)
+                    ->join('action_formations', 'plans.id_plan', '=', 'action_formations.id_plan')
+                    ->join('intervenants', 'intervenants.id_interv', '=', 'action_formations.id_inv')
+                    ->where('action_formations.n_form', '=', $nform)
                     ->first();
-        $module_props = PlanFormation::select('domaines.nom_domain', 'themes.nom_theme')
-                    ->join('themes', 'themes.id_theme', '=', 'plan_formations.id_thm')
+        $module_props = ActionFormation::select('domaines.nom_domain', 'themes.nom_theme')
+                    ->join('themes', 'themes.id_theme', '=', 'action_formations.id_thm')
                     ->join('domaines', 'domaines.id_domain', '=', 'themes.id_dom')
-                    ->where('plan_formations.n_form', '=' , $nform)
+                    ->where('action_formations.n_form', '=' , $nform)
                     ->first();
 
-      return view('planformation.detail',  ['plan_props' => $plan_props, 'plan' => $plan, 'module_props' => $module_props]);
+      return view('ActionFormation.detail',  ['plan_props' => $plan_props, 'plan' => $plan, 'module_props' => $module_props]);
     }
 
     /**
@@ -322,7 +322,7 @@ class PlanFormationController extends Controller
     {
         if ($request -> isMethod('POST')) {
 
-            $plan = PlanFormation::findOrFail($nform);
+            $plan = ActionFormation::findOrFail($nform);
 
             //get data from
             $client = Client::all();
@@ -332,7 +332,7 @@ class PlanFormationController extends Controller
             $theme = Theme::all();
 
             $request->validate([
-                // 'refpdf' => 'required|max:50|unique:plan_formations,refpdf,'.$plan->n_form.',n_form',
+                // 'refpdf' => 'required|max:50|unique:action_formations,refpdf,'.$plan->n_form.',n_form',
                 'id_plan' => 'required|max:15',
                 'id_inv' => 'required|max:15',
                 'id_dom' => 'required|max:15',
@@ -360,7 +360,7 @@ class PlanFormationController extends Controller
             $nom_theme = Theme::find($request->input("id_thm"))->nom_theme;
 
             //// chercher si l'intervenant est occupé dans les dates précisés
-            // $actionformation = PlanFormation::where('id_plan', $request->input("id_plan"))->get();
+            // $actionformation = ActionFormation::where('id_plan', $request->input("id_plan"))->get();
             // for ($i=0; $i < count($actionformation); $i++) {
             //     if ($request->input("dt_debut") >= $actionformation[$i]['dt_debut'] &&
             //         $request->input("dt_debut") <= $actionformation[$i]['dt_fin'] ||
@@ -424,8 +424,8 @@ class PlanFormationController extends Controller
               for ($i=$cur_nb_jour; $i < count($dates) ; $i++) {
                 $cur_date = 'formations.'.$dates[$i];
                 DB::table('formations')
-                ->join('plan_formations', 'plan_formations.n_form', 'formations.n_form')
-                ->where('plan_formations.n_form', $plan->n_form)
+                ->join('action_formations', 'action_formations.n_form', 'formations.n_form')
+                ->where('action_formations.n_form', $plan->n_form)
                 ->update([$cur_date => null]); //retirer la valeur de date
               }
               $request->session()->flash('info', 'Des dates sont supprimés lors de la diminution de nombre de jours de "plan formation"');
@@ -439,8 +439,8 @@ class PlanFormationController extends Controller
             for ($i=0; $i < count($dates) ; $i++) {
               // Récupérer le nombre de date non nulls (ex: 3 dates avec valeur / le reste est null) == 3
               $cur_date_index = 'formations.'.$dates[$i]; //ex: date1
-              $cur_date_val = PlanFormation::select('plan_formations.dt_debut', $cur_date_index)
-                ->join('formations', 'plan_formations.n_form', 'formations.n_form')
+              $cur_date_val = ActionFormation::select('action_formations.dt_debut', $cur_date_index)
+                ->join('formations', 'action_formations.n_form', 'formations.n_form')
                 ->where([['formations.n_form', $plan->n_form], ['formations.groupe', 1]])
                 ->first();
               ($cur_date_val == null) ?? $nb_empty_dates++;
@@ -449,16 +449,16 @@ class PlanFormationController extends Controller
               // $follow_date_val = null;
               // if ($plan->nb_grp == 1 && $i < 29) {
               //   $follow_date_index = 'formations.'.$dates[($i+1)];
-              //   $follow_date_val = PlanFormation::select('plan_formations.dt_debut', $follow_date_index)
-              //     ->join('formations', 'plan_formations.n_form', 'formations.n_form')
+              //   $follow_date_val = ActionFormation::select('action_formations.dt_debut', $follow_date_index)
+              //     ->join('formations', 'action_formations.n_form', 'formations.n_form')
               //     ->where([['formations.n_form', $plan->n_form], ['formations.groupe', 1]])
               //     ->first();
               // } //endif
               // // modify lastnonull date
               // if ($cur_date_val->$cur_date_index != null && $follow_date_val->$follow_date_index == null && $plan->nb_grp == 1) {
-              //     PlanFormation::select('plan_formations.dt_debut', $cur_date_index)
-              //       ->join('formations', 'plan_formations.n_form', 'formations.n_form')
-              //       ->where('plan_formations.n_form', $plan->n_form)
+              //     ActionFormation::select('action_formations.dt_debut', $cur_date_index)
+              //       ->join('formations', 'action_formations.n_form', 'formations.n_form')
+              //       ->where('action_formations.n_form', $plan->n_form)
               //       ->update([$cur_date_index => $plan->dt_fin]);
               // } //endif
             } //endfor
@@ -472,9 +472,9 @@ class PlanFormationController extends Controller
             // apporter les modification de l'"action_formation" sur "formations" s'il y a un seul groupe
             //n_form primary key plan_formation
             if ($plan->nb_grp == 1) {
-              DB::table('plan_formations')
-                ->join('formations', 'plan_formations.n_form', 'formations.n_form')
-                ->where('plan_formations.n_form', $plan->n_form)
+              DB::table('action_formations')
+                ->join('formations', 'action_formations.n_form', 'formations.n_form')
+                ->where('action_formations.n_form', $plan->n_form)
                 ->update([
                     'formations.date1' => $plan->dt_debut,
                     'formations.nb_benif' => $plan->nb_partcp_total
@@ -494,7 +494,7 @@ class PlanFormationController extends Controller
             return redirect('/detail-pf/'.$nform)->with('success');
         }
         else {
-            $plan = PlanFormation::findOrFail($nform);
+            $plan = ActionFormation::findOrFail($nform);
 
             $plans = Plan::all();
             $client = Client::all();
@@ -503,7 +503,7 @@ class PlanFormationController extends Controller
             $domain = Domaine::all();
             $theme = Theme::all();
 
-            return view('planformation.edit', [
+            return view('ActionFormation.edit', [
                 'plan' => $plan,
                 'plans' => $plans,
                 'client' => $client,
@@ -523,28 +523,28 @@ class PlanFormationController extends Controller
      */
     public function destroy(Request $request, $nform, $id_plan)
     {
-        $plan2 = PlanFormation::where('id_plan', $id_plan)->get();
+        $plan2 = ActionFormation::where('id_plan', $id_plan)->get();
 
         // sort data by dt_debut
-        $planformation = collect($plan2)->sortBy('dt_debut');
-        // \Log::info($planformation);
+        $ActionFormation = collect($plan2)->sortBy('dt_debut');
+        // \Log::info($ActionFormation);
 
-        // for ($i=0; $i < count($planformation); $i++) {
-        //     $planformation[$i]['n_action'] = "TF".($i+1);
+        // for ($i=0; $i < count($ActionFormation); $i++) {
+        //     $ActionFormation[$i]['n_action'] = "TF".($i+1);
         // }
         // // delete data
-        // PlanFormation::where('id_plan', $id_plan)->delete();
+        // ActionFormation::where('id_plan', $id_plan)->delete();
 
-        // // for ($i=0; $i < count($planformation); $i++) {
-        //     PlanFormation::insert($planformation->toArray());
+        // // for ($i=0; $i < count($ActionFormation); $i++) {
+        //     ActionFormation::insert($ActionFormation->toArray());
         // // }
 
         //*** UPDATE INTERVENANT ***/
-        DB::table('plan_formations as pf')
+        DB::table('action_formations as pf')
             ->join('intervenants as inv', 'pf.id_inv', '=', 'inv.id_interv')
             ->update(['inv.etat' => "disponible", 'inv.module' => '']);
 
-        $plan = PlanFormation::findOrFail($nform);
+        $plan = ActionFormation::findOrFail($nform);
         $plan->delete();
 
         $request->session()->flash('deleted', 'Supprimé avec succès');

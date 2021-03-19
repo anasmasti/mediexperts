@@ -9,7 +9,7 @@
   </div><!-- /.col -->
   <div class="col-sm-6">
     <ol class="breadcrumb float-sm-right">
-      <li class="breadcrumb-item"><a href="/planformation">Actions plan formation</a></li>
+      <li class="breadcrumb-item"><a href="/ActionFormation">Actions plan formation</a></li>
       <li class="breadcrumb-item active">Liste</li>
     </ol>
   </div><!-- /.col -->
@@ -58,24 +58,24 @@
         @foreach ($plan as $pf)
         <tr>
           @php
-            $id_plan = \App\PlanFormation::where('id_plan', $pf->id_plan)->first();
+            $id_plan = \App\ActionFormation::where('id_plan', $pf->id_plan)->first();
           @endphp
 
           @php $nom_interv = \App\Intervenant::select('intervenants.nom', 'intervenants.prenom')
-              ->join('plan_formations', 'plan_formations.id_inv', 'intervenants.id_interv')
-              ->where('plan_formations.n_form', $pf->n_form)
+              ->join('action_formations', 'action_formations.id_inv', 'intervenants.id_interv')
+              ->where('action_formations.n_form', $pf->n_form)
               ->first();
           @endphp
 
-          @php $nom_theme = \App\PlanFormation::select('themes.nom_theme')
-              ->join('themes', 'plan_formations.id_thm', 'themes.id_theme')
-              ->where('plan_formations.n_form', $pf->n_form)
+          @php $nom_theme = \App\ActionFormation::select('themes.nom_theme')
+              ->join('themes', 'action_formations.id_thm', 'themes.id_theme')
+              ->where('action_formations.n_form', $pf->n_form)
               ->first();
           @endphp
 
-          @php $refpdf = \App\PlanFormation::select('plans.refpdf')
-              ->join('plans', 'plan_formations.id_plan', 'plans.id_plan')
-              ->where('plan_formations.n_form', $pf->n_form)
+          @php $refpdf = \App\ActionFormation::select('plans.refpdf')
+              ->join('plans', 'action_formations.id_plan', 'plans.id_plan')
+              ->where('action_formations.n_form', $pf->n_form)
               ->first();
           @endphp
 

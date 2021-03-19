@@ -56,14 +56,14 @@
         <tr>
 
           @php
-            $pdf = App\PlanFormation::select('themes.nom_theme', 'plan_formations.n_action')
-            ->join('themes', 'plan_formations.id_thm', 'themes.id_theme')
-            ->join('formations', 'plan_formations.n_form', 'formations.n_form')
+            $pdf = App\ActionFormation::select('themes.nom_theme', 'action_formations.n_action')
+            ->join('themes', 'action_formations.id_thm', 'themes.id_theme')
+            ->join('formations', 'action_formations.n_form', 'formations.n_form')
             ->where('formations.id_form', $fm->id_form)
             ->first();
             $reference = App\Plan::select('plans.refpdf')
-            ->join('plan_formations', 'plans.id_plan', 'plan_formations.id_plan')
-            ->join('formations', 'plan_formations.n_form', 'formations.n_form')
+            ->join('action_formations', 'plans.id_plan', 'action_formations.id_plan')
+            ->join('formations', 'action_formations.n_form', 'formations.n_form')
             ->where('formations.id_form', $fm->id_form)
             ->first();
           @endphp

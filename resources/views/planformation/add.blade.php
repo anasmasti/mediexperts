@@ -9,7 +9,7 @@
   </div><!-- /.col -->
   <div class="col-sm-6">
     <ol class="breadcrumb float-sm-right">
-      <li class="breadcrumb-item"><a href="/planformation">Action plan formation</a></li>
+      <li class="breadcrumb-item"><a href="/ActionFormation">Action plan formation</a></li>
       <li class="breadcrumb-item active">Ajout</li>
     </ol>
   </div><!-- /.col -->
@@ -386,7 +386,7 @@
     @if (count($client) != 0 && $nbIntervAvailable >= 1)
       <button class="btn bu-add" type="submit" id="add"><i class="fas fa-plus-circle"></i> Ajouter</button>
     @endif
-    <a class="btn bu-danger" href="/planformation"><i class="fas fa-window-close"></i> Annuler</a>
+    <a class="btn bu-danger" href="/ActionFormation"><i class="fas fa-window-close"></i> Annuler</a>
   </div>
 
   </form>

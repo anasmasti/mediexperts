@@ -137,9 +137,9 @@
       <td>
         {{ $formation["nom_theme"] }} <br />
         @php
-          $action = \App\PlanFormation::select('plan_formations.nb_grp')
-            ->join('formations', 'plan_formations.n_form', 'formations.n_form')
-            ->where('plan_formations.n_form', $formation["n_form"])
+          $action = \App\ActionFormation::select('action_formations.nb_grp')
+            ->join('formations', 'action_formations.n_form', 'formations.n_form')
+            ->where('action_formations.n_form', $formation["n_form"])
             ->first();
         @endphp
         @if ($action["nb_grp"] > 1)

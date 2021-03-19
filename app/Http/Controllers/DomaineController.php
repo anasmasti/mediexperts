@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\{Domaine, PlanFormation, Theme};
+use App\{Domaine, ActionFormation, Theme};
 use Alert;
 use DB;
 
@@ -129,15 +129,15 @@ class DomaineController extends Controller
             $request->session()->flash('updated', 'Modifié avec succès');
 
             // vérifier si une action prend déjà un id domaine
-            $plan_formation = PlanFormation::where('id_dom', $id_domain)->get();
+            $plan_formation = ActionFormation::where('id_dom', $id_domain)->get();
             if ($plan_formation) {
                 foreach ($plan_formation as $pf) {
                     // vérifier si le cout domaine != budget par jour
-                    // + si oui on va modifier budget par jour dans 'plan_formations'
+                    // + si oui on va modifier budget par jour dans 'action_formations'
                     if ($pf->bdg_jour != $domain->cout) {
                         // récupérer le nombre de jours pour calculer le 'budget total'
-                        $nb_jour = PlanFormation::select("nb_jour")->where('n_form', $pf->n_form)->first();
-                        $plan = PlanFormation::findOrFail($pf->n_form);
+                        $nb_jour = ActionFormation::select("nb_jour")->where('n_form', $pf->n_form)->first();
+                        $plan = ActionFormation::findOrFail($pf->n_form);
                         $plan->bdg_jour = $domain->cout;
                         $plan->bdg_total = $domain->cout * $nb_jour["nb_jour"];
                         $plan->save();

@@ -66,7 +66,7 @@ class CreateFormationsTable extends Migration
 
             $table->foreign('n_form')
             ->references('n_form')
-            ->on('plan_formations')
+            ->on('action_formations')
             ->onUpdate('cascade')
             ->onDelete('cascade');
             $table->timestamps();

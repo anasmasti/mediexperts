@@ -1958,6 +1958,223 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ActionFormation.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ActionFormation.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _PrintButton_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PrintButton.vue */ "./resources/js/components/PrintButton.vue");
+
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
+
+/* harmony default export */ __webpack_exports__["default"] = (_defineProperty({
+  components: {
+    'print-button': _PrintButton_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
+  runtimeCompiler: true,
+  name: 'plan-formation',
+  data: function data() {
+    return {
+      clients: [],
+      curr_client: null,
+      curr_annee: null,
+      coutTotalPlan: 0,
+      nrc_entrp: undefined,
+      id_plan: undefined,
+      reference_plan: [],
+      actions_by_ref: [],
+      plan_formation: [],
+      dates_actions: [],
+      current_dates: null,
+      isAllLoaded: false
+    };
+  },
+  //une fois le composant est monté
+  mounted: function mounted() {
+    this.FillClients();
+  },
+  computed: {},
+  methods: {
+    DateFormat: function DateFormat(date) {
+      if (date) {
+        var datestring = date.replace(/[^\w\s]/gi, '');
+        var year = datestring.charAt(0) + datestring.charAt(1) + datestring.charAt(2) + datestring.charAt(3);
+        var month = datestring.charAt(4) + datestring.charAt(5);
+        var day = datestring.charAt(6) + datestring.charAt(7);
+        return day + '/' + month + '/' + year;
+      } else {// console.error("date is", date)
+      }
+    },
+    //async 
+    FillClients: function FillClients() {
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _this.coutTotalPlan = 0;
+                _context.next = 3;
+                return axios.get('/fill-clients').then(function (res) {
+                  _this.clients = res.data; // console.log("clients : ", this.clients)
+                })["catch"](function (err) {
+                  return console.error("err FillClients", err);
+                });
+
+              case 3:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
+    },
+    FillReferencesPlan: function FillReferencesPlan() {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                console.log('nrc_entrp', _this2.nrc_entrp);
+                _context2.next = 3;
+                return axios.get("/fill-reference-plan?nrcEntrp=".concat(_this2.nrc_entrp)).then(function (res) {
+                  _this2.reference_plan = res.data;
+                  _this2.curr_client = res.data[0].raisoci;
+                  console.log("reference_plan : ", _this2.reference_plan);
+                })["catch"](function (err) {
+                  return console.log("err FillReferencesPlan", err);
+                });
+
+              case 3:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
+    },
+    FillPlanByReference: function FillPlanByReference() {
+      var _this3 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _context3.next = 2;
+                return axios.get("/fill-plans-by-reference?idPlan=".concat(_this3.id_plan)).then(function (res) {
+                  _this3.actions_by_ref = res.data;
+                  _this3.curr_annee = res.data[0].annee;
+                  console.log("actions_by_ref : ", _this3.actions_by_ref);
+                }).then(function () {
+                  // fill dates action
+                  _this3.actions_by_ref.forEach(function (action) {
+                    // calculer le cout estimatif
+                    _this3.coutTotalPlan += action.bdg_total * action.nb_grp;
+
+                    _this3.FillDates(action.n_form);
+                  });
+                })["catch"](function (err) {
+                  return console.error("err FillPlanByReference", err);
+                });
+
+              case 2:
+                _this3.isAllLoaded = true;
+                console.log("isallloaded", _this3.isAllLoaded);
+
+              case 4:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
+      }))();
+    },
+    FillDates: function FillDates(nform) {
+      var _this4 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                _context4.next = 2;
+                return axios.get("/fill-dates-plan?nForm=".concat(nform)).then(function (res) {
+                  _this4.dates_actions = res.data;
+                }).then(function () {
+                  _this4.AssignDates(nform);
+                })["catch"](function (err) {
+                  return console.error("err FillDates", err);
+                });
+
+              case 2:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4);
+      }))();
+    },
+    AssignDates: function AssignDates(nform) {
+      var _this5 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
+          while (1) {
+            switch (_context5.prev = _context5.next) {
+              case 0:
+                _context5.next = 2;
+                return _this5.actions_by_ref.forEach(function (action) {
+                  if (action.n_form == nform) {
+                    _this5.dates_actions.forEach(function (forma) {
+                      if (forma.n_form == nform) {
+                        Object.assign(action, {
+                          dates: {}
+                        });
+
+                        for (var i = 1; i < 30; i++) {
+                          //************************ vvv [dynamic key assignement] vvv */
+                          Object.assign(action.dates, _defineProperty({}, "date".concat(i), forma["date".concat(i)]));
+                        }
+                      }
+
+                      console.log("assign dates action: ", action);
+                    });
+                  }
+                });
+
+              case 2:
+              case "end":
+                return _context5.stop();
+            }
+          }
+        }, _callee5);
+      }))();
+    },
+    ResetCoutTotalPlan: function ResetCoutTotalPlan() {
+      this.coutTotalPlan = 0;
+    }
+  }
+}, "computed", {}));
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/AttReferencePlan.vue?vue&type=script&lang=js&":
 /*!***************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/AttReferencePlan.vue?vue&type=script&lang=js& ***!
@@ -2688,6 +2905,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _PrintButton_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PrintButton.vue */ "./resources/js/components/PrintButton.vue");
 /* harmony import */ var _store_store__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../store/store */ "./resources/js/store/store.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2697,6 +2916,8 @@ __webpack_require__.r(__webpack_exports__);
   runtimeCompiler: true,
   data: function data() {
     return {
+      nForm: null,
+      nCabinet: null,
       id_plan: null,
       selected_nrc_entrp: null
     };
@@ -2719,7 +2940,13 @@ __webpack_require__.r(__webpack_exports__);
     },
     curr_annee_plan: function curr_annee_plan() {
       return _store_store__WEBPACK_IMPORTED_MODULE_1__["store"].state.curr_annee_plan;
-    }
+    },
+    cabinets: function cabinets() {
+      return _store_store__WEBPACK_IMPORTED_MODULE_1__["store"].state.cabinets;
+    } // ...mapState({
+    //   cabinets:state => state.cabinets,
+    // })
+
   },
   methods: {
     handleAction: function handleAction(actionName, value) {
@@ -2727,223 +2954,6 @@ __webpack_require__.r(__webpack_exports__);
     }
   }
 });
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/PlanFormation.vue?vue&type=script&lang=js&":
-/*!************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/PlanFormation.vue?vue&type=script&lang=js& ***!
-  \************************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _PrintButton_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PrintButton.vue */ "./resources/js/components/PrintButton.vue");
-
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
-//
-
-/* harmony default export */ __webpack_exports__["default"] = (_defineProperty({
-  components: {
-    'print-button': _PrintButton_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
-  },
-  runtimeCompiler: true,
-  name: 'plan-formation',
-  data: function data() {
-    return {
-      clients: [],
-      curr_client: null,
-      curr_annee: null,
-      coutTotalPlan: 0,
-      nrc_entrp: undefined,
-      id_plan: undefined,
-      reference_plan: [],
-      actions_by_ref: [],
-      plan_formation: [],
-      dates_actions: [],
-      current_dates: null,
-      isAllLoaded: false
-    };
-  },
-  //une fois le composant est monté
-  mounted: function mounted() {
-    this.FillClients();
-  },
-  computed: {},
-  methods: {
-    DateFormat: function DateFormat(date) {
-      if (date) {
-        var datestring = date.replace(/[^\w\s]/gi, '');
-        var year = datestring.charAt(0) + datestring.charAt(1) + datestring.charAt(2) + datestring.charAt(3);
-        var month = datestring.charAt(4) + datestring.charAt(5);
-        var day = datestring.charAt(6) + datestring.charAt(7);
-        return day + '/' + month + '/' + year;
-      } else {// console.error("date is", date)
-      }
-    },
-    //async 
-    FillClients: function FillClients() {
-      var _this = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                _this.coutTotalPlan = 0;
-                _context.next = 3;
-                return axios.get('/fill-clients').then(function (res) {
-                  _this.clients = res.data; // console.log("clients : ", this.clients)
-                })["catch"](function (err) {
-                  return console.error("err FillClients", err);
-                });
-
-              case 3:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee);
-      }))();
-    },
-    FillReferencesPlan: function FillReferencesPlan() {
-      var _this2 = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
-          while (1) {
-            switch (_context2.prev = _context2.next) {
-              case 0:
-                console.log('nrc_entrp', _this2.nrc_entrp);
-                _context2.next = 3;
-                return axios.get("/fill-reference-plan?nrcEntrp=".concat(_this2.nrc_entrp)).then(function (res) {
-                  _this2.reference_plan = res.data;
-                  _this2.curr_client = res.data[0].raisoci;
-                  console.log("reference_plan : ", _this2.reference_plan);
-                })["catch"](function (err) {
-                  return console.log("err FillReferencesPlan", err);
-                });
-
-              case 3:
-              case "end":
-                return _context2.stop();
-            }
-          }
-        }, _callee2);
-      }))();
-    },
-    FillPlanByReference: function FillPlanByReference() {
-      var _this3 = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
-          while (1) {
-            switch (_context3.prev = _context3.next) {
-              case 0:
-                _context3.next = 2;
-                return axios.get("/fill-plans-by-reference?idPlan=".concat(_this3.id_plan)).then(function (res) {
-                  _this3.actions_by_ref = res.data;
-                  _this3.curr_annee = res.data[0].annee;
-                  console.log("actions_by_ref : ", _this3.actions_by_ref);
-                }).then(function () {
-                  // fill dates action
-                  _this3.actions_by_ref.forEach(function (action) {
-                    // calculer le cout estimatif
-                    _this3.coutTotalPlan += action.bdg_total * action.nb_grp;
-
-                    _this3.FillDates(action.n_form);
-                  });
-                })["catch"](function (err) {
-                  return console.error("err FillPlanByReference", err);
-                });
-
-              case 2:
-                _this3.isAllLoaded = true;
-                console.log("isallloaded", _this3.isAllLoaded);
-
-              case 4:
-              case "end":
-                return _context3.stop();
-            }
-          }
-        }, _callee3);
-      }))();
-    },
-    FillDates: function FillDates(nform) {
-      var _this4 = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
-          while (1) {
-            switch (_context4.prev = _context4.next) {
-              case 0:
-                _context4.next = 2;
-                return axios.get("/fill-dates-plan?nForm=".concat(nform)).then(function (res) {
-                  _this4.dates_actions = res.data;
-                }).then(function () {
-                  _this4.AssignDates(nform);
-                })["catch"](function (err) {
-                  return console.error("err FillDates", err);
-                });
-
-              case 2:
-              case "end":
-                return _context4.stop();
-            }
-          }
-        }, _callee4);
-      }))();
-    },
-    AssignDates: function AssignDates(nform) {
-      var _this5 = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
-          while (1) {
-            switch (_context5.prev = _context5.next) {
-              case 0:
-                _context5.next = 2;
-                return _this5.actions_by_ref.forEach(function (action) {
-                  if (action.n_form == nform) {
-                    _this5.dates_actions.forEach(function (forma) {
-                      if (forma.n_form == nform) {
-                        Object.assign(action, {
-                          dates: {}
-                        });
-
-                        for (var i = 1; i < 30; i++) {
-                          //************************ vvv [dynamic key assignement] vvv */
-                          Object.assign(action.dates, _defineProperty({}, "date".concat(i), forma["date".concat(i)]));
-                        }
-                      }
-
-                      console.log("assign dates action: ", action);
-                    });
-                  }
-                });
-
-              case 2:
-              case "end":
-                return _context5.stop();
-            }
-          }
-        }, _callee5);
-      }))();
-    },
-    ResetCoutTotalPlan: function ResetCoutTotalPlan() {
-      this.coutTotalPlan = 0;
-    }
-  }
-}, "computed", {}));
 
 /***/ }),
 
@@ -39252,6 +39262,554 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ActionFormation.vue?vue&type=template&id=4ba5ce00&":
+/*!******************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ActionFormation.vue?vue&type=template&id=4ba5ce00& ***!
+  \******************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "plan-formation" }, [
+    _c(
+      "div",
+      { staticClass: "hide-from-print" },
+      [
+        _c("print-button", { attrs: { backLink: "/" } }),
+        _vm._v(" "),
+        _c("div", { staticStyle: { width: "100%" } }, [
+          _c("label", { attrs: { for: "client" } }, [_vm._v("Entreprise :")]),
+          _vm._v(" "),
+          _c(
+            "select",
+            {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.nrc_entrp,
+                  expression: "nrc_entrp"
+                }
+              ],
+              staticStyle: {
+                width: "100%",
+                padding: ".5rem",
+                border: "1px solid #000"
+              },
+              attrs: { name: "client", id: "client" },
+              on: {
+                change: [
+                  function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.nrc_entrp = $event.target.multiple
+                      ? $$selectedVal
+                      : $$selectedVal[0]
+                  },
+                  function($event) {
+                    return _vm.FillReferencesPlan()
+                  }
+                ]
+              }
+            },
+            [
+              _c("option", { attrs: { selected: "", disabled: "" } }, [
+                _vm._v("--sélectionner l'Entreprise ..")
+              ]),
+              _vm._v(" "),
+              _vm._l(_vm.clients, function(cl) {
+                return _c(
+                  "option",
+                  { key: cl.nrc_entrp, domProps: { value: cl.nrc_entrp } },
+                  [_vm._v(_vm._s(cl.raisoci))]
+                )
+              })
+            ],
+            2
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticStyle: { width: "100%" } }, [
+          _c("label", { attrs: { for: "plans" } }, [
+            _vm._v("Réference plan de formation :")
+          ]),
+          _vm._v(" "),
+          _vm.reference_plan && _vm.reference_plan.length
+            ? _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.id_plan,
+                      expression: "id_plan"
+                    }
+                  ],
+                  staticStyle: {
+                    width: "100%",
+                    padding: ".5rem",
+                    border: "1px solid #000"
+                  },
+                  attrs: { name: "plans", id: "plans" },
+                  on: {
+                    change: [
+                      function($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function(o) {
+                            return o.selected
+                          })
+                          .map(function(o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.id_plan = $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      },
+                      function($event) {
+                        _vm.FillPlanByReference()
+                        _vm.ResetCoutTotalPlan()
+                      }
+                    ]
+                  }
+                },
+                [
+                  _c("option", { attrs: { selected: "", disabled: "" } }, [
+                    _vm._v("-- sélectionner le plan")
+                  ]),
+                  _vm._v(" "),
+                  _vm._l(_vm.reference_plan, function(pdf) {
+                    return _c(
+                      "option",
+                      { key: pdf.id_plan, domProps: { value: pdf.id_plan } },
+                      [_vm._v(_vm._s(pdf.refpdf))]
+                    )
+                  })
+                ],
+                2
+              )
+            : _c(
+                "select",
+                {
+                  staticStyle: {
+                    width: "100%",
+                    padding: ".5rem",
+                    border: "1px solid #000"
+                  },
+                  attrs: { name: "plans", id: "plans" }
+                },
+                [_c("option", [_vm._v("(vide)")])]
+              )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "btn-group" }, [
+          _c(
+            "button",
+            {
+              staticClass: "btn-btn-primary",
+              staticStyle: {
+                background: "#00ff11",
+                margin: ".5rem 0",
+                padding: ".5rem"
+              },
+              attrs: { id: "dateBtn" },
+              on: {
+                click: function($event) {
+                  return _vm.FillReferencesPlan()
+                }
+              }
+            },
+            [_vm._v("\n        Remplir les dates\n      ")]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticStyle: { width: "100%", height: "50px" } })
+      ],
+      1
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticStyle: {
+          padding: ".5rem",
+          "font-family": "Calibri, 'Segoe UI', Geneva, Verdana, sans-serif",
+          "background-color": "#fff",
+          "font-size": "13px"
+        }
+      },
+      [
+        _c("div", {
+          staticClass: "hide-from-print",
+          staticStyle: { width: "100%", height: "10px" }
+        }),
+        _vm._v(" "),
+        _c("table", [
+          _vm._m(0),
+          _vm._v(" "),
+          _vm.actions_by_ref
+            ? _c(
+                "tbody",
+                { staticClass: "center", attrs: { id: "tableActions" } },
+                [
+                  _vm._l(_vm.actions_by_ref, function(action, idx) {
+                    return _c("tr", { key: "plan" + idx }, [
+                      _c("td", [_vm._v(_vm._s(action.n_action))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(action.nom_domain))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(action.nom_theme))]),
+                      _vm._v(" "),
+                      _c("td", { attrs: { id: action.n_form } }, [
+                        _vm._v(
+                          "\n            " +
+                            _vm._s(
+                              (action.dates &&
+                                _vm.DateFormat(action.dates.date1)) ||
+                                ""
+                            ) +
+                            "\n            " +
+                            _vm._s(
+                              (action.dates &&
+                                _vm.DateFormat(action.dates.date2)) ||
+                                ""
+                            ) +
+                            "\n            " +
+                            _vm._s(
+                              (action.dates &&
+                                _vm.DateFormat(action.dates.date3)) ||
+                                ""
+                            ) +
+                            "\n            " +
+                            _vm._s(
+                              (action.dates &&
+                                _vm.DateFormat(action.dates.date4)) ||
+                                ""
+                            ) +
+                            "\n            " +
+                            _vm._s(
+                              (action.dates &&
+                                _vm.DateFormat(action.dates.date5)) ||
+                                ""
+                            ) +
+                            "\n            " +
+                            _vm._s(
+                              (action.dates &&
+                                _vm.DateFormat(action.dates.date6)) ||
+                                ""
+                            ) +
+                            "\n            " +
+                            _vm._s(
+                              (action.dates &&
+                                _vm.DateFormat(action.dates.date7)) ||
+                                ""
+                            ) +
+                            "\n            " +
+                            _vm._s(
+                              (action.dates &&
+                                _vm.DateFormat(action.dates.date8)) ||
+                                ""
+                            ) +
+                            "\n            " +
+                            _vm._s(
+                              (action.dates &&
+                                _vm.DateFormat(action.dates.date9)) ||
+                                ""
+                            ) +
+                            "\n            " +
+                            _vm._s(
+                              (action.dates &&
+                                _vm.DateFormat(action.dates.date10)) ||
+                                ""
+                            ) +
+                            "\n            " +
+                            _vm._s(
+                              (action.dates &&
+                                _vm.DateFormat(action.dates.date11)) ||
+                                ""
+                            ) +
+                            "\n            " +
+                            _vm._s(
+                              (action.dates &&
+                                _vm.DateFormat(action.dates.date12)) ||
+                                ""
+                            ) +
+                            "\n            " +
+                            _vm._s(
+                              (action.dates &&
+                                _vm.DateFormat(action.dates.date13)) ||
+                                ""
+                            ) +
+                            "\n            " +
+                            _vm._s(
+                              (action.dates &&
+                                _vm.DateFormat(action.dates.date14)) ||
+                                ""
+                            ) +
+                            "\n            " +
+                            _vm._s(
+                              (action.dates &&
+                                _vm.DateFormat(action.dates.date15)) ||
+                                ""
+                            ) +
+                            "\n            " +
+                            _vm._s(
+                              (action.dates &&
+                                _vm.DateFormat(action.dates.date16)) ||
+                                ""
+                            ) +
+                            "\n            " +
+                            _vm._s(
+                              (action.dates &&
+                                _vm.DateFormat(action.dates.date17)) ||
+                                ""
+                            ) +
+                            "\n            " +
+                            _vm._s(
+                              (action.dates &&
+                                _vm.DateFormat(action.dates.date18)) ||
+                                ""
+                            ) +
+                            "\n            " +
+                            _vm._s(
+                              (action.dates &&
+                                _vm.DateFormat(action.dates.date19)) ||
+                                ""
+                            ) +
+                            "\n            " +
+                            _vm._s(
+                              (action.dates &&
+                                _vm.DateFormat(action.dates.date20)) ||
+                                ""
+                            ) +
+                            "\n            " +
+                            _vm._s(
+                              (action.dates &&
+                                _vm.DateFormat(action.dates.date21)) ||
+                                ""
+                            ) +
+                            "\n            " +
+                            _vm._s(
+                              (action.dates &&
+                                _vm.DateFormat(action.dates.date22)) ||
+                                ""
+                            ) +
+                            "\n            " +
+                            _vm._s(
+                              (action.dates &&
+                                _vm.DateFormat(action.dates.date23)) ||
+                                ""
+                            ) +
+                            "\n            " +
+                            _vm._s(
+                              (action.dates &&
+                                _vm.DateFormat(action.dates.date24)) ||
+                                ""
+                            ) +
+                            "\n            " +
+                            _vm._s(
+                              (action.dates &&
+                                _vm.DateFormat(action.dates.date25)) ||
+                                ""
+                            ) +
+                            "\n            " +
+                            _vm._s(
+                              (action.dates &&
+                                _vm.DateFormat(action.dates.date26)) ||
+                                ""
+                            ) +
+                            "\n            " +
+                            _vm._s(
+                              (action.dates &&
+                                _vm.DateFormat(action.dates.date27)) ||
+                                ""
+                            ) +
+                            "\n            " +
+                            _vm._s(
+                              (action.dates &&
+                                _vm.DateFormat(action.dates.date28)) ||
+                                ""
+                            ) +
+                            "\n            " +
+                            _vm._s(
+                              (action.dates &&
+                                _vm.DateFormat(action.dates.date29)) ||
+                                ""
+                            ) +
+                            "\n            " +
+                            _vm._s(
+                              (action.dates &&
+                                _vm.DateFormat(action.dates.date30)) ||
+                                ""
+                            ) +
+                            "\n          "
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(action.organisme))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(action.ncnss_cab))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(action.nb_partcp_total))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(action.nb_cadre))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(action.nb_employe))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(action.nb_ouvrier))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(action.nb_jour))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(action.lieu))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(action.nb_grp))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(action.bdg_jour))]),
+                      _vm._v(" "),
+                      _c("td", [
+                        _vm._v(_vm._s(action.bdg_total * action.nb_grp))
+                      ])
+                    ])
+                  }),
+                  _vm._v(" "),
+                  _c("tr", [
+                    _c("td"),
+                    _vm._v(" "),
+                    _c("td"),
+                    _vm._v(" "),
+                    _c("td"),
+                    _vm._v(" "),
+                    _c("td"),
+                    _vm._v(" "),
+                    _c("td"),
+                    _vm._v(" "),
+                    _c("td"),
+                    _vm._v(" "),
+                    _c("td"),
+                    _vm._v(" "),
+                    _c("td"),
+                    _vm._v(" "),
+                    _c("td"),
+                    _vm._v(" "),
+                    _c("td"),
+                    _vm._v(" "),
+                    _c("td"),
+                    _vm._v(" "),
+                    _c("td"),
+                    _vm._v(" "),
+                    _c("td"),
+                    _vm._v(" "),
+                    _c("td"),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c("strong", [
+                        _vm._v(
+                          "\n              " +
+                            _vm._s("Total " + _vm.coutTotalPlan) +
+                            "\n            "
+                        )
+                      ])
+                    ])
+                  ])
+                ],
+                2
+              )
+            : _vm._e()
+        ])
+      ]
+    )
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("td", { staticClass: "td", staticStyle: { width: "3%" } }, [
+          _vm._v("N° Action")
+        ]),
+        _vm._v(" "),
+        _c("td", { staticClass: "td", staticStyle: { width: "10%" } }, [
+          _vm._v("Domaine")
+        ]),
+        _vm._v(" "),
+        _c("td", { staticClass: "td", staticStyle: { width: "10%" } }, [
+          _vm._v("Thème")
+        ]),
+        _vm._v(" "),
+        _c("td", { staticClass: "td", staticStyle: { width: "5%" } }, [
+          _vm._v("Dates de réalisation")
+        ]),
+        _vm._v(" "),
+        _c("td", { staticClass: "td", staticStyle: { width: "5%" } }, [
+          _vm._v("Organisme de formation")
+        ]),
+        _vm._v(" "),
+        _c("td", { staticClass: "td", staticStyle: { width: "5%" } }, [
+          _vm._v("N° CNSS de l'organisme")
+        ]),
+        _vm._v(" "),
+        _c("td", { staticClass: "td", staticStyle: { width: "3%" } }, [
+          _vm._v("Effectif")
+        ]),
+        _vm._v(" "),
+        _c("td", { staticClass: "td", staticStyle: { width: "3%" } }, [
+          _vm._v("Cadres")
+        ]),
+        _vm._v(" "),
+        _c("td", { staticClass: "td", staticStyle: { width: "3%" } }, [
+          _vm._v("Employés")
+        ]),
+        _vm._v(" "),
+        _c("td", { staticClass: "td", staticStyle: { width: "3%" } }, [
+          _vm._v("Ouvriers")
+        ]),
+        _vm._v(" "),
+        _c("td", { staticClass: "td", staticStyle: { width: "3%" } }, [
+          _vm._v("Durée par groupe")
+        ]),
+        _vm._v(" "),
+        _c("td", { staticClass: "td", staticStyle: { width: "10%" } }, [
+          _vm._v("Lieu de formation")
+        ]),
+        _vm._v(" "),
+        _c("td", { staticClass: "td", staticStyle: { width: "3%" } }, [
+          _vm._v("Nbre de groupe")
+        ]),
+        _vm._v(" "),
+        _c("td", { staticClass: "td", staticStyle: { width: "4%" } }, [
+          _vm._v("Coût unitaire (DH)")
+        ]),
+        _vm._v(" "),
+        _c("td", { staticClass: "td", staticStyle: { width: "4%" } }, [
+          _vm._v("Coût estimatif (DH)")
+        ])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/AttReferencePlan.vue?vue&type=template&id=a8247644&":
 /*!*******************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/AttReferencePlan.vue?vue&type=template&id=a8247644& ***!
@@ -41182,7 +41740,7 @@ var render = function() {
                       },
                       function($event) {
                         return _vm.handleAction(
-                          "FillPlanByReference",
+                          "FetchActionByReference",
                           _vm.id_plan
                         )
                       }
@@ -41214,12 +41772,167 @@ var render = function() {
                   },
                   attrs: { name: "plans", id: "plans" }
                 },
-                [_c("option", [_vm._v("(vide)")])]
+                [_c("option")]
               )
         ])
       ]),
       _vm._v(" "),
-      _vm._m(0)
+      _c("div", { staticClass: "paper" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _vm._m(1),
+        _vm._v(" "),
+        _c("div", { staticStyle: { "padding-left": "20px" } }, [
+          _c("div", { staticStyle: { "margin-top": "20px" } }, [
+            _c("strong", [_vm._v("Thème de l’action :")]),
+            _vm._v(" "),
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.nCabinet,
+                    expression: "nCabinet"
+                  }
+                ],
+                staticClass: "highlighted",
+                staticStyle: {
+                  width: "50%",
+                  padding: ".3rem",
+                  border: "1px solid #000"
+                },
+                attrs: { name: "actions", id: "actions" },
+                on: {
+                  change: [
+                    function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.nCabinet = $event.target.multiple
+                        ? $$selectedVal
+                        : $$selectedVal[0]
+                    },
+                    function($event) {
+                      return _vm.handleAction("FetchAllCabinets", _vm.nCabinet)
+                    }
+                  ]
+                }
+              },
+              [
+                _c("option", { attrs: { selected: "", disabled: "" } }, [
+                  _vm._v("-- Selectionner une action")
+                ]),
+                _vm._v(" "),
+                _vm._l(_vm.actions_by_plan, function(action) {
+                  return _c(
+                    "option",
+                    { key: action.nForm, domProps: { value: action.nForm } },
+                    [_vm._v(_vm._s(action.nom_theme))]
+                  )
+                }),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "" } })
+              ],
+              2
+            )
+          ]),
+          _vm._v(" "),
+          _vm._m(2),
+          _vm._v(" "),
+          _vm._m(3),
+          _vm._v(" "),
+          _vm._m(4),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "d-flex", staticStyle: { "margin-top": "10px" } },
+            [
+              _c("span", [_vm._v("Nouvel Organisme de formation : ")]),
+              _vm._v(" "),
+              _c(
+                "select",
+                {
+                  staticClass: "select highlighted",
+                  staticStyle: { width: "fit-content", "font-size": "16px" }
+                },
+                [
+                  _c("option", { attrs: { selected: "", disabled: "" } }, [
+                    _vm._v("--select organisme")
+                  ]),
+                  _vm._v(" "),
+                  _vm._l(_vm.cabinets, function(cabinet) {
+                    return _c(
+                      "option",
+                      {
+                        key: cabinet.nCabinet,
+                        domProps: { value: cabinet.nCabinet }
+                      },
+                      [_vm._v(_vm._s(cabinet.raisoci))]
+                    )
+                  })
+                ],
+                2
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _vm._m(5),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "d-flex", staticStyle: { "margin-top": "10px" } },
+            [
+              _c("span", [_vm._v("Nouveau lieu : ")]),
+              _vm._v(" "),
+              _c(
+                "select",
+                {
+                  staticClass: "highlighted",
+                  staticStyle: {
+                    width: "35%",
+                    padding: ".3rem",
+                    border: "1px solid #000"
+                  },
+                  attrs: { name: "lieu", id: "lieu" }
+                },
+                [
+                  _c("option", { attrs: { selected: "", disabled: "" } }, [
+                    _vm._v("--sélectionner l'Entreprise ..")
+                  ]),
+                  _vm._v(" "),
+                  _vm._l(_vm.clients, function(cl) {
+                    return _c(
+                      "option",
+                      { key: cl.nrc_entrp, domProps: { value: cl.nrc_entrp } },
+                      [_vm._v(_vm._s(cl.raisoci))]
+                    )
+                  })
+                ],
+                2
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _vm._m(6),
+          _vm._v(" "),
+          _vm._m(7),
+          _vm._v(" "),
+          _vm._m(8),
+          _vm._v(" "),
+          _vm._m(9),
+          _vm._v(" "),
+          _vm._m(10),
+          _vm._v(" "),
+          _vm._m(11)
+        ])
+      ])
     ],
     1
   )
@@ -41229,872 +41942,305 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "paper" }, [
-      _c("div", { staticClass: "text-center" }, [
-        _c("h2", [_vm._v("Modèle 3")]),
-        _vm._v(" "),
-        _c("h4", { staticClass: "uppercase" }, [
-          _vm._v("MODELE D’AVIS D’ANNULATION OU DE MODIFICATION")
-        ]),
-        _vm._v(" "),
-        _c("p", { staticClass: "text-italic" }, [
-          _vm._v("(Sur papier a entête de l’entreprise)")
-        ])
+    return _c("div", { staticClass: "text-center" }, [
+      _c("h2", [_vm._v("Modèle 3")]),
+      _vm._v(" "),
+      _c("h4", { staticClass: "uppercase" }, [
+        _vm._v("MODELE D’AVIS D’ANNULATION OU DE MODIFICATION")
       ]),
       _vm._v(" "),
-      _c("table", { staticStyle: { "background-color": "#eaeaea" } }, [
-        _c("tr", [
-          _c("th", { staticStyle: { width: "30%" }, attrs: { rowspan: "6" } }, [
-            _vm._v("Avis")
-          ]),
-          _vm._v(" "),
-          _c("th", { staticStyle: { width: "30%" } }, [_vm._v("Anulation")]),
-          _vm._v(" "),
-          _c("th", { staticStyle: { width: "30%" }, attrs: { colspan: "2" } }, [
-            _vm._v("--")
-          ])
-        ]),
-        _vm._v(" "),
-        _c("tr", [
-          _c("th", { attrs: { rowspan: "5" } }, [_vm._v("Modification")])
-        ]),
-        _vm._v(" "),
-        _c("tr", [
-          _c("th", { staticStyle: { width: "15%" } }, [
-            _vm._v("De la date de Réalisation")
-          ]),
-          _vm._v(" "),
-          _c("th", [_vm._v("----")])
-        ]),
-        _vm._v(" "),
-        _c("tr", [
-          _c("th", { staticStyle: { width: "15%" } }, [
-            _vm._v("De l’organisme de formation")
-          ]),
-          _vm._v(" "),
-          _c("th", [_vm._v("----")])
-        ]),
-        _vm._v(" "),
-        _c("tr", [
-          _c("th", { staticStyle: { width: "15%" } }, [
-            _vm._v("De l’organisme de formation")
-          ]),
-          _vm._v(" "),
-          _c("th", [_vm._v("----")])
-        ]),
-        _vm._v(" "),
-        _c("tr", [
-          _c("th", { staticStyle: { width: "15%" } }, [
-            _vm._v("Organisation horaire")
-          ]),
-          _vm._v(" "),
-          _c("th", [_vm._v("----")])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticStyle: { "padding-left": "20px" } }, [
-        _c("div", { staticStyle: { "margin-top": "20px" } }, [
-          _c("strong", [_vm._v("Thème de l’action :")]),
-          _vm._v(" "),
-          _c("input", {
-            staticClass: "highlighted",
-            staticStyle: { width: "70%" },
-            attrs: { type: "text" }
-          })
-        ]),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "d-flex", staticStyle: { "margin-top": "20px" } },
-          [
-            _c("strong", [_vm._v("Nature de l’action :")]),
-            _vm._v(" "),
-            _c("div", { staticStyle: { "margin-left": "auto" } }, [
-              _c("label", [_vm._v("Planifiée")]),
-              _vm._v(" "),
-              _c("input", { attrs: { type: "checkbox" } })
-            ]),
-            _vm._v(" "),
-            _c("div", { staticStyle: { "margin-left": "auto" } }, [
-              _c("label", [_vm._v("Non Planifiée")]),
-              _vm._v(" "),
-              _c("input", { attrs: { type: "checkbox" } })
-            ]),
-            _vm._v(" "),
-            _c("div", { staticStyle: { "margin-left": "auto" } }, [
-              _c("label", [_vm._v("Alpha")]),
-              _vm._v(" "),
-              _c("input", { attrs: { type: "checkbox" } })
-            ])
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "d-flex", staticStyle: { "margin-top": "10px" } },
-          [
-            _c("strong", [_vm._v("Effectif des participants :")]),
-            _vm._v(" "),
-            _c("input", {
-              staticClass: "highlighted",
-              attrs: { type: "text", value: "..." }
-            })
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "d-flex", staticStyle: { "margin-top": "10px" } },
-          [
-            _c("span", [_vm._v("• Organisme de formation initial : ")]),
-            _vm._v(" "),
-            _c("input", {
-              staticClass: "highlighted",
-              attrs: { type: "text", value: "..." }
-            })
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "d-flex", staticStyle: { "margin-top": "10px" } },
-          [
-            _c("span", [_vm._v("Nouvel Organisme de formation : ")]),
-            _vm._v(" "),
-            _c(
-              "select",
-              {
-                staticClass: "select highlighted",
-                staticStyle: { width: "fit-content", "font-size": "16px" }
-              },
-              [
-                _c("option", { attrs: { selected: "", disabled: "" } }, [
-                  _vm._v("--select organisme")
-                ])
-              ]
-            )
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "d-flex", staticStyle: { "margin-top": "10px" } },
-          [
-            _c("span", [_vm._v("• Lieu de formation initial : ")]),
-            _vm._v(" "),
-            _c("input", {
-              staticClass: "highlighted",
-              attrs: { type: "text", value: "..." }
-            })
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "d-flex", staticStyle: { "margin-top": "10px" } },
-          [
-            _c("span", [_vm._v("Nouveau lieu : ")]),
-            _vm._v(" "),
-            _c(
-              "select",
-              {
-                staticClass: "select highlighted",
-                staticStyle: { width: "fit-content", "font-size": "16px" }
-              },
-              [
-                _c("option", { attrs: { selected: "", disabled: "" } }, [
-                  _vm._v("--select organisme")
-                ])
-              ]
-            )
-          ]
-        ),
-        _vm._v(" "),
-        _c("div", { staticStyle: { "margin-top": "10px" } }, [
-          _c("span", [_vm._v("• Dates initiales de réalisation  : ")]),
-          _vm._v(" "),
-          _c("div", { staticClass: "d-flex" }, [
-            _c("input", {
-              staticClass: "highlighted",
-              attrs: { type: "date", value: "..." }
-            }),
-            _vm._v(" "),
-            _c("input", {
-              staticClass: "highlighted",
-              attrs: { type: "date", value: "..." }
-            }),
-            _vm._v(" "),
-            _c("input", {
-              staticClass: "highlighted",
-              attrs: { type: "date", value: "..." }
-            }),
-            _vm._v(" "),
-            _c("input", {
-              staticClass: "highlighted",
-              attrs: { type: "date", value: "..." }
-            }),
-            _vm._v(" "),
-            _c("input", {
-              staticClass: "highlighted",
-              attrs: { type: "date", value: "..." }
-            }),
-            _vm._v(" "),
-            _c("input", {
-              staticClass: "highlighted",
-              attrs: { type: "date", value: "..." }
-            })
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticStyle: { "margin-top": "10px" } }, [
-          _c("span", [_vm._v("Nouvelles Dates exactes de réalisation : ")]),
-          _vm._v(" "),
-          _c("div", { staticClass: "d-flex" }, [
-            _c("input", {
-              staticClass: "highlighted",
-              attrs: { type: "date", value: "..." }
-            }),
-            _vm._v(" "),
-            _c("input", {
-              staticClass: "highlighted",
-              attrs: { type: "date", value: "..." }
-            }),
-            _vm._v(" "),
-            _c("input", {
-              staticClass: "highlighted",
-              attrs: { type: "date", value: "..." }
-            }),
-            _vm._v(" "),
-            _c("input", {
-              staticClass: "highlighted",
-              attrs: { type: "date", value: "..." }
-            }),
-            _vm._v(" "),
-            _c("input", {
-              staticClass: "highlighted",
-              attrs: { type: "date", value: "..." }
-            }),
-            _vm._v(" "),
-            _c("input", {
-              staticClass: "highlighted",
-              attrs: { type: "date", value: "..." }
-            })
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticStyle: { "margin-top": "10px" } }, [
-          _c("span", [_vm._v("•\tOrganisation horaire initiale :")]),
-          _vm._v(" "),
-          _c("div", { staticClass: "d-flex" }, [
-            _c("div", [
-              _c("span", [_vm._v("heure début : ")]),
-              _vm._v(" "),
-              _c("input", {
-                staticClass: "highlighted",
-                attrs: { type: "text", value: "..." }
-              })
-            ]),
-            _vm._v(" "),
-            _c("div", [
-              _c("span", [_vm._v("heure fin : ")]),
-              _vm._v(" "),
-              _c("input", {
-                staticClass: "highlighted",
-                attrs: { type: "text", value: "..." }
-              })
-            ])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticStyle: { "margin-top": "10px" } }, [
-          _c("span", [_vm._v("Nouvelle organisation horaire :")]),
-          _vm._v(" "),
-          _c("div", { staticClass: "d-flex" }, [
-            _c("div", [
-              _c("span", [_vm._v("heure début : ")]),
-              _vm._v(" "),
-              _c("input", {
-                staticClass: "highlighted",
-                attrs: { type: "text", value: "..." }
-              })
-            ]),
-            _vm._v(" "),
-            _c("div", [
-              _c("span", [_vm._v("heure fin : ")]),
-              _vm._v(" "),
-              _c("input", {
-                staticClass: "highlighted",
-                attrs: { type: "text", value: "..." }
-              })
-            ])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticStyle: { "margin-top": "50px" } }, [
-          _c("strong", [_vm._v("#nom du responsable#")])
-        ]),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "d-flex", staticStyle: { "margin-top": "50px" } },
-          [
-            _c("strong", { staticStyle: { "margin-left": "auto" } }, [
-              _vm._v(
-                "#Cachet de l’entreprise, Signature et qualité du responsable#"
-              )
-            ])
-          ]
-        )
+      _c("p", { staticClass: "text-italic" }, [
+        _vm._v("(Sur papier a entête de l’entreprise)")
       ])
     ])
-  }
-]
-render._withStripped = true
-
-
-
-/***/ }),
-
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/PlanFormation.vue?vue&type=template&id=12f0b32d&":
-/*!****************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/PlanFormation.vue?vue&type=template&id=12f0b32d& ***!
-  \****************************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "plan-formation" }, [
-    _c(
-      "div",
-      { staticClass: "hide-from-print" },
-      [
-        _c("print-button", { attrs: { backLink: "/" } }),
-        _vm._v(" "),
-        _c("div", { staticStyle: { width: "100%" } }, [
-          _c("label", { attrs: { for: "client" } }, [_vm._v("Entreprise :")]),
-          _vm._v(" "),
-          _c(
-            "select",
-            {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.nrc_entrp,
-                  expression: "nrc_entrp"
-                }
-              ],
-              staticStyle: {
-                width: "100%",
-                padding: ".5rem",
-                border: "1px solid #000"
-              },
-              attrs: { name: "client", id: "client" },
-              on: {
-                change: [
-                  function($event) {
-                    var $$selectedVal = Array.prototype.filter
-                      .call($event.target.options, function(o) {
-                        return o.selected
-                      })
-                      .map(function(o) {
-                        var val = "_value" in o ? o._value : o.value
-                        return val
-                      })
-                    _vm.nrc_entrp = $event.target.multiple
-                      ? $$selectedVal
-                      : $$selectedVal[0]
-                  },
-                  function($event) {
-                    return _vm.FillReferencesPlan()
-                  }
-                ]
-              }
-            },
-            [
-              _c("option", { attrs: { selected: "", disabled: "" } }, [
-                _vm._v("--sélectionner l'Entreprise ..")
-              ]),
-              _vm._v(" "),
-              _vm._l(_vm.clients, function(cl) {
-                return _c(
-                  "option",
-                  { key: cl.nrc_entrp, domProps: { value: cl.nrc_entrp } },
-                  [_vm._v(_vm._s(cl.raisoci))]
-                )
-              })
-            ],
-            2
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticStyle: { width: "100%" } }, [
-          _c("label", { attrs: { for: "plans" } }, [
-            _vm._v("Réference plan de formation :")
-          ]),
-          _vm._v(" "),
-          _vm.reference_plan && _vm.reference_plan.length
-            ? _c(
-                "select",
-                {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.id_plan,
-                      expression: "id_plan"
-                    }
-                  ],
-                  staticStyle: {
-                    width: "100%",
-                    padding: ".5rem",
-                    border: "1px solid #000"
-                  },
-                  attrs: { name: "plans", id: "plans" },
-                  on: {
-                    change: [
-                      function($event) {
-                        var $$selectedVal = Array.prototype.filter
-                          .call($event.target.options, function(o) {
-                            return o.selected
-                          })
-                          .map(function(o) {
-                            var val = "_value" in o ? o._value : o.value
-                            return val
-                          })
-                        _vm.id_plan = $event.target.multiple
-                          ? $$selectedVal
-                          : $$selectedVal[0]
-                      },
-                      function($event) {
-                        _vm.FillPlanByReference()
-                        _vm.ResetCoutTotalPlan()
-                      }
-                    ]
-                  }
-                },
-                [
-                  _c("option", { attrs: { selected: "", disabled: "" } }, [
-                    _vm._v("-- sélectionner le plan")
-                  ]),
-                  _vm._v(" "),
-                  _vm._l(_vm.reference_plan, function(pdf) {
-                    return _c(
-                      "option",
-                      { key: pdf.id_plan, domProps: { value: pdf.id_plan } },
-                      [_vm._v(_vm._s(pdf.refpdf))]
-                    )
-                  })
-                ],
-                2
-              )
-            : _c(
-                "select",
-                {
-                  staticStyle: {
-                    width: "100%",
-                    padding: ".5rem",
-                    border: "1px solid #000"
-                  },
-                  attrs: { name: "plans", id: "plans" }
-                },
-                [_c("option", [_vm._v("(vide)")])]
-              )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "btn-group" }, [
-          _c(
-            "button",
-            {
-              staticClass: "btn-btn-primary",
-              staticStyle: {
-                background: "#00ff11",
-                margin: ".5rem 0",
-                padding: ".5rem"
-              },
-              attrs: { id: "dateBtn" },
-              on: {
-                click: function($event) {
-                  return _vm.FillReferencesPlan()
-                }
-              }
-            },
-            [_vm._v("\n        Remplir les dates\n      ")]
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticStyle: { width: "100%", height: "50px" } })
-      ],
-      1
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      {
-        staticStyle: {
-          padding: ".5rem",
-          "font-family": "Calibri, 'Segoe UI', Geneva, Verdana, sans-serif",
-          "background-color": "#fff",
-          "font-size": "13px"
-        }
-      },
-      [
-        _c("div", {
-          staticClass: "hide-from-print",
-          staticStyle: { width: "100%", height: "10px" }
-        }),
-        _vm._v(" "),
-        _c("table", [
-          _vm._m(0),
-          _vm._v(" "),
-          _vm.actions_by_ref
-            ? _c(
-                "tbody",
-                { staticClass: "center", attrs: { id: "tableActions" } },
-                [
-                  _vm._l(_vm.actions_by_ref, function(action, idx) {
-                    return _c("tr", { key: "plan" + idx }, [
-                      _c("td", [_vm._v(_vm._s(action.n_action))]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(action.nom_domain))]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(action.nom_theme))]),
-                      _vm._v(" "),
-                      _c("td", { attrs: { id: action.n_form } }, [
-                        _vm._v(
-                          "\n            " +
-                            _vm._s(
-                              (action.dates &&
-                                _vm.DateFormat(action.dates.date1)) ||
-                                ""
-                            ) +
-                            "\n            " +
-                            _vm._s(
-                              (action.dates &&
-                                _vm.DateFormat(action.dates.date2)) ||
-                                ""
-                            ) +
-                            "\n            " +
-                            _vm._s(
-                              (action.dates &&
-                                _vm.DateFormat(action.dates.date3)) ||
-                                ""
-                            ) +
-                            "\n            " +
-                            _vm._s(
-                              (action.dates &&
-                                _vm.DateFormat(action.dates.date4)) ||
-                                ""
-                            ) +
-                            "\n            " +
-                            _vm._s(
-                              (action.dates &&
-                                _vm.DateFormat(action.dates.date5)) ||
-                                ""
-                            ) +
-                            "\n            " +
-                            _vm._s(
-                              (action.dates &&
-                                _vm.DateFormat(action.dates.date6)) ||
-                                ""
-                            ) +
-                            "\n            " +
-                            _vm._s(
-                              (action.dates &&
-                                _vm.DateFormat(action.dates.date7)) ||
-                                ""
-                            ) +
-                            "\n            " +
-                            _vm._s(
-                              (action.dates &&
-                                _vm.DateFormat(action.dates.date8)) ||
-                                ""
-                            ) +
-                            "\n            " +
-                            _vm._s(
-                              (action.dates &&
-                                _vm.DateFormat(action.dates.date9)) ||
-                                ""
-                            ) +
-                            "\n            " +
-                            _vm._s(
-                              (action.dates &&
-                                _vm.DateFormat(action.dates.date10)) ||
-                                ""
-                            ) +
-                            "\n            " +
-                            _vm._s(
-                              (action.dates &&
-                                _vm.DateFormat(action.dates.date11)) ||
-                                ""
-                            ) +
-                            "\n            " +
-                            _vm._s(
-                              (action.dates &&
-                                _vm.DateFormat(action.dates.date12)) ||
-                                ""
-                            ) +
-                            "\n            " +
-                            _vm._s(
-                              (action.dates &&
-                                _vm.DateFormat(action.dates.date13)) ||
-                                ""
-                            ) +
-                            "\n            " +
-                            _vm._s(
-                              (action.dates &&
-                                _vm.DateFormat(action.dates.date14)) ||
-                                ""
-                            ) +
-                            "\n            " +
-                            _vm._s(
-                              (action.dates &&
-                                _vm.DateFormat(action.dates.date15)) ||
-                                ""
-                            ) +
-                            "\n            " +
-                            _vm._s(
-                              (action.dates &&
-                                _vm.DateFormat(action.dates.date16)) ||
-                                ""
-                            ) +
-                            "\n            " +
-                            _vm._s(
-                              (action.dates &&
-                                _vm.DateFormat(action.dates.date17)) ||
-                                ""
-                            ) +
-                            "\n            " +
-                            _vm._s(
-                              (action.dates &&
-                                _vm.DateFormat(action.dates.date18)) ||
-                                ""
-                            ) +
-                            "\n            " +
-                            _vm._s(
-                              (action.dates &&
-                                _vm.DateFormat(action.dates.date19)) ||
-                                ""
-                            ) +
-                            "\n            " +
-                            _vm._s(
-                              (action.dates &&
-                                _vm.DateFormat(action.dates.date20)) ||
-                                ""
-                            ) +
-                            "\n            " +
-                            _vm._s(
-                              (action.dates &&
-                                _vm.DateFormat(action.dates.date21)) ||
-                                ""
-                            ) +
-                            "\n            " +
-                            _vm._s(
-                              (action.dates &&
-                                _vm.DateFormat(action.dates.date22)) ||
-                                ""
-                            ) +
-                            "\n            " +
-                            _vm._s(
-                              (action.dates &&
-                                _vm.DateFormat(action.dates.date23)) ||
-                                ""
-                            ) +
-                            "\n            " +
-                            _vm._s(
-                              (action.dates &&
-                                _vm.DateFormat(action.dates.date24)) ||
-                                ""
-                            ) +
-                            "\n            " +
-                            _vm._s(
-                              (action.dates &&
-                                _vm.DateFormat(action.dates.date25)) ||
-                                ""
-                            ) +
-                            "\n            " +
-                            _vm._s(
-                              (action.dates &&
-                                _vm.DateFormat(action.dates.date26)) ||
-                                ""
-                            ) +
-                            "\n            " +
-                            _vm._s(
-                              (action.dates &&
-                                _vm.DateFormat(action.dates.date27)) ||
-                                ""
-                            ) +
-                            "\n            " +
-                            _vm._s(
-                              (action.dates &&
-                                _vm.DateFormat(action.dates.date28)) ||
-                                ""
-                            ) +
-                            "\n            " +
-                            _vm._s(
-                              (action.dates &&
-                                _vm.DateFormat(action.dates.date29)) ||
-                                ""
-                            ) +
-                            "\n            " +
-                            _vm._s(
-                              (action.dates &&
-                                _vm.DateFormat(action.dates.date30)) ||
-                                ""
-                            ) +
-                            "\n          "
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(action.organisme))]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(action.ncnss_cab))]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(action.nb_partcp_total))]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(action.nb_cadre))]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(action.nb_employe))]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(action.nb_ouvrier))]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(action.nb_jour))]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(action.lieu))]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(action.nb_grp))]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(action.bdg_jour))]),
-                      _vm._v(" "),
-                      _c("td", [
-                        _vm._v(_vm._s(action.bdg_total * action.nb_grp))
-                      ])
-                    ])
-                  }),
-                  _vm._v(" "),
-                  _c("tr", [
-                    _c("td"),
-                    _vm._v(" "),
-                    _c("td"),
-                    _vm._v(" "),
-                    _c("td"),
-                    _vm._v(" "),
-                    _c("td"),
-                    _vm._v(" "),
-                    _c("td"),
-                    _vm._v(" "),
-                    _c("td"),
-                    _vm._v(" "),
-                    _c("td"),
-                    _vm._v(" "),
-                    _c("td"),
-                    _vm._v(" "),
-                    _c("td"),
-                    _vm._v(" "),
-                    _c("td"),
-                    _vm._v(" "),
-                    _c("td"),
-                    _vm._v(" "),
-                    _c("td"),
-                    _vm._v(" "),
-                    _c("td"),
-                    _vm._v(" "),
-                    _c("td"),
-                    _vm._v(" "),
-                    _c("td", [
-                      _c("strong", [
-                        _vm._v(
-                          "\n              " +
-                            _vm._s("Total " + _vm.coutTotalPlan) +
-                            "\n            "
-                        )
-                      ])
-                    ])
-                  ])
-                ],
-                2
-              )
-            : _vm._e()
-        ])
-      ]
-    )
-  ])
-}
-var staticRenderFns = [
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("thead", [
+    return _c("table", { staticStyle: { "background-color": "#eaeaea" } }, [
       _c("tr", [
-        _c("td", { staticClass: "td", staticStyle: { width: "3%" } }, [
-          _vm._v("N° Action")
+        _c("th", { staticStyle: { width: "30%" }, attrs: { rowspan: "6" } }, [
+          _vm._v("Avis")
         ]),
         _vm._v(" "),
-        _c("td", { staticClass: "td", staticStyle: { width: "10%" } }, [
-          _vm._v("Domaine")
+        _c("th", { staticStyle: { width: "30%" } }, [_vm._v("Anulation")]),
+        _vm._v(" "),
+        _c("th", { staticStyle: { width: "30%" }, attrs: { colspan: "2" } }, [
+          _vm._v("--")
+        ])
+      ]),
+      _vm._v(" "),
+      _c("tr", [
+        _c("th", { attrs: { rowspan: "5" } }, [_vm._v("Modification")])
+      ]),
+      _vm._v(" "),
+      _c("tr", [
+        _c("th", { staticStyle: { width: "15%" } }, [
+          _vm._v("De la date de Réalisation")
         ]),
         _vm._v(" "),
-        _c("td", { staticClass: "td", staticStyle: { width: "10%" } }, [
-          _vm._v("Thème")
+        _c("th", [_vm._v("----")])
+      ]),
+      _vm._v(" "),
+      _c("tr", [
+        _c("th", { staticStyle: { width: "15%" } }, [
+          _vm._v("De l’organisme de formation")
         ]),
         _vm._v(" "),
-        _c("td", { staticClass: "td", staticStyle: { width: "5%" } }, [
-          _vm._v("Dates de réalisation")
+        _c("th", [_vm._v("----")])
+      ]),
+      _vm._v(" "),
+      _c("tr", [
+        _c("th", { staticStyle: { width: "15%" } }, [
+          _vm._v("De l’organisme de formation")
         ]),
         _vm._v(" "),
-        _c("td", { staticClass: "td", staticStyle: { width: "5%" } }, [
-          _vm._v("Organisme de formation")
+        _c("th", [_vm._v("----")])
+      ]),
+      _vm._v(" "),
+      _c("tr", [
+        _c("th", { staticStyle: { width: "15%" } }, [
+          _vm._v("Organisation horaire")
         ]),
         _vm._v(" "),
-        _c("td", { staticClass: "td", staticStyle: { width: "5%" } }, [
-          _vm._v("N° CNSS de l'organisme")
+        _c("th", [_vm._v("----")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "d-flex", staticStyle: { "margin-top": "20px" } },
+      [
+        _c("strong", [_vm._v("Nature de l’action :")]),
+        _vm._v(" "),
+        _c("div", { staticStyle: { "margin-left": "auto" } }, [
+          _c("label", [_vm._v("Planifiée")]),
+          _vm._v(" "),
+          _c("input", { attrs: { type: "checkbox" } })
         ]),
         _vm._v(" "),
-        _c("td", { staticClass: "td", staticStyle: { width: "3%" } }, [
-          _vm._v("Effectif")
+        _c("div", { staticStyle: { "margin-left": "auto" } }, [
+          _c("label", [_vm._v("Non Planifiée")]),
+          _vm._v(" "),
+          _c("input", { attrs: { type: "checkbox" } })
         ]),
         _vm._v(" "),
-        _c("td", { staticClass: "td", staticStyle: { width: "3%" } }, [
-          _vm._v("Cadres")
+        _c("div", { staticStyle: { "margin-left": "auto" } }, [
+          _c("label", [_vm._v("Alpha")]),
+          _vm._v(" "),
+          _c("input", { attrs: { type: "checkbox" } })
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "d-flex", staticStyle: { "margin-top": "10px" } },
+      [
+        _c("strong", [_vm._v("Effectif des participants :")]),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "highlighted",
+          attrs: { type: "text", value: "", name: "nb_partcp_total" }
+        })
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "d-flex", staticStyle: { "margin-top": "10px" } },
+      [
+        _c("span", [_vm._v("• Organisme de formation initial : ")]),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "highlighted",
+          attrs: { type: "text", value: "..." }
+        })
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "d-flex", staticStyle: { "margin-top": "10px" } },
+      [_c("span", [_vm._v("• Lieu de formation initial : ")])]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticStyle: { "margin-top": "10px" } }, [
+      _c("span", [_vm._v("• Dates initiales de réalisation  : ")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "d-flex" }, [
+        _c("input", {
+          staticClass: "highlighted",
+          attrs: { type: "date", value: "..." }
+        }),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "highlighted",
+          attrs: { type: "date", value: "..." }
+        }),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "highlighted",
+          attrs: { type: "date", value: "..." }
+        }),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "highlighted",
+          attrs: { type: "date", value: "..." }
+        }),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "highlighted",
+          attrs: { type: "date", value: "..." }
+        }),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "highlighted",
+          attrs: { type: "date", value: "..." }
+        })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticStyle: { "margin-top": "10px" } }, [
+      _c("span", [_vm._v("Nouvelles Dates exactes de réalisation : ")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "d-flex" }, [
+        _c("input", {
+          staticClass: "highlighted",
+          attrs: { type: "date", value: "..." }
+        }),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "highlighted",
+          attrs: { type: "date", value: "..." }
+        }),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "highlighted",
+          attrs: { type: "date", value: "..." }
+        }),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "highlighted",
+          attrs: { type: "date", value: "..." }
+        }),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "highlighted",
+          attrs: { type: "date", value: "..." }
+        }),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "highlighted",
+          attrs: { type: "date", value: "..." }
+        })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticStyle: { "margin-top": "10px" } }, [
+      _c("span", [_vm._v("•\tOrganisation horaire initiale :")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "d-flex" }, [
+        _c("div", [
+          _c("span", [_vm._v("heure début : ")]),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "highlighted",
+            attrs: { type: "text", value: "..." }
+          })
         ]),
         _vm._v(" "),
-        _c("td", { staticClass: "td", staticStyle: { width: "3%" } }, [
-          _vm._v("Employés")
-        ]),
-        _vm._v(" "),
-        _c("td", { staticClass: "td", staticStyle: { width: "3%" } }, [
-          _vm._v("Ouvriers")
-        ]),
-        _vm._v(" "),
-        _c("td", { staticClass: "td", staticStyle: { width: "3%" } }, [
-          _vm._v("Durée par groupe")
-        ]),
-        _vm._v(" "),
-        _c("td", { staticClass: "td", staticStyle: { width: "10%" } }, [
-          _vm._v("Lieu de formation")
-        ]),
-        _vm._v(" "),
-        _c("td", { staticClass: "td", staticStyle: { width: "3%" } }, [
-          _vm._v("Nbre de groupe")
-        ]),
-        _vm._v(" "),
-        _c("td", { staticClass: "td", staticStyle: { width: "4%" } }, [
-          _vm._v("Coût unitaire (DH)")
-        ]),
-        _vm._v(" "),
-        _c("td", { staticClass: "td", staticStyle: { width: "4%" } }, [
-          _vm._v("Coût estimatif (DH)")
+        _c("div", [
+          _c("span", [_vm._v("heure fin : ")]),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "highlighted",
+            attrs: { type: "text", value: "..." }
+          })
         ])
       ])
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticStyle: { "margin-top": "10px" } }, [
+      _c("span", [_vm._v("Nouvelle organisation horaire :")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "d-flex" }, [
+        _c("div", [
+          _c("span", [_vm._v("heure début : ")]),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "highlighted",
+            attrs: { type: "text", value: "..." }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", [
+          _c("span", [_vm._v("heure fin : ")]),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "highlighted",
+            attrs: { type: "text", value: "..." }
+          })
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticStyle: { "margin-top": "50px" } }, [
+      _c("strong", [_vm._v("#nom du responsable#")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "d-flex", staticStyle: { "margin-top": "50px" } },
+      [
+        _c("strong", { staticStyle: { "margin-left": "auto" } }, [
+          _vm._v(
+            "#Cachet de l’entreprise, Signature et qualité du responsable#"
+          )
+        ])
+      ]
+    )
   }
 ]
 render._withStripped = true
@@ -55608,7 +55754,7 @@ var Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js"
 Vue.component('print-button', __webpack_require__(/*! ../js/components/PrintButton.vue */ "./resources/js/components/PrintButton.vue")["default"]);
 Vue.component('model-1', __webpack_require__(/*! ../js/components/Model1.vue */ "./resources/js/components/Model1.vue")["default"]);
 Vue.component('model-3', __webpack_require__(/*! ../js/components/Model3.vue */ "./resources/js/components/Model3.vue")["default"]);
-Vue.component('plan-formation', __webpack_require__(/*! ../js/components/PlanFormation.vue */ "./resources/js/components/PlanFormation.vue")["default"]);
+Vue.component('plan-formation', __webpack_require__(/*! ../js/components/ActionFormation.vue */ "./resources/js/components/ActionFormation.vue")["default"]);
 Vue.component('avis-affichage', __webpack_require__(/*! ../js/components/AvisAffichage.vue */ "./resources/js/components/AvisAffichage.vue")["default"]);
 Vue.component('att-reference-plan', __webpack_require__(/*! ../js/components/AttReferencePlan.vue */ "./resources/js/components/AttReferencePlan.vue")["default"]);
 /**
@@ -55678,6 +55824,75 @@ if (token) {
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     encrypted: true
 // });
+
+/***/ }),
+
+/***/ "./resources/js/components/ActionFormation.vue":
+/*!*****************************************************!*\
+  !*** ./resources/js/components/ActionFormation.vue ***!
+  \*****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _ActionFormation_vue_vue_type_template_id_4ba5ce00___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ActionFormation.vue?vue&type=template&id=4ba5ce00& */ "./resources/js/components/ActionFormation.vue?vue&type=template&id=4ba5ce00&");
+/* harmony import */ var _ActionFormation_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ActionFormation.vue?vue&type=script&lang=js& */ "./resources/js/components/ActionFormation.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _ActionFormation_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _ActionFormation_vue_vue_type_template_id_4ba5ce00___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _ActionFormation_vue_vue_type_template_id_4ba5ce00___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/ActionFormation.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/ActionFormation.vue?vue&type=script&lang=js&":
+/*!******************************************************************************!*\
+  !*** ./resources/js/components/ActionFormation.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ActionFormation_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./ActionFormation.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ActionFormation.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ActionFormation_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/ActionFormation.vue?vue&type=template&id=4ba5ce00&":
+/*!************************************************************************************!*\
+  !*** ./resources/js/components/ActionFormation.vue?vue&type=template&id=4ba5ce00& ***!
+  \************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ActionFormation_vue_vue_type_template_id_4ba5ce00___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./ActionFormation.vue?vue&type=template&id=4ba5ce00& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ActionFormation.vue?vue&type=template&id=4ba5ce00&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ActionFormation_vue_vue_type_template_id_4ba5ce00___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ActionFormation_vue_vue_type_template_id_4ba5ce00___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
 
 /***/ }),
 
@@ -55957,75 +56172,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/PlanFormation.vue":
-/*!***************************************************!*\
-  !*** ./resources/js/components/PlanFormation.vue ***!
-  \***************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _PlanFormation_vue_vue_type_template_id_12f0b32d___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PlanFormation.vue?vue&type=template&id=12f0b32d& */ "./resources/js/components/PlanFormation.vue?vue&type=template&id=12f0b32d&");
-/* harmony import */ var _PlanFormation_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PlanFormation.vue?vue&type=script&lang=js& */ "./resources/js/components/PlanFormation.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _PlanFormation_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _PlanFormation_vue_vue_type_template_id_12f0b32d___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _PlanFormation_vue_vue_type_template_id_12f0b32d___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/components/PlanFormation.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/js/components/PlanFormation.vue?vue&type=script&lang=js&":
-/*!****************************************************************************!*\
-  !*** ./resources/js/components/PlanFormation.vue?vue&type=script&lang=js& ***!
-  \****************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PlanFormation_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./PlanFormation.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/PlanFormation.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PlanFormation_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/js/components/PlanFormation.vue?vue&type=template&id=12f0b32d&":
-/*!**********************************************************************************!*\
-  !*** ./resources/js/components/PlanFormation.vue?vue&type=template&id=12f0b32d& ***!
-  \**********************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PlanFormation_vue_vue_type_template_id_12f0b32d___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./PlanFormation.vue?vue&type=template&id=12f0b32d& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/PlanFormation.vue?vue&type=template&id=12f0b32d&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PlanFormation_vue_vue_type_template_id_12f0b32d___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PlanFormation_vue_vue_type_template_id_12f0b32d___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-
-
-
-/***/ }),
-
 /***/ "./resources/js/components/PrintButton.vue":
 /*!*************************************************!*\
   !*** ./resources/js/components/PrintButton.vue ***!
@@ -56133,8 +56279,10 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_2__["default"].Store({
     // liste contenant les références du plan
     actions_by_plan: [],
     // list des action de formations
-    curr_annee_plan: null // année du plan actuel
-
+    curr_annee_plan: null,
+    // année du plan actuel
+    cabinets: [],
+    info_initial: []
   },
   mutations: {
     // ########################################################### //
@@ -56154,6 +56302,12 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_2__["default"].Store({
     },
     SET_ANNEE_PLAN: function SET_ANNEE_PLAN(state, data) {
       state.curr_annee_plan = data;
+    },
+    SET_ORGANISME: function SET_ORGANISME(state, data) {
+      state.cabinets = data;
+    },
+    SET_NB_PARTICIPENTS: function SET_NB_PARTICIPENTS(state, data) {
+      state.nb_participents = data;
     } // SET_DATES_ACTION(state) {
     //   state.actions_by_plan.forEach((action) => {
     //     this.FillDates(action.n_form);
@@ -56216,8 +56370,6 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_2__["default"].Store({
     },
     //récupérer les réferences plan à partir du client sélectionné
     FetchReferencesPlan: function FetchReferencesPlan(_ref4, nrcEntrp) {
-      var _this = this;
-
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
         var commit;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
@@ -56233,7 +56385,7 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_2__["default"].Store({
                 }).then(function (_ref5) {
                   var data = _ref5.data;
                   commit('SET_REFERENCE_PLANS', data);
-                  console.log("reference_plans : ", _this.data);
+                  console.log("reference_plans : ", data);
                 })["catch"](function (err) {
                   return console.log("err FillReferencesPlan", err);
                 });
@@ -56246,8 +56398,9 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_2__["default"].Store({
         }, _callee3);
       }))();
     },
-    // récupérer les réferences plan à partir du client sélectionné
-    FetchPlanByReference: function FetchPlanByReference(_ref6, idPlan) {
+    //-----------------------------------------------------------------
+    //récupérer les actions à partir du REF sélectionné
+    FetchActionByReference: function FetchActionByReference(_ref6, idPlan) {
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
         var commit;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
@@ -56262,12 +56415,11 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_2__["default"].Store({
                   }
                 }).then(function (_ref7) {
                   var data = _ref7.data;
-                  commit('SET_REFERENCE_PLANS', data);
-                  commit('SET_ANNEE_PLAN', data[0].annee);
+                  commit('SET_ACTION_BY_PLAN', data); //commit('SET_ANNEE_PLAN', data[0].annee);
+
                   console.log("actions_by_plan : ", data);
-                }).then(function () {
-                  // fill dates action
-                  commit('SET_DATES_ACTION');
+                }).then(function () {// fill dates action
+                  //commit('SET_DATES_ACTION');
                 })["catch"](function (err) {
                   return console.error("err FillPlanByReference", err);
                 });
@@ -56280,50 +56432,59 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_2__["default"].Store({
         }, _callee4);
       }))();
     },
-    FillPlanByReference: function FillPlanByReference() {
-      var _this2 = this;
-
+    FetchAllCabinets: function FetchAllCabinets(_ref8) {
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
+        var commit;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
           while (1) {
             switch (_context5.prev = _context5.next) {
               case 0:
-                _context5.next = 2;
-                return axios.get("/fill-plans-by-reference?idPlan=".concat(_this2.id_plan)).then(function (res) {
-                  _this2.actions_by_ref = res.data;
-                  console.log("actions_by_ref : ", _this2.actions_by_ref);
-                }).then(function () {
-                  // fill dates action
-                  _this2.actions_by_ref.forEach(function (action) {
-                    _this2.FillDates(action.n_form);
-                  });
-                })["catch"](function (err) {
-                  return console.error("err FillPlanByReference", err);
+                commit = _ref8.commit;
+                _context5.next = 3;
+                return axios.get("/fill-all-organisme").then(function (_ref9) {
+                  var data = _ref9.data;
+                  commit('SET_ORGANISME', data);
+                  console.log("Cabinets :", data);
                 });
 
-              case 2:
-                _this2.isAllLoaded = true;
-                console.log("isAllLoaded", _this2.isAllLoaded);
-
-              case 4:
+              case 3:
               case "end":
                 return _context5.stop();
             }
           }
         }, _callee5);
       }))();
-    } // récupérer les dates de l'action actuel
-    // async FetchDatesPlan({commit}, nForm) {
-    //   await axios.get(`/fill-dates-plan`, {params: {nForm: nForm}})
-    //     .then(({data}) => {
-    //       this.dates_actions = data;
-    //     })
-    //     .then(() => {
-    //       this.AssignDates({commit}, nForm);
-    //     })
-    //     .catch((err) => console.error("err FillDates", err));
-    // },
+    },
+    //récupérer les dates de l'action actuel
+    FetchDatesPlan: function FetchDatesPlan(_ref10, nForm) {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee6() {
+        var commit;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee6$(_context6) {
+          while (1) {
+            switch (_context6.prev = _context6.next) {
+              case 0:
+                commit = _ref10.commit;
+                _context6.next = 3;
+                return axios.get("/fill-dates-plan", {
+                  params: {
+                    nForm: nForm
+                  }
+                }).then(function (_ref11) {
+                  var data = _ref11.data;
+                  commit('SET_NB_PARTICIPENTS', data);
+                  commit('SET_DATES', data);
+                })["catch"](function (err) {
+                  return console.error("err FillDates", err);
+                });
 
+              case 3:
+              case "end":
+                return _context6.stop();
+            }
+          }
+        }, _callee6);
+      }))();
+    }
   }
 });
 

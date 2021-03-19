@@ -2,10 +2,10 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\PlanFormation;
+use App\ActionFormation;
 use Faker\Generator as Faker;
 
-$factory->define(PlanFormation::class, function (Faker $faker) {
+$factory->define(ActionFormation::class, function (Faker $faker) {
     return [
         //
     ];

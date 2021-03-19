@@ -24,7 +24,7 @@
     </div><!-- /.col -->
     <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="/planformation">Action formation</a></li>
+            <li class="breadcrumb-item"><a href="/ActionFormation">Action formation</a></li>
             <li class="breadcrumb-item active">N° {{ $plan->n_form }}</li>
         </ol>
     </div><!-- /.col -->
@@ -66,7 +66,7 @@
             @php
               $client = \App\Client::select('clients.nrc_entrp')
                 ->join('plans', 'clients.nrc_entrp', 'plans.nrc_e')
-                ->join('plan_formations', 'plans.id_plan', 'plan_formations.id_plan')
+                ->join('action_formations', 'plans.id_plan', 'action_formations.id_plan')
                 ->where('plans.id_plan', $plan->id_plan)
                 ->first();
             @endphp
@@ -410,7 +410,7 @@
 
     <div class="card-footer">
         <button class="btn bu-add" type="submit" id="edit"><i class="fas fa-pen-square icon"></i>Modifier</button>
-        <a class="btn bu-danger" href="/planformation"><i class="fas fa-window-close icon"></i>Annuler</a>
+        <a class="btn bu-danger" href="/ActionFormation"><i class="fas fa-window-close icon"></i>Annuler</a>
     </div>
 
     </form>

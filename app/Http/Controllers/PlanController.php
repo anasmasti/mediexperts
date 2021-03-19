@@ -191,10 +191,10 @@ class PlanController extends Controller
 
             // si le "plan" est réalisé! mettre à jour l'etat de toutes les "actions formations"
             if (mb_strtolower($plans->etat) === "réalisé") {
-              DB::table('plan_formations')
-                ->join('plans', 'plan_formations.id_plan', 'plans.id_plan')
-                ->where('plan_formations.id_plan', $id_plan)
-                ->update(['plan_formations.etat' => "réalisé"]);
+              DB::table('action_formations')
+                ->join('plans', 'action_formations.id_plan', 'plans.id_plan')
+                ->where('action_formations.id_plan', $id_plan)
+                ->update(['action_formations.etat' => "réalisé"]);
             }
 
             $plans->save();

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
-use App\{Intervenant,Cabinet,PlanFormation,MissionIntervenant};
+use App\{Intervenant,Cabinet,ActionFormation,MissionIntervenant};
 
 
 class IntervenantController extends Controller
@@ -20,7 +20,7 @@ class IntervenantController extends Controller
 
         $interv = Intervenant::all();
         $cabinet = Cabinet::all();
-        $plan = PlanFormation::all();
+        $plan = ActionFormation::all();
         $misinv = MissionIntervenant::all();
 
     return view('intervenant.view', [
@@ -45,7 +45,7 @@ class IntervenantController extends Controller
         $interv = Intervenant::where('nom', 'LIKE', '%'. $searchinter . '%')->get();
 
         $cabinet = Cabinet::all();
-        $plan = PlanFormation::all();
+        $plan = ActionFormation::all();
         $misinv = MissionIntervenant::all();
 
         return view('intervenant.view', [
@@ -135,7 +135,7 @@ class IntervenantController extends Controller
 
         $cabinet = Cabinet::all();
 
-        $plan = PlanFormation::all();
+        $plan = ActionFormation::all();
         $misinv = MissionIntervenant::all();
 
     return view('intervenant.detail', [

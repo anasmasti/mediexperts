@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class PlanFormation extends Model
+class ActionFormation extends Model
 {
     protected $primaryKey = 'n_form';
 
