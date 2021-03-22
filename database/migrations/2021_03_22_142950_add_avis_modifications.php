@@ -15,11 +15,11 @@ class AddAvisModifications extends Migration
     {
       Schema::table('plan_formations', function (Blueprint $table) {
 
-        $table->boolean('date_realisation');
-        $table->boolean('organisme_formations');
-        $table->boolean('lieu_formations');
-        $table->boolean('horaire_formations');
-        $table->string('type_action');
+        $table->boolean('date_realisation')->default(false);
+        $table->boolean('organisme_formations')->default(false);
+        $table->boolean('lieu_formations')->default(false);
+        $table->boolean('horaire_formations')->default(false);
+        $table->string('type_action')->default(null);
 
       });
     }

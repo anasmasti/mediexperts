@@ -108,6 +108,8 @@
                     <td>{{ $plan->dt_fin }}</td></tr>
                 <tr><th class="th-det">Nb. jours</th>
                     <td>{{ $plan->nb_jour }} Jours</td></tr>
+                <tr><th class="th-det">Nb. Dates</th>
+                    <td>{{ $plan->Nombre_Dates }} Dates</td></tr>
                 <tr><th class="th-det">Type formation</th>
                     <td>{{ $plan->type_form }}</td></tr>
                 <tr><th class="th-det">Organisme</th>
