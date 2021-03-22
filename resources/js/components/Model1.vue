@@ -7,12 +7,8 @@ export default {
       clients: [],
       curr_client: null,
       curr_annee: null,
-<<<<<<< HEAD
-      nrc_entrp: undefined, id_plan: undefined,
-=======
       nrc_entrp: undefined,
       id_plan: undefined,
->>>>>>> d996ee2e7753e55c76bfabe8b80e72426b1351d8
       reference_plan: [],
       actions_by_ref: [],
       plan_formation: [],

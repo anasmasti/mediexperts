@@ -4,13 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\{Formation,PlanFormation,Client,Theme,Domaine,Personnel,Plan,Intervenant,FormationPersonnel};
-<<<<<<< HEAD
-use DB;
-use Alert;
-=======
 use Illuminate\Support\Facades\DB;
 
->>>>>>> d996ee2e7753e55c76bfabe8b80e72426b1351d8
 
 class FormationController extends Controller
 {
@@ -214,10 +209,7 @@ class FormationController extends Controller
             // }
 
             //get all inputs at once (with the same name as "name[]")
-<<<<<<< HEAD
-=======
 
->>>>>>> d996ee2e7753e55c76bfabe8b80e72426b1351d8
             $cins = $request->cin;
             $counter = 0;
             if ($cins) {

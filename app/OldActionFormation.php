@@ -6,9 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class OldActionFormation extends Model
 {
-<<<<<<< HEAD
-    //
-=======
   protected $primaryKey = 'n_form';
 
   protected $fillable =[
@@ -50,5 +47,4 @@ class OldActionFormation extends Model
 
     return $this->hasOne(PlanFormation::class, 'n_form','n_form');
 }
->>>>>>> d996ee2e7753e55c76bfabe8b80e72426b1351d8
 }

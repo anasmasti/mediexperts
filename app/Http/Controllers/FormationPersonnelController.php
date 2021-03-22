@@ -4,11 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\{Client,PlanFormation,Formation,Personnel,FormationPersonnel,Domaine,Theme};
-<<<<<<< HEAD
-use DB;
-=======
 use Illuminate\Support\Facades\DB;
->>>>>>> d996ee2e7753e55c76bfabe8b80e72426b1351d8
 
 class FormationPersonnelController extends Controller
 {

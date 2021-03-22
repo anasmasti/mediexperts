@@ -6,11 +6,7 @@ use Illuminate\Http\Request;
 use App\Personnel;
 use App\Client;
 use App\FormationPersonnel;
-<<<<<<< HEAD
-use DB;
-=======
 use Illuminate\Support\Facades\DB;
->>>>>>> d996ee2e7753e55c76bfabe8b80e72426b1351d8
 
 class PersonnelController extends Controller
 {

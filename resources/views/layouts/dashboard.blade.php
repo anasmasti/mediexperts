@@ -408,14 +408,10 @@
 
               <div class="info-box-content">
                 <span class="info-box-text">Modèles 5</span>
-<<<<<<< HEAD
-                <span class="info-box-number"><a href="/print-m5">Imprimer</a></span>
-=======
                 <div class="row" style="margin-left: 1px">
                 <span class="info-box-number"><a href="/print-m5">Imprimer</a></span>&nbsp;&nbsp;
                 <span class="info-box-number"><a href="/avis-modif">Modifier</a></span>
                 </div>
->>>>>>> d996ee2e7753e55c76bfabe8b80e72426b1351d8
               </div>
               <!-- /.info-box-content -->
             </div>
@@ -541,8 +537,6 @@
             <!-- /.info-box-content -->
           </div>
         </div>
-<<<<<<< HEAD
-=======
         <div class="col-lg-4 col-sm-12 col-md-4">
           <div class="info-box mb-3 bg-light">
             <span class="info-box-icon"><i class="fas fa-print"></i></span>
@@ -554,7 +548,6 @@
             <!-- /.info-box-content -->
           </div>
         </div>
->>>>>>> d996ee2e7753e55c76bfabe8b80e72426b1351d8
 
       </div>
     </div>
