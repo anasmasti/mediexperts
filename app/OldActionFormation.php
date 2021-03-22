@@ -45,6 +45,6 @@ class OldActionFormation extends Model
   ];
   public function action_formation() {
 
-    return $this->hasOne(ActionFormation::class, 'n_form','n_form');
+    return $this->hasOne(PlanFormation::class, 'n_form','n_form');
 }
 }

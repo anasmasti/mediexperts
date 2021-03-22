@@ -8,7 +8,7 @@
     </div><!-- /.col -->
     <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="/ActionFormation">Action formation</a></li>
+            <li class="breadcrumb-item"><a href="/PlanFormation">Action formation</a></li>
             <li class="breadcrumb-item active">{{ $plan->n_form }}</li>
         </ol>
     </div><!-- /.col -->
@@ -23,7 +23,7 @@
 <div class="card card-dark">
     <!-- card-header -->
     <div class="card-header">
-      <a class="btn btn-dark btn-sm bu-lg-ic" href="/ActionFormation"><i class="fa fa-arrow-left"></i></a>
+      <a class="btn btn-dark btn-sm bu-lg-ic" href="/PlanFormation"><i class="fa fa-arrow-left"></i></a>
       <h3 class="card-title card-h3">Action N° {{ $plan->n_form }} > {{ $plan_props['raisoci'] }}</h3>
       <a class="btn btn-sm btn-danger bu-ic" onclick="confirmDelete({{$plan->n_form}}, 'pf/')"><i class="fa fa-trash-alt"></i></a>
       <a class="btn btn-sm btn-warning bu-ic" href="/edit-pf/{{ $plan->n_form }}"><i class="fa fa-edit"></i></a>

@@ -24,7 +24,7 @@ const Vue = require('vue');
 Vue.component('print-button', require('../js/components/PrintButton.vue').default);
 Vue.component('model-1', require('../js/components/Model1.vue').default);
 Vue.component('model-3', require('../js/components/Model3.vue').default);
-Vue.component('plan-formation', require('../js/components/ActionFormation.vue').default);
+Vue.component('plan-formation', require('../js/components/PlanFormation.vue').default);
 Vue.component('avis-affichage', require('../js/components/AvisAffichage.vue').default);
 Vue.component('att-reference-plan', require('../js/components/AttReferencePlan.vue').default);
 

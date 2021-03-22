@@ -136,7 +136,7 @@
           <div class="icon">
             <i class="fas fa-calendar-alt"></i>
           </div>
-          <a href="/ActionFormation" class="small-box-footer">
+          <a href="/PlanFormation" class="small-box-footer">
             Aller à <i class="fa fa-arrow-circle-right"></i>
           </a>
         </div>

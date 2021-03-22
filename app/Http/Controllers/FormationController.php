@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\{Formation,ActionFormation,Client,Theme,Domaine,Personnel,Plan,Intervenant,FormationPersonnel};
+use App\{Formation,PlanFormation,Client,Theme,Domaine,Personnel,Plan,Intervenant,FormationPersonnel};
 use Illuminate\Support\Facades\DB;
 
 
@@ -21,7 +21,7 @@ class FormationController extends Controller
         $request->session()->forget(['success', 'info', 'warning', 'error']);
 
         $formation = Formation::all();
-        // $plan = ActionFormation::all();
+        // $plan = PlanFormation::all();
 
         return view('formation.view', ['formation' => $formation/*, 'plan' => $plan*/]);
     }
@@ -30,8 +30,8 @@ class FormationController extends Controller
     {
         $search_input = $request->input ( 'search_input' );
         $formation = Plan::select('formations.*')
-            ->join('action_formations', 'action_formations.id_plan', 'plans.id_plan')
-            ->join('formations', 'action_formations.n_form', 'formations.n_form')
+            ->join('plan_formations', 'plan_formations.id_plan', 'plans.id_plan')
+            ->join('formations', 'plan_formations.n_form', 'formations.n_form')
             ->where('plans.refpdf', 'LIKE', '%'. $search_input . '%')
             ->get();
         //get client
@@ -50,9 +50,9 @@ class FormationController extends Controller
 
     //find nb jour de Plan de formation
     public function FindNbJours(Request $request) {
-        // $data = ActionFormation::find($request->nform)->nbjour;
-        $data = ActionFormation::select('n_form', 'nb_jour', 'nb_grp', 'dt_debut', 'dt_fin', 'nb_partcp_total')
-                ->where('action_formations.n_form', $request->nForm)
+        // $data = PlanFormation::find($request->nform)->nbjour;
+        $data = PlanFormation::select('n_form', 'nb_jour', 'nb_grp', 'dt_debut', 'dt_fin', 'nb_partcp_total')
+                ->where('plan_formations.n_form', $request->nForm)
                 ->get();
         return response()->json($data);
     }
@@ -67,32 +67,32 @@ class FormationController extends Controller
           'formations.date21','formations.date22','formations.date23','formations.date24',
           'formations.date25','formations.date26','formations.date27','formations.date28',
           'formations.date29','formations.date30')
-            ->join('action_formations', 'formations.n_form', 'action_formations.n_form')
-            ->where('action_formations.n_form', $request->nForm)
+            ->join('plan_formations', 'formations.n_form', 'plan_formations.n_form')
+            ->where('plan_formations.n_form', $request->nForm)
             ->get();
         return response()->json($data);
     }
     //find nb jour de Plan de formation
     public function FindPlanFormationProps(Request $request) {
-        $data = ActionFormation::select('action_formations.n_form', 'clients.raisoci', 'domaines.nom_domain', 'themes.nom_theme')
-            ->join('plans', 'plans.id_plan', '=', 'action_formations.id_plan')
+        $data = PlanFormation::select('plan_formations.n_form', 'clients.raisoci', 'domaines.nom_domain', 'themes.nom_theme')
+            ->join('plans', 'plans.id_plan', '=', 'plan_formations.id_plan')
             ->join('clients', 'clients.nrc_entrp', '=', 'plans.nrc_e')
-            ->join('Themes', 'themes.id_theme', '=', 'action_formations.id_thm')
+            ->join('Themes', 'themes.id_theme', '=', 'plan_formations.id_thm')
             ->join('domaines', 'domaines.id_domain', '=', 'themes.id_dom')
             ->get();
         return response()->json($data);
     }
     //trouver les personnels de l'entreprise a partir du "plan formation" choisi
     public function FindPersonnel(Request $request) {
-      $data = ActionFormation::select('personnels.*')
-        // ->join('clients', 'action_formations.nrc_e', 'clients.nrc_entrp')
-        ->join('plans', 'plans.id_plan', '=', 'action_formations.id_plan')
+      $data = PlanFormation::select('personnels.*')
+        // ->join('clients', 'plan_formations.nrc_e', 'clients.nrc_entrp')
+        ->join('plans', 'plans.id_plan', '=', 'plan_formations.id_plan')
         ->join('clients', 'clients.nrc_entrp', '=', 'plans.nrc_e')
         ->join('personnels', 'clients.nrc_entrp', 'personnels.nrc_e')
         // ->join('formations_personnels', 'personnels.cin', 'formations_personnels.cin')
         // ->join('formations', 'formations_personnels.id_form', 'formations.id_form')
-        ->where([['action_formations.n_form', $request->nForm]/*, ['personnels.cin', 'NOT IN', 'formations_personnels.cin']*/])
-        // ->orWhere([['action_formations.n_form', $request->nForm], ['personnels.dt_demiss', '<', 'personnels.dt_embch']])
+        ->where([['plan_formations.n_form', $request->nForm]/*, ['personnels.cin', 'NOT IN', 'formations_personnels.cin']*/])
+        // ->orWhere([['plan_formations.n_form', $request->nForm], ['personnels.dt_demiss', '<', 'personnels.dt_embch']])
         ->get();
       return response()->json($data);
     }
@@ -107,11 +107,11 @@ class FormationController extends Controller
     }
     //trouver les personnels déjà selectionné dans les autres groupes de formations
     public function FindPersonnelFormationDeja(Request $request) {
-      $data = ActionFormation::select('personnels.*')
-        ->join('formations', 'action_formations.n_form', 'formations.n_form')
+      $data = PlanFormation::select('personnels.*')
+        ->join('formations', 'plan_formations.n_form', 'formations.n_form')
         ->join('formation_personnels', 'formations.id_form', 'formation_personnels.id_form')
         ->join('personnels', 'formation_personnels.cin', 'personnels.cin')
-        ->where([['formations.id_form', '<>', $request->idForm], ['action_formations.n_form', $request->nForm]])
+        ->where([['formations.id_form', '<>', $request->idForm], ['plan_formations.n_form', $request->nForm]])
         ->get();
       return response()->json($data);
     }
@@ -123,7 +123,7 @@ class FormationController extends Controller
         ->where([['clients.nrc_entrp', '=', $request->nrc], ['plans.annee', '=', $request->annee]])
         ->get();
 
-        return view('ActionFormation.view', ['plan' => $plan]);
+        return view('PlanFormation.view', ['plan' => $plan]);
     }
     public function SaveNFacture(Request $request) {
       // $formation = Formation::findOrFail($request->nFacture);
@@ -137,7 +137,7 @@ class FormationController extends Controller
     //find nb jour de Plan de formation
     public function VerifyGroupe(Request $request) {
         $data = Formation::select('formations.groupe')
-                ->join('action_formations', 'formations.n_form', 'action_formations.n_form', $request->nForm)
+                ->join('plan_formations', 'formations.n_form', 'plan_formations.n_form', $request->nForm)
                 ->where([['formations.groupe', $request->grp], ['formations.n_form', $request->nForm]])
                 ->first();
         return response()->json($data);
@@ -147,9 +147,9 @@ class FormationController extends Controller
     public function DetailActionFormation(Request $request)
     {
         $formation = Formation::select('formations.*')
-            ->join('action_formations', 'action_formations.n_form', '=', 'formations.n_form')
-            // ->join('plans', 'plans.id_plan', '=', 'action_formations.id_plan')
-            ->where('action_formations.n_form', $request->nForm)
+            ->join('plan_formations', 'plan_formations.n_form', '=', 'formations.n_form')
+            // ->join('plans', 'plans.id_plan', '=', 'plan_formations.id_plan')
+            ->where('plan_formations.n_form', $request->nForm)
             ->get();
 
         return view('formation.view', ['formation' => $formation]);
@@ -186,17 +186,17 @@ class FormationController extends Controller
                 'date10' => 'date'
             ]);
 
-            $plan = ActionFormation::all();
+            $plan = PlanFormation::all();
             $client = Client::all();
             $interv = Intervenant::all();
 
             $formation = Formation::create($request->except('cin'));
 
-            $last_group = ActionFormation::select('formations.*')
-                            ->join('formations', 'formations.n_form', 'action_formations.n_form')
-                            ->where('action_formations.n_form', $request->input("n_form"))
+            $last_group = PlanFormation::select('formations.*')
+                            ->join('formations', 'formations.n_form', 'plan_formations.n_form')
+                            ->where('plan_formations.n_form', $request->input("n_form"))
                             ->count();
-            $max_groupe = ActionFormation::find($request->input("n_form"))->nb_grp;
+            $max_groupe = PlanFormation::find($request->input("n_form"))->nb_grp;
             if ($last_group > $max_groupe) {
                 $request->session()->flash('error', 'Vous ne pouvez pas ajouter un autre groupe !');
                 return view('formation.add', ['plan' => $plan, 'client' => $client])->with('error');
@@ -235,7 +235,7 @@ class FormationController extends Controller
             return back()->with(['plan' => $plan, 'client' => $client])->with('success');
         }
         else {
-            $plan = ActionFormation::all();
+            $plan = PlanFormation::all();
             $client = Client::all();
             $interv = Intervenant::all();
 
@@ -252,17 +252,17 @@ class FormationController extends Controller
     public function show(Request $request, $id_form)
     {
       $formation = Formation::select('formations.*', 'formations.n_form as n_form_fk', 'formations.commentaire as comment_form',
-        'action_formations.*', 'clients.*', 'themes.*')
-        ->join('action_formations', 'formations.n_form', 'action_formations.n_form')
-        ->join('themes', 'action_formations.id_thm', 'themes.id_theme')
-        // ->join('clients', 'action_formations.nrc_e', 'clients.nrc_entrp')
-        ->join('plans', 'plans.id_plan', '=', 'action_formations.id_plan')
+        'plan_formations.*', 'clients.*', 'themes.*')
+        ->join('plan_formations', 'formations.n_form', 'plan_formations.n_form')
+        ->join('themes', 'plan_formations.id_thm', 'themes.id_theme')
+        // ->join('clients', 'plan_formations.nrc_e', 'clients.nrc_entrp')
+        ->join('plans', 'plans.id_plan', '=', 'plan_formations.id_plan')
         ->join('Clients', 'clients.nrc_entrp', '=', 'plans.nrc_e')
         ->where('formations.id_form', $id_form)
         ->first();
-      $plan = ActionFormation::select('action_formations.*', 'themes.*')
-        ->join('themes', 'action_formations.id_thm', 'themes.id_theme')
-        ->join('formations', 'action_formations.n_form', 'formations.n_form')
+      $plan = PlanFormation::select('plan_formations.*', 'themes.*')
+        ->join('themes', 'plan_formations.id_thm', 'themes.id_theme')
+        ->join('formations', 'plan_formations.n_form', 'formations.n_form')
         ->where('formations.id_form', $id_form)
         ->first();
       $personnel = Personnel::select('personnels.*')
@@ -350,32 +350,32 @@ class FormationController extends Controller
         }
         else {
           $formation = Formation::select(
-            'formations.*', 'formations.n_form as n_form_fk', 'formations.commentaire as comment_form', 'action_formations.*',
+            'formations.*', 'formations.n_form as n_form_fk', 'formations.commentaire as comment_form', 'plan_formations.*',
             'clients.nrc_entrp', 'clients.raisoci', 'themes.*')
-              ->join('action_formations', 'formations.n_form', 'action_formations.n_form')
-              ->join('themes', 'action_formations.id_thm', 'themes.id_theme')
-              // ->join('clients', 'action_formations.nrc_e', 'clients.nrc_entrp')
-              ->join('plans', 'plans.id_plan', '=', 'action_formations.id_plan')
+              ->join('plan_formations', 'formations.n_form', 'plan_formations.n_form')
+              ->join('themes', 'plan_formations.id_thm', 'themes.id_theme')
+              // ->join('clients', 'plan_formations.nrc_e', 'clients.nrc_entrp')
+              ->join('plans', 'plans.id_plan', '=', 'plan_formations.id_plan')
               ->join('Clients', 'clients.nrc_entrp', '=', 'plans.nrc_e')
               ->where('formations.id_form', $id_form)
               ->first();
-          $plan = ActionFormation::select('action_formations.*', 'themes.*', 'clients.*')
-            ->join('themes', 'action_formations.id_thm', 'themes.id_theme')
-            // ->join('clients', 'action_formations.nrc_e', 'clients.nrc_entrp')
-            ->join('plans', 'plans.id_plan', '=', 'action_formations.id_plan')
+          $plan = PlanFormation::select('plan_formations.*', 'themes.*', 'clients.*')
+            ->join('themes', 'plan_formations.id_thm', 'themes.id_theme')
+            // ->join('clients', 'plan_formations.nrc_e', 'clients.nrc_entrp')
+            ->join('plans', 'plans.id_plan', '=', 'plan_formations.id_plan')
             ->join('clients', 'clients.nrc_entrp', '=', 'plans.nrc_e')
             ->get();
           // $personnel = Personnel::select('personnels.*', 'formation_personnels.*')
           //   ->join('formation_personnels', 'personnels.cin', 'formation_personnels.cin')
           //   ->join('formations', 'formation_personnels.id_form', 'formations.id_form')
           //   ->get();
-          $personnel = ActionFormation::select('personnels.*')
-            // ->join('clients', 'action_formations.nrc_e', 'clients.nrc_entrp')
-            ->join('plans', 'plans.id_plan', '=', 'action_formations.id_plan')
+          $personnel = PlanFormation::select('personnels.*')
+            // ->join('clients', 'plan_formations.nrc_e', 'clients.nrc_entrp')
+            ->join('plans', 'plans.id_plan', '=', 'plan_formations.id_plan')
             ->join('clients', 'clients.nrc_entrp', '=', 'plans.nrc_e')
             ->join('personnels', 'clients.nrc_entrp', 'personnels.nrc_e')
-            ->where([['action_formations.n_form', $request->input('n_form')], ['personnels.dt_demiss', null]])
-            ->orWhere([['action_formations.n_form', $request->input('n_form')], ['personnels.dt_demiss', '<', 'personnels.dt_embch']])
+            ->where([['plan_formations.n_form', $request->input('n_form')], ['personnels.dt_demiss', null]])
+            ->orWhere([['plan_formations.n_form', $request->input('n_form')], ['personnels.dt_demiss', '<', 'personnels.dt_embch']])
             ->get();
 
           $interv = Intervenant::all();

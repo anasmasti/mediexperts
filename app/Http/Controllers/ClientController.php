@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
-use App\{Client,Giac,Actionnaire,DemandeFinancement,DemandeRemboursementOfppt,ActionFormation};
+use App\{Client,Giac,Actionnaire,DemandeFinancement,DemandeRemboursementOfppt,PlanFormation};
 use Session;
 use Alert;
 use DB;
@@ -26,7 +26,7 @@ class ClientController extends Controller
         $action = Actionnaire::all();
         $df = DemandeFinancement::all();
         $drb = DemandeRemboursementOfppt::all();
-        $plan = ActionFormation::all();
+        $plan = PlanFormation::all();
 
         return view('client.view',
         [
@@ -58,7 +58,7 @@ class ClientController extends Controller
         $action = Actionnaire::all();
         $df = DemandeFinancement::all();
         $drb = DemandeRemboursementOfppt::all();
-        $plan = ActionFormation::all();
+        $plan = PlanFormation::all();
 
         return view('client.view', [
             'client'=>$client,
@@ -252,7 +252,7 @@ class ClientController extends Controller
         $action = Actionnaire::all();
         $df = DemandeFinancement::all();
         $drb = DemandeRemboursementOfppt::all();
-        $plan = ActionFormation::all();
+        $plan = PlanFormation::all();
 
     return view('client.detail',
             [
@@ -434,15 +434,15 @@ class ClientController extends Controller
             $client->save();
 
             // update 'lieu', 'nom_resp' on update 'clients'
-            $count_plan_action = ActionFormation::select('*')
-                ->join('plans', 'action_formations.id_plan', 'plans.id_plan')
+            $count_plan_action = PlanFormation::select('*')
+                ->join('plans', 'plan_formations.id_plan', 'plans.id_plan')
                 ->join('clients', 'plans.nrc_e', 'clients.nrc_entrp')
                 ->where('clients.nrc_entrp', $nrc_e)
                 ->count();
             if ($count_plan_action > 0) {
                 DB::table('clients')
                     ->join('plans', 'clients.nrc_entrp', 'plans.nrc_e')
-                    ->join('action_formations as pf', 'plans.id_plan', 'pf.id_plan')
+                    ->join('plan_formations as pf', 'plans.id_plan', 'pf.id_plan')
                     ->where('clients.nrc_entrp', $nrc_e)
                     ->update([
                         'pf.lieu' => $client->raisoci,

@@ -37,8 +37,8 @@ class Plan extends Model
         'commentaire'
     ];
 
-    public function action_formations()
+    public function plan_formations()
     {
-      return $this->hasMany(ActionFormation::class);
+      return $this->hasMany(PlanFormation::class);
     }
 }

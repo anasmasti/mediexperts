@@ -6,7 +6,7 @@ use App\Charts\SampleChart;
 use App\Charts\SampleChart\color;
 use Illuminate\Http\Request;
 use App\{Admin,Client,Cabinet,Giac,Actionnaire,Intervenant,DemandeFinancement,
-    DemandeRemboursementGiac,DemandeRemboursementOfppt, Domaine, Formation, ActionFormation,MissionIntervenant, Theme};
+    DemandeRemboursementGiac,DemandeRemboursementOfppt, Domaine, Formation, PlanFormation,MissionIntervenant, Theme};
 use DB;
 // use Alert;
 
@@ -38,7 +38,7 @@ class AdminController extends Controller
         $df = DemandeFinancement::orderBy('n_df', 'desc')->count();
         $drb1 = DemandeRemboursementGiac::orderBy('n_drb', 'desc')->count();
         $drb2 = DemandeRemboursementOfppt::orderBy('n_drb', 'desc')->count();
-        $plan = ActionFormation::orderBy('n_form', 'desc')->count();
+        $plan = PlanFormation::orderBy('n_form', 'desc')->count();
         $misinv = MissionIntervenant::orderBy('id', 'desc')->count();
         $theme = Theme::all()->count();
         $domaine = Domaine::all()->count();

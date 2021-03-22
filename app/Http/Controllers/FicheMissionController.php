@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\{DemandeFinancement,Client,Cabinet,Intervenant,DemandeRemboursementGiac,Plan,ActionFormation,Formation,Personnel,MissionIntervenant,Giac,Domaine,Theme};
+use App\{DemandeFinancement,Client,Cabinet,Intervenant,DemandeRemboursementGiac,Plan,PlanFormation,Formation,Personnel,MissionIntervenant,Giac,Domaine,Theme};
 use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;

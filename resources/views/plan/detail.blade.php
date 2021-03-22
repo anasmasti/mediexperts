@@ -23,7 +23,7 @@
 <div class="card card-dark">
     <!-- card-header -->
     <div class="card-header">
-      <a class="btn btn-dark btn-sm bu-lg-ic" href="/ActionFormation"><i class="fa fa-arrow-left"></i></a>
+      <a class="btn btn-dark btn-sm bu-lg-ic" href="/PlanFormation"><i class="fa fa-arrow-left"></i></a>
       <h3 class="card-title card-h3">Plan N° {{ $plans->id_plan }} > {{ $plans['raisoci'] }}</h3>
       <a class="btn btn-sm bua bu-ic" a="/del-plan/{{ $plans->id_plan }}" onclick="confirmDelete({{$plans->id_plan}}, 'plan/')"><i class="fa fa-trash-alt"></i></a>
       <a class="btn btn-sm buaj bu-ic" href="/edit-plan/{{ $plans->id_plan }}"><i class="fa fa-edit"></i></a>

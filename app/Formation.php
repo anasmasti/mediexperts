@@ -53,8 +53,8 @@ class Formation extends Model
         'commentaire'
     ];
 
-    public function action_formations()
+    public function plan_formations()
     {
-       return $this->belongsTo(ActionFormation::class);
+       return $this->belongsTo(PlanFormation::class);
     }
 }

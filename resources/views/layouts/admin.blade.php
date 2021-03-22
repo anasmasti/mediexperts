@@ -397,7 +397,7 @@
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="/ActionFormation" class="nav-link">
+                    <a href="/PlanFormation" class="nav-link">
                     <i class="fa fa-list nav-icon"></i>
                     <p>Liste</p>
                     </a>

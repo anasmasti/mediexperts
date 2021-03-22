@@ -204,7 +204,7 @@ Route::get('/del-plan/{id_plan}', 'PlanController@destroy')->name('PLAN.destroy'
 
 
 //*************** ACTION FORMATION ROUTES ***************
-Route::get('/ActionFormation', 'PlanFormationController@index')->name('PF.index');
+Route::get('/PlanFormation', 'PlanFormationController@index')->name('PF.index');
 Route::get('/act-form-cl/{nrc}/{annee}', 'PlanFormationController@ActionFormationClient')->name('PF.ActionFormationClient');
 Route::get('/detail-pf/{nf}', 'PlanFormationController@show')->name('PF.show');
 
@@ -359,9 +359,9 @@ Route::get('/fill-form-info', 'FormulaireController@FillFormationInfo')->name('F
 
 Route::get('/fill-dates-plan', 'FormulaireController@FillDatesPlan')->name('plan_dates.FillDatesPlan');
 
-Route::get('/print-pf', 'FormulaireController@print_pf')->name('action_formations.print_pf');
-Route::get('/fill-plans-by-reference', 'FormulaireController@FillPlansByReference')->name('action_formations.FillPlansByReference');
-Route::get('/fill-reference-plan', 'FormulaireController@FillReferencesPlan')->name('action_formations.FillReferencesPlan');
+Route::get('/print-pf', 'FormulaireController@print_pf')->name('plan_formations.print_pf');
+Route::get('/fill-plans-by-reference', 'FormulaireController@FillPlansByReference')->name('plan_formations.FillPlansByReference');
+Route::get('/fill-reference-plan', 'FormulaireController@FillReferencesPlan')->name('plan_formations.FillReferencesPlan');
 
 
 Route::get('/print-m6', 'FormulaireController@print_m6')->name('M6.print_m6');
@@ -372,11 +372,11 @@ Route::get('/print-fiche-evaluation', 'FormulaireController@print_fiche_evaluati
 Route::get('/fill-fiche-evaluation', 'FormulaireController@FillFicheEval')->name('Fiche_Evaluation.FillFicheEval');
 Route::get('/fill-dates-form', 'FormulaireController@FillDatesForm')->name('Fiche_Evaluation.FillDatesForm');
 
-Route::get('/fill-action-form', 'FormulaireController@FillActionFormation')->name('ActionFormation.FillActionFormation');
-Route::get('/print-avis-aff', 'FormulaireController@print_avis_aff')->name('ActionFormation.print_avis_aff');
+Route::get('/fill-action-form', 'FormulaireController@FillActionFormation')->name('PlanFormation.FillActionFormation');
+Route::get('/print-avis-aff', 'FormulaireController@print_avis_aff')->name('PlanFormation.print_avis_aff');
 
-Route::get('/print-att-reference-plan', 'FormulaireController@print_att_reference_plan')->name('ActionFormation.print_att_reference_plan');
-Route::get('/fill-cabinet-info', 'FormulaireController@FillCabinetInfo')->name('ActionFormation.FillCabinetInfo');
+Route::get('/print-att-reference-plan', 'FormulaireController@print_att_reference_plan')->name('PlanFormation.print_att_reference_plan');
+Route::get('/fill-cabinet-info', 'FormulaireController@FillCabinetInfo')->name('PlanFormation.FillCabinetInfo');
 Route::get('/fill-plan-by-client', 'FormulaireController@FillPlansByClient')->name('PlanByClinet');
 Route::get('/fill-all-organisme' , 'FormulaireController@FillAllCabinets')->name('FillOrganisme');
 /********************************************************************/

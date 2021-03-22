@@ -72,7 +72,7 @@
 
                     @php
                         $has_action_form = false; $action_form = null;
-                        $action_form = \App\ActionFormation::where('id_thm', $th->id_theme);
+                        $action_form = \App\PlanFormation::where('id_thm', $th->id_theme);
                     @endphp
 
                     <td class="action py-0 align-middle">

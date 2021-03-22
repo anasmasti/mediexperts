@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\{Client,ActionFormation,Formation,Personnel,FormationPersonnel,Domaine,Theme};
+use App\{Client,PlanFormation,Formation,Personnel,FormationPersonnel,Domaine,Theme};
 use Illuminate\Support\Facades\DB;
 
 class FormationPersonnelController extends Controller

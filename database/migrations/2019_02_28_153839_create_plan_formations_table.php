@@ -13,7 +13,7 @@ class CreatePlanFormationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('action_formations', function (Blueprint $table) {
+        Schema::create('plan_formations', function (Blueprint $table) {
             $table->bigIncrements('n_form');
             // $table->string('refpdf')->unique();
             $table->string('id_dom', 300); //domaine
@@ -63,7 +63,7 @@ class CreatePlanFormationsTable extends Migration
 
             $table->timestamps();
         });
-        // DB::statement("ALTER TABLE action_formations ADD CONSTRAINT CHECK_DATE CHECK (dt_debut < dt_fin)");
+        // DB::statement("ALTER TABLE plan_formations ADD CONSTRAINT CHECK_DATE CHECK (dt_debut < dt_fin)");
     }
 
     /**
@@ -73,6 +73,6 @@ class CreatePlanFormationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('action_formations');
+        Schema::dropIfExists('plan_formations');
     }
 }

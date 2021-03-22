@@ -19,10 +19,10 @@ class AfterUpdateClients extends Migration
         // FOR EACH ROW
         // BEGIN
         //     IF old.raisoci <> new.raisoci THEN
-        //         UPDATE action_formations.lieu
+        //         UPDATE plan_formations.lieu
         //         INNER JOIN plans on plans.nrc_e = clients.nrc_entrp
-        //         INNER JOIN action_formations on action_formations.id_plan = plans.id_plan
-        //         set action_formations.lieu = NEW.raisoci
+        //         INNER JOIN plan_formations on plan_formations.id_plan = plans.id_plan
+        //         set plan_formations.lieu = NEW.raisoci
         //         WHERE clients.nrc_entrp = "11111";
         //     END IF;
         // END;');
@@ -31,16 +31,16 @@ class AfterUpdateClients extends Migration
         // FOR EACH ROW
         //     BEGIN
         //     IF old.raisoci <> new.raisoci THEN
-        //         UPDATE action_formations.lieu
+        //         UPDATE plan_formations.lieu
         //         INNER JOIN plans on plans.nrc_e = clients.nrc_entrp
-        //         INNER JOIN action_formations on action_formations.id_plan = plans.id_plan
-        //         set action_formations.lieu = NEW.raisoci;
+        //         INNER JOIN plan_formations on plan_formations.id_plan = plans.id_plan
+        //         set plan_formations.lieu = NEW.raisoci;
         //     END IF;
         //     IF old.nom_resp <> new.nom_resp THEN
-        //         UPDATE action_formations.nom_resp
+        //         UPDATE plan_formations.nom_resp
         //         INNER JOIN plans on plans.nrc_e = clients.nrc_entrp
-        //         INNER JOIN action_formations on action_formations.id_plan = plans.id_plan
-        //         set action_formations.nom_resp = NEW.nom_resp;
+        //         INNER JOIN plan_formations on plan_formations.id_plan = plans.id_plan
+        //         set plan_formations.nom_resp = NEW.nom_resp;
         //     END IF;
         // END;');
     }
