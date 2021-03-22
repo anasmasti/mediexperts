@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans|Advent+Pro|Muli|Roboto|Barlow|Roboto+Slab|Comfortaa|Exo|Jura|K2D|Montserrat|PT+Sans|Rajdhani|Roboto+Condensed|Ropa+Sans|Srisakdi|Ubuntu');
+
+body, input {
+    /* font-family: 'Open Sans', sans-serif; */
+    font-family: 'Roboto Slab', serif;
+}
+
+/*label {
+     font-weight: 300;
+}*/
+.icon { padding: 0rem .5rem; }
+.td-1 {
+    max-width: 150px;
+}
+.td-2 {
+    max-width: 180px;
+}
+.td-3 {
+    min-width: 150px;
+    max-width: 300px;
+}
+.th-det {
+  min-width: 400px;
+  max-width: 500px;
+}
+.th-last {
+  min-width: 200px;
+  max-width: 400px;
+}
+.bu-lg-ic {
+    width: 35px;
+    margin: 2px;
+    float: left;
+}
+.bu-ic {
+    margin: 2px;
+    float: right;
+}
+.ic {
+    margin: 0 5px 0 5px;
+    padding: 2px 0 2px 0;
+}
+.action {
+    text-align: center;
+    width: 170px;
+}
+.bu-sm {
+    /* width: 35px;
+    padding: 0;*/
+    margin: 2px;
+    float: right;
+}
+.txt-sm {
+    font-size: 12px;
+}
+.del {
+    color: #DC3545;
+}
+.edit {
+    color: #28A745;
+}
+.card-h3 {
+    float: left;
+}
+.bu-icon {
+  border-radius: 100rem !important;
+  background-color: #ffc107 !important;
+  color: black !important;
+}
+.buaj
+ {border-radius: 35% !important;
+background-color: #ffc107;
+color: black !important;}
+.bua
+ {border-radius: 35% !important;
+background-color: #df2525;
+color: beige !important;}
+
+
+.bu-add{
+
+background-color: #ffc107 !important;
+color: black !important;}
+
+.bu-danger
+ {
+    background-color: #df2525 !important;
+    color: beige !important;
+}
+
+.btn-cus {
+    position: absolute;
+    width: 100px;
+    height: 30px;
+    background: #E8C324;
+    box-shadow: 0px 8px 10px rgba(199, 192, 192, 0.25);
+    border-radius: 50px;
+}
+
+.background {
+    background-image: url('/img/medi-bg.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: auto;
+    height: auto;
+}
+
+.cus-card-height {
+    /* height: 65vh; */
+    /* width:100%; */
+    height:50vh;
+}
+
+.fa-check-circle, .fa-check {
+    color: #28A745;
+    font-size: 18px;
+}
+.fa-times-circle, .fa-times-square .fa-times {
+    color: #bf2828;
+    font-size: 18px;
+}
+
+
+@media only screen and (max-width: 1900px) {
+    .ab{
+        margin-right: 25px;
+    }
+    .background{
+        width: 100%;
+        height: 690px;
+    }
+}

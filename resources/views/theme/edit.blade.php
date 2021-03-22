@@ -1,0 +1,203 @@
+@extends('layouts.admin')
+
+@section('content')
+
+
+@section('content-wrapper')
+<div class="col-sm-6">
+        <h1 class="m-0 text-dark">Thème</h1>
+    </div><!-- /.col -->
+    <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="/theme">Thèmes</a></li>
+            <li class="breadcrumb-item active">{{$theme->nom_theme}}</li>
+        </ol>
+    </div><!-- /.col -->
+@endsection
+
+    @foreach ($domain as $dom)
+        @if ($dom->id_domain == $theme->id_dom)
+            @php $id_domain = $dom->id_domain @endphp
+        @endif
+    @endforeach
+
+{{-- jquery scripts --}}
+<script src={{ asset('js/jquery.js') }}></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+{{-- jquery scripts --}}
+
+<!-- CARD -->
+<div class="card card-dark">
+        <!-- card-header -->
+        <div class="card-header">
+            <h3 class="card-title">{{$theme->nom_theme}}</h3>
+        </div>
+        <!-- /.card-header -->
+        <form role="form" action="/edit-theme/{{$theme->id_theme}}" method="POST" enctype="multipart/form-data">
+        <div class="card-body">
+            <div class="row">
+                {{ csrf_field() }}
+                {{-- <div class="form-group col-3"><label>ID</label><input class="form-control {{ $errors->has('id_theme') ? ' is-invalid' : '' }}" type="text" name="id_theme" min="0" maxlength="20" onkeypress="return isNumberKey(event)" placeholder="auto incrémenté.." disabled >
+                    @if ($errors->has('id_theme'))
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('id_theme') }}</strong>
+                        </span>
+                    @endif
+                </div> --}}
+
+                <div class="form-group col-12"><label>Intitulé thème</label>
+                    <input class="form-control {{ $errors->has('nom_theme') ? ' is-invalid' : '' }}" value="{{$theme->nom_theme}}" type="text" name="nom_theme" maxlength="300" placeholder="thème" >
+                    @if ($errors->has('nom_theme'))
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('nom_theme') }}</strong>
+                        </span>
+                    @endif
+                </div>
+
+                <div class="form-group col-12">
+                    <label for="id_dom">Domaine<span>&nbsp;<i class="fas fa-tag"></i></span></label>
+                    <select class="form-control {{ $errors->has('id_dom') ? ' is-invalid' : '' }}" name="id_dom" value="{{old('id_dom')}}">
+                        @foreach ($domain as $dom)
+                            @if ($theme->id_dom == $dom->id_domain)
+                                <option selected value="{{$dom->id_domain}}">{{$dom->nom_domain}} > {{$dom->ville}} > {{$dom->cout}}</option>
+                            @else
+                                <option value="{{$dom->id_domain}}">{{$dom->nom_domain}} > {{$dom->ville}} > {{$dom->cout}}</option>
+                            @endif
+                        @endforeach
+                    </select>
+                    @if ($errors->has('id_dom'))
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('id_dom') }}</strong>
+                        </span>
+                    @endif
+                </div>
+
+                <div class="form-group col-lg-6 col-sm-12">
+                    <label>Objectifs</label>
+                    <textarea class="form-control {{ $errors->has('objectif') ? ' is-invalid' : '' }}" type="text" rows="3" name="objectif" maxlength="2000" placeholder="objectifs ..">{{$theme->objectif}}</textarea>
+                    @if ($errors->has('objectif'))
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('objectif') }}</strong>
+                        </span>
+                    @endif
+                </div>
+
+                <div class="form-group col-lg-6 col-sm-12"><label>Contenu</label>
+                    <textarea class="form-control {{ $errors->has('contenu') ? ' is-invalid' : '' }}" type="text" rows="3" name="contenu" maxlength="2000" placeholder="contenu ..">{{$theme->contenu}}</textarea>
+                    @if ($errors->has('contenu'))
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('contenu') }}</strong>
+                        </span>
+                    @endif
+                </div>
+
+                <div class="form-group col-12"><label>Commentaire</label>
+                    <textarea class="form-control" type="text" rows="3" name="commentaire" maxlength="2000" placeholder="Commentaire ..">{{$theme->commentaire}}</textarea>
+                </div>
+
+
+        </div><!--./row-->
+        </div><!--./card-body-->
+
+
+
+        <div class="card-footer text-center">
+            <button class="btn bu-add" type="submit" id="edit"><i class="fas fa-edit"></i>&nbsp;Modifier</button>
+            <a class="btn bu-danger" href="/theme"><i class="fas fa-window-close"></i>&nbsp;Annuler</a>
+        </div>
+
+        </form>
+    </div><!-- ./CARD -->
+
+
+
+    {{-- TOASTR NOTIFICATIONS --}}
+    @if (Session::has('added'))
+    <script>
+        $(document).ready(function() {
+            toastr.options.preventDuplicates = true;
+            toastr.options.closeButton = true;
+            toastr.options.showEasing = 'swing';
+            toastr.options.hideEasing = 'linear';
+            toastr.options.closeEasing = 'linear';
+            toastr.success("{{ Session::get("added") }}");
+        });
+    </script>
+    @endif
+    @if (Session::has('updated'))
+    <script>
+        $(document).ready(function() {
+            toastr.options.preventDuplicates = true;
+            toastr.options.closeButton = true;
+            toastr.options.showEasing = 'swing';
+            toastr.options.hideEasing = 'linear';
+            toastr.options.closeEasing = 'linear';
+            toastr.success("{{ Session::get("updated") }}");
+        });
+    </script>
+    @endif
+    @if (Session::has('deleted'))
+    <script>
+        $(document).ready(function() {
+            toastr.options.preventDuplicates = true;
+            toastr.options.closeButton = true;
+            toastr.options.showEasing = 'swing';
+            toastr.options.hideEasing = 'linear';
+            toastr.options.closeEasing = 'linear';
+            toastr.success("{{ Session::get("deleted") }}");
+        });
+    </script>
+    @endif
+    @if (Session::has('success'))
+    <script>
+        $(document).ready(function() {
+            toastr.options.preventDuplicates = true;
+            toastr.options.closeButton = true;
+            toastr.options.showEasing = 'swing';
+            toastr.options.hideEasing = 'linear';
+            toastr.options.closeEasing = 'linear';
+            toastr.success("{{ Session::get("success") }}");
+        });
+    </script>
+    @endif
+    @if (Session::has('warning'))
+    <script>
+        $(document).ready(function() {
+            toastr.options.preventDuplicates = true;
+            toastr.options.closeButton = true;
+            toastr.options.showEasing = 'swing';
+            toastr.options.hideEasing = 'linear';
+            toastr.options.closeEasing = 'linear';
+            toastr.warning("{{ Session::get("warning") }}");
+        });
+    </script>
+    @endif
+    @if (Session::has('info'))
+    <script>
+        $(document).ready(function() {
+            toastr.options.preventDuplicates = true;
+            toastr.options.closeButton = true;
+            toastr.options.showEasing = 'swing';
+            toastr.options.hideEasing = 'linear';
+            toastr.options.closeEasing = 'linear';
+            toastr.info("{{ Session::get("info") }}");
+        });
+    </script>
+    @endif
+    @if (Session::has('error'))
+    <script>
+        $(document).ready(function() {
+            toastr.options.preventDuplicates = true;
+            toastr.options.closeButton = true;
+            toastr.options.showEasing = 'swing';
+            toastr.options.hideEasing = 'linear';
+            toastr.options.closeEasing = 'linear';
+            toastr.error("{{ Session::get("error") }}");
+        });
+    </script>
+    @endif
+    {{-- TOASTR NOTIFICATIONS --}}
+
+
+
+@endsection
