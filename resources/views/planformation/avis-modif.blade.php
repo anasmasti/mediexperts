@@ -27,7 +27,7 @@
 <div class="card card-dark">
   <!-- card-header -->
   <div class="card-header">
-    <h3 class="card-title">Annulerr ou modifier l'état d'avis</h3>
+    <h3 class="card-title">Annuler ou modifier l'état d'avis</h3>
   </div><br>
   <!-- /.card-header -->
   <form role="form" action="/add-pf" method="POST">
