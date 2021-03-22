@@ -1,8 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
+<<<<<<< HEAD
 use App\{DemandeFinancement,Client,Cabinet,Intervenant,DemandeRemboursementGiac,Plan,PlanFormation,Formation,Personnel,MissionIntervenant,Giac,Domaine,Theme};
 use DB;
+=======
+
+use App\{DemandeFinancement,Client,Cabinet,Intervenant,DemandeRemboursementGiac,Plan,PlanFormation,Formation,Personnel,MissionIntervenant,Giac,Domaine,Theme};
+use Illuminate\Support\Facades\DB;
+>>>>>>> d996ee2e7753e55c76bfabe8b80e72426b1351d8
 
 use Illuminate\Http\Request;
 

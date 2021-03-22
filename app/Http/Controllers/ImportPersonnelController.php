@@ -4,8 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Imports\PersonnelsImport;
+<<<<<<< HEAD
 use DB;
 use Excel;
+=======
+use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
+>>>>>>> d996ee2e7753e55c76bfabe8b80e72426b1351d8
 
 class ImportPersonnelController extends Controller
 {

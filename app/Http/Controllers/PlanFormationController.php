@@ -220,7 +220,11 @@ class PlanFormationController extends Controller
             foreach ($docs as $doc) {
                 if ($request->input($doc) != null) {
                     $plan->$doc = $request->input($doc);
+<<<<<<< HEAD
                     // $plan->$doc = "préparé";
+=======
+                    //$plan->$doc = "préparé";
+>>>>>>> d996ee2e7753e55c76bfabe8b80e72426b1351d8
                 }
                 else {
                     $plan->$doc = "non préparé";
@@ -280,16 +284,23 @@ class PlanFormationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+<<<<<<< HEAD
+=======
+    // afficher en details
+>>>>>>> d996ee2e7753e55c76bfabe8b80e72426b1351d8
     public function show(Request $request, $nform)
     {
         $plan = PlanFormation::findOrFail($nform);
 
+<<<<<<< HEAD
         // $client = Client::all();
         // $interv = Intervenant::all();
         // $domain = Domaine::all();
         // $theme = Theme::all();
         // $cabinet = Cabinet::all();
 
+=======
+>>>>>>> d996ee2e7753e55c76bfabe8b80e72426b1351d8
         $plan_props = Client::select('clients.raisoci','clients.nrc_entrp','intervenants.nom','intervenants.prenom', 'plans.refpdf')
                     ->join('plans', 'clients.nrc_entrp', '=', 'plans.nrc_e')
                     ->join('plan_formations', 'plans.id_plan', '=', 'plan_formations.id_plan')
@@ -406,6 +417,10 @@ class PlanFormationController extends Controller
 
             $docs = ['model5', 'model3', 'f4', 'fiche_eval',
                     'support_form', 'cv_inv', 'avis_affich'];
+<<<<<<< HEAD
+=======
+
+>>>>>>> d996ee2e7753e55c76bfabe8b80e72426b1351d8
             foreach ($docs as $doc) {
                 if ($request->input($doc) != null) { $plan->$doc = "préparé"; }
                 else { $plan->$doc = "non préparé"; }
@@ -474,6 +489,10 @@ class PlanFormationController extends Controller
             }
 
             // apporter les modification de l'"action_formation" sur "formations" s'il y a un seul groupe
+<<<<<<< HEAD
+=======
+            //n_form primary key plan_formation
+>>>>>>> d996ee2e7753e55c76bfabe8b80e72426b1351d8
             if ($plan->nb_grp == 1) {
               DB::table('plan_formations')
                 ->join('formations', 'plan_formations.n_form', 'formations.n_form')
@@ -555,4 +574,20 @@ class PlanFormationController extends Controller
         return back();
     }
 
+<<<<<<< HEAD
+=======
+    public function avismodif(Request $request)
+    {
+      return view('planformation.avis-modif');
+    }
+
+    public function print_avismodif() {
+      $client = Client::all();
+
+    return view('planformation.avis-modif', ['client' => $client]);
+  }
+
+
+
+>>>>>>> d996ee2e7753e55c76bfabe8b80e72426b1351d8
 }
