@@ -49,8 +49,7 @@
       <label>Réference plan de formation </label>
       <select class="form-control" name="plans" id="plans">
         <option selected disabled>---selectionner le plan---</option>
-          <option>----</option>
-          <option>-----</option>
+
       </select>
     </div>
 
@@ -58,7 +57,7 @@
     <div class="form-group col-lg-6 col-sm-12">
       <label>État d'avis</label>
       <select class="form-control" id="etat" onkeypress="getSelected()" >
-        <option selected disabled>---selectionner l'état---</option>
+        <option selected disabled >---selectionner l'état---</option>
           <option value="annulation" id="etatAnul">Annulation</option>
           <option value="modification" id="etatModif">Modification</option>
       </select>
@@ -354,27 +353,27 @@ $('#plans').on('change', function() {
 
 
 
-  // function getSelected(){
-  //   var etatAnul = Document.getElementById('etatAnul').selected;
-  //   //var etatModif = Document.getElementById('etatModif').selected;
-  //   var annul=Document.getElementById('annuler').disabled;
-  //   var chk_a=Document.getElementById('a').disabled;
-  //   var chk_b=Document.getElementById('b').disabled;
-  //   var chk_c=Document.getElementById('c').disabled;
-  //   var chk_d=Document.getElementById('d').disabled;
-  //   var
-  //   if(etatAnul)
-  //   {
-  //     chk_a=true;
-  //     chk_b=true;
-  //     chk_c=true;
-  //     chk_d=true;
-  //     annul.checked;
-  //   }
-  //   else{
-  //     annul=true;
-  //   }
-  //  }
+  function getSelected(){
+    var etatAnul = Document.getElementById('etatAnul').selected;
+    //var etatModif = Document.getElementById('etatModif').selected;
+    var annul=Document.getElementById('annuler').disabled;
+    var chk_a=Document.getElementById('a').disabled;
+    var chk_b=Document.getElementById('b').disabled;
+    var chk_c=Document.getElementById('c').disabled;
+    var chk_d=Document.getElementById('d').disabled;
+    var
+    if(etatAnul)
+    {
+      chk_a=true;
+      chk_b=true;
+      chk_c=true;
+      chk_d=true;
+      annul.checked;
+    }
+    else{
+      annul=true;
+    }
+   }
 
   </script>
 
