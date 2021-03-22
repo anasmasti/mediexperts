@@ -408,7 +408,10 @@
 
               <div class="info-box-content">
                 <span class="info-box-text">Modèles 5</span>
-                <span class="info-box-number"><a href="/print-m5">Imprimer</a></span>
+                <div class="row" style="margin-left: 1px">
+                <span class="info-box-number"><a href="/print-m5">Imprimer</a></span>&nbsp;&nbsp;
+                <span class="info-box-number"><a href="/avis-modif">Modifier</a></span>
+                </div>
               </div>
               <!-- /.info-box-content -->
             </div>

@@ -557,4 +557,12 @@ class PlanFormationController extends Controller
       return view('planformation.avis-modif');
     }
 
+    public function print_avismodif() {
+      $client = Client::all();
+
+    return view('planformation.avis-modif', ['client' => $client]);
+  }
+
+
+
 }

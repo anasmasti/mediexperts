@@ -1,30 +1,6 @@
-@extends('layouts.admin')
+<template>
 
-@section('content')
-
-@section('content-wrapper')
-<div class="col-sm-6">
-    <h1 class="m-0 text-dark">Avis de modification</h1>
-  </div><!-- /.col -->
-  <div class="col-sm-6">
-    <ol class="breadcrumb float-sm-right">
-      <li class="breadcrumb-item"><a href="/print-m3">Imprimer</a></li>
-      <li class="breadcrumb-item active"></li>
-    </ol>
-  </div><!-- /.col -->
-
-
-@endsection
-
-{{-- jquery scripts --}}
-<script src={{ asset('js/jquery.js') }}></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-
-
-{{-- jquery scripts --}}
-
-
-<div class="card card-dark">
+  <div class="card card-dark">
   <!-- card-header -->
   <div class="card-header">
     <h3 class="card-title">Annuler ou modifier l'état d'avis</h3>
@@ -34,25 +10,6 @@
     {{ csrf_field() }}
     <div class="card-body">
       <div class="row">
-
-        <div class="form-group col-lg-6 col-sm-12">
-      <label>Entreprise</label>
-      <select class="form-control" id="client" name="client">
-        <option selected disabled>---selectionner l'entreprise---</option>
-        @foreach ($client as $clt)
-        <option value="{{$clt->nrc_entrp}}" > {{$clt->raisoci}} </option>
-      @endforeach
-      </select>
-    </div>
-
-    <div class="form-group col-lg-6 col-sm-12">
-      <label>Réference plan de formation </label>
-      <select class="form-control" name="plans" id="plans">
-        <option selected disabled>---selectionner le plan---</option>
-          <option>----</option>
-          <option>-----</option>
-      </select>
-    </div>
 
 
     <div class="form-group col-lg-6 col-sm-12">
@@ -224,7 +181,7 @@
 <!-- L'HORAIRE Modifié -->
 <div class="row">
 <div class="form-group col-lg-3 col-sm-12 d-flex">
-  <label >Nouvelle organisation horaire </label>
+  <label >Organisation horaire initiale </label>
   </div>
 
 
@@ -264,128 +221,20 @@
 
 
 
-<div class="card-footer text-center">
 
-        <a href="/print-m3" class="btn btn-info"><i class="fa fa-print"></i>&nbsp;Imprimer</a>
-</div>
 
   </form>
 
 </div><!-- ./CARD -->
 
-
+</template>
 
 <script>
+export default {
 
+}
+</script>
 
-$(document).ready(function () {
+<style>
 
-$('#client').on('change', function() {
-  let nrc = $('#client').val();
-  let fillDropdown = '';
-  $.get('/fill-plan-by-client', {'nrc': nrc})
-    .done((data) => {
-      console.log("success action !!", data);
-      data.forEach(elem => {
-        fillDropdown += `<option value="${elem.id_plan}"> ${elem.refpdf}  </option>`;
-      });
-      // affecter les données dans select
-      $('#plans').html("");
-      if (data.length) {
-        $('#plans').append('<option selected disabled>--sélectionner une action</option>');
-        $('#plans').append(fillDropdown);
-      }
-      else {
-        $('#plans').append('<option selected disabled>(vide) aucune action</option>');
-      }
-    }) //done
-    .catch(err => console.log("error getting actions !!", error));
-});
-$('#plans').on('change', function() {
-      let idPlan = $('#plans').val();
-      let fillDropdown = '';
-      $.get('/fill-action-form', {'idPlan': idPlan})
-        .done((data) => {
-          console.log("success action !!", data);
-          data.forEach(elem => {
-            fillDropdown += `<option value="${elem.n_form}">${elem.n_action} > ${elem.nom_theme} </option>`;
-          });
-          // affecter les données dans select
-          $('#action').html("");
-          if (data.length) {
-            $('#action').append('<option selected disabled>--sélectionner une action</option>');
-            $('#action').append(fillDropdown);
-          }
-          else {
-            $('#action').append('<option selected disabled>(vide) aucune action</option>');
-          }
-        }) //done
-        .catch(err => console.log("error getting actions !!", error));
-    });
-
-    $('#action').on('change', function() {
-      $('#listPersonnel').html("") //vider la liste à chaque sélection
-      $('#dates').html(""); //vider la liste à chaque sélection
-      let nForm = $('#action').val();
-      $.ajax({
-        type: 'GET',
-        url : '{!! URL::to('/fill-form-f4') !!}', //on peut utiliser l'url du formulaire 4, ça donne le même resultat
-        data: {'nForm': nForm},
-        success: function(data) {
-          let fillFormation = '<option selected disabled>--veuillez sélectionner la formation</option>';
-          console.log('success formations !!', data);
-          if (data.length > 0) {
-            for (let i = 0; i < data.length; i++) {
-              fillFormation += `<option value="`+data[i].id_form+`">`+data[i].nom_theme+`</option>`;
-            }
-            $('#formation').html("");
-            $('#formation').append(fillFormation);
-          }
-          else {
-            $('#formation').html("");
-            $('#formation').append('<option selected disabled>(vide) aucune formation</option>');
-          }
-        },
-        error: function(err) { console.log("error getting formations !!", err); }
-      }); //ajax
-    });
-
-
-
-
-
-  // function getSelected(){
-  //   var etatAnul = Document.getElementById('etatAnul').selected;
-  //   //var etatModif = Document.getElementById('etatModif').selected;
-  //   var annul=Document.getElementById('annuler').disabled;
-  //   var chk_a=Document.getElementById('a').disabled;
-  //   var chk_b=Document.getElementById('b').disabled;
-  //   var chk_c=Document.getElementById('c').disabled;
-  //   var chk_d=Document.getElementById('d').disabled;
-  //   var
-  //   if(etatAnul)
-  //   {
-  //     chk_a=true;
-  //     chk_b=true;
-  //     chk_c=true;
-  //     chk_d=true;
-  //     annul.checked;
-  //   }
-  //   else{
-  //     annul=true;
-  //   }
-  //  }
-
-  </script>
-
-
-
-
-
-
-
-
-
-@endsection
-
-
+</style>
