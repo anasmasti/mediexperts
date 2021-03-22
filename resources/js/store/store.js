@@ -13,7 +13,10 @@ export const store = new Vuex.Store({
     clients: [], // liste des entreprise
     reference_plans: [], // liste contenant les références du plan
     actions_by_plan: [], // list des action de formations
+<<<<<<< HEAD
+=======
    // actions_by_ref: [],
+>>>>>>> d996ee2e7753e55c76bfabe8b80e72426b1351d8
     curr_annee_plan: null, // année du plan actuel
   },
   mutations: {
@@ -25,8 +28,11 @@ export const store = new Vuex.Store({
     SET_REFERENCE_PLANS(state, data) { state.reference_plans = data; },
     SET_ACTION_BY_PLAN(state, data) { state.actions_by_plan = data; },
     SET_ANNEE_PLAN(state, data) { state.curr_annee_plan = data; },
+<<<<<<< HEAD
+=======
 
 
+>>>>>>> d996ee2e7753e55c76bfabe8b80e72426b1351d8
     // SET_DATES_ACTION(state) {
     //   state.actions_by_plan.forEach((action) => {
     //     this.FillDates(action.n_form);
@@ -55,7 +61,11 @@ export const store = new Vuex.Store({
     async SetNrcEntrp({commit, nrc}) {
       commit('SET_NRC_ENTRP', nrc);
     },
+<<<<<<< HEAD
+    // récupérer les réferences plan à partir du client sélectionné
+=======
     //récupérer les réferences plan à partir du client sélectionné
+>>>>>>> d996ee2e7753e55c76bfabe8b80e72426b1351d8
     async FetchReferencesPlan({commit}, nrcEntrp) {
       await axios.get(`/fill-reference-plan`, {params: {nrcEntrp: nrcEntrp}})
         .then(({data}) => {
@@ -65,7 +75,11 @@ export const store = new Vuex.Store({
         .catch((err) => console.log("err FillReferencesPlan", err));
     },
     // récupérer les réferences plan à partir du client sélectionné
+<<<<<<< HEAD
+    async FetchPlanByReference({commit}, idPlan) {
+=======
     async FetchActionByPlan({commit}, idPlan) {
+>>>>>>> d996ee2e7753e55c76bfabe8b80e72426b1351d8
       await axios.get(`/fill-plans-by-reference`, {params: {idPlan: idPlan}})
         .then(({data}) => {
           commit('SET_REFERENCE_PLANS', data);
@@ -78,8 +92,11 @@ export const store = new Vuex.Store({
         })
         .catch((err) => console.error("err FillPlanByReference", err));
     },
+<<<<<<< HEAD
+=======
 
 
+>>>>>>> d996ee2e7753e55c76bfabe8b80e72426b1351d8
     // récupérer les dates de l'action actuel
     // async FetchDatesPlan({commit}, nForm) {
     //   await axios.get(`/fill-dates-plan`, {params: {nForm: nForm}})

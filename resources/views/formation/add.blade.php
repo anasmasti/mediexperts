@@ -255,6 +255,27 @@
   //chercher le nom d'entreprise, nom domaine/theme associé au Plan de Formation
   $(document).ready(function() {
 
+<<<<<<< HEAD
+    $('#addDateInput').click(function() {
+      var selDatesInput = document.querySelectorAll('.formation-date');
+      var lastIndex = selDatesInput.length + 1;
+      if (lastIndex <= 30) {
+        var newInput =
+        `<div class="form-group col-lg-3 col-sm-12">
+          <label for="date${lastIndex}">Jour ${lastIndex}</label>
+          <input class="form-control {{ $errors->has('date${lastIndex}') ? 'is-invalid' : '' }} formation-date" type="text" value="" name="date${lastIndex}" onmouseover="(this.type='date')" placeholder="date${lastIndex}" >
+          @if ($errors->has('date${lastIndex}'))
+            <span class="invalid-feedback" role="alert">
+              <strong>{{ $errors->first('date${lastIndex}') }}</strong>
+            </span>
+          @endif
+        </div>`;
+        $('#datesInput').append(newInput);
+      } else {
+        $('#addDateInput').prop('disabled', true);
+      }
+    });
+=======
     // $('#addDateInput').click(function() {
     //   var selDatesInput = document.querySelectorAll('.formation-date');
     //   var lastIndex = selDatesInput.length + 1;
@@ -274,6 +295,7 @@
     //     $('#addDateInput').prop('disabled', true);
     //   }
     // });
+>>>>>>> d996ee2e7753e55c76bfabe8b80e72426b1351d8
 
     var nForm = $('#n_form').val();
     $.ajax({
@@ -296,7 +318,11 @@
       }
     }); //ajax
 
+<<<<<<< HEAD
+  //chercher le nb de jours associé au "Plan de formation" choisi dans "Formations"
+=======
   //chercher le nb de jours associé au "action de formation" choisi dans "Formations"
+>>>>>>> d996ee2e7753e55c76bfabe8b80e72426b1351d8
   $(document).on('change', '#n_form', function() {
     // $('#add').show(100);
     var nForm = $(this).val();
@@ -383,7 +409,11 @@
                       <a href="/import"><i class="fas fa-upload"></i> Importer une liste</a><br>
                       <a href="/add-pers"><i class="fas fa-plus"></i>Ajouter des personnels</a>
                     </div>`;
+<<<<<<< HEAD
+          $('#add').prop('disabled', true); //désactiver button 'ajouter' si liste personnel est vide
+=======
           $('#add').prop('disabled', false); //désactiver button 'ajouter' si liste personnel est vide
+>>>>>>> d996ee2e7753e55c76bfabe8b80e72426b1351d8
         }
         personnelsInput.html("");
         personnelsInput.append(titleSection);

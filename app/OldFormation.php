@@ -3,6 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+<<<<<<< HEAD
+
+class OldFormation extends Model
+{
+    //
+=======
 use Illuminate\Support\Facades\DB;
 
 class OldFormation extends Model
@@ -61,4 +67,5 @@ class OldFormation extends Model
 
     return $this->hasMany(Formation::class, 'id_form','id_form');
 }
+>>>>>>> d996ee2e7753e55c76bfabe8b80e72426b1351d8
 }

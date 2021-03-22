@@ -2697,7 +2697,10 @@ __webpack_require__.r(__webpack_exports__);
   runtimeCompiler: true,
   data: function data() {
     return {
+<<<<<<< HEAD
+=======
       id_plan: null,
+>>>>>>> d996ee2e7753e55c76bfabe8b80e72426b1351d8
       selected_nrc_entrp: null
     };
   },
@@ -40097,7 +40100,11 @@ var render = function() {
               }
             }
           },
+<<<<<<< HEAD
+          [_vm._v("\n        Remplir les dates\n      ")]
+=======
           [_vm._v("\r\n        Remplir les dates\r\n      ")]
+>>>>>>> d996ee2e7753e55c76bfabe8b80e72426b1351d8
         )
       ]),
       _vm._v(" "),
@@ -40454,9 +40461,15 @@ var staticRenderFns = [
           }
         },
         [
+<<<<<<< HEAD
+          _vm._v("\n        « Société\n        "),
+          _c("strong", { attrs: { id: "entrp" } }, [_vm._v("(Entreprise)")]),
+          _vm._v("\n        »\n      ")
+=======
           _vm._v("\r\n        « Société\r\n        "),
           _c("strong", { attrs: { id: "entrp" } }, [_vm._v("(Entreprise)")]),
           _vm._v("\r\n        »\r\n      ")
+>>>>>>> d996ee2e7753e55c76bfabe8b80e72426b1351d8
         ]
       )
     ])
@@ -40476,7 +40489,11 @@ var staticRenderFns = [
           }
         },
         [
+<<<<<<< HEAD
+          _vm._v("\n        Plan de formation\n        "),
+=======
           _vm._v("\r\n        Plan de formation\r\n        "),
+>>>>>>> d996ee2e7753e55c76bfabe8b80e72426b1351d8
           _c("span", { attrs: { name: "year", id: "year" } }, [
             _vm._v("(année)")
           ])
@@ -41181,7 +41198,11 @@ var render = function() {
                           : $$selectedVal[0]
                       },
                       function($event) {
+<<<<<<< HEAD
+                        return _vm.FillPlanByReference()
+=======
                         return _vm.handleAction()
+>>>>>>> d996ee2e7753e55c76bfabe8b80e72426b1351d8
                       }
                     ]
                   }
@@ -41191,7 +41212,11 @@ var render = function() {
                     _vm._v("-- sélectionner le plan")
                   ]),
                   _vm._v(" "),
+<<<<<<< HEAD
+                  _vm._l(_vm.reference_plan, function(pdf) {
+=======
                   _vm._l(_vm.reference_plans, function(pdf) {
+>>>>>>> d996ee2e7753e55c76bfabe8b80e72426b1351d8
                     return _c(
                       "option",
                       { key: pdf.id_plan, domProps: { value: pdf.id_plan } },
@@ -41248,7 +41273,11 @@ var staticRenderFns = [
           _c("th", { staticStyle: { width: "30%" } }, [_vm._v("Anulation")]),
           _vm._v(" "),
           _c("th", { staticStyle: { width: "30%" }, attrs: { colspan: "2" } }, [
+<<<<<<< HEAD
+            _vm._v("--")
+=======
             _c("input", { attrs: { type: "checkbox" } })
+>>>>>>> d996ee2e7753e55c76bfabe8b80e72426b1351d8
           ])
         ]),
         _vm._v(" "),
@@ -41261,7 +41290,11 @@ var staticRenderFns = [
             _vm._v("De la date de Réalisation")
           ]),
           _vm._v(" "),
+<<<<<<< HEAD
+          _c("th", [_vm._v("----")])
+=======
           _c("th", [_c("input", { attrs: { type: "checkbox" } })])
+>>>>>>> d996ee2e7753e55c76bfabe8b80e72426b1351d8
         ]),
         _vm._v(" "),
         _c("tr", [
@@ -41269,15 +41302,26 @@ var staticRenderFns = [
             _vm._v("De l’organisme de formation")
           ]),
           _vm._v(" "),
+<<<<<<< HEAD
+          _c("th", [_vm._v("----")])
+=======
           _c("th", [_c("input", { attrs: { type: "checkbox" } })])
+>>>>>>> d996ee2e7753e55c76bfabe8b80e72426b1351d8
         ]),
         _vm._v(" "),
         _c("tr", [
           _c("th", { staticStyle: { width: "15%" } }, [
+<<<<<<< HEAD
+            _vm._v("De l’organisme de formation")
+          ]),
+          _vm._v(" "),
+          _c("th", [_vm._v("----")])
+=======
             _vm._v("De lieu de formation")
           ]),
           _vm._v(" "),
           _c("th", [_c("input", { attrs: { type: "checkbox" } })])
+>>>>>>> d996ee2e7753e55c76bfabe8b80e72426b1351d8
         ]),
         _vm._v(" "),
         _c("tr", [
@@ -41285,13 +41329,27 @@ var staticRenderFns = [
             _vm._v("Organisation horaire")
           ]),
           _vm._v(" "),
+<<<<<<< HEAD
+          _c("th", [_vm._v("----")])
+=======
           _c("th", [_c("input", { attrs: { type: "checkbox" } })])
+>>>>>>> d996ee2e7753e55c76bfabe8b80e72426b1351d8
         ])
       ]),
       _vm._v(" "),
       _c("div", { staticStyle: { "padding-left": "20px" } }, [
         _c("div", { staticStyle: { "margin-top": "20px" } }, [
+<<<<<<< HEAD
+          _c("strong", [_vm._v("Thème de l’action :")]),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "highlighted",
+            staticStyle: { width: "70%" },
+            attrs: { type: "text" }
+          })
+=======
           _c("strong", [_vm._v("Thème de l’action :")])
+>>>>>>> d996ee2e7753e55c76bfabe8b80e72426b1351d8
         ]),
         _vm._v(" "),
         _c(
@@ -41300,10 +41358,29 @@ var staticRenderFns = [
           [
             _c("strong", [_vm._v("Nature de l’action :")]),
             _vm._v(" "),
+<<<<<<< HEAD
+            _c("div", { staticStyle: { "margin-left": "auto" } }, [
+              _c("label", [_vm._v("Planifiée")]),
+              _vm._v(" "),
+              _c("input", { attrs: { type: "checkbox" } })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticStyle: { "margin-left": "auto" } }, [
+              _c("label", [_vm._v("Non Planifiée")]),
+              _vm._v(" "),
+              _c("input", { attrs: { type: "checkbox" } })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticStyle: { "margin-left": "auto" } }, [
+              _c("label", [_vm._v("Alpha")]),
+              _vm._v(" "),
+              _c("input", { attrs: { type: "checkbox" } })
+=======
             _c("div", { staticStyle: { "margin-left": "100px" } }, [
               _c("label", [_vm._v("Planifiée")]),
               _vm._v(" "),
               _c("input", { attrs: { type: "checkbox", checked: "" } })
+>>>>>>> d996ee2e7753e55c76bfabe8b80e72426b1351d8
             ])
           ]
         ),
@@ -56112,7 +56189,10 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_2__["default"].Store({
     // liste contenant les références du plan
     actions_by_plan: [],
     // list des action de formations
+<<<<<<< HEAD
+=======
     // actions_by_ref: [],
+>>>>>>> d996ee2e7753e55c76bfabe8b80e72426b1351d8
     curr_annee_plan: null // année du plan actuel
 
   },
@@ -56194,7 +56274,11 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_2__["default"].Store({
         }, _callee2);
       }))();
     },
+<<<<<<< HEAD
+    // récupérer les réferences plan à partir du client sélectionné
+=======
     //récupérer les réferences plan à partir du client sélectionné
+>>>>>>> d996ee2e7753e55c76bfabe8b80e72426b1351d8
     FetchReferencesPlan: function FetchReferencesPlan(_ref4, nrcEntrp) {
       var _this = this;
 
@@ -56227,7 +56311,11 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_2__["default"].Store({
       }))();
     },
     // récupérer les réferences plan à partir du client sélectionné
+<<<<<<< HEAD
+    FetchPlanByReference: function FetchPlanByReference(_ref6, idPlan) {
+=======
     FetchActionByPlan: function FetchActionByPlan(_ref6, idPlan) {
+>>>>>>> d996ee2e7753e55c76bfabe8b80e72426b1351d8
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
         var commit;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
@@ -56294,8 +56382,13 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_2__["default"].Store({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
+<<<<<<< HEAD
+__webpack_require__(/*! C:\Users\badre\mediexperts\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\badre\mediexperts\resources\sass\app.scss */"./resources/sass/app.scss");
+=======
 __webpack_require__(/*! C:\Users\Youssef\mediexperts\resources\js\app.js */"./resources/js/app.js");
 module.exports = __webpack_require__(/*! C:\Users\Youssef\mediexperts\resources\sass\app.scss */"./resources/sass/app.scss");
+>>>>>>> d996ee2e7753e55c76bfabe8b80e72426b1351d8
 
 
 /***/ })

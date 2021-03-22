@@ -222,10 +222,13 @@ Route::get('/finddomaindependvilleclient', 'PlanFormationController@FindDomainDe
 Route::get('/findorganismeinterv', 'PlanFormationController@FindOrganismeInterv');
 
 Route::get('/del-pf/{nform}/{id_plan}', 'PlanFormationController@destroy')->name('PF.destroy');
+<<<<<<< HEAD
+=======
 Route::get('/avis-modif','PlanFormationController@avismodif')->name('av.modification');
 Route::get('/avis-modif','PlanFormationController@print_avismodif')->name('print.avismodif');
 
 
+>>>>>>> d996ee2e7753e55c76bfabe8b80e72426b1351d8
 /********************************************************************/
 
 
@@ -382,7 +385,10 @@ Route::get('/print-avis-aff', 'FormulaireController@print_avis_aff')->name('Acti
 Route::get('/print-att-reference-plan', 'FormulaireController@print_att_reference_plan')->name('ActionFormation.print_att_reference_plan');
 Route::get('/fill-cabinet-info', 'FormulaireController@FillCabinetInfo')->name('ActionFormation.FillCabinetInfo');
 Route::get('/fill-plan-by-client', 'FormulaireController@FillPlansByClient')->name('PlanByClinet');
+<<<<<<< HEAD
+=======
 Route::get('/print-G6', ' FormulaireController@_G6')->name('G6');
+>>>>>>> d996ee2e7753e55c76bfabe8b80e72426b1351d8
 /********************************************************************/
 
 

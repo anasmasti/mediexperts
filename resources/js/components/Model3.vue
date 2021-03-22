@@ -7,7 +7,10 @@ export default {
   runtimeCompiler: true,
   data() {
     return {
+<<<<<<< HEAD
+=======
       id_plan : null,
+>>>>>>> d996ee2e7753e55c76bfabe8b80e72426b1351d8
       selected_nrc_entrp: null
     }
   },
@@ -52,10 +55,17 @@ export default {
       <div style="width:100%;">
         <label for="plans">Réference plan de formation :</label>
         <select v-if="reference_plans && reference_plans.length" name="plans" id="plans" style="width:100%; padding: .5rem; border: 1px solid #000;"
+<<<<<<< HEAD
+          @change="FillPlanByReference()" v-model="id_plan">
+
+          <option selected disabled>-- sélectionner le plan</option>
+          <option v-for="pdf in reference_plan" :value="pdf.id_plan" :key="pdf.id_plan">{{ pdf.refpdf }}</option>
+=======
           @change="handleAction()" v-model="id_plan">
 
           <option selected disabled>-- sélectionner le plan</option>
           <option v-for="pdf in reference_plans" :value="pdf.id_plan" :key="pdf.id_plan">{{ pdf.refpdf }}</option>
+>>>>>>> d996ee2e7753e55c76bfabe8b80e72426b1351d8
         </select>
         <!--  -->
         <select v-else name="plans" id="plans" style="width:100%; padding: .5rem; border: 1px solid #000;">
@@ -81,7 +91,11 @@ export default {
         <tr>
           <th style="width: 30%" rowspan="6">Avis</th>
           <th style="width: 30%">Anulation</th>
+<<<<<<< HEAD
+          <th style="width: 30%" colspan="2">--</th>
+=======
           <th style="width: 30%" colspan="2"> <input type="checkbox"> </th>
+>>>>>>> d996ee2e7753e55c76bfabe8b80e72426b1351d8
         </tr>
 
         <tr>
@@ -90,6 +104,21 @@ export default {
 
         <tr>
           <th style="width: 15%">De la date de Réalisation</th>
+<<<<<<< HEAD
+          <th>----</th>
+        </tr>
+        <tr>
+          <th style="width: 15%">De l’organisme de formation</th>
+          <th>----</th>
+        </tr>
+        <tr>
+          <th style="width: 15%">De l’organisme de formation</th>
+          <th>----</th>
+        </tr>
+        <tr>
+          <th style="width: 15%">Organisation horaire</th>
+          <th>----</th>
+=======
           <th> <input type="checkbox"> </th>
         </tr>
         <tr>
@@ -103,6 +132,7 @@ export default {
         <tr>
           <th style="width: 15%">Organisation horaire</th>
           <th> <input type="checkbox"> </th>
+>>>>>>> d996ee2e7753e55c76bfabe8b80e72426b1351d8
         </tr>
       </table>
       <!-- END TABLE -->
@@ -111,6 +141,9 @@ export default {
       <div style="padding-left: 20px">
         <div style="margin-top: 20px">
           <strong>Thème de l’action :</strong>
+<<<<<<< HEAD
+          <input type="text" class="highlighted" style="width: 70%" />
+=======
 
              <!-- <select  name="plans" id="plans" style="width:100%; padding: .5rem; border: 1px solid #000;"
           @change="handleAction('FetchActionByPlan', id_plan)" v-model="id_plan">
@@ -119,18 +152,28 @@ export default {
           <option v-for="thm in actions_by_plan" :value="thm.n_form" :key="thm.id_plan">{{ thm.n_form }}</option>
         </select> -->
 
+>>>>>>> d996ee2e7753e55c76bfabe8b80e72426b1351d8
         </div>
 
         <!-- NATURE DE L'ACTION -->
         <div class="d-flex" style="margin-top: 20px">
           <strong>Nature de l’action :</strong>
 
+<<<<<<< HEAD
+          <div style="margin-left: auto">
+            <label>Planifiée</label>
+            <input type="checkbox" />
+          </div>
+
+          <div style="margin-left: auto">
+=======
           <div style="margin-left: 100px">
             <label>Planifiée</label>
             <input type="checkbox" checked />
           </div>
 
           <!-- <div style="margin-left: auto">
+>>>>>>> d996ee2e7753e55c76bfabe8b80e72426b1351d8
             <label>Non Planifiée</label>
             <input type="checkbox" />
           </div>
@@ -138,7 +181,11 @@ export default {
           <div style="margin-left: auto">
             <label>Alpha</label>
             <input type="checkbox" />
+<<<<<<< HEAD
+          </div>
+=======
           </div> -->
+>>>>>>> d996ee2e7753e55c76bfabe8b80e72426b1351d8
         </div>
         <!-- END NATURE DE L'ACTION -->
 
