@@ -228,7 +228,7 @@ export default {
     this.$store.dispatch('model3/FetchClients');
   },
   computed: {
-    ...mapState({
+    ...mapState('model3',{
       curr_nrc_entrp: state => state.curr_nrc_entrp,
       clients: state => state.clients,
       reference_plans: state => state.reference_plans,

@@ -2970,7 +2970,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   mounted: function mounted() {
     this.$store.dispatch('model3/FetchClients');
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])({
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])('model3', {
     curr_nrc_entrp: function curr_nrc_entrp(state) {
       return state.curr_nrc_entrp;
     },
@@ -56991,8 +56991,8 @@ var state = {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\anasm\OneDrive\Bureau\mediexperts\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\anasm\OneDrive\Bureau\mediexperts\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\ayman\Desktop\MediexpertsApp\mediexperts\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\ayman\Desktop\MediexpertsApp\mediexperts\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
