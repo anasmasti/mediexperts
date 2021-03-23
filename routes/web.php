@@ -393,6 +393,7 @@ Route::get('/fill-df-list', 'FicheMissionController@FillDFList')->name('DF.FillD
 Route::get('/find-df-info', 'FicheMissionController@FindDFInfo')->name('DF.FindDFInfo');
 Route::get('/find-cab-info', 'FicheMissionController@FindCabinetInfo')->name('DF.FindCabinetInfo');
 Route::get('/find-inv-info', 'FicheMissionController@FindIntervInfo')->name('DF.FindIntervInfo');
+Route::get('/test' , 'PlanFormationController@Test')->name('Test');
 
 
 }); //end middlware verified

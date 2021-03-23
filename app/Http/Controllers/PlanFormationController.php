@@ -216,7 +216,7 @@ class PlanFormationController extends Controller
             $plan->commentaire = $request->input("commentaire");
             $plan->etat = $request->input("etat");
             $plan->Nombre_Dates = $request->input("nb_dates");
-            
+
 
             $docs = ['model5', 'model3', 'f4', 'fiche_eval',
                     'support_form', 'cv_inv', 'avis_affich'];
@@ -565,6 +565,7 @@ class PlanFormationController extends Controller
 
     return view('planformation.avis-modif', ['client' => $client]);
   }
+
 
 
 

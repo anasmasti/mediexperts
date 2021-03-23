@@ -27,6 +27,7 @@ Vue.component('model-3', require('../js/components/Model3.vue').default);
 Vue.component('plan-formation', require('../js/components/PlanFormation.vue').default);
 Vue.component('avis-affichage', require('../js/components/AvisAffichage.vue').default);
 Vue.component('att-reference-plan', require('../js/components/AttReferencePlan.vue').default);
+Vue.component('avis-modification', require('../js/components/AvisModification.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
