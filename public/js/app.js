@@ -2485,6 +2485,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -2512,12 +2519,251 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
+  runtimeCompiler: true,
   data: function data() {
     return {
       //csrf token
-      csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+      csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+      nForm: null,
+      nCabinet: null,
+      id_plan: null,
+      selected_nrc_entrp: null
     };
+  },
+  mounted: function mounted() {
+    this.$store.dispatch('model3/FetchClients');
+  },
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])('model3', {
+    curr_nrc_entrp: function curr_nrc_entrp(state) {
+      return state.curr_nrc_entrp;
+    },
+    clients: function clients(state) {
+      return state.clients;
+    },
+    reference_plans: function reference_plans(state) {
+      return state.reference_plans;
+    },
+    actions_by_plan: function actions_by_plan(state) {
+      return state.actions_by_plan;
+    },
+    curr_annee_plan: function curr_annee_plan(state) {
+      return state.curr_annee_plan;
+    },
+    cabinets: function cabinets(state) {
+      return state.cabinets;
+    }
+  })),
+  methods: {
+    handleAction: function handleAction(actionName, value) {
+      this.$store.dispatch(actionName, value);
+    }
   }
 });
 
@@ -40830,7 +41076,102 @@ var render = function() {
         domProps: { value: _vm.csrf }
       }),
       _vm._v(" "),
-      _vm._m(1)
+      _c("div", { staticClass: "card-body" }, [
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "form-group col-lg-6 col-sm-12" }, [
+            _c("label", [_vm._v("Entreprise")]),
+            _vm._v(" "),
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.selected_nrc_entrp,
+                    expression: "selected_nrc_entrp"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { id: "client", name: "client" },
+                on: {
+                  change: function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.selected_nrc_entrp = $event.target.multiple
+                      ? $$selectedVal
+                      : $$selectedVal[0]
+                  }
+                }
+              },
+              [
+                _c("option", { attrs: { selected: "", disabled: "" } }, [
+                  _vm._v("---selectionner l'entreprise---")
+                ]),
+                _vm._v(" "),
+                _vm._l(_vm.clients, function(cl) {
+                  return _c(
+                    "option",
+                    { key: cl.nrc_entrp, domProps: { value: cl.nrc_entrp } },
+                    [_vm._v(_vm._s(cl.raisoci))]
+                  )
+                })
+              ],
+              2
+            )
+          ]),
+          _vm._v(" "),
+          _vm._m(1),
+          _vm._v(" "),
+          _vm._m(2),
+          _vm._v(" "),
+          _vm._m(3),
+          _vm._v(" "),
+          _vm._m(4),
+          _vm._v(" "),
+          _vm._m(5),
+          _vm._v(" "),
+          _vm._m(6),
+          _vm._v(" "),
+          _vm._m(7),
+          _vm._v(" "),
+          _vm._m(8),
+          _vm._v(" "),
+          _vm._m(9),
+          _vm._v(" "),
+          _vm._m(10),
+          _vm._v(" "),
+          _vm._m(11),
+          _vm._v(" "),
+          _vm._m(12),
+          _vm._v(" "),
+          _vm._m(13),
+          _vm._v(" "),
+          _vm._m(14),
+          _vm._v(" "),
+          _vm._m(15),
+          _vm._v(" "),
+          _vm._m(16),
+          _vm._v(" "),
+          _vm._m(17),
+          _vm._v(" "),
+          _vm._m(18),
+          _vm._v(" "),
+          _vm._m(19),
+          _vm._v(" "),
+          _vm._m(20)
+        ]),
+        _vm._v(" "),
+        _vm._m(21)
+      ]),
+      _vm._v(" "),
+      _vm._m(22)
     ])
   ])
 }
@@ -40849,34 +41190,496 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-body" }, [
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "form-group col-lg-6 col-sm-12" }, [
-          _c("label", [_vm._v("État d'avis")]),
+    return _c("div", { staticClass: "form-group col-lg-6 col-sm-12" }, [
+      _c("label", [_vm._v("Réference plan de formation ")]),
+      _vm._v(" "),
+      _c(
+        "select",
+        { staticClass: "form-control", attrs: { name: "plans", id: "plans" } },
+        [
+          _c("option", { attrs: { selected: "", disabled: "" } }, [
+            _vm._v("---selectionner le plan---")
+          ]),
+          _vm._v(" "),
+          _c("option", [_vm._v("----")]),
+          _vm._v(" "),
+          _c("option", [_vm._v("-----")])
+        ]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group col-lg-6 col-sm-12" }, [
+      _c("label", [_vm._v("État d'avis")]),
+      _vm._v(" "),
+      _c(
+        "select",
+        {
+          staticClass: "form-control",
+          attrs: { id: "etat", onkeypress: "getSelected()" }
+        },
+        [
+          _c("option", { attrs: { selected: "", disabled: "" } }, [
+            _vm._v("---selectionner l'état---")
+          ]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "annulation", id: "etatAnul" } }, [
+            _vm._v("Annulation")
+          ]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "modification", id: "etatModif" } }, [
+            _vm._v("Modification")
+          ])
+        ]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "table",
+      {
+        staticClass: "table table-striped col-12 col-lg-6 border",
+        staticStyle: { margin: "16px" }
+      },
+      [
+        _c("thead", [
+          _c("tr", [
+            _c(
+              "th",
+              { staticStyle: { width: "10%" }, attrs: { rowspan: "6" } },
+              [_vm._v("Avis")]
+            ),
+            _vm._v(" "),
+            _c("th", { staticStyle: { width: "10%" } }, [_vm._v("Anulation")]),
+            _vm._v(" "),
+            _c(
+              "th",
+              { staticStyle: { width: "10%" }, attrs: { colspan: "2" } },
+              [_c("input", { attrs: { type: "checkbox", id: "annuler" } })]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("tbody", [
+          _c("tr", [
+            _c("th", { attrs: { rowspan: "5" } }, [_vm._v("Modification")])
+          ]),
+          _vm._v(" "),
+          _c("tr", [
+            _c("th", { staticStyle: { width: "5%" } }, [
+              _vm._v("De la date de Réalisation")
+            ]),
+            _vm._v(" "),
+            _c("th", [
+              _c("input", {
+                attrs: { type: "checkbox", name: "modif", id: "modif_a" }
+              })
+            ])
+          ]),
+          _vm._v(" "),
+          _c("tr", [
+            _c("th", { staticStyle: { width: "5%" } }, [
+              _vm._v("De l’organisme de formation")
+            ]),
+            _vm._v(" "),
+            _c("th", [
+              _c("input", {
+                attrs: { type: "checkbox", name: "modif", id: "modif_b" }
+              })
+            ])
+          ]),
+          _vm._v(" "),
+          _c("tr", [
+            _c("th", { staticStyle: { width: "5%" } }, [
+              _vm._v("De lieu de formation")
+            ]),
+            _vm._v(" "),
+            _c("th", [
+              _c("input", {
+                attrs: { type: "checkbox", name: "modif", id: "modif_c" }
+              })
+            ])
+          ]),
+          _vm._v(" "),
+          _c("tr", [
+            _c("th", { staticStyle: { width: "5%" } }, [
+              _vm._v("Organisation horaire")
+            ]),
+            _vm._v(" "),
+            _c("th", [
+              _c("input", {
+                attrs: { type: "checkbox", name: "modif", id: "modif_d" }
+              })
+            ])
+          ])
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group col-lg-6 col-sm-12" }, [
+      _c("label", [_vm._v("Thème de l’action")]),
+      _vm._v(" "),
+      _c(
+        "select",
+        {
+          staticClass: "form-control",
+          attrs: { id: "action", name: "action" }
+        },
+        [
+          _c("option", { attrs: { selected: "", disabled: "" } }, [
+            _vm._v("---selectionner le thème---")
+          ])
+        ]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group col-lg-6 col-sm-12" }, [
+      _c("label", [_vm._v("Nature de l'action")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group" }, [
+        _c("div", { staticClass: "custom-control custom-checkbox" }, [
+          _c("input", {
+            staticClass: "custom-control-input",
+            attrs: {
+              type: "checkbox",
+              name: "planifie",
+              id: "planifie",
+              checked: ""
+            }
+          }),
           _vm._v(" "),
           _c(
-            "select",
+            "label",
+            { staticClass: "custom-control-label", attrs: { for: "planifie" } },
+            [_vm._v("Planifié")]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "custom-control custom-checkbox" }, [
+          _c("input", {
+            staticClass: "custom-control-input",
+            attrs: { type: "checkbox", name: "nonplanifie", id: "nonplanifie" }
+          }),
+          _vm._v(" "),
+          _c(
+            "label",
             {
-              staticClass: "form-control",
-              attrs: { id: "etat", onkeypress: "getSelected()" }
+              staticClass: "custom-control-label",
+              attrs: { for: "nonplanifie" }
             },
-            [
-              _c("option", { attrs: { selected: "", disabled: "" } }, [
-                _vm._v("---selectionner l'état---")
-              ]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "annulation", id: "etatAnul" } }, [
-                _vm._v("Annulation")
-              ]),
-              _vm._v(" "),
-              _c(
-                "option",
-                { attrs: { value: "modification", id: "etatModif" } },
-                [_vm._v("Modification")]
-              )
-            ]
+            [_vm._v("Non planifié")]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "custom-control custom-checkbox" }, [
+          _c("input", {
+            staticClass: "custom-control-input",
+            attrs: { type: "checkbox", name: "alpha", id: "alpha" }
+          }),
+          _vm._v(" "),
+          _c(
+            "label",
+            { staticClass: "custom-control-label", attrs: { for: "alpha" } },
+            [_vm._v("Alpha")]
           )
         ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group col-lg-6 col-sm-12" }, [
+      _c("label", [_vm._v("Organisme de formation initial")]),
+      _vm._v(" "),
+      _c("input", {
+        staticClass: "form-control",
+        attrs: { type: "text", name: "", id: "" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group col-lg-6 col-sm-12" }, [
+      _c("label", [_vm._v("Nouvel Organisme de formation")]),
+      _vm._v(" "),
+      _c("select", { staticClass: "form-control" }, [
+        _c("option", { attrs: { selected: "", disabled: "" } }, [
+          _vm._v("---selectionner l'organisme---")
+        ]),
+        _vm._v(" "),
+        _c("option", [_vm._v("-----")]),
+        _vm._v(" "),
+        _c("option", [_vm._v("------")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group col-lg-6 col-sm-12" }, [
+      _c("label", [_vm._v("Lieu de formation initial ")]),
+      _vm._v(" "),
+      _c("input", {
+        staticClass: "form-control",
+        attrs: { type: "text", name: "", id: "" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group col-lg-6 col-sm-12" }, [
+      _c("label", [_vm._v("Nouveau lieu")]),
+      _vm._v(" "),
+      _c("select", { staticClass: "form-control" }, [
+        _c("option", { attrs: { selected: "", disabled: "" } }, [
+          _vm._v("---selectionner le lieu---")
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group col-lg-3 col-md-6 col-12" }, [
+      _c("label", [_vm._v("Dates initiales de réalisation ")]),
+      _vm._v(" "),
+      _c("input", { staticClass: "form-control", attrs: { type: "date" } })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group col-lg-3 col-md-6 col-12" }, [
+      _c("label", [_vm._v(".")]),
+      _vm._v(" "),
+      _c("input", { staticClass: "form-control", attrs: { type: "date" } })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group col-lg-3 col-md-6 col-12" }, [
+      _c("label", [_vm._v(".")]),
+      _vm._v(" "),
+      _c("input", { staticClass: "form-control", attrs: { type: "date" } })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group col-lg-3 col-md-6 col-12" }, [
+      _c("label", [_vm._v(".")]),
+      _vm._v(" "),
+      _c("input", { staticClass: "form-control", attrs: { type: "date" } })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group col-lg-3 col-md-6 col-12" }, [
+      _c("label", [_vm._v("Nouvelles Dates exactes de réalisation ")]),
+      _vm._v(" "),
+      _c("input", { staticClass: "form-control", attrs: { type: "date" } })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group col-lg-3 col-md-6 col-12" }, [
+      _c("label", [_vm._v(".")]),
+      _vm._v(" "),
+      _c("input", { staticClass: "form-control", attrs: { type: "date" } })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group col-lg-3 col-md-6 col-12" }, [
+      _c("label", [_vm._v(".")]),
+      _vm._v(" "),
+      _c("input", { staticClass: "form-control", attrs: { type: "date" } })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group col-lg-3 col-md-6 col-12" }, [
+      _c("label", [_vm._v(".")]),
+      _vm._v(" "),
+      _c("input", { staticClass: "form-control", attrs: { type: "date" } })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group col-lg-3 col-sm-12" }, [
+      _c("label", [_vm._v("Organisation horaire initiale ")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group col-lg-3 col-sm-12" }, [
+      _c("label", [_vm._v("Heure début")]),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "input-group date", attrs: { id: "datetimepicker3" } },
+        [
+          _c("input", {
+            staticClass: "form-control",
+            attrs: { type: "time", name: "hr_debut" }
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass: "input-group-append",
+            attrs: {
+              "data-target": "#timepicker",
+              "data-toggle": "datetimepicker"
+            }
+          }),
+          _vm._v(" "),
+          _c("div", { staticClass: "input-group-text" }, [
+            _c("i", { staticClass: "far fa-clock" })
+          ])
+        ]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group col-lg-3 col-sm-12" }, [
+      _c("label", [_vm._v("Heure fin")]),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "input-group date", attrs: { id: "datetimepicker3" } },
+        [
+          _c("input", {
+            staticClass: "form-control timerpicker",
+            attrs: { type: "time", name: "hr_fin" }
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass: "input-group-append",
+            attrs: {
+              "data-target": "#timepicker",
+              "data-toggle": "datetimepicker"
+            }
+          }),
+          _vm._v(" "),
+          _c("div", { staticClass: "input-group-text" }, [
+            _c("i", { staticClass: "far fa-clock" })
+          ])
+        ]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "form-group col-lg-3 col-sm-12 d-flex" }, [
+        _c("label", [_vm._v("Nouvelle organisation horaire ")])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group col-lg-3 col-sm-12" }, [
+        _c("label", [_vm._v("Heure début")]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "input-group date", attrs: { id: "datetimepicker3" } },
+          [
+            _c("input", {
+              staticClass: "form-control",
+              attrs: { type: "time", name: "hr_debut" }
+            }),
+            _vm._v(" "),
+            _c("div", {
+              staticClass: "input-group-append",
+              attrs: {
+                "data-target": "#timepicker",
+                "data-toggle": "datetimepicker"
+              }
+            }),
+            _vm._v(" "),
+            _c("div", { staticClass: "input-group-text" }, [
+              _c("i", { staticClass: "far fa-clock" })
+            ])
+          ]
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group col-lg-3 col-sm-12" }, [
+        _c("label", [_vm._v("Heure fin")]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "input-group date", attrs: { id: "datetimepicker3" } },
+          [
+            _c("input", {
+              staticClass: "form-control timerpicker",
+              attrs: { type: "time", name: "hr_fin" }
+            }),
+            _vm._v(" "),
+            _c("div", {
+              staticClass: "input-group-append",
+              attrs: {
+                "data-target": "#timepicker",
+                "data-toggle": "datetimepicker"
+              }
+            }),
+            _vm._v(" "),
+            _c("div", { staticClass: "input-group-text" }, [
+              _c("i", { staticClass: "far fa-clock" })
+            ])
+          ]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-footer text-center" }, [
+      _c("a", { staticClass: "btn btn-info", attrs: { href: "/print-m3" } }, [
+        _c("i", { staticClass: "fa fa-print" }),
+        _vm._v(" Imprimer")
       ])
     ])
   }
@@ -56991,8 +57794,13 @@ var state = {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
+<<<<<<< HEAD
 __webpack_require__(/*! C:\Users\badre\mediexperts\resources\js\app.js */"./resources/js/app.js");
 module.exports = __webpack_require__(/*! C:\Users\badre\mediexperts\resources\sass\app.scss */"./resources/sass/app.scss");
+=======
+__webpack_require__(/*! C:\Users\Youssef\OneDrive\Bureau\mediexperts\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\Youssef\OneDrive\Bureau\mediexperts\resources\sass\app.scss */"./resources/sass/app.scss");
+>>>>>>> bf41fef (23/03/2021__UpdateAvisModifVue)
 
 
 /***/ })
