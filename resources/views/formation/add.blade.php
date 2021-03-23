@@ -309,19 +309,19 @@
       success: function(data) {
         console.log('success find nb jour !!', data);
         var createDateInput = '';
-        for (var i = 1; i <= data[0].nb_jour; i++) {
+        for (var i = 1; i <= data[0].Nombre_Dates; i++) {
             let date_debut_fin = "";
             if (i === 1) {
                 // affecter la date de début de l'action de formation
                 date_debut_fin = data[0].dt_debut;
             }
-            else if (i == data[0].nb_jour) {
+            else if (i == data[0].Nombre_Dates) {
                 // ou affecter la date de début de l'action de formation
                 date_debut_fin = data[0].dt_fin;
             }
             createDateInput +=
                 `<div class="form-group col-lg-3 col-sm-12">
-                <label for="date${i}">Jour ${i}</label>
+                <label for="date${i}">Date ${i}</label>
                 <input class="form-control {{ $errors->has('date${i}') ? 'is-invalid' : '' }} formation-date" type="text" value="${date_debut_fin}" name="date${i}" onmouseover="(this.type='date')" placeholder="date${i}" >
                   @if ($errors->has('date${i}'))
                     <span class="invalid-feedback" role="alert">

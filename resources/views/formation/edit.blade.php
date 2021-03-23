@@ -285,7 +285,7 @@ $(document).ready(function() {
       success: function(data) {
         console.log('success nb_jour !!');
         console.log(data);
-        nbJour = data[0].nb_jour;
+        nbJour = data[0].Nombre_Dates;
       },
       error: function(msg) { console.log('error getting nb_jour !!'); }
     }); //ajax
@@ -301,7 +301,7 @@ $(document).ready(function() {
           for (var i = 1; i <= nbJour; i++) {
             createDateInput +=
             `<div class="form-group col-lg-3 col-sm-12">
-            <label for="date`+i+`">Jour `+i+`</label>
+            <label for="date`+i+`">Date `+i+`</label>
             <input class="form-control {{ $errors->has('date`+i+`') ? 'is-invalid' : '' }}" type="date" value="`+data[0]["date"+i]+`" name="date`+i+`" onmouseover="(this.type='date')" placeholder="date`+i+`" >
               @if ($errors->has('date`+i+`'))
                 <span class="invalid-feedback" role="alert">
