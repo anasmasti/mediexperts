@@ -1,54 +1,13 @@
-<script>
-import PrintButton from './PrintButton.vue';
-import {store} from '../store/store';
-import { mapState } from 'vuex';
-
-export default {
-  components: { PrintButton },
-  runtimeCompiler: true,
-  data() {
-    return {
-      nForm : null,
-      nCabinet : null,
-      id_plan : null,
-      selected_nrc_entrp: null
-    }
-  },
-  mounted() {
-    store.dispatch('FetchClients');
-  },
-  computed: {
-    curr_nrc_entrp() { return store.state.curr_nrc_entrp; },
-    clients() { return store.state.clients; },
-    reference_plans() { return store.state.reference_plans; },
-    actions_by_plan() { return store.state.actions_by_plan; },
-    curr_annee_plan() { return store.state.curr_annee_plan; },
-    cabinets() { return store.state.cabinets; },
-    // ...mapState({
-    //   cabinets:state => state.cabinets,
-    // })
-  },
-  methods: {
-    handleAction (actionName, value) {
-      store.dispatch(actionName, value);
-    }
-  },
-}
-</script>
-
-
 <template>
   <div>
     <!-- BUTTON IMPRIMER/ANNULER -->
     <print-button :backLink="'/'"></print-button>
-
     <!-- LISTE DE CHOIX -->
     <div style="width:100%;">
-
       <!-- SELECT ENTREPRISE -->
       <label for="client">Entreprise :</label>
       <select name="client" id="client" style="width:100%; padding: .5rem; border: 1px solid #000;"
-        @change="handleAction('FetchReferencesPlan', selected_nrc_entrp); handleAction('SetNrcEntrp', selected_nrc_entrp)"
+        @change="handleAction('model3/FetchReferencesPlan', selected_nrc_entrp); handleAction('model3/SetNrcEntrp', selected_nrc_entrp)"
         v-model="selected_nrc_entrp">
         <option selected disabled>--sélectionner l'Entreprise ..</option>
         <option v-for="cl in clients" :value="cl.nrc_entrp" :key="cl.nrc_entrp">{{ cl.raisoci }}</option>
@@ -58,7 +17,7 @@ export default {
       <div style="width:100%;">
         <label for="plans">Réference plan de formation :</label>
         <select v-if="reference_plans && reference_plans.length" name="plans" id="plans" style="width:100%; padding: .5rem; border: 1px solid #000;"
-          @change="handleAction('FetchActionByReference', id_plan)" v-model="id_plan">
+          @change="handleAction('model3/FetchActionByReference', id_plan)" v-model="id_plan">
 
           <option selected disabled>-- sélectionner le plan</option>
           <option v-for="pdf in reference_plans" :value="pdf.id_plan" :key="pdf.id_plan">{{ pdf.refpdf }}</option>
@@ -68,10 +27,7 @@ export default {
           <option></option>
         </select>
       </div>
-
     </div>
-
-
 
     <!-- PAPER -->
     <div class="paper">
@@ -118,7 +74,7 @@ export default {
         <div style="margin-top: 20px">
           <strong>Thème de l’action :</strong>
           <select name="actions" class="highlighted" id="actions" style="width:50%; padding: .3rem; border: 1px solid #000;"
-          @change="handleAction('FetchAllCabinets' , nCabinet)" v-model="nCabinet">
+          @change="handleAction('model3/FetchAllCabinets' , nCabinet)" v-model="nCabinet">
              <option selected disabled>-- Selectionner une action</option>
              <option v-for="action in actions_by_plan" :value="action.nForm" :key="action.nForm">{{ action.nom_theme }}</option>
              <option value=""></option>
@@ -247,12 +203,44 @@ export default {
 
       </div>
       <!-- END CONTENT -->
-
-
     </div>
     <!-- END PAPER -->
 
   </div>
-
 </template>
 
+<script>
+import PrintButton from './PrintButton.vue';
+import { mapState } from 'vuex';
+
+export default {
+  components: { PrintButton },
+  runtimeCompiler: true,
+  data() {
+    return {
+      nForm : null,
+      nCabinet : null,
+      id_plan : null,
+      selected_nrc_entrp: null
+    }
+  },
+  mounted() {
+    this.$store.dispatch('model3/FetchClients');
+  },
+  computed: {
+    ...mapState({
+      curr_nrc_entrp: state => state.curr_nrc_entrp,
+      clients: state => state.clients,
+      reference_plans: state => state.reference_plans,
+      actions_by_plan: state => state.actions_by_plan,
+      curr_annee_plan: state => state.curr_annee_plan,
+      cabinets: state => state.cabinets,
+    })
+  },
+  methods: {
+    handleAction (actionName, value) {
+      this.$store.dispatch(actionName, value);
+    }
+  },
+}
+</script>

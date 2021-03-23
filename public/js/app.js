@@ -2734,9 +2734,224 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _PrintButton_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PrintButton.vue */ "./resources/js/components/PrintButton.vue");
-/* harmony import */ var _store_store__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../store/store */ "./resources/js/store/store.js");
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2753,34 +2968,31 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
-    _store_store__WEBPACK_IMPORTED_MODULE_1__["store"].dispatch('FetchClients');
+    this.$store.dispatch('model3/FetchClients');
   },
-  computed: {
-    curr_nrc_entrp: function curr_nrc_entrp() {
-      return _store_store__WEBPACK_IMPORTED_MODULE_1__["store"].state.curr_nrc_entrp;
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])({
+    curr_nrc_entrp: function curr_nrc_entrp(state) {
+      return state.curr_nrc_entrp;
     },
-    clients: function clients() {
-      return _store_store__WEBPACK_IMPORTED_MODULE_1__["store"].state.clients;
+    clients: function clients(state) {
+      return state.clients;
     },
-    reference_plans: function reference_plans() {
-      return _store_store__WEBPACK_IMPORTED_MODULE_1__["store"].state.reference_plans;
+    reference_plans: function reference_plans(state) {
+      return state.reference_plans;
     },
-    actions_by_plan: function actions_by_plan() {
-      return _store_store__WEBPACK_IMPORTED_MODULE_1__["store"].state.actions_by_plan;
+    actions_by_plan: function actions_by_plan(state) {
+      return state.actions_by_plan;
     },
-    curr_annee_plan: function curr_annee_plan() {
-      return _store_store__WEBPACK_IMPORTED_MODULE_1__["store"].state.curr_annee_plan;
+    curr_annee_plan: function curr_annee_plan(state) {
+      return state.curr_annee_plan;
     },
-    cabinets: function cabinets() {
-      return _store_store__WEBPACK_IMPORTED_MODULE_1__["store"].state.cabinets;
-    } // ...mapState({
-    //   cabinets:state => state.cabinets,
-    // })
-
-  },
+    cabinets: function cabinets(state) {
+      return state.cabinets;
+    }
+  })),
   methods: {
     handleAction: function handleAction(actionName, value) {
-      _store_store__WEBPACK_IMPORTED_MODULE_1__["store"].dispatch(actionName, value);
+      this.$store.dispatch(actionName, value);
     }
   }
 });
@@ -41257,10 +41469,10 @@ var render = function() {
                 },
                 function($event) {
                   _vm.handleAction(
-                    "FetchReferencesPlan",
+                    "model3/FetchReferencesPlan",
                     _vm.selected_nrc_entrp
                   )
-                  _vm.handleAction("SetNrcEntrp", _vm.selected_nrc_entrp)
+                  _vm.handleAction("model3/SetNrcEntrp", _vm.selected_nrc_entrp)
                 }
               ]
             }
@@ -41321,7 +41533,7 @@ var render = function() {
                       },
                       function($event) {
                         return _vm.handleAction(
-                          "FetchActionByReference",
+                          "model3/FetchActionByReference",
                           _vm.id_plan
                         )
                       }
@@ -41401,7 +41613,10 @@ var render = function() {
                         : $$selectedVal[0]
                     },
                     function($event) {
-                      return _vm.handleAction("FetchAllCabinets", _vm.nCabinet)
+                      return _vm.handleAction(
+                        "model3/FetchAllCabinets",
+                        _vm.nCabinet
+                      )
                     }
                   ]
                 }
@@ -55845,14 +56060,19 @@ module.exports = function(module) {
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
   \*****************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./store */ "./resources/js/store/index.js");
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
+
+
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 var Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js"); // import Model1 from './components/Model1.vue';
@@ -55882,7 +56102,8 @@ Vue.component('avis-modification', __webpack_require__(/*! ../js/components/Avis
  */
 
 var app = new Vue({
-  el: '#app'
+  el: '#app',
+  store: _store__WEBPACK_IMPORTED_MODULE_0__["store"]
 });
 
 /***/ }),
@@ -56428,9 +56649,9 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/store/store.js":
+/***/ "./resources/js/store/index.js":
 /*!*************************************!*\
-  !*** ./resources/js/store/store.js ***!
+  !*** ./resources/js/store/index.js ***!
   \*************************************/
 /*! exports provided: store */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -56438,243 +56659,317 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "store", function() { return store; });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _modules_model3_index__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/model3/index */ "./resources/js/store/modules/model3/index.js");
+
+
+
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__["default"]);
+var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
+  modules: {
+    model3: _modules_model3_index__WEBPACK_IMPORTED_MODULE_2__["model3"]
+  }
+});
+
+/***/ }),
+
+/***/ "./resources/js/store/modules/model3/actions.js":
+/*!******************************************************!*\
+  !*** ./resources/js/store/modules/model3/actions.js ***!
+  \******************************************************/
+/*! exports provided: actions */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "actions", function() { return actions; });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+var actions = {
+  // ####################################################### //
+  // #################### A C T I O N S #################### //
+  // ####################################################### //
+  // récupérer la liste des entreprises (clients)
+  FetchClients: function FetchClients(_ref) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+      var commit;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              commit = _ref.commit;
+              _context.next = 3;
+              return axios.get('/fill-clients').then(function (_ref2) {
+                var data = _ref2.data;
+                commit('SET_CLIENTS', data);
+                console.log("clients : ", data);
+              })["catch"](function (err) {
+                return console.error("err FillClients", err);
+              });
+
+            case 3:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }))();
+  },
+  SetNrcEntrp: function SetNrcEntrp(_ref3) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+      var commit, nrc;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              commit = _ref3.commit, nrc = _ref3.nrc;
+              commit('SET_NRC_ENTRP', nrc);
+
+            case 2:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2);
+    }))();
+  },
+  //récupérer les réferences plan à partir du client sélectionné
+  FetchReferencesPlan: function FetchReferencesPlan(_ref4, nrcEntrp) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+      var commit;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
+              commit = _ref4.commit;
+              _context3.next = 3;
+              return axios.get("/fill-reference-plan", {
+                params: {
+                  nrcEntrp: nrcEntrp
+                }
+              }).then(function (_ref5) {
+                var data = _ref5.data;
+                commit('SET_REFERENCE_PLANS', data);
+                console.log("reference_plans : ", data);
+              })["catch"](function (err) {
+                return console.log("err FillReferencesPlan", err);
+              });
+
+            case 3:
+            case "end":
+              return _context3.stop();
+          }
+        }
+      }, _callee3);
+    }))();
+  },
+  //-----------------------------------------------------------------
+  //récupérer les actions à partir du REF sélectionné
+  FetchActionByReference: function FetchActionByReference(_ref6, idPlan) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+      var commit;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+        while (1) {
+          switch (_context4.prev = _context4.next) {
+            case 0:
+              commit = _ref6.commit;
+              _context4.next = 3;
+              return axios.get("/fill-plans-by-reference", {
+                params: {
+                  idPlan: idPlan
+                }
+              }).then(function (_ref7) {
+                var data = _ref7.data;
+                commit('SET_ACTION_BY_PLAN', data); //commit('SET_ANNEE_PLAN', data[0].annee);
+
+                console.log("actions_by_plan : ", data);
+              }).then(function () {// fill dates action
+                //commit('SET_DATES_ACTION');
+              })["catch"](function (err) {
+                return console.error("err FillPlanByReference", err);
+              });
+
+            case 3:
+            case "end":
+              return _context4.stop();
+          }
+        }
+      }, _callee4);
+    }))();
+  },
+  FetchAllCabinets: function FetchAllCabinets(_ref8) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
+      var commit;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
+        while (1) {
+          switch (_context5.prev = _context5.next) {
+            case 0:
+              commit = _ref8.commit;
+              _context5.next = 3;
+              return axios.get("/fill-all-organisme").then(function (_ref9) {
+                var data = _ref9.data;
+                commit('SET_ORGANISME', data);
+                console.log("Cabinets :", data);
+              });
+
+            case 3:
+            case "end":
+              return _context5.stop();
+          }
+        }
+      }, _callee5);
+    }))();
+  },
+  //récupérer les dates de l'action actuel
+  FetchDatesPlan: function FetchDatesPlan(_ref10, nForm) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee6() {
+      var commit;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee6$(_context6) {
+        while (1) {
+          switch (_context6.prev = _context6.next) {
+            case 0:
+              commit = _ref10.commit;
+              _context6.next = 3;
+              return axios.get("/fill-dates-plan", {
+                params: {
+                  nForm: nForm
+                }
+              }).then(function (_ref11) {
+                var data = _ref11.data;
+                commit('SET_NB_PARTICIPENTS', data);
+                commit('SET_DATES', data);
+              })["catch"](function (err) {
+                return console.error("err FillDates", err);
+              });
+
+            case 3:
+            case "end":
+              return _context6.stop();
+          }
+        }
+      }, _callee6);
+    }))();
+  }
+};
+
+/***/ }),
+
+/***/ "./resources/js/store/modules/model3/index.js":
+/*!****************************************************!*\
+  !*** ./resources/js/store/modules/model3/index.js ***!
+  \****************************************************/
+/*! exports provided: model3 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "model3", function() { return model3; });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _state__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./state */ "./resources/js/store/modules/model3/state.js");
+/* harmony import */ var _mutations__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./mutations */ "./resources/js/store/modules/model3/mutations.js");
+/* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./actions */ "./resources/js/store/modules/model3/actions.js");
 
 
-vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_2__["default"]);
-var store = new vuex__WEBPACK_IMPORTED_MODULE_2__["default"].Store({
-  strict: true,
+
+
+
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__["default"]);
+var model3 = {
+  namespaced: true,
+  state: _state__WEBPACK_IMPORTED_MODULE_2__["state"],
+  mutations: _mutations__WEBPACK_IMPORTED_MODULE_3__["mutations"],
+  actions: _actions__WEBPACK_IMPORTED_MODULE_4__["actions"]
+};
+
+/***/ }),
+
+/***/ "./resources/js/store/modules/model3/mutations.js":
+/*!********************************************************!*\
+  !*** ./resources/js/store/modules/model3/mutations.js ***!
+  \********************************************************/
+/*! exports provided: mutations */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mutations", function() { return mutations; });
+var mutations = {
+  // ########################################################### //
+  // #################### M U T A T I O N S #################### //
+  // ########################################################### //
+  SET_CLIENTS: function SET_CLIENTS(state, data) {
+    state.clients = data;
+  },
+  SET_NRC_ENTRP: function SET_NRC_ENTRP(state, data) {
+    state.curr_nrc_entrp = data;
+  },
+  SET_REFERENCE_PLANS: function SET_REFERENCE_PLANS(state, data) {
+    state.reference_plans = data;
+  },
+  SET_ACTION_BY_PLAN: function SET_ACTION_BY_PLAN(state, data) {
+    state.actions_by_plan = data;
+  },
+  SET_ANNEE_PLAN: function SET_ANNEE_PLAN(state, data) {
+    state.curr_annee_plan = data;
+  },
+  SET_ORGANISME: function SET_ORGANISME(state, data) {
+    state.cabinets = data;
+  },
+  SET_NB_PARTICIPENTS: function SET_NB_PARTICIPENTS(state, data) {
+    state.nb_participents = data;
+  } // SET_DATES_ACTION(state) {
+  //   state.actions_by_plan.forEach((action) => {
+  //     this.FillDates(action.n_form);
+  //   });
+  // },
+  // SET_CLIENTS(state, data) { state.clients = data; },
+  // SET_CLIENTS(state, data) { state.clients = data; },
+  // SET_CLIENTS(state, data) { state.clients = data; },
+  // SET_CLIENTS(state, data) { state.clients = data; },
+  // SET_CLIENTS(state, data) { state.clients = data; }
+
+};
+
+/***/ }),
+
+/***/ "./resources/js/store/modules/model3/state.js":
+/*!****************************************************!*\
+  !*** ./resources/js/store/modules/model3/state.js ***!
+  \****************************************************/
+/*! exports provided: state */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "state", function() { return state; });
+var state = {
   // ################################################### //
   // #################### S T A T E #################### //
   // ################################################### //
-  state: {
-    curr_nrc_entrp: null,
-    // numero rc actuel d'entreprise
-    clients: [],
-    // liste des entreprise
-    reference_plans: [],
-    // liste contenant les références du plan
-    actions_by_plan: [],
-    // list des action de formations
-    // actions_by_ref: [],
-    curr_annee_plan: null,
-    // année du plan actuel
-    cabinets: [],
-    info_initial: []
-  },
-  mutations: {
-    // ########################################################### //
-    // #################### M U T A T I O N S #################### //
-    // ########################################################### //
-    SET_CLIENTS: function SET_CLIENTS(state, data) {
-      state.clients = data;
-    },
-    SET_NRC_ENTRP: function SET_NRC_ENTRP(state, data) {
-      state.curr_nrc_entrp = data;
-    },
-    SET_REFERENCE_PLANS: function SET_REFERENCE_PLANS(state, data) {
-      state.reference_plans = data;
-    },
-    SET_ACTION_BY_PLAN: function SET_ACTION_BY_PLAN(state, data) {
-      state.actions_by_plan = data;
-    },
-    SET_ANNEE_PLAN: function SET_ANNEE_PLAN(state, data) {
-      state.curr_annee_plan = data;
-    },
-    SET_ORGANISME: function SET_ORGANISME(state, data) {
-      state.cabinets = data;
-    },
-    SET_NB_PARTICIPENTS: function SET_NB_PARTICIPENTS(state, data) {
-      state.nb_participents = data;
-    } // SET_DATES_ACTION(state) {
-    //   state.actions_by_plan.forEach((action) => {
-    //     this.FillDates(action.n_form);
-    //   });
-    // },
-    // SET_CLIENTS(state, data) { state.clients = data; },
-    // SET_CLIENTS(state, data) { state.clients = data; },
-    // SET_CLIENTS(state, data) { state.clients = data; },
-    // SET_CLIENTS(state, data) { state.clients = data; },
-    // SET_CLIENTS(state, data) { state.clients = data; }
-
-  },
-  actions: {
-    // ####################################################### //
-    // #################### A C T I O N S #################### //
-    // ####################################################### //
-    // récupérer la liste des entreprises (clients)
-    FetchClients: function FetchClients(_ref) {
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var commit;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                commit = _ref.commit;
-                _context.next = 3;
-                return axios.get('/fill-clients').then(function (_ref2) {
-                  var data = _ref2.data;
-                  commit('SET_CLIENTS', data);
-                  console.log("clients : ", data);
-                })["catch"](function (err) {
-                  return console.error("err FillClients", err);
-                });
-
-              case 3:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee);
-      }))();
-    },
-    SetNrcEntrp: function SetNrcEntrp(_ref3) {
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-        var commit, nrc;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
-          while (1) {
-            switch (_context2.prev = _context2.next) {
-              case 0:
-                commit = _ref3.commit, nrc = _ref3.nrc;
-                commit('SET_NRC_ENTRP', nrc);
-
-              case 2:
-              case "end":
-                return _context2.stop();
-            }
-          }
-        }, _callee2);
-      }))();
-    },
-    //récupérer les réferences plan à partir du client sélectionné
-    FetchReferencesPlan: function FetchReferencesPlan(_ref4, nrcEntrp) {
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
-        var commit;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
-          while (1) {
-            switch (_context3.prev = _context3.next) {
-              case 0:
-                commit = _ref4.commit;
-                _context3.next = 3;
-                return axios.get("/fill-reference-plan", {
-                  params: {
-                    nrcEntrp: nrcEntrp
-                  }
-                }).then(function (_ref5) {
-                  var data = _ref5.data;
-                  commit('SET_REFERENCE_PLANS', data);
-                  console.log("reference_plans : ", data);
-                })["catch"](function (err) {
-                  return console.log("err FillReferencesPlan", err);
-                });
-
-              case 3:
-              case "end":
-                return _context3.stop();
-            }
-          }
-        }, _callee3);
-      }))();
-    },
-    //-----------------------------------------------------------------
-    //récupérer les actions à partir du REF sélectionné
-    FetchActionByReference: function FetchActionByReference(_ref6, idPlan) {
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
-        var commit;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
-          while (1) {
-            switch (_context4.prev = _context4.next) {
-              case 0:
-                commit = _ref6.commit;
-                _context4.next = 3;
-                return axios.get("/fill-plans-by-reference", {
-                  params: {
-                    idPlan: idPlan
-                  }
-                }).then(function (_ref7) {
-                  var data = _ref7.data;
-                  commit('SET_ACTION_BY_PLAN', data); //commit('SET_ANNEE_PLAN', data[0].annee);
-
-                  console.log("actions_by_plan : ", data);
-                }).then(function () {// fill dates action
-                  //commit('SET_DATES_ACTION');
-                })["catch"](function (err) {
-                  return console.error("err FillPlanByReference", err);
-                });
-
-              case 3:
-              case "end":
-                return _context4.stop();
-            }
-          }
-        }, _callee4);
-      }))();
-    },
-    FetchAllCabinets: function FetchAllCabinets(_ref8) {
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
-        var commit;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
-          while (1) {
-            switch (_context5.prev = _context5.next) {
-              case 0:
-                commit = _ref8.commit;
-                _context5.next = 3;
-                return axios.get("/fill-all-organisme").then(function (_ref9) {
-                  var data = _ref9.data;
-                  commit('SET_ORGANISME', data);
-                  console.log("Cabinets :", data);
-                });
-
-              case 3:
-              case "end":
-                return _context5.stop();
-            }
-          }
-        }, _callee5);
-      }))();
-    },
-    //récupérer les dates de l'action actuel
-    FetchDatesPlan: function FetchDatesPlan(_ref10, nForm) {
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee6() {
-        var commit;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee6$(_context6) {
-          while (1) {
-            switch (_context6.prev = _context6.next) {
-              case 0:
-                commit = _ref10.commit;
-                _context6.next = 3;
-                return axios.get("/fill-dates-plan", {
-                  params: {
-                    nForm: nForm
-                  }
-                }).then(function (_ref11) {
-                  var data = _ref11.data;
-                  commit('SET_NB_PARTICIPENTS', data);
-                  commit('SET_DATES', data);
-                })["catch"](function (err) {
-                  return console.error("err FillDates", err);
-                });
-
-              case 3:
-              case "end":
-                return _context6.stop();
-            }
-          }
-        }, _callee6);
-      }))();
-    }
-  }
-});
+  curr_nrc_entrp: null,
+  // numero rc actuel d'entreprise
+  clients: [],
+  // liste des entreprise
+  reference_plans: [],
+  // liste contenant les références du plan
+  actions_by_plan: [],
+  // list des action de formations
+  // actions_by_ref: [],
+  curr_annee_plan: null,
+  // année du plan actuel
+  cabinets: [],
+  info_initial: []
+};
 
 /***/ }),
 
@@ -56696,8 +56991,8 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_2__["default"].Store({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\badre\mediexperts\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\badre\mediexperts\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\anasm\OneDrive\Bureau\mediexperts\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\anasm\OneDrive\Bureau\mediexperts\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

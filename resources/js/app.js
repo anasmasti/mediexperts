@@ -4,6 +4,7 @@
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
+import { store } from './store'
 
 require('./bootstrap');
 
@@ -36,6 +37,7 @@ Vue.component('avis-modification', require('../js/components/AvisModification.vu
  */
 
 const app = new Vue({
-  el: '#app'
+  el: '#app',
+  store,
 });
 
