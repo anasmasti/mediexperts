@@ -27,7 +27,7 @@ class PlanFormationController extends Controller
         $theme = Theme::all();
         $domain = Domaine::all();
 
-        return view('planformation.view', [
+        return view('PlanFormation.view', [
             'plan' => $plan,
             'client' => $client,
             'interv' => $interv,
@@ -50,7 +50,7 @@ class PlanFormationController extends Controller
         //get client
         $client = Client::all();
         $interv = Intervenant::all();
-        return view('planformation.view', ['plan'=>$plan, 'client'=>$client, 'interv'=>$interv]);
+        return view('PlanFormation.view', ['plan'=>$plan, 'client'=>$client, 'interv'=>$interv]);
     }
 
     public function ActionFormationClient(Request $request)
@@ -61,7 +61,7 @@ class PlanFormationController extends Controller
         ->where([['clients.nrc_entrp', '=', $request->nrc], ['plans.annee', '=', $request->annee]])
         ->get();
 
-        return view('planformation.view', ['plan' => $plan]);
+        return view('PlanFormation.view', ['plan' => $plan]);
     }
 
     /**
@@ -157,6 +157,7 @@ class PlanFormationController extends Controller
                 'bdg_total' => 'required|max:12',
                 'bdg_jour' => 'required|max:12',
                 'etat' => 'required',
+                'nb_dates' => 'required|max:10',
             ]);
 
             $plan = new PlanFormation();
@@ -176,14 +177,14 @@ class PlanFormationController extends Controller
             $plan->n_action = "TF".($last_n_action + 1);
 
             //// chercher si l'intervenant est occupé dans les dates précisés
-            // $actionformation = PlanFormation::where('id_plan', $request->input("id_plan"))->get();
-            // for ($i=0; $i < count($actionformation); $i++) {
-            //     if ($request->input("dt_debut") >= $actionformation[$i]['dt_debut'] &&
-            //         $request->input("dt_debut") <= $actionformation[$i]['dt_fin'] ||
-            //         $request->input("dt_fin") >= $actionformation[$i]['dt_debut'] &&
-            //         $request->input("dt_fin") <= $actionformation[$i]['dt_fin'] &&
-            //         $request->input("id_inv") == $actionformation[$i]['id_inv']) {
-            //           error_log("action date debut : ".$actionformation[$i]['dt_debut']);
+            // $PlanFormation = PlanFormation::where('id_plan', $request->input("id_plan"))->get();
+            // for ($i=0; $i < count($PlanFormation); $i++) {
+            //     if ($request->input("dt_debut") >= $PlanFormation[$i]['dt_debut'] &&
+            //         $request->input("dt_debut") <= $PlanFormation[$i]['dt_fin'] ||
+            //         $request->input("dt_fin") >= $PlanFormation[$i]['dt_debut'] &&
+            //         $request->input("dt_fin") <= $PlanFormation[$i]['dt_fin'] &&
+            //         $request->input("id_inv") == $PlanFormation[$i]['id_inv']) {
+            //           error_log("action date debut : ".$PlanFormation[$i]['dt_debut']);
             //           error_log("input date debut : ".$request->input("dt_debut"));
             //           $request->session()->flash('error', 'L\'intervenant sélectionné est occupé dans les dates choisi!');
             //           return back();
@@ -214,6 +215,8 @@ class PlanFormationController extends Controller
             $plan->bdg_letter = $request->input("bdg_letter");
             $plan->commentaire = $request->input("commentaire");
             $plan->etat = $request->input("etat");
+            $plan->Nombre_Dates = $request->input("nb_dates");
+            
 
             $docs = ['model5', 'model3', 'f4', 'fiche_eval',
                     'support_form', 'cv_inv', 'avis_affich'];
@@ -251,7 +254,7 @@ class PlanFormationController extends Controller
             // }
 
             $request->session()->flash('added', 'Ajouté avec succès');
-            return view('planformation.add', [
+            return view('PlanFormation.add', [
                     'plan' => $plan, 'plans' => $plans,
                     'client' => $client, 'cabinet' => $cabinet,
                     'interv' => $interv, 'domain' => $domain,
@@ -266,7 +269,7 @@ class PlanFormationController extends Controller
             $theme = Theme::all();
             $plans = Plan::all();
 
-            return view('planformation.add', [
+            return view('PlanFormation.add', [
                 'plan' => $plan, 'plans' => $plans,
                 'client' => $client, 'cabinet' => $cabinet,
                 'interv' => $interv, 'domain' => $domain,
@@ -297,7 +300,7 @@ class PlanFormationController extends Controller
                     ->where('plan_formations.n_form', '=' , $nform)
                     ->first();
 
-      return view('planformation.detail',  ['plan_props' => $plan_props, 'plan' => $plan, 'module_props' => $module_props]);
+      return view('PlanFormation.detail',  ['plan_props' => $plan_props, 'plan' => $plan, 'module_props' => $module_props]);
     }
 
     /**
@@ -360,14 +363,14 @@ class PlanFormationController extends Controller
             $nom_theme = Theme::find($request->input("id_thm"))->nom_theme;
 
             //// chercher si l'intervenant est occupé dans les dates précisés
-            // $actionformation = PlanFormation::where('id_plan', $request->input("id_plan"))->get();
-            // for ($i=0; $i < count($actionformation); $i++) {
-            //     if ($request->input("dt_debut") >= $actionformation[$i]['dt_debut'] &&
-            //         $request->input("dt_debut") <= $actionformation[$i]['dt_fin'] ||
-            //         $request->input("dt_fin") >= $actionformation[$i]['dt_debut'] &&
-            //         $request->input("dt_fin") <= $actionformation[$i]['dt_fin']) {
+            // $PlanFormation = PlanFormation::where('id_plan', $request->input("id_plan"))->get();
+            // for ($i=0; $i < count($PlanFormation); $i++) {
+            //     if ($request->input("dt_debut") >= $PlanFormation[$i]['dt_debut'] &&
+            //         $request->input("dt_debut") <= $PlanFormation[$i]['dt_fin'] ||
+            //         $request->input("dt_fin") >= $PlanFormation[$i]['dt_debut'] &&
+            //         $request->input("dt_fin") <= $PlanFormation[$i]['dt_fin']) {
 
-            //             if ($request->input("id_inv") == $actionformation[$i]['id_inv'] && $plan->n_form != $actionformation[$i]['n_form']) {
+            //             if ($request->input("id_inv") == $PlanFormation[$i]['id_inv'] && $plan->n_form != $PlanFormation[$i]['n_form']) {
             //                 $request->session()->flash('error', 'L\'intervenant sélectionné est occupé dans les dates choisi!');
             //                 return back();
             //             }
@@ -503,7 +506,7 @@ class PlanFormationController extends Controller
             $domain = Domaine::all();
             $theme = Theme::all();
 
-            return view('planformation.edit', [
+            return view('PlanFormation.edit', [
                 'plan' => $plan,
                 'plans' => $plans,
                 'client' => $client,
@@ -526,17 +529,17 @@ class PlanFormationController extends Controller
         $plan2 = PlanFormation::where('id_plan', $id_plan)->get();
 
         // sort data by dt_debut
-        $planformation = collect($plan2)->sortBy('dt_debut');
-        // \Log::info($planformation);
+        $PlanFormation = collect($plan2)->sortBy('dt_debut');
+        // \Log::info($PlanFormation);
 
-        // for ($i=0; $i < count($planformation); $i++) {
-        //     $planformation[$i]['n_action'] = "TF".($i+1);
+        // for ($i=0; $i < count($PlanFormation); $i++) {
+        //     $PlanFormation[$i]['n_action'] = "TF".($i+1);
         // }
         // // delete data
         // PlanFormation::where('id_plan', $id_plan)->delete();
 
-        // // for ($i=0; $i < count($planformation); $i++) {
-        //     PlanFormation::insert($planformation->toArray());
+        // // for ($i=0; $i < count($PlanFormation); $i++) {
+        //     PlanFormation::insert($PlanFormation->toArray());
         // // }
 
         //*** UPDATE INTERVENANT ***/

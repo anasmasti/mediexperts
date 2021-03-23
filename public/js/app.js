@@ -2688,6 +2688,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _PrintButton_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PrintButton.vue */ "./resources/js/components/PrintButton.vue");
 /* harmony import */ var _store_store__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../store/store */ "./resources/js/store/store.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2697,6 +2699,8 @@ __webpack_require__.r(__webpack_exports__);
   runtimeCompiler: true,
   data: function data() {
     return {
+      nForm: null,
+      nCabinet: null,
       id_plan: null,
       selected_nrc_entrp: null
     };
@@ -2719,7 +2723,13 @@ __webpack_require__.r(__webpack_exports__);
     },
     curr_annee_plan: function curr_annee_plan() {
       return _store_store__WEBPACK_IMPORTED_MODULE_1__["store"].state.curr_annee_plan;
-    }
+    },
+    cabinets: function cabinets() {
+      return _store_store__WEBPACK_IMPORTED_MODULE_1__["store"].state.cabinets;
+    } // ...mapState({
+    //   cabinets:state => state.cabinets,
+    // })
+
   },
   methods: {
     handleAction: function handleAction(actionName, value) {
@@ -41181,7 +41191,10 @@ var render = function() {
                           : $$selectedVal[0]
                       },
                       function($event) {
-                        return _vm.handleAction()
+                        return _vm.handleAction(
+                          "FetchActionByReference",
+                          _vm.id_plan
+                        )
                       }
                     ]
                   }
@@ -41211,12 +41224,167 @@ var render = function() {
                   },
                   attrs: { name: "plans", id: "plans" }
                 },
-                [_c("option", [_vm._v("(vide)")])]
+                [_c("option")]
               )
         ])
       ]),
       _vm._v(" "),
-      _vm._m(0)
+      _c("div", { staticClass: "paper" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _vm._m(1),
+        _vm._v(" "),
+        _c("div", { staticStyle: { "padding-left": "20px" } }, [
+          _c("div", { staticStyle: { "margin-top": "20px" } }, [
+            _c("strong", [_vm._v("Thème de l’action :")]),
+            _vm._v(" "),
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.nCabinet,
+                    expression: "nCabinet"
+                  }
+                ],
+                staticClass: "highlighted",
+                staticStyle: {
+                  width: "50%",
+                  padding: ".3rem",
+                  border: "1px solid #000"
+                },
+                attrs: { name: "actions", id: "actions" },
+                on: {
+                  change: [
+                    function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.nCabinet = $event.target.multiple
+                        ? $$selectedVal
+                        : $$selectedVal[0]
+                    },
+                    function($event) {
+                      return _vm.handleAction("FetchAllCabinets", _vm.nCabinet)
+                    }
+                  ]
+                }
+              },
+              [
+                _c("option", { attrs: { selected: "", disabled: "" } }, [
+                  _vm._v("-- Selectionner une action")
+                ]),
+                _vm._v(" "),
+                _vm._l(_vm.actions_by_plan, function(action) {
+                  return _c(
+                    "option",
+                    { key: action.nForm, domProps: { value: action.nForm } },
+                    [_vm._v(_vm._s(action.nom_theme))]
+                  )
+                }),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "" } })
+              ],
+              2
+            )
+          ]),
+          _vm._v(" "),
+          _vm._m(2),
+          _vm._v(" "),
+          _vm._m(3),
+          _vm._v(" "),
+          _vm._m(4),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "d-flex", staticStyle: { "margin-top": "10px" } },
+            [
+              _c("span", [_vm._v("Nouvel Organisme de formation : ")]),
+              _vm._v(" "),
+              _c(
+                "select",
+                {
+                  staticClass: "select highlighted",
+                  staticStyle: { width: "fit-content", "font-size": "16px" }
+                },
+                [
+                  _c("option", { attrs: { selected: "", disabled: "" } }, [
+                    _vm._v("--select organisme")
+                  ]),
+                  _vm._v(" "),
+                  _vm._l(_vm.cabinets, function(cabinet) {
+                    return _c(
+                      "option",
+                      {
+                        key: cabinet.nCabinet,
+                        domProps: { value: cabinet.nCabinet }
+                      },
+                      [_vm._v(_vm._s(cabinet.raisoci))]
+                    )
+                  })
+                ],
+                2
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _vm._m(5),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "d-flex", staticStyle: { "margin-top": "10px" } },
+            [
+              _c("span", [_vm._v("Nouveau lieu : ")]),
+              _vm._v(" "),
+              _c(
+                "select",
+                {
+                  staticClass: "highlighted",
+                  staticStyle: {
+                    width: "35%",
+                    padding: ".3rem",
+                    border: "1px solid #000"
+                  },
+                  attrs: { name: "lieu", id: "lieu" }
+                },
+                [
+                  _c("option", { attrs: { selected: "", disabled: "" } }, [
+                    _vm._v("--sélectionner l'Entreprise ..")
+                  ]),
+                  _vm._v(" "),
+                  _vm._l(_vm.clients, function(cl) {
+                    return _c(
+                      "option",
+                      { key: cl.nrc_entrp, domProps: { value: cl.nrc_entrp } },
+                      [_vm._v(_vm._s(cl.raisoci))]
+                    )
+                  })
+                ],
+                2
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _vm._m(6),
+          _vm._v(" "),
+          _vm._m(7),
+          _vm._v(" "),
+          _vm._m(8),
+          _vm._v(" "),
+          _vm._m(9),
+          _vm._v(" "),
+          _vm._m(10),
+          _vm._v(" "),
+          _vm._m(11)
+        ])
+      ])
     ],
     1
   )
@@ -41226,306 +41394,293 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "paper" }, [
-      _c("div", { staticClass: "text-center" }, [
-        _c("h2", [_vm._v("Modèle 3")]),
-        _vm._v(" "),
-        _c("h4", { staticClass: "uppercase" }, [
-          _vm._v("MODELE D’AVIS D’ANNULATION OU DE MODIFICATION")
-        ]),
-        _vm._v(" "),
-        _c("p", { staticClass: "text-italic" }, [
-          _vm._v("(Sur papier a entête de l’entreprise)")
-        ])
+    return _c("div", { staticClass: "text-center" }, [
+      _c("h2", [_vm._v("Modèle 3")]),
+      _vm._v(" "),
+      _c("h4", { staticClass: "uppercase" }, [
+        _vm._v("MODELE D’AVIS D’ANNULATION OU DE MODIFICATION")
       ]),
       _vm._v(" "),
-      _c("table", { staticStyle: { "background-color": "#eaeaea" } }, [
-        _c("tr", [
-          _c("th", { staticStyle: { width: "30%" }, attrs: { rowspan: "6" } }, [
-            _vm._v("Avis")
-          ]),
-          _vm._v(" "),
-          _c("th", { staticStyle: { width: "30%" } }, [_vm._v("Anulation")]),
-          _vm._v(" "),
-          _c("th", { staticStyle: { width: "30%" }, attrs: { colspan: "2" } }, [
-            _c("input", { attrs: { type: "checkbox" } })
-          ])
-        ]),
-        _vm._v(" "),
-        _c("tr", [
-          _c("th", { attrs: { rowspan: "5" } }, [_vm._v("Modification")])
-        ]),
-        _vm._v(" "),
-        _c("tr", [
-          _c("th", { staticStyle: { width: "15%" } }, [
-            _vm._v("De la date de Réalisation")
-          ]),
-          _vm._v(" "),
-          _c("th", [_c("input", { attrs: { type: "checkbox" } })])
-        ]),
-        _vm._v(" "),
-        _c("tr", [
-          _c("th", { staticStyle: { width: "15%" } }, [
-            _vm._v("De l’organisme de formation")
-          ]),
-          _vm._v(" "),
-          _c("th", [_c("input", { attrs: { type: "checkbox" } })])
-        ]),
-        _vm._v(" "),
-        _c("tr", [
-          _c("th", { staticStyle: { width: "15%" } }, [
-            _vm._v("De lieu de formation")
-          ]),
-          _vm._v(" "),
-          _c("th", [_c("input", { attrs: { type: "checkbox" } })])
-        ]),
-        _vm._v(" "),
-        _c("tr", [
-          _c("th", { staticStyle: { width: "15%" } }, [
-            _vm._v("Organisation horaire")
-          ]),
-          _vm._v(" "),
-          _c("th", [_c("input", { attrs: { type: "checkbox" } })])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticStyle: { "padding-left": "20px" } }, [
-        _c("div", { staticStyle: { "margin-top": "20px" } }, [
-          _c("strong", [_vm._v("Thème de l’action :")])
-        ]),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "d-flex", staticStyle: { "margin-top": "20px" } },
-          [
-            _c("strong", [_vm._v("Nature de l’action :")]),
-            _vm._v(" "),
-            _c("div", { staticStyle: { "margin-left": "100px" } }, [
-              _c("label", [_vm._v("Planifiée")]),
-              _vm._v(" "),
-              _c("input", { attrs: { type: "checkbox", checked: "" } })
-            ])
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "d-flex", staticStyle: { "margin-top": "10px" } },
-          [
-            _c("strong", [_vm._v("Effectif des participants :")]),
-            _vm._v(" "),
-            _c("input", {
-              staticClass: "highlighted",
-              attrs: { type: "text", value: "..." }
-            })
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "d-flex", staticStyle: { "margin-top": "10px" } },
-          [
-            _c("span", [_vm._v("• Organisme de formation initial : ")]),
-            _vm._v(" "),
-            _c("input", {
-              staticClass: "highlighted",
-              attrs: { type: "text", value: "..." }
-            })
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "d-flex", staticStyle: { "margin-top": "10px" } },
-          [
-            _c("span", [_vm._v("Nouvel Organisme de formation : ")]),
-            _vm._v(" "),
-            _c(
-              "select",
-              {
-                staticClass: "select highlighted",
-                staticStyle: { width: "fit-content", "font-size": "16px" }
-              },
-              [
-                _c("option", { attrs: { selected: "", disabled: "" } }, [
-                  _vm._v("--select organisme")
-                ])
-              ]
-            )
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "d-flex", staticStyle: { "margin-top": "10px" } },
-          [
-            _c("span", [_vm._v("• Lieu de formation initial : ")]),
-            _vm._v(" "),
-            _c("input", {
-              staticClass: "highlighted",
-              attrs: { type: "text", value: "..." }
-            })
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "d-flex", staticStyle: { "margin-top": "10px" } },
-          [
-            _c("span", [_vm._v("Nouveau lieu : ")]),
-            _vm._v(" "),
-            _c(
-              "select",
-              {
-                staticClass: "select highlighted",
-                staticStyle: { width: "fit-content", "font-size": "16px" }
-              },
-              [
-                _c("option", { attrs: { selected: "", disabled: "" } }, [
-                  _vm._v("--select organisme")
-                ])
-              ]
-            )
-          ]
-        ),
-        _vm._v(" "),
-        _c("div", { staticStyle: { "margin-top": "10px" } }, [
-          _c("span", [_vm._v("• Dates initiales de réalisation  : ")]),
-          _vm._v(" "),
-          _c("div", { staticClass: "d-flex" }, [
-            _c("input", {
-              staticClass: "highlighted",
-              attrs: { type: "date", value: "..." }
-            }),
-            _vm._v(" "),
-            _c("input", {
-              staticClass: "highlighted",
-              attrs: { type: "date", value: "..." }
-            }),
-            _vm._v(" "),
-            _c("input", {
-              staticClass: "highlighted",
-              attrs: { type: "date", value: "..." }
-            }),
-            _vm._v(" "),
-            _c("input", {
-              staticClass: "highlighted",
-              attrs: { type: "date", value: "..." }
-            }),
-            _vm._v(" "),
-            _c("input", {
-              staticClass: "highlighted",
-              attrs: { type: "date", value: "..." }
-            }),
-            _vm._v(" "),
-            _c("input", {
-              staticClass: "highlighted",
-              attrs: { type: "date", value: "..." }
-            })
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticStyle: { "margin-top": "10px" } }, [
-          _c("span", [_vm._v("Nouvelles Dates exactes de réalisation : ")]),
-          _vm._v(" "),
-          _c("div", { staticClass: "d-flex" }, [
-            _c("input", {
-              staticClass: "highlighted",
-              attrs: { type: "date", value: "..." }
-            }),
-            _vm._v(" "),
-            _c("input", {
-              staticClass: "highlighted",
-              attrs: { type: "date", value: "..." }
-            }),
-            _vm._v(" "),
-            _c("input", {
-              staticClass: "highlighted",
-              attrs: { type: "date", value: "..." }
-            }),
-            _vm._v(" "),
-            _c("input", {
-              staticClass: "highlighted",
-              attrs: { type: "date", value: "..." }
-            }),
-            _vm._v(" "),
-            _c("input", {
-              staticClass: "highlighted",
-              attrs: { type: "date", value: "..." }
-            }),
-            _vm._v(" "),
-            _c("input", {
-              staticClass: "highlighted",
-              attrs: { type: "date", value: "..." }
-            })
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticStyle: { "margin-top": "10px" } }, [
-          _c("span", [_vm._v("•\tOrganisation horaire initiale :")]),
-          _vm._v(" "),
-          _c("div", { staticClass: "d-flex" }, [
-            _c("div", [
-              _c("span", [_vm._v("heure début : ")]),
-              _vm._v(" "),
-              _c("input", {
-                staticClass: "highlighted",
-                attrs: { type: "text", value: "..." }
-              })
-            ]),
-            _vm._v(" "),
-            _c("div", [
-              _c("span", [_vm._v("heure fin : ")]),
-              _vm._v(" "),
-              _c("input", {
-                staticClass: "highlighted",
-                attrs: { type: "text", value: "..." }
-              })
-            ])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticStyle: { "margin-top": "10px" } }, [
-          _c("span", [_vm._v("Nouvelle organisation horaire :")]),
-          _vm._v(" "),
-          _c("div", { staticClass: "d-flex" }, [
-            _c("div", [
-              _c("span", [_vm._v("heure début : ")]),
-              _vm._v(" "),
-              _c("input", {
-                staticClass: "highlighted",
-                attrs: { type: "text", value: "..." }
-              })
-            ]),
-            _vm._v(" "),
-            _c("div", [
-              _c("span", [_vm._v("heure fin : ")]),
-              _vm._v(" "),
-              _c("input", {
-                staticClass: "highlighted",
-                attrs: { type: "text", value: "..." }
-              })
-            ])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticStyle: { "margin-top": "50px" } }, [
-          _c("strong", [_vm._v("#nom du responsable#")])
-        ]),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "d-flex", staticStyle: { "margin-top": "50px" } },
-          [
-            _c("strong", { staticStyle: { "margin-left": "auto" } }, [
-              _vm._v(
-                "#Cachet de l’entreprise, Signature et qualité du responsable#"
-              )
-            ])
-          ]
-        )
+      _c("p", { staticClass: "text-italic" }, [
+        _vm._v("(Sur papier a entête de l’entreprise)")
       ])
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("table", { staticStyle: { "background-color": "#eaeaea" } }, [
+      _c("tr", [
+        _c("th", { staticStyle: { width: "30%" }, attrs: { rowspan: "6" } }, [
+          _vm._v("Avis")
+        ]),
+        _vm._v(" "),
+        _c("th", { staticStyle: { width: "30%" } }, [_vm._v("Anulation")]),
+        _vm._v(" "),
+        _c("th", { staticStyle: { width: "30%" }, attrs: { colspan: "2" } }, [
+          _c("input", { attrs: { type: "checkbox" } })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("tr", [
+        _c("th", { attrs: { rowspan: "5" } }, [_vm._v("Modification")])
+      ]),
+      _vm._v(" "),
+      _c("tr", [
+        _c("th", { staticStyle: { width: "15%" } }, [
+          _vm._v("De la date de Réalisation")
+        ]),
+        _vm._v(" "),
+        _c("th", [_c("input", { attrs: { type: "checkbox" } })])
+      ]),
+      _vm._v(" "),
+      _c("tr", [
+        _c("th", { staticStyle: { width: "15%" } }, [
+          _vm._v("De l’organisme de formation")
+        ]),
+        _vm._v(" "),
+        _c("th", [_c("input", { attrs: { type: "checkbox" } })])
+      ]),
+      _vm._v(" "),
+      _c("tr", [
+        _c("th", { staticStyle: { width: "15%" } }, [
+          _vm._v("De lieu de formation")
+        ]),
+        _vm._v(" "),
+        _c("th", [_c("input", { attrs: { type: "checkbox" } })])
+      ]),
+      _vm._v(" "),
+      _c("tr", [
+        _c("th", { staticStyle: { width: "15%" } }, [
+          _vm._v("Organisation horaire")
+        ]),
+        _vm._v(" "),
+        _c("th", [_c("input", { attrs: { type: "checkbox" } })])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "d-flex", staticStyle: { "margin-top": "20px" } },
+      [
+        _c("strong", [_vm._v("Nature de l’action :")]),
+        _vm._v(" "),
+        _c("div", { staticStyle: { "margin-left": "100px" } }, [
+          _c("label", [_vm._v("Planifiée")]),
+          _vm._v(" "),
+          _c("input", { attrs: { type: "checkbox", checked: "" } })
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "d-flex", staticStyle: { "margin-top": "10px" } },
+      [
+        _c("strong", [_vm._v("Effectif des participants :")]),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "highlighted",
+          attrs: { type: "text", value: "", name: "nb_partcp_total" }
+        })
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "d-flex", staticStyle: { "margin-top": "10px" } },
+      [
+        _c("span", [_vm._v("• Organisme de formation initial : ")]),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "highlighted",
+          attrs: { type: "text", value: "..." }
+        })
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "d-flex", staticStyle: { "margin-top": "10px" } },
+      [_c("span", [_vm._v("• Lieu de formation initial : ")])]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticStyle: { "margin-top": "10px" } }, [
+      _c("span", [_vm._v("• Dates initiales de réalisation  : ")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "d-flex" }, [
+        _c("input", {
+          staticClass: "highlighted",
+          attrs: { type: "date", value: "..." }
+        }),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "highlighted",
+          attrs: { type: "date", value: "..." }
+        }),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "highlighted",
+          attrs: { type: "date", value: "..." }
+        }),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "highlighted",
+          attrs: { type: "date", value: "..." }
+        }),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "highlighted",
+          attrs: { type: "date", value: "..." }
+        }),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "highlighted",
+          attrs: { type: "date", value: "..." }
+        })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticStyle: { "margin-top": "10px" } }, [
+      _c("span", [_vm._v("Nouvelles Dates exactes de réalisation : ")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "d-flex" }, [
+        _c("input", {
+          staticClass: "highlighted",
+          attrs: { type: "date", value: "..." }
+        }),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "highlighted",
+          attrs: { type: "date", value: "..." }
+        }),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "highlighted",
+          attrs: { type: "date", value: "..." }
+        }),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "highlighted",
+          attrs: { type: "date", value: "..." }
+        }),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "highlighted",
+          attrs: { type: "date", value: "..." }
+        }),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "highlighted",
+          attrs: { type: "date", value: "..." }
+        })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticStyle: { "margin-top": "10px" } }, [
+      _c("span", [_vm._v("•\tOrganisation horaire initiale :")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "d-flex" }, [
+        _c("div", [
+          _c("span", [_vm._v("heure début : ")]),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "highlighted",
+            attrs: { type: "text", value: "..." }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", [
+          _c("span", [_vm._v("heure fin : ")]),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "highlighted",
+            attrs: { type: "text", value: "..." }
+          })
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticStyle: { "margin-top": "10px" } }, [
+      _c("span", [_vm._v("Nouvelle organisation horaire :")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "d-flex" }, [
+        _c("div", [
+          _c("span", [_vm._v("heure début : ")]),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "highlighted",
+            attrs: { type: "text", value: "..." }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", [
+          _c("span", [_vm._v("heure fin : ")]),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "highlighted",
+            attrs: { type: "text", value: "..." }
+          })
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticStyle: { "margin-top": "50px" } }, [
+      _c("strong", [_vm._v("#nom du responsable#")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "d-flex", staticStyle: { "margin-top": "50px" } },
+      [
+        _c("strong", { staticStyle: { "margin-left": "auto" } }, [
+          _vm._v(
+            "#Cachet de l’entreprise, Signature et qualité du responsable#"
+          )
+        ])
+      ]
+    )
   }
 ]
 render._withStripped = true
@@ -56113,8 +56268,10 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_2__["default"].Store({
     actions_by_plan: [],
     // list des action de formations
     // actions_by_ref: [],
-    curr_annee_plan: null // année du plan actuel
-
+    curr_annee_plan: null,
+    // année du plan actuel
+    cabinets: [],
+    info_initial: []
   },
   mutations: {
     // ########################################################### //
@@ -56134,6 +56291,12 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_2__["default"].Store({
     },
     SET_ANNEE_PLAN: function SET_ANNEE_PLAN(state, data) {
       state.curr_annee_plan = data;
+    },
+    SET_ORGANISME: function SET_ORGANISME(state, data) {
+      state.cabinets = data;
+    },
+    SET_NB_PARTICIPENTS: function SET_NB_PARTICIPENTS(state, data) {
+      state.nb_participents = data;
     } // SET_DATES_ACTION(state) {
     //   state.actions_by_plan.forEach((action) => {
     //     this.FillDates(action.n_form);
@@ -56196,8 +56359,6 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_2__["default"].Store({
     },
     //récupérer les réferences plan à partir du client sélectionné
     FetchReferencesPlan: function FetchReferencesPlan(_ref4, nrcEntrp) {
-      var _this = this;
-
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
         var commit;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
@@ -56213,7 +56374,7 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_2__["default"].Store({
                 }).then(function (_ref5) {
                   var data = _ref5.data;
                   commit('SET_REFERENCE_PLANS', data);
-                  console.log("reference_plans : ", _this.data);
+                  console.log("reference_plans : ", data);
                 })["catch"](function (err) {
                   return console.log("err FillReferencesPlan", err);
                 });
@@ -56226,8 +56387,9 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_2__["default"].Store({
         }, _callee3);
       }))();
     },
-    // récupérer les réferences plan à partir du client sélectionné
-    FetchActionByPlan: function FetchActionByPlan(_ref6, idPlan) {
+    //-----------------------------------------------------------------
+    //récupérer les actions à partir du REF sélectionné
+    FetchActionByReference: function FetchActionByReference(_ref6, idPlan) {
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
         var commit;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
@@ -56242,12 +56404,11 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_2__["default"].Store({
                   }
                 }).then(function (_ref7) {
                   var data = _ref7.data;
-                  commit('SET_REFERENCE_PLANS', data);
-                  commit('SET_ANNEE_PLAN', data[0].annee);
+                  commit('SET_ACTION_BY_PLAN', data); //commit('SET_ANNEE_PLAN', data[0].annee);
+
                   console.log("actions_by_plan : ", data);
-                }).then(function () {
-                  // fill dates action
-                  commit('SET_DATES_ACTION');
+                }).then(function () {// fill dates action
+                  //commit('SET_DATES_ACTION');
                 })["catch"](function (err) {
                   return console.error("err FillPlanByReference", err);
                 });
@@ -56259,18 +56420,60 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_2__["default"].Store({
           }
         }, _callee4);
       }))();
-    } // récupérer les dates de l'action actuel
-    // async FetchDatesPlan({commit}, nForm) {
-    //   await axios.get(`/fill-dates-plan`, {params: {nForm: nForm}})
-    //     .then(({data}) => {
-    //       this.dates_actions = data;
-    //     })
-    //     .then(() => {
-    //       this.AssignDates({commit}, nForm);
-    //     })
-    //     .catch((err) => console.error("err FillDates", err));
-    // },
+    },
+    FetchAllCabinets: function FetchAllCabinets(_ref8) {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
+        var commit;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
+          while (1) {
+            switch (_context5.prev = _context5.next) {
+              case 0:
+                commit = _ref8.commit;
+                _context5.next = 3;
+                return axios.get("/fill-all-organisme").then(function (_ref9) {
+                  var data = _ref9.data;
+                  commit('SET_ORGANISME', data);
+                  console.log("Cabinets :", data);
+                });
 
+              case 3:
+              case "end":
+                return _context5.stop();
+            }
+          }
+        }, _callee5);
+      }))();
+    },
+    //récupérer les dates de l'action actuel
+    FetchDatesPlan: function FetchDatesPlan(_ref10, nForm) {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee6() {
+        var commit;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee6$(_context6) {
+          while (1) {
+            switch (_context6.prev = _context6.next) {
+              case 0:
+                commit = _ref10.commit;
+                _context6.next = 3;
+                return axios.get("/fill-dates-plan", {
+                  params: {
+                    nForm: nForm
+                  }
+                }).then(function (_ref11) {
+                  var data = _ref11.data;
+                  commit('SET_NB_PARTICIPENTS', data);
+                  commit('SET_DATES', data);
+                })["catch"](function (err) {
+                  return console.error("err FillDates", err);
+                });
+
+              case 3:
+              case "end":
+                return _context6.stop();
+            }
+          }
+        }, _callee6);
+      }))();
+    }
   }
 });
 
@@ -56294,8 +56497,8 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_2__["default"].Store({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Youssef\mediexperts\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\Youssef\mediexperts\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\badre\mediexperts\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\badre\mediexperts\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

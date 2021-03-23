@@ -136,7 +136,7 @@
           <div class="icon">
             <i class="fas fa-calendar-alt"></i>
           </div>
-          <a href="/planformation" class="small-box-footer">
+          <a href="/PlanFormation" class="small-box-footer">
             Aller à <i class="fa fa-arrow-circle-right"></i>
           </a>
         </div>
@@ -382,7 +382,10 @@
 
               <div class="info-box-content">
                 <span class="info-box-text">Modèles 3</span>
-                <span class="info-box-number"><a href="/print-m3">Imprimer</a></span>
+                <div class="d-flex">
+                <span class="info-box-number"><a href="/print-m3">Imprimer - </a></span>
+                <span class="info-box-number"><a href="/avis-modif"> Modifier</a></span>
+                </div>
               </div>
               <!-- /.info-box-content -->
             </div>

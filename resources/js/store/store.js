@@ -15,6 +15,9 @@ export const store = new Vuex.Store({
     actions_by_plan: [], // list des action de formations
    // actions_by_ref: [],
     curr_annee_plan: null, // année du plan actuel
+    cabinets : [],
+    info_initial : []
+
   },
   mutations: {
     // ########################################################### //
@@ -25,8 +28,8 @@ export const store = new Vuex.Store({
     SET_REFERENCE_PLANS(state, data) { state.reference_plans = data; },
     SET_ACTION_BY_PLAN(state, data) { state.actions_by_plan = data; },
     SET_ANNEE_PLAN(state, data) { state.curr_annee_plan = data; },
-
-
+    SET_ORGANISME(state, data) {state.cabinets = data;},
+    SET_NB_PARTICIPENTS(state,data) {state.nb_participents = data}
     // SET_DATES_ACTION(state) {
     //   state.actions_by_plan.forEach((action) => {
     //     this.FillDates(action.n_form);
@@ -60,37 +63,40 @@ export const store = new Vuex.Store({
       await axios.get(`/fill-reference-plan`, {params: {nrcEntrp: nrcEntrp}})
         .then(({data}) => {
           commit('SET_REFERENCE_PLANS', data);
-          console.log("reference_plans : ", this.data)
+          console.log("reference_plans : ", data)
         })
         .catch((err) => console.log("err FillReferencesPlan", err));
     },
-    // récupérer les réferences plan à partir du client sélectionné
-    async FetchActionByPlan({commit}, idPlan) {
+    //-----------------------------------------------------------------
+    //récupérer les actions à partir du REF sélectionné
+    async FetchActionByReference({commit}, idPlan) {
       await axios.get(`/fill-plans-by-reference`, {params: {idPlan: idPlan}})
         .then(({data}) => {
-          commit('SET_REFERENCE_PLANS', data);
-          commit('SET_ANNEE_PLAN', data[0].annee);
+          commit('SET_ACTION_BY_PLAN', data);
+          //commit('SET_ANNEE_PLAN', data[0].annee);
           console.log("actions_by_plan : ", data);
         })
         .then(() => {
           // fill dates action
-          commit('SET_DATES_ACTION');
+          //commit('SET_DATES_ACTION');
         })
         .catch((err) => console.error("err FillPlanByReference", err));
     },
-
-
-    // récupérer les dates de l'action actuel
-    // async FetchDatesPlan({commit}, nForm) {
-    //   await axios.get(`/fill-dates-plan`, {params: {nForm: nForm}})
-    //     .then(({data}) => {
-    //       this.dates_actions = data;
-    //     })
-    //     .then(() => {
-    //       this.AssignDates({commit}, nForm);
-    //     })
-    //     .catch((err) => console.error("err FillDates", err));
-    // },
-
+    async FetchAllCabinets({commit}) {
+      await axios.get(`/fill-all-organisme`)
+      .then(({data}) => {
+       commit('SET_ORGANISME', data);
+       console.log("Cabinets :" , data)
+      });
+    },
+    //récupérer les dates de l'action actuel
+    async FetchDatesPlan({commit}, nForm) {
+      await axios.get(`/fill-dates-plan`, {params: {nForm: nForm}})
+        .then(({data}) => {
+          commit('SET_NB_PARTICIPENTS' , data);
+          commit('SET_DATES' , data);
+        })
+        .catch((err) => console.error("err FillDates", err));
+    },
   }
 })

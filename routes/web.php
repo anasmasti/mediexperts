@@ -204,7 +204,7 @@ Route::get('/del-plan/{id_plan}', 'PlanController@destroy')->name('PLAN.destroy'
 
 
 //*************** ACTION FORMATION ROUTES ***************
-Route::get('/planformation', 'PlanFormationController@index')->name('PF.index');
+Route::get('/PlanFormation', 'PlanFormationController@index')->name('PF.index');
 Route::get('/act-form-cl/{nrc}/{annee}', 'PlanFormationController@ActionFormationClient')->name('PF.ActionFormationClient');
 Route::get('/detail-pf/{nf}', 'PlanFormationController@show')->name('PF.show');
 
@@ -376,13 +376,13 @@ Route::get('/print-fiche-evaluation', 'FormulaireController@print_fiche_evaluati
 Route::get('/fill-fiche-evaluation', 'FormulaireController@FillFicheEval')->name('Fiche_Evaluation.FillFicheEval');
 Route::get('/fill-dates-form', 'FormulaireController@FillDatesForm')->name('Fiche_Evaluation.FillDatesForm');
 
-Route::get('/fill-action-form', 'FormulaireController@FillActionFormation')->name('ActionFormation.FillActionFormation');
-Route::get('/print-avis-aff', 'FormulaireController@print_avis_aff')->name('ActionFormation.print_avis_aff');
+Route::get('/fill-action-form', 'FormulaireController@FillActionFormation')->name('PlanFormation.FillActionFormation');
+Route::get('/print-avis-aff', 'FormulaireController@print_avis_aff')->name('PlanFormation.print_avis_aff');
 
-Route::get('/print-att-reference-plan', 'FormulaireController@print_att_reference_plan')->name('ActionFormation.print_att_reference_plan');
-Route::get('/fill-cabinet-info', 'FormulaireController@FillCabinetInfo')->name('ActionFormation.FillCabinetInfo');
+Route::get('/print-att-reference-plan', 'FormulaireController@print_att_reference_plan')->name('PlanFormation.print_att_reference_plan');
+Route::get('/fill-cabinet-info', 'FormulaireController@FillCabinetInfo')->name('PlanFormation.FillCabinetInfo');
 Route::get('/fill-plan-by-client', 'FormulaireController@FillPlansByClient')->name('PlanByClinet');
-Route::get('/print-G6', ' FormulaireController@_G6')->name('G6');
+Route::get('/fill-all-organisme' , 'FormulaireController@FillAllCabinets')->name('FillOrganisme');
 /********************************************************************/
 
 

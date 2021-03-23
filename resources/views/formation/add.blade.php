@@ -281,7 +281,7 @@
       url: '{!! URL::to('/findplanformationprops') !!}',
       data: {'nForm': nForm},
       success: function(data) {
-        console.log('success planformation props !!');
+        console.log('success PlanFormation props !!');
         console.log(data);
 
         var fillDropDown = '<option selected disabled>Sélectionner le plan de formation</option>';

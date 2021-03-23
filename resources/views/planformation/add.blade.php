@@ -9,7 +9,7 @@
   </div><!-- /.col -->
   <div class="col-sm-6">
     <ol class="breadcrumb float-sm-right">
-      <li class="breadcrumb-item"><a href="/planformation">Action plan formation</a></li>
+      <li class="breadcrumb-item"><a href="/PlanFormation">Action plan formation</a></li>
       <li class="breadcrumb-item active">Ajout</li>
     </ol>
   </div><!-- /.col -->
@@ -41,6 +41,27 @@
           <span>{{$errors}}</span>
         </div>
       @endif
+
+
+      <div class="modal" tabindex="-1" role="dialog" id="NbDateModal">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Info  <i class="fas fa-info-circle"></i></h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>Nombre Dates Doit être père</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
 
       {{-- <div class="form-group col-lg-3 col-md-6 col-12"><label>N° plan</label>
         <input class="form-control {{ $errors->has('n_form') ? 'is-invalid' : '' }}" name="n_form" type="text" min="0" maxlength="15" value="{{old('n_form')}}" placeholder="n° formation" >
@@ -215,16 +236,25 @@
       </div>
 
       <div class="form-group col-lg-3 col-md-6 col-12"><label>Nb. de jours </label>
-        <input class="form-control {{ $errors->has('nb_jour') ? 'is-invalid' : '' }}" value="{{old('nb_jour')}}" type="text" name="nb_jour" id="nb_jour" min="0" maxlength="15" onkeyup="CalcBdgJourn()" onkeypress="return isNumberKey(event)" placeholder="nb. jour" >
+        <input class="form-control {{ $errors->has('nb_jour') ? 'is-invalid' : '' }}" value="{{old('nb_jour')}}" type="text" onkeyup="CalcNbJour();CalcBdgJourn()" name="nb_jour" id="nb_jour" min="0" maxlength="15"  onkeypress="return isNumberKey(event)" placeholder="nb. jour">
         @if ($errors->has('nb_jour'))
           <span class="invalid-feedback" role="alert">
             {{ $errors->first('nb_jour') }}
           </span>
         @endif
+        <label for="nb_dates">Nb. Dates</label>
+        <input type="text" class="form-control {{ $errors->has('nb_dates') ? 'is-invalid' : '' }}" name="nb_dates" id="nb_dates" onkeyup="CalcNbJour();CalcBdgJourn()" onclick="NbHeurValidation()" onkeypress="return isNumberKey(event)" placeholder="nb. dates">
+        @if ($errors->has('nb_dates'))
+        <span class="invalid-feedback" role="alert">
+          {{$errors->first('nb_dates') }}
+        </span>
+        @endif
+        <span class="text-danger" id="nb_dates_msg"></span>
       </div>
+      
 
       <div class="form-group col-lg-3 col-md-6 col-12"><label>Nb. d’heures par jour </label>
-        <input class="form-control bg-warning {{ $errors->has('nb_heure') ? 'is-invalid' : '' }}" value="6" type="text" name="nb_heure" id="nb_heure" min="0" maxlength="15" onkeyup="CalcBdgJourn()" onkeypress="return isNumberKey(event)" placeholder="nb. jour" >
+        <input class="form-control bg-warning {{ $errors->has('nb_heure') ? 'is-invalid' : '' }}" type="text" name="nb_heure" id="nb_heure" min="0" maxlength="15" onkeyup="CalcBdgJourn();CalcNbJour()" onchange="NbHeurValidation()" onkeypress="return isNumberKey(event)" placeholder="nb. jour" >
         @if ($errors->has('nb_heure'))
           <span class="invalid-feedback" role="alert">
             {{ $errors->first('nb_heure') }}
@@ -386,7 +416,7 @@
     @if (count($client) != 0 && $nbIntervAvailable >= 1)
       <button class="btn bu-add" type="submit" id="add"><i class="fas fa-plus-circle"></i> Ajouter</button>
     @endif
-    <a class="btn bu-danger" href="/planformation"><i class="fas fa-window-close"></i> Annuler</a>
+    <a class="btn bu-danger" href="/PlanFormation"><i class="fas fa-window-close"></i> Annuler</a>
   </div>
 
   </form>
@@ -608,6 +638,9 @@ $(document).ready(function() {
 </script>
 @endif
 {{-- TOASTR NOTIFICATIONS --}}
+<style>
+  
+</style>
 
 
 

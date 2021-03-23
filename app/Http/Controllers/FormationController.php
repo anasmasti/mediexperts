@@ -123,7 +123,7 @@ class FormationController extends Controller
         ->where([['clients.nrc_entrp', '=', $request->nrc], ['plans.annee', '=', $request->annee]])
         ->get();
 
-        return view('planformation.view', ['plan' => $plan]);
+        return view('PlanFormation.view', ['plan' => $plan]);
     }
     public function SaveNFacture(Request $request) {
       // $formation = Formation::findOrFail($request->nFacture);

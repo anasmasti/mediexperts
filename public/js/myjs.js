@@ -1,3 +1,5 @@
+const { Alert } = require("bootstrap");
+
 // ALLOW ONLY NUMBERS
 function isNumberKey(evt) {
     let charCode = (evt.which) ? evt.which : event.keyCode
@@ -39,6 +41,34 @@ function checkDate() {
         alert("La date doit être inférieur à la date d'aujourd'hui");
         document.getElementById("date-more").value = currentDate.getTime();
     }
+}
+function NbHeurValidation (){
+  let nbHeur = document.getElementById("nb_heure");
+  let nbDates = document.getElementById("nb_dates");
+
+  if (nbHeur.value == 0){
+    nbDates.disabled = true;
+    document.getElementById("nb_dates_msg").innerHTML ='<p><i class="fas fa-info-circle"></i> Hours First </p>'
+    setTimeout(() => {
+      document.getElementById("nb_dates_msg").innerHTML =''
+    }, 5000);
+  }
+  else if (nbHeur.value != 0){
+    nbDates.disabled = false;
+  }
+}
+function CalcNbJour() {
+
+  let NbHeurs = document.getElementById("nb_heure");
+  let NbDates = document.getElementById("nb_dates");
+  let nbJour = document.getElementById("nb_jour");
+
+  nbJour.value = ((NbHeurs.value * NbDates.value)/ 6); 
+
+  
+  console.log(nbJour.value);
+  
+
 }
 function CalcBdgJourn() {
     let bdgLetter = document.getElementById("bdg_letter");
