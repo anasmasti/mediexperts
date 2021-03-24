@@ -7,9 +7,9 @@
       <!-- SELECT ENTREPRISE -->
       <label for="client">Entreprise :</label>
       <select name="client" id="client" style="width:100%; padding: .5rem; border: 1px solid #000;"
-        @change="handleAction('model3/FetchReferencesPlan', selected_nrc_entrp); handleAction('model3/SetNrcEntrp', selected_nrc_entrp)"
-        v-model="selected_nrc_entrp">
-        <option selected disabled>--sélectionner l'Entreprise ..</option>
+      @change="handleAction('model3/FetchReferencesPlan' , selected_nrc_entrp); handleAction('model3/SetNrcEntrp' , selected_nrc_entrp)"
+       v-model="selected_nrc_entrp">
+        <option selected disabled>--sélectionner l'Entreprise --</option>
         <option v-for="cl in clients" :value="cl.nrc_entrp" :key="cl.nrc_entrp">{{ cl.raisoci }}</option>
       </select>
 

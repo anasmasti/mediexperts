@@ -48,7 +48,7 @@ function NbHeurValidation (){
 
   if (nbHeur.value == 0){
     nbDates.disabled = true;
-    document.getElementById("nb_dates_msg").innerHTML ='<p><i class="fas fa-info-circle"></i> Hours First </p>'
+    document.getElementById("nb_dates_msg").innerHTML ='<p><i class="fas fa-info-circle"></i> Remplir Nombre Heures Premièrement </p>'
     setTimeout(() => {
       document.getElementById("nb_dates_msg").innerHTML =''
     }, 5000);
@@ -63,12 +63,21 @@ function CalcNbJour() {
   let NbDates = document.getElementById("nb_dates");
   let nbJour = document.getElementById("nb_jour");
 
-  nbJour.value = ((NbHeurs.value * NbDates.value)/ 6); 
+  nbJour.value = ((NbHeurs.value * NbDates.value)/ 6);
+  nbjour = parseFloat(nbJour.value);
 
-  
-  console.log(nbJour.value);
-  
-
+  if (Number.isInteger(nbjour)){
+    document.getElementById("nb_dates_msg").innerHTML ='<p class="text-success"><i class="fas fa-check-circle"></i> Nombre Dates valide </p>'
+    setTimeout(() => {
+      document.getElementById("nb_dates_msg").innerHTML =''
+    }, 5000);
+  }
+  else{
+    document.getElementById("nb_dates_msg").innerHTML ='<p><i class="fas fa-info-circle"></i> Nombre Dates est Invalide </p>'
+    setTimeout(() => {
+      document.getElementById("nb_dates_msg").innerHTML =''
+    }, 5000);
+  }
 }
 function CalcBdgJourn() {
     let bdgLetter = document.getElementById("bdg_letter");

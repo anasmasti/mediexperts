@@ -41095,19 +41095,28 @@ var render = function() {
                 staticClass: "form-control",
                 attrs: { id: "client", name: "client" },
                 on: {
-                  change: function($event) {
-                    var $$selectedVal = Array.prototype.filter
-                      .call($event.target.options, function(o) {
-                        return o.selected
-                      })
-                      .map(function(o) {
-                        var val = "_value" in o ? o._value : o.value
-                        return val
-                      })
-                    _vm.selected_nrc_entrp = $event.target.multiple
-                      ? $$selectedVal
-                      : $$selectedVal[0]
-                  }
+                  change: [
+                    function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.selected_nrc_entrp = $event.target.multiple
+                        ? $$selectedVal
+                        : $$selectedVal[0]
+                    },
+                    function($event) {
+                      _vm.handleAction(
+                        "model3/FetchReferencesPlan",
+                        _vm.selected_nrc_entrp
+                      )
+                      _vm.handleAction("SetNrcEntrp", _vm.selected_nrc_entrp)
+                    }
+                  ]
                 }
               },
               [
@@ -41119,7 +41128,7 @@ var render = function() {
                   return _c(
                     "option",
                     { key: cl.nrc_entrp, domProps: { value: cl.nrc_entrp } },
-                    [_vm._v(_vm._s(cl.raisoci))]
+                    [_vm._v(" " + _vm._s(cl.raisoci) + " ")]
                   )
                 })
               ],
@@ -41201,9 +41210,7 @@ var staticRenderFns = [
             _vm._v("---selectionner le plan---")
           ]),
           _vm._v(" "),
-          _c("option", [_vm._v("----")]),
-          _vm._v(" "),
-          _c("option", [_vm._v("-----")])
+          _c("option", [_vm._v("------")])
         ]
       )
     ])
@@ -42282,7 +42289,7 @@ var render = function() {
           },
           [
             _c("option", { attrs: { selected: "", disabled: "" } }, [
-              _vm._v("--sélectionner l'Entreprise ..")
+              _vm._v("--sélectionner l'Entreprise --")
             ]),
             _vm._v(" "),
             _vm._l(_vm.clients, function(cl) {
@@ -57767,7 +57774,6 @@ var state = {
   // liste contenant les références du plan
   actions_by_plan: [],
   // list des action de formations
-  // actions_by_ref: [],
   curr_annee_plan: null,
   // année du plan actuel
   cabinets: [],
@@ -57794,13 +57800,8 @@ var state = {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-<<<<<<< HEAD
 __webpack_require__(/*! C:\Users\badre\mediexperts\resources\js\app.js */"./resources/js/app.js");
 module.exports = __webpack_require__(/*! C:\Users\badre\mediexperts\resources\sass\app.scss */"./resources/sass/app.scss");
-=======
-__webpack_require__(/*! C:\Users\Youssef\OneDrive\Bureau\mediexperts\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\Youssef\OneDrive\Bureau\mediexperts\resources\sass\app.scss */"./resources/sass/app.scss");
->>>>>>> bf41fef (23/03/2021__UpdateAvisModifVue)
 
 
 /***/ })

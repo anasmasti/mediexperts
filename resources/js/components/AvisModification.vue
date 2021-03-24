@@ -6,16 +6,16 @@
   </div><br>
    <form role="form" action="#" method="POST">
     <input type="hidden" name="_token" v-bind:value="csrf" />
-     <!-- {{ csrf_field() }} -->
+      <!-- {{ csrf_field() }} -->
     <div class="card-body">
       <div class="row">
 
         <div class="form-group col-lg-6 col-sm-12">
            <label>Entreprise</label>
           <select class="form-control" id="client" name="client"
-        v-model="selected_nrc_entrp">
-        <option selected disabled>---selectionner l'entreprise---</option>
-        <option v-for="cl in clients" :value="cl.nrc_entrp" :key="cl.nrc_entrp">{{cl.raisoci}}</option>
+          @change="handleAction('model3/FetchReferencesPlan' , selected_nrc_entrp); handleAction('SetNrcEntrp',selected_nrc_entrp)" v-model="selected_nrc_entrp">
+          <option selected disabled>---selectionner l'entreprise---</option>
+          <option v-for="cl in clients" :value="cl.nrc_entrp" :key="cl.nrc_entrp"> {{cl.raisoci}} </option>
 
           </select>
          </div>
@@ -24,8 +24,8 @@
       <label>Réference plan de formation </label>
       <select class="form-control" name="plans" id="plans">
         <option selected disabled>---selectionner le plan---</option>
-          <option>----</option>
-          <option>-----</option>
+          <!-- <option v-for="pdf in reference_plans" :value="pdf.id_plan" :key="pdf.id_plan">{{ pdf.refpdf }}</option> -->
+        <option>------</option>
       </select>
     </div>
 
@@ -231,7 +231,9 @@
 </template>
 
 <script>
+
 import { mapState } from 'vuex';
+
 export default {
   runtimeCompiler: true,
 
@@ -244,14 +246,14 @@ export default {
       id_plan : null,
       selected_nrc_entrp: null
        }
-
   },
+
    mounted() {
     this.$store.dispatch('model3/FetchClients');
   },
   computed: {
     ...mapState('model3',{
-      curr_nrc_entrp: state => state.curr_nrc_entrp,
+      curr_nrc_entrp:  state => state.curr_nrc_entrp,
       clients: state => state.clients,
       reference_plans: state => state.reference_plans,
       actions_by_plan: state => state.actions_by_plan,
