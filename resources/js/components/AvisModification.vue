@@ -8,7 +8,8 @@
     <!-- <input type="hidden" name="_token" v-bind:value="csrf" /> -->
       <!-- {{ csrf_field() }} -->
     <div class="card-body">
-      <div class="row">
+      <div class="row"> 
+        
 
         <div class="form-group col-lg-6 col-sm-12">
            <label>Entreprise</label>
@@ -24,7 +25,7 @@
       <select class="form-control" name="plans" id="plans" @change="handleAction('model3/FetchActionByReference', id_plan)" v-model="id_plan">
         <option selected disabled>---selectionner le plan---</option>
           <option v-for="pdf in reference_plans" :value="pdf.id_plan" :key="pdf.id_plan">{{ pdf.refpdf }}</option>
-          
+
 
       </select>
     </div>
