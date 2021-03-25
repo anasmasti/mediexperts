@@ -2723,14 +2723,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   runtimeCompiler: true,
   data: function data() {
     return {
       //csrf token
-      csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+      //csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
       nForm: null,
       nCabinet: null,
       id_plan: null,
@@ -2739,6 +2738,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   mounted: function mounted() {
     this.$store.dispatch('model3/FetchClients');
+    this.$store.dispatch('model3/FetchAllCabinets');
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])('model3', {
     curr_nrc_entrp: function curr_nrc_entrp(state) {
@@ -2763,6 +2763,46 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   methods: {
     handleAction: function handleAction(actionName, value) {
       this.$store.dispatch(actionName, value);
+    },
+    // fonction pour l'état d'avis annulation
+    getSelected: function getSelected() {
+      var annul = document.getElementById('etat');
+
+      if (annul.value.toString() === "annulation") {
+        var annuler = document.getElementById("annuler");
+        annuler.checked = true;
+        annuler.disabled = false; // récupérer les id des checkbox
+
+        var chk_dateR = document.getElementById("modif_date");
+        var chk_organ = document.getElementById("modif_organ");
+        var chk_lieu = document.getElementById("modif_lieu");
+        var chk_horaire = document.getElementById("modif_horaire"); // make checkbox disabled 
+
+        chk_dateR.disabled = true;
+        chk_organ.disabled = true;
+        chk_lieu.disabled = true;
+        chk_horaire.disabled = true;
+      }
+    },
+    // fonction pour l'état d'avis modification
+    getDisabled: function getDisabled() {
+      var annul = document.getElementById('etat');
+
+      if (annul.value.toString() === "modification") {
+        var annuler = document.getElementById("annuler");
+        annuler.checked = false;
+        annuler.disabled = true; // récupérer les id des checkbox
+
+        var chk_dateR = document.getElementById("modif_date");
+        var chk_organ = document.getElementById("modif_organ");
+        var chk_lieu = document.getElementById("modif_lieu");
+        var chk_horaire = document.getElementById("modif_horaire"); // make checkbox enabled
+
+        chk_dateR.disabled = false;
+        chk_organ.disabled = false;
+        chk_lieu.disabled = false;
+        chk_horaire.disabled = false;
+      }
     }
   }
 });
@@ -41071,11 +41111,6 @@ var render = function() {
     _c("br"),
     _vm._v(" "),
     _c("form", { attrs: { role: "form", action: "#", method: "POST" } }, [
-      _c("input", {
-        attrs: { type: "hidden", name: "_token" },
-        domProps: { value: _vm.csrf }
-      }),
-      _vm._v(" "),
       _c("div", { staticClass: "card-body" }, [
         _c("div", { staticClass: "row" }, [
           _c("div", { staticClass: "form-group col-lg-6 col-sm-12" }, [
@@ -41114,7 +41149,10 @@ var render = function() {
                         "model3/FetchReferencesPlan",
                         _vm.selected_nrc_entrp
                       )
-                      _vm.handleAction("SetNrcEntrp", _vm.selected_nrc_entrp)
+                      _vm.handleAction(
+                        "model3/SetNrcEntrp",
+                        _vm.selected_nrc_entrp
+                      )
                     }
                   ]
                 }
@@ -41136,13 +41174,179 @@ var render = function() {
             )
           ]),
           _vm._v(" "),
+          _c("div", { staticClass: "form-group col-lg-6 col-sm-12" }, [
+            _c("label", [_vm._v("Réference plan de formation ")]),
+            _vm._v(" "),
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.id_plan,
+                    expression: "id_plan"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { name: "plans", id: "plans" },
+                on: {
+                  change: [
+                    function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.id_plan = $event.target.multiple
+                        ? $$selectedVal
+                        : $$selectedVal[0]
+                    },
+                    function($event) {
+                      return _vm.handleAction(
+                        "model3/FetchActionByReference",
+                        _vm.id_plan
+                      )
+                    }
+                  ]
+                }
+              },
+              [
+                _c("option", { attrs: { selected: "", disabled: "" } }, [
+                  _vm._v("---selectionner le plan---")
+                ]),
+                _vm._v(" "),
+                _vm._l(_vm.reference_plans, function(pdf) {
+                  return _c(
+                    "option",
+                    { key: pdf.id_plan, domProps: { value: pdf.id_plan } },
+                    [_vm._v(_vm._s(pdf.refpdf))]
+                  )
+                })
+              ],
+              2
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group col-lg-6 col-sm-12" }, [
+            _c("label", [_vm._v("État d'avis")]),
+            _vm._v(" "),
+            _c(
+              "select",
+              {
+                staticClass: "form-control",
+                attrs: { id: "etat" },
+                on: {
+                  change: function($event) {
+                    _vm.getSelected()
+                    _vm.getDisabled()
+                  }
+                }
+              },
+              [
+                _c("option", { attrs: { selected: "", disabled: "" } }, [
+                  _vm._v("---selectionner l'état---")
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "annulation" } }, [
+                  _vm._v("Annulation")
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "modification" } }, [
+                  _vm._v("Modification")
+                ])
+              ]
+            )
+          ]),
+          _vm._v(" "),
           _vm._m(1),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group col-lg-6 col-sm-12" }, [
+            _c("label", [_vm._v("Thème de l’action")]),
+            _vm._v(" "),
+            _c(
+              "select",
+              {
+                staticClass: "form-control",
+                attrs: { id: "action", name: "action" }
+              },
+              [
+                _c("option", { attrs: { selected: "", disabled: "" } }, [
+                  _vm._v("---selectionner le thème---")
+                ]),
+                _vm._v(" "),
+                _vm._l(_vm.actions_by_plan, function(action) {
+                  return _c(
+                    "option",
+                    { key: action.nForm, domProps: { value: action.nForm } },
+                    [_vm._v(_vm._s(action.nom_theme))]
+                  )
+                })
+              ],
+              2
+            )
+          ]),
           _vm._v(" "),
           _vm._m(2),
           _vm._v(" "),
           _vm._m(3),
           _vm._v(" "),
+          _c("div", { staticClass: "form-group col-lg-6 col-sm-12" }, [
+            _c("label", [_vm._v("Nouvel Organisme de formation")]),
+            _vm._v(" "),
+            _c(
+              "select",
+              { staticClass: "form-control" },
+              [
+                _c("option", { attrs: { selected: "", disabled: "" } }, [
+                  _vm._v("---selectionner l'organisme---")
+                ]),
+                _vm._v(" "),
+                _vm._l(_vm.cabinets, function(cabinet) {
+                  return _c(
+                    "option",
+                    {
+                      key: cabinet.nrc_cab,
+                      domProps: { value: cabinet.nrc_cab }
+                    },
+                    [_vm._v(" " + _vm._s(cabinet.raisoci))]
+                  )
+                })
+              ],
+              2
+            )
+          ]),
+          _vm._v(" "),
           _vm._m(4),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group col-lg-6 col-sm-12" }, [
+            _c("label", [_vm._v("Nouveau lieu")]),
+            _vm._v(" "),
+            _c(
+              "select",
+              {
+                staticClass: "form-control",
+                attrs: { name: "lieu", id: "lieu" }
+              },
+              [
+                _c("option", { attrs: { selected: "", disabled: "" } }, [
+                  _vm._v("---selectionner le lieu---")
+                ]),
+                _vm._v(" "),
+                _vm._l(_vm.clients, function(cl) {
+                  return _c(
+                    "option",
+                    { key: cl.nrc_entrp, domProps: { value: cl.nrc_entrp } },
+                    [_vm._v(" " + _vm._s(cl.raisoci) + " ")]
+                  )
+                })
+              ],
+              2
+            )
+          ]),
           _vm._v(" "),
           _vm._m(5),
           _vm._v(" "),
@@ -41164,23 +41368,13 @@ var render = function() {
           _vm._v(" "),
           _vm._m(14),
           _vm._v(" "),
-          _vm._m(15),
-          _vm._v(" "),
-          _vm._m(16),
-          _vm._v(" "),
-          _vm._m(17),
-          _vm._v(" "),
-          _vm._m(18),
-          _vm._v(" "),
-          _vm._m(19),
-          _vm._v(" "),
-          _vm._m(20)
+          _vm._m(15)
         ]),
         _vm._v(" "),
-        _vm._m(21)
+        _vm._m(16)
       ]),
       _vm._v(" "),
-      _vm._m(22)
+      _vm._m(17)
     ])
   ])
 }
@@ -41193,55 +41387,6 @@ var staticRenderFns = [
       _c("h3", { staticClass: "card-title" }, [
         _vm._v("Annuler ou modifier l'état d'avis")
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group col-lg-6 col-sm-12" }, [
-      _c("label", [_vm._v("Réference plan de formation ")]),
-      _vm._v(" "),
-      _c(
-        "select",
-        { staticClass: "form-control", attrs: { name: "plans", id: "plans" } },
-        [
-          _c("option", { attrs: { selected: "", disabled: "" } }, [
-            _vm._v("---selectionner le plan---")
-          ]),
-          _vm._v(" "),
-          _c("option", [_vm._v("------")])
-        ]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group col-lg-6 col-sm-12" }, [
-      _c("label", [_vm._v("État d'avis")]),
-      _vm._v(" "),
-      _c(
-        "select",
-        {
-          staticClass: "form-control",
-          attrs: { id: "etat", onkeypress: "getSelected()" }
-        },
-        [
-          _c("option", { attrs: { selected: "", disabled: "" } }, [
-            _vm._v("---selectionner l'état---")
-          ]),
-          _vm._v(" "),
-          _c("option", { attrs: { value: "annulation", id: "etatAnul" } }, [
-            _vm._v("Annulation")
-          ]),
-          _vm._v(" "),
-          _c("option", { attrs: { value: "modification", id: "etatModif" } }, [
-            _vm._v("Modification")
-          ])
-        ]
-      )
     ])
   },
   function() {
@@ -41285,7 +41430,7 @@ var staticRenderFns = [
             _vm._v(" "),
             _c("th", [
               _c("input", {
-                attrs: { type: "checkbox", name: "modif", id: "modif_a" }
+                attrs: { type: "checkbox", name: "modif", id: "modif_date" }
               })
             ])
           ]),
@@ -41297,7 +41442,7 @@ var staticRenderFns = [
             _vm._v(" "),
             _c("th", [
               _c("input", {
-                attrs: { type: "checkbox", name: "modif", id: "modif_b" }
+                attrs: { type: "checkbox", name: "modif", id: "modif_organ" }
               })
             ])
           ]),
@@ -41309,7 +41454,7 @@ var staticRenderFns = [
             _vm._v(" "),
             _c("th", [
               _c("input", {
-                attrs: { type: "checkbox", name: "modif", id: "modif_c" }
+                attrs: { type: "checkbox", name: "modif", id: "modif_lieu" }
               })
             ])
           ]),
@@ -41321,34 +41466,13 @@ var staticRenderFns = [
             _vm._v(" "),
             _c("th", [
               _c("input", {
-                attrs: { type: "checkbox", name: "modif", id: "modif_d" }
+                attrs: { type: "checkbox", name: "modif", id: "modif_horaire" }
               })
             ])
           ])
         ])
       ]
     )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group col-lg-6 col-sm-12" }, [
-      _c("label", [_vm._v("Thème de l’action")]),
-      _vm._v(" "),
-      _c(
-        "select",
-        {
-          staticClass: "form-control",
-          attrs: { id: "action", name: "action" }
-        },
-        [
-          _c("option", { attrs: { selected: "", disabled: "" } }, [
-            _vm._v("---selectionner le thème---")
-          ])
-        ]
-      )
-    ])
   },
   function() {
     var _vm = this
@@ -41425,44 +41549,12 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "form-group col-lg-6 col-sm-12" }, [
-      _c("label", [_vm._v("Nouvel Organisme de formation")]),
-      _vm._v(" "),
-      _c("select", { staticClass: "form-control" }, [
-        _c("option", { attrs: { selected: "", disabled: "" } }, [
-          _vm._v("---selectionner l'organisme---")
-        ]),
-        _vm._v(" "),
-        _c("option", [_vm._v("-----")]),
-        _vm._v(" "),
-        _c("option", [_vm._v("------")])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group col-lg-6 col-sm-12" }, [
       _c("label", [_vm._v("Lieu de formation initial ")]),
       _vm._v(" "),
       _c("input", {
         staticClass: "form-control",
         attrs: { type: "text", name: "", id: "" }
       })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group col-lg-6 col-sm-12" }, [
-      _c("label", [_vm._v("Nouveau lieu")]),
-      _vm._v(" "),
-      _c("select", { staticClass: "form-control" }, [
-        _c("option", { attrs: { selected: "", disabled: "" } }, [
-          _vm._v("---selectionner le lieu---")
-        ])
-      ])
     ])
   },
   function() {
@@ -57497,11 +57589,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "actions", function() { return actions; });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
 
 var actions = {
   // ####################################################### //

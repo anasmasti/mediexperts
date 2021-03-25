@@ -1,4 +1,3 @@
-
 @extends('layouts.admin')
 <!DOCTYPE html>
 <html lang="en">
@@ -7,10 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta name="csrf-token" content="{{ csrf_token() }}">
-  <title>Mediexperts</title>
+  <title>Avis de modofication M3</title>
   <script src={{ asset('js/jquery.js') }}></script>
   <script src={{ asset('js/myjs.js') }}></script>
-  {{-- <title>TEST</title> --}}
+  <script src={{ asset('js/etat_davis.js') }}></script>
 </head>
 <body>
 @section('content')

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -304,7 +305,6 @@
 
 <script type="text/javascript">
   $(document).ready(function() {
-
     $('#client').on('change', function() {
       let nrc = $('#client').val();
       let fillDropdown = '';
@@ -340,11 +340,11 @@
           // affecter les données dans select
           $('#plan').html("");
           if (data.length) {
-            $('#plan').append('<option selected disabled>--sélectionner une action</option>');
+            $('#plan').append('<option selected disabled>--sélectionner plan de formation</option>');
             $('#plan').append(fillDropdown);
           }
           else {
-            $('#plan').append('<option selected disabled>(vide) aucune action</option>');
+            $('#plan').append('<option selected disabled>(vide) aucune plan de formation</option>');
           }
         }) //done
         .catch(err => console.log("error getting actions !!", error));
@@ -434,65 +434,65 @@
         error: function(error) { console.log("error getting formations !!", error) }
       }); //ajax
     }); //onChange "plan"
-    // $('#formation').on('change', function() {
-    //   // vider les champs
-    //   $('#domaine').val(); $('#objectif').val(""); $('#contenu').val("");
-    //   $('#coutForm').val(""); $('#tableEffectif').empty(); $('#tableFormation').empty();
-    //   $('#cabinet').val(""); $('#cnss').val("");
-    //   $('#inter').prop("checked", false);
-    //   $('#intra').prop("checked", false);
-    //   let idForm = $('#formation').val();
-    //   $.ajax({
-    //     type: 'GET',
-    //     url: '{!! URL::to('/fill-form-info') !!}',
-    //     data: {'idForm': idForm},
-    //     success: function(data) {
-    //       console.log("success formations !!", data);
-    //       // if (data) {
-    //       //   let fillEffectif =
-    //       //   `<tr>`+
-    //       //     `<td>`+data.nb_cadre+`</td>`+
-    //       //     `<td>`+data.nb_permanent+`</td>`+
-    //       //     `<td>`+data.nb_ouvrier+`</td>`+
-    //       //     `<td>`+data.effectif+`</td>`+
-    //       //   `</tr>`;
-    //       //   let fillForm =
-    //       //   `<tr>`+
-    //       //     `<td>`+data.groupe+`</td>`+
-    //       //     `<td>`+data.effectif+`</td>`+
-    //       //     `<td>` +
-    //       //       `<span style="padding:.3rem;">`+data.date1+`</span>`+`<br>` +
-    //       //       `<span style="padding:.3rem;">`+data.date2 +`</span>`+`<br>` +
-    //       //       `<span style="padding:.3rem;">`+data.date3 +`</span>`+`<br>` +
-    //       //       `<span style="padding:.3rem;">`+data.date4 +`</span>`+`<br>` +
-    //       //       `<span style="padding:.3rem;">`+data.date5 +`</span>`+`<br>` +
-    //       //       `<span style="padding:.3rem;">`+data.date6 +`</span>`+
-    //       //     `</td>`+
-    //       //     `<td>`+data.hr_debut+`</td>`+
-    //       //     `<td>`+data.hr_fin+`</td>`+
-    //       //     `<td>`+data.lieu+`</td>`+
-    //       //   `</tr>`;
-    //       //   $('#domaine').val(data['nom_domain']);
-    //       //   $('#objectif').val(data['objectif']);
-    //       //   $('#contenu').val(data['contenu']);
-    //       //   $('#coutForm').val(data['bdg_total'] + " DH");
-    //       //   $('#tableEffectif').append(fillEffectif);
-    //       //   $('#tableFormation').append(fillForm);
-    //       //   $('#cabinet').val(data['raisoci_cab']);
-    //       //   $('#cnss').val(data['ncnss']);
-    //       //   if (data.type_form.toLowerCase() == "intra-entreprise") {
-    //       //     $('#intra').prop("checked", true);
-    //       //     $('#inter').prop("checked", false);
-    //       //   }
-    //       //   else {
-    //       //     $('#inter').prop("checked", true);
-    //       //     $('#intra').prop("checked", false);
-    //       //   }
-    //       // } // if data
-    //     },
-    //     error: function(error) { console.log("error getting formations !!", error) }
-    //   }); //ajax
-    // }); //onChange "formation"
+    $('#formation').on('change', function() {
+      // vider les champs
+      $('#domaine').val(); $('#objectif').val(""); $('#contenu').val("");
+      $('#coutForm').val(""); $('#tableEffectif').empty(); $('#tableFormation').empty();
+      $('#cabinet').val(""); $('#cnss').val("");
+      $('#inter').prop("checked", false);
+      $('#intra').prop("checked", false);
+      let idForm = $('#formation').val();
+      $.ajax({
+        type: 'GET',
+        url: '{!! URL::to('/fill-form-info') !!}',
+        data: {'idForm': idForm},
+        success: function(data) {
+          console.log("success formations !!", data);
+          if (data) {
+            let fillEffectif =
+            `<tr>`+
+              `<td>`+data.nb_cadre+`</td>`+
+              `<td>`+data.nb_permanent+`</td>`+
+              `<td>`+data.nb_ouvrier+`</td>`+
+              `<td>`+data.effectif+`</td>`+
+            `</tr>`;
+            let fillForm =
+            `<tr>`+
+              `<td>`+data.groupe+`</td>`+
+              `<td>`+data.effectif+`</td>`+
+              `<td>` +
+                `<span style="padding:.3rem;">`+data.date1+`</span>`+`<br>` +
+                `<span style="padding:.3rem;">`+data.date2 +`</span>`+`<br>` +
+                `<span style="padding:.3rem;">`+data.date3 +`</span>`+`<br>` +
+                `<span style="padding:.3rem;">`+data.date4 +`</span>`+`<br>` +
+                `<span style="padding:.3rem;">`+data.date5 +`</span>`+`<br>` +
+                `<span style="padding:.3rem;">`+data.date6 +`</span>`+
+              `</td>`+
+              `<td>`+data.hr_debut+`</td>`+
+              `<td>`+data.hr_fin+`</td>`+
+              `<td>`+data.lieu+`</td>`+
+            `</tr>`;
+            $('#domaine').val(data['nom_domain']);
+            $('#objectif').val(data['objectif']);
+            $('#contenu').val(data['contenu']);
+            $('#coutForm').val(data['bdg_total'] + " DH");
+            $('#tableEffectif').append(fillEffectif);
+            $('#tableFormation').append(fillForm);
+            $('#cabinet').val(data['raisoci_cab']);
+            $('#cnss').val(data['ncnss']);
+            if (data.type_form.toLowerCase() == "intra-entreprise") {
+              $('#intra').prop("checked", true);
+              $('#inter').prop("checked", false);
+            }
+            else {
+              $('#inter').prop("checked", true);
+              $('#intra').prop("checked", false);
+            }
+          } // if data
+        },
+        error: function(error) { console.log("error getting formations !!", error) }
+      }); //ajax
+    }); //onChange "formation"
   }); //ready
 </script>
 

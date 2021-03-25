@@ -1,4 +1,4 @@
-const { Alert } = require("bootstrap");
+const {Alert} = require("bootstrap");
 
 // ALLOW ONLY NUMBERS
 function isNumberKey(evt) {
@@ -70,7 +70,7 @@ function CalcNbJour() {
     document.getElementById("nb_dates_msg").innerHTML ='<p class="text-success"><i class="fas fa-check-circle"></i> Nombre Dates valide </p>'
     setTimeout(() => {
       document.getElementById("nb_dates_msg").innerHTML =''
-    }, 5000);
+    }, 10000);
   }
   else{
     document.getElementById("nb_dates_msg").innerHTML ='<p><i class="fas fa-info-circle"></i> Nombre Dates est Invalide </p>'
@@ -266,6 +266,8 @@ function checkEtatRb() {
         $('label[for=drb_ds], input#drb_ds').fadeOut(200);
     }
 }
+
+
 
 
 
