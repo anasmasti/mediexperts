@@ -24,6 +24,7 @@
       <select class="form-control" name="plans" id="plans" @change="handleAction('model3/FetchActionByReference', id_plan)" v-model="id_plan">
         <option selected disabled>---selectionner le plan---</option>
           <option v-for="pdf in reference_plans" :value="pdf.id_plan" :key="pdf.id_plan">{{ pdf.refpdf }}</option>
+          
 
       </select>
     </div>
