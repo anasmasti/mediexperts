@@ -35,7 +35,7 @@
           <option value="annulation" >Annulation</option>
           <option value="modification">Modification</option>
       </select>
-    </div>
+    </div> 
 
      <table class="table table-striped col-12 col-lg-6 border" style="margin: 16px">
       <thead>
