@@ -5,7 +5,7 @@
     <h3 class="card-title">Annuler ou modifier l'état d'avis</h3>
   </div><br>
    <form role="form" action="#" method="POST">
-    <input type="hidden" name="_token" v-bind:value="csrf" />
+    <!-- <input type="hidden" name="_token" v-bind:value="csrf" /> -->
       <!-- {{ csrf_field() }} -->
     <div class="card-body">
       <div class="row">
@@ -13,19 +13,18 @@
         <div class="form-group col-lg-6 col-sm-12">
            <label>Entreprise</label>
           <select class="form-control" id="client" name="client"
-          @change="handleAction('model3/FetchReferencesPlan' , selected_nrc_entrp); handleAction('SetNrcEntrp',selected_nrc_entrp)" v-model="selected_nrc_entrp">
+          @change="handleAction('model3/FetchReferencesPlan', selected_nrc_entrp); handleAction('model3/SetNrcEntrp', selected_nrc_entrp)" v-model="selected_nrc_entrp">
           <option selected disabled>---selectionner l'entreprise---</option>
           <option v-for="cl in clients" :value="cl.nrc_entrp" :key="cl.nrc_entrp"> {{cl.raisoci}} </option>
-
           </select>
          </div>
 
          <div class="form-group col-lg-6 col-sm-12">
       <label>Réference plan de formation </label>
-      <select class="form-control" name="plans" id="plans">
+      <select class="form-control" name="plans" id="plans" @change="handleAction('model3/FetchActionByReference', id_plan)" v-model="id_plan">
         <option selected disabled>---selectionner le plan---</option>
-          <!-- <option v-for="pdf in reference_plans" :value="pdf.id_plan" :key="pdf.id_plan">{{ pdf.refpdf }}</option> -->
-        <option>------</option>
+          <option v-for="pdf in reference_plans" :value="pdf.id_plan" :key="pdf.id_plan">{{ pdf.refpdf }}</option>
+
       </select>
     </div>
 
@@ -73,6 +72,7 @@
       <label>Thème de l’action</label>
       <select class="form-control" id="action" name="action">
         <option selected disabled>---selectionner le thème---</option>
+        <option v-for="action in actions_by_plan" :value="action.nForm" :key="action.nForm">{{ action.nom_theme }}</option>
 
       </select>
     </div>
@@ -105,8 +105,7 @@
       <label>Nouvel Organisme de formation</label>
       <select class="form-control">
         <option selected disabled>---selectionner l'organisme---</option>
-          <option>-----</option>
-          <option>------</option>
+        <option v-for="cabinet in cabinets" :value="cabinet.nrc_cab" :key="cabinet.nrc_cab"> {{cabinet.raisoci}}</option>
       </select>
     </div>
 
@@ -117,9 +116,9 @@
 </div>
 <div class="form-group col-lg-6 col-sm-12">
   <label>Nouveau lieu</label>
-  <select class="form-control">
+  <select class="form-control" name="lieu" id="lieu">
     <option selected disabled>---selectionner le lieu---</option>
-
+    <option v-for="cl in clients" :value="cl.nrc_entrp" :key="cl.nrc_entrp"> {{cl.raisoci}} </option>
   </select>
 </div>
 
@@ -240,7 +239,7 @@ export default {
       data(){
           return {
       //csrf token
-      csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+      //csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
       nForm : null,
       nCabinet : null,
       id_plan : null,
@@ -250,6 +249,7 @@ export default {
 
    mounted() {
     this.$store.dispatch('model3/FetchClients');
+    this.$store.dispatch('model3/FetchAllCabinets');
   },
   computed: {
     ...mapState('model3',{
