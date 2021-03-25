@@ -17,15 +17,8 @@
   <div id="app">
    <avis-modification></avis-modification>
   </div>
-<<<<<<< HEAD
 @endsection 
 {{-- MIX BLADE WITH Vue.js --}}
 <script src="{{ mix('js/app.js')}}"></script>
-=======
-  {{-- MIX BLADE WITH Vue.js --}}
-  <script src="{{ mix('js/app.js')}}"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
-@endsection
->>>>>>> dbe5e20f441202703b5c7bcfd067a3e49af6caee
 </body>
 </html>
