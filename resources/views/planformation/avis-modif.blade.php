@@ -7,18 +7,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta name="csrf-token" content="{{ csrf_token() }}">
-  <title>Test</title>
+  <title>Mediexperts</title>
   <script src={{ asset('js/jquery.js') }}></script>
   <script src={{ asset('js/myjs.js') }}></script>
-  <title>TEST</title>
+  {{-- <title>TEST</title> --}}
 </head>
 <body>
 @section('content')
   <div id="app">
    <avis-modification></avis-modification>
   </div>
+<<<<<<< HEAD
 @endsection 
 {{-- MIX BLADE WITH Vue.js --}}
 <script src="{{ mix('js/app.js')}}"></script>
+=======
+  {{-- MIX BLADE WITH Vue.js --}}
+  <script src="{{ mix('js/app.js')}}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+@endsection
+>>>>>>> dbe5e20f441202703b5c7bcfd067a3e49af6caee
 </body>
 </html>

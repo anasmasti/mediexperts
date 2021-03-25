@@ -228,7 +228,15 @@
                     {{ $errors->first('nb_jour') }}
                 </span>
            @endif
-        </div>
+           <label for="nb_dates">Nb. Dates</label>
+           <input type="text" class="form-control {{ $errors->has('nb_dates') ? 'is-invalid' : '' }}" value="{{$plan->Nombre_Dates}}" name="nb_dates" id="nb_dates" onkeyup="CalcNbJour();CalcBdgJourn()" onclick="NbHeurValidation()" onkeypress="return isNumberKey(event)" placeholder="nb. dates">
+           @if ($errors->has('nb_dates'))
+           <span class="invalid-feedback" role="alert">
+             {{$errors->first('nb_dates') }}
+           </span>
+           @endif
+          <span class="text-danger" id="nb_dates_msg"></span>
+          </div>
 
         <div class="form-group col-lg-3 col-md-6 col-12"><label>Nb. heures (durée total)</label>
             <input class="form-control {{ $errors->has('nb_heure') ? 'is-invalid' : '' }}" value="{{$plan->nb_heure}}" type="text" name="nb_heure" id="nb_heure" min="0" maxlength="15" onkeyup="CalcBdgJourn()" onkeypress="return isNumberKey(event)" placeholder="nb. jour" >

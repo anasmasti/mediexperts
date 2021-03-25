@@ -356,6 +356,7 @@ class PlanFormationController extends Controller
                 'bdg_total' => 'required|max:12',
                 'bdg_jour' => 'required|max:12',
                 'etat' => 'required',
+                'nb_dates' => 'required|max:10'
             ]);
 
             // $plan->n_form = $request->input("n_form");
@@ -400,6 +401,7 @@ class PlanFormationController extends Controller
             $plan->bdg_letter = $request->input("bdg_letter");
             $plan->commentaire = $request->input("commentaire");
             $plan->etat = $request->input('etat');
+            $plan->Nombre_Dates = $request->input('nb_dates');
 
 
             $docs = ['model5', 'model3', 'f4', 'fiche_eval',

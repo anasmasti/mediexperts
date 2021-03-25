@@ -51,7 +51,7 @@ class FormationController extends Controller
     //find nb jour de Plan de formation
     public function FindNbJours(Request $request) {
         // $data = PlanFormation::find($request->nform)->nbjour;
-        $data = PlanFormation::select('n_form', 'nb_jour', 'nb_grp', 'dt_debut', 'dt_fin', 'nb_partcp_total')
+        $data = PlanFormation::select('n_form', 'nb_jour', 'nb_grp', 'dt_debut', 'dt_fin', 'nb_partcp_total','Nombre_Dates')
                 ->where('plan_formations.n_form', $request->nForm)
                 ->get();
         return response()->json($data);

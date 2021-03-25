@@ -61,7 +61,7 @@
           </div>
         </div>
       </div>
-      
+
 
       {{-- <div class="form-group col-lg-3 col-md-6 col-12"><label>N° plan</label>
         <input class="form-control {{ $errors->has('n_form') ? 'is-invalid' : '' }}" name="n_form" type="text" min="0" maxlength="15" value="{{old('n_form')}}" placeholder="n° formation" >
@@ -251,7 +251,7 @@
         @endif
         <span class="text-danger" id="nb_dates_msg"></span>
       </div>
-      
+
 
       <div class="form-group col-lg-3 col-md-6 col-12"><label>Nb. d’heures par jour </label>
         <input class="form-control bg-warning {{ $errors->has('nb_heure') ? 'is-invalid' : '' }}" type="text" name="nb_heure" id="nb_heure" min="0" maxlength="15" onkeyup="CalcBdgJourn();CalcNbJour()" onchange="NbHeurValidation()" onkeypress="return isNumberKey(event)" placeholder="nb. jour" >
@@ -639,7 +639,7 @@ $(document).ready(function() {
 @endif
 {{-- TOASTR NOTIFICATIONS --}}
 <style>
-  
+
 </style>
 
 
