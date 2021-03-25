@@ -82,9 +82,9 @@
   </div>
 
   <div style="width:100%;">
-    <label for="client">Sélectionner Société :</label>
+    <label for="client">Sélectionner la société :</label>
     <select name="client" id="client" style="width:100%; padding: .5rem; border: 1px solid #000;">
-      <option selected disabled>--sélectionner Société</option>
+      <option selected disabled>--sélectionner la société</option>
       @foreach ($clients as $clt)
         <option value="{{$clt->nrc_entrp}}" > {{$clt->raisoci}} </option>
       @endforeach
@@ -92,7 +92,14 @@
   </div>
 
   <div style="width:100%;">
-    <label for="plan">Sélectionner plan de formation :</label>
+    <label for="plans">Sélectionner le plan de formation :</label>
+    <select name="plans" id="plans" style="width:100%; padding: .5rem; border: 1px solid #000;">
+      {{--  --}}
+    </select>
+  </div>
+
+  <div style="width:100%;">
+    <label for="plan">Sélectionner l'action de formation :</label>
     <select name="plan" id="plan" style="width:100%; padding: .5rem; border: 1px solid #000;">
       {{-- <option selected disabled>--sélectionner l'action</option>
       @foreach ($plan as $pf)
@@ -280,7 +287,7 @@
 
     {{-- <div class="container">
       <span style="font-size: 12px;">
-        - *NDF: Nomenclature des Domaines de Formation. <br>
+        - *NDF: Nomenclature des Domaines de Formation. <br>
         - **Ex: "13/11 et 16-17/11" au lieu de "13-17/11" s'il n'y a pas de formation les 14 et 15/11. <br>
         - L'entreprise est tenue d'aviser l'Unité de Gestion au moins trois (3) jours ouvrables de toute annulation ou <br>
         modification apportée à l'Action de Formation selon le Modèle 3. <br>
@@ -305,21 +312,43 @@
         .done((data) => {
           console.log("success action !!", data);
           data.forEach(elem => {
-            fillDropdown += `<option value="${elem.id_plan}">${elem.refpdf}</option>`;
+            fillDropdown += `<option value="${elem.id_plan}"> ${elem.refpdf}  </option>`;
+          });
+          // affecter les données dans select
+          $('#plans').html("");
+          if (data.length) {
+            $('#plans').append('<option selected disabled>--sélectionner une action</option>');
+            $('#plans').append(fillDropdown);
+          }
+          else {
+            $('#plans').append('<option selected disabled>(vide) aucune action</option>');
+          }
+        }) //done
+        .catch(err => console.log("error getting actions !!", error));
+    });
+
+
+    $('#plans').on('change', function() {
+      let idPlan = $('#plans').val();
+      let fillDropdown = '';
+      $.get('/fill-action-form', {'idPlan': idPlan})
+        .done((data) => {
+          console.log("success action !!", data);
+          data.forEach(elem => {
+            fillDropdown += `<option value="${elem.n_form}">${elem.n_action} > ${elem.nom_theme} </option>`;
           });
           // affecter les données dans select
           $('#plan').html("");
           if (data.length) {
-            $('#plan').append('<option selected disabled>--sélectionner plan de formation</option>');
+            $('#plan').append('<option selected disabled>--sélectionner une action</option>');
             $('#plan').append(fillDropdown);
           }
           else {
-            $('#plan').append('<option selected disabled>(vide) aucune plan de formation</option>');
+            $('#plan').append('<option selected disabled>(vide) aucune action</option>');
           }
         }) //done
         .catch(err => console.log("error getting actions !!", error));
     }); //onChange "plans"
-
     $('#plan').on('change', function() {
       // vider les champs
       $('#formation').html(""); $('#domaine').val("");
@@ -375,7 +404,6 @@
             $('#cnss').val(data[0]['ncnss']);
             $('#nAction').html(data[0]['n_action']);
             $('#docTitle').html(`${data[0]['refpdf']} - ${data[0]['n_action']} - ${data[0]['nom_theme']}`);
-
             // affecter la pause a partir du 1er groupe
             if (data[0].pse_debut != "00:00" && data[0].pse_fin != "00:00") {
                 $('#pseDebut').html(data[0].pse_debut);
@@ -387,7 +415,6 @@
                 $('#pseFin').html("");
                 $('#pause').hide(300); // hide si ya pas de pause
             }
-
             if (data[0].type_form.toLowerCase() == "intra-entreprise") {
               $('#intra').prop("checked", true); $('#inter').prop("checked", false); }
             else { $('#inter').prop("checked", true); $('#intra').prop("checked", false); }
@@ -407,7 +434,6 @@
         error: function(error) { console.log("error getting formations !!", error) }
       }); //ajax
     }); //onChange "plan"
-
     // $('#formation').on('change', function() {
     //   // vider les champs
     //   $('#domaine').val(); $('#objectif').val(""); $('#contenu').val("");
@@ -467,7 +493,6 @@
     //     error: function(error) { console.log("error getting formations !!", error) }
     //   }); //ajax
     // }); //onChange "formation"
-
   }); //ready
 </script>
 

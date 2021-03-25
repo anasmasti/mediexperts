@@ -16,10 +16,9 @@
 @section('content')
   <div id="app">
    <avis-modification></avis-modification>
-
   </div>
-  {{-- MIX BLADE WITH Vue.js --}}
-  <script src="{{ mix('js/app.js')}}"></script>
-@endsection
+@endsection 
+{{-- MIX BLADE WITH Vue.js --}}
+<script src="{{ mix('js/app.js')}}"></script>
 </body>
 </html>
