@@ -2763,6 +2763,46 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   methods: {
     handleAction: function handleAction(actionName, value) {
       this.$store.dispatch(actionName, value);
+    },
+    // fonction pour l'état d'avis annulation
+    getSelected: function getSelected() {
+      var annul = document.getElementById('etat');
+
+      if (annul.value.toString() === "annulation") {
+        var annuler = document.getElementById("annuler");
+        annuler.checked = true;
+        annuler.disabled = false; // récupérer les id des checkbox
+
+        var chk_dateR = document.getElementById("modif_date");
+        var chk_organ = document.getElementById("modif_organ");
+        var chk_lieu = document.getElementById("modif_lieu");
+        var chk_horaire = document.getElementById("modif_horaire"); // make checkbox disabled 
+
+        chk_dateR.disabled = true;
+        chk_organ.disabled = true;
+        chk_lieu.disabled = true;
+        chk_horaire.disabled = true;
+      }
+    },
+    // fonction pour l'état d'avis modification
+    getDisabled: function getDisabled() {
+      var annul = document.getElementById('etat');
+
+      if (annul.value.toString() === "modification") {
+        var annuler = document.getElementById("annuler");
+        annuler.checked = false;
+        annuler.disabled = true; // récupérer les id des checkbox
+
+        var chk_dateR = document.getElementById("modif_date");
+        var chk_organ = document.getElementById("modif_organ");
+        var chk_lieu = document.getElementById("modif_lieu");
+        var chk_horaire = document.getElementById("modif_horaire"); // make checkbox enabled
+
+        chk_dateR.disabled = false;
+        chk_organ.disabled = false;
+        chk_lieu.disabled = false;
+        chk_horaire.disabled = false;
+      }
     }
   }
 });
@@ -41191,9 +41231,38 @@ var render = function() {
             )
           ]),
           _vm._v(" "),
-          _vm._m(1),
+          _c("div", { staticClass: "form-group col-lg-6 col-sm-12" }, [
+            _c("label", [_vm._v("État d'avis")]),
+            _vm._v(" "),
+            _c(
+              "select",
+              {
+                staticClass: "form-control",
+                attrs: { id: "etat" },
+                on: {
+                  change: function($event) {
+                    _vm.getSelected()
+                    _vm.getDisabled()
+                  }
+                }
+              },
+              [
+                _c("option", { attrs: { selected: "", disabled: "" } }, [
+                  _vm._v("---selectionner l'état---")
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "annulation" } }, [
+                  _vm._v("Annulation")
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "modification" } }, [
+                  _vm._v("Modification")
+                ])
+              ]
+            )
+          ]),
           _vm._v(" "),
-          _vm._m(2),
+          _vm._m(1),
           _vm._v(" "),
           _c("div", { staticClass: "form-group col-lg-6 col-sm-12" }, [
             _c("label", [_vm._v("Thème de l’action")]),
@@ -41221,9 +41290,9 @@ var render = function() {
             )
           ]),
           _vm._v(" "),
-          _vm._m(3),
+          _vm._m(2),
           _vm._v(" "),
-          _vm._m(4),
+          _vm._m(3),
           _vm._v(" "),
           _c("div", { staticClass: "form-group col-lg-6 col-sm-12" }, [
             _c("label", [_vm._v("Nouvel Organisme de formation")]),
@@ -41251,7 +41320,7 @@ var render = function() {
             )
           ]),
           _vm._v(" "),
-          _vm._m(5),
+          _vm._m(4),
           _vm._v(" "),
           _c("div", { staticClass: "form-group col-lg-6 col-sm-12" }, [
             _c("label", [_vm._v("Nouveau lieu")]),
@@ -41279,6 +41348,8 @@ var render = function() {
             )
           ]),
           _vm._v(" "),
+          _vm._m(5),
+          _vm._v(" "),
           _vm._m(6),
           _vm._v(" "),
           _vm._m(7),
@@ -41297,15 +41368,13 @@ var render = function() {
           _vm._v(" "),
           _vm._m(14),
           _vm._v(" "),
-          _vm._m(15),
-          _vm._v(" "),
-          _vm._m(16)
+          _vm._m(15)
         ]),
         _vm._v(" "),
-        _vm._m(17)
+        _vm._m(16)
       ]),
       _vm._v(" "),
-      _vm._m(18)
+      _vm._m(17)
     ])
   ])
 }
@@ -41318,35 +41387,6 @@ var staticRenderFns = [
       _c("h3", { staticClass: "card-title" }, [
         _vm._v("Annuler ou modifier l'état d'avis")
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group col-lg-6 col-sm-12" }, [
-      _c("label", [_vm._v("État d'avis")]),
-      _vm._v(" "),
-      _c(
-        "select",
-        {
-          staticClass: "form-control",
-          attrs: { id: "etat", onkeypress: "getSelected()" }
-        },
-        [
-          _c("option", { attrs: { selected: "", disabled: "" } }, [
-            _vm._v("---selectionner l'état---")
-          ]),
-          _vm._v(" "),
-          _c("option", { attrs: { value: "annulation", id: "etatAnul" } }, [
-            _vm._v("Annulation")
-          ]),
-          _vm._v(" "),
-          _c("option", { attrs: { value: "modification", id: "etatModif" } }, [
-            _vm._v("Modification")
-          ])
-        ]
-      )
     ])
   },
   function() {
@@ -41390,7 +41430,7 @@ var staticRenderFns = [
             _vm._v(" "),
             _c("th", [
               _c("input", {
-                attrs: { type: "checkbox", name: "modif", id: "modif_a" }
+                attrs: { type: "checkbox", name: "modif", id: "modif_date" }
               })
             ])
           ]),
@@ -41402,7 +41442,7 @@ var staticRenderFns = [
             _vm._v(" "),
             _c("th", [
               _c("input", {
-                attrs: { type: "checkbox", name: "modif", id: "modif_b" }
+                attrs: { type: "checkbox", name: "modif", id: "modif_organ" }
               })
             ])
           ]),
@@ -41414,7 +41454,7 @@ var staticRenderFns = [
             _vm._v(" "),
             _c("th", [
               _c("input", {
-                attrs: { type: "checkbox", name: "modif", id: "modif_c" }
+                attrs: { type: "checkbox", name: "modif", id: "modif_lieu" }
               })
             ])
           ]),
@@ -41426,7 +41466,7 @@ var staticRenderFns = [
             _vm._v(" "),
             _c("th", [
               _c("input", {
-                attrs: { type: "checkbox", name: "modif", id: "modif_d" }
+                attrs: { type: "checkbox", name: "modif", id: "modif_horaire" }
               })
             ])
           ])

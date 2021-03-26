@@ -334,6 +334,8 @@ function checkEtatRb() {
 
 
 
+
+
 // foreach in JS
 // etat1.forEach(element => {
     //     if (document.getElementById(element).value != "") {

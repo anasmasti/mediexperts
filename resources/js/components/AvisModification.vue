@@ -8,7 +8,8 @@
     <!-- <input type="hidden" name="_token" v-bind:value="csrf" /> -->
       <!-- {{ csrf_field() }} -->
     <div class="card-body">
-      <div class="row">
+      <div class="row"> 
+        
 
         <div class="form-group col-lg-6 col-sm-12">
            <label>Entreprise</label>
@@ -25,17 +26,18 @@
         <option selected disabled>---selectionner le plan---</option>
           <option v-for="pdf in reference_plans" :value="pdf.id_plan" :key="pdf.id_plan">{{ pdf.refpdf }}</option>
 
+
       </select>
     </div>
 
  <div class="form-group col-lg-6 col-sm-12">
       <label>État d'avis</label>
-      <select class="form-control" id="etat" onkeypress="getSelected()" >
+      <select class="form-control" id="etat" @change="getSelected();getDisabled()" >
         <option selected disabled>---selectionner l'état---</option>
-          <option value="annulation" id="etatAnul">Annulation</option>
-          <option value="modification" id="etatModif">Modification</option>
+          <option value="annulation" >Annulation</option>
+          <option value="modification">Modification</option>
       </select>
-    </div>
+    </div> 
 
      <table class="table table-striped col-12 col-lg-6 border" style="margin: 16px">
       <thead>
@@ -51,19 +53,19 @@
         </tr>
         <tr>
           <th style="width: 5%">De la date de Réalisation</th>
-          <th> <input type="checkbox" name="modif" id="modif_a"> </th>
+          <th> <input type="checkbox" name="modif" id="modif_date"> </th>
         </tr>
         <tr>
           <th style="width: 5%">De l’organisme de formation</th>
-          <th> <input type="checkbox" name="modif" id="modif_b"> </th>
+          <th> <input type="checkbox" name="modif" id="modif_organ"> </th>
         </tr>
         <tr>
           <th style="width: 5%">De lieu de formation</th>
-          <th> <input type="checkbox" name="modif" id="modif_c"> </th>
+          <th> <input type="checkbox" name="modif" id="modif_lieu"> </th>
         </tr>
         <tr>
           <th style="width: 5%">Organisation horaire</th>
-          <th> <input type="checkbox" name="modif" id="modif_d"> </th>
+          <th> <input type="checkbox" name="modif" id="modif_horaire"> </th>
         </tr>
       </tbody>
     </table>
@@ -264,10 +266,62 @@ export default {
   methods: {
     handleAction (actionName, value) {
       this.$store.dispatch(actionName, value);
-    }
+    },
+    // fonction pour l'état d'avis annulation
+ getSelected() {
+  let annul = document.getElementById('etat');
+  
+  if(annul.value.toString() === "annulation")
+  {
+    let annuler = document.getElementById("annuler");
+     annuler.checked = true;
+     annuler.disabled = false;
+
+// récupérer les id des checkbox
+     let chk_dateR = document.getElementById("modif_date");
+     let chk_organ = document.getElementById("modif_organ");
+     let chk_lieu = document.getElementById("modif_lieu");
+     let chk_horaire = document.getElementById("modif_horaire");
+
+     // make checkbox disabled 
+      chk_dateR.disabled =true ;
+      chk_organ.disabled =true ;
+      chk_lieu.disabled =true ;
+      chk_horaire.disabled =true ; 
+      
   }
 
+},
+
+// fonction pour l'état d'avis modification
+ getDisabled(){
+
+  let annul = document.getElementById('etat');
+  if (annul.value.toString() === "modification"){
+
+    let annuler = document.getElementById("annuler");
+    annuler.checked = false;
+    annuler.disabled=true;
+
+// récupérer les id des checkbox
+    let chk_dateR = document.getElementById("modif_date");
+    let chk_organ = document.getElementById("modif_organ");
+    let chk_lieu = document.getElementById("modif_lieu");
+    let chk_horaire = document.getElementById("modif_horaire");
+
+    // make checkbox enabled
+      chk_dateR.disabled =false ;
+      chk_organ.disabled =false ;
+      chk_lieu.disabled =false ;
+      chk_horaire.disabled =false ; 
+
+  }
 }
+}
+
+}
+
+
 </script>
 
 <style>
