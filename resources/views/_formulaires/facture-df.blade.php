@@ -8,8 +8,7 @@
     <script src={{ asset('js/jquery.js') }}></script>
     <script src={{ asset('js/NumberToLetter.js') }}></script>
     @php
-      $infos_drb = \App\DemandeRemboursementGiac::select('demande_financements.type_miss', 'clients.rais_abrev', 'demande_remboursement_giacs.n_facture')
-              ->join('demande_financements', 'demande_remboursement_giacs.n_df', 'demande_financements.n_df')
+      $infos_drb = \App\DemandeFinancement::select('demande_financements.*', 'clients.*')
               ->join('clients', 'demande_financements.nrc_e', 'clients.nrc_entrp')
               ->where('demande_financements.n_df', $df->n_df)
               ->first();
@@ -177,9 +176,9 @@
       {{-- Prix total x Part GIAC --}}
       <th colspan="3" style="padding: 1rem;">QUOTE PART GIAC TIERS PAYANT H.T.</th>
       <th>
-        @if ($df['part_giac'] == "70%")
+        @if ($df['prc_cote_part'] == "30%")
           {{ ($df["bdg_demande"] * .7) }} DH
-        @elseif ($df['part_giac'] == "80%")
+        @elseif ($df['prc_cote_part'] == "20%")
           {{ ($df["bdg_demande"] * .8) }} DH
         @endif
       </th>
@@ -189,9 +188,9 @@
         QUOTE PART ENTREPRISE TTC
         (<span id="prcQuotePartGiac">
 
-          @if ($df['prc_cote_part'] == "30%")
+          @if ($df['part_giac'] == "30%")
             {{ ($df["bdg_demande"] * .7) }} DH
-          @elseif ($df['prc_cote_part'] == "20%")
+          @elseif ($df['part_giac'] == "20%")
             {{ ($df["bdg_demande"] * .8) }} DH
           @endif
 

@@ -21,6 +21,8 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 {{-- jquery scripts --}}
 
+<script src={{ asset('js/myjs.js') }}></script>
+
 
 <!-- CARD -->
 <div class="card card-dark">
@@ -1384,17 +1386,17 @@
                     <label class="btn btn-warning">
                         Accordé
                         <i class="fas fa-signature"></i>
-                        <input type="radio" name="etat" id="option4" autocomplete="off" value="accordé">
+                        <input type="radio" name="etat" id="option4" autocomplete="off" onclick="AccordValidate()" value="accordé">
                     </label>
                     <label class="btn btn-warning">
                         Réalisé
                         <i class="fas fa-check-square"></i>
-                        <input type="radio" name="etat" id="option5" autocomplete="off" value="réalisé">
+                        <input type="radio" name="etat" id="option5" autocomplete="off" onclick="AccordValidate()" value="réalisé">
                     </label>
                     <label class="btn btn-warning">
                         Approuvé
                         <i class="fas fa-check-double"></i>
-                        <input type="radio" name="etat" id="option6" autocomplete="off" value="approuvé">
+                        <input type="radio" name="etat" id="option6" autocomplete="off" onclick="AccordValidate()" value="approuvé">
                     </label>
                     <label class="btn btn-danger">
                         Annulé

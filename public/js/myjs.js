@@ -27,7 +27,7 @@ function CalcBdgAccordTTC() {
   let bdgLetter = document.getElementById('bdg_letter');
   let montantTTC = (bdgAccordVal + (bdgAccordVal * .2));
   bdgLetter.value = NumberToLetter(montantTTC.toFixed(2)).toUpperCase();
-  console.log(`${bdgAccordVal} + (${bdgAccordVal} * .2) = `, montantTTC);
+  //console.log(`${bdgAccordVal} + (${bdgAccordVal} * .2) = `, montantTTC);
 }
 
 //CHECK DATE
@@ -78,7 +78,7 @@ function DateFormat(date) {
 function checkEtat() {
     let typeMiss = document.getElementById("type_miss").value.toLowerCase();
     let gcRattach = document.getElementById("gc_rattach").value.toLowerCase();
-    console.log("check etat changes");
+    //console.log("check etat changes");
     //---------------------------------------------------------------------------------------------------------------------------------------
     //--- IF
     if (typeMiss == "ingénierie de formation") {
@@ -188,6 +188,17 @@ function checkEtat() {
         }
     }
 } //checkEtat
+
+function AccordValidate(){
+
+    let etatAccorde = document.getElementById('option4').value;
+    let etatRealise = document.getElementById('option5').value;
+    let etatApprouve = document.getElementById('option6').value;
+
+    if (etatAccorde.toString() == "accordé" || etatRealise.toString() == "réalisé" || etatApprouve.toString() == "approuvé") {
+        console.log("jour home required");
+    }
+}
 
 
 
