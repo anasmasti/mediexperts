@@ -165,7 +165,7 @@ Route::get('/del-drb-gc/{ndrb}', 'DemandeRemboursementGiacController@destroy')->
 Route::get('/print-facture-drb/{ndrb}/{nrc}', 'DemandeRemboursementGiacController@FactureDrbGiac')->name('DRB_GIAC.FactureDrbGiac');
 Route::post('/save-nfacture-giac', 'DemandeRemboursementGiacController@SaveNFactureGiac')->name('DRB_GIAC.SaveNFactureGiac');
 
-Route::get('/print-facture-df/{ndrb}/{nrc}', 'DemandeFinancementController@FactureDF')->name('DF.FactureDF');
+Route::get('/print-facture-df/{nrc}', 'DemandeFinancementController@FactureDF')->name('DF.FactureDF');
 Route::post('/save-nfacture-df', 'DemandeFinancementController@SaveNFactureDF')->name('DF.SaveNFactureDF');
 /********************************************************************/
 

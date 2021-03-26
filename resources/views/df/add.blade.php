@@ -1066,10 +1066,10 @@
                 @endif
             </div>
 
-          <div class="form-group col-lg-6 col-md-6 col-sm-6 col-12">
+          {{-- <div class="form-group col-lg-6 col-md-6 col-sm-6 col-12">
             <label> N° Contrat</label>
-            <input class="form-control" type="text" name="n_contrat" placeholder="Saisir N° Contrat">
-          </div>
+            <input class="form-control" type="text" name="n_contrat" id="n_contrat" placeholder="Saisir N° Contrat">
+          </div> --}}
 
             {{-- <div class="form-group col-lg-3 col-md-6 col-12">
             <label for=""></label>
