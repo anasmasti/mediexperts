@@ -224,7 +224,9 @@ class DemandeFinancementController extends Controller
             $df->save();
 
             //If etat df "accordé" -> auto add new drb giac
-            if (mb_strtolower($request->input('etat')) == "accordé") {
+            $etat_demande = mb_strtolower($request->input('etat'));
+            
+            if ( $etat_demande == "accordé" || $etat_demande == "réalisé" || $etat_demande == "approuvé") {
                 $drb = new DemandeRemboursementGiac();
                 $drb->n_df = $df->n_df;
                 $drb->etat = "initié";
@@ -246,6 +248,10 @@ class DemandeFinancementController extends Controller
                 $drb->save();
                 $request->session()->flash('added', '1) Demande financement ajouté avec succès');
                 $request->session()->flash('info', '2) Demande de remboursement GIAC initié');
+            }
+            else {
+                
+                $drb = null;
             }
 
             //avoid undefined value client by adding this
