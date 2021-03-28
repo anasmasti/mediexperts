@@ -176,9 +176,9 @@
       {{-- Prix total x Part GIAC --}}
       <th colspan="3" style="padding: 1rem;">QUOTE PART GIAC TIERS PAYANT H.T.</th>
       <th>
-        @if ($df['prc_cote_part'] == "30%")
+        @if ($df['prc_cote_part_demande'] == "30%")
           {{ ($df["bdg_demande"] * .7) }} DH
-        @elseif ($df['prc_cote_part'] == "20%")
+        @elseif ($df['prc_cote_part_demande'] == "20%")
           {{ ($df["bdg_demande"] * .8) }} DH
         @endif
       </th>
@@ -188,10 +188,10 @@
         QUOTE PART ENTREPRISE TTC
         (<span id="prcQuotePartGiac">
 
-          @if ($df['part_giac'] == "30%")
-            {{ ($df["bdg_demande"] * .7) }} DH
-          @elseif ($df['part_giac'] == "20%")
-            {{ ($df["bdg_demande"] * .8) }} DH
+          @if ($df['prc_cote_part_demande'] == "30%")
+            {{ ($df["prc_cote_part_demande"]) }}
+          @elseif ($df['prc_cote_part_demande'] == "20%")
+            {{ ($df["prc_cote_part_demande"]) }} 
           @endif
 
         </span> du montant Total H.T + TVA du montant global)
