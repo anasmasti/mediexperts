@@ -20,9 +20,27 @@
 <script src={{ asset('js/jquery.js') }}></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 {{-- jquery scripts --}}
-
 <script src={{ asset('js/myjs.js') }}></script>
 
+
+<div class="modal" tabindex="-1" role="dialog" id="msg_error_accord">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header bg-danger text-lite">
+            <h5 class="modal-title">Error Message</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            Accord informations requises
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+  </div>
 
 <!-- CARD -->
 <div class="card card-dark">
@@ -1386,17 +1404,17 @@
                     <label class="btn btn-warning">
                         Accordé
                         <i class="fas fa-signature"></i>
-                        <input type="radio" name="etat" id="option4" autocomplete="off" onclick="AccordValidate()" value="accordé">
+                        <input type="radio" name="etat" id="option4" autocomplete="off" onchange="AccordValidate()" value="accordé">
                     </label>
                     <label class="btn btn-warning">
                         Réalisé
                         <i class="fas fa-check-square"></i>
-                        <input type="radio" name="etat" id="option5" autocomplete="off" onclick="AccordValidate()" value="réalisé">
+                        <input type="radio" name="etat" id="option5" autocomplete="off" onchange="AccordValidate()" value="réalisé">
                     </label>
                     <label class="btn btn-warning">
                         Approuvé
                         <i class="fas fa-check-double"></i>
-                        <input type="radio" name="etat" id="option6" autocomplete="off" onclick="AccordValidate()" value="approuvé">
+                        <input type="radio" name="etat" id="option6" autocomplete="off" onchange="AccordValidate()" value="approuvé">
                     </label>
                     <label class="btn btn-danger">
                         Annulé
@@ -1419,6 +1437,7 @@
         </div>
 
         </form>
+
 </div><!-- ./CARD -->
 
 

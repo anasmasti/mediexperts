@@ -191,12 +191,19 @@ function checkEtat() {
 
 function AccordValidate(){
 
-    let etatAccorde = document.getElementById('option4').value;
-    let etatRealise = document.getElementById('option5').value;
-    let etatApprouve = document.getElementById('option6').value;
+    let etatAccord = document.getElementById("option4");
+    let etatRealise = document.getElementById("option5");
+    let etatApprouve = document.getElementById("option6");
 
-    if (etatAccorde.toString() == "accordé" || etatRealise.toString() == "réalisé" || etatApprouve.toString() == "approuvé") {
-        console.log("jour home required");
+    let dateAccord = document.getElementById("dt_accord").value;
+    let bdgAccord = document.getElementById("bdg_accord").value;
+    let prcCotePart = document.getElementById("prc_cote_part").value;
+    let JourHomeValid = document.getElementById("jr_hm_valid").value;
+
+    if ((etatAccord.checked == true || etatRealise.checked == true || etatApprouve.checked == true) && 
+        (dateAccord =='' || bdgAccord =='' || prcCotePart == '' || JourHomeValid == ''))
+    {
+        $("#msg_error_accord").modal("show");
     }
 }
 
