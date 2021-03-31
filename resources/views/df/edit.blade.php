@@ -1092,11 +1092,7 @@
     </div>
     <div class="form-group col-lg-6 col-md-6 col-sm-6 col-12">
         <label> N° Contrat</label>
-<<<<<<< HEAD
-        <input class="form-control" type="text" name="n_contrat" value="{{$df->n_contrat}}" placeholder="Saisir N° Contrat">
-=======
         <input class="form-control" type="text" name="n_contrat" value="{{$df->n_contrat}} placeholder="Saisir N° Contrat">
->>>>>>> d275219953dedef5aa7a5114bdc7676243a016d8
     </div>
 
     <div class="form-group col-12">
