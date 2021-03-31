@@ -108,7 +108,7 @@
     <div style="width:100%">
       <span class="p-0">Adresse :</span>
       <div class="bordered" style="height:50px;">
-        {{ $client->sg_soci }} {{ $client->ville }}
+        {{ $client->sg_soci }}
       </div>
     </div>
 
