@@ -121,7 +121,7 @@
       </div>
       <div style="width:33%">
         <div class="bordered text-center">
-          {{ $client->tel_1 }}
+          {{ $client->fix_1 }}
         </div>
       </div>
       <div style="width:4%">
