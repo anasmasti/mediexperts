@@ -308,8 +308,10 @@
       <div style="width:45%">
         <span class="p-r" style="font-size:16px;">Fait à :</span>
         <div class="bordered">
+
+          {{$client->local_2}}
           {{-- {{ $client->ville }} --}}
-          @php $villes =
+          {{-- @php $villes =
           ['Casablanca', 'Settat', 'Had Soualem', 'Salé', 'Fès', 'Tanger', 'Marrakech', 'Meknès', 'Rabat', 'Oujda', 'Kénitra', 'Agadir', 'Tétouan',
             'Témara', 'Safi', 'Mohammédia', 'El Jadida', 'Béni Mellal', 'Taza', 'Khémisset', 'Taourirt']; @endphp
           <select name="ville_cab" class="select" id="ville_cab" style="width:100%;">
@@ -320,7 +322,7 @@
                 <option value="{{$ville}}">{{$ville}}</option>
               @endif
             @endforeach
-          </select>
+          </select> --}}
         </div>
         <span class="p-r" style="font-size:16px;">Nom et prénom :</span>
         <div class="bordered">
@@ -340,7 +342,7 @@
           {{-- date document --}}
           <input type="date" style="width:100%; height:100%; border: none !important; outline: none !important;" id="date_today" name="date_today" value="{{date("Y-m-d")}}">
         </div>
-        <span style="font-size:16px;">Signature et cachet de l'Organisme :</span>
+        <span style="font-size:16px;">Signature et cachet :</span>
         <div style="height:130px; border:1px solid black;">
           {{-- signature et cacheter --}}
         </div>
