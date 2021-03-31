@@ -90,13 +90,13 @@ function checkEtat() {
         $('#tr_d_propal_IF').fadeIn(200);
         $('#tr_ct_IF').fadeIn(200);
         //giac agroalimentaire
-        if (gcRattach.toLowerCase() == "giac agroalimentaire") {
-            $('#tr_d_df_IF').fadeIn(200);
-            $('label[for=dem_approb_if], input#dem_approb_if').fadeIn(200);
-        } else {
-            $('#tr_d_df_IF').fadeOut(200);
-            $('label[for=dem_approb_if], input#dem_approb_if').fadeOut(200);
-        }
+        // if (gcRattach.toLowerCase() == "giac agroalimentaire") {
+        //     $('#tr_d_df_IF').fadeIn(200);
+        //     $('label[for=dem_approb_if], input#dem_approb_if').fadeIn(200);
+        // } else {
+        //     $('#tr_d_df_IF').fadeOut(200);
+        //     $('label[for=dem_approb_if], input#dem_approb_if').fadeOut(200);
+        // }
         //with check
         $('label[for=av_realis_IF], input#av_realis_IF').fadeIn(200);
         $('label[for=planing_IF], input#planing_IF').fadeIn(200);
@@ -119,23 +119,27 @@ function checkEtat() {
         $('label[for=planing_DS], input#planing_DS').fadeOut(200);
         $('label[for=p_garde_DS], input#p_garde_DS').fadeOut(200);
 
-        // giac 1
-        if (gcRattach.toLowerCase() == "giac 1") {
-          $('#tr_d_df_IF').fadeIn(200);
+        //giac 1
+        if (gcRattach == "giac 1") {
+            $('#tr_d_df_IF').stop().fadeIn(200);
+            $('#tr_d_df_DS').stop().fadeOut(200);
+            $('label[for=dem_approb_if], input#dem_approb_if').fadeOut(200);
+            $('label[for=dem_approb_ds], input#dem_approb_ds').fadeOut(200);
         }
-
         //giac agroalimentaire
-        if (gcRattach.toLowerCase() == "giac agroalimentaire") {
+        else if (gcRattach.toLowerCase() == "giac agroalimentaire" ) {
             $('#tr_d_df_IF').fadeIn(200);
             $('label[for=dem_approb_if], input#dem_approb_if').fadeIn(200);
             $('#tr_d_df_DS').fadeOut(200);
             $('label[for=dem_approb_ds], input#dem_approb_ds').fadeOut(200);
-        } else {
+        } 
+        else {
             $('#tr_d_df_DS').fadeOut(200);
             $('label[for=dem_approb_ds], input#dem_approb_ds').fadeOut(200);
             $('#tr_d_df_IF').fadeOut(200);
             $('label[for=dem_approb_if], input#dem_approb_if').fadeOut(200);
         }
+
 
     } //********************** END FOR IF ************************************************************************************************************
 
@@ -171,11 +175,14 @@ function checkEtat() {
         $('label[for=p_garde_IF], input#p_garde_IF').fadeOut(200);
 
         // giac 1
-        if (gcRattach.toLowerCase() == "giac 1") {
-          $('#tr_d_df_DS').fadeIn(200);
+        if (gcRattach.toString() == "giac 1") {
+          $('#tr_d_df_DS').stop().fadeIn(200);
+          $('#tr_d_df_IF').stop().fadeOut(200);
+          $('label[for=dem_approb_if], input#dem_approb_if').fadeOut(200);
+          $('label[for=dem_approb_ds], input#dem_approb_ds').fadeOut(200);
         }
         //giac agroalimentaire
-        if (gcRattach.toLowerCase() == "giac agroalimentaire") {
+        else if (gcRattach.toLowerCase() == "giac agroalimentaire") {
             $('#tr_d_df_DS').fadeIn(200);
             $('label[for=dem_approb_ds], input#dem_approb_ds').fadeIn(200);
             $('#tr_d_df_IF').fadeOut(200);
@@ -187,7 +194,11 @@ function checkEtat() {
             $('label[for=dem_approb_if], input#dem_approb_if').fadeOut(200);
         }
     }
-} //checkEtat
+
+}
+    
+ //checkEtat
+
 
 function AccordValidate(){
 

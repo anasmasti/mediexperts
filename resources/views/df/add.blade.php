@@ -1470,7 +1470,7 @@ $(document).ready(function() {
       checkEtat();
       CalcQuotePart();
       CalcBdgAccordTTC();
-    }, 500);
+    },500);
 
 });
 
