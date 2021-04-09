@@ -3,10 +3,11 @@ function isNumberKey(evt) {
     let charCode = (evt.which) ? evt.which : event.keyCode
         // console.log("charCode : ", charCode);
     if (charCode > 31 && (charCode < 43 || charCode > 57))
-       return false;
+        return false;
 
     return true;
 }
+
 function CalcQuotePart() {
     let prcQuote = document.getElementById("prc_cote_part");
     let quoteInput = document.getElementById("cote_part_entrp");
@@ -15,19 +16,18 @@ function CalcQuotePart() {
     if (prcQuote.value == "30%" && $('quoteInput').is('[readonly]') == false) {
         quoteInput.value = ((bdgInput.value * 30 / 100) + (bdgInput.value * 20 / 100)).toFixed(2);
         quoteInput.readOnly = true;
-    }
-    else if (prcQuote.value == "20%") {
+    } else if (prcQuote.value == "20%") {
         quoteInput.value = ((bdgInput.value * 20 / 100) + (bdgInput.value * 20 / 100)).toFixed(2);
         quoteInput.readOnly = true;
     }
 }
 
 function CalcBdgAccordTTC() {
-  let bdgAccordVal = parseInt(document.getElementById('bdg_accord').value);
-  let bdgLetter = document.getElementById('bdg_letter');
-  let montantTTC = (bdgAccordVal + (bdgAccordVal * .2));
-  bdgLetter.value = NumberToLetter(montantTTC.toFixed(2)).toUpperCase();
-  //console.log(`${bdgAccordVal} + (${bdgAccordVal} * .2) = `, montantTTC);
+    let bdgAccordVal = parseInt(document.getElementById('bdg_accord').value);
+    let bdgLetter = document.getElementById('bdg_letter');
+    let montantTTC = (bdgAccordVal + (bdgAccordVal * .2));
+    bdgLetter.value = NumberToLetter(montantTTC.toFixed(2)).toUpperCase();
+    //console.log(`${bdgAccordVal} + (${bdgAccordVal} * .2) = `, montantTTC);
 }
 
 //CHECK DATE
@@ -40,6 +40,7 @@ function checkDate() {
         document.getElementById("date-more").value = currentDate.getTime();
     }
 }
+
 function CalcBdgJourn() {
     let bdgLetter = document.getElementById("bdg_letter");
     let bdgTotal = document.getElementById("bdg_total");
@@ -50,12 +51,13 @@ function CalcBdgJourn() {
     bdgTotal.value = (((nbHeure.value * nbJour.value) / 6) * bdgJour.value).toFixed(2);
     bdgLetter.value = NumberToLetter(((bdgJour.value * nbJour.value) + bdgTotal.value * .2).toFixed(2), "DIRHAM", "Centimes").toUpperCase();
 }
+
 function DateFormat(date) {
-  let datestring = date.replace(/[^\w\s]/gi, '');
-  let year = datestring.charAt(0) + datestring.charAt(1) + datestring.charAt(2) + datestring.charAt(3);
-  let month = datestring.charAt(4) + datestring.charAt(5);
-  let day = datestring.charAt(6) + datestring.charAt(7);
-  return (day+'/'+month+'/'+year);
+    let datestring = date.replace(/[^\w\s]/gi, '');
+    let year = datestring.charAt(0) + datestring.charAt(1) + datestring.charAt(2) + datestring.charAt(3);
+    let month = datestring.charAt(4) + datestring.charAt(5);
+    let day = datestring.charAt(6) + datestring.charAt(7);
+    return (day + '/' + month + '/' + year);
 }
 
 
@@ -127,13 +129,12 @@ function checkEtat() {
             $('label[for=dem_approb_ds], input#dem_approb_ds').fadeOut(200);
         }
         //giac agroalimentaire
-        else if (gcRattach.toLowerCase() == "giac agroalimentaire" ) {
+        else if (gcRattach.toLowerCase() == "giac agroalimentaire") {
             $('#tr_d_df_IF').fadeIn(200);
             $('label[for=dem_approb_if], input#dem_approb_if').fadeIn(200);
             $('#tr_d_df_DS').fadeOut(200);
             $('label[for=dem_approb_ds], input#dem_approb_ds').fadeOut(200);
-        } 
-        else {
+        } else {
             $('#tr_d_df_DS').fadeOut(200);
             $('label[for=dem_approb_ds], input#dem_approb_ds').fadeOut(200);
             $('#tr_d_df_IF').fadeOut(200);
@@ -176,10 +177,10 @@ function checkEtat() {
 
         // giac 1
         if (gcRattach.toString() == "giac 1") {
-          $('#tr_d_df_DS').stop().fadeIn(200);
-          $('#tr_d_df_IF').stop().fadeOut(200);
-          $('label[for=dem_approb_if], input#dem_approb_if').fadeOut(200);
-          $('label[for=dem_approb_ds], input#dem_approb_ds').fadeOut(200);
+            $('#tr_d_df_DS').stop().fadeIn(200);
+            $('#tr_d_df_IF').stop().fadeOut(200);
+            $('label[for=dem_approb_if], input#dem_approb_if').fadeOut(200);
+            $('label[for=dem_approb_ds], input#dem_approb_ds').fadeOut(200);
         }
         //giac agroalimentaire
         else if (gcRattach.toLowerCase() == "giac agroalimentaire") {
@@ -196,11 +197,11 @@ function checkEtat() {
     }
 
 }
-    
- //checkEtat
 
 
-function AccordValidate(){
+//::::::::::::::::::::::::::::::::::::: Demande financement ::::::::::::::::::::::::::::::::::::::::::::
+// check etat
+function AccordValidate() {
 
     let etatAccord = document.getElementById("option4");
     let etatRealise = document.getElementById("option5");
@@ -211,9 +212,26 @@ function AccordValidate(){
     let prcCotePart = document.getElementById("prc_cote_part").value;
     let JourHomeValid = document.getElementById("jr_hm_valid").value;
 
-    if ((etatAccord.checked == true || etatRealise.checked == true || etatApprouve.checked == true) && 
-        (dateAccord =='' || bdgAccord =='' || prcCotePart == '' || JourHomeValid == ''))
-    {
+    let realiseBtn = document.getElementsByName("etat");
+    let btnEtat = document.getElementsByName("btnEtat");
+
+    if ((etatAccord.checked == true || etatRealise.checked == true || etatApprouve.checked == true) &&
+        (dateAccord == '' || bdgAccord == '' || prcCotePart == '' || JourHomeValid == '')) {
+
+        // Remove active class from all valisation buttons
+        for (let i = 0; i < btnEtat.length; i++) {
+            setTimeout(() => {
+                btnEtat[i].classList.remove("active");
+            }, 100);
+
+        }
+
+        // Uncheck all request status button
+        for (var i = 0; i < realiseBtn.length; i++) {
+            realiseBtn[i].checked = false;
+        }
+
+        // Show model with error message
         $("#msg_error_accord").modal("show");
     }
 }
@@ -246,12 +264,10 @@ function checkEtatRb() {
     if (giac == "giac tertiaire" && typemiss == "diagnostic stratégique") {
         $('label[for=drb_if], input#drb_if').fadeOut(200);
         $('label[for=drb_ds], input#drb_ds').fadeIn(200);
-    }
-    else if (giac == "giac tertiaire" && typemiss == "ingénierie de formation") {
+    } else if (giac == "giac tertiaire" && typemiss == "ingénierie de formation") {
         $('label[for=drb_if], input#drb_if').fadeIn(200);
         $('label[for=drb_ds], input#drb_ds').fadeOut(200);
-    }
-    else {
+    } else {
         $('label[for=drb_if], input#drb_if').fadeOut(200);
         $('label[for=drb_ds], input#drb_ds').fadeOut(200);
     }
@@ -326,17 +342,17 @@ function checkEtatRb() {
 
 // foreach in JS
 // etat1.forEach(element => {
-    //     if (document.getElementById(element).value != "") {
-    //     }
-    // });
-    //OLD METHOD
-    // for (i = 0; i < etat1.length; i++) {
-    //     if (document.getElementById(etat1[i]).value != "") {
-    //         et = et + 1;
-    //     }
-    // }
-    // for (j = 0; j < etat1_doc.length + 1; j++) {
-    //     if (document.getElementById(etat1_doc[j]).checked == true) {
-    //         et_d = et_d + 1;
-    //     }
-    //OLD METHOD
+//     if (document.getElementById(element).value != "") {
+//     }
+// });
+//OLD METHOD
+// for (i = 0; i < etat1.length; i++) {
+//     if (document.getElementById(etat1[i]).value != "") {
+//         et = et + 1;
+//     }
+// }
+// for (j = 0; j < etat1_doc.length + 1; j++) {
+//     if (document.getElementById(etat1_doc[j]).checked == true) {
+//         et_d = et_d + 1;
+//     }
+//OLD METHOD
