@@ -27,6 +27,7 @@ class AddStoreNContrat extends Migration
     {
         Schema::table('demande_financements', function (Blueprint $table) {
             //
+            $table->dropColumn('n_contrat');
         });
     }
 }

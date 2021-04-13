@@ -23,24 +23,7 @@
 <script src={{ asset('js/myjs.js') }}></script>
 
 
-<div class="modal" tabindex="-1" role="dialog" id="msg_error_accord">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header bg-danger text-lite">
-            <h5 class="modal-title">Error Message</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            Accord informations requises
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-          </div>
-        </div>
-      </div>
-  </div>
+
 
 <!-- CARD -->
 <div class="card card-dark">
@@ -1435,6 +1418,22 @@
             @endif
             <a class="btn btn-danger" href="/df"><i class="fas fa-window-close"></i>&nbsp;Annuler</a>
         </div>
+
+        <div class="modal" tabindex="-1" role="dialog" id="msg_error_accord">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header bg-danger text-lite">
+                    <h5 class="modal-title">Error Message</h5>
+                  </div>
+                  <div class="modal-body">
+                    Accord informations requises
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+          </div>
 
         </form>
 

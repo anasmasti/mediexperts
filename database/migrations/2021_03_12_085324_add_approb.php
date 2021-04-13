@@ -17,7 +17,7 @@ class AddApprob extends Migration
 
 
           $table->string('at_approb_if')->default("non préparé")->nullable();
-          $table->string('at_approb_ds')->default("non préparé")->nullable();
+          
 
             //
         });
