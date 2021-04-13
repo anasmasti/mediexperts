@@ -83,7 +83,7 @@ class DemandeRemboursementGiacController extends Controller
                 'etat' => 'required',
                 'commentaire' => 'max:3000',
             ]);
-
+                
             $drb = new DemandeRemboursementGiac();
             $drb->n_drb = $request->input('n_drb');
             $drb->n_df = $request->input('n_df');

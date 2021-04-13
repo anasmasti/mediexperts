@@ -127,7 +127,7 @@
             @endif
         </div>
 
-        <div class="form-group col-lg-6 col-sm-12"><label>Objet social</label><input class="form-control {{ $errors->has('obj_soci') ? ' is-invalid' : '' }}" value="{{$client->obj_soci}}" type="text" name="obj_soci" maxlength="50" placeholder="Objet social" >
+        <div class="form-group col-lg-6 col-sm-12"><label>Objet social</label><input class="form-control {{ $errors->has('obj_soci') ? ' is-invalid' : '' }}" value="{{$client->obj_soci}}" type="text" name="obj_soci" maxlength="150" placeholder="Objet social" >
             @if ($errors->has('obj_soci'))
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $errors->first('obj_soci') }}</strong>
@@ -193,7 +193,7 @@
         <div class="form-group col-lg-12 col-sm-12">{{--**************HR**************--}}<hr></div>
 
         <div class="form-group col-lg-12 col-sm-12"><label>Siège social</label>
-            <input class="form-control {{ $errors->has('sg_soci') ? ' is-invalid' : '' }}" type="text" value="{{$client->sg_soci}}" name="sg_soci" maxlength="100" placeholder="Siège social" >
+            <input class="form-control {{ $errors->has('sg_soci') ? ' is-invalid' : '' }}" type="text" value="{{$client->sg_soci}}" name="sg_soci" maxlength="150" placeholder="Siège social" >
             @if ($errors->has('sg_soci'))
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $errors->first('sg_soci') }}</strong>

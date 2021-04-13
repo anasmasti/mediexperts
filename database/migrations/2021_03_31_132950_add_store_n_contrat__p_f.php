@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddApprob extends Migration
+class AddStoreNContratPF extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,9 @@ class AddApprob extends Migration
      */
     public function up()
     {
-        Schema::table('plans', function (Blueprint $table) {
-
-
-          $table->string('at_approb_if')->default("non préparé")->nullable();
-          
-
-            //
+        //
+        Schema::table('plan_formations', function (Blueprint $table) {
+            $table->string('n_contrat',100);
         });
     }
 
@@ -30,9 +26,10 @@ class AddApprob extends Migration
      */
     public function down()
     {
-        Schema::table('plans', function (Blueprint $table) {
+        //
+        Schema::table('plan_formations', function (Blueprint $table) {
             //
-            $table->dropColumn(['at_approb_PFOPT', 'rpt_DS_PFOPT']);
+            $table->dropColumn('n_contrat');
         });
     }
 }

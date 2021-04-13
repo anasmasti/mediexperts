@@ -2286,7 +2286,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 //
-/* harmony default export */ __webpack_exports__["default"] = (_defineProperty({
+/* harmony default export */ __webpack_exports__["default"] = ({
   runtimeCompiler: true,
   name: 'plan-formation',
   data: function data() {
@@ -2308,7 +2308,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   mounted: function mounted() {
     this.FillClients();
   },
-  computed: {},
   methods: {
     DateFormat: function DateFormat(date) {
       if (date) {
@@ -2471,8 +2470,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     ResetCoutTotalPlan: function ResetCoutTotalPlan() {
       this.coutTotalPlan = 0;
     }
-  }
-}, "computed", {}));
+  },
+  // methods
+  computed: {} // computed
+
+});
 
 /***/ }),
 

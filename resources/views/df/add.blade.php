@@ -20,6 +20,9 @@
 <script src={{ asset('js/jquery.js') }}></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 {{-- jquery scripts --}}
+<script src={{ asset('js/myjs.js') }}></script>
+
+
 
 
 <!-- CARD -->
@@ -1384,17 +1387,17 @@
                     <label class="btn btn-warning">
                         Accordé
                         <i class="fas fa-signature"></i>
-                        <input type="radio" name="etat" id="option4" autocomplete="off" value="accordé">
+                        <input type="radio" name="etat" id="option4" autocomplete="off" onchange="AccordValidate()" value="accordé">
                     </label>
                     <label class="btn btn-warning">
                         Réalisé
                         <i class="fas fa-check-square"></i>
-                        <input type="radio" name="etat" id="option5" autocomplete="off" value="réalisé">
+                        <input type="radio" name="etat" id="option5" autocomplete="off" onchange="AccordValidate()" value="réalisé">
                     </label>
                     <label class="btn btn-warning">
                         Approuvé
                         <i class="fas fa-check-double"></i>
-                        <input type="radio" name="etat" id="option6" autocomplete="off" value="approuvé">
+                        <input type="radio" name="etat" id="option6" autocomplete="off" onchange="AccordValidate()" value="approuvé">
                     </label>
                     <label class="btn btn-danger">
                         Annulé
@@ -1416,7 +1419,24 @@
             <a class="btn btn-danger" href="/df"><i class="fas fa-window-close"></i>&nbsp;Annuler</a>
         </div>
 
+        <div class="modal" tabindex="-1" role="dialog" id="msg_error_accord">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header bg-danger text-lite">
+                    <h5 class="modal-title">Error Message</h5>
+                  </div>
+                  <div class="modal-body">
+                    Accord informations requises
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+          </div>
+
         </form>
+
 </div><!-- ./CARD -->
 
 
@@ -1449,7 +1469,7 @@ $(document).ready(function() {
       checkEtat();
       CalcQuotePart();
       CalcBdgAccordTTC();
-    }, 500);
+    },500);
 
 });
 
