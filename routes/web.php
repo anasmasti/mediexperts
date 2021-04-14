@@ -383,6 +383,7 @@ Route::get('/print-att-reference-plan', 'FormulaireController@print_att_referenc
 Route::get('/fill-cabinet-info', 'FormulaireController@FillCabinetInfo')->name('PlanFormation.FillCabinetInfo');
 Route::get('/fill-plan-by-client', 'FormulaireController@FillPlansByClient')->name('PlanByClinet');
 Route::get('/fill-all-organisme' , 'FormulaireController@FillAllCabinets')->name('FillOrganisme');
+Route::get('/fill-avis-modif' , 'FormulaireController@FillavisModif')->name('FillAvisModif');
 /********************************************************************/
 
 

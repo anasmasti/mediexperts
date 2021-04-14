@@ -218,6 +218,13 @@ class FormulaireController extends Controller
         ->get();
       return response()->json($data);
     }
+    public function FillavisModif(Request $request) {
+      $data = Formation::select('formations.*', 'plan_formations.*')
+        ->join('plan_formations','formations.n_form','=','plan_formations.n_form')
+        ->where('plan_formations.n_form' , $request->nForm)
+        ->get();
+        return response()->json($data);
+    }
     public function print_avis_aff(Request $request) {
       $client = Client::all();
       return view('_formulaires.avis-affichage', ['client' => $client]);

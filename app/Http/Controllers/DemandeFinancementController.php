@@ -3,10 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-<<<<<<< HEAD
-=======
-
->>>>>>> master
 use App\{DemandeFinancement,Client,DemandeRemboursementGiac,DemandeRemboursementOfppt,MissionIntervenant,Giac};
 // use Alert;
 use Illuminate\Support\Facades\DB;
@@ -17,17 +13,10 @@ class DemandeFinancementController extends Controller
 {
 
     // ***** FORMULAIRES *****
-<<<<<<< HEAD
-    public function FactureDF($nrc) {
-      $df = DemandeFinancement::select('clients.*', 'demande_financements.*')
-            ->join('clients', 'demande_financements.nrc_e', 'clients.nrc_entrp')
-            ->where([['clients.nrc_entrp', $nrc]])
-=======
     public function FactureDF($ndf,$nrc) {
       $df = DemandeFinancement::select('clients.*', 'demande_financements.*')
             ->join('clients', 'demande_financements.nrc_e', 'clients.nrc_entrp')
             ->where([['demande_financements.n_df', $ndf],['clients.nrc_entrp', $nrc]])
->>>>>>> master
             ->first();
       return view('_formulaires.facture-df', ['df' => $df]);
     }
@@ -125,7 +114,7 @@ class DemandeFinancementController extends Controller
             //pourcentage quote part required if budget accordé is not null
             if ($request->input('bdg_demande') != "") { $validatebdgAccord = '|lte:bdg_demande'; }
             if ($request->input('bdg_accord') != "") { $validatePrcQuote = 'required';  }
-            
+
             $request->validate([
                 'nrc_e' => 'required',
                 'type_miss' => 'required|max:150',
@@ -147,11 +136,7 @@ class DemandeFinancementController extends Controller
                 'prc_cote_part' => $validatePrcQuote, //4
                 'dt_envoi_av' => 'nullable|date|before_or_equal:'.date('Y-m-d'), //5
                 'dt_fin_realis' => 'nullable|date|before_or_equal:'.date('Y-m-d'), //5
-<<<<<<< HEAD
-                // 'n_contrat' => 'nullable|max:20',
-=======
                 'n_contrat' => 'nullable|max:20',
->>>>>>> master
                 'dt_approb' => 'nullable|date|before_or_equal:'.date('Y-m-d'), //6
                 'dt_depos_rpt' => 'nullable|date|before_or_equal:'.date('Y-m-d'), //6
                 'dt_at_csf' => 'nullable|date|before_or_equal:'.date('Y-m-d'),
@@ -239,7 +224,7 @@ class DemandeFinancementController extends Controller
 
             //If etat df "accordé" -> auto add new drb giac
             $etat_demande = mb_strtolower($request->input('etat'));
-            
+
             if ( $etat_demande == "accordé" || $etat_demande == "réalisé" || $etat_demande == "approuvé") {
                 $drb = new DemandeRemboursementGiac();
                 $drb->n_df = $df->n_df;
@@ -264,7 +249,7 @@ class DemandeFinancementController extends Controller
                 $request->session()->flash('info', '2) Demande de remboursement GIAC initié');
             }
             else {
-                
+
                 $drb = null;
             }
 
@@ -339,11 +324,7 @@ class DemandeFinancementController extends Controller
                 'type_miss' => 'required|max:150',
                 'nrc_e' => 'required',
                 'annee_exerc' => 'required|min:4|starts_with:20',
-<<<<<<< HEAD
-                // 'n_contrat' =>'nullable|max:20',
-=======
                 'n_contrat' => 'nullable|max:20',
->>>>>>> master
                 'nb_interv' => 'nullable|max:3', //2
                 'dt_df' => 'nullable|date', //2
                 'jr_hm_demande' => 'nullable|max:15', //2
@@ -427,11 +408,7 @@ class DemandeFinancementController extends Controller
             $df->dt_fin_realis = $request->input('dt_fin_realis');
             $df->dt_approb = $request->input('dt_approb');
             $df->dt_depos_rpt = $request->input('dt_depos_rpt');
-<<<<<<< HEAD
-            // $df->n_contrat = $request->input('n_contrat');
-=======
             $df->n_contrat = $request->input('n_contrat');
->>>>>>> master
 
             $docs = ['d_eligib_csf_entrp','d_model6_n_1','d_model6_n_2','d_honor_act_form','accus_depos',
                     'at_csf_entrp','av_realis_DS','av_realis_IF','planing_DS','planing_IF',

@@ -59,4 +59,14 @@ export const actions = {
       })
       .catch((err) => console.error("err FillDates", err));
   },
+  async FetchInitialInfoAvisModif({commit} , nForm) {
+    await axios.get(`/fill-avis-modif`, {params: {nForm: nForm}})
+      .then(({data}) => {
+        commit('SET_INITIAL_INFO_AVISMODIF', data);
+        console.log("initial info :" , data)
+      })
+      .catch((err) => {
+        console.log("err Fetching Info Initial Avis Modif" , err);
+      })
+  },
 }

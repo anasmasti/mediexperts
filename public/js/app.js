@@ -2286,7 +2286,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 //
-/* harmony default export */ __webpack_exports__["default"] = ({
+/* harmony default export */ __webpack_exports__["default"] = (_defineProperty({
   runtimeCompiler: true,
   name: 'plan-formation',
   data: function data() {
@@ -2308,6 +2308,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   mounted: function mounted() {
     this.FillClients();
   },
+  computed: {},
   methods: {
     DateFormat: function DateFormat(date) {
       if (date) {
@@ -2470,11 +2471,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     ResetCoutTotalPlan: function ResetCoutTotalPlan() {
       this.coutTotalPlan = 0;
     }
-  },
-  // methods
-  computed: {} // computed
-
-});
+  }
+}, "computed", {}));
 
 /***/ }),
 
@@ -2735,6 +2733,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       //csrf token
       //csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
       nForm: null,
+      idForm: null,
       nCabinet: null,
       id_plan: null,
       selected_nrc_entrp: null
@@ -2762,6 +2761,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     cabinets: function cabinets(state) {
       return state.cabinets;
+    },
+    Info_AvisModif: function Info_AvisModif(state) {
+      return state.Info_AvisModif;
     }
   })),
   methods: {
@@ -2780,7 +2782,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         var chk_dateR = document.getElementById("modif_date");
         var chk_organ = document.getElementById("modif_organ");
         var chk_lieu = document.getElementById("modif_lieu");
-        var chk_horaire = document.getElementById("modif_horaire"); // make checkbox disabled 
+        var chk_horaire = document.getElementById("modif_horaire"); // make checkbox disabled
 
         chk_dateR.disabled = true;
         chk_organ.disabled = true;
@@ -41275,7 +41277,15 @@ var render = function() {
               "select",
               {
                 staticClass: "form-control",
-                attrs: { id: "action", name: "action" }
+                attrs: { id: "action", name: "action", "v-model": _vm.nForm },
+                on: {
+                  change: function($event) {
+                    return _vm.handleAction(
+                      "model3/FetchInitialInfoAvisModif",
+                      _vm.nForm
+                    )
+                  }
+                }
               },
               [
                 _c("option", { attrs: { selected: "", disabled: "" } }, [
@@ -57768,6 +57778,35 @@ var actions = {
         }
       }, _callee6);
     }))();
+  },
+  FetchInitialInfoAvisModif: function FetchInitialInfoAvisModif(_ref12, nForm) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee7() {
+      var commit;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee7$(_context7) {
+        while (1) {
+          switch (_context7.prev = _context7.next) {
+            case 0:
+              commit = _ref12.commit;
+              _context7.next = 3;
+              return axios.get("/fill-avis-modif", {
+                params: {
+                  nForm: nForm
+                }
+              }).then(function (_ref13) {
+                var data = _ref13.data;
+                commit('SET_INITIAL_INFO_AVISMODIF', data);
+                console.log("initial info :", data);
+              })["catch"](function (err) {
+                console.log("err Fetching Info Initial Avis Modif", err);
+              });
+
+            case 3:
+            case "end":
+              return _context7.stop();
+          }
+        }
+      }, _callee7);
+    }))();
   }
 };
 
@@ -57838,6 +57877,9 @@ var mutations = {
   },
   SET_NB_PARTICIPENTS: function SET_NB_PARTICIPENTS(state, data) {
     state.nb_participents = data;
+  },
+  SET_INITIAL_INFO_AVISMODIF: function SET_INITIAL_INFO_AVISMODIF(state, data) {
+    state.Info_AvisModif = data;
   } // SET_DATES_ACTION(state) {
   //   state.actions_by_plan.forEach((action) => {
   //     this.FillDates(action.n_form);
@@ -57878,7 +57920,8 @@ var state = {
   curr_annee_plan: null,
   // année du plan actuel
   cabinets: [],
-  info_initial: []
+  info_initial: [],
+  Info_AvisModif: []
 };
 
 /***/ }),

@@ -8,8 +8,8 @@
     <!-- <input type="hidden" name="_token" v-bind:value="csrf" /> -->
       <!-- {{ csrf_field() }} -->
     <div class="card-body">
-      <div class="row"> 
-        
+      <div class="row">
+
 
         <div class="form-group col-lg-6 col-sm-12">
            <label>Entreprise</label>
@@ -37,7 +37,7 @@
           <option value="annulation" >Annulation</option>
           <option value="modification">Modification</option>
       </select>
-    </div> 
+    </div>
 
      <table class="table table-striped col-12 col-lg-6 border" style="margin: 16px">
       <thead>
@@ -72,7 +72,7 @@
 
      <div class="form-group col-lg-6 col-sm-12">
       <label>Thème de l’action</label>
-      <select class="form-control" id="action" name="action">
+      <select class="form-control" id="action" name="action" @change="handleAction('model3/FetchInitialInfoAvisModif', nForm)" :v-model="nForm">
         <option selected disabled>---selectionner le thème---</option>
         <option v-for="action in actions_by_plan" :value="action.nForm" :key="action.nForm">{{ action.nom_theme }}</option>
 
@@ -243,6 +243,7 @@ export default {
       //csrf token
       //csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
       nForm : null,
+      idForm: null,
       nCabinet : null,
       id_plan : null,
       selected_nrc_entrp: null
@@ -261,6 +262,7 @@ export default {
       actions_by_plan: state => state.actions_by_plan,
       curr_annee_plan: state => state.curr_annee_plan,
       cabinets: state => state.cabinets,
+      Info_AvisModif: state => state.Info_AvisModif
     })
   },
   methods: {
@@ -270,7 +272,7 @@ export default {
     // fonction pour l'état d'avis annulation
  getSelected() {
   let annul = document.getElementById('etat');
-  
+
   if(annul.value.toString() === "annulation")
   {
     let annuler = document.getElementById("annuler");
@@ -283,12 +285,12 @@ export default {
      let chk_lieu = document.getElementById("modif_lieu");
      let chk_horaire = document.getElementById("modif_horaire");
 
-     // make checkbox disabled 
+     // make checkbox disabled
       chk_dateR.disabled =true ;
       chk_organ.disabled =true ;
       chk_lieu.disabled =true ;
-      chk_horaire.disabled =true ; 
-      
+      chk_horaire.disabled =true ;
+
   }
 
 },
@@ -313,7 +315,7 @@ export default {
       chk_dateR.disabled =false ;
       chk_organ.disabled =false ;
       chk_lieu.disabled =false ;
-      chk_horaire.disabled =false ; 
+      chk_horaire.disabled =false ;
 
   }
 }
