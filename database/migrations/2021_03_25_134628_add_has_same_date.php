@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddNombreDate extends Migration
+class AddHasSameDate extends Migration
 {
     /**
      * Run the migrations.
@@ -15,8 +15,7 @@ class AddNombreDate extends Migration
     {
       Schema::table('plan_formations', function (Blueprint $table) {
 
-        $table->integer('Nombre_Dates');
-
+        $table->boolean('Has_Same_Dates')->default(false);
 
       });
     }
@@ -29,8 +28,8 @@ class AddNombreDate extends Migration
     public function down()
     {
       Schema::table('plan_formations', function (Blueprint $table) {
-
-        $table->dropColumn(['Nombre_Dates']);
+        //
+        $table->dropColumn(['Has_Same_Dates']);
     });
     }
 }

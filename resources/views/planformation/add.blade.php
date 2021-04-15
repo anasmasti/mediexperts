@@ -250,7 +250,12 @@
         </span>
         @endif
         <span class="text-danger" id="nb_dates_msg"></span>
+        <div class="form-check">
+          <input type="checkbox" name="grp_hasnt_same_dates" id="grp_hasnt_same_dates" class="form-check-input">
+          <label for="grp_hasnt_same_dates" class="form-check-label">Groupe ayant différent date</label>
+        </div>
       </div>
+
 
 
       <div class="form-group col-lg-3 col-md-6 col-12"><label>Nb. d’heures par jour </label>

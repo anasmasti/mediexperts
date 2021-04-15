@@ -811,10 +811,10 @@
             </td>
           </tr>
           @endif
-          <tr>
+          {{-- <tr>
             <th>N Contrat</th>
             <td class="th-det text-capitalize">{{ $df->n_contrat }}</td>
-          </tr>
+          </tr> --}}
           <tr>
             <th>
               Date dépôt demande

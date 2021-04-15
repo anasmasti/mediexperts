@@ -2723,24 +2723,117 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   runtimeCompiler: true,
   data: function data() {
     return {
-      //csrf token
-      //csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-      nForm: null,
+      selected_nForm: null,
+      idForm: null,
       nCabinet: null,
       id_plan: null,
       selected_nrc_entrp: null
     };
   },
   mounted: function mounted() {
-    this.$store.dispatch('model3/FetchClients');
-    this.$store.dispatch('model3/FetchAllCabinets');
+    this.$store.dispatch("model3/FetchClients");
+    this.$store.dispatch("model3/FetchAllCabinets");
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])('model3', {
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])("model3", {
     curr_nrc_entrp: function curr_nrc_entrp(state) {
       return state.curr_nrc_entrp;
     },
@@ -2758,6 +2851,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     cabinets: function cabinets(state) {
       return state.cabinets;
+    },
+    Info_AvisModif: function Info_AvisModif(state) {
+      return state.Info_AvisModif;
     }
   })),
   methods: {
@@ -2766,7 +2862,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     // fonction pour l'état d'avis annulation
     getSelected: function getSelected() {
-      var annul = document.getElementById('etat');
+      var annul = document.getElementById("etat");
 
       if (annul.value.toString() === "annulation") {
         var annuler = document.getElementById("annuler");
@@ -2776,7 +2872,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         var chk_dateR = document.getElementById("modif_date");
         var chk_organ = document.getElementById("modif_organ");
         var chk_lieu = document.getElementById("modif_lieu");
-        var chk_horaire = document.getElementById("modif_horaire"); // make checkbox disabled 
+        var chk_horaire = document.getElementById("modif_horaire"); // make checkbox disabled
 
         chk_dateR.disabled = true;
         chk_organ.disabled = true;
@@ -2786,7 +2882,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     // fonction pour l'état d'avis modification
     getDisabled: function getDisabled() {
-      var annul = document.getElementById('etat');
+      var annul = document.getElementById("etat");
 
       if (annul.value.toString() === "modification") {
         var annuler = document.getElementById("annuler");
@@ -40652,7 +40748,7 @@ var render = function() {
               }
             }
           },
-          [_vm._v("\r\n        Remplir les dates\r\n      ")]
+          [_vm._v("\n        Remplir les dates\n      ")]
         )
       ]),
       _vm._v(" "),
@@ -41009,9 +41105,9 @@ var staticRenderFns = [
           }
         },
         [
-          _vm._v("\r\n        « Société\r\n        "),
+          _vm._v("\n        « Société\n        "),
           _c("strong", { attrs: { id: "entrp" } }, [_vm._v("(Entreprise)")]),
-          _vm._v("\r\n        »\r\n      ")
+          _vm._v("\n        »\n      ")
         ]
       )
     ])
@@ -41031,7 +41127,7 @@ var staticRenderFns = [
           }
         },
         [
-          _vm._v("\r\n        Plan de formation\r\n        "),
+          _vm._v("\n        Plan de formation\n        "),
           _c("span", { attrs: { name: "year", id: "year" } }, [
             _vm._v("(année)")
           ])
@@ -41108,6 +41204,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "card card-dark" }, [
     _vm._m(0),
+    _vm._v(" "),
     _c("br"),
     _vm._v(" "),
     _c("form", { attrs: { role: "form", action: "#", method: "POST" } }, [
@@ -41166,7 +41263,13 @@ var render = function() {
                   return _c(
                     "option",
                     { key: cl.nrc_entrp, domProps: { value: cl.nrc_entrp } },
-                    [_vm._v(" " + _vm._s(cl.raisoci) + " ")]
+                    [
+                      _vm._v(
+                        "\n              " +
+                          _vm._s(cl.raisoci) +
+                          "\n            "
+                      )
+                    ]
                   )
                 })
               ],
@@ -41270,8 +41373,38 @@ var render = function() {
             _c(
               "select",
               {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.selected_nForm,
+                    expression: "selected_nForm"
+                  }
+                ],
                 staticClass: "form-control",
-                attrs: { id: "action", name: "action" }
+                on: {
+                  change: [
+                    function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.selected_nForm = $event.target.multiple
+                        ? $$selectedVal
+                        : $$selectedVal[0]
+                    },
+                    function($event) {
+                      return _vm.handleAction(
+                        "model3/FetchInitialInfoAvisModif",
+                        _vm.selected_nForm
+                      )
+                    }
+                  ]
+                }
               },
               [
                 _c("option", { attrs: { selected: "", disabled: "" } }, [
@@ -41281,7 +41414,7 @@ var render = function() {
                 _vm._l(_vm.actions_by_plan, function(action) {
                   return _c(
                     "option",
-                    { key: action.nForm, domProps: { value: action.nForm } },
+                    { key: action.n_form, domProps: { value: action.n_form } },
                     [_vm._v(_vm._s(action.nom_theme))]
                   )
                 })
@@ -41312,7 +41445,7 @@ var render = function() {
                       key: cabinet.nrc_cab,
                       domProps: { value: cabinet.nrc_cab }
                     },
-                    [_vm._v(" " + _vm._s(cabinet.raisoci))]
+                    [_vm._v("\n              " + _vm._s(cabinet.raisoci))]
                   )
                 })
               ],
@@ -41340,7 +41473,13 @@ var render = function() {
                   return _c(
                     "option",
                     { key: cl.nrc_entrp, domProps: { value: cl.nrc_entrp } },
-                    [_vm._v(" " + _vm._s(cl.raisoci) + " ")]
+                    [
+                      _vm._v(
+                        "\n              " +
+                          _vm._s(cl.raisoci) +
+                          "\n            "
+                      )
+                    ]
                   )
                 })
               ],
@@ -57614,9 +57753,9 @@ var actions = {
             case 0:
               commit = _ref.commit;
               _context.next = 3;
-              return axios.get('/fill-clients').then(function (_ref2) {
+              return axios.get("/fill-clients").then(function (_ref2) {
                 var data = _ref2.data;
-                commit('SET_CLIENTS', data);
+                commit("SET_CLIENTS", data);
                 console.log("clients : ", data);
               })["catch"](function (err) {
                 return console.error("err FillClients", err);
@@ -57638,7 +57777,7 @@ var actions = {
           switch (_context2.prev = _context2.next) {
             case 0:
               commit = _ref3.commit, nrc = _ref3.nrc;
-              commit('SET_NRC_ENTRP', nrc);
+              commit("SET_NRC_ENTRP", nrc);
 
             case 2:
             case "end":
@@ -57664,7 +57803,7 @@ var actions = {
                 }
               }).then(function (_ref5) {
                 var data = _ref5.data;
-                commit('SET_REFERENCE_PLANS', data);
+                commit("SET_REFERENCE_PLANS", data);
                 console.log("reference_plans : ", data);
               })["catch"](function (err) {
                 return console.log("err FillReferencesPlan", err);
@@ -57695,8 +57834,7 @@ var actions = {
                 }
               }).then(function (_ref7) {
                 var data = _ref7.data;
-                commit('SET_ACTION_BY_PLAN', data); //commit('SET_ANNEE_PLAN', data[0].annee);
-
+                commit("SET_ACTION_BY_PLAN", data);
                 console.log("actions_by_plan : ", data);
               }).then(function () {// fill dates action
                 //commit('SET_DATES_ACTION');
@@ -57723,7 +57861,7 @@ var actions = {
               _context5.next = 3;
               return axios.get("/fill-all-organisme").then(function (_ref9) {
                 var data = _ref9.data;
-                commit('SET_ORGANISME', data);
+                commit("SET_ORGANISME", data);
                 console.log("Cabinets :", data);
               });
 
@@ -57751,8 +57889,8 @@ var actions = {
                 }
               }).then(function (_ref11) {
                 var data = _ref11.data;
-                commit('SET_NB_PARTICIPENTS', data);
-                commit('SET_DATES', data);
+                commit("SET_NB_PARTICIPENTS", data);
+                commit("SET_DATES", data);
               })["catch"](function (err) {
                 return console.error("err FillDates", err);
               });
@@ -57763,6 +57901,35 @@ var actions = {
           }
         }
       }, _callee6);
+    }))();
+  },
+  FetchInitialInfoAvisModif: function FetchInitialInfoAvisModif(_ref12, nForm) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee7() {
+      var commit;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee7$(_context7) {
+        while (1) {
+          switch (_context7.prev = _context7.next) {
+            case 0:
+              commit = _ref12.commit;
+              _context7.next = 3;
+              return axios.get("/fill-avis-modif", {
+                params: {
+                  nForm: nForm
+                }
+              }).then(function (_ref13) {
+                var data = _ref13.data;
+                commit("SET_INITIAL_INFO_AVISMODIF", data);
+                console.log("initial info :", data);
+              })["catch"](function (err) {
+                console.log("err Fetching Info Initial Avis Modif", err);
+              });
+
+            case 3:
+            case "end":
+              return _context7.stop();
+          }
+        }
+      }, _callee7);
     }))();
   }
 };
@@ -57834,6 +58001,9 @@ var mutations = {
   },
   SET_NB_PARTICIPENTS: function SET_NB_PARTICIPENTS(state, data) {
     state.nb_participents = data;
+  },
+  SET_INITIAL_INFO_AVISMODIF: function SET_INITIAL_INFO_AVISMODIF(state, data) {
+    state.Info_AvisModif = data;
   } // SET_DATES_ACTION(state) {
   //   state.actions_by_plan.forEach((action) => {
   //     this.FillDates(action.n_form);
@@ -57874,7 +58044,8 @@ var state = {
   curr_annee_plan: null,
   // année du plan actuel
   cabinets: [],
-  info_initial: []
+  info_initial: [],
+  Info_AvisModif: []
 };
 
 /***/ }),
@@ -57897,8 +58068,8 @@ var state = {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\ayman\Desktop\MediexpertsApp\mediexperts-app\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\ayman\Desktop\MediexpertsApp\mediexperts-app\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/macinfo/Downloads/Work Projects/Mediexperts/mediexperts_app/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/macinfo/Downloads/Work Projects/Mediexperts/mediexperts_app/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

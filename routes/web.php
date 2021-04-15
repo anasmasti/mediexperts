@@ -165,7 +165,7 @@ Route::get('/del-drb-gc/{ndrb}', 'DemandeRemboursementGiacController@destroy')->
 Route::get('/print-facture-drb/{ndrb}/{nrc}', 'DemandeRemboursementGiacController@FactureDrbGiac')->name('DRB_GIAC.FactureDrbGiac');
 Route::post('/save-nfacture-giac', 'DemandeRemboursementGiacController@SaveNFactureGiac')->name('DRB_GIAC.SaveNFactureGiac');
 
-Route::get('/print-facture-df/{ndrb}/{nrc}', 'DemandeFinancementController@FactureDF')->name('DF.FactureDF');
+Route::get('/print-facture-df/{nrc}', 'DemandeFinancementController@FactureDF')->name('DF.FactureDF');
 Route::post('/save-nfacture-df', 'DemandeFinancementController@SaveNFactureDF')->name('DF.SaveNFactureDF');
 /********************************************************************/
 
@@ -383,6 +383,7 @@ Route::get('/print-att-reference-plan', 'FormulaireController@print_att_referenc
 Route::get('/fill-cabinet-info', 'FormulaireController@FillCabinetInfo')->name('PlanFormation.FillCabinetInfo');
 Route::get('/fill-plan-by-client', 'FormulaireController@FillPlansByClient')->name('PlanByClinet');
 Route::get('/fill-all-organisme' , 'FormulaireController@FillAllCabinets')->name('FillOrganisme');
+Route::get('/fill-avis-modif' , 'FormulaireController@FillavisModif')->name('FillAvisModif');
 /********************************************************************/
 
 
