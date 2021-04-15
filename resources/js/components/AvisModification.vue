@@ -109,7 +109,7 @@
             <select
               class="form-control"
               @change="handleAction('model3/FetchInitialInfoAvisModif', selected_nForm)"
-              v-model="selected_nForm" 
+              v-model="selected_nForm"
             >
               <option selected disabled>---selectionner le thème---</option>
               <option
@@ -179,7 +179,7 @@
 
           <div class="form-group col-lg-6 col-sm-12">
             <label>Lieu de formation initial </label>
-            <input type="text" name="" id="" class="form-control" />
+            <input type="text" name="" id="" class="form-control"/>
           </div>
           <div class="form-group col-lg-6 col-sm-12">
             <label>Nouveau lieu</label>
@@ -333,7 +333,8 @@ export default {
       idForm: null,
       nCabinet: null,
       id_plan: null,
-      selected_nrc_entrp: null
+      selected_nrc_entrp: null,
+      //lieu: this.Info_AvisModif.lieu,
     };
   },
 
@@ -401,7 +402,7 @@ export default {
         chk_lieu.disabled = false;
         chk_horaire.disabled = false;
       }
-    }
+    },
   }
 };
 </script>
