@@ -6,8 +6,6 @@
     </div>
     <br />
     <form role="form" action="#" method="POST">
-      <!-- <input type="hidden" name="_token" v-bind:value="csrf" /> -->
-      <!-- {{ csrf_field() }} -->
       <div class="card-body">
         <div class="row">
           <div class="form-group col-lg-6 col-sm-12">
