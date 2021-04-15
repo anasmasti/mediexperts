@@ -57168,10 +57168,12 @@ Vue.component('avis-modification', __webpack_require__(/*! ../js/components/Avis
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-var app = new Vue({
-  el: '#app',
-  store: _store__WEBPACK_IMPORTED_MODULE_0__["store"]
-});
+window.onload = function () {
+  var app = new Vue({
+    el: '#app',
+    store: _store__WEBPACK_IMPORTED_MODULE_0__["store"]
+  });
+};
 
 /***/ }),
 

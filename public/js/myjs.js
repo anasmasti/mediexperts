@@ -1,4 +1,4 @@
-const {Alert} = require("bootstrap");
+//const {Alert} = require("bootstrap");
 
 // ALLOW ONLY NUMBERS
 function isNumberKey(evt) {
@@ -171,7 +171,7 @@ function checkEtat() {
             $('label[for=dem_approb_if], input#dem_approb_if').fadeIn(200);
             $('#tr_d_df_DS').fadeOut(200);
             $('label[for=dem_approb_ds], input#dem_approb_ds').fadeOut(200);
-        } 
+        }
         else {
             $('#tr_d_df_DS').fadeOut(200);
             $('label[for=dem_approb_ds], input#dem_approb_ds').fadeOut(200);
@@ -235,7 +235,7 @@ function checkEtat() {
     }
 
 }
-    
+
  //checkEtat
 
 
@@ -250,7 +250,7 @@ function AccordValidate(){
     let prcCotePart = document.getElementById("prc_cote_part").value;
     let JourHomeValid = document.getElementById("jr_hm_valid").value;
 
-    if ((etatAccord.checked == true || etatRealise.checked == true || etatApprouve.checked == true) && 
+    if ((etatAccord.checked == true || etatRealise.checked == true || etatApprouve.checked == true) &&
         (dateAccord =='' || bdgAccord =='' || prcCotePart == '' || JourHomeValid == ''))
     {
         $("#msg_error_accord").modal("show");
