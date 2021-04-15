@@ -2815,6 +2815,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   runtimeCompiler: true,
@@ -41423,7 +41432,27 @@ var render = function() {
           _vm._v(" "),
           _vm._m(2),
           _vm._v(" "),
-          _vm._m(3),
+          _c(
+            "div",
+            { staticClass: "form-group col-lg-6 col-sm-12" },
+            [
+              _c("label", [_vm._v("Organisme de formation initial")]),
+              _vm._v(" "),
+              _vm._l(_vm.Info_AvisModif, function(info, index) {
+                return _c("div", { key: index }, [
+                  _c("input", {
+                    staticClass: "form-control",
+                    attrs: { type: "text" },
+                    domProps: {
+                      value:
+                        _vm.Info_AvisModif.length != 0 ? info.organisme : ""
+                    }
+                  })
+                ])
+              })
+            ],
+            2
+          ),
           _vm._v(" "),
           _c("div", { staticClass: "form-group col-lg-6 col-sm-12" }, [
             _c("label", [_vm._v("Nouvel Organisme de formation")]),
@@ -41451,7 +41480,7 @@ var render = function() {
             )
           ]),
           _vm._v(" "),
-          _vm._m(4),
+          _vm._m(3),
           _vm._v(" "),
           _c("div", { staticClass: "form-group col-lg-6 col-sm-12" }, [
             _c("label", [_vm._v("Nouveau lieu")]),
@@ -41485,6 +41514,8 @@ var render = function() {
             )
           ]),
           _vm._v(" "),
+          _vm._m(4),
+          _vm._v(" "),
           _vm._m(5),
           _vm._v(" "),
           _vm._m(6),
@@ -41503,15 +41534,13 @@ var render = function() {
           _vm._v(" "),
           _vm._m(13),
           _vm._v(" "),
-          _vm._m(14),
-          _vm._v(" "),
-          _vm._m(15)
+          _vm._m(14)
         ]),
         _vm._v(" "),
-        _vm._m(16)
+        _vm._m(15)
       ]),
       _vm._v(" "),
-      _vm._m(17)
+      _vm._m(16)
     ])
   ])
 }
@@ -41666,19 +41695,6 @@ var staticRenderFns = [
           )
         ])
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group col-lg-6 col-sm-12" }, [
-      _c("label", [_vm._v("Organisme de formation initial")]),
-      _vm._v(" "),
-      _c("input", {
-        staticClass: "form-control",
-        attrs: { type: "text", name: "", id: "" }
-      })
     ])
   },
   function() {

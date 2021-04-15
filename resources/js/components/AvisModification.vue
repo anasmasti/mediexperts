@@ -108,8 +108,10 @@
             <label>Thème de l’action</label>
             <select
               class="form-control"
-              @change="handleAction('model3/FetchInitialInfoAvisModif', selected_nForm)"
-              v-model="selected_nForm" 
+              @change="
+                handleAction('model3/FetchInitialInfoAvisModif', selected_nForm)
+              "
+              v-model="selected_nForm"
             >
               <option selected disabled>---selectionner le thème---</option>
               <option
@@ -161,7 +163,14 @@
 
           <div class="form-group col-lg-6 col-sm-12">
             <label>Organisme de formation initial</label>
-            <input type="text" name="" id="" class="form-control" />
+
+            <div v-for="(info, index) in Info_AvisModif" :key="index">
+              <input
+                type="text"
+                class="form-control"
+                :value="Info_AvisModif.length != 0 ? info.organisme : '' "
+              />
+            </div>
           </div>
           <div class="form-group col-lg-6 col-sm-12">
             <label>Nouvel Organisme de formation</label>
