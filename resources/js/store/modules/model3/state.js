@@ -9,5 +9,6 @@ export const state = {
   actions_by_plan: [], // list des action de formations
   curr_annee_plan: null, // année du plan actuel
   cabinets : [],
-  Info_AvisModif: []
+  Info_AvisModif: [],
+  List_Dates: []
 }

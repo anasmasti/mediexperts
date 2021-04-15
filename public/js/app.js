@@ -2827,7 +2827,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   runtimeCompiler: true,
@@ -2837,8 +2836,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       idForm: null,
       nCabinet: null,
       id_plan: null,
-      selected_nrc_entrp: null //lieu: this.Info_AvisModif.lieu,
-
+      selected_nrc_entrp: null
     };
   },
   mounted: function mounted() {
@@ -2866,6 +2864,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     Info_AvisModif: function Info_AvisModif(state) {
       return state.Info_AvisModif;
+    },
+    List_Dates: function List_Dates(state) {
+      return state.List_Dates;
     }
   })),
   methods: {
@@ -41277,9 +41278,9 @@ var render = function() {
                     { key: cl.nrc_entrp, domProps: { value: cl.nrc_entrp } },
                     [
                       _vm._v(
-                        "\n                " +
+                        "\n              " +
                           _vm._s(cl.raisoci) +
-                          "\n              "
+                          "\n            "
                       )
                     ]
                   )
@@ -41379,29 +41380,61 @@ var render = function() {
           _vm._v(" "),
           _vm._m(1),
           _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "form-group col-lg-6 col-sm-12" },
-            [
-              _c("label", [_vm._v("Thème de l’action")]),
-              _vm._v(" "),
-              _vm._v(
-                '\n<<<<<<< HEAD\n              @change="handleAction(\'model3/FetchInitialInfoAvisModif\', selected_nForm)"\n=======\n              @change="\n                handleAction(\'model3/FetchInitialInfoAvisModif\', selected_nForm)\n              "\n>>>>>>> 871eef04a8f49d2f58a22c24e30dcdbd6c46fa0a\n              v-model="selected_nForm"\n            >\n              '
-              ),
-              _c("option", { attrs: { selected: "", disabled: "" } }, [
-                _vm._v("---selectionner le thème---")
-              ]),
-              _vm._v(" "),
-              _vm._l(_vm.actions_by_plan, function(action) {
-                return _c(
-                  "option",
-                  { key: action.n_form, domProps: { value: action.n_form } },
-                  [_vm._v(_vm._s(action.nom_theme))]
-                )
-              })
-            ],
-            2
-          ),
+          _c("div", { staticClass: "form-group col-lg-6 col-sm-12" }, [
+            _c("label", [_vm._v("Thème de l’action")]),
+            _vm._v(" "),
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.selected_nForm,
+                    expression: "selected_nForm"
+                  }
+                ],
+                staticClass: "form-control",
+                on: {
+                  change: [
+                    function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.selected_nForm = $event.target.multiple
+                        ? $$selectedVal
+                        : $$selectedVal[0]
+                    },
+                    function($event) {
+                      return _vm.handleAction(
+                        "model3/FetchInitialInfoAvisModif",
+                        _vm.selected_nForm
+                      )
+                    }
+                  ]
+                }
+              },
+              [
+                _c("option", { attrs: { selected: "", disabled: "" } }, [
+                  _vm._v("---selectionner le thème---")
+                ]),
+                _vm._v(" "),
+                _vm._l(_vm.actions_by_plan, function(action) {
+                  return _c(
+                    "option",
+                    { key: action.n_form, domProps: { value: action.n_form } },
+                    [_vm._v(_vm._s(action.nom_theme))]
+                  )
+                })
+              ],
+              2
+            )
+          ]),
           _vm._v(" "),
           _vm._m(2),
           _vm._v(" "),
@@ -41445,7 +41478,7 @@ var render = function() {
                       key: cabinet.nrc_cab,
                       domProps: { value: cabinet.nrc_cab }
                     },
-                    [_vm._v("\n                " + _vm._s(cabinet.raisoci))]
+                    [_vm._v("\n              " + _vm._s(cabinet.raisoci))]
                   )
                 })
               ],
@@ -41453,7 +41486,26 @@ var render = function() {
             )
           ]),
           _vm._v(" "),
-          _vm._m(3),
+          _c(
+            "div",
+            { staticClass: "form-group col-lg-6 col-sm-12" },
+            [
+              _c("label", [_vm._v("Lieu de formation initial ")]),
+              _vm._v(" "),
+              _vm._l(_vm.Info_AvisModif, function(info, index) {
+                return _c("div", { key: index }, [
+                  _c("input", {
+                    staticClass: "form-control",
+                    attrs: { type: "text" },
+                    domProps: {
+                      value: _vm.Info_AvisModif.length != 0 ? info.lieu : ""
+                    }
+                  })
+                ])
+              })
+            ],
+            2
+          ),
           _vm._v(" "),
           _c("div", { staticClass: "form-group col-lg-6 col-sm-12" }, [
             _c("label", [_vm._v("Nouveau lieu")]),
@@ -41475,9 +41527,9 @@ var render = function() {
                     { key: cl.nrc_entrp, domProps: { value: cl.nrc_entrp } },
                     [
                       _vm._v(
-                        "\n                " +
+                        "\n              " +
                           _vm._s(cl.raisoci) +
-                          "\n              "
+                          "\n            "
                       )
                     ]
                   )
@@ -41486,6 +41538,8 @@ var render = function() {
               2
             )
           ]),
+          _vm._v(" "),
+          _vm._m(3),
           _vm._v(" "),
           _vm._m(4),
           _vm._v(" "),
@@ -41505,15 +41559,13 @@ var render = function() {
           _vm._v(" "),
           _vm._m(12),
           _vm._v(" "),
-          _vm._m(13),
-          _vm._v(" "),
-          _vm._m(14)
+          _vm._m(13)
         ]),
         _vm._v(" "),
-        _vm._m(15)
+        _vm._m(14)
       ]),
       _vm._v(" "),
-      _vm._m(16)
+      _vm._m(15)
     ])
   ])
 }
@@ -41668,19 +41720,6 @@ var staticRenderFns = [
           )
         ])
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group col-lg-6 col-sm-12" }, [
-      _c("label", [_vm._v("Lieu de formation initial ")]),
-      _vm._v(" "),
-      _c("input", {
-        staticClass: "form-control",
-        attrs: { type: "text", name: "", id: "" }
-      })
     ])
   },
   function() {
@@ -57715,14 +57754,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "actions", function() { return actions; });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 
 
 
@@ -57964,6 +58006,9 @@ var model3 = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mutations", function() { return mutations; });
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
+
 var mutations = {
   // ########################################################### //
   // #################### M U T A T I O N S #################### //
@@ -58031,7 +58076,8 @@ var state = {
   curr_annee_plan: null,
   // année du plan actuel
   cabinets: [],
-  Info_AvisModif: []
+  Info_AvisModif: [],
+  List_Dates: []
 };
 
 /***/ }),

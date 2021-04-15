@@ -1,3 +1,4 @@
+import { data } from "jquery";
 import Vue from "vue";
 import Vuex from "vuex";
 
@@ -70,5 +71,5 @@ export const actions = {
       .catch(err => {
         console.log("err Fetching Info Initial Avis Modif", err);
       });
-  }
+  },
 };

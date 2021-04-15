@@ -108,13 +108,7 @@
             <label>Thème de l’action</label>
             <select
               class="form-control"
-<<<<<<< HEAD
               @change="handleAction('model3/FetchInitialInfoAvisModif', selected_nForm)"
-=======
-              @change="
-                handleAction('model3/FetchInitialInfoAvisModif', selected_nForm)
-              "
->>>>>>> 871eef04a8f49d2f58a22c24e30dcdbd6c46fa0a
               v-model="selected_nForm"
             >
               <option selected disabled>---selectionner le thème---</option>
@@ -167,7 +161,6 @@
 
           <div class="form-group col-lg-6 col-sm-12">
             <label>Organisme de formation initial</label>
-
             <div v-for="(info, index) in Info_AvisModif" :key="index">
               <input
                 type="text"
@@ -192,7 +185,13 @@
 
           <div class="form-group col-lg-6 col-sm-12">
             <label>Lieu de formation initial </label>
-            <input type="text" name="" id="" class="form-control"/>
+             <div v-for="(info, index) in Info_AvisModif" :key="index">
+              <input
+                type="text"
+                class="form-control"
+                :value="Info_AvisModif.length != 0 ? info.lieu : '' "
+              />
+            </div>
           </div>
           <div class="form-group col-lg-6 col-sm-12">
             <label>Nouveau lieu</label>
@@ -337,6 +336,7 @@
 <script>
 import { mapState } from "vuex";
 
+
 export default {
   runtimeCompiler: true,
 
@@ -347,7 +347,6 @@ export default {
       nCabinet: null,
       id_plan: null,
       selected_nrc_entrp: null,
-      //lieu: this.Info_AvisModif.lieu,
     };
   },
 
@@ -364,7 +363,8 @@ export default {
       actions_by_plan: state => state.actions_by_plan,
       curr_annee_plan: state => state.curr_annee_plan,
       cabinets: state => state.cabinets,
-      Info_AvisModif: state => state.Info_AvisModif
+      Info_AvisModif: state => state.Info_AvisModif,
+      List_Dates: state => state.List_Dates
     })
   },
 
