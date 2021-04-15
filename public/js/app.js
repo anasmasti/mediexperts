@@ -2815,6 +2815,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   runtimeCompiler: true,
@@ -41264,9 +41277,9 @@ var render = function() {
                     { key: cl.nrc_entrp, domProps: { value: cl.nrc_entrp } },
                     [
                       _vm._v(
-                        "\n              " +
+                        "\n                " +
                           _vm._s(cl.raisoci) +
-                          "\n            "
+                          "\n              "
                       )
                     ]
                   )
@@ -41366,65 +41379,53 @@ var render = function() {
           _vm._v(" "),
           _vm._m(1),
           _vm._v(" "),
-          _c("div", { staticClass: "form-group col-lg-6 col-sm-12" }, [
-            _c("label", [_vm._v("Thème de l’action")]),
-            _vm._v(" "),
-            _c(
-              "select",
-              {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.selected_nForm,
-                    expression: "selected_nForm"
-                  }
-                ],
-                staticClass: "form-control",
-                on: {
-                  change: [
-                    function($event) {
-                      var $$selectedVal = Array.prototype.filter
-                        .call($event.target.options, function(o) {
-                          return o.selected
-                        })
-                        .map(function(o) {
-                          var val = "_value" in o ? o._value : o.value
-                          return val
-                        })
-                      _vm.selected_nForm = $event.target.multiple
-                        ? $$selectedVal
-                        : $$selectedVal[0]
-                    },
-                    function($event) {
-                      return _vm.handleAction(
-                        "model3/FetchInitialInfoAvisModif",
-                        _vm.selected_nForm
-                      )
-                    }
-                  ]
-                }
-              },
-              [
-                _c("option", { attrs: { selected: "", disabled: "" } }, [
-                  _vm._v("---selectionner le thème---")
-                ]),
-                _vm._v(" "),
-                _vm._l(_vm.actions_by_plan, function(action) {
-                  return _c(
-                    "option",
-                    { key: action.n_form, domProps: { value: action.n_form } },
-                    [_vm._v(_vm._s(action.nom_theme))]
-                  )
-                })
-              ],
-              2
-            )
-          ]),
+          _c(
+            "div",
+            { staticClass: "form-group col-lg-6 col-sm-12" },
+            [
+              _c("label", [_vm._v("Thème de l’action")]),
+              _vm._v(" "),
+              _vm._v(
+                '\n<<<<<<< HEAD\n              @change="handleAction(\'model3/FetchInitialInfoAvisModif\', selected_nForm)"\n=======\n              @change="\n                handleAction(\'model3/FetchInitialInfoAvisModif\', selected_nForm)\n              "\n>>>>>>> 871eef04a8f49d2f58a22c24e30dcdbd6c46fa0a\n              v-model="selected_nForm"\n            >\n              '
+              ),
+              _c("option", { attrs: { selected: "", disabled: "" } }, [
+                _vm._v("---selectionner le thème---")
+              ]),
+              _vm._v(" "),
+              _vm._l(_vm.actions_by_plan, function(action) {
+                return _c(
+                  "option",
+                  { key: action.n_form, domProps: { value: action.n_form } },
+                  [_vm._v(_vm._s(action.nom_theme))]
+                )
+              })
+            ],
+            2
+          ),
           _vm._v(" "),
           _vm._m(2),
           _vm._v(" "),
-          _vm._m(3),
+          _c(
+            "div",
+            { staticClass: "form-group col-lg-6 col-sm-12" },
+            [
+              _c("label", [_vm._v("Organisme de formation initial")]),
+              _vm._v(" "),
+              _vm._l(_vm.Info_AvisModif, function(info, index) {
+                return _c("div", { key: index }, [
+                  _c("input", {
+                    staticClass: "form-control",
+                    attrs: { type: "text" },
+                    domProps: {
+                      value:
+                        _vm.Info_AvisModif.length != 0 ? info.organisme : ""
+                    }
+                  })
+                ])
+              })
+            ],
+            2
+          ),
           _vm._v(" "),
           _c("div", { staticClass: "form-group col-lg-6 col-sm-12" }, [
             _c("label", [_vm._v("Nouvel Organisme de formation")]),
@@ -41444,7 +41445,7 @@ var render = function() {
                       key: cabinet.nrc_cab,
                       domProps: { value: cabinet.nrc_cab }
                     },
-                    [_vm._v("\n              " + _vm._s(cabinet.raisoci))]
+                    [_vm._v("\n                " + _vm._s(cabinet.raisoci))]
                   )
                 })
               ],
@@ -41452,7 +41453,7 @@ var render = function() {
             )
           ]),
           _vm._v(" "),
-          _vm._m(4),
+          _vm._m(3),
           _vm._v(" "),
           _c("div", { staticClass: "form-group col-lg-6 col-sm-12" }, [
             _c("label", [_vm._v("Nouveau lieu")]),
@@ -41474,9 +41475,9 @@ var render = function() {
                     { key: cl.nrc_entrp, domProps: { value: cl.nrc_entrp } },
                     [
                       _vm._v(
-                        "\n              " +
+                        "\n                " +
                           _vm._s(cl.raisoci) +
-                          "\n            "
+                          "\n              "
                       )
                     ]
                   )
@@ -41485,6 +41486,8 @@ var render = function() {
               2
             )
           ]),
+          _vm._v(" "),
+          _vm._m(4),
           _vm._v(" "),
           _vm._m(5),
           _vm._v(" "),
@@ -41504,15 +41507,13 @@ var render = function() {
           _vm._v(" "),
           _vm._m(13),
           _vm._v(" "),
-          _vm._m(14),
-          _vm._v(" "),
-          _vm._m(15)
+          _vm._m(14)
         ]),
         _vm._v(" "),
-        _vm._m(16)
+        _vm._m(15)
       ]),
       _vm._v(" "),
-      _vm._m(17)
+      _vm._m(16)
     ])
   ])
 }
@@ -41667,19 +41668,6 @@ var staticRenderFns = [
           )
         ])
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group col-lg-6 col-sm-12" }, [
-      _c("label", [_vm._v("Organisme de formation initial")]),
-      _vm._v(" "),
-      _c("input", {
-        staticClass: "form-control",
-        attrs: { type: "text", name: "", id: "" }
-      })
     ])
   },
   function() {
