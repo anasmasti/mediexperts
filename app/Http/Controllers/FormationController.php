@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\{Formation,PlanFormation,Client,Theme,Domaine,Personnel,Plan,Intervenant,FormationPersonnel};
-use DB;
-use Alert;
+use Illuminate\Support\Facades\DB;
+
 
 class FormationController extends Controller
 {
@@ -51,7 +51,7 @@ class FormationController extends Controller
     //find nb jour de Plan de formation
     public function FindNbJours(Request $request) {
         // $data = PlanFormation::find($request->nform)->nbjour;
-        $data = PlanFormation::select('n_form', 'nb_jour', 'nb_grp', 'dt_debut', 'dt_fin', 'nb_partcp_total')
+        $data = PlanFormation::select('n_form', 'nb_jour', 'nb_grp', 'dt_debut', 'dt_fin', 'nb_partcp_total','Nombre_Dates')
                 ->where('plan_formations.n_form', $request->nForm)
                 ->get();
         return response()->json($data);
@@ -123,7 +123,7 @@ class FormationController extends Controller
         ->where([['clients.nrc_entrp', '=', $request->nrc], ['plans.annee', '=', $request->annee]])
         ->get();
 
-        return view('planformation.view', ['plan' => $plan]);
+        return view('PlanFormation.view', ['plan' => $plan]);
     }
     public function SaveNFacture(Request $request) {
       // $formation = Formation::findOrFail($request->nFacture);
@@ -209,6 +209,7 @@ class FormationController extends Controller
             // }
 
             //get all inputs at once (with the same name as "name[]")
+
             $cins = $request->cin;
             $counter = 0;
             if ($cins) {

@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\{Intervenant,Cabinet,PlanFormation,MissionIntervenant};
-use Alert;
-use Illuminate\Support\Facades\Input;
+
 
 class IntervenantController extends Controller
 {

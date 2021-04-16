@@ -24,7 +24,7 @@
     </div><!-- /.col -->
     <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="/planformation">Action formation</a></li>
+            <li class="breadcrumb-item"><a href="/PlanFormation">Action formation</a></li>
             <li class="breadcrumb-item active">N° {{ $plan->n_form }}</li>
         </ol>
     </div><!-- /.col -->
@@ -228,7 +228,19 @@
                     {{ $errors->first('nb_jour') }}
                 </span>
            @endif
-        </div>
+           <label for="nb_dates">Nb. Dates</label>
+           <input type="text" class="form-control {{ $errors->has('nb_dates') ? 'is-invalid' : '' }}" value="{{$plan->Nombre_Dates}}" name="nb_dates" id="nb_dates" onkeyup="CalcNbJour();CalcBdgJourn()" onclick="NbHeurValidation()" onkeypress="return isNumberKey(event)" placeholder="nb. dates">
+           @if ($errors->has('nb_dates'))
+           <span class="invalid-feedback" role="alert">
+             {{$errors->first('nb_dates') }}
+           </span>
+           @endif
+          <span class="text-danger" id="nb_dates_msg"></span>
+          <div class="form-check">
+            <input type="checkbox" name="grp_hasnt_same_dates" id="grp_hasnt_same_dates" class="form-check-input">
+            <label for="grp_hasnt_same_dates" class="form-check-label">Groupe ayant différent date</label>
+          </div>
+          </div>
 
         <div class="form-group col-lg-3 col-md-6 col-12"><label>Nb. heures (durée total)</label>
             <input class="form-control {{ $errors->has('nb_heure') ? 'is-invalid' : '' }}" value="{{$plan->nb_heure}}" type="text" name="nb_heure" id="nb_heure" min="0" maxlength="15" onkeyup="CalcBdgJourn()" onkeypress="return isNumberKey(event)" placeholder="nb. jour" >
@@ -368,7 +380,7 @@
 
         <div class="form-group col-lg-3 col-md-6 col-12"><label>État</label>
             <select class="form-control {{ $errors->has('etat') ? 'is-invalid' : '' }}" name="etat" id="etat" value="{{$plan->etat}}">
-              <?php $etat_plan = ['planifié', 'réalisé', 'annulé']; ?>
+              <?php $etat_plan = ['planifié', 'réalisé', 'annulé' , 'modifié']; ?>
               @foreach ($etat_plan as $etat)
                 <option {{($plan->etat == $etat) ? 'selected' : ''}} value="{{$etat}}">{{ucfirst($etat)}}</option>
               @endforeach
@@ -410,7 +422,7 @@
 
     <div class="card-footer">
         <button class="btn bu-add" type="submit" id="edit"><i class="fas fa-pen-square icon"></i>Modifier</button>
-        <a class="btn bu-danger" href="/planformation"><i class="fas fa-window-close icon"></i>Annuler</a>
+        <a class="btn bu-danger" href="/PlanFormation"><i class="fas fa-window-close icon"></i>Annuler</a>
     </div>
 
     </form>

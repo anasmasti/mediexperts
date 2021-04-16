@@ -255,25 +255,25 @@
   //chercher le nom d'entreprise, nom domaine/theme associé au Plan de Formation
   $(document).ready(function() {
 
-    $('#addDateInput').click(function() {
-      var selDatesInput = document.querySelectorAll('.formation-date');
-      var lastIndex = selDatesInput.length + 1;
-      if (lastIndex <= 30) {
-        var newInput =
-        `<div class="form-group col-lg-3 col-sm-12">
-          <label for="date${lastIndex}">Jour ${lastIndex}</label>
-          <input class="form-control {{ $errors->has('date${lastIndex}') ? 'is-invalid' : '' }} formation-date" type="text" value="" name="date${lastIndex}" onmouseover="(this.type='date')" placeholder="date${lastIndex}" >
-          @if ($errors->has('date${lastIndex}'))
-            <span class="invalid-feedback" role="alert">
-              <strong>{{ $errors->first('date${lastIndex}') }}</strong>
-            </span>
-          @endif
-        </div>`;
-        $('#datesInput').append(newInput);
-      } else {
-        $('#addDateInput').prop('disabled', true);
-      }
-    });
+    // $('#addDateInput').click(function() {
+    //   var selDatesInput = document.querySelectorAll('.formation-date');
+    //   var lastIndex = selDatesInput.length + 1;
+    //   if (lastIndex <= 30) {
+    //     var newInput =
+    //     `<div class="form-group col-lg-3 col-sm-12">
+    //       <label for="date${lastIndex}">Jour ${lastIndex}</label>
+    //       <input class="form-control {{ $errors->has('date${lastIndex}') ? 'is-invalid' : '' }} formation-date" type="text" value="" name="date${lastIndex}" onmouseover="(this.type='date')" placeholder="date${lastIndex}" >
+    //       @if ($errors->has('date${lastIndex}'))
+    //         <span class="invalid-feedback" role="alert">
+    //           <strong>{{ $errors->first('date${lastIndex}') }}</strong>
+    //         </span>
+    //       @endif
+    //     </div>`;
+    //     $('#datesInput').append(newInput);
+    //   } else {
+    //     $('#addDateInput').prop('disabled', true);
+    //   }
+    // });
 
     var nForm = $('#n_form').val();
     $.ajax({
@@ -281,7 +281,7 @@
       url: '{!! URL::to('/findplanformationprops') !!}',
       data: {'nForm': nForm},
       success: function(data) {
-        console.log('success planformation props !!');
+        console.log('success PlanFormation props !!');
         console.log(data);
 
         var fillDropDown = '<option selected disabled>Sélectionner le plan de formation</option>';
@@ -296,7 +296,7 @@
       }
     }); //ajax
 
-  //chercher le nb de jours associé au "Plan de formation" choisi dans "Formations"
+  //chercher le nb de jours associé au "action de formation" choisi dans "Formations"
   $(document).on('change', '#n_form', function() {
     // $('#add').show(100);
     var nForm = $(this).val();
@@ -309,19 +309,19 @@
       success: function(data) {
         console.log('success find nb jour !!', data);
         var createDateInput = '';
-        for (var i = 1; i <= data[0].nb_jour; i++) {
+        for (var i = 1; i <= data[0].Nombre_Dates; i++) {
             let date_debut_fin = "";
             if (i === 1) {
                 // affecter la date de début de l'action de formation
                 date_debut_fin = data[0].dt_debut;
             }
-            else if (i == data[0].nb_jour) {
+            else if (i == data[0].Nombre_Dates) {
                 // ou affecter la date de début de l'action de formation
                 date_debut_fin = data[0].dt_fin;
             }
             createDateInput +=
                 `<div class="form-group col-lg-3 col-sm-12">
-                <label for="date${i}">Jour ${i}</label>
+                <label for="date${i}">Date ${i}</label>
                 <input class="form-control {{ $errors->has('date${i}') ? 'is-invalid' : '' }} formation-date" type="text" value="${date_debut_fin}" name="date${i}" onmouseover="(this.type='date')" placeholder="date${i}" >
                   @if ($errors->has('date${i}'))
                     <span class="invalid-feedback" role="alert">
@@ -383,7 +383,7 @@
                       <a href="/import"><i class="fas fa-upload"></i> Importer une liste</a><br>
                       <a href="/add-pers"><i class="fas fa-plus"></i>Ajouter des personnels</a>
                     </div>`;
-          $('#add').prop('disabled', true); //désactiver button 'ajouter' si liste personnel est vide
+          $('#add').prop('disabled', false); //désactiver button 'ajouter' si liste personnel est vide
         }
         personnelsInput.html("");
         personnelsInput.append(titleSection);

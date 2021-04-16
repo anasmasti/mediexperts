@@ -27,6 +27,7 @@ class PlanFormation extends Model
         'dt_debut',
         'dt_fin',
         'nb_jour',
+        'Nombre_Dates',
         'nb_heure',
         'type_form',
         'organisme',
@@ -42,7 +43,14 @@ class PlanFormation extends Model
         'id_inv',
         'nrc_e',
         'etat',
-        'commentaire'
+        'commentaire',
+
+        //avis de modife
+        'date_realisation', 
+        'organisme_formations',
+        'lieu_formations',
+        'horaire_formations',
+        'type_action',
     ];
 
 

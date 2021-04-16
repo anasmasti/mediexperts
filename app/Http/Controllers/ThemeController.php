@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\{Theme, Domaine};
-use Alert;
+//use Alert;
 
 class ThemeController extends Controller
 {

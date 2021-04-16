@@ -1,49 +1,15 @@
-<script>
-import PrintButton from './PrintButton.vue';
-import {store} from '../store/store';
-
-export default {
-  components: { PrintButton },
-  runtimeCompiler: true,
-  data() {
-    return {
-      selected_nrc_entrp: null
-    }
-  },
-  mounted() {
-    store.dispatch('FetchClients');
-  },
-  computed: {
-    curr_nrc_entrp() { return store.state.curr_nrc_entrp; },
-    clients() { return store.state.clients; },
-    reference_plans() { return store.state.reference_plans; },
-    actions_by_plan() { return store.state.actions_by_plan; },
-    curr_annee_plan() { return store.state.curr_annee_plan; }
-  },
-  methods: {
-    handleAction (actionName, value) {
-      store.dispatch(actionName, value);
-    }
-  },
-}
-</script>
-
-
 <template>
   <div>
     <!-- BUTTON IMPRIMER/ANNULER -->
     <print-button :backLink="'/'"></print-button>
-
     <!-- LISTE DE CHOIX -->
     <div style="width:100%;">
-
       <!-- SELECT ENTREPRISE -->
       <label for="client">Entreprise :</label>
       <select name="client" id="client" style="width:100%; padding: .5rem; border: 1px solid #000;"
-        @change="handleAction('FetchReferencesPlan', selected_nrc_entrp); handleAction('SetNrcEntrp', selected_nrc_entrp)"
-        v-model="selected_nrc_entrp">
-
-        <option selected disabled>--sélectionner l'Entreprise ..</option>
+      @change="handleAction('model3/FetchReferencesPlan' , selected_nrc_entrp); handleAction('model3/SetNrcEntrp' , selected_nrc_entrp)"
+       v-model="selected_nrc_entrp">
+        <option selected disabled>--sélectionner l'Entreprise --</option>
         <option v-for="cl in clients" :value="cl.nrc_entrp" :key="cl.nrc_entrp">{{ cl.raisoci }}</option>
       </select>
 
@@ -51,20 +17,17 @@ export default {
       <div style="width:100%;">
         <label for="plans">Réference plan de formation :</label>
         <select v-if="reference_plans && reference_plans.length" name="plans" id="plans" style="width:100%; padding: .5rem; border: 1px solid #000;"
-          @change="FillPlanByReference()" v-model="id_plan">
+          @change="handleAction('model3/FetchActionByReference', id_plan)" v-model="id_plan">
 
           <option selected disabled>-- sélectionner le plan</option>
-          <option v-for="pdf in reference_plan" :value="pdf.id_plan" :key="pdf.id_plan">{{ pdf.refpdf }}</option>
+          <option v-for="pdf in reference_plans" :value="pdf.id_plan" :key="pdf.id_plan">{{ pdf.refpdf }}</option>
         </select>
         <!--  -->
         <select v-else name="plans" id="plans" style="width:100%; padding: .5rem; border: 1px solid #000;">
-          <option>(vide)</option>
+          <option></option>
         </select>
       </div>
-
     </div>
-
-
 
     <!-- PAPER -->
     <div class="paper">
@@ -80,7 +43,7 @@ export default {
         <tr>
           <th style="width: 30%" rowspan="6">Avis</th>
           <th style="width: 30%">Anulation</th>
-          <th style="width: 30%" colspan="2">--</th>
+          <th style="width: 30%" colspan="2"> <input type="checkbox"> </th>
         </tr>
 
         <tr>
@@ -89,19 +52,19 @@ export default {
 
         <tr>
           <th style="width: 15%">De la date de Réalisation</th>
-          <th>----</th>
+          <th> <input type="checkbox"> </th>
         </tr>
         <tr>
           <th style="width: 15%">De l’organisme de formation</th>
-          <th>----</th>
+          <th> <input type="checkbox"> </th>
         </tr>
         <tr>
-          <th style="width: 15%">De l’organisme de formation</th>
-          <th>----</th>
+          <th style="width: 15%">De lieu de formation</th>
+          <th> <input type="checkbox"> </th>
         </tr>
         <tr>
           <th style="width: 15%">Organisation horaire</th>
-          <th>----</th>
+          <th> <input type="checkbox"> </th>
         </tr>
       </table>
       <!-- END TABLE -->
@@ -110,19 +73,24 @@ export default {
       <div style="padding-left: 20px">
         <div style="margin-top: 20px">
           <strong>Thème de l’action :</strong>
-          <input type="text" class="highlighted" style="width: 70%" />
+          <select name="actions" class="highlighted" id="actions" style="width:50%; padding: .3rem; border: 1px solid #000;"
+          @change="handleAction('model3/FetchAllCabinets' , nCabinet)" v-model="nCabinet">
+             <option selected disabled>-- Selectionner une action</option>
+             <option v-for="action in actions_by_plan" :value="action.nForm" :key="action.nForm">{{ action.nom_theme }}</option>
+             <option value=""></option>
+          </select>
         </div>
 
         <!-- NATURE DE L'ACTION -->
         <div class="d-flex" style="margin-top: 20px">
           <strong>Nature de l’action :</strong>
 
-          <div style="margin-left: auto">
+          <div style="margin-left: 100px">
             <label>Planifiée</label>
-            <input type="checkbox" />
+            <input type="checkbox" checked />
           </div>
 
-          <div style="margin-left: auto">
+          <!-- <div style="margin-left: auto">
             <label>Non Planifiée</label>
             <input type="checkbox" />
           </div>
@@ -130,14 +98,14 @@ export default {
           <div style="margin-left: auto">
             <label>Alpha</label>
             <input type="checkbox" />
-          </div>
+          </div> -->
         </div>
         <!-- END NATURE DE L'ACTION -->
 
         <!-- EFFECTIF -->
         <div class="d-flex" style="margin-top: 10px">
           <strong>Effectif des participants :</strong>
-          <input type="text" class="highlighted" value="..." />
+          <input type="text" class="highlighted" value="" name="nb_partcp_total" />
         </div>
         <!-- END EFFECTIF -->
 
@@ -150,6 +118,7 @@ export default {
           <span>Nouvel Organisme de formation : </span>
           <select class="select highlighted" style="width: fit-content; font-size: 16px">
             <option selected disabled>--select organisme</option>
+            <option v-for="cabinet in cabinets" :value="cabinet.nCabinet" :key="cabinet.nCabinet">{{ cabinet.raisoci }}</option>
           </select>
         </div>
         <!-- END ORGANISME -->
@@ -157,13 +126,14 @@ export default {
         <!-- LIEU -->
         <div class="d-flex" style="margin-top: 10px">
           <span>• Lieu de formation initial : </span>
-          <input type="text" class="highlighted" value="..." />
+
         </div>
         <div class="d-flex" style="margin-top: 10px">
           <span>Nouveau lieu : </span>
-          <select class="select highlighted" style="width: fit-content; font-size: 16px">
-            <option selected disabled>--select organisme</option>
-          </select>
+          <select name="lieu" id="lieu" class="highlighted" style="width:35%; padding: .3rem; border: 1px solid #000;">
+        <option selected disabled>--sélectionner l'Entreprise ..</option>
+        <option v-for="cl in clients" :value="cl.nrc_entrp" :key="cl.nrc_entrp">{{ cl.raisoci }}</option>
+      </select>
         </div>
         <!-- END LIEU -->
 
@@ -233,12 +203,44 @@ export default {
 
       </div>
       <!-- END CONTENT -->
-
-
     </div>
     <!-- END PAPER -->
 
   </div>
-
 </template>
 
+<script>
+import PrintButton from './PrintButton.vue';
+import { mapState } from 'vuex';
+
+export default {
+  components: { PrintButton },
+  runtimeCompiler: true,
+  data() {
+    return {
+      nForm : null,
+      nCabinet : null,
+      id_plan : null,
+      selected_nrc_entrp: null
+    }
+  },
+  mounted() {
+    this.$store.dispatch('model3/FetchClients');
+  },
+  computed: {
+    ...mapState('model3',{
+      curr_nrc_entrp: state => state.curr_nrc_entrp,
+      clients: state => state.clients,
+      reference_plans: state => state.reference_plans,
+      actions_by_plan: state => state.actions_by_plan,
+      curr_annee_plan: state => state.curr_annee_plan,
+      cabinets: state => state.cabinets,
+    })
+  },
+  methods: {
+    handleAction (actionName, value) {
+      this.$store.dispatch(actionName, value);
+    }
+  },
+}
+</script>

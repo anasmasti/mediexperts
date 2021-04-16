@@ -76,7 +76,7 @@ class DemandeFinancement extends Model
     'cote_part_entrp', //4
     'prc_cote_part', //4+++
     'bdg_accord', //4
-    'n_contrat',
+    //'n_contrat',
 
     'av_realis_DS', //5 ••••
     'av_realis_IF', //5 ••••

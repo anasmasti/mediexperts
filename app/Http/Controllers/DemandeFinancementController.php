@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\{DemandeFinancement,Client,DemandeRemboursementGiac,DemandeRemboursementOfppt,MissionIntervenant,Giac};
 // use Alert;
-use DB;
+use Illuminate\Support\Facades\DB;
 use App\Rules\validGiac;
 
 
@@ -115,7 +114,7 @@ class DemandeFinancementController extends Controller
             //pourcentage quote part required if budget accordé is not null
             if ($request->input('bdg_demande') != "") { $validatebdgAccord = '|lte:bdg_demande'; }
             if ($request->input('bdg_accord') != "") { $validatePrcQuote = 'required';  }
-            
+
             $request->validate([
                 'nrc_e' => 'required',
                 'type_miss' => 'required|max:150',
@@ -201,7 +200,7 @@ class DemandeFinancementController extends Controller
             $df->dt_fin_realis = $request->input('dt_fin_realis');
             $df->dt_approb = $request->input('dt_approb');
             $df->dt_depos_rpt = $request->input('dt_depos_rpt');
-            $df->n_contrat = $request->input('n_contrat');
+            // $df->n_contrat = $request->input('n_contrat');
 
             $docs = ['d_eligib_csf_entrp','d_model6_n_1','d_model6_n_2','d_honor_act_form','accus_depos',
                     'at_csf_entrp','av_realis_DS','av_realis_IF','planing_DS','planing_IF',
@@ -225,7 +224,7 @@ class DemandeFinancementController extends Controller
 
             //If etat df "accordé" -> auto add new drb giac
             $etat_demande = mb_strtolower($request->input('etat'));
-            
+
             if ( $etat_demande == "accordé" || $etat_demande == "réalisé" || $etat_demande == "approuvé") {
                 $drb = new DemandeRemboursementGiac();
                 $drb->n_df = $df->n_df;
@@ -250,7 +249,7 @@ class DemandeFinancementController extends Controller
                 $request->session()->flash('info', '2) Demande de remboursement GIAC initié');
             }
             else {
-                
+
                 $drb = null;
             }
 

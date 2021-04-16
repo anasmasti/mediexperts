@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Input;
+//use Illuminate\Support\Facades\Input;
 use App\{MissionIntervenant,Intervenant,DemandeFinancement};
-use DB;
-use Alert;
+use Illuminate\Support\Facades\DB;
+//use Alert;
 
 class MissionIntervenantController extends Controller
 {

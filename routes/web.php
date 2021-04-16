@@ -165,7 +165,7 @@ Route::get('/del-drb-gc/{ndrb}', 'DemandeRemboursementGiacController@destroy')->
 Route::get('/print-facture-drb/{ndrb}/{nrc}', 'DemandeRemboursementGiacController@FactureDrbGiac')->name('DRB_GIAC.FactureDrbGiac');
 Route::post('/save-nfacture-giac', 'DemandeRemboursementGiacController@SaveNFactureGiac')->name('DRB_GIAC.SaveNFactureGiac');
 
-Route::get('/print-facture-df/{ndrb}/{nrc}', 'DemandeFinancementController@FactureDF')->name('DF.FactureDF');
+Route::get('/print-facture-df/{nrc}', 'DemandeFinancementController@FactureDF')->name('DF.FactureDF');
 Route::post('/save-nfacture-df', 'DemandeFinancementController@SaveNFactureDF')->name('DF.SaveNFactureDF');
 /********************************************************************/
 
@@ -204,7 +204,7 @@ Route::get('/del-plan/{id_plan}', 'PlanController@destroy')->name('PLAN.destroy'
 
 
 //*************** ACTION FORMATION ROUTES ***************
-Route::get('/planformation', 'PlanFormationController@index')->name('PF.index');
+Route::get('/PlanFormation', 'PlanFormationController@index')->name('PF.index');
 Route::get('/act-form-cl/{nrc}/{annee}', 'PlanFormationController@ActionFormationClient')->name('PF.ActionFormationClient');
 Route::get('/detail-pf/{nf}', 'PlanFormationController@show')->name('PF.show');
 
@@ -222,6 +222,10 @@ Route::get('/finddomaindependvilleclient', 'PlanFormationController@FindDomainDe
 Route::get('/findorganismeinterv', 'PlanFormationController@FindOrganismeInterv');
 
 Route::get('/del-pf/{nform}/{id_plan}', 'PlanFormationController@destroy')->name('PF.destroy');
+Route::get('/avis-modif','PlanFormationController@avismodif')->name('av.modification');
+Route::get('/avis-modif','PlanFormationController@print_avismodif')->name('print.avismodif');
+
+
 /********************************************************************/
 
 
@@ -372,12 +376,14 @@ Route::get('/print-fiche-evaluation', 'FormulaireController@print_fiche_evaluati
 Route::get('/fill-fiche-evaluation', 'FormulaireController@FillFicheEval')->name('Fiche_Evaluation.FillFicheEval');
 Route::get('/fill-dates-form', 'FormulaireController@FillDatesForm')->name('Fiche_Evaluation.FillDatesForm');
 
-Route::get('/fill-action-form', 'FormulaireController@FillActionFormation')->name('ActionFormation.FillActionFormation');
-Route::get('/print-avis-aff', 'FormulaireController@print_avis_aff')->name('ActionFormation.print_avis_aff');
+Route::get('/fill-action-form', 'FormulaireController@FillActionFormation')->name('PlanFormation.FillActionFormation');
+Route::get('/print-avis-aff', 'FormulaireController@print_avis_aff')->name('PlanFormation.print_avis_aff');
 
-Route::get('/print-att-reference-plan', 'FormulaireController@print_att_reference_plan')->name('ActionFormation.print_att_reference_plan');
-Route::get('/fill-cabinet-info', 'FormulaireController@FillCabinetInfo')->name('ActionFormation.FillCabinetInfo');
+Route::get('/print-att-reference-plan', 'FormulaireController@print_att_reference_plan')->name('PlanFormation.print_att_reference_plan');
+Route::get('/fill-cabinet-info', 'FormulaireController@FillCabinetInfo')->name('PlanFormation.FillCabinetInfo');
 Route::get('/fill-plan-by-client', 'FormulaireController@FillPlansByClient')->name('PlanByClinet');
+Route::get('/fill-all-organisme' , 'FormulaireController@FillAllCabinets')->name('FillOrganisme');
+Route::get('/fill-avis-modif' , 'FormulaireController@FillavisModif')->name('FillAvisModif');
 /********************************************************************/
 
 
@@ -388,6 +394,7 @@ Route::get('/fill-df-list', 'FicheMissionController@FillDFList')->name('DF.FillD
 Route::get('/find-df-info', 'FicheMissionController@FindDFInfo')->name('DF.FindDFInfo');
 Route::get('/find-cab-info', 'FicheMissionController@FindCabinetInfo')->name('DF.FindCabinetInfo');
 Route::get('/find-inv-info', 'FicheMissionController@FindIntervInfo')->name('DF.FindIntervInfo');
+Route::get('/test' , 'PlanFormationController@Test')->name('Test');
 
 
 }); //end middlware verified

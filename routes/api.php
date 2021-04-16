@@ -15,4 +15,5 @@ use Illuminate\Http\Request;
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
   // Route::get('/fill-clients', 'FormulaireController@FillClients')->name('M1.print_m1');
+
 });
