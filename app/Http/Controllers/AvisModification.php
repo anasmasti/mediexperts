@@ -6,6 +6,44 @@ use Illuminate\Http\Request;
 
 class AvisModification extends Controller
 {
+
+public function StoreUpdateAvisModif() {
+
+        if()
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     /**
      * Display a listing of the resource.
      *
