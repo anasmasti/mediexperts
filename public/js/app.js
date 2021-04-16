@@ -2481,514 +2481,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/AvisModification.vue?vue&type=script&lang=js& ***!
   \***************************************************************************************************************************************************************************/
 /*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  runtimeCompiler: true,
-  data: function data() {
-    return {
-      selected_nForm: null,
-      idForm: null,
-      nCabinet: null,
-      id_plan: null,
-      selected_nrc_entrp: null,
-      selected_input_annuler: false
-    };
-  },
-  mounted: function mounted() {
-    this.$store.dispatch("model3/FetchClients");
-    this.$store.dispatch("model3/FetchAllCabinets");
-  },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])("model3", {
-    curr_nrc_entrp: function curr_nrc_entrp(state) {
-      return state.curr_nrc_entrp;
-    },
-    clients: function clients(state) {
-      return state.clients;
-    },
-    reference_plans: function reference_plans(state) {
-      return state.reference_plans;
-    },
-    actions_by_plan: function actions_by_plan(state) {
-      return state.actions_by_plan;
-    },
-    curr_annee_plan: function curr_annee_plan(state) {
-      return state.curr_annee_plan;
-    },
-    cabinets: function cabinets(state) {
-      return state.cabinets;
-    },
-    Info_AvisModif: function Info_AvisModif(state) {
-      return state.Info_AvisModif;
-    },
-    List_Dates: function List_Dates(state) {
-      return state.List_Dates;
-    }
-  })),
-  methods: {
-    handleAction: function handleAction(actionName, value) {
-      this.$store.dispatch(actionName, value);
-    },
-    // fonction pour l'état d'avis annulation
-    getSelected: function getSelected() {
-      var annul = document.getElementById("etat");
-
-      if (annul.value.toString() === "annulation") {
-        var annuler = document.getElementById("annuler");
-        annuler.checked = true;
-        annuler.disabled = false; // récupérer les id des checkbox
-
-        var chk_dateR = document.getElementById("modif_date");
-        var chk_organ = document.getElementById("modif_organ");
-        var chk_lieu = document.getElementById("modif_lieu");
-        var chk_horaire = document.getElementById("modif_horaire"); // make checkbox disabled
-
-        chk_dateR.disabled = true;
-        chk_organ.disabled = true;
-        chk_lieu.disabled = true;
-        chk_horaire.disabled = true;
-      }
-    },
-    // fonction pour l'état d'avis modification
-    getDisabled: function getDisabled() {
-      var annul = document.getElementById("etat");
-
-      if (annul.value.toString() === "modification") {
-        var annuler = document.getElementById("annuler");
-        annuler.checked = false;
-        annuler.disabled = true; // récupérer les id des checkbox
-
-        var chk_dateR = document.getElementById("modif_date");
-        var chk_organ = document.getElementById("modif_organ");
-        var chk_lieu = document.getElementById("modif_lieu");
-        var chk_horaire = document.getElementById("modif_horaire"); // make checkbox enabled
-
-        chk_dateR.disabled = false;
-        chk_organ.disabled = false;
-        chk_lieu.disabled = false;
-        chk_horaire.disabled = false;
-      }
-    }
-  }
-});
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: C:\\Users\\badre\\mediexpertsV1.0.1\\resources\\js\\components\\AvisModification.vue: Unexpected token (423:0)\n\n  421 |       id_plan: null,\n  422 |       selected_nrc_entrp: null,\n> 423 | <<<<<<< HEAD\n      | ^\n  424 |       selected_input_annuler: false,\n  425 | =======\n  426 |       selectedCabinet: false,\n    at Parser._raise (C:\\Users\\badre\\mediexpertsV1.0.1\\node_modules\\@babel\\parser\\lib\\index.js:748:17)\n    at Parser.raiseWithData (C:\\Users\\badre\\mediexpertsV1.0.1\\node_modules\\@babel\\parser\\lib\\index.js:741:17)\n    at Parser.raise (C:\\Users\\badre\\mediexpertsV1.0.1\\node_modules\\@babel\\parser\\lib\\index.js:735:17)\n    at Parser.unexpected (C:\\Users\\badre\\mediexpertsV1.0.1\\node_modules\\@babel\\parser\\lib\\index.js:9101:16)\n    at Parser.parseIdentifierName (C:\\Users\\badre\\mediexpertsV1.0.1\\node_modules\\@babel\\parser\\lib\\index.js:11344:18)\n    at Parser.parseIdentifier (C:\\Users\\badre\\mediexpertsV1.0.1\\node_modules\\@babel\\parser\\lib\\index.js:11317:23)\n    at Parser.parseMaybePrivateName (C:\\Users\\badre\\mediexpertsV1.0.1\\node_modules\\@babel\\parser\\lib\\index.js:10645:19)\n    at Parser.parsePropertyName (C:\\Users\\badre\\mediexpertsV1.0.1\\node_modules\\@babel\\parser\\lib\\index.js:11130:155)\n    at Parser.parsePropertyDefinition (C:\\Users\\badre\\mediexpertsV1.0.1\\node_modules\\@babel\\parser\\lib\\index.js:11016:22)\n    at Parser.parseObjectLike (C:\\Users\\badre\\mediexpertsV1.0.1\\node_modules\\@babel\\parser\\lib\\index.js:10931:25)\n    at Parser.parseExprAtom (C:\\Users\\badre\\mediexpertsV1.0.1\\node_modules\\@babel\\parser\\lib\\index.js:10491:23)\n    at Parser.parseExprSubscripts (C:\\Users\\badre\\mediexpertsV1.0.1\\node_modules\\@babel\\parser\\lib\\index.js:10150:23)\n    at Parser.parseUpdate (C:\\Users\\badre\\mediexpertsV1.0.1\\node_modules\\@babel\\parser\\lib\\index.js:10130:21)\n    at Parser.parseMaybeUnary (C:\\Users\\badre\\mediexpertsV1.0.1\\node_modules\\@babel\\parser\\lib\\index.js:10119:17)\n    at Parser.parseExprOps (C:\\Users\\badre\\mediexpertsV1.0.1\\node_modules\\@babel\\parser\\lib\\index.js:9989:23)\n    at Parser.parseMaybeConditional (C:\\Users\\badre\\mediexpertsV1.0.1\\node_modules\\@babel\\parser\\lib\\index.js:9963:23)\n    at Parser.parseMaybeAssign (C:\\Users\\badre\\mediexpertsV1.0.1\\node_modules\\@babel\\parser\\lib\\index.js:9926:21)\n    at Parser.parseExpressionBase (C:\\Users\\badre\\mediexpertsV1.0.1\\node_modules\\@babel\\parser\\lib\\index.js:9871:23)\n    at C:\\Users\\badre\\mediexpertsV1.0.1\\node_modules\\@babel\\parser\\lib\\index.js:9865:39\n    at Parser.allowInAnd (C:\\Users\\badre\\mediexpertsV1.0.1\\node_modules\\@babel\\parser\\lib\\index.js:11541:16)\n    at Parser.parseExpression (C:\\Users\\badre\\mediexpertsV1.0.1\\node_modules\\@babel\\parser\\lib\\index.js:9865:17)\n    at Parser.parseReturnStatement (C:\\Users\\badre\\mediexpertsV1.0.1\\node_modules\\@babel\\parser\\lib\\index.js:12045:28)\n    at Parser.parseStatementContent (C:\\Users\\badre\\mediexpertsV1.0.1\\node_modules\\@babel\\parser\\lib\\index.js:11724:21)\n    at Parser.parseStatement (C:\\Users\\badre\\mediexpertsV1.0.1\\node_modules\\@babel\\parser\\lib\\index.js:11676:17)\n    at Parser.parseBlockOrModuleBlockBody (C:\\Users\\badre\\mediexpertsV1.0.1\\node_modules\\@babel\\parser\\lib\\index.js:12258:25)\n    at Parser.parseBlockBody (C:\\Users\\badre\\mediexpertsV1.0.1\\node_modules\\@babel\\parser\\lib\\index.js:12249:10)\n    at Parser.parseBlock (C:\\Users\\badre\\mediexpertsV1.0.1\\node_modules\\@babel\\parser\\lib\\index.js:12233:10)\n    at Parser.parseFunctionBody (C:\\Users\\badre\\mediexpertsV1.0.1\\node_modules\\@babel\\parser\\lib\\index.js:11221:24)\n    at Parser.parseFunctionBodyAndFinish (C:\\Users\\badre\\mediexpertsV1.0.1\\node_modules\\@babel\\parser\\lib\\index.js:11205:10)\n    at Parser.parseMethod (C:\\Users\\badre\\mediexpertsV1.0.1\\node_modules\\@babel\\parser\\lib\\index.js:11155:10)\n    at Parser.parseObjectMethod (C:\\Users\\badre\\mediexpertsV1.0.1\\node_modules\\@babel\\parser\\lib\\index.js:11084:19)\n    at Parser.parseObjPropValue (C:\\Users\\badre\\mediexpertsV1.0.1\\node_modules\\@babel\\parser\\lib\\index.js:11117:23)\n    at Parser.parsePropertyDefinition (C:\\Users\\badre\\mediexpertsV1.0.1\\node_modules\\@babel\\parser\\lib\\index.js:11041:10)\n    at Parser.parseObjectLike (C:\\Users\\badre\\mediexpertsV1.0.1\\node_modules\\@babel\\parser\\lib\\index.js:10931:25)\n    at Parser.parseExprAtom (C:\\Users\\badre\\mediexpertsV1.0.1\\node_modules\\@babel\\parser\\lib\\index.js:10491:23)\n    at Parser.parseExprSubscripts (C:\\Users\\badre\\mediexpertsV1.0.1\\node_modules\\@babel\\parser\\lib\\index.js:10150:23)");
 
 /***/ }),
 
@@ -41613,70 +41108,6 @@ var render = function() {
             _vm._v(" "),
             _vm._m(2),
             _vm._v(" "),
-            _c("div", { staticClass: "form-group col-lg-6 col-sm-12" }, [
-              _c("label", [_vm._v("Nouvel Organisme de formation")]),
-              _vm._v(" "),
-              _c(
-                "select",
-                { staticClass: "form-control" },
-                [
-                  _c("option", { attrs: { selected: "", disabled: "" } }, [
-                    _vm._v("---selectionner l'organisme---")
-                  ]),
-                  _vm._v(" "),
-                  _vm._l(_vm.cabinets, function(cabinet) {
-                    return _c(
-                      "option",
-                      {
-                        key: cabinet.nrc_cab,
-                        domProps: { value: cabinet.nrc_cab }
-                      },
-                      [
-                        _vm._v(
-                          "\n              " +
-                            _vm._s(cabinet.raisoci) +
-                            "\n            "
-                        )
-                      ]
-                    )
-                  })
-                ],
-                2
-              )
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "form-group col-lg-6 col-sm-12" }, [
-              _c("label", [_vm._v("Nouveau lieu")]),
-              _vm._v(" "),
-              _c(
-                "select",
-                {
-                  staticClass: "form-control",
-                  attrs: { name: "lieu", id: "lieu" }
-                },
-                [
-                  _c("option", { attrs: { selected: "", disabled: "" } }, [
-                    _vm._v("---selectionner le lieu---")
-                  ]),
-                  _vm._v(" "),
-                  _vm._l(_vm.clients, function(cl) {
-                    return _c(
-                      "option",
-                      { key: cl.nrc_entrp, domProps: { value: cl.nrc_entrp } },
-                      [
-                        _vm._v(
-                          "\n              " +
-                            _vm._s(cl.raisoci) +
-                            "\n            "
-                        )
-                      ]
-                    )
-                  })
-                ],
-                2
-              )
-            ]),
-            _vm._v(" "),
             _vm._l(_vm.Info_AvisModif, function(info, index) {
               return _c(
                 "div",
@@ -41725,14 +41156,404 @@ var render = function() {
                           }
                         })
                       ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "form-group col-lg-6 col-sm-12" },
+                      [
+                        _c("label", [_vm._v("Nouvel Organisme de formation")]),
+                        _vm._v(" "),
+                        _c(
+                          "select",
+                          {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.selectedCabinet,
+                                expression: "selectedCabinet"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            on: {
+                              change: function($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function(o) {
+                                    return o.selected
+                                  })
+                                  .map(function(o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.selectedCabinet = $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              }
+                            }
+                          },
+                          [
+                            _c(
+                              "option",
+                              { attrs: { selected: "", disabled: "" } },
+                              [_vm._v("---selectionner l'organisme---")]
+                            ),
+                            _vm._v(" "),
+                            _vm._l(_vm.cabinets, function(cabinet) {
+                              return _c(
+                                "option",
+                                {
+                                  key: cabinet.nrc_cab,
+                                  domProps: {
+                                    value:
+                                      _vm.selectedCabinet == false
+                                        ? info.organisme
+                                        : cabinet.raisoci
+                                  }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n              " +
+                                      _vm._s(cabinet.raisoci) +
+                                      " \n            "
+                                  )
+                                ]
+                              )
+                            })
+                          ],
+                          2
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "form-group col-lg-6 col-sm-12" },
+                      [
+                        _c("label", [_vm._v("Nouveau lieu")]),
+                        _vm._v(" "),
+                        _c(
+                          "select",
+                          {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.selectedFormationLieu,
+                                expression: "selectedFormationLieu"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            attrs: { name: "lieu", id: "lieu" },
+                            on: {
+                              change: function($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function(o) {
+                                    return o.selected
+                                  })
+                                  .map(function(o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.selectedFormationLieu = $event.target
+                                  .multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              }
+                            }
+                          },
+                          [
+                            _c(
+                              "option",
+                              { attrs: { selected: "", disabled: "" } },
+                              [_vm._v("---selectionner le lieu---")]
+                            ),
+                            _vm._v(" "),
+                            _vm._l(_vm.clients, function(cl) {
+                              return _c(
+                                "option",
+                                {
+                                  key: cl.nrc_entrp,
+                                  domProps: {
+                                    value:
+                                      _vm.selectedFormationLieu == false
+                                        ? info.lieu
+                                        : cl.raisoci
+                                  }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n              " +
+                                      _vm._s(cl.raisoci) +
+                                      "\n            "
+                                  )
+                                ]
+                              )
+                            })
+                          ],
+                          2
+                        )
+                      ]
                     )
                   ]),
                   _vm._v(" "),
-                  _vm._m(3, true),
+                  _c("div", { staticClass: "row" }, [
+                    _vm._m(3, true),
+                    _vm._v(" "),
+                    info.date1
+                      ? _c(
+                          "div",
+                          {
+                            staticClass: "form-group col-lg-3 col-md-6 col-12"
+                          },
+                          [
+                            _c("input", {
+                              staticClass: "form-control",
+                              attrs: { type: "date" },
+                              domProps: { value: info.date1 }
+                            })
+                          ]
+                        )
+                      : _vm._e(),
+                    _vm._v(" "),
+                    info.date2
+                      ? _c(
+                          "div",
+                          {
+                            staticClass: "form-group col-lg-3 col-md-6 col-12"
+                          },
+                          [
+                            _c("input", {
+                              staticClass: "form-control",
+                              attrs: { type: "date" },
+                              domProps: { value: info.date2 }
+                            })
+                          ]
+                        )
+                      : _vm._e(),
+                    _vm._v(" "),
+                    info.date3
+                      ? _c(
+                          "div",
+                          {
+                            staticClass: "form-group col-lg-3 col-md-6 col-12"
+                          },
+                          [
+                            _c("input", {
+                              staticClass: "form-control",
+                              attrs: { type: "date" },
+                              domProps: { value: info.date3 }
+                            })
+                          ]
+                        )
+                      : _vm._e(),
+                    _vm._v(" "),
+                    info.date4
+                      ? _c(
+                          "div",
+                          {
+                            staticClass: "form-group col-lg-3 col-md-6 col-12"
+                          },
+                          [
+                            _c("input", {
+                              staticClass: "form-control",
+                              attrs: { type: "date" },
+                              domProps: { value: info.date4 }
+                            })
+                          ]
+                        )
+                      : _vm._e(),
+                    _vm._v(" "),
+                    info.date5
+                      ? _c(
+                          "div",
+                          {
+                            staticClass: "form-group col-lg-3 col-md-6 col-12"
+                          },
+                          [
+                            _c("input", {
+                              staticClass: "form-control",
+                              attrs: { type: "date" },
+                              domProps: { value: info.date5 }
+                            })
+                          ]
+                        )
+                      : _vm._e(),
+                    _vm._v(" "),
+                    info.date6
+                      ? _c(
+                          "div",
+                          {
+                            staticClass: "form-group col-lg-3 col-md-6 col-12"
+                          },
+                          [
+                            _c("input", {
+                              staticClass: "form-control",
+                              attrs: { type: "date" },
+                              domProps: { value: info.date6 }
+                            })
+                          ]
+                        )
+                      : _vm._e(),
+                    _vm._v(" "),
+                    info.date7
+                      ? _c(
+                          "div",
+                          {
+                            staticClass: "form-group col-lg-3 col-md-6 col-12"
+                          },
+                          [
+                            _c("input", {
+                              staticClass: "form-control",
+                              attrs: { type: "date" },
+                              domProps: { value: info.date7 }
+                            })
+                          ]
+                        )
+                      : _vm._e(),
+                    _vm._v(" "),
+                    info.date8
+                      ? _c(
+                          "div",
+                          {
+                            staticClass: "form-group col-lg-3 col-md-6 col-12"
+                          },
+                          [
+                            _c("input", {
+                              staticClass: "form-control",
+                              attrs: { type: "date" },
+                              domProps: { value: info.date8 }
+                            })
+                          ]
+                        )
+                      : _vm._e(),
+                    _vm._v(" "),
+                    info.date9
+                      ? _c(
+                          "div",
+                          {
+                            staticClass: "form-group col-lg-3 col-md-6 col-12"
+                          },
+                          [
+                            _c("input", {
+                              staticClass: "form-control",
+                              attrs: { type: "date" },
+                              domProps: { value: info.date9 }
+                            })
+                          ]
+                        )
+                      : _vm._e(),
+                    _vm._v(" "),
+                    info.date10
+                      ? _c(
+                          "div",
+                          {
+                            staticClass: "form-group col-lg-3 col-md-6 col-12"
+                          },
+                          [
+                            _c("input", {
+                              staticClass: "form-control",
+                              attrs: { type: "date" },
+                              domProps: { value: info.date10 }
+                            })
+                          ]
+                        )
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm._m(4, true),
+                    _vm._v(" "),
+                    _vm._m(5, true),
+                    _vm._v(" "),
+                    _vm._m(6, true),
+                    _vm._v(" "),
+                    _vm._m(7, true),
+                    _vm._v(" "),
+                    _vm._m(8, true),
+                    _vm._v(" "),
+                    _vm._m(9, true),
+                    _vm._v(" "),
+                    _vm._m(10, true),
+                    _vm._v(" "),
+                    _vm._m(11, true),
+                    _vm._v(" "),
+                    _vm._m(12, true),
+                    _vm._v(" "),
+                    _vm._m(13, true),
+                    _vm._v(" "),
+                    _vm._m(14, true)
+                  ]),
                   _vm._v(" "),
-                  _vm._m(4, true),
+                  _c("div", { staticClass: "row mt-3" }, [
+                    _vm._m(15, true),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "form-group col-lg-6 col-sm-12" },
+                      [
+                        _c("label", [_vm._v("Heure début")]),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticClass: "input-group date",
+                            attrs: { id: "datetimepicker3" }
+                          },
+                          [
+                            _c("input", {
+                              staticClass: "form-control",
+                              attrs: { type: "time", name: "hr_debut" },
+                              domProps: { value: info.hr_debut }
+                            }),
+                            _vm._v(" "),
+                            _c("div", {
+                              staticClass: "input-group-append",
+                              attrs: {
+                                "data-target": "#timepicker",
+                                "data-toggle": "datetimepicker"
+                              }
+                            }),
+                            _vm._v(" "),
+                            _vm._m(16, true)
+                          ]
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "form-group col-lg-6 col-sm-12" },
+                      [
+                        _c("label", [_vm._v("Heure fin")]),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticClass: "input-group date",
+                            attrs: { id: "datetimepicker3" }
+                          },
+                          [
+                            _c("input", {
+                              staticClass: "form-control timerpicker",
+                              attrs: { type: "time", name: "hr_fin" },
+                              domProps: { value: info.hr_fin }
+                            }),
+                            _vm._v(" "),
+                            _c("div", {
+                              staticClass: "input-group-append",
+                              attrs: {
+                                "data-target": "#timepicker",
+                                "data-toggle": "datetimepicker"
+                              }
+                            }),
+                            _vm._v(" "),
+                            _vm._m(17, true)
+                          ]
+                        )
+                      ]
+                    )
+                  ]),
                   _vm._v(" "),
-                  _vm._m(5, true)
+                  _vm._m(18, true)
                 ]
               )
             })
@@ -41741,7 +41562,7 @@ var render = function() {
         )
       ]),
       _vm._v(" "),
-      _vm._m(6)
+      _vm._m(19)
     ])
   ])
 }
@@ -41875,158 +41696,120 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "form-group col-lg-12 col-sm-12 mb-0" }, [
-        _c("label", [_vm._v("Dates initiales de réalisation ")])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group col-lg-3 col-md-6 col-12" }, [
-        _c("input", { staticClass: "form-control", attrs: { type: "date" } })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group col-lg-3 col-md-6 col-12" }, [
-        _c("input", { staticClass: "form-control", attrs: { type: "date" } })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group col-lg-3 col-md-6 col-12" }, [
-        _c("input", { staticClass: "form-control", attrs: { type: "date" } })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group col-lg-3 col-md-6 col-12" }, [
-        _c("input", { staticClass: "form-control", attrs: { type: "date" } })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group col-lg-3 col-md-6 col-12" }, [
-        _c("input", { staticClass: "form-control", attrs: { type: "date" } })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group col-lg-3 col-md-6 col-12" }, [
-        _c("input", { staticClass: "form-control", attrs: { type: "date" } })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group col-lg-3 col-md-6 col-12" }, [
-        _c("input", { staticClass: "form-control", attrs: { type: "date" } })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group col-lg-3 col-md-6 col-12" }, [
-        _c("input", { staticClass: "form-control", attrs: { type: "date" } })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group col-lg-3 col-md-6 col-12" }, [
-        _c("input", { staticClass: "form-control", attrs: { type: "date" } })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group col-lg-3 col-md-6 col-12" }, [
-        _c("input", { staticClass: "form-control", attrs: { type: "date" } })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group col-lg-12 col-sm-12 mb-0" }, [
-        _c("label", [_vm._v("Nouvelles Dates exactes de réalisation ")])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group col-lg-3 col-md-6 col-12" }, [
-        _c("input", { staticClass: "form-control", attrs: { type: "date" } })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group col-lg-3 col-md-6 col-12" }, [
-        _c("input", { staticClass: "form-control", attrs: { type: "date" } })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group col-lg-3 col-md-6 col-12" }, [
-        _c("input", { staticClass: "form-control", attrs: { type: "date" } })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group col-lg-3 col-md-6 col-12" }, [
-        _c("input", { staticClass: "form-control", attrs: { type: "date" } })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group col-lg-3 col-md-6 col-12" }, [
-        _c("input", { staticClass: "form-control", attrs: { type: "date" } })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group col-lg-3 col-md-6 col-12" }, [
-        _c("input", { staticClass: "form-control", attrs: { type: "date" } })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group col-lg-3 col-md-6 col-12" }, [
-        _c("input", { staticClass: "form-control", attrs: { type: "date" } })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group col-lg-3 col-md-6 col-12" }, [
-        _c("input", { staticClass: "form-control", attrs: { type: "date" } })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group col-lg-3 col-md-6 col-12" }, [
-        _c("input", { staticClass: "form-control", attrs: { type: "date" } })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group col-lg-3 col-md-6 col-12" }, [
-        _c("input", { staticClass: "form-control", attrs: { type: "date" } })
-      ])
+    return _c("div", { staticClass: "form-group col-lg-12 col-sm-12 mb-0" }, [
+      _c("label", [_vm._v("Dates initiales de réalisation ")])
     ])
   },
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row mt-3" }, [
-      _c("div", { staticClass: "form-group col-lg-12 col-sm-12 mb-0" }, [
-        _c("label", [_vm._v("Organisation horaire initiale ")])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group col-lg-6 col-sm-12" }, [
-        _c("label", [_vm._v("Heure début")]),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "input-group date", attrs: { id: "datetimepicker3" } },
-          [
-            _c("input", {
-              staticClass: "form-control",
-              attrs: { type: "time", name: "hr_debut" }
-            }),
-            _vm._v(" "),
-            _c("div", {
-              staticClass: "input-group-append",
-              attrs: {
-                "data-target": "#timepicker",
-                "data-toggle": "datetimepicker"
-              }
-            }),
-            _vm._v(" "),
-            _c("div", { staticClass: "input-group-text" }, [
-              _c("i", { staticClass: "far fa-clock" })
-            ])
-          ]
-        )
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group col-lg-6 col-sm-12" }, [
-        _c("label", [_vm._v("Heure fin")]),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "input-group date", attrs: { id: "datetimepicker3" } },
-          [
-            _c("input", {
-              staticClass: "form-control timerpicker",
-              attrs: { type: "time", name: "hr_fin" }
-            }),
-            _vm._v(" "),
-            _c("div", {
-              staticClass: "input-group-append",
-              attrs: {
-                "data-target": "#timepicker",
-                "data-toggle": "datetimepicker"
-              }
-            }),
-            _vm._v(" "),
-            _c("div", { staticClass: "input-group-text" }, [
-              _c("i", { staticClass: "far fa-clock" })
-            ])
-          ]
-        )
-      ])
+    return _c("div", { staticClass: "form-group col-lg-12 col-sm-12 mb-0" }, [
+      _c("label", [_vm._v("Nouvelles Dates exactes de réalisation ")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group col-lg-3 col-md-6 col-12" }, [
+      _c("input", { staticClass: "form-control", attrs: { type: "date" } })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group col-lg-3 col-md-6 col-12" }, [
+      _c("input", { staticClass: "form-control", attrs: { type: "date" } })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group col-lg-3 col-md-6 col-12" }, [
+      _c("input", { staticClass: "form-control", attrs: { type: "date" } })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group col-lg-3 col-md-6 col-12" }, [
+      _c("input", { staticClass: "form-control", attrs: { type: "date" } })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group col-lg-3 col-md-6 col-12" }, [
+      _c("input", { staticClass: "form-control", attrs: { type: "date" } })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group col-lg-3 col-md-6 col-12" }, [
+      _c("input", { staticClass: "form-control", attrs: { type: "date" } })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group col-lg-3 col-md-6 col-12" }, [
+      _c("input", { staticClass: "form-control", attrs: { type: "date" } })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group col-lg-3 col-md-6 col-12" }, [
+      _c("input", { staticClass: "form-control", attrs: { type: "date" } })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group col-lg-3 col-md-6 col-12" }, [
+      _c("input", { staticClass: "form-control", attrs: { type: "date" } })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group col-lg-3 col-md-6 col-12" }, [
+      _c("input", { staticClass: "form-control", attrs: { type: "date" } })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group col-lg-12 col-sm-12 mb-0" }, [
+      _c("label", [_vm._v("Organisation horaire initiale ")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-text" }, [
+      _c("i", { staticClass: "far fa-clock" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-text" }, [
+      _c("i", { staticClass: "far fa-clock" })
     ])
   },
   function() {
