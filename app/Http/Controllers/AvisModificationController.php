@@ -44,7 +44,7 @@ public function StoreUpdateAvisModif(Request $request) {
           ]);
 
           $AvisModif = new AvisModification();
-          $AvisModif->n_form = $request->nForm;
+          $AvisModif->n_form = $request->input->input('');
           $AvisModif->entreprise = $request->input('');
           $AvisModif->ref_plan = $request->input('');
           $AvisModif->type_action = $request->input('');
@@ -58,6 +58,10 @@ public function StoreUpdateAvisModif(Request $request) {
           $AvisModif->groupe = $request->input('');
           $AvisModif->old_organisme = $request->input('');
           $AvisModif->old_lieu = $request->input('');
+          $AvisModif->old_hr_debut = $request->input('');
+          $AvisModif->old_hr_fin = $request->input('');
+          $AvisModif->old_pse_debut = $request->input('');
+          $AvisModif->old_pse_fin = $request->input('');
           $AvisModif->date1 = $request->input('');
           $AvisModif->date2 = $request->input('');
           $AvisModif->date3 = $request->input('');
@@ -71,11 +75,37 @@ public function StoreUpdateAvisModif(Request $request) {
 
           $AvisModif->save();
 
-          // if ($request -> isMethod('POST')) {
-          //   Formation::all();
-          //   PlanFormation::all();
-          // }
+          $nFrom = $request->input("n_form");
 
+          if($request == $nFrom) {
+
+            $planformation = PlanFormation::findOrFail($nFrom);
+
+            $planformation->lieu = $request->input('');
+            $planformation->organisme = $request->input('');
+            $planformation->type_action = $request->input('');
+            $planformation->date_realisation = $request->input('');
+            $planformation->organisme_formations = $request->input('');
+            $planformation->lieu_formations = $request->input('');
+            $planformation->horaire_formations = $request->input('');
+
+            $formation = Formation::findOrFail($nFrom);
+
+            $formation->hr_debut = $request->input('');
+            $formation->hr_fin = $request->input('');
+            $formation->pse_debut = $request->input('');
+            $formation->pse_fin = $request->input('');
+            $formation->date1 = $request->input('');
+            $formation->date2 = $request->input('');
+            $formation->date3 = $request->input('');
+            $formation->date4 = $request->input('');
+            $formation->date5 = $request->input('');
+            $formation->date6 = $request->input('');
+            $formation->date7 = $request->input('');
+            $formation->date8 = $request->input('');
+            $formation->date9 = $request->input('');
+            $formation->date10 = $request->input('');
+          }
         }
 }
 
