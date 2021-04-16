@@ -2481,9 +2481,547 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/AvisModification.vue?vue&type=script&lang=js& ***!
   \***************************************************************************************************************************************************************************/
 /*! exports provided: default */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: C:\\Users\\badre\\mediexpertsV1.0.1\\resources\\js\\components\\AvisModification.vue: Unexpected token (423:0)\n\n  421 |       id_plan: null,\n  422 |       selected_nrc_entrp: null,\n> 423 | <<<<<<< HEAD\n      | ^\n  424 |       selected_input_annuler: false,\n  425 | =======\n  426 |       selectedCabinet: false,\n    at Parser._raise (C:\\Users\\badre\\mediexpertsV1.0.1\\node_modules\\@babel\\parser\\lib\\index.js:748:17)\n    at Parser.raiseWithData (C:\\Users\\badre\\mediexpertsV1.0.1\\node_modules\\@babel\\parser\\lib\\index.js:741:17)\n    at Parser.raise (C:\\Users\\badre\\mediexpertsV1.0.1\\node_modules\\@babel\\parser\\lib\\index.js:735:17)\n    at Parser.unexpected (C:\\Users\\badre\\mediexpertsV1.0.1\\node_modules\\@babel\\parser\\lib\\index.js:9101:16)\n    at Parser.parseIdentifierName (C:\\Users\\badre\\mediexpertsV1.0.1\\node_modules\\@babel\\parser\\lib\\index.js:11344:18)\n    at Parser.parseIdentifier (C:\\Users\\badre\\mediexpertsV1.0.1\\node_modules\\@babel\\parser\\lib\\index.js:11317:23)\n    at Parser.parseMaybePrivateName (C:\\Users\\badre\\mediexpertsV1.0.1\\node_modules\\@babel\\parser\\lib\\index.js:10645:19)\n    at Parser.parsePropertyName (C:\\Users\\badre\\mediexpertsV1.0.1\\node_modules\\@babel\\parser\\lib\\index.js:11130:155)\n    at Parser.parsePropertyDefinition (C:\\Users\\badre\\mediexpertsV1.0.1\\node_modules\\@babel\\parser\\lib\\index.js:11016:22)\n    at Parser.parseObjectLike (C:\\Users\\badre\\mediexpertsV1.0.1\\node_modules\\@babel\\parser\\lib\\index.js:10931:25)\n    at Parser.parseExprAtom (C:\\Users\\badre\\mediexpertsV1.0.1\\node_modules\\@babel\\parser\\lib\\index.js:10491:23)\n    at Parser.parseExprSubscripts (C:\\Users\\badre\\mediexpertsV1.0.1\\node_modules\\@babel\\parser\\lib\\index.js:10150:23)\n    at Parser.parseUpdate (C:\\Users\\badre\\mediexpertsV1.0.1\\node_modules\\@babel\\parser\\lib\\index.js:10130:21)\n    at Parser.parseMaybeUnary (C:\\Users\\badre\\mediexpertsV1.0.1\\node_modules\\@babel\\parser\\lib\\index.js:10119:17)\n    at Parser.parseExprOps (C:\\Users\\badre\\mediexpertsV1.0.1\\node_modules\\@babel\\parser\\lib\\index.js:9989:23)\n    at Parser.parseMaybeConditional (C:\\Users\\badre\\mediexpertsV1.0.1\\node_modules\\@babel\\parser\\lib\\index.js:9963:23)\n    at Parser.parseMaybeAssign (C:\\Users\\badre\\mediexpertsV1.0.1\\node_modules\\@babel\\parser\\lib\\index.js:9926:21)\n    at Parser.parseExpressionBase (C:\\Users\\badre\\mediexpertsV1.0.1\\node_modules\\@babel\\parser\\lib\\index.js:9871:23)\n    at C:\\Users\\badre\\mediexpertsV1.0.1\\node_modules\\@babel\\parser\\lib\\index.js:9865:39\n    at Parser.allowInAnd (C:\\Users\\badre\\mediexpertsV1.0.1\\node_modules\\@babel\\parser\\lib\\index.js:11541:16)\n    at Parser.parseExpression (C:\\Users\\badre\\mediexpertsV1.0.1\\node_modules\\@babel\\parser\\lib\\index.js:9865:17)\n    at Parser.parseReturnStatement (C:\\Users\\badre\\mediexpertsV1.0.1\\node_modules\\@babel\\parser\\lib\\index.js:12045:28)\n    at Parser.parseStatementContent (C:\\Users\\badre\\mediexpertsV1.0.1\\node_modules\\@babel\\parser\\lib\\index.js:11724:21)\n    at Parser.parseStatement (C:\\Users\\badre\\mediexpertsV1.0.1\\node_modules\\@babel\\parser\\lib\\index.js:11676:17)\n    at Parser.parseBlockOrModuleBlockBody (C:\\Users\\badre\\mediexpertsV1.0.1\\node_modules\\@babel\\parser\\lib\\index.js:12258:25)\n    at Parser.parseBlockBody (C:\\Users\\badre\\mediexpertsV1.0.1\\node_modules\\@babel\\parser\\lib\\index.js:12249:10)\n    at Parser.parseBlock (C:\\Users\\badre\\mediexpertsV1.0.1\\node_modules\\@babel\\parser\\lib\\index.js:12233:10)\n    at Parser.parseFunctionBody (C:\\Users\\badre\\mediexpertsV1.0.1\\node_modules\\@babel\\parser\\lib\\index.js:11221:24)\n    at Parser.parseFunctionBodyAndFinish (C:\\Users\\badre\\mediexpertsV1.0.1\\node_modules\\@babel\\parser\\lib\\index.js:11205:10)\n    at Parser.parseMethod (C:\\Users\\badre\\mediexpertsV1.0.1\\node_modules\\@babel\\parser\\lib\\index.js:11155:10)\n    at Parser.parseObjectMethod (C:\\Users\\badre\\mediexpertsV1.0.1\\node_modules\\@babel\\parser\\lib\\index.js:11084:19)\n    at Parser.parseObjPropValue (C:\\Users\\badre\\mediexpertsV1.0.1\\node_modules\\@babel\\parser\\lib\\index.js:11117:23)\n    at Parser.parsePropertyDefinition (C:\\Users\\badre\\mediexpertsV1.0.1\\node_modules\\@babel\\parser\\lib\\index.js:11041:10)\n    at Parser.parseObjectLike (C:\\Users\\badre\\mediexpertsV1.0.1\\node_modules\\@babel\\parser\\lib\\index.js:10931:25)\n    at Parser.parseExprAtom (C:\\Users\\badre\\mediexpertsV1.0.1\\node_modules\\@babel\\parser\\lib\\index.js:10491:23)\n    at Parser.parseExprSubscripts (C:\\Users\\badre\\mediexpertsV1.0.1\\node_modules\\@babel\\parser\\lib\\index.js:10150:23)");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  runtimeCompiler: true,
+  data: function data() {
+    return {
+      selected_nForm: null,
+      idForm: null,
+      nCabinet: null,
+      id_plan: null,
+      selected_nrc_entrp: null,
+      selectedCabinet: false,
+      selectedFormationLieu: false,
+      newInfos: {
+        old_n_form: "",
+        old_entreprise: "",
+        old_ref_pla: "",
+        old_theme_action: "",
+        old_nature_action: "",
+        old_hr_debut: "",
+        old_hr_fin: "",
+        old_pse_debut: "",
+        old_pse_fin: "",
+        old_anulation: "",
+        old_date_realisation: "",
+        old_organisme_formations: "",
+        old_lieu_formations: "",
+        old_horaire_formations: "",
+        old_type_action: "",
+        old_organisme: "",
+        old_lieu: "",
+        old_groupe: "",
+        old_date1: "",
+        old_date2: "",
+        old_date3: "",
+        old_date4: "",
+        old_date5: "",
+        old_date6: "",
+        old_date7: "",
+        old_date8: "",
+        old_date9: "",
+        old_date10: ""
+      }
+    };
+  },
+  mounted: function mounted() {
+    this.$store.dispatch("model3/FetchClients");
+    this.$store.dispatch("model3/FetchAllCabinets");
+  },
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])("model3", {
+    curr_nrc_entrp: function curr_nrc_entrp(state) {
+      return state.curr_nrc_entrp;
+    },
+    clients: function clients(state) {
+      return state.clients;
+    },
+    reference_plans: function reference_plans(state) {
+      return state.reference_plans;
+    },
+    actions_by_plan: function actions_by_plan(state) {
+      return state.actions_by_plan;
+    },
+    curr_annee_plan: function curr_annee_plan(state) {
+      return state.curr_annee_plan;
+    },
+    cabinets: function cabinets(state) {
+      return state.cabinets;
+    },
+    Info_AvisModif: function Info_AvisModif(state) {
+      return state.Info_AvisModif;
+    },
+    List_Dates: function List_Dates(state) {
+      return state.List_Dates;
+    }
+  })),
+  methods: {
+    handleAction: function handleAction(actionName, value) {
+      this.$store.dispatch(actionName, value);
+    },
+    // fonction pour l'état d'avis annulation
+    getSelected: function getSelected() {
+      var annul = document.getElementById("etat");
+
+      if (annul.value.toString() === "annulation") {
+        var annuler = document.getElementById("annuler");
+        annuler.checked = true;
+        annuler.disabled = false; // récupérer les id des checkbox
+
+        var chk_dateR = document.getElementById("modif_date");
+        var chk_organ = document.getElementById("modif_organ");
+        var chk_lieu = document.getElementById("modif_lieu");
+        var chk_horaire = document.getElementById("modif_horaire"); // make checkbox disabled
+
+        chk_dateR.disabled = true;
+        chk_organ.disabled = true;
+        chk_lieu.disabled = true;
+        chk_horaire.disabled = true;
+      }
+    },
+    // fonction pour l'état d'avis modification
+    getDisabled: function getDisabled() {
+      var annul = document.getElementById("etat");
+
+      if (annul.value.toString() === "modification") {
+        var annuler = document.getElementById("annuler");
+        annuler.checked = false;
+        annuler.disabled = true; // récupérer les id des checkbox
+
+        var chk_dateR = document.getElementById("modif_date");
+        var chk_organ = document.getElementById("modif_organ");
+        var chk_lieu = document.getElementById("modif_lieu");
+        var chk_horaire = document.getElementById("modif_horaire"); // make checkbox enabled
+
+        chk_dateR.disabled = false;
+        chk_organ.disabled = false;
+        chk_lieu.disabled = false;
+        chk_horaire.disabled = false;
+      }
+    }
+  }
+});
 
 /***/ }),
 
@@ -41130,7 +41668,7 @@ var render = function() {
                         _vm._v(" "),
                         _c("input", {
                           staticClass: "form-control",
-                          attrs: { type: "text" },
+                          attrs: { type: "text", "v-model": _vm.old_organisme },
                           domProps: {
                             value:
                               _vm.Info_AvisModif.length != 0
@@ -41215,7 +41753,7 @@ var render = function() {
                                   _vm._v(
                                     "\n              " +
                                       _vm._s(cabinet.raisoci) +
-                                      " \n            "
+                                      "\n            "
                                   )
                                 ]
                               )
@@ -57874,6 +58412,7 @@ var actions = {
       }, _callee6);
     }))();
   },
+  //Getting Old Avis Modif Informations
   FetchInitialInfoAvisModif: function FetchInitialInfoAvisModif(_ref12, nForm) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee7() {
       var commit;
@@ -57902,7 +58441,11 @@ var actions = {
         }
       }, _callee7);
     }))();
-  }
+  } //Posting and puting the new insertions
+  // async PostPutAvisModif() {
+  //   await axios.post(`/store-avis-modif`,data)
+  // }
+
 };
 
 /***/ }),

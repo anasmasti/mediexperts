@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\{AvisModification,PlanFormation,Formation};
-use Illuminate\Support\Facades\DB;
+
 
 class AvisModificationController extends Controller
 {
@@ -13,65 +13,66 @@ public function StoreUpdateAvisModif(Request $request) {
 
         if ($request -> isMethod('POST')) {
 
-          // $request->validate([
-          //   'entreprise',
-          //   'ref_plan',
-          //   'theme_action',
-          //   'nature_action',
-          //   'old_hr_debut',
-          //   'old_hr_fin',
-          //   'old_pse_debut',
-          //   'old_pse_fin',
-          //   'anulation',
-          //   'date_realisation',
-          //   'organisme_formations',
-          //   'lieu_formations',
-          //   'horaire_formations',
-          //   'type_action',
-          //   'old_organisme',
-          //   'old_lieu',
-          //   'groupe',
-          //   'date1' =>'nullable',
-          //   'date2' =>'nullable',
-          //   'date3' =>'nullable',
-          //   'date4' =>'nullable',
-          //   'date5' =>'nullable',
-          //   'date6' =>'nullable',
-          //   'date7' =>'nullable',
-          //   'date8' =>'nullable',
-          //   'date9' =>'nullable',
-          //   'date10' =>'nullable',
-          // ]);
+          $request->validate([
+            'entreprise',
+            'ref_plan',
+            'theme_action',
+            'nature_action',
+            'old_hr_debut',
+            'old_hr_fin',
+            'old_pse_debut',
+            'old_pse_fin',
+            'anulation',
+            'date_realisation',
+            'organisme_formations',
+            'lieu_formations',
+            'horaire_formations',
+            'type_action',
+            'old_organisme',
+            'old_lieu',
+            'groupe',
+            'date1' =>'nullable',
+            'date2' =>'nullable',
+            'date3' =>'nullable',
+            'date4' =>'nullable',
+            'date5' =>'nullable',
+            'date6' =>'nullable',
+            'date7' =>'nullable',
+            'date8' =>'nullable',
+            'date9' =>'nullable',
+            'date10' =>'nullable',
+          ]);
 
           $AvisModif = new AvisModification();
+
           $AvisModif->n_form = $request->n_form;
-          $AvisModif->old_entreprise = $request->entreprise;
-          $AvisModif->old_ref_plan = $request->ref_plan;
-          $AvisModif->old_type_action = $request->type_action;
-          $AvisModif->old_anulation = $request->anulation;
-          $AvisModif->old_date_realisation = $request->date_realisation;
-          $AvisModif->old_organisme_formations= $request->organisme_formations;
-          $AvisModif->old_lieu_formations = $request->lieu_formations;
-          $AvisModif->old_horaire_formations = $request->horaire_formations;
-          $AvisModif->old_theme_action = $request->theme_action;
-          $AvisModif->old_nature_action= $request->nature_action;
-          $AvisModif->old_groupe= $request->groupe;
+          $AvisModif->old_entreprise = $request->old_entreprise;
+          $AvisModif->old_ref_plan = $request->old_ref_plan;
+          $AvisModif->old_type_action = $request->old_type_action;
+          $AvisModif->old_anulation = $request->old_anulation;
+          $AvisModif->old_date_realisation = $request->old_date_realisation;
+          $AvisModif->old_organisme_formations= $request->old_organisme_formations;
+          $AvisModif->old_lieu_formations = $request->old_lieu_formations;
+          $AvisModif->old_horaire_formations = $request->old_horaire_formations;
+          $AvisModif->old_theme_action = $request->old_theme_action;
+          $AvisModif->old_nature_action= $request->old_nature_action;
+          $AvisModif->old_groupe= $request->old_groupe;
           $AvisModif->old_organisme = $request->old_organisme;
           $AvisModif->old_lieu= $request->old_lieu;
           $AvisModif->old_hr_debut= $request->old_hr_debut ;
           $AvisModif->old_hr_fin= $request->old_hr_fin ;
           $AvisModif->old_pse_debut = $request->old_pse_debut;
           $AvisModif->old_pse_fin = $request->old_pse_fin;
-          $AvisModif->old_date1= $request->date1;
-          $AvisModif->old_date2 = $request->date2;
-          $AvisModif->old_date3 = $request->date3;
-          $AvisModif->old_date4= $request->date4 ;
-          $AvisModif->old_date5 = $request->date5;
-          $AvisModif->old_date6= $request->date6 ;
-          $AvisModif->old_date7= $request->date7 ;
-          $AvisModif->old_date8 = $request->date8;
-          $AvisModif->old_date9 = $request->date9;
-          $AvisModif->old_date10= $request->date10;
+          $AvisModif->old_date1= $request->old_date1;
+          $AvisModif->old_date2 = $request->old_date2;
+          $AvisModif->old_date3 = $request->old_date3;
+          $AvisModif->old_date4= $request->old_date4 ;
+          $AvisModif->old_date5 = $request->old_date5;
+          $AvisModif->old_date6= $request->old_date6;
+          $AvisModif->old_date7= $request->old_date7;
+          $AvisModif->old_date8 = $request->old_date8;
+          $AvisModif->old_date9 = $request->old_date9;
+          $AvisModif->old_date10= $request->old_date10;
           $nFrom = $AvisModif->n_form;
           $AvisModif->save();
 

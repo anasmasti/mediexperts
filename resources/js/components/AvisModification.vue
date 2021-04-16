@@ -164,7 +164,7 @@
             </div>
           </div>
 
-         
+
           <div
             class="cole-12 container p-lg-4 mt-3"
             style="background-color: #efefef"
@@ -181,6 +181,7 @@
                   type="text"
                   class="form-control"
                   :value="Info_AvisModif.length != 0 ? info.organisme : ''"
+                  :v-model="old_organisme"
                 />
               </div>
               <div class="form-group col-lg-6 col-sm-12">
@@ -192,7 +193,7 @@
                 />
               </div>
                <div class="form-group col-lg-6 col-sm-12">
-            <label>Nouvel Organisme de formation</label> 
+            <label>Nouvel Organisme de formation</label>
             <select class="form-control" v-model="selectedCabinet">
               <option selected disabled>---selectionner l'organisme---</option>
               <option
@@ -200,7 +201,7 @@
                 :value="selectedCabinet == false ? info.organisme : cabinet.raisoci"
                 :key="cabinet.nrc_cab"
               >
-                {{ cabinet.raisoci }} 
+                {{ cabinet.raisoci }}
               </option>
             </select>
           </div>
@@ -262,7 +263,7 @@
 
               <div class="form-group col-lg-3 col-md-6 col-12" v-if="info.date10">
                 <input class="form-control" type="date" :value="info.date10" />
-              </div> 
+              </div>
 
               <!-- {{-- LES NOUVELLES DATES --}} -->
               <div class="form-group col-lg-12 col-sm-12 mb-0">
@@ -420,12 +421,39 @@ export default {
       nCabinet: null,
       id_plan: null,
       selected_nrc_entrp: null,
-<<<<<<< HEAD
-      selected_input_annuler: false,
-=======
       selectedCabinet: false,
       selectedFormationLieu: false,
->>>>>>> a19895502b6e94203a3dc7fb50990f58434e2331
+      newInfos: {
+        old_n_form: "",
+        old_entreprise:"",
+        old_ref_pla:"",
+        old_theme_action:"",
+        old_nature_action:"",
+        old_hr_debut:"",
+        old_hr_fin:"",
+        old_pse_debut:"",
+        old_pse_fin:"",
+        old_anulation:"",
+        old_date_realisation:"",
+        old_organisme_formations:"",
+        old_lieu_formations:"",
+        old_horaire_formations:"",
+        old_type_action:"",
+        old_organisme:"",
+        old_lieu:"",
+        old_groupe:"",
+        old_date1:"",
+        old_date2:"",
+        old_date3:"",
+        old_date4:"",
+        old_date5:"",
+        old_date6:"",
+        old_date7:"",
+        old_date8:"",
+        old_date9:"",
+        old_date10:""
+      }
+
     };
   },
 
