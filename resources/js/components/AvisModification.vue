@@ -261,7 +261,7 @@
 
               <div class="form-group col-lg-3 col-md-6 col-12" v-if="info.date10">
                 <input class="form-control" type="date" :value="info.date10" />
-              </div>
+              </div> 
 
               <!-- {{-- LES NOUVELLES DATES --}} -->
               <div class="form-group col-lg-12 col-sm-12 mb-0">
