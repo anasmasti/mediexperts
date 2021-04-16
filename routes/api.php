@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 */
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
+  Route::get('/store-avis-modif' , 'AvisModificationController@StoreUpdateAvisModif');
   // Route::get('/fill-clients', 'FormulaireController@FillClients')->name('M1.print_m1');
 
 });
