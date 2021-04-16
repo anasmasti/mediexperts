@@ -163,33 +163,7 @@
             </div>
           </div>
 
-          <div class="form-group col-lg-6 col-sm-12">
-            <label>Nouvel Organisme de formation</label>
-            <select class="form-control">
-              <option selected disabled>---selectionner l'organisme---</option>
-              <option
-                v-for="cabinet in cabinets"
-                :value="cabinet.nrc_cab"
-                :key="cabinet.nrc_cab"
-              >
-                {{ cabinet.raisoci }}
-              </option>
-            </select>
-          </div>
-
-          <div class="form-group col-lg-6 col-sm-12">
-            <label>Nouveau lieu</label>
-            <select class="form-control" name="lieu" id="lieu">
-              <option selected disabled>---selectionner le lieu---</option>
-              <option
-                v-for="cl in clients"
-                :value="cl.nrc_entrp"
-                :key="cl.nrc_entrp"
-              >
-                {{ cl.raisoci }}
-              </option>
-            </select>
-          </div>
+         
           <div
             class="cole-12 container p-lg-4 mt-3"
             style="background-color: #efefef"
@@ -216,6 +190,32 @@
                   :value="Info_AvisModif.length != 0 ? info.lieu : ''"
                 />
               </div>
+               <div class="form-group col-lg-6 col-sm-12">
+            <label>Nouvel Organisme de formation</label> 
+            <select class="form-control" v-model="selectedCabinet">
+              <option selected disabled>---selectionner l'organisme---</option>
+              <option
+                v-for="cabinet in cabinets"
+                :value="selectedCabinet == false ? info.organisme : cabinet.raisoci"
+                :key="cabinet.nrc_cab"
+              >
+                {{ cabinet.raisoci }} 
+              </option>
+            </select>
+          </div>
+          <div class="form-group col-lg-6 col-sm-12">
+            <label>Nouveau lieu</label>
+            <select class="form-control" name="lieu" id="lieu"  v-model="selectedFormationLieu">
+              <option selected disabled>---selectionner le lieu---</option>
+              <option
+                v-for="cl in clients"
+                :value="selectedFormationLieu == false ? info.lieu : cl.raisoci"
+                :key="cl.nrc_entrp"
+              >
+                {{ cl.raisoci }}
+              </option>
+            </select>
+          </div>
             </div>
             <div class="row">
               <!-- {{-- LES DATES INITIALES --}} -->
@@ -223,44 +223,44 @@
                 <label>Dates initiales de réalisation </label>
               </div>
 
-              <div class="form-group col-lg-3 col-md-6 col-12">
-                <input class="form-control" type="date" />
+              <div class="form-group col-lg-3 col-md-6 col-12" v-if="info.date1">
+                <input class="form-control" type="date" :value="info.date1" />
               </div>
 
-              <div class="form-group col-lg-3 col-md-6 col-12">
-                <input class="form-control" type="date" />
+              <div class="form-group col-lg-3 col-md-6 col-12" v-if="info.date2">
+                <input class="form-control" type="date" :value="info.date2" />
               </div>
 
-              <div class="form-group col-lg-3 col-md-6 col-12">
-                <input class="form-control" type="date" />
+              <div class="form-group col-lg-3 col-md-6 col-12" v-if="info.date3">
+                <input class="form-control" type="date" :value="info.date3" />
               </div>
 
-              <div class="form-group col-lg-3 col-md-6 col-12">
-                <input class="form-control" type="date" />
+              <div class="form-group col-lg-3 col-md-6 col-12" v-if="info.date4">
+                <input class="form-control" type="date" :value="info.date4" />
               </div>
 
-              <div class="form-group col-lg-3 col-md-6 col-12">
-                <input class="form-control" type="date" />
+              <div class="form-group col-lg-3 col-md-6 col-12" v-if="info.date5">
+                <input class="form-control" type="date" :value="info.date5" />
               </div>
 
-              <div class="form-group col-lg-3 col-md-6 col-12">
-                <input class="form-control" type="date" />
+              <div class="form-group col-lg-3 col-md-6 col-12" v-if="info.date6">
+                <input class="form-control" type="date" :value="info.date6" />
               </div>
 
-              <div class="form-group col-lg-3 col-md-6 col-12">
-                <input class="form-control" type="date" />
+              <div class="form-group col-lg-3 col-md-6 col-12" v-if="info.date7">
+                <input class="form-control" type="date" :value="info.date7" />
               </div>
 
-              <div class="form-group col-lg-3 col-md-6 col-12">
-                <input class="form-control" type="date" />
+              <div class="form-group col-lg-3 col-md-6 col-12" v-if="info.date8">
+                <input class="form-control" type="date" :value="info.date8" />
               </div>
 
-              <div class="form-group col-lg-3 col-md-6 col-12">
-                <input class="form-control" type="date" />
+              <div class="form-group col-lg-3 col-md-6 col-12" v-if="info.date9">
+                <input class="form-control" type="date" :value="info.date9" />
               </div>
 
-              <div class="form-group col-lg-3 col-md-6 col-12">
-                <input class="form-control" type="date" />
+              <div class="form-group col-lg-3 col-md-6 col-12" v-if="info.date10">
+                <input class="form-control" type="date" :value="info.date10" />
               </div>
 
               <!-- {{-- LES NOUVELLES DATES --}} -->
@@ -319,7 +319,7 @@
               <div class="form-group col-lg-6 col-sm-12">
                 <label>Heure début</label>
                 <div class="input-group date" id="datetimepicker3">
-                  <input class="form-control" type="time" name="hr_debut" />
+                  <input class="form-control" type="time" name="hr_debut" :value="info.hr_debut" />
                   <div
                     class="input-group-append"
                     data-target="#timepicker"
@@ -338,6 +338,7 @@
                     class="form-control timerpicker"
                     type="time"
                     name="hr_fin"
+                    :value="info.hr_fin"
                   />
                   <div
                     class="input-group-append"
@@ -418,6 +419,8 @@ export default {
       nCabinet: null,
       id_plan: null,
       selected_nrc_entrp: null,
+      selectedCabinet: false,
+      selectedFormationLieu: false,
     };
   },
 
