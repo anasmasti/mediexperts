@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class AvisModification extends Model
 {
@@ -26,6 +27,7 @@ class AvisModification extends Model
       'organisme_formations',
       'lieu_formations',
       'horaire_formations',
+      'anulation',
       'type_action',
       'old_organisme',
       'old_lieu',
@@ -61,4 +63,8 @@ class AvisModification extends Model
       'date29',
       'date30',
     ];
+
+    public function formation() {
+      return $this->BelongsTo(Formation::class,PlanFormation::class);
+    }
 }

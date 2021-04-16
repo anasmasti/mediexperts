@@ -402,6 +402,9 @@
         >
         <!-- <a href="#" class="btn btn-warning"><i class="fa fa-pencil" aria-hidden="true"></i>&nbsp;Modifier</a> -->
       </div>
+      <div>
+        <input type="text">
+      </div>
     </form>
   </div>
 </template>

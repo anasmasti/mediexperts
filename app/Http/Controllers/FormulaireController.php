@@ -295,7 +295,7 @@ class FormulaireController extends Controller
 
     public function FillAllCabinets(Request $request)
     {
-      $data=Cabinet::all();
+      $data = Cabinet::all();
       return response()->json($data);
     }
 
