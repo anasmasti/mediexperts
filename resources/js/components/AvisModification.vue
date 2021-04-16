@@ -45,8 +45,9 @@
                 v-for="pdf in reference_plans"
                 :value="pdf.id_plan"
                 :key="pdf.id_plan"
-                >{{ pdf.refpdf }}</option
               >
+                {{ pdf.refpdf }}
+              </option>
             </select>
           </div>
 
@@ -67,7 +68,7 @@
           </div>
 
           <table
-            class="table table-striped col-12 col-lg-6 border"
+            class="table table-striped col-12 col-lg-11 border"
             style="margin: 16px"
           >
             <thead>
@@ -108,7 +109,9 @@
             <label>Thème de l’action</label>
             <select
               class="form-control"
-              @change="handleAction('model3/FetchInitialInfoAvisModif', selected_nForm)"
+              @change="
+                handleAction('model3/FetchInitialInfoAvisModif', selected_nForm)
+              "
               v-model="selected_nForm"
             >
               <option selected disabled>---selectionner le thème---</option>
@@ -116,8 +119,9 @@
                 v-for="action in actions_by_plan"
                 :value="action.n_form"
                 :key="action.n_form"
-                >{{ action.nom_theme }}</option
               >
+                {{ action.nom_theme }}
+              </option>
             </select>
           </div>
 
@@ -160,16 +164,6 @@
           </div>
 
           <div class="form-group col-lg-6 col-sm-12">
-            <label>Organisme de formation initial</label>
-            <div v-for="(info, index) in Info_AvisModif" :key="index">
-              <input
-                type="text"
-                class="form-control"
-                :value="Info_AvisModif.length != 0 ? info.organisme : '' "
-              />
-            </div>
-          </div>
-          <div class="form-group col-lg-6 col-sm-12">
             <label>Nouvel Organisme de formation</label>
             <select class="form-control">
               <option selected disabled>---selectionner l'organisme---</option>
@@ -178,21 +172,11 @@
                 :value="cabinet.nrc_cab"
                 :key="cabinet.nrc_cab"
               >
-                {{ cabinet.raisoci }}</option
-              >
+                {{ cabinet.raisoci }}
+              </option>
             </select>
           </div>
 
-          <div class="form-group col-lg-6 col-sm-12">
-            <label>Lieu de formation initial </label>
-             <div v-for="(info, index) in Info_AvisModif" :key="index">
-              <input
-                type="text"
-                class="form-control"
-                :value="Info_AvisModif.length != 0 ? info.lieu : '' "
-              />
-            </div>
-          </div>
           <div class="form-group col-lg-6 col-sm-12">
             <label>Nouveau lieu</label>
             <select class="form-control" name="lieu" id="lieu">
@@ -206,118 +190,206 @@
               </option>
             </select>
           </div>
-
-          <!-- {{-- LES DATES INITIALES --}} -->
-          <div class="form-group col-lg-3 col-md-6 col-12">
-            <label>Dates initiales de réalisation </label>
-            <input class="form-control" type="date" />
-          </div>
-
-          <div class="form-group col-lg-3 col-md-6 col-12">
-            <label>.</label>
-            <input class="form-control" type="date" />
-          </div>
-
-          <div class="form-group col-lg-3 col-md-6 col-12">
-            <label>.</label>
-            <input class="form-control" type="date" />
-          </div>
-
-          <div class="form-group col-lg-3 col-md-6 col-12">
-            <label>.</label>
-            <input class="form-control" type="date" />
-          </div>
-
-          <!-- {{-- LES NOUVELLES DATES --}} -->
-          <div class="form-group col-lg-3 col-md-6 col-12">
-            <label>Nouvelles Dates exactes de réalisation </label>
-            <input class="form-control" type="date" />
-          </div>
-
-          <div class="form-group col-lg-3 col-md-6 col-12">
-            <label>.</label>
-            <input class="form-control" type="date" />
-          </div>
-
-          <div class="form-group col-lg-3 col-md-6 col-12">
-            <label>.</label>
-            <input class="form-control" type="date" />
-          </div>
-
-          <div class="form-group col-lg-3 col-md-6 col-12">
-            <label>.</label>
-            <input class="form-control" type="date" />
-          </div>
-
-          <!-- {{-- L'HORAIRE INITIALE --}} -->
-
-          <div class="form-group col-lg-3 col-sm-12">
-            <label>Organisation horaire initiale </label>
-          </div>
-
-          <div class="form-group col-lg-3 col-sm-12">
-            <label>Heure début</label>
-            <div class="input-group date" id="datetimepicker3">
-              <input class="form-control" type="time" name="hr_debut" />
-              <div
-                class="input-group-append"
-                data-target="#timepicker"
-                data-toggle="datetimepicker"
-              ></div>
-              <div class="input-group-text"><i class="far fa-clock"></i></div>
+          <div
+            class="cole-12 container p-lg-4 mt-3"
+            style="background-color: #efefef"
+            v-for="(info, index) in Info_AvisModif"
+            :key="index"
+          >
+            <h3>
+              <strong>Groupe {{ index + 1 }}</strong>
+            </h3>
+            <div class="row my-3">
+              <div class="form-group col-lg-6 col-sm-12">
+                <label>Organisme de formation initial</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  :value="Info_AvisModif.length != 0 ? info.organisme : ''"
+                />
+              </div>
+              <div class="form-group col-lg-6 col-sm-12">
+                <label>Lieu de formation initial </label>
+                <input
+                  type="text"
+                  class="form-control"
+                  :value="Info_AvisModif.length != 0 ? info.lieu : ''"
+                />
+              </div>
             </div>
-          </div>
+            <div class="row">
+              <!-- {{-- LES DATES INITIALES --}} -->
+              <div class="form-group col-lg-12 col-sm-12 mb-0">
+                <label>Dates initiales de réalisation </label>
+              </div>
 
-          <div class="form-group col-lg-3 col-sm-12">
-            <label>Heure fin</label>
-            <div class="input-group date" id="datetimepicker3">
-              <input
-                class="form-control timerpicker"
-                type="time"
-                name="hr_fin"
-              />
-              <div
-                class="input-group-append"
-                data-target="#timepicker"
-                data-toggle="datetimepicker"
-              ></div>
-              <div class="input-group-text"><i class="far fa-clock"></i></div>
+              <div class="form-group col-lg-3 col-md-6 col-12">
+                <input class="form-control" type="date" />
+              </div>
+
+              <div class="form-group col-lg-3 col-md-6 col-12">
+                <input class="form-control" type="date" />
+              </div>
+
+              <div class="form-group col-lg-3 col-md-6 col-12">
+                <input class="form-control" type="date" />
+              </div>
+
+              <div class="form-group col-lg-3 col-md-6 col-12">
+                <input class="form-control" type="date" />
+              </div>
+
+              <div class="form-group col-lg-3 col-md-6 col-12">
+                <input class="form-control" type="date" />
+              </div>
+
+              <div class="form-group col-lg-3 col-md-6 col-12">
+                <input class="form-control" type="date" />
+              </div>
+
+              <div class="form-group col-lg-3 col-md-6 col-12">
+                <input class="form-control" type="date" />
+              </div>
+
+              <div class="form-group col-lg-3 col-md-6 col-12">
+                <input class="form-control" type="date" />
+              </div>
+
+              <div class="form-group col-lg-3 col-md-6 col-12">
+                <input class="form-control" type="date" />
+              </div>
+
+              <div class="form-group col-lg-3 col-md-6 col-12">
+                <input class="form-control" type="date" />
+              </div>
+
+              <!-- {{-- LES NOUVELLES DATES --}} -->
+              <div class="form-group col-lg-12 col-sm-12 mb-0">
+                <label>Nouvelles Dates exactes de réalisation </label>
+              </div>
+
+              <div class="form-group col-lg-3 col-md-6 col-12">
+                <input class="form-control" type="date" />
+              </div>
+
+              <div class="form-group col-lg-3 col-md-6 col-12">
+                <input class="form-control" type="date" />
+              </div>
+
+              <div class="form-group col-lg-3 col-md-6 col-12">
+                <input class="form-control" type="date" />
+              </div>
+
+              <div class="form-group col-lg-3 col-md-6 col-12">
+                <input class="form-control" type="date" />
+              </div>
+
+               <div class="form-group col-lg-3 col-md-6 col-12">
+                <input class="form-control" type="date" />
+              </div>
+
+              <div class="form-group col-lg-3 col-md-6 col-12">
+                <input class="form-control" type="date" />
+              </div>
+
+              <div class="form-group col-lg-3 col-md-6 col-12">
+                <input class="form-control" type="date" />
+              </div>
+
+              <div class="form-group col-lg-3 col-md-6 col-12">
+                <input class="form-control" type="date" />
+              </div>
+
+              <div class="form-group col-lg-3 col-md-6 col-12">
+                <input class="form-control" type="date" />
+              </div>
+
+              <div class="form-group col-lg-3 col-md-6 col-12">
+                <input class="form-control" type="date" />
+              </div>
+
             </div>
-          </div>
-        </div>
 
-        <div class="row">
-          <div class="form-group col-lg-3 col-sm-12 d-flex">
-            <label>Nouvelle organisation horaire </label>
-          </div>
+            <!-- {{-- L'HORAIRE INITIALE --}} -->
+            <div class="row mt-3">
+              <div class="form-group col-lg-12 col-sm-12 mb-0">
+                <label>Organisation horaire initiale </label>
+              </div>
 
-          <div class="form-group col-lg-3 col-sm-12">
-            <label>Heure début</label>
-            <div class="input-group date" id="datetimepicker3">
-              <input class="form-control" type="time" name="hr_debut" />
-              <div
-                class="input-group-append"
-                data-target="#timepicker"
-                data-toggle="datetimepicker"
-              ></div>
-              <div class="input-group-text"><i class="far fa-clock"></i></div>
+              <div class="form-group col-lg-6 col-sm-12">
+                <label>Heure début</label>
+                <div class="input-group date" id="datetimepicker3">
+                  <input class="form-control" type="time" name="hr_debut" />
+                  <div
+                    class="input-group-append"
+                    data-target="#timepicker"
+                    data-toggle="datetimepicker"
+                  ></div>
+                  <div class="input-group-text">
+                    <i class="far fa-clock"></i>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group col-lg-6 col-sm-12">
+                <label>Heure fin</label>
+                <div class="input-group date" id="datetimepicker3">
+                  <input
+                    class="form-control timerpicker"
+                    type="time"
+                    name="hr_fin"
+                  />
+                  <div
+                    class="input-group-append"
+                    data-target="#timepicker"
+                    data-toggle="datetimepicker"
+                  ></div>
+                  <div class="input-group-text">
+                    <i class="far fa-clock"></i>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
-          <!-- {{--  --}} -->
-          <div class="form-group col-lg-3 col-sm-12">
-            <label>Heure fin</label>
-            <div class="input-group date" id="datetimepicker3">
-              <input
-                class="form-control timerpicker"
-                type="time"
-                name="hr_fin"
-              />
-              <div
-                class="input-group-append"
-                data-target="#timepicker"
-                data-toggle="datetimepicker"
-              ></div>
-              <div class="input-group-text"><i class="far fa-clock"></i></div>
+
+            <div class="row">
+              <div class="form-group col-lg-12 col-sm-12 d-flex mb-0">
+                <label>Nouvelle organisation horaire </label>
+              </div>
+
+              <div class="form-group col-lg-6 col-sm-12">
+                <label>Heure début</label>
+                <div class="input-group date" id="datetimepicker3">
+                  <input class="form-control" type="time" name="hr_debut" />
+                  <div
+                    class="input-group-append"
+                    data-target="#timepicker"
+                    data-toggle="datetimepicker"
+                  ></div>
+                  <div class="input-group-text">
+                    <i class="far fa-clock"></i>
+                  </div>
+                </div>
+              </div>
+              <!-- {{--  --}} -->
+
+              <div class="form-group col-lg-6 col-sm-12">
+                <label>Heure fin</label>
+                <div class="input-group date" id="datetimepicker3">
+                  <input
+                    class="form-control timerpicker"
+                    type="time"
+                    name="hr_fin"
+                  />
+                  <div
+                    class="input-group-append"
+                    data-target="#timepicker"
+                    data-toggle="datetimepicker"
+                  ></div>
+                  <div class="input-group-text">
+                    <i class="far fa-clock"></i>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -335,7 +407,6 @@
 
 <script>
 import { mapState } from "vuex";
-
 
 export default {
   runtimeCompiler: true,
@@ -357,15 +428,15 @@ export default {
 
   computed: {
     ...mapState("model3", {
-      curr_nrc_entrp: state => state.curr_nrc_entrp,
-      clients: state => state.clients,
-      reference_plans: state => state.reference_plans,
-      actions_by_plan: state => state.actions_by_plan,
-      curr_annee_plan: state => state.curr_annee_plan,
-      cabinets: state => state.cabinets,
-      Info_AvisModif: state => state.Info_AvisModif,
-      List_Dates: state => state.List_Dates
-    })
+      curr_nrc_entrp: (state) => state.curr_nrc_entrp,
+      clients: (state) => state.clients,
+      reference_plans: (state) => state.reference_plans,
+      actions_by_plan: (state) => state.actions_by_plan,
+      curr_annee_plan: (state) => state.curr_annee_plan,
+      cabinets: (state) => state.cabinets,
+      Info_AvisModif: (state) => state.Info_AvisModif,
+      List_Dates: (state) => state.List_Dates,
+    }),
   },
 
   methods: {
@@ -416,7 +487,7 @@ export default {
         chk_horaire.disabled = false;
       }
     },
-  }
+  },
 };
 </script>
 

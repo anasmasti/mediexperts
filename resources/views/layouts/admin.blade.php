@@ -138,7 +138,7 @@
       <!-- Brand Logo -->
       <a href="/home" class="brand-link bg-dark">
       <img src="{{ URL::asset('logo3.png') }}" alt="Medi Experts" style="opacity: .8;" class=" brand-image img-circle elevation-3">
-      <span class="brand-text font-weight-light ">Medi Experts</span>
+      <span class="brand-text font-weight-light ">Mediexperts</span>
       </a>
 
       <!-- Sidebar -->
@@ -150,13 +150,13 @@
           </div>
           <div class="info">
           @if (Auth::user()->type_user == "user")
-            <a href="#" class="d-block">{{ Auth::user()->name }} {{ Auth::user()->firstname }}</a>
+            <h6 class="d-block text-light">{{ Auth::user()->firstname }} {{ Auth::user()->name }}</h6>
             <span class="right badge badge-warning">Utilisateur</span>
           @elseif (Auth::user()->type_user == "admin")
-            <a href="#" class="d-block">{{ Auth::user()->name }} {{ Auth::user()->firstname }}</a>
+            <h6 class="d-block text-light">{{ Auth::user()->firstname }} {{ Auth::user()->name }}</h6>
             <span class="right badge badge-danger">Administrateur</span>
           @else
-            <a href="#" class="d-block">{{ Auth::user()->name }} {{ Auth::user()->firstname }}</a>
+            <h6 class="d-block text-light">{{ Auth::user()->firstname }} {{ Auth::user()->name }}</h6>
             <span class="right badge badge-info">{{ ucfirst(Auth::user()->type_user) }}</span>
           @endif
           </div>
@@ -707,15 +707,15 @@
 
       </div>
       <!-- Default to the left -->
-      <strong><a href="#" style="color:#dab515;">Medi Experts&nbsp;</a>
-      Copyright &copy; 2019</strong>
+      <strong><a href="#" style="color:#dab515;">Mediexperts&nbsp;</a>
+      Copyright &copy; 2021</strong>
     </footer> --}}
 
     <footer class="main-footer">
-      <strong class="">MediExperts </strong>
+      <strong class="">Mediexperts </strong>
       <strong>{{ date('Y') }}</strong>
       <div class="float-right d-none d-sm-inline-block">
-      <b>Version</b> <strong>1.0.1</strong>
+      <b>Version</b> <strong>1.2.0</strong>
       </div>
     </footer>
 

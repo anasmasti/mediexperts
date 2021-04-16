@@ -23,7 +23,28 @@
 <script src={{ asset('js/myjs.js') }}></script>
 
 
+<<<<<<< HEAD
+<div class="modal" tabindex="-1" role="dialog" id="msg_error_accord">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header bg-danger text-lite">
+            <h5 class="modal-title">Il y a une erreur</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            Accord informations requises
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+  </div>
+=======
 
+>>>>>>> 8e98022b2ba40f1be478fb4f7c866cf02e101a62
 
 <!-- CARD -->
 <div class="card card-dark">
@@ -1367,39 +1388,39 @@
             <div class="form-group col-12">{{--**************HR**************--}}<hr></div>
 
             <div class="form-group col-12 text-center">
-                <h4>État demande</h4>
+                <h4>État du demande</h4>
                 <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                    <label class="btn btn-warning">
+                    <label class="btn btn-warning" name="btnEtat">
                         Initié
                         <i class="fas fa-battery-quarter"></i>
                         <input type="radio" name="etat" id="option1" autocomplete="off" value="initié" checked>
                     </label>
-                    <label class="btn btn-warning">
+                    <label class="btn btn-warning" name="btnEtat">
                         Instruction dossier
                         <i class="fas fa-hourglass-half"></i>
                         <input type="radio" name="etat" id="option2" autocomplete="off" value="instruction dossier">
                     </label>
-                    <label class="btn btn-warning">
+                    <label class="btn btn-warning" name="btnEtat">
                         Déposé
                         <i class="fas fa-folder-open"></i>
                         <input type="radio" name="etat" id="option3" autocomplete="off" value="déposé">
                     </label>
-                    <label class="btn btn-warning">
+                    <label class="btn btn-warning" name="btnEtat">
                         Accordé
                         <i class="fas fa-signature"></i>
                         <input type="radio" name="etat" id="option4" autocomplete="off" onchange="AccordValidate()" value="accordé">
                     </label>
-                    <label class="btn btn-warning">
+                    <label class="btn btn-warning" name="btnEtat">
                         Réalisé
                         <i class="fas fa-check-square"></i>
                         <input type="radio" name="etat" id="option5" autocomplete="off" onchange="AccordValidate()" value="réalisé">
                     </label>
-                    <label class="btn btn-warning">
+                    <label class="btn btn-warning" name="btnEtat">
                         Approuvé
                         <i class="fas fa-check-double"></i>
                         <input type="radio" name="etat" id="option6" autocomplete="off" onchange="AccordValidate()" value="approuvé">
                     </label>
-                    <label class="btn btn-danger">
+                    <label class="btn btn-danger" name="btnEtat">
                         Annulé
                         <i class="fas fa-times"></i>
                         <input type="radio" name="etat" id="option0" autocomplete="off" value="annulé">
