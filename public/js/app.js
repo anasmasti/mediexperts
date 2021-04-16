@@ -2900,8 +2900,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   runtimeCompiler: true,
@@ -2911,7 +2909,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       idForm: null,
       nCabinet: null,
       id_plan: null,
-      selected_nrc_entrp: null
+      selected_nrc_entrp: null,
+      selected_input_annuler: false
     };
   },
   mounted: function mounted() {
@@ -41462,7 +41461,90 @@ var render = function() {
               )
             ]),
             _vm._v(" "),
-            _vm._m(1),
+            _c(
+              "table",
+              {
+                staticClass: "table table-striped col-12 col-lg-11 border",
+                staticStyle: { margin: "16px" }
+              },
+              [
+                _c("thead", [
+                  _c("tr", [
+                    _c(
+                      "th",
+                      {
+                        staticStyle: { width: "10%" },
+                        attrs: { rowspan: "6" }
+                      },
+                      [_vm._v("Avis")]
+                    ),
+                    _vm._v(" "),
+                    _c("th", { staticStyle: { width: "10%" } }, [
+                      _vm._v("Anulation")
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "th",
+                      {
+                        staticStyle: { width: "10%" },
+                        attrs: { colspan: "2" }
+                      },
+                      [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.selected_input_annuler,
+                              expression: "selected_input_annuler"
+                            }
+                          ],
+                          attrs: {
+                            name: "annuler",
+                            type: "checkbox",
+                            id: "annuler"
+                          },
+                          domProps: {
+                            value: true,
+                            checked: Array.isArray(_vm.selected_input_annuler)
+                              ? _vm._i(_vm.selected_input_annuler, true) > -1
+                              : _vm.selected_input_annuler
+                          },
+                          on: {
+                            change: function($event) {
+                              var $$a = _vm.selected_input_annuler,
+                                $$el = $event.target,
+                                $$c = $$el.checked ? true : false
+                              if (Array.isArray($$a)) {
+                                var $$v = true,
+                                  $$i = _vm._i($$a, $$v)
+                                if ($$el.checked) {
+                                  $$i < 0 &&
+                                    (_vm.selected_input_annuler = $$a.concat([
+                                      $$v
+                                    ]))
+                                } else {
+                                  $$i > -1 &&
+                                    (_vm.selected_input_annuler = $$a
+                                      .slice(0, $$i)
+                                      .concat($$a.slice($$i + 1)))
+                                }
+                              } else {
+                                _vm.selected_input_annuler = $$c
+                              }
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("h1", [_vm._v(_vm._s(_vm.selected_input_annuler))])
+                      ]
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _vm._m(1)
+              ]
+            ),
             _vm._v(" "),
             _c("div", { staticClass: "form-group col-lg-6 col-sm-12" }, [
               _c("label", [_vm._v("Thème de l’action")]),
@@ -41659,9 +41741,7 @@ var render = function() {
         )
       ]),
       _vm._v(" "),
-      _vm._m(6),
-      _vm._v(" "),
-      _vm._m(7)
+      _vm._m(6)
     ])
   ])
 }
@@ -41680,86 +41760,59 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "table",
-      {
-        staticClass: "table table-striped col-12 col-lg-11 border",
-        staticStyle: { margin: "16px" }
-      },
-      [
-        _c("thead", [
-          _c("tr", [
-            _c(
-              "th",
-              { staticStyle: { width: "10%" }, attrs: { rowspan: "6" } },
-              [_vm._v("Avis")]
-            ),
-            _vm._v(" "),
-            _c("th", { staticStyle: { width: "10%" } }, [_vm._v("Anulation")]),
-            _vm._v(" "),
-            _c(
-              "th",
-              { staticStyle: { width: "10%" }, attrs: { colspan: "2" } },
-              [_c("input", { attrs: { type: "checkbox", id: "annuler" } })]
-            )
-          ])
+    return _c("tbody", [
+      _c("tr", [
+        _c("th", { attrs: { rowspan: "5" } }, [_vm._v("Modification")])
+      ]),
+      _vm._v(" "),
+      _c("tr", [
+        _c("th", { staticStyle: { width: "5%" } }, [
+          _vm._v("De la date de Réalisation")
         ]),
         _vm._v(" "),
-        _c("tbody", [
-          _c("tr", [
-            _c("th", { attrs: { rowspan: "5" } }, [_vm._v("Modification")])
-          ]),
-          _vm._v(" "),
-          _c("tr", [
-            _c("th", { staticStyle: { width: "5%" } }, [
-              _vm._v("De la date de Réalisation")
-            ]),
-            _vm._v(" "),
-            _c("th", [
-              _c("input", {
-                attrs: { type: "checkbox", name: "modif", id: "modif_date" }
-              })
-            ])
-          ]),
-          _vm._v(" "),
-          _c("tr", [
-            _c("th", { staticStyle: { width: "5%" } }, [
-              _vm._v("De l’organisme de formation")
-            ]),
-            _vm._v(" "),
-            _c("th", [
-              _c("input", {
-                attrs: { type: "checkbox", name: "modif", id: "modif_organ" }
-              })
-            ])
-          ]),
-          _vm._v(" "),
-          _c("tr", [
-            _c("th", { staticStyle: { width: "5%" } }, [
-              _vm._v("De lieu de formation")
-            ]),
-            _vm._v(" "),
-            _c("th", [
-              _c("input", {
-                attrs: { type: "checkbox", name: "modif", id: "modif_lieu" }
-              })
-            ])
-          ]),
-          _vm._v(" "),
-          _c("tr", [
-            _c("th", { staticStyle: { width: "5%" } }, [
-              _vm._v("Organisation horaire")
-            ]),
-            _vm._v(" "),
-            _c("th", [
-              _c("input", {
-                attrs: { type: "checkbox", name: "modif", id: "modif_horaire" }
-              })
-            ])
-          ])
+        _c("th", [
+          _c("input", {
+            attrs: { type: "checkbox", name: "modif", id: "modif_date" }
+          })
         ])
-      ]
-    )
+      ]),
+      _vm._v(" "),
+      _c("tr", [
+        _c("th", { staticStyle: { width: "5%" } }, [
+          _vm._v("De l’organisme de formation")
+        ]),
+        _vm._v(" "),
+        _c("th", [
+          _c("input", {
+            attrs: { type: "checkbox", name: "modif", id: "modif_organ" }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("tr", [
+        _c("th", { staticStyle: { width: "5%" } }, [
+          _vm._v("De lieu de formation")
+        ]),
+        _vm._v(" "),
+        _c("th", [
+          _c("input", {
+            attrs: { type: "checkbox", name: "modif", id: "modif_lieu" }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("tr", [
+        _c("th", { staticStyle: { width: "5%" } }, [
+          _vm._v("Organisation horaire")
+        ]),
+        _vm._v(" "),
+        _c("th", [
+          _c("input", {
+            attrs: { type: "checkbox", name: "modif", id: "modif_horaire" }
+          })
+        ])
+      ])
+    ])
   },
   function() {
     var _vm = this
@@ -42050,12 +42103,6 @@ var staticRenderFns = [
         _vm._v(" Imprimer")
       ])
     ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [_c("input", { attrs: { type: "text" } })])
   }
 ]
 render._withStripped = true

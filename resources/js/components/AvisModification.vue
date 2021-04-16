@@ -76,7 +76,8 @@
                 <th style="width: 10%" rowspan="6">Avis</th>
                 <th style="width: 10%">Anulation</th>
                 <th style="width: 10%" colspan="2">
-                  <input type="checkbox" id="annuler" />
+                  <input name="annuler" :value="true" v-model="selected_input_annuler" type="checkbox" id="annuler" />
+                  <h1>{{selected_input_annuler}}</h1>
                 </th>
               </tr>
             </thead>
@@ -401,9 +402,6 @@
         >
         <!-- <a href="#" class="btn btn-warning"><i class="fa fa-pencil" aria-hidden="true"></i>&nbsp;Modifier</a> -->
       </div>
-      <div>
-        <input type="text">
-      </div>
     </form>
   </div>
 </template>
@@ -421,6 +419,7 @@ export default {
       nCabinet: null,
       id_plan: null,
       selected_nrc_entrp: null,
+      selected_input_annuler: false,
     };
   },
 

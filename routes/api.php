@@ -12,9 +12,9 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
+Route::post('store-avis-modif' , 'AvisModificationController@StoreUpdateAvisModif');
 Route::middleware('auth:api')->get('/user', function (Request $request) {
-  Route::get('/store-avis-modif' , 'AvisModificationController@StoreUpdateAvisModif');
+
   // Route::get('/fill-clients', 'FormulaireController@FillClients')->name('M1.print_m1');
 
 });
