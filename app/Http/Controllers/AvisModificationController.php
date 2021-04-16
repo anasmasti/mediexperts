@@ -45,39 +45,40 @@ public function StoreUpdateAvisModif(Request $request) {
 
           $AvisModif = new AvisModification();
           $AvisModif->n_form = $request->n_form;
-          $AvisModif->entreprise = $request->entreprise;
-          $AvisModif->ref_plan = $request->ref_plan;
-          $AvisModif->type_action = $request->type_action;
-          $AvisModif->anulation = $request->anulation;
-          $AvisModif->date_realisation = $request->date_realisation;
-          $AvisModif->organisme_formations= $request->organisme_formations;
-          $AvisModif->lieu_formations = $request->lieu_formations;
-          $AvisModif->horaire_formations = $request->horaire_formations;
-          $AvisModif->theme_action = $request->theme_action;
-          $AvisModif->nature_action= $request->nature_action;
-          $AvisModif->groupe= $request->groupe;
+          $AvisModif->old_entreprise = $request->entreprise;
+          $AvisModif->old_ref_plan = $request->ref_plan;
+          $AvisModif->old_type_action = $request->type_action;
+          $AvisModif->old_anulation = $request->anulation;
+          $AvisModif->old_date_realisation = $request->date_realisation;
+          $AvisModif->old_organisme_formations= $request->organisme_formations;
+          $AvisModif->old_lieu_formations = $request->lieu_formations;
+          $AvisModif->old_horaire_formations = $request->horaire_formations;
+          $AvisModif->old_theme_action = $request->theme_action;
+          $AvisModif->old_nature_action= $request->nature_action;
+          $AvisModif->old_groupe= $request->groupe;
           $AvisModif->old_organisme = $request->old_organisme;
           $AvisModif->old_lieu= $request->old_lieu;
           $AvisModif->old_hr_debut= $request->old_hr_debut ;
           $AvisModif->old_hr_fin= $request->old_hr_fin ;
           $AvisModif->old_pse_debut = $request->old_pse_debut;
           $AvisModif->old_pse_fin = $request->old_pse_fin;
-          $AvisModif->date1= $request->date1;
-          $AvisModif->date2 = $request->date2;
-          $AvisModif->date3 = $request->date3;
-          $AvisModif->date4= $request->date4 ;
-          $AvisModif->date5 = $request->date5;
-          $AvisModif->date6= $request->date6 ;
-          $AvisModif->date7= $request->date7 ;
-          $AvisModif->date8 = $request->date8;
-          $AvisModif->date9 = $request->date9;
-          $AvisModif->date10= $request->date10;
-
+          $AvisModif->old_date1= $request->date1;
+          $AvisModif->old_date2 = $request->date2;
+          $AvisModif->old_date3 = $request->date3;
+          $AvisModif->old_date4= $request->date4 ;
+          $AvisModif->old_date5 = $request->date5;
+          $AvisModif->old_date6= $request->date6 ;
+          $AvisModif->old_date7= $request->date7 ;
+          $AvisModif->old_date8 = $request->date8;
+          $AvisModif->old_date9 = $request->date9;
+          $AvisModif->old_date10= $request->date10;
           $nFrom = $AvisModif->n_form;
-
           $AvisModif->save();
 
+
+
           $planformation = PlanFormation::findOrFail($nFrom);
+
 
           $planformation->lieu = $request->lieu;
           $planformation->organisme = $request->organisme ;
@@ -86,6 +87,8 @@ public function StoreUpdateAvisModif(Request $request) {
           $planformation->organisme_formations = $request->organisme_formations;
           $planformation->lieu_formations = $request->lieu_formations;
           $planformation->horaire_formations = $request->horaire_formations;
+
+          $planformation->save();
 
           $formation = Formation::findOrFail($nFrom);
 
@@ -104,40 +107,9 @@ public function StoreUpdateAvisModif(Request $request) {
           $formation->date9 = $request->date9;
           $formation->date10 = $request->date10;
 
+          $formation->save();
         }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     /**
      * Display a listing of the resource.
      *

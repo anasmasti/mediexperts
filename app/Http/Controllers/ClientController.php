@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Input;
 use App\{Client,Giac,Actionnaire,DemandeFinancement,DemandeRemboursementOfppt,PlanFormation};
 use Session;
 use Alert;
-use DB;
+use Illuminate\Support\Facades\DB;
 
 class ClientController extends Controller
 {
