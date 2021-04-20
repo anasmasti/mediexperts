@@ -2902,6 +2902,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+<<<<<<< HEAD
 //
 //
 //
@@ -2954,6 +2955,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+=======
+>>>>>>> 95450c64054990d5905dc499cf3e51bc91e67407
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   runtimeCompiler: true,
@@ -2965,7 +2968,37 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       id_plan: null,
       selected_nrc_entrp: null,
       selectedCabinet: false,
-      selectedFormationLieu: false
+      selectedFormationLieu: false,
+      newInfos: {
+        old_n_form: "",
+        old_entreprise: "",
+        old_ref_pla: "",
+        old_theme_action: "",
+        old_nature_action: "",
+        old_hr_debut: "",
+        old_hr_fin: "",
+        old_pse_debut: "",
+        old_pse_fin: "",
+        old_anulation: "",
+        old_date_realisation: "",
+        old_organisme_formations: "",
+        old_lieu_formations: "",
+        old_horaire_formations: "",
+        old_type_action: "",
+        old_organisme: "",
+        old_lieu: "",
+        old_groupe: "",
+        old_date1: "",
+        old_date2: "",
+        old_date3: "",
+        old_date4: "",
+        old_date5: "",
+        old_date6: "",
+        old_date7: "",
+        old_date8: "",
+        old_date9: "",
+        old_date10: ""
+      }
     };
   },
   mounted: function mounted() {
@@ -41524,7 +41557,90 @@ var render = function() {
               )
             ]),
             _vm._v(" "),
-            _vm._m(1),
+            _c(
+              "table",
+              {
+                staticClass: "table table-striped col-12 col-lg-11 border",
+                staticStyle: { margin: "16px" }
+              },
+              [
+                _c("thead", [
+                  _c("tr", [
+                    _c(
+                      "th",
+                      {
+                        staticStyle: { width: "10%" },
+                        attrs: { rowspan: "6" }
+                      },
+                      [_vm._v("Avis")]
+                    ),
+                    _vm._v(" "),
+                    _c("th", { staticStyle: { width: "10%" } }, [
+                      _vm._v("Anulation")
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "th",
+                      {
+                        staticStyle: { width: "10%" },
+                        attrs: { colspan: "2" }
+                      },
+                      [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.selected_input_annuler,
+                              expression: "selected_input_annuler"
+                            }
+                          ],
+                          attrs: {
+                            name: "annuler",
+                            type: "checkbox",
+                            id: "annuler"
+                          },
+                          domProps: {
+                            value: true,
+                            checked: Array.isArray(_vm.selected_input_annuler)
+                              ? _vm._i(_vm.selected_input_annuler, true) > -1
+                              : _vm.selected_input_annuler
+                          },
+                          on: {
+                            change: function($event) {
+                              var $$a = _vm.selected_input_annuler,
+                                $$el = $event.target,
+                                $$c = $$el.checked ? true : false
+                              if (Array.isArray($$a)) {
+                                var $$v = true,
+                                  $$i = _vm._i($$a, $$v)
+                                if ($$el.checked) {
+                                  $$i < 0 &&
+                                    (_vm.selected_input_annuler = $$a.concat([
+                                      $$v
+                                    ]))
+                                } else {
+                                  $$i > -1 &&
+                                    (_vm.selected_input_annuler = $$a
+                                      .slice(0, $$i)
+                                      .concat($$a.slice($$i + 1)))
+                                }
+                              } else {
+                                _vm.selected_input_annuler = $$c
+                              }
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("h1", [_vm._v(_vm._s(_vm.selected_input_annuler))])
+                      ]
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _vm._m(1)
+              ]
+            ),
             _vm._v(" "),
             _c("div", { staticClass: "form-group col-lg-6 col-sm-12" }, [
               _c("label", [_vm._v("Thème de l’action")]),
@@ -41615,7 +41731,7 @@ var render = function() {
                         _vm._v(" "),
                         _c("input", {
                           staticClass: "form-control",
-                          attrs: { type: "text" },
+                          attrs: { type: "text", "v-model": _vm.old_organisme },
                           domProps: {
                             value:
                               _vm.Info_AvisModif.length != 0
@@ -41704,7 +41820,11 @@ var render = function() {
                                   _vm._v(
                                     "\n                  " +
                                       _vm._s(cabinet.raisoci) +
+<<<<<<< HEAD
                                       "\n                "
+=======
+                                      "\n            "
+>>>>>>> 95450c64054990d5905dc499cf3e51bc91e67407
                                   )
                                 ]
                               )
@@ -42051,9 +42171,7 @@ var render = function() {
         )
       ]),
       _vm._v(" "),
-      _vm._m(19),
-      _vm._v(" "),
-      _vm._m(20)
+      _vm._m(19)
     ])
   ])
 }
@@ -42072,86 +42190,59 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "table",
-      {
-        staticClass: "table table-striped col-12 col-lg-11 border",
-        staticStyle: { margin: "16px" }
-      },
-      [
-        _c("thead", [
-          _c("tr", [
-            _c(
-              "th",
-              { staticStyle: { width: "10%" }, attrs: { rowspan: "6" } },
-              [_vm._v("Avis")]
-            ),
-            _vm._v(" "),
-            _c("th", { staticStyle: { width: "10%" } }, [_vm._v("Anulation")]),
-            _vm._v(" "),
-            _c(
-              "th",
-              { staticStyle: { width: "10%" }, attrs: { colspan: "2" } },
-              [_c("input", { attrs: { type: "checkbox", id: "annuler" } })]
-            )
-          ])
+    return _c("tbody", [
+      _c("tr", [
+        _c("th", { attrs: { rowspan: "5" } }, [_vm._v("Modification")])
+      ]),
+      _vm._v(" "),
+      _c("tr", [
+        _c("th", { staticStyle: { width: "5%" } }, [
+          _vm._v("De la date de Réalisation")
         ]),
         _vm._v(" "),
-        _c("tbody", [
-          _c("tr", [
-            _c("th", { attrs: { rowspan: "5" } }, [_vm._v("Modification")])
-          ]),
-          _vm._v(" "),
-          _c("tr", [
-            _c("th", { staticStyle: { width: "5%" } }, [
-              _vm._v("De la date de Réalisation")
-            ]),
-            _vm._v(" "),
-            _c("th", [
-              _c("input", {
-                attrs: { type: "checkbox", name: "modif", id: "modif_date" }
-              })
-            ])
-          ]),
-          _vm._v(" "),
-          _c("tr", [
-            _c("th", { staticStyle: { width: "5%" } }, [
-              _vm._v("De l’organisme de formation")
-            ]),
-            _vm._v(" "),
-            _c("th", [
-              _c("input", {
-                attrs: { type: "checkbox", name: "modif", id: "modif_organ" }
-              })
-            ])
-          ]),
-          _vm._v(" "),
-          _c("tr", [
-            _c("th", { staticStyle: { width: "5%" } }, [
-              _vm._v("De lieu de formation")
-            ]),
-            _vm._v(" "),
-            _c("th", [
-              _c("input", {
-                attrs: { type: "checkbox", name: "modif", id: "modif_lieu" }
-              })
-            ])
-          ]),
-          _vm._v(" "),
-          _c("tr", [
-            _c("th", { staticStyle: { width: "5%" } }, [
-              _vm._v("Organisation horaire")
-            ]),
-            _vm._v(" "),
-            _c("th", [
-              _c("input", {
-                attrs: { type: "checkbox", name: "modif", id: "modif_horaire" }
-              })
-            ])
-          ])
+        _c("th", [
+          _c("input", {
+            attrs: { type: "checkbox", name: "modif", id: "modif_date" }
+          })
         ])
-      ]
-    )
+      ]),
+      _vm._v(" "),
+      _c("tr", [
+        _c("th", { staticStyle: { width: "5%" } }, [
+          _vm._v("De l’organisme de formation")
+        ]),
+        _vm._v(" "),
+        _c("th", [
+          _c("input", {
+            attrs: { type: "checkbox", name: "modif", id: "modif_organ" }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("tr", [
+        _c("th", { staticStyle: { width: "5%" } }, [
+          _vm._v("De lieu de formation")
+        ]),
+        _vm._v(" "),
+        _c("th", [
+          _c("input", {
+            attrs: { type: "checkbox", name: "modif", id: "modif_lieu" }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("tr", [
+        _c("th", { staticStyle: { width: "5%" } }, [
+          _vm._v("Organisation horaire")
+        ]),
+        _vm._v(" "),
+        _c("th", [
+          _c("input", {
+            attrs: { type: "checkbox", name: "modif", id: "modif_horaire" }
+          })
+        ])
+      ])
+    ])
   },
   function() {
     var _vm = this
@@ -42404,12 +42495,6 @@ var staticRenderFns = [
         _vm._v(" Imprimer")
       ])
     ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [_c("input", { attrs: { type: "text" } })])
   }
 ]
 render._withStripped = true
@@ -58398,6 +58483,7 @@ var actions = {
       }, _callee6);
     }))();
   },
+  //Getting Old Avis Modif Informations
   FetchInitialInfoAvisModif: function FetchInitialInfoAvisModif(_ref12, nForm) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee7() {
       var commit;
@@ -58426,7 +58512,11 @@ var actions = {
         }
       }, _callee7);
     }))();
-  }
+  } //Posting and puting the new insertions
+  // async PostPutAvisModif() {
+  //   await axios.post(`/store-avis-modif`,data)
+  // }
+
 };
 
 /***/ }),
@@ -58566,8 +58656,8 @@ var state = {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\anasm\OneDrive\Bureau\Projects\Mediexperts_App\mediexperts\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\anasm\OneDrive\Bureau\Projects\Mediexperts_App\mediexperts\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\badre\mediexpertsV1.0.1\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\badre\mediexpertsV1.0.1\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

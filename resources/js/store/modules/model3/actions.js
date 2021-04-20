@@ -61,6 +61,7 @@ export const actions = {
       })
       .catch(err => console.error("err FillDates", err));
   },
+  //Getting Old Avis Modif Informations
   async FetchInitialInfoAvisModif({ commit }, nForm) {
     await axios
       .get(`/fill-avis-modif`, { params: { nForm: nForm } })
@@ -72,4 +73,10 @@ export const actions = {
         console.log("err Fetching Info Initial Avis Modif", err);
       });
   },
+
+  //Posting and puting the new insertions
+
+  // async PostPutAvisModif() {
+  //   await axios.post(`/store-avis-modif`,data)
+  // }
 };

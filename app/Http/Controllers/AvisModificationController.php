@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\{AvisModification,PlanFormation,Formation};
-use Illuminate\Support\Facades\DB;
+
 
 class AvisModificationController extends Controller
 {
@@ -44,102 +44,73 @@ public function StoreUpdateAvisModif(Request $request) {
           ]);
 
           $AvisModif = new AvisModification();
-          $AvisModif->n_form = $request->input->input('');
-          $AvisModif->entreprise = $request->input('');
-          $AvisModif->ref_plan = $request->input('');
-          $AvisModif->type_action = $request->input('');
-          $AvisModif->anulation = $request->input('');
-          $AvisModif->date_realisation = $request->input('');
-          $AvisModif->organisme_formations = $request->input('');
-          $AvisModif->lieu_formations = $request->input('');
-          $AvisModif->horaire_formations = $request->input('');
-          $AvisModif->theme_action = $request->input('');
-          $AvisModif->nature_action = $request->input('');
-          $AvisModif->groupe = $request->input('');
-          $AvisModif->old_organisme = $request->input('');
-          $AvisModif->old_lieu = $request->input('');
-          $AvisModif->old_hr_debut = $request->input('');
-          $AvisModif->old_hr_fin = $request->input('');
-          $AvisModif->old_pse_debut = $request->input('');
-          $AvisModif->old_pse_fin = $request->input('');
-          $AvisModif->date1 = $request->input('');
-          $AvisModif->date2 = $request->input('');
-          $AvisModif->date3 = $request->input('');
-          $AvisModif->date4 = $request->input('');
-          $AvisModif->date5 = $request->input('');
-          $AvisModif->date6 = $request->input('');
-          $AvisModif->date7 = $request->input('');
-          $AvisModif->date8 = $request->input('');
-          $AvisModif->date9 = $request->input('');
-          $AvisModif->date10 = $request->input('');
 
+          $AvisModif->n_form = $request->n_form;
+          $AvisModif->old_entreprise = $request->old_entreprise;
+          $AvisModif->old_ref_plan = $request->old_ref_plan;
+          $AvisModif->old_type_action = $request->old_type_action;
+          $AvisModif->old_anulation = $request->old_anulation;
+          $AvisModif->old_date_realisation = $request->old_date_realisation;
+          $AvisModif->old_organisme_formations= $request->old_organisme_formations;
+          $AvisModif->old_lieu_formations = $request->old_lieu_formations;
+          $AvisModif->old_horaire_formations = $request->old_horaire_formations;
+          $AvisModif->old_theme_action = $request->old_theme_action;
+          $AvisModif->old_nature_action= $request->old_nature_action;
+          $AvisModif->old_groupe= $request->old_groupe;
+          $AvisModif->old_organisme = $request->old_organisme;
+          $AvisModif->old_lieu= $request->old_lieu;
+          $AvisModif->old_hr_debut= $request->old_hr_debut ;
+          $AvisModif->old_hr_fin= $request->old_hr_fin ;
+          $AvisModif->old_pse_debut = $request->old_pse_debut;
+          $AvisModif->old_pse_fin = $request->old_pse_fin;
+          $AvisModif->old_date1= $request->old_date1;
+          $AvisModif->old_date2 = $request->old_date2;
+          $AvisModif->old_date3 = $request->old_date3;
+          $AvisModif->old_date4= $request->old_date4 ;
+          $AvisModif->old_date5 = $request->old_date5;
+          $AvisModif->old_date6= $request->old_date6;
+          $AvisModif->old_date7= $request->old_date7;
+          $AvisModif->old_date8 = $request->old_date8;
+          $AvisModif->old_date9 = $request->old_date9;
+          $AvisModif->old_date10= $request->old_date10;
+          $nFrom = $AvisModif->n_form;
           $AvisModif->save();
 
-          $nFrom = $request->input("n_form");
 
-          if($request == $nFrom) {
 
-            $planformation = PlanFormation::findOrFail($nFrom);
+          $planformation = PlanFormation::findOrFail($nFrom);
 
-            $planformation->lieu = $request->input('');
-            $planformation->organisme = $request->input('');
-            $planformation->type_action = $request->input('');
-            $planformation->date_realisation = $request->input('');
-            $planformation->organisme_formations = $request->input('');
-            $planformation->lieu_formations = $request->input('');
-            $planformation->horaire_formations = $request->input('');
 
-            $formation = Formation::findOrFail($nFrom);
+          $planformation->lieu = $request->lieu;
+          $planformation->organisme = $request->organisme ;
+          $planformation->type_action = $request->type_action;
+          $planformation->date_realisation = $request->date_realisation;
+          $planformation->organisme_formations = $request->organisme_formations;
+          $planformation->lieu_formations = $request->lieu_formations;
+          $planformation->horaire_formations = $request->horaire_formations;
 
-            $formation->hr_debut = $request->input('');
-            $formation->hr_fin = $request->input('');
-            $formation->pse_debut = $request->input('');
-            $formation->pse_fin = $request->input('');
-            $formation->date1 = $request->input('');
-            $formation->date2 = $request->input('');
-            $formation->date3 = $request->input('');
-            $formation->date4 = $request->input('');
-            $formation->date5 = $request->input('');
-            $formation->date6 = $request->input('');
-            $formation->date7 = $request->input('');
-            $formation->date8 = $request->input('');
-            $formation->date9 = $request->input('');
-            $formation->date10 = $request->input('');
-          }
+          $planformation->save();
+
+          $formation = Formation::findOrFail($nFrom);
+
+          $formation->hr_debut = $request-> hr_debut;
+          $formation->hr_fin = $request-> hr_fin;
+          $formation->pse_debut = $request->pse_debut;
+          $formation->pse_fin = $request-> pse_fin;
+          $formation->date1 = $request->date1;
+          $formation->date2 = $request->date2;
+          $formation->date3 = $request->date3;
+          $formation->date4 = $request->date4;
+          $formation->date5 = $request->date5;
+          $formation->date6 = $request->date6;
+          $formation->date7 = $request->date7;
+          $formation->date8 = $request->date8;
+          $formation->date9 = $request->date9;
+          $formation->date10 = $request->date10;
+
+          $formation->save();
         }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     /**
      * Display a listing of the resource.
      *
