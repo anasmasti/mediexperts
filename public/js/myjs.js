@@ -42,47 +42,6 @@ function checkDate() {
         document.getElementById("date-more").value = currentDate.getTime();
     }
 }
-<<<<<<< HEAD
-
-=======
-function NbHeurValidation (){
-  let nbHeur = document.getElementById("nb_heure");
-  let nbDates = document.getElementById("nb_dates");
-
-  if (nbHeur.value == 0){
-    nbDates.disabled = true;
-    document.getElementById("nb_dates_msg").innerHTML ='<p><i class="fas fa-info-circle"></i> Remplir Nombre Heures Premièrement </p>'
-    setTimeout(() => {
-      document.getElementById("nb_dates_msg").innerHTML =''
-    }, 5000);
-  }
-  else if (nbHeur.value != 0){
-    nbDates.disabled = false;
-  }
-}
-function CalcNbJour() {
-
-  let NbHeurs = document.getElementById("nb_heure");
-  let NbDates = document.getElementById("nb_dates");
-  let nbJour = document.getElementById("nb_jour");
-
-  nbJour.value = ((NbHeurs.value * NbDates.value)/ 6);
-  nbjour = parseFloat(nbJour.value);
-
-  if (Number.isInteger(nbjour)){
-    document.getElementById("nb_dates_msg").innerHTML ='<p class="text-success"><i class="fas fa-check-circle"></i> Nombre Dates valide </p>'
-    setTimeout(() => {
-      document.getElementById("nb_dates_msg").innerHTML =''
-    }, 10000);
-  }
-  else{
-    document.getElementById("nb_dates_msg").innerHTML ='<p><i class="fas fa-info-circle"></i> Nombre Dates est Invalide </p>'
-    setTimeout(() => {
-      document.getElementById("nb_dates_msg").innerHTML =''
-    }, 5000);
-  }
-}
->>>>>>> 8e98022b2ba40f1be478fb4f7c866cf02e101a62
 function CalcBdgJourn() {
     let bdgLetter = document.getElementById("bdg_letter");
     let bdgTotal = document.getElementById("bdg_total");
@@ -176,12 +135,7 @@ function checkEtat() {
             $('label[for=dem_approb_if], input#dem_approb_if').fadeIn(200);
             $('#tr_d_df_DS').fadeOut(200);
             $('label[for=dem_approb_ds], input#dem_approb_ds').fadeOut(200);
-<<<<<<< HEAD
         } else {
-=======
-        }
-        else {
->>>>>>> 8e98022b2ba40f1be478fb4f7c866cf02e101a62
             $('#tr_d_df_DS').fadeOut(200);
             $('label[for=dem_approb_ds], input#dem_approb_ds').fadeOut(200);
             $('#tr_d_df_IF').fadeOut(200);
@@ -244,11 +198,6 @@ function checkEtat() {
     }
 
 }
-<<<<<<< HEAD
-=======
-
- //checkEtat
->>>>>>> 8e98022b2ba40f1be478fb4f7c866cf02e101a62
 
 
 //::::::::::::::::::::::::::::::::::::: Demande financement ::::::::::::::::::::::::::::::::::::::::::::
@@ -264,7 +213,6 @@ function AccordValidate() {
     let prcCotePart = document.getElementById("prc_cote_part").value;
     let JourHomeValid = document.getElementById("jr_hm_valid").value;
 
-<<<<<<< HEAD
     let realiseBtn = document.getElementsByName("etat");
     let btnEtat = document.getElementsByName("btnEtat");
 
@@ -285,11 +233,6 @@ function AccordValidate() {
         }
 
         // Show model with error message
-=======
-    if ((etatAccord.checked == true || etatRealise.checked == true || etatApprouve.checked == true) &&
-        (dateAccord =='' || bdgAccord =='' || prcCotePart == '' || JourHomeValid == ''))
-    {
->>>>>>> 8e98022b2ba40f1be478fb4f7c866cf02e101a62
         $("#msg_error_accord").modal("show");
     }
 }

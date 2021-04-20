@@ -205,8 +205,7 @@
                     :value="
                       selectedCabinet == false
                         ? info.organisme
-                        : cabinet.raisoci
-                    "
+                        : cabinet.raisoci"
                     :key="cabinet.nrc_cab"
                   >
                     {{ cabinet.raisoci }}
