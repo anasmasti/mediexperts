@@ -15,10 +15,10 @@
               id="client"
               name="client"
               @change="
-                handleAction('model3/FetchReferencesPlan', infosAvisModif.selected_nrc_entrp);
-                handleAction('model3/SetNrcEntrp', infosAvisModif.selected_nrc_entrp);
+                handleAction('model3/FetchReferencesPlan', selected_nrc_entrp);
+                handleAction('model3/SetNrcEntrp', selected_nrc_entrp);
               "
-              v-model="infosAvisModif.selected_nrc_entrp"
+              v-model="selected_nrc_entrp"
             >
               <option selected disabled>---selectionner l'entreprise---</option>
               <option
@@ -37,8 +37,8 @@
               class="form-control"
               name="plans"
               id="plans"
-              @change="handleAction('model3/FetchActionByReference', infosAvisModif.id_plan)"
-              v-model="infosAvisModif.id_plan"
+              @change="handleAction('model3/FetchActionByReference', id_plan)"
+              v-model="id_plan"
             >
               <option selected disabled>---selectionner le plan---</option>
               <option
@@ -77,7 +77,7 @@
                 <th style="width: 10%" rowspan="6">Avis</th>
                 <th style="width: 10%">Anulation</th>
                 <th style="width: 10%" colspan="2">
-                  <input name="annuler" :value="true" v-model="infosAvisModif.selected_input_annuler" type="checkbox" id="annuler" />
+                  <input name="annuler" :value="true" type="checkbox" id="annuler" />
                 </th>
               </tr>
             </thead>
@@ -87,20 +87,20 @@
               </tr>
               <tr>
                 <th style="width: 5%">De la date de Réalisation</th>
-                <th><input type="checkbox" name="modif" id="modif_date" v-model="infosAvisModif.date_realisation"/></th>
+                <th><input type="checkbox" name="modif" id="modif_date" /></th>
               </tr>
               <tr>
                 <th style="width: 5%">De l’organisme de formation</th>
-                <th><input type="checkbox" name="modif" id="modif_organ" v-model="infosAvisModif.organisme_formations"/></th>
+                <th><input type="checkbox" name="modif" id="modif_organ" /></th>
               </tr>
               <tr>
                 <th style="width: 5%">De lieu de formation</th>
-                <th><input type="checkbox" name="modif" id="modif_lieu" v-model="infosAvisModif.lieu_formations"/></th>
+                <th><input type="checkbox" name="modif" id="modif_lieu" /></th>
               </tr>
               <tr>
                 <th style="width: 5%">Organisation horaire</th>
                 <th>
-                  <input type="checkbox" name="modif" id="modif_horaire" v-model="infosAvisModif.horaire_formations"/>
+                  <input type="checkbox" name="modif" id="modif_horaire" />
                 </th>
               </tr>
             </tbody>
@@ -110,10 +110,11 @@
             <label>Thème de l’action</label>
             <select
               class="form-control"
+              id="theme"
               @change="
-                handleAction('model3/FetchInitialInfoAvisModif', infosAvisModif.selected_nForm)
+                handleAction('model3/FetchInitialInfoAvisModif', selected_nForm)
               "
-              v-model="infosAvisModif.selected_nForm"
+              v-model="selected_nForm"
             >
               <option selected disabled>---selectionner le thème---</option>
               <option
@@ -135,7 +136,6 @@
                   name="planifie"
                   id="planifie"
                   class="custom-control-input"
-                  v-model="infosAvisModif.nature_action"
                   checked
                 />
                 <label for="planifie" class="custom-control-label"
@@ -172,16 +172,16 @@
             :key="index"
           >
             <h3>
-              <strong>Groupe {{ index + 1 }}</strong>
+              <strong id="groupe">Groupe {{ index + 1 }}</strong>
             </h3>
             <div class="row my-3">
               <div class="form-group col-lg-6 col-sm-12">
                 <label>Organisme de formation initial</label>
                 <input
                   type="text"
+                  id="initial_organisme"
                   class="form-control"
-                  :value="info.organisme"
-                  :v-model="info.organisme == infosAvisModif.organisme"
+                  :value="Info_AvisModif.length != 0 ? info.organisme : ''"
                 />
                 <h1>organisme. {{infosAvisModif.organisme}}</h1>
               </div>
@@ -189,42 +189,50 @@
                 <label>Lieu de formation initial </label>
                 <input
                   type="text"
+                  id="initial_lieu"
                   class="form-control"
                   :value="Info_AvisModif.length != 0 ? info.lieu : ''"
-                  :v-model="infosAvisModif.lieu"
                 />
               </div>
-
-               <div class="form-group col-lg-6 col-sm-12">
-            <label>Nouvel Organisme de formation</label>
-            <select class="form-control" v-model="selectedCabinet">
-              <option selected disabled>---selectionner l'organisme---</option>
-              <option
-                v-for="cabinet in cabinets"
-                :value="selectedCabinet == false ? info.organisme: cabinet.raisoci"
-                :key="cabinet.nrc_cab"
-                :v-model="infosAvisModif.new_organisme"
-              >
-                {{ cabinet.raisoci }}
-              </option>
-            </select>
-                <h1>organisme. {{ infosAvisModif.new_organisme }}</h1>
-
-          </div>
-          <div class="form-group col-lg-6 col-sm-12">
-            <label>Nouveau lieu</label>
-            <select class="form-control" name="lieu" id="lieu"  v-model="selectedFormationLieu">
-              <option selected disabled>---selectionner le lieu---</option>
-              <option
-                v-for="cl in clients"
-                :value="selectedFormationLieu == false ? info.lieu : cl.raisoci"
-                :key="cl.nrc_entrp"
-                :v-model="infosAvisModif.new_lieu"
-              >
-                {{ cl.raisoci }}
-              </option>
-            </select>
-          </div>
+              <div class="form-group col-lg-6 col-sm-12">
+                <label>Nouvel Organisme de formation</label>
+                <select class="form-control" id="nouvel_organisme" v-model="selectedCabinet">
+                  <option selected disabled>
+                    ---selectionner l'organisme---
+                  </option>
+                  <option
+                    v-for="cabinet in cabinets"
+                    :value="
+                      selectedCabinet == false
+                        ? info.organisme
+                        : cabinet.raisoci
+                    "
+                    :key="cabinet.nrc_cab"
+                  >
+                    {{ cabinet.raisoci }}
+                  </option>
+                </select>
+              </div>
+              <div class="form-group col-lg-6 col-sm-12">
+                <label>Nouveau lieu</label>
+                <select
+                  class="form-control"
+                  name="lieu"
+                  id="nouvel_lieu"
+                  v-model="selectedFormationLieu"
+                >
+                  <option selected disabled>---selectionner le lieu---</option>
+                  <option
+                    v-for="cl in clients"
+                    :value="
+                      selectedFormationLieu == false ? info.lieu : cl.raisoci
+                    "
+                    :key="cl.nrc_entrp"
+                  >
+                    {{ cl.raisoci }}
+                  </option>
+                </select>
+              </div>
             </div>
             <div class="row">
               <!-- {{-- LES DATES INITIALES --}} -->
@@ -232,44 +240,79 @@
                 <label>Dates initiales de réalisation </label>
               </div>
 
-              <div class="form-group col-lg-3 col-md-6 col-12" v-if="info.date1">
-                <input class="form-control" type="date" :value="info.date1" :v-model="infosAvisModif.date1"/>
+              <div
+                class="form-group col-lg-3 col-md-6 col-12"
+                v-if="info.date1"
+              >
+                <input
+                  class="form-control"
+                  type="date"
+                  id="date1"
+                  :value="info.date1"
+                />
               </div>
 
-              <div class="form-group col-lg-3 col-md-6 col-12" v-if="info.date2">
-                <input class="form-control" type="date" :value="info.date2" :v-model="infosAvisModif.date2"/>
+              <div
+                class="form-group col-lg-3 col-md-6 col-12"
+                v-if="info.date2"
+              >
+                <input class="form-control" type="date" id="date2" :value="info.date2" />
               </div>
 
-              <div class="form-group col-lg-3 col-md-6 col-12" v-if="info.date3">
-                <input class="form-control" type="date" :value="info.date3" :v-model="infosAvisModif.date3"/>
+              <div
+                class="form-group col-lg-3 col-md-6 col-12"
+                v-if="info.date3"
+              >
+                <input class="form-control" type="date" id="date3" :value="info.date3" />
               </div>
 
-              <div class="form-group col-lg-3 col-md-6 col-12" v-if="info.date4">
-                <input class="form-control" type="date" :value="info.date4" :v-model="infosAvisModif.date4"/>
+              <div
+                class="form-group col-lg-3 col-md-6 col-12"
+                v-if="info.date4"
+              >
+                <input class="form-control" type="date" id="date4" :value="info.date4" />
               </div>
 
-              <div class="form-group col-lg-3 col-md-6 col-12" v-if="info.date5">
-                <input class="form-control" type="date" :value="info.date5" :v-model="infosAvisModif.date5"/>
+              <div
+                class="form-group col-lg-3 col-md-6 col-12"
+                v-if="info.date5"
+              >
+                <input class="form-control" type="date" id="date5" :value="info.date5" />
               </div>
 
-              <div class="form-group col-lg-3 col-md-6 col-12" v-if="info.date6">
-                <input class="form-control" type="date" :value="info.date6" :v-model="infosAvisModif.date6"/>
+              <div
+                class="form-group col-lg-3 col-md-6 col-12"
+                v-if="info.date6"
+              >
+                <input class="form-control" type="date" id="date6" :value="info.date6" />
               </div>
 
-              <div class="form-group col-lg-3 col-md-6 col-12" v-if="info.date7">
-                <input class="form-control" type="date" :value="info.date7" :v-model="infosAvisModif.date7"/>
+              <div
+                class="form-group col-lg-3 col-md-6 col-12"
+                v-if="info.date7"
+              >
+                <input class="form-control" type="date" id="date7" :value="info.date7" />
               </div>
 
-              <div class="form-group col-lg-3 col-md-6 col-12" v-if="info.date8">
-                <input class="form-control" type="date" :value="info.date8" :v-model="infosAvisModif.date8"/>
+              <div
+                class="form-group col-lg-3 col-md-6 col-12"
+                v-if="info.date8"
+              >
+                <input class="form-control" type="date" id="date8" :value="info.date8" />
               </div>
 
-              <div class="form-group col-lg-3 col-md-6 col-12" v-if="info.date9">
-                <input class="form-control" type="date" :value="info.date9" :v-model="infosAvisModif.date9"/>
+              <div
+                class="form-group col-lg-3 col-md-6 col-12"
+                v-if="info.date9"
+              >
+                <input class="form-control" type="date" id="date9" :value="info.date9" />
               </div>
 
-              <div class="form-group col-lg-3 col-md-6 col-12" v-if="info.date10">
-                <input class="form-control" type="date" :value="info.date10" :v-model="infosAvisModif.date10"/>
+              <div
+                class="form-group col-lg-3 col-md-6 col-12"
+                v-if="info.date10"
+              >
+                <input class="form-control" type="date" id="date10" :value="info.date10" />
               </div>
 
               <!-- {{-- LES NOUVELLES DATES --}} -->
@@ -278,43 +321,43 @@
               </div>
 
               <div class="form-group col-lg-3 col-md-6 col-12">
-                <input class="form-control" type="date" :value="info.date1" :v-model="infosAvisModif.new_date1"/>
+                <input class="form-control" type="date" id="newdate1" :value="info.date1" />
               </div>
 
               <div class="form-group col-lg-3 col-md-6 col-12">
-                <input class="form-control" type="date" :value="info.date2" :v-model="infosAvisModif.new_date2"/>
+                <input class="form-control" type="date" id="newdate2" :value="info.date2" />
               </div>
 
               <div class="form-group col-lg-3 col-md-6 col-12">
-                <input class="form-control" type="date" :value="info.date3" :v-model="infosAvisModif.new_date3"/>
+                <input class="form-control" type="date" id="newdate3" :value="info.date3" />
               </div>
 
               <div class="form-group col-lg-3 col-md-6 col-12">
-                <input class="form-control" type="date" :value="info.date4" :v-model="infosAvisModif.new_date4"/>
-              </div>
-
-               <div class="form-group col-lg-3 col-md-6 col-12">
-                <input class="form-control" type="date" :value="info.date5" :v-model="infosAvisModif.new_date5"/>
+                <input class="form-control" type="date" id="newdate4" :value="info.date4" />
               </div>
 
               <div class="form-group col-lg-3 col-md-6 col-12">
-                <input class="form-control" type="date" :value="info.date6" :v-model="infosAvisModif.new_date6"/>
+                <input class="form-control" type="date" id="newdate5" :value="infor.date5"/>
               </div>
 
               <div class="form-group col-lg-3 col-md-6 col-12">
-                <input class="form-control" type="date" :value="info.date7" :v-model="infosAvisModif.new_date7"/>
+                <input class="form-control" type="date" id="newdate6" :value="info.date6" />
               </div>
 
               <div class="form-group col-lg-3 col-md-6 col-12">
-                <input class="form-control" type="date" :value="info.date8" :v-model="infosAvisModif.new_date8"/>
+                <input class="form-control" type="date" id="newdate7" :value="info.date7" />
               </div>
 
               <div class="form-group col-lg-3 col-md-6 col-12">
-                <input class="form-control" type="date" :value="info.date9" :v-model="infosAvisModif.new_date9"/>
+                <input class="form-control" type="date" id="newdate8" :value="info.date8" />
               </div>
 
               <div class="form-group col-lg-3 col-md-6 col-12">
-                <input class="form-control" type="date" :value="info.date10" :v-model="infosAvisModif.new_date10"/>
+                <input class="form-control" type="date" id="newdate9" :value="info.date9" />
+              </div>
+
+              <div class="form-group col-lg-3 col-md-6 col-12">
+                <input class="form-control" type="date" id="newdate10" :value="info.date10" />
               </div>
             </div>
 
@@ -327,9 +370,12 @@
               <div class="form-group col-lg-6 col-sm-12">
                 <label>Heure début</label>
                 <div class="input-group date" id="datetimepicker3">
-                  <input class="form-control" type="time" name="hr_debut"
-                  :value="info.hr_debut"
-                  :v-model="infosAvisModif.hr_debut"
+                  <input
+                    class="form-control"
+                    type="time"
+                    id="initial_hr_debut"
+                    name="hr_debut"
+                    :value="info.hr_debut"
                   />
                   <div
                     class="input-group-append"
@@ -348,9 +394,9 @@
                   <input
                     class="form-control timerpicker"
                     type="time"
+                    id="initial_hr_fin"
                     name="hr_fin"
                     :value="info.hr_fin"
-                    :v-model="infosAvisModif.hr_fin"
                   />
                   <div
                     class="input-group-append"
@@ -372,8 +418,10 @@
               <div class="form-group col-lg-6 col-sm-12">
                 <label>Heure début</label>
                 <div class="input-group date" id="datetimepicker3">
-                  <input class="form-control" type="time" name="hr_debut"
-                  v-model="infosAvisModif.new_hr_debut"
+                  <input class="form-control"
+                  type="time"
+                  id="new_hr_debut"
+                  name="hr_debut"
                   />
                   <div
                     class="input-group-append"
@@ -393,8 +441,8 @@
                   <input
                     class="form-control timerpicker"
                     type="time"
+                    id="new_hr_fin"
                     name="hr_fin"
-                    v-model="infosAvisModif.new_hr_fin"
                   />
                   <div
                     class="input-group-append"
@@ -422,6 +470,9 @@
         >
         <!-- <a href="#" class="btn btn-warning"><i class="fa fa-pencil" aria-hidden="true"></i>&nbsp;Modifier</a> -->
       </div>
+      <div>
+        <input type="text" />
+      </div>
     </form>
   </div>
 </template>
@@ -442,54 +493,6 @@ export default {
       selected_nrc_entrp: null,
       selectedCabinet: false,
       selectedFormationLieu: false,
-      infosAvisModif: {
-       nForm: "",
-        selected_nrc_entrp:"",
-        id_plan:"",
-        selected_nForm:"",
-        nature_action:"",
-        selected_input_annuler:false,
-        type_action:"",
-        date_realisation:false,
-        organisme_formations:false,
-        lieu_formations:false,
-        horaire_formations:false,
-        hr_debut:"",
-        hr_fin:"",
-        pse_debut:"",
-        pse_fin:"",
-        organisme:"",
-        lieu:"",
-        groupe:"",
-        date1:"",
-        date2:"",
-        date3:"",
-        date4:"",
-        date5:"",
-        date6:"",
-        date7:"",
-        date8:"",
-        date9:"",
-        date10:"",
-        new_hr_debut:"",
-        new_hr_fin:"",
-        new_pse_debut:"",
-        new_pse_fin:"",
-        new_organisme:"",
-        new_lieu:"",
-        new_groupe:"",
-        new_date1:"",
-        new_date2:"",
-        new_date3:"",
-        new_ate4:"",
-        new_date5:"",
-        new_date6:"",
-        new_date7:"",
-        new_date8:"",
-        new_date9:"",
-        new_date10:""
-      }
-
     };
   },
 
@@ -508,6 +511,9 @@ export default {
       cabinets: (state) => state.cabinets,
       Info_AvisModif: (state) => state.Info_AvisModif,
     }),
+  },
+  updated() {
+    this.storeUpdateModel3();
   },
 
   methods: {
@@ -558,9 +564,210 @@ export default {
         chk_horaire.disabled = false;
       }
     },
-    StoreOldAndUpdateNew() {
-    // this.$store.dispatch("model3/PostPutAvisModif", infosAvisModif);
-    console.log(this.infosAvisModif);
+
+    // update the Model 3 and save archive data
+    storeUpdateModel3() {
+
+      let date1 =
+        document.getElementById("date1") != null
+          ? document.getElementById("date1").value
+          : null;
+      let date2 =
+        document.getElementById("date2") != null
+          ? document.getElementById("date2").value
+          : null;
+      let date3 =
+        document.getElementById("date3") != null
+          ? document.getElementById("date3").value
+          : null;
+      let date4 =
+        document.getElementById("date4") != null
+          ? document.getElementById("date4").value
+          : null;
+      let date5 =
+        document.getElementById("date5") != null
+          ? document.getElementById("date5").value
+          : null;
+      let date6 =
+        document.getElementById("date6") != null
+          ? document.getElementById("date6").value
+          : null;
+      let date7 =
+        document.getElementById("date7") != null
+          ? document.getElementById("date7").value
+          : null;
+      let date8 =
+        document.getElementById("date8") != null
+          ? document.getElementById("date8").value
+          : null;
+      let date9 =
+        document.getElementById("date9") != null
+          ? document.getElementById("date9").value
+          : null;
+      let date10 =
+        document.getElementById("date10") != null
+          ? document.getElementById("date10").value
+          : null;
+      let newdate1 =
+        document.getElementById("newdate1") != null
+          ? document.getElementById("newdate1").value
+          : null;
+      let newdate2 =
+        document.getElementById("newnewdate2") != null
+          ? document.getElementById("newdate2").value
+          : null;
+      let newdate3 =
+        document.getElementById("newdate3") != null
+          ? document.getElementById("newdate3").value
+          : null;
+      let newdate4 =
+        document.getElementById("newdate4") != null
+          ? document.getElementById("newdate4").value
+          : null;
+      let newdate5 =
+        document.getElementById("newdate5") != null
+          ? document.getElementById("newdate5").value
+          : null;
+      let newdate6 =
+        document.getElementById("newdate6") != null
+          ? document.getElementById("newdate6").value
+          : null;
+      let newdate7 =
+        document.getElementById("newdate7") != null
+          ? document.getElementById("newdate7").value
+          : null;
+      let newdate8 =
+        document.getElementById("newdate8") != null
+          ? document.getElementById("newdate8").value
+          : null;
+      let newdate9 =
+        document.getElementById("newdate9") != null
+          ? document.getElementById("newdate9").value
+          : null;
+      let newdate10 =
+        document.getElementById("newdate10") != null
+          ? document.getElementById("newdate10").value
+          : null;
+      let action_annuler =
+        document.getElementById("annuler") != false
+          ? document.getElementById("annuler").value
+          : false;
+      let action_modifdate =
+        document.getElementById("modif_date") != false
+          ? document.getElementById("modif_date").value
+          : false;
+      let action_modiforgan =
+        document.getElementById("modif_organ") != false
+          ? document.getElementById("modif_organ").value
+          : false;
+      let action_modiflieu =
+        document.getElementById("modif_lieu") != false
+          ? document.getElementById("modif_lieu").value
+          : false;
+      let action_modifhoraire =
+        document.getElementById("modif_horaire") != false
+          ? document.getElementById("modif_horaire").value
+          : false;
+      let planifie =
+        document.getElementById("planifie") != false
+          ? document.getElementById("planifie").value
+          : false;
+      let initial_organisme =
+        document.getElementById("initial_organisme") != null
+          ? document.getElementById("initial_organisme").value
+          : null;
+      let initial_lieu =
+        document.getElementById("initial_lieu") != null
+          ? document.getElementById("initial_lieu").value
+          : null;
+      let nouvel_organisme =
+        document.getElementById("nouvel_organisme") != null
+          ? document.getElementById("nouvel_organisme").value
+          : null;
+      let nouvel_lieu =
+        document.getElementById("nouvel_lieu") != null
+          ? document.getElementById("nouvel_lieu").value
+          : null;
+      let initial_hr_debut =
+        document.getElementById("initial_hr_debut") !=null
+          ? document.getElementById("initial_hr_debut").value
+          : null;
+      let initial_hr_fin =
+        document.getElementByI("initial_hr_fin") != null
+          ? document.getElementById("initial_hr_fin").value
+          : null;
+      let new_hr_debut =
+        document.getElementById("new_hr_debut") != null
+          ? document.getElementById("new_hr_debut").value
+          : null;
+      let new_hr_fin =
+        document.getElementById("new_hr_fin") != null
+          ? doucment.getElementById("new_hr_fin").value
+          : null;
+      let entreprise =
+        document.getElementById("client") != null
+          ? doucment.getElementById("client").value
+          : null;
+      let ref_plan =
+        document.getElementById("plans") != null
+          ? doucment.getElementById("plans").value
+          : null;
+      let theme =
+        document.getElementById("theme") != null
+          ? doucment.getElementById("theme").value
+          : null;
+      let etat_avis =
+        document.getElementById("etat") != null
+          ? document.getElementById("etat").value
+          : null;
+      let groupe =
+        document.getElementById("groupe") != null
+          ? document.getElementById("groupe").value
+          : null;
+
+      var infoavismodif = {
+        'date1': date1,
+        'date2': date2,
+        'date3': date3,
+        'date1': date4,
+        'date2': date5,
+        'date6': date6,
+        'date7': date7,
+        'date8': date8,
+        'date9': date9,
+        'date10': date10,
+        'newdate1': newdate1,
+        'newdate2': newdate2,
+        'newdate3': newdate3,
+        'newdate4': newdate4,
+        'newdate5': newdate5,
+        'newdate6': newdate6,
+        'newdate7': newdate7,
+        'newdate8': newdate8,
+        'newdate9': newdate9,
+        'newdate10': newdate10,
+        'entreprise': entreprise,
+        'refPlan': ref_plan,
+        'NomTheme': theme,
+        'type action': etat_avis,
+        'annuler': action_annuler,
+        'modificationDate': action_modifdate,
+        'modificationOrganisme': action_modiforgan,
+        'modificationLieu': action_modiflieu,
+        'modificationHoraire': action_modifhoraire,
+        'natureAction': planifie,
+        'organisme': initial_organisme,
+        'lieu': initial_lieu,
+        'heurDebut': initial_hr_debut,
+        'heurFin': initial_hr_fin,
+        'newOrganisme': nouvel_organisme,
+        'newLieu': nouvel_lieu,
+        'newHeurDebut': new_hr_debut,
+        'newHeurFin': new_hr_fin
+      }
+
+      return console.log("--------------------", infoavismodif);
+
     },
   },
 }
