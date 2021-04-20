@@ -163,7 +163,6 @@
             </div>
           </div>
 
-         
           <div
             class="cole-12 container p-lg-4 mt-3"
             style="background-color: #efefef"
@@ -190,32 +189,45 @@
                   :value="Info_AvisModif.length != 0 ? info.lieu : ''"
                 />
               </div>
-               <div class="form-group col-lg-6 col-sm-12">
-            <label>Nouvel Organisme de formation</label> 
-            <select class="form-control" v-model="selectedCabinet">
-              <option selected disabled>---selectionner l'organisme---</option>
-              <option
-                v-for="cabinet in cabinets"
-                :value="selectedCabinet == false ? info.organisme : cabinet.raisoci"
-                :key="cabinet.nrc_cab"
-              >
-                {{ cabinet.raisoci }} 
-              </option>
-            </select>
-          </div>
-          <div class="form-group col-lg-6 col-sm-12">
-            <label>Nouveau lieu</label>
-            <select class="form-control" name="lieu" id="lieu"  v-model="selectedFormationLieu">
-              <option selected disabled>---selectionner le lieu---</option>
-              <option
-                v-for="cl in clients"
-                :value="selectedFormationLieu == false ? info.lieu : cl.raisoci"
-                :key="cl.nrc_entrp"
-              >
-                {{ cl.raisoci }}
-              </option>
-            </select>
-          </div>
+              <div class="form-group col-lg-6 col-sm-12">
+                <label>Nouvel Organisme de formation</label>
+                <select class="form-control" v-model="selectedCabinet">
+                  <option selected disabled>
+                    ---selectionner l'organisme---
+                  </option>
+                  <option
+                    v-for="cabinet in cabinets"
+                    :value="
+                      selectedCabinet == false
+                        ? info.organisme
+                        : cabinet.raisoci
+                    "
+                    :key="cabinet.nrc_cab"
+                  >
+                    {{ cabinet.raisoci }}
+                  </option>
+                </select>
+              </div>
+              <div class="form-group col-lg-6 col-sm-12">
+                <label>Nouveau lieu</label>
+                <select
+                  class="form-control"
+                  name="lieu"
+                  id="lieu"
+                  v-model="selectedFormationLieu"
+                >
+                  <option selected disabled>---selectionner le lieu---</option>
+                  <option
+                    v-for="cl in clients"
+                    :value="
+                      selectedFormationLieu == false ? info.lieu : cl.raisoci
+                    "
+                    :key="cl.nrc_entrp"
+                  >
+                    {{ cl.raisoci }}
+                  </option>
+                </select>
+              </div>
             </div>
             <div class="row">
               <!-- {{-- LES DATES INITIALES --}} -->
@@ -223,45 +235,80 @@
                 <label>Dates initiales de réalisation </label>
               </div>
 
-              <div class="form-group col-lg-3 col-md-6 col-12" v-if="info.date1">
-                <input class="form-control" type="date" :value="info.date1" />
+              <div
+                class="form-group col-lg-3 col-md-6 col-12"
+                v-if="info.date1"
+              >
+                <input
+                  class="form-control"
+                  type="date"
+                  id="date1"
+                  :value="info.date1"
+                />
               </div>
 
-              <div class="form-group col-lg-3 col-md-6 col-12" v-if="info.date2">
+              <div
+                class="form-group col-lg-3 col-md-6 col-12"
+                v-if="info.date2"
+              >
                 <input class="form-control" type="date" :value="info.date2" />
               </div>
 
-              <div class="form-group col-lg-3 col-md-6 col-12" v-if="info.date3">
+              <div
+                class="form-group col-lg-3 col-md-6 col-12"
+                v-if="info.date3"
+              >
                 <input class="form-control" type="date" :value="info.date3" />
               </div>
 
-              <div class="form-group col-lg-3 col-md-6 col-12" v-if="info.date4">
+              <div
+                class="form-group col-lg-3 col-md-6 col-12"
+                v-if="info.date4"
+              >
                 <input class="form-control" type="date" :value="info.date4" />
               </div>
 
-              <div class="form-group col-lg-3 col-md-6 col-12" v-if="info.date5">
+              <div
+                class="form-group col-lg-3 col-md-6 col-12"
+                v-if="info.date5"
+              >
                 <input class="form-control" type="date" :value="info.date5" />
               </div>
 
-              <div class="form-group col-lg-3 col-md-6 col-12" v-if="info.date6">
+              <div
+                class="form-group col-lg-3 col-md-6 col-12"
+                v-if="info.date6"
+              >
                 <input class="form-control" type="date" :value="info.date6" />
               </div>
 
-              <div class="form-group col-lg-3 col-md-6 col-12" v-if="info.date7">
+              <div
+                class="form-group col-lg-3 col-md-6 col-12"
+                v-if="info.date7"
+              >
                 <input class="form-control" type="date" :value="info.date7" />
               </div>
 
-              <div class="form-group col-lg-3 col-md-6 col-12" v-if="info.date8">
+              <div
+                class="form-group col-lg-3 col-md-6 col-12"
+                v-if="info.date8"
+              >
                 <input class="form-control" type="date" :value="info.date8" />
               </div>
 
-              <div class="form-group col-lg-3 col-md-6 col-12" v-if="info.date9">
+              <div
+                class="form-group col-lg-3 col-md-6 col-12"
+                v-if="info.date9"
+              >
                 <input class="form-control" type="date" :value="info.date9" />
               </div>
 
-              <div class="form-group col-lg-3 col-md-6 col-12" v-if="info.date10">
+              <div
+                class="form-group col-lg-3 col-md-6 col-12"
+                v-if="info.date10"
+              >
                 <input class="form-control" type="date" :value="info.date10" />
-              </div> 
+              </div>
 
               <!-- {{-- LES NOUVELLES DATES --}} -->
               <div class="form-group col-lg-12 col-sm-12 mb-0">
@@ -284,10 +331,6 @@
                 <input class="form-control" type="date" />
               </div>
 
-               <div class="form-group col-lg-3 col-md-6 col-12">
-                <input class="form-control" type="date" />
-              </div>
-
               <div class="form-group col-lg-3 col-md-6 col-12">
                 <input class="form-control" type="date" />
               </div>
@@ -308,6 +351,9 @@
                 <input class="form-control" type="date" />
               </div>
 
+              <div class="form-group col-lg-3 col-md-6 col-12">
+                <input class="form-control" type="date" />
+              </div>
             </div>
 
             <!-- {{-- L'HORAIRE INITIALE --}} -->
@@ -319,7 +365,12 @@
               <div class="form-group col-lg-6 col-sm-12">
                 <label>Heure début</label>
                 <div class="input-group date" id="datetimepicker3">
-                  <input class="form-control" type="time" name="hr_debut" :value="info.hr_debut" />
+                  <input
+                    class="form-control"
+                    type="time"
+                    name="hr_debut"
+                    :value="info.hr_debut"
+                  />
                   <div
                     class="input-group-append"
                     data-target="#timepicker"
@@ -403,7 +454,7 @@
         <!-- <a href="#" class="btn btn-warning"><i class="fa fa-pencil" aria-hidden="true"></i>&nbsp;Modifier</a> -->
       </div>
       <div>
-        <input type="text">
+        <input type="text" />
       </div>
     </form>
   </div>
@@ -443,6 +494,9 @@ export default {
       Info_AvisModif: (state) => state.Info_AvisModif,
       List_Dates: (state) => state.List_Dates,
     }),
+  },
+  updated() {
+    this.storeUpdateModel3();
   },
 
   methods: {
@@ -492,6 +546,15 @@ export default {
         chk_lieu.disabled = false;
         chk_horaire.disabled = false;
       }
+    },
+
+    // update the Model 3 and save archive data
+    storeUpdateModel3() {
+      let date1 =
+        document.getElementById("date1") != null
+          ? document.getElementById("date1").value
+          : null;
+      return console.log("--------------------", date1);
     },
   },
 };

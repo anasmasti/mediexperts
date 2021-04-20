@@ -2903,6 +2903,57 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   runtimeCompiler: true,
@@ -2947,6 +2998,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return state.List_Dates;
     }
   })),
+  updated: function updated() {
+    this.storeUpdateModel3();
+  },
   methods: {
     handleAction: function handleAction(actionName, value) {
       this.$store.dispatch(actionName, value);
@@ -2990,6 +3044,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         chk_lieu.disabled = false;
         chk_horaire.disabled = false;
       }
+    },
+    // update the Model 3 and save archive data
+    storeUpdateModel3: function storeUpdateModel3() {
+      var date1 = document.getElementById("date1") != null ? document.getElementById("date1").value : null;
+      return console.log("--------------------", date1);
     }
   }
 });
@@ -41622,7 +41681,11 @@ var render = function() {
                             _c(
                               "option",
                               { attrs: { selected: "", disabled: "" } },
-                              [_vm._v("---selectionner l'organisme---")]
+                              [
+                                _vm._v(
+                                  "\n                  ---selectionner l'organisme---\n                "
+                                )
+                              ]
                             ),
                             _vm._v(" "),
                             _vm._l(_vm.cabinets, function(cabinet) {
@@ -41639,9 +41702,9 @@ var render = function() {
                                 },
                                 [
                                   _vm._v(
-                                    "\n              " +
+                                    "\n                  " +
                                       _vm._s(cabinet.raisoci) +
-                                      " \n            "
+                                      "\n                "
                                   )
                                 ]
                               )
@@ -41709,9 +41772,9 @@ var render = function() {
                                 },
                                 [
                                   _vm._v(
-                                    "\n              " +
+                                    "\n                  " +
                                       _vm._s(cl.raisoci) +
-                                      "\n            "
+                                      "\n                "
                                   )
                                 ]
                               )
@@ -41735,7 +41798,7 @@ var render = function() {
                           [
                             _c("input", {
                               staticClass: "form-control",
-                              attrs: { type: "date" },
+                              attrs: { type: "date", id: "date1" },
                               domProps: { value: info.date1 }
                             })
                           ]
