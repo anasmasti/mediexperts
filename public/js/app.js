@@ -2969,8 +2969,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   runtimeCompiler: true,
@@ -3012,9 +3010,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return state.Info_AvisModif;
     }
   })),
-  updated: function updated() {
-    this.storeUpdateModel3();
-  },
   methods: {
     handleAction: function handleAction(actionName, value) {
       this.$store.dispatch(actionName, value);
@@ -3063,50 +3058,51 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     storeUpdateModel3: function storeUpdateModel3() {
       var _infoavismodif;
 
-      var date1 = document.getElementById("date1") != null ? document.getElementById("date1").value : null;
-      var date2 = document.getElementById("date2") != null ? document.getElementById("date2").value : null;
-      var date3 = document.getElementById("date3") != null ? document.getElementById("date3").value : null;
-      var date4 = document.getElementById("date4") != null ? document.getElementById("date4").value : null;
-      var date5 = document.getElementById("date5") != null ? document.getElementById("date5").value : null;
-      var date6 = document.getElementById("date6") != null ? document.getElementById("date6").value : null;
-      var date7 = document.getElementById("date7") != null ? document.getElementById("date7").value : null;
-      var date8 = document.getElementById("date8") != null ? document.getElementById("date8").value : null;
-      var date9 = document.getElementById("date9") != null ? document.getElementById("date9").value : null;
-      var date10 = document.getElementById("date10") != null ? document.getElementById("date10").value : null;
-      var newdate1 = document.getElementById("newdate1") != null ? document.getElementById("newdate1").value : null;
-      var newdate2 = document.getElementById("newnewdate2") != null ? document.getElementById("newdate2").value : null;
-      var newdate3 = document.getElementById("newdate3") != null ? document.getElementById("newdate3").value : null;
-      var newdate4 = document.getElementById("newdate4") != null ? document.getElementById("newdate4").value : null;
-      var newdate5 = document.getElementById("newdate5") != null ? document.getElementById("newdate5").value : null;
-      var newdate6 = document.getElementById("newdate6") != null ? document.getElementById("newdate6").value : null;
-      var newdate7 = document.getElementById("newdate7") != null ? document.getElementById("newdate7").value : null;
-      var newdate8 = document.getElementById("newdate8") != null ? document.getElementById("newdate8").value : null;
-      var newdate9 = document.getElementById("newdate9") != null ? document.getElementById("newdate9").value : null;
-      var newdate10 = document.getElementById("newdate10") != null ? document.getElementById("newdate10").value : null;
-      var action_annuler = document.getElementById("annuler") != false ? document.getElementById("annuler").value : false;
-      var action_modifdate = document.getElementById("modif_date") != false ? document.getElementById("modif_date").value : false;
-      var action_modiforgan = document.getElementById("modif_organ") != false ? document.getElementById("modif_organ").value : false;
-      var action_modiflieu = document.getElementById("modif_lieu") != false ? document.getElementById("modif_lieu").value : false;
-      var action_modifhoraire = document.getElementById("modif_horaire") != false ? document.getElementById("modif_horaire").value : false;
-      var planifie = document.getElementById("planifie") != false ? document.getElementById("planifie").value : false;
-      var initial_organisme = document.getElementById("initial_organisme") != null ? document.getElementById("initial_organisme").value : null;
-      var initial_lieu = document.getElementById("initial_lieu") != null ? document.getElementById("initial_lieu").value : null;
-      var nouvel_organisme = document.getElementById("nouvel_organisme") != null ? document.getElementById("nouvel_organisme").value : null;
-      var nouvel_lieu = document.getElementById("nouvel_lieu") != null ? document.getElementById("nouvel_lieu").value : null;
-      var initial_hr_debut = document.getElementById("initial_hr_debut") != null ? document.getElementById("initial_hr_debut").value : null;
-      var initial_hr_fin = document.getElementByI("initial_hr_fin") != null ? document.getElementById("initial_hr_fin").value : null;
-      var new_hr_debut = document.getElementById("new_hr_debut") != null ? document.getElementById("new_hr_debut").value : null;
-      var new_hr_fin = document.getElementById("new_hr_fin") != null ? doucment.getElementById("new_hr_fin").value : null;
-      var entreprise = document.getElementById("client") != null ? doucment.getElementById("client").value : null;
-      var ref_plan = document.getElementById("plans") != null ? doucment.getElementById("plans").value : null;
-      var theme = document.getElementById("theme") != null ? doucment.getElementById("theme").value : null;
-      var etat_avis = document.getElementById("etat") != null ? document.getElementById("etat").value : null;
-      var groupe = document.getElementById("groupe") != null ? document.getElementById("groupe").value : null;
+      var date1 = document.getElementById("date1");
+      var date2 = document.getElementById("date2");
+      var date3 = document.getElementById("date3");
+      var date4 = document.getElementById("date4");
+      var date5 = document.getElementById("date5");
+      var date6 = document.getElementById("date6");
+      var date7 = document.getElementById("date7");
+      var date8 = document.getElementById("date8");
+      var date9 = document.getElementById("date9");
+      var date10 = document.getElementById("date10");
+      var newdate1 = document.getElementById("newdate1");
+      var newdate2 = document.getElementById("newdate2");
+      var newdate3 = document.getElementById("newdate3");
+      var newdate4 = document.getElementById("newdate4");
+      var newdate5 = document.getElementById("newdate5");
+      var newdate6 = document.getElementById("newdate6");
+      var newdate7 = document.getElementById("newdate7");
+      var newdate8 = document.getElementById("newdate8");
+      var newdate9 = document.getElementById("newdate9");
+      var newdate10 = document.getElementById("newdate10");
+      var action_annuler = document.getElementById("annuler");
+      var action_modifdate = document.getElementById("modif_date");
+      var action_modiforgan = document.getElementById("modif_organ");
+      var action_modiflieu = document.getElementById("modif_lieu");
+      var action_modifhoraire = document.getElementById("modif_horaire");
+      var planifie = document.getElementById("planifie");
+      var initial_organisme = document.getElementById("initial_organisme");
+      var initial_lieu = document.getElementById("initial_lieu");
+      var nouvel_organisme = document.getElementById("nouvel_organisme");
+      var nouvel_lieu = document.getElementById("nouvel_lieu");
+      var initial_hr_debut = document.getElementById("initial_hr_debut");
+      var initial_hr_fin = document.getElementById("initial_hr_fin");
+      var new_hr_debut = document.getElementById("new_hr_debut");
+      var new_hr_fin = document.getElementById("new_hr_fin");
+      var entreprise = document.getElementById("client");
+      var ref_plan = document.getElementById("plans");
+      var theme = document.getElementById("theme");
+      var etat_avis = document.getElementById("etat");
+      var groupe = document.getElementById("groupe");
       var infoavismodif = (_infoavismodif = {
-        'date1': date1,
-        'date2': date2,
-        'date3': date3
-      }, _defineProperty(_infoavismodif, "date1", date4), _defineProperty(_infoavismodif, "date2", date5), _defineProperty(_infoavismodif, 'date6', date6), _defineProperty(_infoavismodif, 'date7', date7), _defineProperty(_infoavismodif, 'date8', date8), _defineProperty(_infoavismodif, 'date9', date9), _defineProperty(_infoavismodif, 'date10', date10), _defineProperty(_infoavismodif, 'newdate1', newdate1), _defineProperty(_infoavismodif, 'newdate2', newdate2), _defineProperty(_infoavismodif, 'newdate3', newdate3), _defineProperty(_infoavismodif, 'newdate4', newdate4), _defineProperty(_infoavismodif, 'newdate5', newdate5), _defineProperty(_infoavismodif, 'newdate6', newdate6), _defineProperty(_infoavismodif, 'newdate7', newdate7), _defineProperty(_infoavismodif, 'newdate8', newdate8), _defineProperty(_infoavismodif, 'newdate9', newdate9), _defineProperty(_infoavismodif, 'newdate10', newdate10), _defineProperty(_infoavismodif, 'entreprise', entreprise), _defineProperty(_infoavismodif, 'refPlan', ref_plan), _defineProperty(_infoavismodif, 'NomTheme', theme), _defineProperty(_infoavismodif, 'type action', etat_avis), _defineProperty(_infoavismodif, 'annuler', action_annuler), _defineProperty(_infoavismodif, 'modificationDate', action_modifdate), _defineProperty(_infoavismodif, 'modificationOrganisme', action_modiforgan), _defineProperty(_infoavismodif, 'modificationLieu', action_modiflieu), _defineProperty(_infoavismodif, 'modificationHoraire', action_modifhoraire), _defineProperty(_infoavismodif, 'natureAction', planifie), _defineProperty(_infoavismodif, 'organisme', initial_organisme), _defineProperty(_infoavismodif, 'lieu', initial_lieu), _defineProperty(_infoavismodif, 'heurDebut', initial_hr_debut), _defineProperty(_infoavismodif, 'heurFin', initial_hr_fin), _defineProperty(_infoavismodif, 'newOrganisme', nouvel_organisme), _defineProperty(_infoavismodif, 'newLieu', nouvel_lieu), _defineProperty(_infoavismodif, 'newHeurDebut', new_hr_debut), _defineProperty(_infoavismodif, 'newHeurFin', new_hr_fin), _infoavismodif);
+        'date1': date1.value,
+        'date2': date2.value,
+        'date3': date3.value
+      }, _defineProperty(_infoavismodif, "date1", date4.value), _defineProperty(_infoavismodif, "date2", date5.value), _defineProperty(_infoavismodif, 'date6', date6.value), _defineProperty(_infoavismodif, 'date7', date7.value), _defineProperty(_infoavismodif, 'date8', date8.value), _defineProperty(_infoavismodif, 'date9', date9.value), _defineProperty(_infoavismodif, 'date10', date10.value), _defineProperty(_infoavismodif, 'newdate1', newdate1.value), _defineProperty(_infoavismodif, 'newdate2', newdate2.value), _defineProperty(_infoavismodif, 'newdate3', newdate3.value), _defineProperty(_infoavismodif, 'newdate4', newdate4.value), _defineProperty(_infoavismodif, 'newdate5', newdate5.value), _defineProperty(_infoavismodif, 'newdate6', newdate6.value), _defineProperty(_infoavismodif, 'newdate7', newdate7.value), _defineProperty(_infoavismodif, 'newdate8', newdate8.value), _defineProperty(_infoavismodif, 'newdate9', newdate9.value), _defineProperty(_infoavismodif, 'newdate10', newdate10.value), _defineProperty(_infoavismodif, 'entreprise', entreprise.value), _defineProperty(_infoavismodif, 'refPlan', ref_plan.value), _defineProperty(_infoavismodif, 'NomTheme', theme.value), _defineProperty(_infoavismodif, 'typeAction', etat_avis.value), _defineProperty(_infoavismodif, 'annuler', action_annuler.value), _defineProperty(_infoavismodif, 'modificationDate', action_modifdate.value), _defineProperty(_infoavismodif, 'modificationOrganisme', action_modiforgan.value), _defineProperty(_infoavismodif, 'modificationLieu', action_modiflieu.value), _defineProperty(_infoavismodif, 'modificationHoraire', action_modifhoraire.value), _defineProperty(_infoavismodif, 'natureAction', planifie.value), _defineProperty(_infoavismodif, 'organisme', initial_organisme.value), _defineProperty(_infoavismodif, 'lieu', initial_lieu.value), _defineProperty(_infoavismodif, 'heurDebut', initial_hr_debut.value), _defineProperty(_infoavismodif, 'heurFin', initial_hr_fin.value), _defineProperty(_infoavismodif, 'newOrganisme', nouvel_organisme.value), _defineProperty(_infoavismodif, 'newLieu', nouvel_lieu.value), _defineProperty(_infoavismodif, 'newHeurDebut', new_hr_debut.value), _defineProperty(_infoavismodif, 'newHeurFin', new_hr_fin.value), _defineProperty(_infoavismodif, 'nForm', this.selected_nForm), _defineProperty(_infoavismodif, 'groupe', groupe), _infoavismodif);
+      this.$store.dispatch("model3/PostPutAvisModif", infoavismodif);
       return console.log("--------------------", infoavismodif);
     }
   }
@@ -41558,40 +41554,13 @@ var render = function() {
               _c(
                 "select",
                 {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.infosAvisModif.type_action,
-                      expression: "infosAvisModif.type_action"
-                    }
-                  ],
                   staticClass: "form-control",
                   attrs: { id: "etat" },
                   on: {
-                    change: [
-                      function($event) {
-                        var $$selectedVal = Array.prototype.filter
-                          .call($event.target.options, function(o) {
-                            return o.selected
-                          })
-                          .map(function(o) {
-                            var val = "_value" in o ? o._value : o.value
-                            return val
-                          })
-                        _vm.$set(
-                          _vm.infosAvisModif,
-                          "type_action",
-                          $event.target.multiple
-                            ? $$selectedVal
-                            : $$selectedVal[0]
-                        )
-                      },
-                      function($event) {
-                        _vm.getSelected()
-                        _vm.getDisabled()
-                      }
-                    ]
+                    change: function($event) {
+                      _vm.getSelected()
+                      _vm.getDisabled()
+                    }
                   }
                 },
                 [
@@ -41755,13 +41724,7 @@ var render = function() {
                                 ? info.organisme
                                 : ""
                           }
-                        }),
-                        _vm._v(" "),
-                        _c("h1", [
-                          _vm._v(
-                            "organisme. " + _vm._s(_vm.infosAvisModif.organisme)
-                          )
-                        ])
+                        })
                       ]
                     ),
                     _vm._v(" "),
@@ -42146,7 +42109,7 @@ var render = function() {
                         _c("input", {
                           staticClass: "form-control",
                           attrs: { type: "date", id: "newdate5" },
-                          domProps: { value: _vm.infor.date5 }
+                          domProps: { value: info.date5 }
                         })
                       ]
                     ),
@@ -42309,7 +42272,7 @@ var render = function() {
             attrs: { href: "#" },
             on: {
               click: function($event) {
-                return _vm.StoreOldAndUpdateNew()
+                return _vm.storeUpdateModel3()
               }
             }
           },
@@ -58593,7 +58556,7 @@ var actions = {
           switch (_context8.prev = _context8.next) {
             case 0:
               _context8.next = 2;
-              return axios.post("/store-avis-modif");
+              return axios.post("api/store-avis-modif", newInfos);
 
             case 2:
             case "end":

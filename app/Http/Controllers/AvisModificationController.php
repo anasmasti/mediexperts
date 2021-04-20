@@ -45,70 +45,70 @@ public function StoreUpdateAvisModif(Request $request) {
 
           $AvisModif = new AvisModification();
 
-          $AvisModif->n_form = $request->n_form;
-          $AvisModif->old_entreprise = $request->old_entreprise;
-          $AvisModif->old_ref_plan = $request->old_ref_plan;
-          $AvisModif->old_type_action = $request->old_type_action;
-          $AvisModif->old_anulation = $request->old_anulation;
-          $AvisModif->old_date_realisation = $request->old_date_realisation;
-          $AvisModif->old_organisme_formations= $request->old_organisme_formations;
-          $AvisModif->old_lieu_formations = $request->old_lieu_formations;
-          $AvisModif->old_horaire_formations = $request->old_horaire_formations;
-          $AvisModif->old_theme_action = $request->old_theme_action;
-          $AvisModif->old_nature_action= $request->old_nature_action;
-          $AvisModif->old_groupe= $request->old_groupe;
-          $AvisModif->old_organisme = $request->old_organisme;
-          $AvisModif->old_lieu= $request->old_lieu;
-          $AvisModif->old_hr_debut= $request->old_hr_debut ;
-          $AvisModif->old_hr_fin= $request->old_hr_fin ;
-          $AvisModif->old_pse_debut = $request->old_pse_debut;
-          $AvisModif->old_pse_fin = $request->old_pse_fin;
-          $AvisModif->old_date1= $request->old_date1;
-          $AvisModif->old_date2 = $request->old_date2;
-          $AvisModif->old_date3 = $request->old_date3;
-          $AvisModif->old_date4= $request->old_date4 ;
-          $AvisModif->old_date5 = $request->old_date5;
-          $AvisModif->old_date6= $request->old_date6;
-          $AvisModif->old_date7= $request->old_date7;
-          $AvisModif->old_date8 = $request->old_date8;
-          $AvisModif->old_date9 = $request->old_date9;
-          $AvisModif->old_date10= $request->old_date10;
+          $AvisModif->n_form = $request->nForm;
+          $AvisModif->old_entreprise = $request->entreprise;
+          $AvisModif->old_ref_plan = $request->refPlan;
+          $AvisModif->old_type_action = $request->typeAction;
+          $AvisModif->old_anulation = $request->annuler;
+          $AvisModif->old_date_realisation = $request->modificationDate;
+          $AvisModif->old_organisme_formations= $request->modificationOrganisme;
+          $AvisModif->old_lieu_formations = $request->modificationLieu;
+          $AvisModif->old_horaire_formations = $request->modificationHoraire;
+          $AvisModif->old_theme_action = $request->NomTheme;
+          $AvisModif->old_nature_action= $request->natureAction;
+          $AvisModif->old_groupe= $request->groupe;
+          $AvisModif->old_organisme = $request->organisme;
+          $AvisModif->old_lieu= $request->lieu;
+          $AvisModif->old_hr_debut= $request->heurDebut ;
+          $AvisModif->old_hr_fin= $request->heurFin ;
+          $AvisModif->old_pse_debut = "test";
+          $AvisModif->old_pse_fin = "test";
+          $AvisModif->old_date1= $request->date1;
+          $AvisModif->old_date2 = $request->date2;
+          $AvisModif->old_date3 = $request->date3;
+          $AvisModif->old_date4= $request->date4 ;
+          $AvisModif->old_date5 = $request->date5;
+          $AvisModif->old_date6= $request->date6;
+          $AvisModif->old_date7= $request->date7;
+          $AvisModif->old_date8 = $request->date8;
+          $AvisModif->old_date9 = $request->date9;
+          $AvisModif->old_date10= $request->date10;
           $nFrom = $AvisModif->n_form;
           $AvisModif->save();
 
 
 
-          $planformation = PlanFormation::findOrFail($nFrom);
+          // $planformation = PlanFormation::findOrFail($nFrom);
 
 
-          $planformation->lieu = $request->lieu;
-          $planformation->organisme = $request->organisme ;
-          $planformation->type_action = $request->type_action;
-          $planformation->date_realisation = $request->date_realisation;
-          $planformation->organisme_formations = $request->organisme_formations;
-          $planformation->lieu_formations = $request->lieu_formations;
-          $planformation->horaire_formations = $request->horaire_formations;
+          // $planformation->lieu = $request->lieu;
+          // $planformation->organisme = $request->organisme ;
+          // $planformation->type_action = $request->type_action;
+          // $planformation->date_realisation = $request->date_realisation;
+          // $planformation->organisme_formations = $request->organisme_formations;
+          // $planformation->lieu_formations = $request->lieu_formations;
+          // $planformation->horaire_formations = $request->horaire_formations;
 
-          $planformation->save();
+          // $planformation->save();
 
-          $formation = Formation::findOrFail($nFrom);
+          // $formation = Formation::findOrFail($nFrom);
 
-          $formation->hr_debut = $request-> hr_debut;
-          $formation->hr_fin = $request-> hr_fin;
-          $formation->pse_debut = $request->pse_debut;
-          $formation->pse_fin = $request-> pse_fin;
-          $formation->date1 = $request->date1;
-          $formation->date2 = $request->date2;
-          $formation->date3 = $request->date3;
-          $formation->date4 = $request->date4;
-          $formation->date5 = $request->date5;
-          $formation->date6 = $request->date6;
-          $formation->date7 = $request->date7;
-          $formation->date8 = $request->date8;
-          $formation->date9 = $request->date9;
-          $formation->date10 = $request->date10;
+          // $formation->hr_debut = $request-> hr_debut;
+          // $formation->hr_fin = $request-> hr_fin;
+          // $formation->pse_debut = $request->pse_debut;
+          // $formation->pse_fin = $request-> pse_fin;
+          // $formation->date1 = $request->date1;
+          // $formation->date2 = $request->date2;
+          // $formation->date3 = $request->date3;
+          // $formation->date4 = $request->date4;
+          // $formation->date5 = $request->date5;
+          // $formation->date6 = $request->date6;
+          // $formation->date7 = $request->date7;
+          // $formation->date8 = $request->date8;
+          // $formation->date9 = $request->date9;
+          // $formation->date10 = $request->date10;
 
-          $formation->save();
+          // $formation->save();
         }
 }
     /**

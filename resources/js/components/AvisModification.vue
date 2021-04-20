@@ -60,7 +60,6 @@
                 getSelected();
                 getDisabled();
               "
-              v-model="infosAvisModif.type_action"
             >
               <option selected disabled>---selectionner l'état---</option>
               <option value="annulation">Annulation</option>
@@ -183,7 +182,6 @@
                   class="form-control"
                   :value="Info_AvisModif.length != 0 ? info.organisme : ''"
                 />
-                <h1>organisme. {{infosAvisModif.organisme}}</h1>
               </div>
               <div class="form-group col-lg-6 col-sm-12">
                 <label>Lieu de formation initial </label>
@@ -336,7 +334,7 @@
               </div>
 
               <div class="form-group col-lg-3 col-md-6 col-12">
-                <input class="form-control" type="date" id="newdate5" :value="infor.date5"/>
+                <input class="form-control" type="date" id="newdate5" :value="info.date5"/>
               </div>
 
               <div class="form-group col-lg-3 col-md-6 col-12">
@@ -464,7 +462,7 @@
         >
       </div>
         <div class="card-footer text-center">
-        <a href="#" class="btn btn-info" @click="StoreOldAndUpdateNew()"
+        <a href="#" class="btn btn-info" @click="storeUpdateModel3()"
           ><i class="fa fa-print"></i>&nbsp;Modifier</a
         >
         <!-- <a href="#" class="btn btn-warning"><i class="fa fa-pencil" aria-hidden="true"></i>&nbsp;Modifier</a> -->
@@ -510,9 +508,6 @@ export default {
       cabinets: (state) => state.cabinets,
       Info_AvisModif: (state) => state.Info_AvisModif,
     }),
-  },
-  updated() {
-    this.storeUpdateModel3();
   },
 
   methods: {
@@ -567,204 +562,89 @@ export default {
     // update the Model 3 and save archive data
     storeUpdateModel3() {
 
-      let date1 =
-        document.getElementById("date1") != null
-          ? document.getElementById("date1").value
-          : null;
-      let date2 =
-        document.getElementById("date2") != null
-          ? document.getElementById("date2").value
-          : null;
-      let date3 =
-        document.getElementById("date3") != null
-          ? document.getElementById("date3").value
-          : null;
-      let date4 =
-        document.getElementById("date4") != null
-          ? document.getElementById("date4").value
-          : null;
-      let date5 =
-        document.getElementById("date5") != null
-          ? document.getElementById("date5").value
-          : null;
-      let date6 =
-        document.getElementById("date6") != null
-          ? document.getElementById("date6").value
-          : null;
-      let date7 =
-        document.getElementById("date7") != null
-          ? document.getElementById("date7").value
-          : null;
-      let date8 =
-        document.getElementById("date8") != null
-          ? document.getElementById("date8").value
-          : null;
-      let date9 =
-        document.getElementById("date9") != null
-          ? document.getElementById("date9").value
-          : null;
-      let date10 =
-        document.getElementById("date10") != null
-          ? document.getElementById("date10").value
-          : null;
-      let newdate1 =
-        document.getElementById("newdate1") != null
-          ? document.getElementById("newdate1").value
-          : null;
-      let newdate2 =
-        document.getElementById("newnewdate2") != null
-          ? document.getElementById("newdate2").value
-          : null;
-      let newdate3 =
-        document.getElementById("newdate3") != null
-          ? document.getElementById("newdate3").value
-          : null;
-      let newdate4 =
-        document.getElementById("newdate4") != null
-          ? document.getElementById("newdate4").value
-          : null;
-      let newdate5 =
-        document.getElementById("newdate5") != null
-          ? document.getElementById("newdate5").value
-          : null;
-      let newdate6 =
-        document.getElementById("newdate6") != null
-          ? document.getElementById("newdate6").value
-          : null;
-      let newdate7 =
-        document.getElementById("newdate7") != null
-          ? document.getElementById("newdate7").value
-          : null;
-      let newdate8 =
-        document.getElementById("newdate8") != null
-          ? document.getElementById("newdate8").value
-          : null;
-      let newdate9 =
-        document.getElementById("newdate9") != null
-          ? document.getElementById("newdate9").value
-          : null;
-      let newdate10 =
-        document.getElementById("newdate10") != null
-          ? document.getElementById("newdate10").value
-          : null;
-      let action_annuler =
-        document.getElementById("annuler") != false
-          ? document.getElementById("annuler").value
-          : false;
-      let action_modifdate =
-        document.getElementById("modif_date") != false
-          ? document.getElementById("modif_date").value
-          : false;
-      let action_modiforgan =
-        document.getElementById("modif_organ") != false
-          ? document.getElementById("modif_organ").value
-          : false;
-      let action_modiflieu =
-        document.getElementById("modif_lieu") != false
-          ? document.getElementById("modif_lieu").value
-          : false;
-      let action_modifhoraire =
-        document.getElementById("modif_horaire") != false
-          ? document.getElementById("modif_horaire").value
-          : false;
-      let planifie =
-        document.getElementById("planifie") != false
-          ? document.getElementById("planifie").value
-          : false;
-      let initial_organisme =
-        document.getElementById("initial_organisme") != null
-          ? document.getElementById("initial_organisme").value
-          : null;
-      let initial_lieu =
-        document.getElementById("initial_lieu") != null
-          ? document.getElementById("initial_lieu").value
-          : null;
-      let nouvel_organisme =
-        document.getElementById("nouvel_organisme") != null
-          ? document.getElementById("nouvel_organisme").value
-          : null;
-      let nouvel_lieu =
-        document.getElementById("nouvel_lieu") != null
-          ? document.getElementById("nouvel_lieu").value
-          : null;
-      let initial_hr_debut =
-        document.getElementById("initial_hr_debut") !=null
-          ? document.getElementById("initial_hr_debut").value
-          : null;
-      let initial_hr_fin =
-        document.getElementByI("initial_hr_fin") != null
-          ? document.getElementById("initial_hr_fin").value
-          : null;
-      let new_hr_debut =
-        document.getElementById("new_hr_debut") != null
-          ? document.getElementById("new_hr_debut").value
-          : null;
-      let new_hr_fin =
-        document.getElementById("new_hr_fin") != null
-          ? doucment.getElementById("new_hr_fin").value
-          : null;
-      let entreprise =
-        document.getElementById("client") != null
-          ? doucment.getElementById("client").value
-          : null;
-      let ref_plan =
-        document.getElementById("plans") != null
-          ? doucment.getElementById("plans").value
-          : null;
-      let theme =
-        document.getElementById("theme") != null
-          ? doucment.getElementById("theme").value
-          : null;
-      let etat_avis =
-        document.getElementById("etat") != null
-          ? document.getElementById("etat").value
-          : null;
-      let groupe =
-        document.getElementById("groupe") != null
-          ? document.getElementById("groupe").value
-          : null;
+      let date1 = document.getElementById("date1");
+      let date2 = document.getElementById("date2")
+      let date3 = document.getElementById("date3");
+      let date4 = document.getElementById("date4");
+      let date5 = document.getElementById("date5");
+      let date6 = document.getElementById("date6");
+      let date7 = document.getElementById("date7");
+      let date8 = document.getElementById("date8");
+      let date9 = document.getElementById("date9");
+      let date10 = document.getElementById("date10");
+      let newdate1 = document.getElementById("newdate1");
+      let newdate2 = document.getElementById("newdate2");
+      let newdate3 = document.getElementById("newdate3");
+      let newdate4 = document.getElementById("newdate4");
+      let newdate5 = document.getElementById("newdate5") ;
+      let newdate6 = document.getElementById("newdate6");
+      let newdate7 = document.getElementById("newdate7");
+      let newdate8 = document.getElementById("newdate8");
+      let newdate9 = document.getElementById("newdate9");
+      let newdate10 = document.getElementById("newdate10");
+      let action_annuler = document.getElementById("annuler");
+      let action_modifdate = document.getElementById("modif_date");
+      let action_modiforgan = document.getElementById("modif_organ");
+      let action_modiflieu = document.getElementById("modif_lieu");
+      let action_modifhoraire = document.getElementById("modif_horaire");
+      let planifie = document.getElementById("planifie");
+      let initial_organisme = document.getElementById("initial_organisme");
+      let initial_lieu = document.getElementById("initial_lieu");
+      let nouvel_organisme = document.getElementById("nouvel_organisme");
+      let nouvel_lieu = document.getElementById("nouvel_lieu");
+      let initial_hr_debut = document.getElementById("initial_hr_debut");
+      let initial_hr_fin = document.getElementById("initial_hr_fin");
+      let new_hr_debut = document.getElementById("new_hr_debut");
+      let new_hr_fin = document.getElementById("new_hr_fin");
+      let entreprise = document.getElementById("client");
+      let ref_plan = document.getElementById("plans");
+      let theme = document.getElementById("theme");
+      let etat_avis = document.getElementById("etat");
+      let groupe = document.getElementById("groupe");
 
-      var infoavismodif = {
-        'date1': date1,
-        'date2': date2,
-        'date3': date3,
-        'date1': date4,
-        'date2': date5,
-        'date6': date6,
-        'date7': date7,
-        'date8': date8,
-        'date9': date9,
-        'date10': date10,
-        'newdate1': newdate1,
-        'newdate2': newdate2,
-        'newdate3': newdate3,
-        'newdate4': newdate4,
-        'newdate5': newdate5,
-        'newdate6': newdate6,
-        'newdate7': newdate7,
-        'newdate8': newdate8,
-        'newdate9': newdate9,
-        'newdate10': newdate10,
-        'entreprise': entreprise,
-        'refPlan': ref_plan,
-        'NomTheme': theme,
-        'type action': etat_avis,
-        'annuler': action_annuler,
-        'modificationDate': action_modifdate,
-        'modificationOrganisme': action_modiforgan,
-        'modificationLieu': action_modiflieu,
-        'modificationHoraire': action_modifhoraire,
-        'natureAction': planifie,
-        'organisme': initial_organisme,
-        'lieu': initial_lieu,
-        'heurDebut': initial_hr_debut,
-        'heurFin': initial_hr_fin,
-        'newOrganisme': nouvel_organisme,
-        'newLieu': nouvel_lieu,
-        'newHeurDebut': new_hr_debut,
-        'newHeurFin': new_hr_fin
+      let infoavismodif = {
+        'date1': date1.value,
+        'date2': date2.value,
+        'date3': date3.value,
+        'date1': date4.value,
+        'date2': date5.value,
+        'date6': date6.value,
+        'date7': date7.value,
+        'date8': date8.value,
+        'date9': date9.value,
+        'date10': date10.value,
+        'newdate1': newdate1.value,
+        'newdate2': newdate2.value,
+        'newdate3': newdate3.value,
+        'newdate4': newdate4.value,
+        'newdate5': newdate5.value,
+        'newdate6': newdate6.value,
+        'newdate7': newdate7.value,
+        'newdate8': newdate8.value,
+        'newdate9': newdate9.value,
+        'newdate10': newdate10.value,
+        'entreprise': entreprise.value,
+        'refPlan': ref_plan.value,
+        'NomTheme': theme.value,
+        'typeAction': etat_avis.value,
+        'annuler': action_annuler.value,
+        'modificationDate': action_modifdate.value,
+        'modificationOrganisme': action_modiforgan.value,
+        'modificationLieu': action_modiflieu.value,
+        'modificationHoraire': action_modifhoraire.value,
+        'natureAction': planifie.value,
+        'organisme': initial_organisme.value,
+        'lieu': initial_lieu.value,
+        'heurDebut': initial_hr_debut.value,
+        'heurFin': initial_hr_fin.value,
+        'newOrganisme': nouvel_organisme.value,
+        'newLieu': nouvel_lieu.value,
+        'newHeurDebut': new_hr_debut.value,
+        'newHeurFin': new_hr_fin.value,
+        'nForm': this.selected_nForm,
+        'groupe': groupe
       }
-
+      this.$store.dispatch("model3/PostPutAvisModif", infoavismodif)
       return console.log("--------------------", infoavismodif);
 
     },

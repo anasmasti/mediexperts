@@ -76,6 +76,6 @@ export const actions = {
 
   //Posting and puting the new insertions
   async PostPutAvisModif(newInfos) {
-    await axios.post(`/store-avis-modif`, )
+    await axios.post(`api/store-avis-modif`, newInfos)
   },
 };
