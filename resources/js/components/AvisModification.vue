@@ -15,10 +15,10 @@
               id="client"
               name="client"
               @change="
-                handleAction('model3/FetchReferencesPlan', selected_nrc_entrp);
-                handleAction('model3/SetNrcEntrp', selected_nrc_entrp);
+                handleAction('model3/FetchReferencesPlan', infosAvisModif.selected_nrc_entrp);
+                handleAction('model3/SetNrcEntrp', infosAvisModif.selected_nrc_entrp);
               "
-              v-model="selected_nrc_entrp"
+              v-model="infosAvisModif.selected_nrc_entrp"
             >
               <option selected disabled>---selectionner l'entreprise---</option>
               <option
@@ -37,8 +37,8 @@
               class="form-control"
               name="plans"
               id="plans"
-              @change="handleAction('model3/FetchActionByReference', id_plan)"
-              v-model="id_plan"
+              @change="handleAction('model3/FetchActionByReference', infosAvisModif.id_plan)"
+              v-model="infosAvisModif.id_plan"
             >
               <option selected disabled>---selectionner le plan---</option>
               <option
@@ -60,6 +60,7 @@
                 getSelected();
                 getDisabled();
               "
+              v-model="infosAvisModif.type_action"
             >
               <option selected disabled>---selectionner l'état---</option>
               <option value="annulation">Annulation</option>
@@ -76,8 +77,7 @@
                 <th style="width: 10%" rowspan="6">Avis</th>
                 <th style="width: 10%">Anulation</th>
                 <th style="width: 10%" colspan="2">
-                  <input name="annuler" :value="true" v-model="selected_input_annuler" type="checkbox" id="annuler" />
-                  <h1>{{selected_input_annuler}}</h1>
+                  <input name="annuler" :value="true" v-model="infosAvisModif.selected_input_annuler" type="checkbox" id="annuler" />
                 </th>
               </tr>
             </thead>
@@ -87,20 +87,20 @@
               </tr>
               <tr>
                 <th style="width: 5%">De la date de Réalisation</th>
-                <th><input type="checkbox" name="modif" id="modif_date" /></th>
+                <th><input type="checkbox" name="modif" id="modif_date" v-model="infosAvisModif.date_realisation"/></th>
               </tr>
               <tr>
                 <th style="width: 5%">De l’organisme de formation</th>
-                <th><input type="checkbox" name="modif" id="modif_organ" /></th>
+                <th><input type="checkbox" name="modif" id="modif_organ" v-model="infosAvisModif.organisme_formations"/></th>
               </tr>
               <tr>
                 <th style="width: 5%">De lieu de formation</th>
-                <th><input type="checkbox" name="modif" id="modif_lieu" /></th>
+                <th><input type="checkbox" name="modif" id="modif_lieu" v-model="infosAvisModif.lieu_formations"/></th>
               </tr>
               <tr>
                 <th style="width: 5%">Organisation horaire</th>
                 <th>
-                  <input type="checkbox" name="modif" id="modif_horaire" />
+                  <input type="checkbox" name="modif" id="modif_horaire" v-model="infosAvisModif.horaire_formations"/>
                 </th>
               </tr>
             </tbody>
@@ -111,9 +111,9 @@
             <select
               class="form-control"
               @change="
-                handleAction('model3/FetchInitialInfoAvisModif', selected_nForm)
+                handleAction('model3/FetchInitialInfoAvisModif', infosAvisModif.selected_nForm)
               "
-              v-model="selected_nForm"
+              v-model="infosAvisModif.selected_nForm"
             >
               <option selected disabled>---selectionner le thème---</option>
               <option
@@ -135,6 +135,7 @@
                   name="planifie"
                   id="planifie"
                   class="custom-control-input"
+                  v-model="infosAvisModif.nature_action"
                   checked
                 />
                 <label for="planifie" class="custom-control-label"
@@ -164,7 +165,6 @@
             </div>
           </div>
 
-
           <div
             class="cole-12 container p-lg-4 mt-3"
             style="background-color: #efefef"
@@ -180,9 +180,10 @@
                 <input
                   type="text"
                   class="form-control"
-                  :value="Info_AvisModif.length != 0 ? info.organisme : ''"
-                  :v-model="old_organisme"
+                  :value="info.organisme"
+                  :v-model="info.organisme == infosAvisModif.organisme"
                 />
+                <h1>organisme. {{infosAvisModif.organisme}}</h1>
               </div>
               <div class="form-group col-lg-6 col-sm-12">
                 <label>Lieu de formation initial </label>
@@ -190,20 +191,25 @@
                   type="text"
                   class="form-control"
                   :value="Info_AvisModif.length != 0 ? info.lieu : ''"
+                  :v-model="infosAvisModif.lieu"
                 />
               </div>
+
                <div class="form-group col-lg-6 col-sm-12">
             <label>Nouvel Organisme de formation</label>
             <select class="form-control" v-model="selectedCabinet">
               <option selected disabled>---selectionner l'organisme---</option>
               <option
                 v-for="cabinet in cabinets"
-                :value="selectedCabinet == false ? info.organisme : cabinet.raisoci"
+                :value="selectedCabinet == false ? info.organisme: cabinet.raisoci"
                 :key="cabinet.nrc_cab"
+                :v-model="infosAvisModif.new_organisme"
               >
                 {{ cabinet.raisoci }}
               </option>
             </select>
+                <h1>organisme. {{ infosAvisModif.new_organisme }}</h1>
+
           </div>
           <div class="form-group col-lg-6 col-sm-12">
             <label>Nouveau lieu</label>
@@ -213,6 +219,7 @@
                 v-for="cl in clients"
                 :value="selectedFormationLieu == false ? info.lieu : cl.raisoci"
                 :key="cl.nrc_entrp"
+                :v-model="infosAvisModif.new_lieu"
               >
                 {{ cl.raisoci }}
               </option>
@@ -226,43 +233,43 @@
               </div>
 
               <div class="form-group col-lg-3 col-md-6 col-12" v-if="info.date1">
-                <input class="form-control" type="date" :value="info.date1" />
+                <input class="form-control" type="date" :value="info.date1" :v-model="infosAvisModif.date1"/>
               </div>
 
               <div class="form-group col-lg-3 col-md-6 col-12" v-if="info.date2">
-                <input class="form-control" type="date" :value="info.date2" />
+                <input class="form-control" type="date" :value="info.date2" :v-model="infosAvisModif.date2"/>
               </div>
 
               <div class="form-group col-lg-3 col-md-6 col-12" v-if="info.date3">
-                <input class="form-control" type="date" :value="info.date3" />
+                <input class="form-control" type="date" :value="info.date3" :v-model="infosAvisModif.date3"/>
               </div>
 
               <div class="form-group col-lg-3 col-md-6 col-12" v-if="info.date4">
-                <input class="form-control" type="date" :value="info.date4" />
+                <input class="form-control" type="date" :value="info.date4" :v-model="infosAvisModif.date4"/>
               </div>
 
               <div class="form-group col-lg-3 col-md-6 col-12" v-if="info.date5">
-                <input class="form-control" type="date" :value="info.date5" />
+                <input class="form-control" type="date" :value="info.date5" :v-model="infosAvisModif.date5"/>
               </div>
 
               <div class="form-group col-lg-3 col-md-6 col-12" v-if="info.date6">
-                <input class="form-control" type="date" :value="info.date6" />
+                <input class="form-control" type="date" :value="info.date6" :v-model="infosAvisModif.date6"/>
               </div>
 
               <div class="form-group col-lg-3 col-md-6 col-12" v-if="info.date7">
-                <input class="form-control" type="date" :value="info.date7" />
+                <input class="form-control" type="date" :value="info.date7" :v-model="infosAvisModif.date7"/>
               </div>
 
               <div class="form-group col-lg-3 col-md-6 col-12" v-if="info.date8">
-                <input class="form-control" type="date" :value="info.date8" />
+                <input class="form-control" type="date" :value="info.date8" :v-model="infosAvisModif.date8"/>
               </div>
 
               <div class="form-group col-lg-3 col-md-6 col-12" v-if="info.date9">
-                <input class="form-control" type="date" :value="info.date9" />
+                <input class="form-control" type="date" :value="info.date9" :v-model="infosAvisModif.date9"/>
               </div>
 
               <div class="form-group col-lg-3 col-md-6 col-12" v-if="info.date10">
-                <input class="form-control" type="date" :value="info.date10" />
+                <input class="form-control" type="date" :value="info.date10" :v-model="infosAvisModif.date10"/>
               </div>
 
               <!-- {{-- LES NOUVELLES DATES --}} -->
@@ -271,45 +278,44 @@
               </div>
 
               <div class="form-group col-lg-3 col-md-6 col-12">
-                <input class="form-control" type="date" />
+                <input class="form-control" type="date" :value="info.date1" :v-model="infosAvisModif.new_date1"/>
               </div>
 
               <div class="form-group col-lg-3 col-md-6 col-12">
-                <input class="form-control" type="date" />
+                <input class="form-control" type="date" :value="info.date2" :v-model="infosAvisModif.new_date2"/>
               </div>
 
               <div class="form-group col-lg-3 col-md-6 col-12">
-                <input class="form-control" type="date" />
+                <input class="form-control" type="date" :value="info.date3" :v-model="infosAvisModif.new_date3"/>
               </div>
 
               <div class="form-group col-lg-3 col-md-6 col-12">
-                <input class="form-control" type="date" />
+                <input class="form-control" type="date" :value="info.date4" :v-model="infosAvisModif.new_date4"/>
               </div>
 
                <div class="form-group col-lg-3 col-md-6 col-12">
-                <input class="form-control" type="date" />
+                <input class="form-control" type="date" :value="info.date5" :v-model="infosAvisModif.new_date5"/>
               </div>
 
               <div class="form-group col-lg-3 col-md-6 col-12">
-                <input class="form-control" type="date" />
+                <input class="form-control" type="date" :value="info.date6" :v-model="infosAvisModif.new_date6"/>
               </div>
 
               <div class="form-group col-lg-3 col-md-6 col-12">
-                <input class="form-control" type="date" />
+                <input class="form-control" type="date" :value="info.date7" :v-model="infosAvisModif.new_date7"/>
               </div>
 
               <div class="form-group col-lg-3 col-md-6 col-12">
-                <input class="form-control" type="date" />
+                <input class="form-control" type="date" :value="info.date8" :v-model="infosAvisModif.new_date8"/>
               </div>
 
               <div class="form-group col-lg-3 col-md-6 col-12">
-                <input class="form-control" type="date" />
+                <input class="form-control" type="date" :value="info.date9" :v-model="infosAvisModif.new_date9"/>
               </div>
 
               <div class="form-group col-lg-3 col-md-6 col-12">
-                <input class="form-control" type="date" />
+                <input class="form-control" type="date" :value="info.date10" :v-model="infosAvisModif.new_date10"/>
               </div>
-
             </div>
 
             <!-- {{-- L'HORAIRE INITIALE --}} -->
@@ -321,7 +327,10 @@
               <div class="form-group col-lg-6 col-sm-12">
                 <label>Heure début</label>
                 <div class="input-group date" id="datetimepicker3">
-                  <input class="form-control" type="time" name="hr_debut" :value="info.hr_debut" />
+                  <input class="form-control" type="time" name="hr_debut"
+                  :value="info.hr_debut"
+                  :v-model="infosAvisModif.hr_debut"
+                  />
                   <div
                     class="input-group-append"
                     data-target="#timepicker"
@@ -341,6 +350,7 @@
                     type="time"
                     name="hr_fin"
                     :value="info.hr_fin"
+                    :v-model="infosAvisModif.hr_fin"
                   />
                   <div
                     class="input-group-append"
@@ -362,7 +372,9 @@
               <div class="form-group col-lg-6 col-sm-12">
                 <label>Heure début</label>
                 <div class="input-group date" id="datetimepicker3">
-                  <input class="form-control" type="time" name="hr_debut" />
+                  <input class="form-control" type="time" name="hr_debut"
+                  v-model="infosAvisModif.new_hr_debut"
+                  />
                   <div
                     class="input-group-append"
                     data-target="#timepicker"
@@ -382,6 +394,7 @@
                     class="form-control timerpicker"
                     type="time"
                     name="hr_fin"
+                    v-model="infosAvisModif.new_hr_fin"
                   />
                   <div
                     class="input-group-append"
@@ -397,10 +410,15 @@
           </div>
         </div>
       </div>
-
+      <!-- <input type="hidden" :v-model=""/> -->
       <div class="card-footer text-center">
         <a href="/print-m3" class="btn btn-info"
           ><i class="fa fa-print"></i>&nbsp;Imprimer</a
+        >
+      </div>
+        <div class="card-footer text-center">
+        <a href="#" class="btn btn-info" @click="StoreOldAndUpdateNew()"
+          ><i class="fa fa-print"></i>&nbsp;Modifier</a
         >
         <!-- <a href="#" class="btn btn-warning"><i class="fa fa-pencil" aria-hidden="true"></i>&nbsp;Modifier</a> -->
       </div>
@@ -408,13 +426,14 @@
   </div>
 </template>
 
+
 <script>
 import { mapState } from "vuex";
 
 export default {
   runtimeCompiler: true,
 
-  data() {
+  data () {
     return {
       selected_nForm: null,
       idForm: null,
@@ -423,35 +442,52 @@ export default {
       selected_nrc_entrp: null,
       selectedCabinet: false,
       selectedFormationLieu: false,
-      newInfos: {
-        old_n_form: "",
-        old_entreprise:"",
-        old_ref_pla:"",
-        old_theme_action:"",
-        old_nature_action:"",
-        old_hr_debut:"",
-        old_hr_fin:"",
-        old_pse_debut:"",
-        old_pse_fin:"",
-        old_anulation:"",
-        old_date_realisation:"",
-        old_organisme_formations:"",
-        old_lieu_formations:"",
-        old_horaire_formations:"",
-        old_type_action:"",
-        old_organisme:"",
-        old_lieu:"",
-        old_groupe:"",
-        old_date1:"",
-        old_date2:"",
-        old_date3:"",
-        old_date4:"",
-        old_date5:"",
-        old_date6:"",
-        old_date7:"",
-        old_date8:"",
-        old_date9:"",
-        old_date10:""
+      infosAvisModif: {
+       nForm: "",
+        selected_nrc_entrp:"",
+        id_plan:"",
+        selected_nForm:"",
+        nature_action:"",
+        selected_input_annuler:false,
+        type_action:"",
+        date_realisation:false,
+        organisme_formations:false,
+        lieu_formations:false,
+        horaire_formations:false,
+        hr_debut:"",
+        hr_fin:"",
+        pse_debut:"",
+        pse_fin:"",
+        organisme:"",
+        lieu:"",
+        groupe:"",
+        date1:"",
+        date2:"",
+        date3:"",
+        date4:"",
+        date5:"",
+        date6:"",
+        date7:"",
+        date8:"",
+        date9:"",
+        date10:"",
+        new_hr_debut:"",
+        new_hr_fin:"",
+        new_pse_debut:"",
+        new_pse_fin:"",
+        new_organisme:"",
+        new_lieu:"",
+        new_groupe:"",
+        new_date1:"",
+        new_date2:"",
+        new_date3:"",
+        new_ate4:"",
+        new_date5:"",
+        new_date6:"",
+        new_date7:"",
+        new_date8:"",
+        new_date9:"",
+        new_date10:""
       }
 
     };
@@ -471,7 +507,6 @@ export default {
       curr_annee_plan: (state) => state.curr_annee_plan,
       cabinets: (state) => state.cabinets,
       Info_AvisModif: (state) => state.Info_AvisModif,
-      List_Dates: (state) => state.List_Dates,
     }),
   },
 
@@ -523,8 +558,13 @@ export default {
         chk_horaire.disabled = false;
       }
     },
+    StoreOldAndUpdateNew() {
+    // this.$store.dispatch("model3/PostPutAvisModif", infosAvisModif);
+    console.log(this.infosAvisModif);
+    },
   },
-};
+}
+
 </script>
 
 <style></style>

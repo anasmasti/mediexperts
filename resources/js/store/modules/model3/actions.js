@@ -75,8 +75,7 @@ export const actions = {
   },
 
   //Posting and puting the new insertions
-
-  // async PostPutAvisModif() {
-  //   await axios.post(`/store-avis-modif`,data)
-  // }
+  async PostPutAvisModif(newInfos) {
+    await axios.post(`/store-avis-modif`, )
+  },
 };
