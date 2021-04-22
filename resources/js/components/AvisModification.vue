@@ -76,7 +76,7 @@
                 <th style="width: 10%" rowspan="6">Avis</th>
                 <th style="width: 10%">Anulation</th>
                 <th style="width: 10%" colspan="2">
-                  <input name="annuler" :value="true" type="checkbox" id="annuler" />
+                  <input name="annuler" value="annuler" v-model="selected_annuler" type="checkbox" id="annuler" />
                 </th>
               </tr>
             </thead>
@@ -86,20 +86,20 @@
               </tr>
               <tr>
                 <th style="width: 5%">De la date de Réalisation</th>
-                <th><input type="checkbox" name="modif" id="modif_date" /></th>
+                <th><input type="checkbox" name="modif" value="false" v-model="selected_modifdate" id="modif_date" /></th>
               </tr>
               <tr>
                 <th style="width: 5%">De l’organisme de formation</th>
-                <th><input type="checkbox" name="modif" id="modif_organ" /></th>
+                <th><input type="checkbox" name="modif" value="false" v-model="selected_modiforganisme" id="modif_organ" /></th>
               </tr>
               <tr>
                 <th style="width: 5%">De lieu de formation</th>
-                <th><input type="checkbox" name="modif" id="modif_lieu" /></th>
+                <th><input type="checkbox" name="modif" value="false" v-model="selected_modiflieu" id="modif_lieu" /></th>
               </tr>
               <tr>
                 <th style="width: 5%">Organisation horaire</th>
                 <th>
-                  <input type="checkbox" name="modif" id="modif_horaire" />
+                  <input type="checkbox" name="modif" value="false" v-model="selected_modifhoraire" id="modif_horaire" />
                 </th>
               </tr>
             </tbody>
@@ -134,6 +134,8 @@
                   type="checkbox"
                   name="planifie"
                   id="planifie"
+                  value="planifié"
+
                   class="custom-control-input"
                   checked
                 />
@@ -167,11 +169,12 @@
           <div
             class="cole-12 container p-lg-4 mt-3"
             style="background-color: #efefef"
+            id="content"
             v-for="(info, index) in Info_AvisModif"
             :key="index"
           >
-            <h3>
-              <strong id="groupe">Groupe {{ index + 1 }}</strong>
+            <h3 id="groupe">
+              <strong>Groupe {{ index + 1 }}</strong>
             </h3>
             <div class="row my-3">
               <div class="form-group col-lg-6 col-sm-12">
@@ -330,7 +333,7 @@
               </div>
 
               <div class="form-group col-lg-3 col-md-6 col-12">
-                <input class="form-control" type="date" id="newdate4" :value="info.date4" />
+                <input class="form-control" type="date" id="newdate4" :value="info.date4"/>
               </div>
 
               <div class="form-group col-lg-3 col-md-6 col-12">
@@ -490,6 +493,12 @@ export default {
       selected_nrc_entrp: null,
       selectedCabinet: false,
       selectedFormationLieu: false,
+      selected_annuler:false,
+      selected_modifdate: false,
+      selected_modiforganisme: false,
+      selected_modiflieu: false,
+      selected_modifhoraire: false,
+      selected_nature_action: true
     };
   },
 
@@ -520,7 +529,6 @@ export default {
 
       if (annul.value.toString() === "annulation") {
         let annuler = document.getElementById("annuler");
-        annuler.checked = true;
         annuler.disabled = false;
 
         // récupérer les id des checkbox
@@ -560,10 +568,10 @@ export default {
     },
 
     // update the Model 3 and save archive data
-    storeUpdateModel3() {
+    async storeUpdateModel3() {
 
       let date1 = document.getElementById("date1");
-      let date2 = document.getElementById("date2")
+      let date2 = document.getElementById("date2");
       let date3 = document.getElementById("date3");
       let date4 = document.getElementById("date4");
       let date5 = document.getElementById("date5");
@@ -572,21 +580,16 @@ export default {
       let date8 = document.getElementById("date8");
       let date9 = document.getElementById("date9");
       let date10 = document.getElementById("date10");
-      let newdate1 = document.getElementById("newdate1");
-      let newdate2 = document.getElementById("newdate2");
-      let newdate3 = document.getElementById("newdate3");
-      let newdate4 = document.getElementById("newdate4");
+      let newdate1 = document.getElementById("newdate1") ;
+      let newdate2 = document.getElementById("newdate2") ;
+      let newdate3 = document.getElementById("newdate3") ;
+      let newdate4 = document.getElementById("newdate4") ;
       let newdate5 = document.getElementById("newdate5") ;
-      let newdate6 = document.getElementById("newdate6");
-      let newdate7 = document.getElementById("newdate7");
+      let newdate6 = document.getElementById("newdate6") ;
+      let newdate7 = document.getElementById("newdate7") ;
       let newdate8 = document.getElementById("newdate8");
       let newdate9 = document.getElementById("newdate9");
       let newdate10 = document.getElementById("newdate10");
-      let action_annuler = document.getElementById("annuler");
-      let action_modifdate = document.getElementById("modif_date");
-      let action_modiforgan = document.getElementById("modif_organ");
-      let action_modiflieu = document.getElementById("modif_lieu");
-      let action_modifhoraire = document.getElementById("modif_horaire");
       let planifie = document.getElementById("planifie");
       let initial_organisme = document.getElementById("initial_organisme");
       let initial_lieu = document.getElementById("initial_lieu");
@@ -600,38 +603,40 @@ export default {
       let ref_plan = document.getElementById("plans");
       let theme = document.getElementById("theme");
       let etat_avis = document.getElementById("etat");
-      let groupe = document.getElementById("groupe");
+      let groupe = document.getElementById("groupe").textContent;
+
+
 
       let infoavismodif = {
-        'date1': date1.value,
-        'date2': date2.value,
-        'date3': date3.value,
-        'date1': date4.value,
-        'date2': date5.value,
-        'date6': date6.value,
-        'date7': date7.value,
-        'date8': date8.value,
-        'date9': date9.value,
-        'date10': date10.value,
-        'newdate1': newdate1.value,
-        'newdate2': newdate2.value,
-        'newdate3': newdate3.value,
-        'newdate4': newdate4.value,
-        'newdate5': newdate5.value,
-        'newdate6': newdate6.value,
-        'newdate7': newdate7.value,
-        'newdate8': newdate8.value,
-        'newdate9': newdate9.value,
-        'newdate10': newdate10.value,
+        'date1': date1 != null ? date1.value : null,
+        'date2': date2 != null ? date2.value : null,
+        'date3': date3 != null ? date3.value : null,
+        'date4': date4 != null ? date4.value : null,
+        'date5': date5 != null ? date5.value : null,
+        'date6': date6 != null ? date6.value : null,
+        'date7': date7 != null ? date7.value : null,
+        'date8': date8 != null ? date8.value : null,
+        'date9': date9 != null ? date9.value : null,
+        'date10': date10 != null ? date10.value : null,
+        'newdate1': newdate1 != null ? newdate1.value : null,
+        'newdate2': newdate2 != null ? newdate2.value : null,
+        'newdate3': newdate3 != null ? newdate3.value : null,
+        'newdate4': newdate4 != null ? newdate4.value : null,
+        'newdate5': newdate5 != null ? newdate5.value : null,
+        'newdate6': newdate6 != null ? newdate6.value : null,
+        'newdate7': newdate7 != null ? newdate7.value : null,
+        'newdate8': newdate8 != null ? newdate8.value : null,
+        'newdate9': newdate9 != null ? newdate9.value : null,
+        'newdate10': newdate10 != null ? newdate10.value : null,
         'entreprise': entreprise.value,
         'refPlan': ref_plan.value,
         'NomTheme': theme.value,
         'typeAction': etat_avis.value,
-        'annuler': action_annuler.value,
-        'modificationDate': action_modifdate.value,
-        'modificationOrganisme': action_modiforgan.value,
-        'modificationLieu': action_modiflieu.value,
-        'modificationHoraire': action_modifhoraire.value,
+        'annuler': this.selected_annuler,
+        'modificationDate': this.selected_modifdate,
+        'modificationOrganisme': this.selected_modiforganisme,
+        'modificationLieu': this.selected_modiflieu,
+        'modificationHoraire': this.selected_modifhoraire,
         'natureAction': planifie.value,
         'organisme': initial_organisme.value,
         'lieu': initial_lieu.value,
@@ -644,9 +649,19 @@ export default {
         'nForm': this.selected_nForm,
         'groupe': groupe
       }
-      this.$store.dispatch("model3/PostPutAvisModif", infoavismodif)
-      return console.log("--------------------", infoavismodif);
-
+    await axios({
+      method: 'POST',
+      url: 'api/store-avis-modif',
+      data: JSON.parse(JSON.stringify(infoavismodif , function (key , value) {return (value === "") ? null : value}))
+      })
+      .then(response =>{
+        console.log(response);
+      })
+      .catch(err => {
+        console.log("error posting", err);
+      })
+      // let newJSON = JSON.stringify(infoavismodif, function (key, value) {return (value === "") ? null : value});
+      // return console.log("info avis modif" , JSON.parse(newJSON));
     },
   },
 }

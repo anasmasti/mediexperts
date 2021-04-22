@@ -3,7 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Support\Carbon;
 class Formation extends Model
 {
     protected $primaryKey = 'id_form';
@@ -52,7 +52,6 @@ class Formation extends Model
         'n_form',
         'commentaire'
     ];
-
     public function plan_formations()
     {
        return $this->belongsTo(PlanFormation::class);

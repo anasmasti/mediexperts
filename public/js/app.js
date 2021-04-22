@@ -2485,13 +2485,24 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
+//
 //
 //
 //
@@ -2980,14 +2991,20 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       id_plan: null,
       selected_nrc_entrp: null,
       selectedCabinet: false,
-      selectedFormationLieu: false
+      selectedFormationLieu: false,
+      selected_annuler: false,
+      selected_modifdate: false,
+      selected_modiforganisme: false,
+      selected_modiflieu: false,
+      selected_modifhoraire: false,
+      selected_nature_action: true
     };
   },
   mounted: function mounted() {
     this.$store.dispatch("model3/FetchClients");
     this.$store.dispatch("model3/FetchAllCabinets");
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])("model3", {
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])("model3", {
     curr_nrc_entrp: function curr_nrc_entrp(state) {
       return state.curr_nrc_entrp;
     },
@@ -3020,7 +3037,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       if (annul.value.toString() === "annulation") {
         var annuler = document.getElementById("annuler");
-        annuler.checked = true;
         annuler.disabled = false; // récupérer les id des checkbox
 
         var chk_dateR = document.getElementById("modif_date");
@@ -3056,54 +3072,110 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     // update the Model 3 and save archive data
     storeUpdateModel3: function storeUpdateModel3() {
-      var _infoavismodif;
+      var _this = this;
 
-      var date1 = document.getElementById("date1");
-      var date2 = document.getElementById("date2");
-      var date3 = document.getElementById("date3");
-      var date4 = document.getElementById("date4");
-      var date5 = document.getElementById("date5");
-      var date6 = document.getElementById("date6");
-      var date7 = document.getElementById("date7");
-      var date8 = document.getElementById("date8");
-      var date9 = document.getElementById("date9");
-      var date10 = document.getElementById("date10");
-      var newdate1 = document.getElementById("newdate1");
-      var newdate2 = document.getElementById("newdate2");
-      var newdate3 = document.getElementById("newdate3");
-      var newdate4 = document.getElementById("newdate4");
-      var newdate5 = document.getElementById("newdate5");
-      var newdate6 = document.getElementById("newdate6");
-      var newdate7 = document.getElementById("newdate7");
-      var newdate8 = document.getElementById("newdate8");
-      var newdate9 = document.getElementById("newdate9");
-      var newdate10 = document.getElementById("newdate10");
-      var action_annuler = document.getElementById("annuler");
-      var action_modifdate = document.getElementById("modif_date");
-      var action_modiforgan = document.getElementById("modif_organ");
-      var action_modiflieu = document.getElementById("modif_lieu");
-      var action_modifhoraire = document.getElementById("modif_horaire");
-      var planifie = document.getElementById("planifie");
-      var initial_organisme = document.getElementById("initial_organisme");
-      var initial_lieu = document.getElementById("initial_lieu");
-      var nouvel_organisme = document.getElementById("nouvel_organisme");
-      var nouvel_lieu = document.getElementById("nouvel_lieu");
-      var initial_hr_debut = document.getElementById("initial_hr_debut");
-      var initial_hr_fin = document.getElementById("initial_hr_fin");
-      var new_hr_debut = document.getElementById("new_hr_debut");
-      var new_hr_fin = document.getElementById("new_hr_fin");
-      var entreprise = document.getElementById("client");
-      var ref_plan = document.getElementById("plans");
-      var theme = document.getElementById("theme");
-      var etat_avis = document.getElementById("etat");
-      var groupe = document.getElementById("groupe");
-      var infoavismodif = (_infoavismodif = {
-        'date1': date1.value,
-        'date2': date2.value,
-        'date3': date3.value
-      }, _defineProperty(_infoavismodif, "date1", date4.value), _defineProperty(_infoavismodif, "date2", date5.value), _defineProperty(_infoavismodif, 'date6', date6.value), _defineProperty(_infoavismodif, 'date7', date7.value), _defineProperty(_infoavismodif, 'date8', date8.value), _defineProperty(_infoavismodif, 'date9', date9.value), _defineProperty(_infoavismodif, 'date10', date10.value), _defineProperty(_infoavismodif, 'newdate1', newdate1.value), _defineProperty(_infoavismodif, 'newdate2', newdate2.value), _defineProperty(_infoavismodif, 'newdate3', newdate3.value), _defineProperty(_infoavismodif, 'newdate4', newdate4.value), _defineProperty(_infoavismodif, 'newdate5', newdate5.value), _defineProperty(_infoavismodif, 'newdate6', newdate6.value), _defineProperty(_infoavismodif, 'newdate7', newdate7.value), _defineProperty(_infoavismodif, 'newdate8', newdate8.value), _defineProperty(_infoavismodif, 'newdate9', newdate9.value), _defineProperty(_infoavismodif, 'newdate10', newdate10.value), _defineProperty(_infoavismodif, 'entreprise', entreprise.value), _defineProperty(_infoavismodif, 'refPlan', ref_plan.value), _defineProperty(_infoavismodif, 'NomTheme', theme.value), _defineProperty(_infoavismodif, 'typeAction', etat_avis.value), _defineProperty(_infoavismodif, 'annuler', action_annuler.value), _defineProperty(_infoavismodif, 'modificationDate', action_modifdate.value), _defineProperty(_infoavismodif, 'modificationOrganisme', action_modiforgan.value), _defineProperty(_infoavismodif, 'modificationLieu', action_modiflieu.value), _defineProperty(_infoavismodif, 'modificationHoraire', action_modifhoraire.value), _defineProperty(_infoavismodif, 'natureAction', planifie.value), _defineProperty(_infoavismodif, 'organisme', initial_organisme.value), _defineProperty(_infoavismodif, 'lieu', initial_lieu.value), _defineProperty(_infoavismodif, 'heurDebut', initial_hr_debut.value), _defineProperty(_infoavismodif, 'heurFin', initial_hr_fin.value), _defineProperty(_infoavismodif, 'newOrganisme', nouvel_organisme.value), _defineProperty(_infoavismodif, 'newLieu', nouvel_lieu.value), _defineProperty(_infoavismodif, 'newHeurDebut', new_hr_debut.value), _defineProperty(_infoavismodif, 'newHeurFin', new_hr_fin.value), _defineProperty(_infoavismodif, 'nForm', this.selected_nForm), _defineProperty(_infoavismodif, 'groupe', groupe), _infoavismodif);
-      this.$store.dispatch("model3/PostPutAvisModif", infoavismodif);
-      return console.log("--------------------", infoavismodif);
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var date1, date2, date3, date4, date5, date6, date7, date8, date9, date10, newdate1, newdate2, newdate3, newdate4, newdate5, newdate6, newdate7, newdate8, newdate9, newdate10, planifie, initial_organisme, initial_lieu, nouvel_organisme, nouvel_lieu, initial_hr_debut, initial_hr_fin, new_hr_debut, new_hr_fin, entreprise, ref_plan, theme, etat_avis, groupe, infoavismodif;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                date1 = document.getElementById("date1");
+                date2 = document.getElementById("date2");
+                date3 = document.getElementById("date3");
+                date4 = document.getElementById("date4");
+                date5 = document.getElementById("date5");
+                date6 = document.getElementById("date6");
+                date7 = document.getElementById("date7");
+                date8 = document.getElementById("date8");
+                date9 = document.getElementById("date9");
+                date10 = document.getElementById("date10");
+                newdate1 = document.getElementById("newdate1");
+                newdate2 = document.getElementById("newdate2");
+                newdate3 = document.getElementById("newdate3");
+                newdate4 = document.getElementById("newdate4");
+                newdate5 = document.getElementById("newdate5");
+                newdate6 = document.getElementById("newdate6");
+                newdate7 = document.getElementById("newdate7");
+                newdate8 = document.getElementById("newdate8");
+                newdate9 = document.getElementById("newdate9");
+                newdate10 = document.getElementById("newdate10");
+                planifie = document.getElementById("planifie");
+                initial_organisme = document.getElementById("initial_organisme");
+                initial_lieu = document.getElementById("initial_lieu");
+                nouvel_organisme = document.getElementById("nouvel_organisme");
+                nouvel_lieu = document.getElementById("nouvel_lieu");
+                initial_hr_debut = document.getElementById("initial_hr_debut");
+                initial_hr_fin = document.getElementById("initial_hr_fin");
+                new_hr_debut = document.getElementById("new_hr_debut");
+                new_hr_fin = document.getElementById("new_hr_fin");
+                entreprise = document.getElementById("client");
+                ref_plan = document.getElementById("plans");
+                theme = document.getElementById("theme");
+                etat_avis = document.getElementById("etat");
+                groupe = document.getElementById("groupe").textContent;
+                infoavismodif = {
+                  'date1': date1 != null ? date1.value : null,
+                  'date2': date2 != null ? date2.value : null,
+                  'date3': date3 != null ? date3.value : null,
+                  'date4': date4 != null ? date4.value : null,
+                  'date5': date5 != null ? date5.value : null,
+                  'date6': date6 != null ? date6.value : null,
+                  'date7': date7 != null ? date7.value : null,
+                  'date8': date8 != null ? date8.value : null,
+                  'date9': date9 != null ? date9.value : null,
+                  'date10': date10 != null ? date10.value : null,
+                  'newdate1': newdate1 != null ? newdate1.value : null,
+                  'newdate2': newdate2 != null ? newdate2.value : null,
+                  'newdate3': newdate3 != null ? newdate3.value : null,
+                  'newdate4': newdate4 != null ? newdate4.value : null,
+                  'newdate5': newdate5 != null ? newdate5.value : null,
+                  'newdate6': newdate6 != null ? newdate6.value : null,
+                  'newdate7': newdate7 != null ? newdate7.value : null,
+                  'newdate8': newdate8 != null ? newdate8.value : null,
+                  'newdate9': newdate9 != null ? newdate9.value : null,
+                  'newdate10': newdate10 != null ? newdate10.value : null,
+                  'entreprise': entreprise.value,
+                  'refPlan': ref_plan.value,
+                  'NomTheme': theme.value,
+                  'typeAction': etat_avis.value,
+                  'annuler': _this.selected_annuler,
+                  'modificationDate': _this.selected_modifdate,
+                  'modificationOrganisme': _this.selected_modiforganisme,
+                  'modificationLieu': _this.selected_modiflieu,
+                  'modificationHoraire': _this.selected_modifhoraire,
+                  'natureAction': planifie.value,
+                  'organisme': initial_organisme.value,
+                  'lieu': initial_lieu.value,
+                  'heurDebut': initial_hr_debut.value,
+                  'heurFin': initial_hr_fin.value,
+                  'newOrganisme': nouvel_organisme.value,
+                  'newLieu': nouvel_lieu.value,
+                  'newHeurDebut': new_hr_debut.value,
+                  'newHeurFin': new_hr_fin.value,
+                  'nForm': _this.selected_nForm,
+                  'groupe': groupe
+                };
+                _context.next = 37;
+                return axios({
+                  method: 'POST',
+                  url: 'api/store-avis-modif',
+                  data: JSON.parse(JSON.stringify(infoavismodif, function (key, value) {
+                    return value === "" ? null : value;
+                  }))
+                }).then(function (response) {
+                  console.log(response);
+                })["catch"](function (err) {
+                  console.log("error posting", err);
+                });
+
+              case 37:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
     }
   }
 });
@@ -41609,19 +41681,268 @@ var render = function() {
                       },
                       [
                         _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.selected_annuler,
+                              expression: "selected_annuler"
+                            }
+                          ],
                           attrs: {
                             name: "annuler",
+                            value: "annuler",
                             type: "checkbox",
                             id: "annuler"
                           },
-                          domProps: { value: true }
+                          domProps: {
+                            checked: Array.isArray(_vm.selected_annuler)
+                              ? _vm._i(_vm.selected_annuler, "annuler") > -1
+                              : _vm.selected_annuler
+                          },
+                          on: {
+                            change: function($event) {
+                              var $$a = _vm.selected_annuler,
+                                $$el = $event.target,
+                                $$c = $$el.checked ? true : false
+                              if (Array.isArray($$a)) {
+                                var $$v = "annuler",
+                                  $$i = _vm._i($$a, $$v)
+                                if ($$el.checked) {
+                                  $$i < 0 &&
+                                    (_vm.selected_annuler = $$a.concat([$$v]))
+                                } else {
+                                  $$i > -1 &&
+                                    (_vm.selected_annuler = $$a
+                                      .slice(0, $$i)
+                                      .concat($$a.slice($$i + 1)))
+                                }
+                              } else {
+                                _vm.selected_annuler = $$c
+                              }
+                            }
+                          }
                         })
                       ]
                     )
                   ])
                 ]),
                 _vm._v(" "),
-                _vm._m(1)
+                _c("tbody", [
+                  _vm._m(1),
+                  _vm._v(" "),
+                  _c("tr", [
+                    _c("th", { staticStyle: { width: "5%" } }, [
+                      _vm._v("De la date de Réalisation")
+                    ]),
+                    _vm._v(" "),
+                    _c("th", [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.selected_modifdate,
+                            expression: "selected_modifdate"
+                          }
+                        ],
+                        attrs: {
+                          type: "checkbox",
+                          name: "modif",
+                          value: "false",
+                          id: "modif_date"
+                        },
+                        domProps: {
+                          checked: Array.isArray(_vm.selected_modifdate)
+                            ? _vm._i(_vm.selected_modifdate, "false") > -1
+                            : _vm.selected_modifdate
+                        },
+                        on: {
+                          change: function($event) {
+                            var $$a = _vm.selected_modifdate,
+                              $$el = $event.target,
+                              $$c = $$el.checked ? true : false
+                            if (Array.isArray($$a)) {
+                              var $$v = "false",
+                                $$i = _vm._i($$a, $$v)
+                              if ($$el.checked) {
+                                $$i < 0 &&
+                                  (_vm.selected_modifdate = $$a.concat([$$v]))
+                              } else {
+                                $$i > -1 &&
+                                  (_vm.selected_modifdate = $$a
+                                    .slice(0, $$i)
+                                    .concat($$a.slice($$i + 1)))
+                              }
+                            } else {
+                              _vm.selected_modifdate = $$c
+                            }
+                          }
+                        }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("tr", [
+                    _c("th", { staticStyle: { width: "5%" } }, [
+                      _vm._v("De l’organisme de formation")
+                    ]),
+                    _vm._v(" "),
+                    _c("th", [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.selected_modiforganisme,
+                            expression: "selected_modiforganisme"
+                          }
+                        ],
+                        attrs: {
+                          type: "checkbox",
+                          name: "modif",
+                          value: "false",
+                          id: "modif_organ"
+                        },
+                        domProps: {
+                          checked: Array.isArray(_vm.selected_modiforganisme)
+                            ? _vm._i(_vm.selected_modiforganisme, "false") > -1
+                            : _vm.selected_modiforganisme
+                        },
+                        on: {
+                          change: function($event) {
+                            var $$a = _vm.selected_modiforganisme,
+                              $$el = $event.target,
+                              $$c = $$el.checked ? true : false
+                            if (Array.isArray($$a)) {
+                              var $$v = "false",
+                                $$i = _vm._i($$a, $$v)
+                              if ($$el.checked) {
+                                $$i < 0 &&
+                                  (_vm.selected_modiforganisme = $$a.concat([
+                                    $$v
+                                  ]))
+                              } else {
+                                $$i > -1 &&
+                                  (_vm.selected_modiforganisme = $$a
+                                    .slice(0, $$i)
+                                    .concat($$a.slice($$i + 1)))
+                              }
+                            } else {
+                              _vm.selected_modiforganisme = $$c
+                            }
+                          }
+                        }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("tr", [
+                    _c("th", { staticStyle: { width: "5%" } }, [
+                      _vm._v("De lieu de formation")
+                    ]),
+                    _vm._v(" "),
+                    _c("th", [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.selected_modiflieu,
+                            expression: "selected_modiflieu"
+                          }
+                        ],
+                        attrs: {
+                          type: "checkbox",
+                          name: "modif",
+                          value: "false",
+                          id: "modif_lieu"
+                        },
+                        domProps: {
+                          checked: Array.isArray(_vm.selected_modiflieu)
+                            ? _vm._i(_vm.selected_modiflieu, "false") > -1
+                            : _vm.selected_modiflieu
+                        },
+                        on: {
+                          change: function($event) {
+                            var $$a = _vm.selected_modiflieu,
+                              $$el = $event.target,
+                              $$c = $$el.checked ? true : false
+                            if (Array.isArray($$a)) {
+                              var $$v = "false",
+                                $$i = _vm._i($$a, $$v)
+                              if ($$el.checked) {
+                                $$i < 0 &&
+                                  (_vm.selected_modiflieu = $$a.concat([$$v]))
+                              } else {
+                                $$i > -1 &&
+                                  (_vm.selected_modiflieu = $$a
+                                    .slice(0, $$i)
+                                    .concat($$a.slice($$i + 1)))
+                              }
+                            } else {
+                              _vm.selected_modiflieu = $$c
+                            }
+                          }
+                        }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("tr", [
+                    _c("th", { staticStyle: { width: "5%" } }, [
+                      _vm._v("Organisation horaire")
+                    ]),
+                    _vm._v(" "),
+                    _c("th", [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.selected_modifhoraire,
+                            expression: "selected_modifhoraire"
+                          }
+                        ],
+                        attrs: {
+                          type: "checkbox",
+                          name: "modif",
+                          value: "false",
+                          id: "modif_horaire"
+                        },
+                        domProps: {
+                          checked: Array.isArray(_vm.selected_modifhoraire)
+                            ? _vm._i(_vm.selected_modifhoraire, "false") > -1
+                            : _vm.selected_modifhoraire
+                        },
+                        on: {
+                          change: function($event) {
+                            var $$a = _vm.selected_modifhoraire,
+                              $$el = $event.target,
+                              $$c = $$el.checked ? true : false
+                            if (Array.isArray($$a)) {
+                              var $$v = "false",
+                                $$i = _vm._i($$a, $$v)
+                              if ($$el.checked) {
+                                $$i < 0 &&
+                                  (_vm.selected_modifhoraire = $$a.concat([
+                                    $$v
+                                  ]))
+                              } else {
+                                $$i > -1 &&
+                                  (_vm.selected_modifhoraire = $$a
+                                    .slice(0, $$i)
+                                    .concat($$a.slice($$i + 1)))
+                              }
+                            } else {
+                              _vm.selected_modifhoraire = $$c
+                            }
+                          }
+                        }
+                      })
+                    ])
+                  ])
+                ])
               ]
             ),
             _vm._v(" "),
@@ -41699,13 +42020,12 @@ var render = function() {
                 {
                   key: index,
                   staticClass: "cole-12 container p-lg-4 mt-3",
-                  staticStyle: { "background-color": "#efefef" }
+                  staticStyle: { "background-color": "#efefef" },
+                  attrs: { id: "content" }
                 },
                 [
-                  _c("h3", [
-                    _c("strong", { attrs: { id: "groupe" } }, [
-                      _vm._v("Groupe " + _vm._s(index + 1))
-                    ])
+                  _c("h3", { attrs: { id: "groupe" } }, [
+                    _c("strong", [_vm._v("Groupe " + _vm._s(index + 1))])
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "row my-3" }, [
@@ -42299,58 +42619,8 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("tbody", [
-      _c("tr", [
-        _c("th", { attrs: { rowspan: "5" } }, [_vm._v("Modification")])
-      ]),
-      _vm._v(" "),
-      _c("tr", [
-        _c("th", { staticStyle: { width: "5%" } }, [
-          _vm._v("De la date de Réalisation")
-        ]),
-        _vm._v(" "),
-        _c("th", [
-          _c("input", {
-            attrs: { type: "checkbox", name: "modif", id: "modif_date" }
-          })
-        ])
-      ]),
-      _vm._v(" "),
-      _c("tr", [
-        _c("th", { staticStyle: { width: "5%" } }, [
-          _vm._v("De l’organisme de formation")
-        ]),
-        _vm._v(" "),
-        _c("th", [
-          _c("input", {
-            attrs: { type: "checkbox", name: "modif", id: "modif_organ" }
-          })
-        ])
-      ]),
-      _vm._v(" "),
-      _c("tr", [
-        _c("th", { staticStyle: { width: "5%" } }, [
-          _vm._v("De lieu de formation")
-        ]),
-        _vm._v(" "),
-        _c("th", [
-          _c("input", {
-            attrs: { type: "checkbox", name: "modif", id: "modif_lieu" }
-          })
-        ])
-      ]),
-      _vm._v(" "),
-      _c("tr", [
-        _c("th", { staticStyle: { width: "5%" } }, [
-          _vm._v("Organisation horaire")
-        ]),
-        _vm._v(" "),
-        _c("th", [
-          _c("input", {
-            attrs: { type: "checkbox", name: "modif", id: "modif_horaire" }
-          })
-        ])
-      ])
+    return _c("tr", [
+      _c("th", { attrs: { rowspan: "5" } }, [_vm._v("Modification")])
     ])
   },
   function() {
@@ -42368,6 +42638,7 @@ var staticRenderFns = [
               type: "checkbox",
               name: "planifie",
               id: "planifie",
+              value: "planifié",
               checked: ""
             }
           }),
@@ -58547,25 +58818,18 @@ var actions = {
         }
       }, _callee7);
     }))();
-  },
-  //Posting and puting the new insertions
-  PostPutAvisModif: function PostPutAvisModif(newInfos) {
-    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee8() {
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee8$(_context8) {
-        while (1) {
-          switch (_context8.prev = _context8.next) {
-            case 0:
-              _context8.next = 2;
-              return axios.post("api/store-avis-modif", newInfos);
+  } //Posting and puting the new insertions
+  // async PostPutAvisModif() {
+  //   await axios
+  //     .post(`api/store-avis-modif`)
+  //     .then(({data}) =>{
+  //       console.log("this is what posting", data);
+  //     })
+  //     .catch(err => {
+  //       console.log("error posting", err);
+  //     })
+  // },
 
-            case 2:
-            case "end":
-              return _context8.stop();
-          }
-        }
-      }, _callee8);
-    }))();
-  }
 };
 
 /***/ }),

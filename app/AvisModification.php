@@ -1,7 +1,7 @@
 <?php
 
 namespace App;
-
+use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -67,4 +67,5 @@ class AvisModification extends Model
     public function formation() {
       return $this->BelongsTo(Formation::class,PlanFormation::class);
     }
+
 }

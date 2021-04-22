@@ -75,7 +75,14 @@ export const actions = {
   },
 
   //Posting and puting the new insertions
-  async PostPutAvisModif(newInfos) {
-    await axios.post(`api/store-avis-modif`, newInfos)
-  },
+  // async PostPutAvisModif() {
+  //   await axios
+  //     .post(`api/store-avis-modif`)
+  //     .then(({data}) =>{
+  //       console.log("this is what posting", data);
+  //     })
+  //     .catch(err => {
+  //       console.log("error posting", err);
+  //     })
+  // },
 };
