@@ -40104,7 +40104,7 @@ var render = function() {
                 )
               ]),
               _vm._v(
-                "\n\n        a réalisé pour le compte de notre société au titre de l’année\n        "
+                "\n\n        a réalisé pour le compte de notre société la mise en œuvre du plan du formation au titre de l’année\n        "
               ),
               _c(
                 "span",

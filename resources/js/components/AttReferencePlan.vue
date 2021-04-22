@@ -113,7 +113,7 @@
             {{ curr_cabinet_adress || '(adresse organisme)' }}
           </span>
 
-          a réalisé pour le compte de notre société au titre de l’année
+          a réalisé pour le compte de notre société la mise en œuvre du plan du formation au titre de l’année
           <span class="highlighted-danger" id="anneeMiss">
             {{ curr_annee || '(année)' }}
           </span>,
