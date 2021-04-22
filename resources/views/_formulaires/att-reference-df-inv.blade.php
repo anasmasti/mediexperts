@@ -93,6 +93,8 @@
       @endforeach
     </select>
   </div>
+  <input type="hidden" id="titleNomEntrp" value="">
+
 
 
   <div style="width:100%;">
@@ -228,6 +230,7 @@
             $('#entrpDgNom').html(data[0].nom_dg1);
             $('#entrpDgFonction').html(data[0].fonct_dg1);
             $('#entrpNom').html(data[0].raisoci);
+            $('#titleNomEntrp').val(data[0].raisoci);
           } else {
             fillDropdownDS = '<option selected disabled>(vide) aucune mission</option>';
             $('#df').append(fillDropdownDS);
@@ -255,7 +258,7 @@
             $('#lastDate').val(data.dt_fin_miss);
             $('#titleTypeMiss').val(data.type_miss);
             $('#titleAnneeMiss').val(data.annee_exerc);
-            $('#docTitle').html(`AR - ${$('#titleNomInterv').val()} - ${$('#titleTypeMiss').val()} - ${$('#titleAnneeMiss').val()}`);
+            $('#docTitle').html(`AR - ${$('#titleNomEntrp').val()} - ${$('#titleNomInterv').val()} - ${$('#titleTypeMiss').val()} - ${$('#titleAnneeMiss').val()}`);
              
           } else {
             // reset
@@ -294,7 +297,7 @@
           if (Object.keys(data).length) {
             $('#nomPrenomInv').html((data.nom+" "+data.prenom).toUpperCase());
             $('#titleNomInterv').val(data.nom);
-            $('#docTitle').html(`AR - ${$('#titleNomInterv').val()} - ${$('#titleTypeMiss').val()} - ${$('#titleAnneeMiss').val()}`);
+            $('#docTitle').html(`AR - ${$('#titleNomEntrp').val()} - ${$('#titleNomInterv').val()} - ${$('#titleTypeMiss').val()} - ${$('#titleAnneeMiss').val()}`);
 
           } else {
             $('#nomPrenomInv').html('.......');
@@ -303,7 +306,7 @@
     });
 
     $(document).on('change', () => {
-      $('#docTitle').html(`AR - ${$('#titleNomInterv').val()} - ${$('#titleTypeMiss').val()} - ${$('#titleAnneeMiss').val()}`);
+      $('#docTitle').html(`AR  - ${$('#titleNomEntrp').val()} - ${$('#titleNomInterv').val()} - ${$('#titleTypeMiss').val()} - ${$('#titleAnneeMiss').val()}`);
     });
 
   }); //ready

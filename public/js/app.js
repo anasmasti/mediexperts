@@ -1977,7 +1977,253 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-/* harmony default export */ __webpack_exports__["default"] = (_defineProperty({
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
   runtimeCompiler: true,
   data: function data() {
     return {
@@ -2011,13 +2257,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       plan_formation: [],
       dates_actions: [],
       current_dates: null,
-      isAllLoaded: false
+      isAllLoaded: false,
+      //title of page
+      title: {
+        ref_plan: ''
+      }
     };
   },
   mounted: function mounted() {
     this.FillClients();
   },
-  computed: {},
+  updated: function updated() {
+    document.title = "AR - ".concat(this.title.ref_plan);
+  },
   methods: {
     DateFormat: function DateFormat(date) {
       if (date) {
@@ -2108,6 +2360,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   _this3.FillCabinetInfo();
 
                   console.log("actions_by_ref : ", _this3.actions_by_ref);
+                  _this3.title.ref_plan = _this3.actions_by_ref[0].refpdf;
                 }).then(function () {
                   // fill dates action
                   _this3.actions_by_ref.forEach(function (action) {
@@ -2261,8 +2514,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         document.querySelector('.paper').setAttribute('style', 'font-size: 15.5px; line-height: initial; font-family: \'Arial\', sans-serif;');
       }
     }
-  }
-}, "computed", {}));
+  },
+  // methods
+  computed: {} // computed
+
+});
 
 /***/ }),
 
@@ -2752,13 +3008,201 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = (_defineProperty({
   components: {
-    'print-button': _PrintButton_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+    "print-button": _PrintButton_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   runtimeCompiler: true,
-  name: 'plan-formation',
+  name: "plan-formation",
   data: function data() {
     return {
       clients: [],
@@ -2772,26 +3216,33 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       plan_formation: [],
       dates_actions: [],
       current_dates: null,
-      isAllLoaded: false
+      isAllLoaded: false,
+      //title of page
+      title: {
+        ref_plan: ''
+      }
     };
   },
   //une fois le composant est monté
   mounted: function mounted() {
     this.FillClients();
   },
+  updated: function updated() {
+    document.title = "AR - ".concat(this.title.ref_plan);
+  },
   computed: {},
   methods: {
     DateFormat: function DateFormat(date) {
       if (date) {
-        var datestring = date.replace(/[^\w\s]/gi, '');
+        var datestring = date.replace(/[^\w\s]/gi, "");
         var year = datestring.charAt(0) + datestring.charAt(1) + datestring.charAt(2) + datestring.charAt(3);
         var month = datestring.charAt(4) + datestring.charAt(5);
         var day = datestring.charAt(6) + datestring.charAt(7);
-        return day + '/' + month + '/' + year;
+        return day + "/" + month + "/" + year;
       } else {// console.error("date is", date)
       }
     },
-    //async 
+    //async
     FillClients: function FillClients() {
       var _this = this;
 
@@ -2802,7 +3253,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 _this.coutTotalPlan = 0;
                 _context.next = 3;
-                return axios.get('/fill-clients').then(function (res) {
+                return axios.get("/fill-clients").then(function (res) {
                   _this.clients = res.data; // console.log("clients : ", this.clients)
                 })["catch"](function (err) {
                   return console.error("err FillClients", err);
@@ -2824,7 +3275,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                console.log('nrc_entrp', _this2.nrc_entrp);
+                console.log("nrc_entrp", _this2.nrc_entrp);
                 _context2.next = 3;
                 return axios.get("/fill-reference-plan?nrcEntrp=".concat(_this2.nrc_entrp)).then(function (res) {
                   _this2.reference_plan = res.data;
@@ -2855,6 +3306,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   _this3.actions_by_ref = res.data;
                   _this3.curr_annee = res.data[0].annee;
                   console.log("actions_by_ref : ", _this3.actions_by_ref);
+                  _this3.title.ref_plan = _this3.actions_by_ref[0].refpdf;
                 }).then(function () {
                   // fill dates action
                   _this3.actions_by_ref.forEach(function (action) {
@@ -41591,7 +42043,7 @@ var render = function() {
               ],
               staticStyle: {
                 width: "100%",
-                padding: ".5rem",
+                padding: "0.5rem",
                 border: "1px solid #000"
               },
               attrs: { name: "client", id: "client" },
@@ -41625,7 +42077,7 @@ var render = function() {
                 return _c(
                   "option",
                   { key: cl.nrc_entrp, domProps: { value: cl.nrc_entrp } },
-                  [_vm._v(_vm._s(cl.raisoci))]
+                  [_vm._v("\n          " + _vm._s(cl.raisoci) + "\n\n        ")]
                 )
               })
             ],
@@ -41652,7 +42104,7 @@ var render = function() {
                   ],
                   staticStyle: {
                     width: "100%",
-                    padding: ".5rem",
+                    padding: "0.5rem",
                     border: "1px solid #000"
                   },
                   attrs: { name: "plans", id: "plans" },
@@ -41687,7 +42139,11 @@ var render = function() {
                     return _c(
                       "option",
                       { key: pdf.id_plan, domProps: { value: pdf.id_plan } },
-                      [_vm._v(_vm._s(pdf.refpdf))]
+                      [
+                        _vm._v(
+                          "\n          " + _vm._s(pdf.refpdf) + "\n        "
+                        )
+                      ]
                     )
                   })
                 ],
@@ -41698,7 +42154,7 @@ var render = function() {
                 {
                   staticStyle: {
                     width: "100%",
-                    padding: ".5rem",
+                    padding: "0.5rem",
                     border: "1px solid #000"
                   },
                   attrs: { name: "plans", id: "plans" }
@@ -41714,8 +42170,8 @@ var render = function() {
               staticClass: "btn-btn-primary",
               staticStyle: {
                 background: "#00ff11",
-                margin: ".5rem 0",
-                padding: ".5rem"
+                margin: "0.5rem 0",
+                padding: "0.5rem"
               },
               attrs: { id: "dateBtn" },
               on: {
@@ -41737,7 +42193,7 @@ var render = function() {
       "div",
       {
         staticStyle: {
-          padding: ".5rem",
+          padding: "0.5rem",
           "font-family": "Calibri, 'Segoe UI', Geneva, Verdana, sans-serif",
           "background-color": "#fff",
           "font-size": "13px"

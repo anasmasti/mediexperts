@@ -1,176 +1,3 @@
-<script>
-export default {
-  runtimeCompiler: true,
-  data() {
-    return {
-      // clients data
-      clients: [],
-      nrc_entrp: undefined,
-      curr_client: null,
-      curr_client_raisoci: null,
-      curr_client_nrc: null,
-      curr_client_formjury: null,
-      curr_client_capt_soci: null,
-      curr_client_sg_soci: null,
-      curr_client_ville: null,
-      curr_client_fonct_dg1: null,
-      curr_client_nom_dg1: null,
-
-      // cabinet data
-      curr_cabinet_nrc: null,
-      curr_cabinet_raisoci: null,
-      curr_cabinet_capt_soci: null,
-      curr_cabinet_formjury: null,
-      curr_cabinet_ncnss: null,
-      curr_cabinet_adress: null,
-      curr_cabinet_ville: null,
-
-      // plan data
-      id_plan: undefined,
-      curr_annee: null,
-      curr_nb_jour: null,
-      curr_bdg_total: 0,
-      reference_plan: [],
-      actions_by_ref: [],
-      plan_formation: [],
-      dates_actions: [],
-      current_dates: null,
-      isAllLoaded: false,
-    }
-  },
-  mounted() {
-    this.FillClients();
-  },
-  computed: {
-  },
-  methods: {
-    DateFormat(date) {
-      if (date) {
-        let datestring = date.replace(/[^\w\s]/gi, '');
-        let year = datestring.charAt(0) + datestring.charAt(1) + datestring.charAt(2) + datestring.charAt(3);
-        let month = datestring.charAt(4) + datestring.charAt(5);
-        let day = datestring.charAt(6) + datestring.charAt(7);
-        return (day+'/'+month+'/'+year);
-      } else {
-        // console.error("date is", date)
-      }
-    },
-    async FillClients() {
-      await axios.get('/fill-clients')
-        .then((res) => {
-          this.clients = res.data;
-          // console.log("clients : ", this.clients)
-        })
-        .catch((err) => console.error("err FillClients", err));
-    },
-    async FillReferencesPlan() {
-      this.ChangeFontSize();
-      console.log('nrc_entrp', this.nrc_entrp)
-      await axios.get(`/fill-reference-plan?nrcEntrp=${this.nrc_entrp}`)
-        .then((res) => {
-          this.reference_plan = res.data;
-          this.curr_client_nrc = this.clients.nrc_entrp;
-          this.curr_client_capt_soci = res.data[0].capt_soci;
-          this.curr_client_ville = res.data[0].ville;
-          this.curr_client_raisoci = res.data[0].raisoci.toUpperCase();
-          this.curr_client_formjury = res.data[0].formjury;
-          this.curr_client_sg_soci = res.data[0].sg_soci;
-          this.curr_client_fonct_dg1 = res.data[0].fonct_dg1;
-          this.curr_client_nom_dg1 = res.data[0].nom_dg1;
-
-          console.log("reference_plan : ", this.reference_plan)
-        })
-        .catch((err) => console.log("err FillReferencesPlan", err));
-    },
-    async FillPlanByReference() {
-      await this.ResetAll();
-      await axios.get(`/fill-plans-by-reference?idPlan=${this.id_plan}`)
-        .then((res) => {
-          this.actions_by_ref = res.data;
-          this.curr_annee = res.data[0].annee;
-          this.curr_cabinet_raisoci = res.data[0].organisme;
-          this.FillCabinetInfo();
-          console.log("actions_by_ref : ", this.actions_by_ref)
-        })
-        .then(() => {
-          // fill dates action
-          this.actions_by_ref.forEach((action) => {
-            // affecter les dates de chaque formation
-            this.FillDates(action.n_form);
-            // calculer le budget total
-            this.curr_bdg_total += (action.bdg_total * action.nb_grp);
-            this.curr_nb_jour += action.nb_jour;
-          });
-        })
-        .catch((err) => console.error("err FillPlanByReference", err));
-      this.isAllLoaded = true;
-      console.log("isallloaded", this.isAllLoaded);
-    },
-    async FillCabinetInfo() {
-      await axios.get(`/fill-cabinet-info?raisociCab=${this.curr_cabinet_raisoci}`)
-        .then((res) => {
-          this.curr_cabinet_nrc = res.data.nrc_cab;
-          this.curr_cabinet_raisoci = res.data.raisoci.toUpperCase();
-          this.curr_cabinet_capt_soci = res.data.cap_soci;
-          this.curr_cabinet_formjury = res.data.formjury;
-          this.curr_cabinet_ncnss = res.data.ncnss;
-          this.curr_cabinet_adress = res.data.adress;
-          this.curr_cabinet_ville = res.data.ville;
-          console.log('cabinet :', res.data);
-        })
-        .catch((err) => console.error("err FillCabinetInfo", err));
-    },
-    async FillDates(nform) {
-      await axios.get(`/fill-dates-plan?nForm=${nform}`)
-        .then((res) => {
-          this.dates_actions = res.data;
-          this.AssignDates(nform);
-        })
-        .catch((err) => console.error("err FillDates", err));
-    },
-    async AssignDates(nform) {
-      await this.actions_by_ref.forEach(action => {
-        if (action.n_form == nform) {
-          this.dates_actions.forEach(forma => {
-            if (forma.n_form == nform) {
-              Object.assign(action, {dates: {}});
-              for (let i = 1; i < 30; i++) {
-                //************************ vvv [dynamic key assignement] vvv */
-                if (i == 1) {
-                  Object.assign(action.dates, { [`date_debut`]: this.DateFormat(forma[`date${i}`]) });
-                  console.log("date_debut", action.dates.date_debut);
-                }
-                if (forma[`date${i}`]) {
-                  Object.assign(action.dates, { [`date_fin`]: this.DateFormat(forma[`date${i}`]) });
-                  console.log("date_fin", action.dates.date_fin);
-                }
-              }
-            }
-            console.log("assign dates action: ", action);
-          });
-        }
-      });
-    },
-    async ResetAll() {
-      // rétablir bdg total à 0
-      this.curr_bdg_total = this.curr_nb_jour = 0;
-    },
-    ChangeFontSize() {
-      if (this.actions_by_ref.length <= 3) {
-        document.querySelector('.paper').setAttribute('style', 'font-size: 18px; line-height: 2rem; font-family: \'Arial\', sans-serif;');
-      }
-      else if (this.actions_by_ref.length <= 5) {
-        document.querySelector('.paper').setAttribute('style', 'font-size: 16px; line-height: 2rem; font-family: \'Arial\', sans-serif;');
-      } else {
-        document.querySelector('.paper').setAttribute('style', 'font-size: 15.5px; line-height: initial; font-family: \'Arial\', sans-serif;');
-      }
-    }
-  }, // methods
-  computed: {
-  } // computed
-}
-</script>
-
 <template>
   <div class="att-reference-plan">
     <!-- {{-- PRINT - CANCEL --}} -->
@@ -416,3 +243,186 @@ export default {
 
 
 </template>
+
+<script>
+export default {
+  runtimeCompiler: true,
+  data() {
+    return {
+      // clients data
+      clients: [],
+      nrc_entrp: undefined,
+      curr_client: null,
+      curr_client_raisoci: null,
+      curr_client_nrc: null,
+      curr_client_formjury: null,
+      curr_client_capt_soci: null,
+      curr_client_sg_soci: null,
+      curr_client_ville: null,
+      curr_client_fonct_dg1: null,
+      curr_client_nom_dg1: null,
+
+      // cabinet data
+      curr_cabinet_nrc: null,
+      curr_cabinet_raisoci: null,
+      curr_cabinet_capt_soci: null,
+      curr_cabinet_formjury: null,
+      curr_cabinet_ncnss: null,
+      curr_cabinet_adress: null,
+      curr_cabinet_ville: null,
+
+      // plan data
+      id_plan: undefined,
+      curr_annee: null,
+      curr_nb_jour: null,
+      curr_bdg_total: 0,
+      reference_plan: [],
+      actions_by_ref: [],
+      plan_formation: [],
+      dates_actions: [],
+      current_dates: null,
+      isAllLoaded: false,
+
+      //title of page
+      title: {
+        ref_plan: '',
+      },
+    }
+  },
+  mounted() {
+    this.FillClients();
+  },
+
+  updated() {
+     document.title = `AR - ${this.title.ref_plan}`
+  },   
+
+  methods: {
+    DateFormat(date) {
+      if (date) {
+        let datestring = date.replace(/[^\w\s]/gi, '');
+        let year = datestring.charAt(0) + datestring.charAt(1) + datestring.charAt(2) + datestring.charAt(3);
+        let month = datestring.charAt(4) + datestring.charAt(5);
+        let day = datestring.charAt(6) + datestring.charAt(7);
+        return (day+'/'+month+'/'+year);
+      } else {
+        // console.error("date is", date)
+      }
+    },
+    async FillClients() {
+      await axios.get('/fill-clients')
+        .then((res) => {
+          this.clients = res.data;
+          // console.log("clients : ", this.clients)
+        })
+        .catch((err) => console.error("err FillClients", err));
+    },
+    async FillReferencesPlan() {
+      this.ChangeFontSize();
+      console.log('nrc_entrp', this.nrc_entrp)
+      await axios.get(`/fill-reference-plan?nrcEntrp=${this.nrc_entrp}`)
+        .then((res) => {
+          this.reference_plan = res.data;
+          this.curr_client_nrc = this.clients.nrc_entrp;
+          this.curr_client_capt_soci = res.data[0].capt_soci;
+          this.curr_client_ville = res.data[0].ville;
+          this.curr_client_raisoci = res.data[0].raisoci.toUpperCase();
+          this.curr_client_formjury = res.data[0].formjury;
+          this.curr_client_sg_soci = res.data[0].sg_soci;
+          this.curr_client_fonct_dg1 = res.data[0].fonct_dg1;
+          this.curr_client_nom_dg1 = res.data[0].nom_dg1;
+
+          console.log("reference_plan : ", this.reference_plan)
+        })
+        .catch((err) => console.log("err FillReferencesPlan", err));
+    },
+    async FillPlanByReference() {
+      await this.ResetAll();
+      await axios.get(`/fill-plans-by-reference?idPlan=${this.id_plan}`)
+        .then((res) => {
+          this.actions_by_ref = res.data;
+          this.curr_annee = res.data[0].annee;
+          this.curr_cabinet_raisoci = res.data[0].organisme;
+          this.FillCabinetInfo();
+          console.log("actions_by_ref : ", this.actions_by_ref)
+          this.title.ref_plan = this.actions_by_ref[0].refpdf
+        })
+        .then(() => {
+          // fill dates action
+          this.actions_by_ref.forEach((action) => {
+            // affecter les dates de chaque formation
+            this.FillDates(action.n_form);
+            // calculer le budget total
+            this.curr_bdg_total += (action.bdg_total * action.nb_grp);
+            this.curr_nb_jour += action.nb_jour;
+          });
+        })
+        .catch((err) => console.error("err FillPlanByReference", err));
+      this.isAllLoaded = true;
+      console.log("isallloaded", this.isAllLoaded);
+    },
+    async FillCabinetInfo() {
+      await axios.get(`/fill-cabinet-info?raisociCab=${this.curr_cabinet_raisoci}`)
+        .then((res) => {
+          this.curr_cabinet_nrc = res.data.nrc_cab;
+          this.curr_cabinet_raisoci = res.data.raisoci.toUpperCase();
+          this.curr_cabinet_capt_soci = res.data.cap_soci;
+          this.curr_cabinet_formjury = res.data.formjury;
+          this.curr_cabinet_ncnss = res.data.ncnss;
+          this.curr_cabinet_adress = res.data.adress;
+          this.curr_cabinet_ville = res.data.ville;
+          console.log('cabinet :', res.data);
+        })
+        .catch((err) => console.error("err FillCabinetInfo", err));
+    },
+    async FillDates(nform) {
+      await axios.get(`/fill-dates-plan?nForm=${nform}`)
+        .then((res) => {
+          this.dates_actions = res.data;
+          this.AssignDates(nform);
+        })
+        .catch((err) => console.error("err FillDates", err));
+    },
+    async AssignDates(nform) {
+      await this.actions_by_ref.forEach(action => {
+        if (action.n_form == nform) {
+          this.dates_actions.forEach(forma => {
+            if (forma.n_form == nform) {
+              Object.assign(action, {dates: {}});
+              for (let i = 1; i < 30; i++) {
+                //************************ vvv [dynamic key assignement] vvv */
+                if (i == 1) {
+                  Object.assign(action.dates, { [`date_debut`]: this.DateFormat(forma[`date${i}`]) });
+                  console.log("date_debut", action.dates.date_debut);
+                }
+                if (forma[`date${i}`]) {
+                  Object.assign(action.dates, { [`date_fin`]: this.DateFormat(forma[`date${i}`]) });
+                  console.log("date_fin", action.dates.date_fin);
+                }
+              }
+            }
+            console.log("assign dates action: ", action);
+          });
+        }
+      });
+    },
+    async ResetAll() {
+      // rétablir bdg total à 0
+      this.curr_bdg_total = this.curr_nb_jour = 0;
+    },
+    ChangeFontSize() {
+      if (this.actions_by_ref.length <= 3) {
+        document.querySelector('.paper').setAttribute('style', 'font-size: 18px; line-height: 2rem; font-family: \'Arial\', sans-serif;');
+      }
+      else if (this.actions_by_ref.length <= 5) {
+        document.querySelector('.paper').setAttribute('style', 'font-size: 16px; line-height: 2rem; font-family: \'Arial\', sans-serif;');
+      } else {
+        document.querySelector('.paper').setAttribute('style', 'font-size: 15.5px; line-height: initial; font-family: \'Arial\', sans-serif;');
+      }
+    }
+  }, // methods
+  computed: {
+  } // computed
+}
+</script>
+
