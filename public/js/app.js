@@ -40257,7 +40257,7 @@ var render = function() {
                 position: "fixed !important",
                 bottom: "0",
                 width: "100%",
-                "padding-bottom": "130px"
+                "padding-bottom": "20px"
               },
               attrs: { id: "footer" }
             },

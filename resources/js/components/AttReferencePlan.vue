@@ -201,7 +201,7 @@
         </p>
 
 
-        <div id="footer" class="container" style="position:fixed !important; bottom:0; width:100%; padding-bottom:130px;">
+        <div id="footer" class="container" style="position:fixed !important; bottom:0; width:100%; padding-bottom:20px;">
           <p style="margin: 20px; margin-left: 50%">
             Fait à
             <span>
