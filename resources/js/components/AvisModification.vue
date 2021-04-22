@@ -165,25 +165,41 @@
               </div>
             </div>
           </div>
+          <div class="form-group col-lg-6 col-sm-12">
+          <label for="groups">Groupe</label>
+          <select class="form-control" id="groups" @change="handleAction('model3/FetchInfoGroupe' , selected_idForm)" v-model="selected_idForm">
+                <option selected disabled>
+                  ---selectionner Groupe---
+                </option>
+                <option
 
+                  v-for="infogp in Info_AvisModif"
+                  :value="infogp.id_form" :key="infogp.id_form"
+                >
+                  {{ infogp.groupe }}
+                </option>
+          </select>
+          </div>
           <div
-            class="cole-12 container p-lg-4 mt-3"
+            class="col-12 container p-lg-4 mt-3"
             style="background-color: #efefef"
             id="content"
-            v-for="(info, index) in Info_AvisModif"
-            :key="index"
+            v-for="info in groupe_info"
+            :key="info.id_form"
+
           >
-            <h3 id="groupe">
-              <strong>Groupe {{ index + 1 }}</strong>
+            <h3>
+              <label for="groupe">Groupe</label>
+              <strong id="groupe">{{ info.groupe }}</strong>
             </h3>
             <div class="row my-3">
               <div class="form-group col-lg-6 col-sm-12">
                 <label>Organisme de formation initial</label>
                 <input
                   type="text"
+                  class="form-control targetid"
                   id="initial_organisme"
-                  class="form-control"
-                  :value="Info_AvisModif.length != 0 ? info.organisme : ''"
+                  :value="info.organisme"
                 />
               </div>
               <div class="form-group col-lg-6 col-sm-12">
@@ -192,7 +208,7 @@
                   type="text"
                   id="initial_lieu"
                   class="form-control"
-                  :value="Info_AvisModif.length != 0 ? info.lieu : ''"
+                  :value=" info.lieu "
                 />
               </div>
               <div class="form-group col-lg-6 col-sm-12">
@@ -219,14 +235,11 @@
                   class="form-control"
                   name="lieu"
                   id="nouvel_lieu"
-                  v-model="selectedFormationLieu"
+
                 >
                   <option selected disabled>---selectionner le lieu---</option>
                   <option
                     v-for="cl in clients"
-                    :value="
-                      selectedFormationLieu == false ? info.lieu : cl.raisoci
-                    "
                     :key="cl.nrc_entrp"
                   >
                     {{ cl.raisoci }}
@@ -480,6 +493,7 @@
 
 <script>
 import { mapState } from "vuex";
+import { state } from '../store/modules/model3/state';
 
 export default {
   runtimeCompiler: true,
@@ -487,6 +501,7 @@ export default {
   data () {
     return {
       selected_nForm: null,
+      selected_idForm: null,
       idForm: null,
       nCabinet: null,
       id_plan: null,
@@ -516,6 +531,7 @@ export default {
       curr_annee_plan: (state) => state.curr_annee_plan,
       cabinets: (state) => state.cabinets,
       Info_AvisModif: (state) => state.Info_AvisModif,
+      groupe_info: (state) => state.groupe_info,
     }),
   },
 
@@ -566,7 +582,6 @@ export default {
         chk_horaire.disabled = false;
       }
     },
-
     // update the Model 3 and save archive data
     async storeUpdateModel3() {
 
@@ -603,9 +618,7 @@ export default {
       let ref_plan = document.getElementById("plans");
       let theme = document.getElementById("theme");
       let etat_avis = document.getElementById("etat");
-      let groupe = document.getElementById("groupe").textContent;
-
-
+      let groupe = document.getElementById("groupe");
 
       let infoavismodif = {
         'date1': date1 != null ? date1.value : null,
@@ -642,12 +655,13 @@ export default {
         'lieu': initial_lieu.value,
         'heurDebut': initial_hr_debut.value,
         'heurFin': initial_hr_fin.value,
-        'newOrganisme': nouvel_organisme.value,
-        'newLieu': nouvel_lieu.value,
-        'newHeurDebut': new_hr_debut.value,
-        'newHeurFin': new_hr_fin.value,
+        'newOrganisme': nouvel_organisme.value == null ? initial_organisme.value : nouvel_organisme.value,
+        'newLieu': nouvel_lieu.value == null ? initial_lieu.value : nouvel_lieu.value,
+        'newHeurDebut': new_hr_debut.value == null ? initial_hr_debut.value : new_hr_debut.value,
+        'newHeurFin': new_hr_fin.value == null ? initial_hr_fin.value : new_hr_fin.value,
         'nForm': this.selected_nForm,
-        'groupe': groupe
+        'idForm': this.selected_idForm,
+        'groupe': groupe.innerHTML
       }
     await axios({
       method: 'POST',
@@ -659,12 +673,10 @@ export default {
       })
       .catch(err => {
         console.log("error posting", err);
-      })
-      // let newJSON = JSON.stringify(infoavismodif, function (key, value) {return (value === "") ? null : value});
-      // return console.log("info avis modif" , JSON.parse(newJSON));
+       })
+      },
     },
-  },
-}
+  }
 
 </script>
 

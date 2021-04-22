@@ -384,6 +384,7 @@ Route::get('/fill-cabinet-info', 'FormulaireController@FillCabinetInfo')->name('
 Route::get('/fill-plan-by-client', 'FormulaireController@FillPlansByClient')->name('PlanByClinet');
 Route::get('/fill-all-organisme' , 'FormulaireController@FillAllCabinets')->name('FillOrganisme');
 Route::get('/fill-avis-modif' , 'FormulaireController@FillavisModif')->name('FillAvisModif');
+Route::get('/fill-avis-modif-by-groupe' , 'FormulaireController@GetInfoAvisModifByGroupe');
 /********************************************************************/
 
 

@@ -2488,6 +2488,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _store_modules_model3_state__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../store/modules/model3/state */ "./resources/js/store/modules/model3/state.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -2980,12 +2981,27 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   runtimeCompiler: true,
   data: function data() {
     return {
       selected_nForm: null,
+      selected_idForm: null,
       idForm: null,
       nCabinet: null,
       id_plan: null,
@@ -3025,6 +3041,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     Info_AvisModif: function Info_AvisModif(state) {
       return state.Info_AvisModif;
+    },
+    groupe_info: function groupe_info(state) {
+      return state.groupe_info;
     }
   })),
   methods: {
@@ -3113,7 +3132,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 ref_plan = document.getElementById("plans");
                 theme = document.getElementById("theme");
                 etat_avis = document.getElementById("etat");
-                groupe = document.getElementById("groupe").textContent;
+                groupe = document.getElementById("groupe");
                 infoavismodif = {
                   'date1': date1 != null ? date1.value : null,
                   'date2': date2 != null ? date2.value : null,
@@ -3149,12 +3168,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                   'lieu': initial_lieu.value,
                   'heurDebut': initial_hr_debut.value,
                   'heurFin': initial_hr_fin.value,
-                  'newOrganisme': nouvel_organisme.value,
-                  'newLieu': nouvel_lieu.value,
-                  'newHeurDebut': new_hr_debut.value,
-                  'newHeurFin': new_hr_fin.value,
+                  'newOrganisme': nouvel_organisme.value == null ? initial_organisme.value : nouvel_organisme.value,
+                  'newLieu': nouvel_lieu.value == null ? initial_lieu.value : nouvel_lieu.value,
+                  'newHeurDebut': new_hr_debut.value == null ? initial_hr_debut.value : new_hr_debut.value,
+                  'newHeurFin': new_hr_fin.value == null ? initial_hr_fin.value : new_hr_fin.value,
                   'nForm': _this.selected_nForm,
-                  'groupe': groupe
+                  'idForm': _this.selected_idForm,
+                  'groupe': groupe.innerHTML
                 };
                 _context.next = 37;
                 return axios({
@@ -42014,18 +42034,92 @@ var render = function() {
             _vm._v(" "),
             _vm._m(2),
             _vm._v(" "),
-            _vm._l(_vm.Info_AvisModif, function(info, index) {
+            _c("div", { staticClass: "form-group col-lg-6 col-sm-12" }, [
+              _c("label", { attrs: { for: "groups" } }, [_vm._v("Groupe")]),
+              _vm._v(" "),
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.selected_idForm,
+                      expression: "selected_idForm"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { id: "groups" },
+                  on: {
+                    change: [
+                      function($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function(o) {
+                            return o.selected
+                          })
+                          .map(function(o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.selected_idForm = $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      },
+                      function($event) {
+                        return _vm.handleAction(
+                          "model3/FetchInfoGroupe",
+                          _vm.selected_idForm
+                        )
+                      }
+                    ]
+                  }
+                },
+                [
+                  _c("option", { attrs: { selected: "", disabled: "" } }, [
+                    _vm._v(
+                      "\n                ---selectionner Groupe---\n              "
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _vm._l(_vm.Info_AvisModif, function(infogp) {
+                    return _c(
+                      "option",
+                      {
+                        key: infogp.id_form,
+                        domProps: { value: infogp.id_form }
+                      },
+                      [
+                        _vm._v(
+                          "\n                " +
+                            _vm._s(infogp.groupe) +
+                            "\n              "
+                        )
+                      ]
+                    )
+                  })
+                ],
+                2
+              )
+            ]),
+            _vm._v(" "),
+            _vm._l(_vm.groupe_info, function(info) {
               return _c(
                 "div",
                 {
-                  key: index,
-                  staticClass: "cole-12 container p-lg-4 mt-3",
+                  key: info.id_form,
+                  staticClass: "col-12 container p-lg-4 mt-3",
                   staticStyle: { "background-color": "#efefef" },
                   attrs: { id: "content" }
                 },
                 [
-                  _c("h3", { attrs: { id: "groupe" } }, [
-                    _c("strong", [_vm._v("Groupe " + _vm._s(index + 1))])
+                  _c("h3", [
+                    _c("label", { attrs: { for: "groupe" } }, [
+                      _vm._v("Groupe")
+                    ]),
+                    _vm._v(" "),
+                    _c("strong", { attrs: { id: "groupe" } }, [
+                      _vm._v(_vm._s(info.groupe))
+                    ])
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "row my-3" }, [
@@ -42036,14 +42130,9 @@ var render = function() {
                         _c("label", [_vm._v("Organisme de formation initial")]),
                         _vm._v(" "),
                         _c("input", {
-                          staticClass: "form-control",
+                          staticClass: "form-control targetid",
                           attrs: { type: "text", id: "initial_organisme" },
-                          domProps: {
-                            value:
-                              _vm.Info_AvisModif.length != 0
-                                ? info.organisme
-                                : ""
-                          }
+                          domProps: { value: info.organisme }
                         })
                       ]
                     ),
@@ -42057,10 +42146,7 @@ var render = function() {
                         _c("input", {
                           staticClass: "form-control",
                           attrs: { type: "text", id: "initial_lieu" },
-                          domProps: {
-                            value:
-                              _vm.Info_AvisModif.length != 0 ? info.lieu : ""
-                          }
+                          domProps: { value: info.lieu }
                         })
                       ]
                     ),
@@ -42147,32 +42233,8 @@ var render = function() {
                         _c(
                           "select",
                           {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.selectedFormationLieu,
-                                expression: "selectedFormationLieu"
-                              }
-                            ],
                             staticClass: "form-control",
-                            attrs: { name: "lieu", id: "nouvel_lieu" },
-                            on: {
-                              change: function($event) {
-                                var $$selectedVal = Array.prototype.filter
-                                  .call($event.target.options, function(o) {
-                                    return o.selected
-                                  })
-                                  .map(function(o) {
-                                    var val = "_value" in o ? o._value : o.value
-                                    return val
-                                  })
-                                _vm.selectedFormationLieu = $event.target
-                                  .multiple
-                                  ? $$selectedVal
-                                  : $$selectedVal[0]
-                              }
-                            }
+                            attrs: { name: "lieu", id: "nouvel_lieu" }
                           },
                           [
                             _c(
@@ -42182,25 +42244,13 @@ var render = function() {
                             ),
                             _vm._v(" "),
                             _vm._l(_vm.clients, function(cl) {
-                              return _c(
-                                "option",
-                                {
-                                  key: cl.nrc_entrp,
-                                  domProps: {
-                                    value:
-                                      _vm.selectedFormationLieu == false
-                                        ? info.lieu
-                                        : cl.raisoci
-                                  }
-                                },
-                                [
-                                  _vm._v(
-                                    "\n                  " +
-                                      _vm._s(cl.raisoci) +
-                                      "\n                "
-                                  )
-                                ]
-                              )
+                              return _c("option", { key: cl.nrc_entrp }, [
+                                _vm._v(
+                                  "\n                  " +
+                                    _vm._s(cl.raisoci) +
+                                    "\n                "
+                                )
+                              ])
                             })
                           ],
                           2
@@ -58818,6 +58868,35 @@ var actions = {
         }
       }, _callee7);
     }))();
+  },
+  FetchInfoGroupe: function FetchInfoGroupe(_ref14, idForm) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee8() {
+      var commit;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee8$(_context8) {
+        while (1) {
+          switch (_context8.prev = _context8.next) {
+            case 0:
+              commit = _ref14.commit;
+              _context8.next = 3;
+              return axios.get("fill-avis-modif-by-groupe", {
+                params: {
+                  idForm: idForm
+                }
+              }).then(function (_ref15) {
+                var data = _ref15.data;
+                commit("SET_INFO_GROUPE", data);
+                console.log("groupe info :", data);
+              })["catch"](function (err) {
+                console.log("err Fetching group info", err);
+              });
+
+            case 3:
+            case "end":
+              return _context8.stop();
+          }
+        }
+      }, _callee8);
+    }))();
   } //Posting and puting the new insertions
   // async PostPutAvisModif() {
   //   await axios
@@ -58905,6 +58984,9 @@ var mutations = {
   },
   SET_INITIAL_INFO_AVISMODIF: function SET_INITIAL_INFO_AVISMODIF(state, data) {
     state.Info_AvisModif = data;
+  },
+  SET_INFO_GROUPE: function SET_INFO_GROUPE(state, data) {
+    state.groupe_info = data;
   } // SET_DATES_ACTION(state) {
   //   state.actions_by_plan.forEach((action) => {
   //     this.FillDates(action.n_form);
@@ -58945,7 +59027,8 @@ var state = {
   curr_annee_plan: null,
   // année du plan actuel
   cabinets: [],
-  Info_AvisModif: []
+  Info_AvisModif: [],
+  groupe_info: []
 };
 
 /***/ }),

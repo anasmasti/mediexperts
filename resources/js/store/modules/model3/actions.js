@@ -74,6 +74,18 @@ export const actions = {
       });
   },
 
+  async FetchInfoGroupe ({commit} , idForm) {
+    await axios
+      .get(`fill-avis-modif-by-groupe` , {params : {idForm : idForm} })
+      .then(({ data }) => {
+        commit("SET_INFO_GROUPE", data);
+        console.log("groupe info :" , data);
+      })
+      .catch(err =>{
+        console.log("err Fetching group info" , err);
+      });
+  }
+
   //Posting and puting the new insertions
   // async PostPutAvisModif() {
   //   await axios

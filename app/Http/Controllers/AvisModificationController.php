@@ -17,6 +17,7 @@ public function StoreUpdateAvisModif(Request $request) {
           $AvisModif = new AvisModification();
 
           $AvisModif->n_form = $request->nForm;
+          $AvisModif->id_form = $request->idForm;
           $AvisModif->old_entreprise = $request->entreprise;
           $AvisModif->old_ref_plan = $request->refPlan;
           $AvisModif->old_type_action = $request->typeAction;
@@ -32,8 +33,8 @@ public function StoreUpdateAvisModif(Request $request) {
           $AvisModif->old_lieu= $request->lieu;
           $AvisModif->old_hr_debut= $request->heurDebut ;
           $AvisModif->old_hr_fin = $request->heurFin ;
-          $AvisModif->old_pse_debut = "test";
-          $AvisModif->old_pse_fin = "test";
+          $AvisModif->old_pse_debut = "Null";
+          $AvisModif->old_pse_fin = "Null";
           $AvisModif->old_date1 = $request->date1;
           $AvisModif->old_date2 = $request->date2;
           $AvisModif->old_date3 = $request->date3;
@@ -45,20 +46,22 @@ public function StoreUpdateAvisModif(Request $request) {
           $AvisModif->old_date9 = $request->date9;
           $AvisModif->old_date10 = $request->date10;
           $nFrom = $AvisModif->n_form;
+          $idForm = $AvisModif->id_form;
           $AvisModif->save();
 
 
-          // $planformation = PlanFormation::findOrFail($nFrom);
+          $planformation = PlanFormation::findOrFail($nFrom);
 
-          // $planformation->lieu = $request->newLieu;
-          // $planformation->organisme = $request->newOrganisme ;
-          // $planformation->type_action = $request->typeAction;
-          // $planformation->date_realisation = $request->modificationDate;
-          // $planformation->organisme_formations = $request->modificationOrganisme;
-          // $planformation->lieu_formations = $request->modificationLieu;
-          // $planformation->horaire_formations = $request->modificationHoraire;
-          // $planformation->save();
-          $formation = Formation::findOrFail($nFrom);
+          $planformation->lieu = $request->newLieu;
+          $planformation->organisme = $request->newOrganisme ;
+          $planformation->type_action = $request->typeAction;
+          $planformation->date_realisation = $request->modificationDate;
+          $planformation->organisme_formations = $request->modificationOrganisme;
+          $planformation->lieu_formations = $request->modificationLieu;
+          $planformation->horaire_formations = $request->modificationHoraire;
+          $planformation->save();
+
+          $formation = Formation::findOrfail($idForm);
 
           $formation->hr_debut = $request-> newHeurDebut;
           $formation->hr_fin = $request-> newHeurFin;

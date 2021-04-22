@@ -10,5 +10,6 @@ export const state = {
   curr_annee_plan: null, // année du plan actuel
   cabinets : [],
   Info_AvisModif: [],
+  groupe_info:[],
 
 }

@@ -13,6 +13,7 @@ export const mutations = {
   SET_ORGANISME(state, data) {state.cabinets = data;},
   SET_NB_PARTICIPENTS(state,data) {state.nb_participents = data},
   SET_INITIAL_INFO_AVISMODIF(state, data) {state.Info_AvisModif = data},
+  SET_INFO_GROUPE(state, data) {state.groupe_info = data}
   // SET_DATES_ACTION(state) {
   //   state.actions_by_plan.forEach((action) => {
   //     this.FillDates(action.n_form);

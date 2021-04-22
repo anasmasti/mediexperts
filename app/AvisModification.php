@@ -15,6 +15,7 @@ class AvisModification extends Model
     [
       'id',
       'n_form',
+      'id_form',
       'old_entreprise',
       'old_ref_plan',
       'old_theme_action',

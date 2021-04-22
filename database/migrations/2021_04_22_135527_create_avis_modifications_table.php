@@ -63,6 +63,7 @@ class CreateAvisModificationsTable extends Migration
             $table->date('old_date29')->nullable();
             $table->date('old_date30')->nullable();
             $table->unsignedBigInteger('n_form');
+            $table->unsignedBigInteger('id_form');
 
 
             $table->foreign('n_form')
@@ -73,6 +74,12 @@ class CreateAvisModificationsTable extends Migration
 
             $table->foreign('n_form')
             ->references('n_form')
+            ->on('formations')
+            ->onUpdate('cascade')
+            ->onDelete('cascade');
+
+            $table->foreign('id_form')
+            ->references('id_form')
             ->on('formations')
             ->onUpdate('cascade')
             ->onDelete('cascade');
