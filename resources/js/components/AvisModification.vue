@@ -188,7 +188,8 @@
             :key="info.id_form"
 
           >
-            <h3>
+          <input type="hidden" :value="info.pse_debut" id="pause_debut">
+          <input type="hidden" :value="info.pse_fin" id="pause_fin">
               <label for="groupe">Groupe</label>
               <strong id="groupe">{{ info.groupe }}</strong>
             </h3>
@@ -422,7 +423,6 @@
                 </div>
               </div>
             </div>
-
             <div class="row">
               <div class="form-group col-lg-12 col-sm-12 d-flex mb-0">
                 <label>Nouvelle organisation horaire </label>
@@ -466,6 +466,15 @@
                     <i class="far fa-clock"></i>
                   </div>
                 </div>
+              </div>
+              <div class="form-group col-lg-6 col-sm-12">
+                <h5>
+                  <strong>
+                <label for="pause"> Il y a une pause </label>
+               Oui <input type="radio" :value="true" id="pause_oui" name="pause" v-model="selected_pause">
+                Non <input type="radio" :value="false" id="pause_non" name="pause" v-model="selected_pause">
+                  </strong>
+                </h5>
               </div>
             </div>
           </div>
@@ -513,7 +522,8 @@ export default {
       selected_modiforganisme: false,
       selected_modiflieu: false,
       selected_modifhoraire: false,
-      selected_nature_action: true
+      selected_nature_action: true,
+      selected_pause: false,
     };
   },
 
@@ -619,6 +629,8 @@ export default {
       let theme = document.getElementById("theme");
       let etat_avis = document.getElementById("etat");
       let groupe = document.getElementById("groupe");
+      let pause_debut = $("#pause_debut");
+      let pause_fin = $("#pause_fin");
 
       let infoavismodif = {
         'date1': date1 != null ? date1.value : null,
@@ -655,14 +667,19 @@ export default {
         'lieu': initial_lieu.value,
         'heurDebut': initial_hr_debut.value,
         'heurFin': initial_hr_fin.value,
-        'newOrganisme': nouvel_organisme.value == null ? initial_organisme.value : nouvel_organisme.value,
-        'newLieu': nouvel_lieu.value == null ? initial_lieu.value : nouvel_lieu.value,
-        'newHeurDebut': new_hr_debut.value == null ? initial_hr_debut.value : new_hr_debut.value,
-        'newHeurFin': new_hr_fin.value == null ? initial_hr_fin.value : new_hr_fin.value,
+        'newOrganisme': nouvel_organisme.value == false ? initial_organisme.value : nouvel_organisme.value,
+        'newLieu': nouvel_lieu.value == "---selectionner le lieu---" ? initial_lieu.value : nouvel_lieu.value,
+        'newHeurDebut': new_hr_debut.value == false ? initial_hr_debut.value : new_hr_debut.value,
+        'newHeurFin': new_hr_fin.value == false ? initial_hr_fin.value : new_hr_fin.value,
         'nForm': this.selected_nForm,
         'idForm': this.selected_idForm,
-        'groupe': groupe.innerHTML
+        'groupe': groupe.innerHTML,
+        'pause' : this.selected_pause,
+        'pause_debut': pause_debut != null ? pause_debut.val() : null,
+        'pause_fin': pause_fin != null ? pause_fin.val() : null,
       }
+
+      // return console.log("-*-*-*-*-*-*-*-*-", infoavismodif);
     await axios({
       method: 'POST',
       url: 'api/store-avis-modif',

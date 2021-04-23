@@ -33,8 +33,8 @@ public function StoreUpdateAvisModif(Request $request) {
           $AvisModif->old_lieu= $request->lieu;
           $AvisModif->old_hr_debut= $request->heurDebut ;
           $AvisModif->old_hr_fin = $request->heurFin ;
-          $AvisModif->old_pse_debut = "Null";
-          $AvisModif->old_pse_fin = "Null";
+          $AvisModif->old_pse_debut = $request->pause_debut;
+          $AvisModif->old_pse_fin = $request->pause_fin;
           $AvisModif->old_date1 = $request->date1;
           $AvisModif->old_date2 = $request->date2;
           $AvisModif->old_date3 = $request->date3;
@@ -45,6 +45,7 @@ public function StoreUpdateAvisModif(Request $request) {
           $AvisModif->old_date8 = $request->date8;
           $AvisModif->old_date9 = $request->date9;
           $AvisModif->old_date10 = $request->date10;
+          $AvisModif->pause = $request->pause;
           $nFrom = $AvisModif->n_form;
           $idForm = $AvisModif->id_form;
           $AvisModif->save();

@@ -64,6 +64,7 @@ class CreateAvisModificationsTable extends Migration
             $table->date('old_date30')->nullable();
             $table->unsignedBigInteger('n_form');
             $table->unsignedBigInteger('id_form');
+            $table->boolean('pause')->default(false);
 
 
             $table->foreign('n_form')
