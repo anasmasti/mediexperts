@@ -12,6 +12,7 @@ class PlanFormation extends Model
     [
         'n_form',
         'n_action',
+        'pause',
 
         //docs
         'model5', //fiche pres
@@ -46,7 +47,7 @@ class PlanFormation extends Model
         'commentaire',
 
         //avis de modife
-        'date_realisation', 
+        'date_realisation',
         'organisme_formations',
         'lieu_formations',
         'horaire_formations',

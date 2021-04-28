@@ -30,7 +30,13 @@ export const actions = {
       })
       .catch(err => console.log("err FillReferencesPlan", err));
   },
-  //-----------------------------------------------------------------
+  // Fetch All Cabinets
+  async FetchAllCabinets({ commit }) {
+    await axios.get(`/fill-all-organisme`).then(({ data }) => {
+      commit("SET_ORGANISME", data);
+      console.log("Cabinets :", data);
+    });
+  },
   //récupérer les actions à partir du REF sélectionné
   async FetchActionByReference({ commit }, idPlan) {
     await axios
@@ -45,22 +51,27 @@ export const actions = {
       })
       .catch(err => console.error("err FillPlanByReference", err));
   },
-  async FetchAllCabinets({ commit }) {
-    await axios.get(`/fill-all-organisme`).then(({ data }) => {
-      commit("SET_ORGANISME", data);
-      console.log("Cabinets :", data);
-    });
-  },
-  //récupérer les dates de l'action actuel
-  async FetchDatesPlan({ commit }, nForm) {
+  // get-nom-theme
+  async GetSelectedTheme ({commit} , nForm) {
     await axios
-      .get(`/fill-dates-plan`, { params: { nForm: nForm } })
-      .then(({ data }) => {
-        commit("SET_NB_PARTICIPENTS", data);
-        commit("SET_DATES", data);
+      .get(`get-nom-theme` , {params : {nForm : nForm }})
+      .then(({data}) => {
+        commit("SET_NOM_THEME", data)
+        console.log("theme" , data);
       })
-      .catch(err => console.error("err FillDates", err));
+      .catch(err => console.error("can't get theme", err));
   },
+  //get NomResponsable For Model 3
+  async GetNomResponsable({ commit },nrcEntrp) {
+  await axios
+    .get(`get-nom-responsable-m3` ,{params : {nrcEntrp: nrcEntrp}})
+    .then(({data}) => {
+      commit("SET_NOM_RESPONSABLE", data);
+      console.log("Responsable", data);
+    })
+    .catch(err => console.error("can't get responsable", err));
+  },
+
   //Getting Old Avis Modif Informations
   async FetchInitialInfoAvisModif({ commit }, nForm) {
     await axios
@@ -84,17 +95,17 @@ export const actions = {
       .catch(err =>{
         console.log("err Fetching group info" , err);
       });
-  }
+  },
 
-  //Posting and puting the new insertions
-  // async PostPutAvisModif() {
-  //   await axios
-  //     .post(`api/store-avis-modif`)
-  //     .then(({data}) =>{
-  //       console.log("this is what posting", data);
-  //     })
-  //     .catch(err => {
-  //       console.log("error posting", err);
-  //     })
-  // },
+  async FetchOldAvisInfo ({commit} , nForm) {
+    await axios
+      .get(`/old-avis-modif-by-theme` , { params: {nForm : nForm}})
+      .then(({data})=>{
+        commit("SET_OLD_AVIS_MODFI_INFO" , data);
+        console.log("old avis modif" , data);
+      })
+      .catch(err => {
+        console.log("err feetching old avis modif", err);
+      })
+  },
 };

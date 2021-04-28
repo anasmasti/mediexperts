@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\{DemandeFinancement,Client,Cabinet,DemandeRemboursementGiac,Plan,PlanFormation,Formation,Personnel,MissionIntervenant,Giac,Domaine,Theme};
+use App\{DemandeFinancement,Client,Cabinet,DemandeRemboursementGiac,Plan,PlanFormation,Formation,Personnel,MissionIntervenant,Giac,Domaine,Theme,AvisModification};
 use Illuminate\Foundation\Console\Presets\React;
 //use Knp\Snappy\Pdf;
 use Illuminate\Support\Facades\DB;
-use PDF;
+
 
 class FormulaireController extends Controller
 {
@@ -233,6 +233,32 @@ class FormulaireController extends Controller
         ->where('formations.id_form' , $request->idForm)
         ->get();
         return response()->json($data);
+    }
+
+    public function GetOldInfoAvisModif(Request $request) {
+      $data = AvisModification::select('avis_modifications.*')
+      ->where('avis_modifications.n_form' , $request->nForm)
+      // ->orderby('updated_at' , 'desc')
+      ->get();
+
+      return response()->json($data);
+    }
+
+    public function GetNomResponsableModel3(Request $request){
+      $data = Client::select('clients.nom_resp')
+      ->where('clients.nrc_entrp', $request->nrcEntrp)
+      ->get();
+
+      return response()->json($data);
+    }
+
+    public function GetNomTheme(Request $request) {
+      $data = PlanFormation::select('themes.nom_theme')
+      ->join('themes', 'themes.id_theme', 'plan_formations.id_thm')
+      ->where('plan_formations.n_form', $request->nForm)
+      ->get();
+
+      return response()->json($data);
     }
 
     public function print_avis_aff(Request $request) {

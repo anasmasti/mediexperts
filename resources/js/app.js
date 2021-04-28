@@ -6,9 +6,11 @@
  */
 import { store } from './store'
 
+
 require('./bootstrap');
 
 const Vue = require('vue');
+Vue.use(require('vue-moment'));
 // import Model1 from './components/Model1.vue';
 
 /**

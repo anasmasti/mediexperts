@@ -192,7 +192,7 @@
           <input type="hidden" :value="info.pse_fin" id="pause_fin">
               <label for="groupe">Groupe</label>
               <strong id="groupe">{{ info.groupe }}</strong>
-            </h3>
+
             <div class="row my-3">
               <div class="form-group col-lg-6 col-sm-12">
                 <label>Organisme de formation initial</label>
@@ -480,20 +480,21 @@
           </div>
         </div>
       </div>
+
       <!-- <input type="hidden" :v-model=""/> -->
-      <div class="card-footer text-center">
-        <a href="/print-m3" class="btn btn-info"
-          ><i class="fa fa-print"></i>&nbsp;Imprimer</a
-        >
-      </div>
+      <div class="d-flex justify-content-center">
         <div class="card-footer text-center">
-        <a href="#" class="btn btn-info" @click="storeUpdateModel3()"
-          ><i class="fa fa-print"></i>&nbsp;Modifier</a
-        >
-        <!-- <a href="#" class="btn btn-warning"><i class="fa fa-pencil" aria-hidden="true"></i>&nbsp;Modifier</a> -->
-      </div>
-      <div>
-        <input type="text" />
+         <a href="#" class="btn btn-warning p-2" @click="storeUpdateModel3()"
+           ><i class="fa fa-edit"></i>&nbsp;Modifier</a
+         >
+         <!-- <a href="#" class="btn btn-warning"><i class="fa fa-pencil" aria-hidden="true"></i>&nbsp;Modifier</a> -->
+        </div>
+
+        <div class="card-footer text-center">
+           <a href="/print-m3" class="btn btn-info p-2 text-light"
+             ><i class="fa fa-print"></i>&nbsp;Imprimer</a
+           >
+        </div>
       </div>
     </form>
   </div>
@@ -542,7 +543,7 @@ export default {
       cabinets: (state) => state.cabinets,
       Info_AvisModif: (state) => state.Info_AvisModif,
       groupe_info: (state) => state.groupe_info,
-    }),
+    })
   },
 
   methods: {

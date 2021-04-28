@@ -3,20 +3,21 @@
     <!-- BUTTON IMPRIMER/ANNULER -->
     <print-button :backLink="'/'"></print-button>
     <!-- LISTE DE CHOIX -->
-    <div style="width:100%;">
+    <div style="width:100%;" class="hide-from-print">
       <!-- SELECT ENTREPRISE -->
-      <label for="client">Entreprise :</label>
-      <select name="client" id="client" style="width:100%; padding: .5rem; border: 1px solid #000;"
-      @change="handleAction('model3/FetchReferencesPlan' , selected_nrc_entrp); handleAction('model3/SetNrcEntrp' , selected_nrc_entrp)"
+      <label class="hide-from-print" for="client">Entreprise :</label>
+      <select class="hide-from-print" name="client" id="client" style="width:100%; padding: .5rem; border: 1px solid #000;"
+      @change="handleAction('model3/FetchReferencesPlan' , selected_nrc_entrp);
+      handleAction('model3/SetNrcEntrp' , selected_nrc_entrp);"
        v-model="selected_nrc_entrp">
         <option selected disabled>--sélectionner l'Entreprise --</option>
         <option v-for="cl in clients" :value="cl.nrc_entrp" :key="cl.nrc_entrp">{{ cl.raisoci }}</option>
       </select>
 
       <!-- SELECT REF PLAN -->
-      <div style="width:100%;">
+      <div style="width:100%;" class="hide-from-print">
         <label for="plans">Réference plan de formation :</label>
-        <select v-if="reference_plans && reference_plans.length" name="plans" id="plans" style="width:100%; padding: .5rem; border: 1px solid #000;"
+        <select v-if="reference_plans && reference_plans.length" class="hide-from-print" name="plans" id="plans" style="width:100%; padding: .5rem; border: 1px solid #000;"
           @change="handleAction('model3/FetchActionByReference', id_plan)" v-model="id_plan">
 
           <option selected disabled>-- sélectionner le plan</option>
@@ -27,6 +28,27 @@
           <option></option>
         </select>
       </div>
+
+      <div class="hide-from-print" style="width:100%;">
+        <label for="plans">Selectionner Thème de l’action :</label>
+        <select name="actions" id="actions" style="width:100%; padding: .5rem; border: 1px solid #000;"
+           @change="handleAction('model3/FetchInitialInfoAvisModif' , nForm);
+           handleAction('model3/FetchOldAvisInfo' , nForm);"
+            v-model="nForm"
+            >
+              <option selected disabled>-- Selectionner une action</option>
+              <option v-for="action in actions_by_plan" :value="action.n_form" :key="action.nForm">{{ action.nom_theme }}</option>
+        </select>
+      </div>
+
+      <button class="hide-from-print" style="background-color:#eaeaea; padding: .5rem; margin-top: 10px" type="button"
+                @click="CalculNbTotalBenif(),
+                initialDates(),
+                handleAction('model3/GetNomResponsable', selected_nrc_entrp),
+                handleAction('model3/GetSelectedTheme' , nForm)">
+                Remplir les informations</button>
+
+
     </div>
 
     <!-- PAPER -->
@@ -43,7 +65,7 @@
         <tr>
           <th style="width: 30%" rowspan="6">Avis</th>
           <th style="width: 30%">Anulation</th>
-          <th style="width: 30%" colspan="2"> <input type="checkbox"> </th>
+          <th style="width: 30%" colspan="2"> <strong v-if="this.duplicated_Info.typeAction === 'annulation'">X</strong> </th>
         </tr>
 
         <tr>
@@ -52,19 +74,19 @@
 
         <tr>
           <th style="width: 15%">De la date de Réalisation</th>
-          <th> <input type="checkbox"> </th>
+          <th> <strong v-if="this.duplicated_Info.dateDeRealisation">X</strong></th>
         </tr>
         <tr>
           <th style="width: 15%">De l’organisme de formation</th>
-          <th> <input type="checkbox"> </th>
+          <th> <strong v-if="this.duplicated_Info.organismeDeFormation">X</strong> </th>
         </tr>
         <tr>
           <th style="width: 15%">De lieu de formation</th>
-          <th> <input type="checkbox"> </th>
+          <th> <strong v-if="this.duplicated_Info.lieuDeFormation">X</strong> </th>
         </tr>
         <tr>
           <th style="width: 15%">Organisation horaire</th>
-          <th> <input type="checkbox"> </th>
+          <th> <strong v-if="this.duplicated_Info.organisationHoraire">X</strong> </th>
         </tr>
       </table>
       <!-- END TABLE -->
@@ -72,13 +94,8 @@
       <!-- CONTENT -->
       <div style="padding-left: 20px">
         <div style="margin-top: 20px">
-          <strong>Thème de l’action :</strong>
-          <select name="actions" class="highlighted" id="actions" style="width:50%; padding: .3rem; border: 1px solid #000;"
-          @change="handleAction('model3/FetchAllCabinets' , nCabinet)" v-model="nCabinet">
-             <option selected disabled>-- Selectionner une action</option>
-             <option v-for="action in actions_by_plan" :value="action.nForm" :key="action.nForm">{{ action.nom_theme }}</option>
-             <option value=""></option>
-          </select>
+          <strong>Thème de l’action : <span v-for="(theme, index) in nom_theme" :key='index' >{{ nom_theme == null ? '--' : theme.nom_theme }}</span></strong>
+
         </div>
 
         <!-- NATURE DE L'ACTION -->
@@ -89,93 +106,109 @@
             <label>Planifiée</label>
             <input type="checkbox" checked />
           </div>
-
-          <!-- <div style="margin-left: auto">
+          <div style="margin-left: 100px">
             <label>Non Planifiée</label>
             <input type="checkbox" />
           </div>
-
-          <div style="margin-left: auto">
+          <div style="margin-left: 100px">
             <label>Alpha</label>
             <input type="checkbox" />
-          </div> -->
+          </div>
         </div>
         <!-- END NATURE DE L'ACTION -->
 
         <!-- EFFECTIF -->
-        <div class="d-flex" style="margin-top: 10px">
-          <strong>Effectif des participants :</strong>
-          <input type="text" class="highlighted" value="" name="nb_partcp_total" />
+        <div class="d-flex" style="margin-top: 10px" v-for="(info, index) in Info_AvisModif" :key="index" >
         </div>
+        <strong>Effectif des participants :</strong>
+        <input type="text" class="highlighted" :value="total_benif" name="nb_partcp_total" id="nb_benif" />
+         <!-- <h1>---------- {{mydata}}</h1> -->
+
         <!-- END EFFECTIF -->
 
         <!-- ORGANISME -->
         <div class="d-flex" style="margin-top: 10px">
-          <span>• Organisme de formation initial : </span>
-          <input type="text" class="highlighted" value="..." />
+          <span>Organisme de formation initial : </span>
+          <input type="text" class="highlighted" :value="duplicated_Info.initialOrganisme"/>
         </div>
         <div class="d-flex" style="margin-top: 10px">
           <span>Nouvel Organisme de formation : </span>
-          <select class="select highlighted" style="width: fit-content; font-size: 16px">
-            <option selected disabled>--select organisme</option>
-            <option v-for="cabinet in cabinets" :value="cabinet.nCabinet" :key="cabinet.nCabinet">{{ cabinet.raisoci }}</option>
-          </select>
+          <input type="text" class="highlighted" :value="duplicated_Info.newOrganisme" />
         </div>
         <!-- END ORGANISME -->
 
         <!-- LIEU -->
         <div class="d-flex" style="margin-top: 10px">
-          <span>• Lieu de formation initial : </span>
-
+          <span>Lieu de formation initial : </span>
+          <input type="text" class="highlighted" :value="duplicated_Info.initialLieu" />
         </div>
         <div class="d-flex" style="margin-top: 10px">
           <span>Nouveau lieu : </span>
-          <select name="lieu" id="lieu" class="highlighted" style="width:35%; padding: .3rem; border: 1px solid #000;">
-        <option selected disabled>--sélectionner l'Entreprise ..</option>
-        <option v-for="cl in clients" :value="cl.nrc_entrp" :key="cl.nrc_entrp">{{ cl.raisoci }}</option>
-      </select>
+         <input type="text" class="highlighted" :value="duplicated_Info.newLieu" />
         </div>
         <!-- END LIEU -->
 
         <!-- DATES -->
+
         <div style="margin-top: 10px">
-          <span>• Dates initiales de réalisation  : </span>
-          <div class="d-flex">
-            <input type="date" class="highlighted" value="..." />
-            <input type="date" class="highlighted" value="..." />
-            <input type="date" class="highlighted" value="..." />
-            <input type="date" class="highlighted" value="..." />
-            <input type="date" class="highlighted" value="..." />
-            <input type="date" class="highlighted" value="..." />
+          <span>Dates initiales de réalisation  : </span>
+          <div v-for="(initd, index) in initDates" :key='index'>
+               <p style="display: flex !important;flex-wrap: nowrap !important;font-size:12px;line-height: 5px;">
+                 <span v-if="initd.old_date1">{{ initd.old_date1 | moment('calendar') }};</span>
+                 <span v-if="initd.old_date2">{{ initd.old_date2 | moment('calendar') }};</span>
+                 <span v-if="initd.old_date3">{{ initd.old_date3 | moment('calendar') }};</span>
+                 <span v-if="initd.old_date4">{{ initd.old_date4 | moment('calendar') }};</span>
+                 <span v-if="initd.old_date5">{{ initd.old_date5 | moment('calendar') }};</span>
+                 <span v-if="initd.old_date6">{{initd.old_date6  | moment('calendar')}} ;</span>
+                 <span v-if="initd.old_date7">{{ initd.old_date7 | moment('calendar') }};</span>
+                 <span v-if="initd.old_date8">{{ initd.old_date8 | moment('calendar') }};</span>
+                 <span v-if="initd.old_date9">{{ initd.old_date9 | moment('calendar') }};</span>
+                 <span v-if="initd.old_date10">{{ initd.old_date10 }};</span>
+                 <span v-if="initd.date1">{{ initd.date1 | moment('calendar') }};</span>
+                 <span v-if="initd.date2">{{ initd.date2 | moment('calendar') }};</span>
+                 <span v-if="initd.date3">{{ initd.date3 | moment('calendar') }};</span>
+                 <span v-if="initd.date4">{{ initd.date4 | moment('calendar') }};</span>
+                 <span v-if="initd.date5">{{ initd.date5 | moment('calendar') }};</span>
+                 <span v-if="initd.date6">{{ initd.date6 | moment('calendar') }};</span>
+                 <span v-if="initd.date7">{{ initd.date7 | moment('calendar') }};</span>
+                 <span v-if="initd.date8">{{ initd.date8 | moment('calendar') }};</span>
+                 <span v-if="initd.date9">{{ initd.date9 | moment('calendar') }};</span>
+                 <span v-if="initd.date10">{{ initd.date10 | moment('calendar') }};</span></p>
           </div>
         </div>
         <div style="margin-top: 10px">
           <span>Nouvelles Dates exactes de réalisation : </span>
-          <div class="d-flex">
-            <input type="date" class="highlighted" value="..." />
-            <input type="date" class="highlighted" value="..." />
-            <input type="date" class="highlighted" value="..." />
-            <input type="date" class="highlighted" value="..." />
-            <input type="date" class="highlighted" value="..." />
-            <input type="date" class="highlighted" value="..." />
+          <div class="" v-for="initinf in Info_AvisModif" :key='initinf.id_form'>
+            <p style="display: flex !important;flex-wrap:nowrap !important;font-size:12px;line-height: 5px;">
+               <span v-if="initinf.date1">{{ initinf.date1 | moment('calendar') }};</span>
+               <span v-if="initinf.date2">{{ initinf.date2 | moment('calendar') }};</span>
+               <span v-if="initinf.date3">{{ initinf.date3 | moment('calendar') }};</span>
+               <span v-if="initinf.date4">{{ initinf.date4 | moment('calendar') }};</span>
+               <span v-if="initinf.date5">{{ initinf.date5 | moment('calendar') }};</span>
+               <span v-if="initinf.date6">{{ initinf.date6 | moment('calendar') }};</span>
+               <span v-if="initinf.date7">{{ initinf.date7 | moment('calendar') }};</span>
+               <span v-if="initinf.date8">{{ initinf.date8 | moment('calendar') }};</span>
+               <span v-if="initinf.date9">{{ initinf.date9 | moment('calendar') }};</span>
+               <span v-if="initinf.date10">{{ initinf.date10 | moment('calendar') }};</span></p>
           </div>
         </div>
         <!-- END DATES -->
 
         <!-- HORAIRE -->
         <div style="margin-top: 10px">
-          <span>•	Organisation horaire initiale :</span>
+          <span>Organisation horaire initiale :</span>
 
           <div class="d-flex">
             <div>
               <span>heure début : </span>
-              <input type="text" class="highlighted" value="..." />
+              <input type="text" class="highlighted" :value="duplicated_Info.heurDebutInitial" />
             </div>
             <div>
               <span>heure fin : </span>
-              <input type="text" class="highlighted" value="..." />
+              <input type="text" class="highlighted" :value="duplicated_Info.heurFinInitial" />
             </div>
           </div>
+          <div class="d-flix"><p v-if="this.duplicated_Info.pause">Avec pause déjeuner de : 1 heurs</p></div>
         </div>
         <div style="margin-top: 10px">
           <span>Nouvelle organisation horaire :</span>
@@ -183,22 +216,22 @@
           <div class="d-flex">
             <div>
               <span>heure début : </span>
-              <input type="text" class="highlighted" value="..." />
+              <input type="text" class="highlighted" :value="duplicated_Info.heurDebutNew" />
             </div>
             <div>
               <span>heure fin : </span>
-              <input type="text" class="highlighted" value="..." />
+              <input type="text" class="highlighted" :value="duplicated_Info.heurFinNew" />
             </div>
           </div>
         </div>
         <!-- END HORAIRE -->
 
         <div style="margin-top: 50px">
-          <strong>#nom du responsable#</strong>
+          <strong>nom du responsable : <span v-for="(resp, index) in nom_responsable" :key='index' >{{ nom_responsable == null ? '--' : resp.nom_resp }}</span></strong>
         </div>
 
         <div class="d-flex" style="margin-top: 50px">
-          <strong style="margin-left: auto;">#Cachet de l’entreprise, Signature et qualité du responsable#</strong>
+          <strong style="margin-left: auto;">Cachet de l’entreprise, Signature et qualité du responsable</strong>
         </div>
 
       </div>
@@ -213,20 +246,49 @@
 import PrintButton from './PrintButton.vue';
 import { mapState } from 'vuex';
 
+
+
 export default {
   components: { PrintButton },
   runtimeCompiler: true,
+
   data() {
     return {
       nForm : null,
       nCabinet : null,
       id_plan : null,
-      selected_nrc_entrp: null
+      selected_nrc_entrp: null,
+      total_benif : null,
+      initDates : "",
+
+      //Initial and new Info that Duplicated
+      duplicated_Info : {
+        initialOrganisme :"",
+        newOrganisme:"",
+        initialLieu:"",
+        hewLieu:"",
+        heurPauseDebutInitial:"",
+        heurPauseFinInitial:"",
+        heurPauseDebutNew:"",
+        heurFinNew:"",
+        dateDeRealisation:false,
+        organismeDeFormation:false,
+        lieuDeFormation: false,
+        organisationHoraire:false,
+        typeAction: "",
+        pause: false
+      }
+
     }
   },
+
+  updated() {
+  },
+
   mounted() {
     this.$store.dispatch('model3/FetchClients');
   },
+
   computed: {
     ...mapState('model3',{
       curr_nrc_entrp: state => state.curr_nrc_entrp,
@@ -235,12 +297,47 @@ export default {
       actions_by_plan: state => state.actions_by_plan,
       curr_annee_plan: state => state.curr_annee_plan,
       cabinets: state => state.cabinets,
-    })
+      Info_AvisModif: (state) => state.Info_AvisModif,
+      Old_AvisModif: (state) => state.Old_AvisModif,
+      nom_responsable: (state) => state.nom_responsable,
+      nom_theme: (state) => state.nom_theme,
+    }),
   },
   methods: {
     handleAction (actionName, value) {
       this.$store.dispatch(actionName, value);
-    }
+    },
+
+    initialDates () {
+     this.initDates =  this.$store.getters['model3/initialDates'];
+
+   },
+
+   CalculNbTotalBenif() {
+     this.total_benif = this.$store.getters['model3/GetNbTotalBenif'];
+
+
+       if (this.Info_AvisModif) {
+
+      this.duplicated_Info.initialOrganisme =  this.Old_AvisModif.length != 0 ? this.Old_AvisModif[0].old_organisme : this.Info_AvisModif[0].organisme
+      this.duplicated_Info.initialLieu = this.Old_AvisModif != 0 ? this.Old_AvisModif[0].old_lieu : this.Info_AvisModif[0].lieu
+      this.duplicated_Info.heurDebutInitial = this.Old_AvisModif != 0 ? this.Old_AvisModif[0].old_hr_debut : this.Info_AvisModif[0].hr_debut
+      this.duplicated_Info.heurFinInitial = this.Old_AvisModif != 0 ? this.Old_AvisModif[0].old_hr_fin : this.Info_AvisModif[0].hr_fin
+
+      this.duplicated_Info.newOrganisme = this.Info_AvisModif[0].organisme
+      this.duplicated_Info.newLieu = this.Info_AvisModif[0].lieu
+      this.duplicated_Info.heurDebutNew = this.Info_AvisModif[0].hr_debut
+      this.duplicated_Info.heurFinNew = this.Info_AvisModif[0].hr_fin
+
+      this.duplicated_Info.dateDeRealisation = this.Info_AvisModif[0].date_realisation
+      this.duplicated_Info.organismeDeFormation = this.Info_AvisModif[0].organisme_formations
+      this.duplicated_Info.lieuDeFormation = this.Info_AvisModif[0].lieu_formations
+      this.duplicated_Info.organisationHoraire = this.Info_AvisModif[0].horaire_formations
+      this.duplicated_Info.typeAction = this.Info_AvisModif[0].type_action
+      this.duplicated_Info.pause = this.Info_AvisModif[0].pause
+
+      }
+    },
   },
 }
 </script>

@@ -60,6 +60,7 @@ public function StoreUpdateAvisModif(Request $request) {
           $planformation->organisme_formations = $request->modificationOrganisme;
           $planformation->lieu_formations = $request->modificationLieu;
           $planformation->horaire_formations = $request->modificationHoraire;
+          $planformation->pause = $request->pause;
           $planformation->save();
 
           $formation = Formation::findOrfail($idForm);
