@@ -111,7 +111,7 @@
               class="form-control"
               id="theme"
               @change="
-                handleAction('model3/FetchInitialInfoAvisModif', selected_nForm)
+                handleAction('model3/FetchInitialInfoAvisModif', selected_nForm);
               "
               v-model="selected_nForm"
             >
@@ -167,7 +167,7 @@
           </div>
           <div class="form-group col-lg-6 col-sm-12">
           <label for="groups">Groupe</label>
-          <select class="form-control" id="groups" @change="handleAction('model3/FetchInfoGroupe' , selected_idForm)" v-model="selected_idForm">
+          <select class="form-control" id="groups" @change="handleAction('model3/FetchInfoGroupe' , selected_idForm);getPause();" v-model="selected_idForm">
                 <option selected disabled>
                   ---selectionner Groupe---
                 </option>
@@ -190,8 +190,7 @@
           >
           <input type="hidden" :value="info.pse_debut" id="pause_debut">
           <input type="hidden" :value="info.pse_fin" id="pause_fin">
-              <label for="groupe">Groupe</label>
-              <strong id="groupe">{{ info.groupe }}</strong>
+              <label for="groupe">Groupe {{ info.groupe }}</label>
 
             <div class="row my-3">
               <div class="form-group col-lg-6 col-sm-12">
@@ -467,15 +466,23 @@
                   </div>
                 </div>
               </div>
-              <div class="form-group col-lg-6 col-sm-12">
-                <h5>
-                  <strong>
-                <label for="pause"> Il y a une pause </label>
-               Oui <input type="radio" :value="true" id="pause_oui" name="pause" v-model="selected_pause">
-                Non <input type="radio" :value="false" id="pause_non" name="pause" v-model="selected_pause">
-                  </strong>
-                </h5>
+
+              <!-- selection du pause -->
+              <div class="form-group col-lg-6 col-sm-12 mt-3" >
+                 <h5 v-if="checkIndexOfGroup(info.groupe)" class="text-danger">
+                   Il faut saisir la pause pendent
+                   la saisie du premier groupe
+                 </h5>
+                 <h5 :class="[checkIndexOfGroup(info.groupe) ? 'desabled-checkbox' : '']" >
+                    <label for="pause"> Il y a une pause :</label>
+                    Oui <input type="radio" value="true" id="pause_oui" name="pause" v-model="selected_pause" >
+                    Non <input type="radio" value="false" id="pause_non" name="pause" v-model="selected_pause">
+                    <input type="text" id="ola_pause" v-model="old_pause">
+                 </h5>
+                 <h1> {{selected_pause}} </h1>
               </div>
+
+
             </div>
           </div>
         </div>
@@ -500,10 +507,20 @@
   </div>
 </template>
 
+<style scoped>
+
+.desabled-checkbox {
+
+    filter: blur(8px);
+    -webkit-filter: blur(8px);
+    cursor: no-drop;
+
+}
+
+</style>
 
 <script>
 import { mapState } from "vuex";
-import { state } from '../store/modules/model3/state';
 
 export default {
   runtimeCompiler: true,
@@ -524,13 +541,20 @@ export default {
       selected_modiflieu: false,
       selected_modifhoraire: false,
       selected_nature_action: true,
+      pause: false,
       selected_pause: false,
+      old_pause: false
+
     };
   },
 
   mounted() {
     this.$store.dispatch("model3/FetchClients");
     this.$store.dispatch("model3/FetchAllCabinets");
+  },
+
+  updated() {
+
   },
 
   computed: {
@@ -549,6 +573,27 @@ export default {
   methods: {
     handleAction(actionName, value) {
       this.$store.dispatch(actionName, value);
+    },
+
+    getPause() {
+     setTimeout(() => {
+
+      if (this.Info_AvisModif) {
+        this.pause = this.Info_AvisModif[0].pause;
+        if (this.pause == 0) {
+          this.pause = false
+          this.old_pause = this.pause
+          this.selected_pause = this.pause
+          console.log("pause" , this.selected_pause);
+        } else if (this.pause == 1) {
+          this.pause = true
+          this.old_pause = this.pause
+          this.selected_pause = this.pause
+          console.log("pause" , this.selected_pause);
+        }
+      }
+     }, 500);
+     return this.selected_pause , this.old_pause;
     },
     // fonction pour l'état d'avis annulation
     getSelected() {
@@ -676,6 +721,7 @@ export default {
         'idForm': this.selected_idForm,
         'groupe': groupe.innerHTML,
         'pause' : this.selected_pause,
+        'old_pause': this.old_pause,
         'pause_debut': pause_debut != null ? pause_debut.val() : null,
         'pause_fin': pause_fin != null ? pause_fin.val() : null,
       }
@@ -693,6 +739,12 @@ export default {
         console.log("error posting", err);
        })
       },
+
+    // check if group has pause
+    checkIndexOfGroup(index){
+        let isCorrect = index !== 1
+        return isCorrect
+    }
     },
   }
 

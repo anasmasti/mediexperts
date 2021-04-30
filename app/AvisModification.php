@@ -33,6 +33,7 @@ class AvisModification extends Model
       'old_organisme',
       'old_lieu',
       'old_groupe',
+      'old_pause',
       'old_date1',
       'old_date2',
       'old_date3',

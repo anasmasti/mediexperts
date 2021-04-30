@@ -191,7 +191,7 @@ class PlanFormationController extends Controller
             //     }
             // }
             $plan->id_inv = $request->input("id_inv");
-
+            $plan->pause = $request->input("pause");
             $plan->id_plan = $request->input("id_plan");
             $plan->id_thm = $request->input("id_thm");
             $plan->id_dom = $request->input("id_dom");
@@ -216,6 +216,7 @@ class PlanFormationController extends Controller
             $plan->commentaire = $request->input("commentaire");
             $plan->etat = $request->input("etat");
             $plan->Nombre_Dates = $request->input("nb_dates");
+            $plan->Hasnt_Same_Dates = $request->input("grp_hasnt_same_dates");
 
 
             $docs = ['model5', 'model3', 'f4', 'fiche_eval',
@@ -378,7 +379,7 @@ class PlanFormationController extends Controller
             //     }
             // }
             $plan->id_inv = $request->input("id_inv");
-
+            $plan->pause = $request->input("pause");
             $plan->id_plan = $request->input("id_plan");
             $plan->id_thm = $request->input("id_thm");
             $plan->id_dom = $request->input("id_dom");

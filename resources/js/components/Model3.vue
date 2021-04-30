@@ -55,9 +55,9 @@
     <div class="paper">
 
       <div class="text-center">
-        <h2>Modèle 3</h2>
+        <!-- <h2>Modèle 3</h2> -->
         <h4 class="uppercase">MODELE D’AVIS D’ANNULATION OU DE MODIFICATION</h4>
-        <p class="text-italic">(Sur papier a entête de l’entreprise)</p>
+
       </div>
 
       <!-- TABLE -->
@@ -128,22 +128,22 @@
 
         <!-- ORGANISME -->
         <div class="d-flex" style="margin-top: 10px">
-          <span>Organisme de formation initial : </span>
+          <strong>Organisme de formation initial : </strong>
           <input type="text" class="highlighted" :value="duplicated_Info.initialOrganisme"/>
         </div>
         <div class="d-flex" style="margin-top: 10px">
-          <span>Nouvel Organisme de formation : </span>
+          <strong>Nouvel Organisme de formation : </strong>
           <input type="text" class="highlighted" :value="duplicated_Info.newOrganisme" />
         </div>
         <!-- END ORGANISME -->
 
         <!-- LIEU -->
         <div class="d-flex" style="margin-top: 10px">
-          <span>Lieu de formation initial : </span>
+          <strong>Lieu de formation initial : </strong>
           <input type="text" class="highlighted" :value="duplicated_Info.initialLieu" />
         </div>
         <div class="d-flex" style="margin-top: 10px">
-          <span>Nouveau lieu : </span>
+          <strong>Nouveau lieu : </strong>
          <input type="text" class="highlighted" :value="duplicated_Info.newLieu" />
         </div>
         <!-- END LIEU -->
@@ -151,9 +151,9 @@
         <!-- DATES -->
 
         <div style="margin-top: 10px">
-          <span>Dates initiales de réalisation  : </span>
+          <strong>Dates initiales de réalisation  : </strong>
           <div v-for="(initd, index) in initDates" :key='index'>
-               <p style="display: flex !important;flex-wrap: nowrap !important;font-size:12px;line-height: 5px;">
+               <p style="display: flex !important;flex-wrap: nowrap !important;line-height: 1px;">
                  <span v-if="initd.old_date1">{{ initd.old_date1 | moment('calendar') }};</span>
                  <span v-if="initd.old_date2">{{ initd.old_date2 | moment('calendar') }};</span>
                  <span v-if="initd.old_date3">{{ initd.old_date3 | moment('calendar') }};</span>
@@ -177,9 +177,9 @@
           </div>
         </div>
         <div style="margin-top: 10px">
-          <span>Nouvelles Dates exactes de réalisation : </span>
+          <strong>Nouvelles Dates exactes de réalisation : </strong>
           <div class="" v-for="initinf in Info_AvisModif" :key='initinf.id_form'>
-            <p style="display: flex !important;flex-wrap:nowrap !important;font-size:12px;line-height: 5px;">
+            <p style="display: flex !important;flex-wrap:nowrap !important;line-height: 1px;">
                <span v-if="initinf.date1">{{ initinf.date1 | moment('calendar') }};</span>
                <span v-if="initinf.date2">{{ initinf.date2 | moment('calendar') }};</span>
                <span v-if="initinf.date3">{{ initinf.date3 | moment('calendar') }};</span>
@@ -196,7 +196,7 @@
 
         <!-- HORAIRE -->
         <div style="margin-top: 10px">
-          <span>Organisation horaire initiale :</span>
+          <strong>Organisation horaire initiale :</strong>
 
           <div class="d-flex">
             <div>
@@ -208,10 +208,10 @@
               <input type="text" class="highlighted" :value="duplicated_Info.heurFinInitial" />
             </div>
           </div>
-          <div class="d-flix"><p v-if="this.duplicated_Info.pause">Avec pause déjeuner de : 1 heurs</p></div>
+          <div class="d-flix"><p v-if="this.duplicated_Info.old_pause"> Avec pause déjeuner de : 1 heurs </p></div>
         </div>
         <div style="margin-top: 10px">
-          <span>Nouvelle organisation horaire :</span>
+          <strong>Nouvelle organisation horaire :</strong>
 
           <div class="d-flex">
             <div>
@@ -223,11 +223,12 @@
               <input type="text" class="highlighted" :value="duplicated_Info.heurFinNew" />
             </div>
           </div>
+          <div class="d-flix"><p v-if="this.duplicated_Info.pause"> Avec pause déjeuner de : 1 heurs </p></div>
         </div>
         <!-- END HORAIRE -->
 
         <div style="margin-top: 50px">
-          <strong>nom du responsable : <span v-for="(resp, index) in nom_responsable" :key='index' >{{ nom_responsable == null ? '--' : resp.nom_resp }}</span></strong>
+          <strong>Nom du responsable : <span v-for="(resp, index) in nom_responsable" :key='index' >{{ nom_responsable == null ? '--' : resp.nom_resp }}</span></strong>
         </div>
 
         <div class="d-flex" style="margin-top: 50px">
@@ -276,7 +277,8 @@ export default {
         lieuDeFormation: false,
         organisationHoraire:false,
         typeAction: "",
-        pause: false
+        pause: false,
+        old_pause: false
       }
 
     }
@@ -323,6 +325,7 @@ export default {
       this.duplicated_Info.initialLieu = this.Old_AvisModif != 0 ? this.Old_AvisModif[0].old_lieu : this.Info_AvisModif[0].lieu
       this.duplicated_Info.heurDebutInitial = this.Old_AvisModif != 0 ? this.Old_AvisModif[0].old_hr_debut : this.Info_AvisModif[0].hr_debut
       this.duplicated_Info.heurFinInitial = this.Old_AvisModif != 0 ? this.Old_AvisModif[0].old_hr_fin : this.Info_AvisModif[0].hr_fin
+      this.duplicated_Info.old_pause = this.Old_AvisModif != 0 ? this.Old_AvisModif[0].pause : false
 
       this.duplicated_Info.newOrganisme = this.Info_AvisModif[0].organisme
       this.duplicated_Info.newLieu = this.Info_AvisModif[0].lieu

@@ -45,7 +45,7 @@ public function StoreUpdateAvisModif(Request $request) {
           $AvisModif->old_date8 = $request->date8;
           $AvisModif->old_date9 = $request->date9;
           $AvisModif->old_date10 = $request->date10;
-          $AvisModif->pause = $request->pause;
+          $AvisModif->old_pause = $request->old_pause;
           $nFrom = $AvisModif->n_form;
           $idForm = $AvisModif->id_form;
           $AvisModif->save();

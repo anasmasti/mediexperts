@@ -11,15 +11,17 @@ export const getters = {
       if ( oldInfo.length != 0 ) {
           for (let j = 0; j < oldInfo.length; j++) {
               result = initInfo[i].id_form != oldInfo[j].id_form;
-              if (result) {
-
-                  oldInfo.push(initInfo[i])
+              console.log("result" , result);
+              if (!result) {
+                dates = oldInfo
+              }
+              else if (result) {
+                dates = [initInfo[i], oldInfo[j]]
               }
           }
       }
     }
-    console.log('----------', oldInfo);
-   return oldInfo
+    return dates
   },
 
   GetNbTotalBenif: state => {

@@ -392,6 +392,22 @@
             @endif
         </div>
 
+        <div class="form-group col-lg-3 col-md-6 col-12">
+          <label>Pause</label>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="pause" value="1" {{$plan->pause == 1 ? 'checked' : ''}}>
+          <label class="form-check-label">
+            Oui
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="pause" value="0" {{$plan->pause == 0 ? 'checked' : ''}}>
+          <label class="form-check-label">
+            Non
+          </label>
+        </div>
+        </div>
+
         {{-- <div class="form-group col-lg-3 col-md-6 col-12">
             <label>Documents</label>
             <div class="form-check">

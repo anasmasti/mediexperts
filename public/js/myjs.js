@@ -48,9 +48,11 @@ function CalcBdgJourn() {
     let bdgJour = document.getElementById("bdg_jour");
     let nbJour = document.getElementById("nb_jour");
     let nbHeure = document.getElementById("nb_heure");
+    setTimeout(() => {
+      bdgTotal.value = (((nbHeure.value * nbJour.value) / 6) * bdgJour.value).toFixed(2);
+      bdgLetter.value = NumberToLetter(((bdgJour.value * nbJour.value) + bdgTotal.value * .2).toFixed(2), "DIRHAM", "Centimes").toUpperCase();
+    }, 1000);
 
-    bdgTotal.value = (((nbHeure.value * nbJour.value) / 6) * bdgJour.value).toFixed(2);
-    bdgLetter.value = NumberToLetter(((bdgJour.value * nbJour.value) + bdgTotal.value * .2).toFixed(2), "DIRHAM", "Centimes").toUpperCase();
 }
 
 function DateFormat(date) {
@@ -59,6 +61,44 @@ function DateFormat(date) {
     let month = datestring.charAt(4) + datestring.charAt(5);
     let day = datestring.charAt(6) + datestring.charAt(7);
     return (day + '/' + month + '/' + year);
+}
+
+function NbHeurValidation (){
+  let nbHeur = document.getElementById("nb_heure");
+  let nbDates = document.getElementById("nb_dates");
+
+  if (nbHeur.value == 0){
+    nbDates.disabled = true;
+    document.getElementById("nb_dates_msg").innerHTML ='<p><i class="fas fa-info-circle"></i> Remplir Nombre Heures Premièrement </p>'
+    setTimeout(() => {
+      document.getElementById("nb_dates_msg").innerHTML =''
+    }, 5000);
+  }
+  else if (nbHeur.value != 0){
+    nbDates.disabled = false;
+  }
+}
+function CalcNbJour() {
+
+  let NbHeurs = document.getElementById("nb_heure");
+  let NbDates = document.getElementById("nb_dates");
+  let nbJour = document.getElementById("nb_jour");
+
+  nbJour.value = ((NbHeurs.value * NbDates.value)/ 6);
+  nbjour = parseFloat(nbJour.value);
+
+  if (Number.isInteger(nbjour)){
+    document.getElementById("nb_dates_msg").innerHTML ='<p class="text-success"><i class="fas fa-check-circle"></i> Nombre Dates valide </p>'
+    setTimeout(() => {
+      document.getElementById("nb_dates_msg").innerHTML =''
+    }, 5000);
+  }
+  else{
+    document.getElementById("nb_dates_msg").innerHTML ='<p><i class="fas fa-info-circle"></i> Nombre Dates est Invalide </p>'
+    setTimeout(() => {
+      document.getElementById("nb_dates_msg").innerHTML =''
+    }, 5000);
+  }
 }
 
 

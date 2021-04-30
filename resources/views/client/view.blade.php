@@ -17,6 +17,17 @@
 {{-- jquery scripts --}}
 <script src={{ asset('js/jquery.js') }}></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+{{-- <script>
+$(document).on('ready' , function() {
+      setTimeout(() => {
+      $('tbody').each(function(){
+      var list = $(this).children('tr');
+      $(this).html(list.get().reverse())
+  });
+    }, 0);
+})
+</script> --}}
 {{-- jquery scripts --}}
 
 <!-- CARD -->
@@ -38,8 +49,8 @@
     </div>
     <!-- /.card-header -->
     <div class="card-body table-striped p-0">
-        <table class="table table-md">
-            <thead class="thead">
+        <table class="table table-md" id="table" >
+            <thead class="thead" onload="reverseTable()">
                 {{-- HEAD OF TABLE --}}
                 <tr>
                     <th>N° RC entreprise</th>

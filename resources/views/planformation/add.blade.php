@@ -409,6 +409,22 @@
         @endif
       </div>
 
+      <div class="form-group col-lg-3 col-md-6 col-12">
+        <label>Pause</label>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" value="1" name="pause">
+        <label class="form-check-label">
+          Oui
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" value="0" name="pause" checked>
+        <label class="form-check-label">
+          Non
+        </label>
+      </div>
+      </div>
+
       <div class="form-group col-12"><label>Commentaire</label>
         <textarea class="form-control" type="text" rows="4" name="commentaire" maxlength="1000" placeholder="Commentaire ..">{{old('commentaire')}}</textarea>
       </div>

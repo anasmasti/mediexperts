@@ -134,6 +134,8 @@
                     <td>{{ $plan->bdg_total }} DH</td></tr>
                 <tr><th class="th-det">Budget en Lettre (TTC)</th>
                     <td>{{ ucfirst($plan->bdg_letter) }} dirhams</td></tr>
+                    <tr><th class="th-det">Pause</th>
+                      <td>{{ $plan->pause == 1 ? 'Oui' : 'Non'}}</td></tr>
                 <tr><th class="th-det">Commentaire</th>
                     <td>{{ $plan->commentaire }}</td></tr>
                 {{-- <tr><th class="th-det">Fiche présence</th>
