@@ -46,6 +46,7 @@ public function StoreUpdateAvisModif(Request $request) {
           $AvisModif->old_date9 = $request->date9;
           $AvisModif->old_date10 = $request->date10;
           $AvisModif->old_pause = $request->old_pause;
+          $AvisModif->has_same_dates = $request->old_sameDates;
           $nFrom = $AvisModif->n_form;
           $idForm = $AvisModif->id_form;
           $AvisModif->save();
@@ -61,6 +62,8 @@ public function StoreUpdateAvisModif(Request $request) {
           $planformation->lieu_formations = $request->modificationLieu;
           $planformation->horaire_formations = $request->modificationHoraire;
           $planformation->pause = $request->pause;
+          $planformation->etat = $request->typeAction;
+          $planformation->Has_Same_Dates = $request->sameDates;
           $planformation->save();
 
           $formation = Formation::findOrfail($idForm);

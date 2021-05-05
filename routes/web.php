@@ -342,6 +342,7 @@ Route::get('/print-f3/{nrc}', 'FormulaireController@print_f3')->name('F3.print_f
 
 Route::get('/print-m1', 'FormulaireController@print_m1')->name('M1.print_m1');
 Route::get('/print-m3', 'FormulaireController@print_m3')->name('M3.print_m3');
+Route::get('/print-g6' , 'FormulaireController@print_G6')->name('G6.print_G6');
 
 Route::get('/fill-clients', 'FormulaireController@FillClients')->name('M1.print_m1');
 Route::get('/fill-client-plans', 'FormulaireController@FillClientPlans')->name('M1.FillClientPlans');
@@ -367,6 +368,7 @@ Route::get('/fill-dates-plan', 'FormulaireController@FillDatesPlan')->name('plan
 Route::get('/print-pf', 'FormulaireController@print_pf')->name('plan_formations.print_pf');
 Route::get('/fill-plans-by-reference', 'FormulaireController@FillPlansByReference')->name('plan_formations.FillPlansByReference');
 Route::get('/fill-reference-plan', 'FormulaireController@FillReferencesPlan')->name('plan_formations.FillReferencesPlan');
+Route::get('/fill-g6-info' , 'FormulaireController@FillG6Info');
 
 
 Route::get('/print-m6', 'FormulaireController@print_m6')->name('M6.print_m6');

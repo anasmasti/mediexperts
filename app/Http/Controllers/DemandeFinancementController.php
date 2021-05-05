@@ -13,10 +13,10 @@ class DemandeFinancementController extends Controller
 {
 
     // ***** FORMULAIRES *****
-    public function FactureDF($ndf,$nrc) {
+    public function FactureDF($nrc) {
       $df = DemandeFinancement::select('clients.*', 'demande_financements.*')
             ->join('clients', 'demande_financements.nrc_e', 'clients.nrc_entrp')
-            ->where([['demande_financements.n_df', $ndf],['clients.nrc_entrp', $nrc]])
+            ->where('clients.nrc_entrp', $nrc)
             ->first();
       return view('_formulaires.facture-df', ['df' => $df]);
     }

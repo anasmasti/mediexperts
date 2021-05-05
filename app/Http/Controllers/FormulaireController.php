@@ -43,7 +43,7 @@ class FormulaireController extends Controller
       //, ['client' => $client]
       );
     }
-    public function _G6 (Request $request) {
+    public function print_G6 (Request $request) {
 
       return view('_formulaires.G6');
 
@@ -203,9 +203,17 @@ class FormulaireController extends Controller
 
       return response()->json($data);
     }
+    public function FillG6Info (Request $request) {
+      $data= Plan::select('plans.annee','plans.id_plan','plans.refpdf','clients.raisoci','clients.nom_dg1','clients.fonct_dg1','plans.nrc_e', 'clients.nrc_entrp')
+      ->join('clients', 'plans.nrc_e', 'clients.nrc_entrp')
+      ->where('plans.id_plan', $request->idPlan)
+      ->get();
+
+      return response()->json($data);
+    }
     public function FillPlansByReference(Request $request) {
       $data = Client::select('plan_formations.*', 'themes.nom_theme','domaines.nom_domain','plans.*',
-        'cabinets.raisoci as raisoci_cab', 'cabinets.ncnss as ncnss_cab', 'plans.annee')
+        'cabinets.raisoci as raisoci_cab', 'cabinets.ncnss as ncnss_cab', 'plans.annee','plan_formations.etat as etat_formation')
         ->join('plans', 'clients.nrc_entrp', 'plans.nrc_e')
         ->join('plan_formations', 'plans.id_plan', 'plan_formations.id_plan')
         ->join('themes', 'plan_formations.id_thm', 'themes.id_theme')

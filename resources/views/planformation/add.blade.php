@@ -252,7 +252,7 @@
         <span class="text-danger" id="nb_dates_msg"></span>
         <div class="form-check">
           <input type="checkbox" name="grp_hasnt_same_dates" id="grp_hasnt_same_dates" class="form-check-input">
-          <label for="grp_hasnt_same_dates" class="form-check-label">Groupe ayant différent date</label>
+          <label for="grp_hasnt_same_dates" class="form-check-label">Groupe ayant même dates</label>
         </div>
       </div>
 

@@ -45,7 +45,7 @@ class PlanFormation extends Model
         'nrc_e',
         'etat',
         'commentaire',
-
+        'Has_Same_Dates',
         //avis de modife
         'date_realisation',
         'organisme_formations',

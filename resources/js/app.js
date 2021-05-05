@@ -4,13 +4,15 @@
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
-import { store } from './store'
-
+import { store } from './store';
+import VueToastr from 'vue-toastr';
 
 require('./bootstrap');
 
 const Vue = require('vue');
+
 Vue.use(require('vue-moment'));
+Vue.use(VueToastr);
 // import Model1 from './components/Model1.vue';
 
 /**
@@ -31,6 +33,8 @@ Vue.component('plan-formation', require('../js/components/PlanFormation.vue').de
 Vue.component('avis-affichage', require('../js/components/AvisAffichage.vue').default);
 Vue.component('att-reference-plan', require('../js/components/AttReferencePlan.vue').default);
 Vue.component('avis-modification', require('../js/components/AvisModification.vue').default);
+Vue.component('print-g6', require('../js/components/G6.vue').default);
+
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

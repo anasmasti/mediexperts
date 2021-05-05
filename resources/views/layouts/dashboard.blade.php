@@ -544,7 +544,7 @@
 
             <div class="info-box-content">
               <span class="info-box-text">G6</span>
-              <span class="info-box-number"><a href="/print-G6">Imprimer</a></span>
+              <span class="info-box-number"><a href="/print-g6">Imprimer</a></span>
             </div>
             <!-- /.info-box-content -->
           </div>
