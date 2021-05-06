@@ -101,6 +101,26 @@ function CalcNbJour() {
   }
 }
 
+function ValidationNbDatesIfSameDates() {
+
+  let hasSameDates = document.getElementById("same_dates")
+  let nbDates = document.getElementById("nb_dates")
+  let nbGrp = document.getElementById("nb_grp")
+
+  if (hasSameDates.checked == true && nbDates.value % nbGrp.value != 0 ) {
+
+    document.getElementById("sameDateError").innerHTML = '<p><i class="fas fa-info-circle"></i> Nombre dates est invalide pour les groupes ayant même dates</p>'
+    hasSameDates.checked = false
+
+  }else {
+    document.getElementById("sameDateError").innerHTML = '<p class="text-success"><i class="fas fa-check-circle"></i> Nombre dates valide pour les groupes ayant même dates</p>'
+
+    setTimeout(() => {
+      document.getElementById("sameDateError").innerHTML = ''
+    }, 5000);
+  }
+}
+
 
 //***************************************************************************************************/
 //***************************************************************************************************/

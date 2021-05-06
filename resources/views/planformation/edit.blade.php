@@ -210,6 +210,19 @@
                     {{ $errors->first('dt_debut') }}
                 </span>
            @endif
+           <label>Pause</label>
+           <div class="form-check">
+             <input class="form-check-input" type="radio" value="1" name="pause">
+             <label class="form-check-label">
+               Oui
+             </label>
+           </div>
+           <div class="form-check">
+             <input class="form-check-input" type="radio" value="0" name="pause" checked>
+             <label class="form-check-label">
+               Non
+             </label>
+           </div>
         </div>
 
         <div class="form-group col-lg-3 col-md-6 col-12"><label>Date fin</label>
@@ -229,7 +242,7 @@
                 </span>
            @endif
            <label for="nb_dates">Nb. Dates</label>
-           <input type="text" class="form-control {{ $errors->has('nb_dates') ? 'is-invalid' : '' }}" value="{{$plan->Nombre_Dates}}" name="nb_dates" id="nb_dates" onkeyup="CalcNbJour();CalcBdgJourn()" onclick="NbHeurValidation()" onkeypress="return isNumberKey(event)" placeholder="nb. dates">
+           <input type="text" class="form-control {{ $errors->has('nb_dates') ? 'is-invalid' : '' }}" value="{{$plan->Nombre_Dates}}" name="nb_dates" id="nb_dates" onkeyup="CalcNbJour();CalcBdgJourn();ValidationNbDatesIfSameDates()" onclick="NbHeurValidation()" onkeypress="return isNumberKey(event)" placeholder="nb. dates">
            @if ($errors->has('nb_dates'))
            <span class="invalid-feedback" role="alert">
              {{$errors->first('nb_dates') }}
@@ -237,8 +250,9 @@
            @endif
           <span class="text-danger" id="nb_dates_msg"></span>
           <div class="form-check">
-            <input type="checkbox" name="grp_hasnt_same_dates" id="grp_hasnt_same_dates" class="form-check-input">
-            <label for="grp_hasnt_same_dates" class="form-check-label">Groupe ayant différent date</label>
+            <input type="checkbox" name="same_dates" onchange="ValidationNbDatesIfSameDates()" value="1" {{$plan->Has_Same_Dates == 1 ? 'checked' : ''}} id="same_dates" class="form-check-input">
+            <label for="grp_hasnt_same_dates" class="form-check-label">Groupes ayant différent date</label> <br>
+            <label class="text-danger" id="sameDateError"></label>
           </div>
           </div>
 
@@ -307,7 +321,7 @@
         @endif
         </div>
 
-        <div class="form-group col-lg-3 col-md-6 col-12"><label>Nb. groupes</label><input class="form-control {{ $errors->has('nb_grp') ? 'is-invalid' : '' }}" value="{{$plan->nb_grp}}" type="text" name="nb_grp" min="0" maxlength="15" onkeypress="return isNumberKey(event)" placeholder="Nombre" >
+        <div class="form-group col-lg-3 col-md-6 col-12"><label>Nb. groupes</label><input class="form-control {{ $errors->has('nb_grp') ? 'is-invalid' : '' }}" value="{{$plan->nb_grp}}" type="text" name="nb_grp" id="nb_grp" min="0" maxlength="15" onkeypress="return isNumberKey(event)" placeholder="Nombre" >
         @if ($errors->has('nb_grp'))
             <span class="invalid-feedback" role="alert">
                 {{ $errors->first('nb_grp') }}
@@ -391,22 +405,35 @@
                 </span>
             @endif
         </div>
+        <div class="form-group col-lg-3 col-sm-12">
+        <label>Heure début</label>
+        <div class='input-group date'>
+          <input class="form-control timerpicker {{ $errors->has('hr_debut') ? 'is-invalid' : '' }}" value="{{$plan->hr_debut}}" type="text" id="hr_debut" name="hr_debut" />
+          <div class="input-group-append" data-target="#timepicker" data-toggle="datetimepicker">
+            <div class="input-group-text"><i class="far fa-clock"></i></div>
+          </div>
+        </div>
+        @if ($errors->has('hr_debut'))
+          <span class="invalid-feedback" role="alert">
+            <strong>{{ $errors->first('hr_debut') }}</strong>
+          </span>
+        @endif
+      </div>
 
-        <div class="form-group col-lg-3 col-md-6 col-12">
-          <label>Pause</label>
-        <div class="form-check">
-          <input class="form-check-input" type="radio" name="pause" value="1" {{$plan->pause == 1 ? 'checked' : ''}}>
-          <label class="form-check-label">
-            Oui
-          </label>
+      <div class="form-group col-lg-3 col-sm-12">
+        <label>Heure fin</label>
+        <div class='input-group date'>
+          <input class="form-control timerpicker {{ $errors->has('hr_fin') ? 'is-invalid' : '' }}" value="{{$plan->hr_fin}}" type="text" id="hr_fin" name="hr_fin" />
+          <div class="input-group-append" data-target="#timepicker" data-toggle="datetimepicker">
+            <div class="input-group-text"><i class="far fa-clock"></i></div>
+          </div>
         </div>
-        <div class="form-check">
-          <input class="form-check-input" type="radio" name="pause" value="0" {{$plan->pause == 0 ? 'checked' : ''}}>
-          <label class="form-check-label">
-            Non
-          </label>
-        </div>
-        </div>
+        @if ($errors->has('hr_fin'))
+          <span class="invalid-feedback" role="alert">
+            <strong>{{ $errors->first('hr_fin') }}</strong>
+          </span>
+        @endif
+      </div>
 
         {{-- <div class="form-group col-lg-3 col-md-6 col-12">
             <label>Documents</label>

@@ -134,7 +134,7 @@
         @endif
       </div>
 
-      <div class="form-group col-lg-3 col-sm-12">
+      {{-- <div class="form-group col-lg-3 col-sm-12">
         <label>Heure début</label>
         <div class='input-group date'>
           <input class="form-control {{ $errors->has('hr_debut') ? 'is-invalid' : '' }}" value="{{old('hr_debut') ? old('hr_debut') : "09:00"}}" type="time" name="hr_debut" />
@@ -162,7 +162,7 @@
             <strong>{{ $errors->first('hr_fin') }}</strong>
           </span>
         @endif
-      </div>
+      </div> --}}
 
       <div class="form-group col-lg-3 col-sm-12">
         <label>Pause début</label>
@@ -309,6 +309,8 @@
       success: function(data) {
         console.log('success find nb jour !!', data);
         var createDateInput = '';
+        if (data[0].Has_Same_Dates == 1) {
+          data[0].Nombre_Dates = data[0].Nombre_Dates / data[0].nb_grp
         for (var i = 1; i <= data[0].Nombre_Dates; i++) {
             let date_debut_fin = "";
             if (i === 1) {
@@ -330,6 +332,29 @@
                   @endif
                 </div>`;
         }
+      } else {
+        for (var i = 1; i <= data[0].Nombre_Dates; i++) {
+            let date_debut_fin = "";
+            if (i === 1) {
+                // affecter la date de début de l'action de formation
+                date_debut_fin = data[0].dt_debut;
+            }
+            else if (i == data[0].Nombre_Dates) {
+                // ou affecter la date de début de l'action de formation
+                date_debut_fin = data[0].dt_fin;
+            }
+            createDateInput +=
+                `<div class="form-group col-lg-3 col-sm-12">
+                <label for="date${i}">Date ${i}</label>
+                <input class="form-control {{ $errors->has('date${i}') ? 'is-invalid' : '' }} formation-date" type="text" value="${date_debut_fin}" name="date${i}" onmouseover="(this.type='date')" placeholder="date${i}" >
+                  @if ($errors->has('date${i}'))
+                    <span class="invalid-feedback" role="alert">
+                      <strong>{{ $errors->first('date${i}') }}</strong>
+                    </span>
+                  @endif
+                </div>`;
+        }
+      }
         // si l'action a un seul groupe of affect le nombre total au nombre de bénéficiaires
         if (data[0].nb_grp == 1) {
           $('#nb_benif').val(data[0].nb_partcp_total);

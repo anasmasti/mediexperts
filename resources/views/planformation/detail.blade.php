@@ -120,6 +120,10 @@
                     <td>{{ $plan->nom_resp }}</td></tr>
                 <tr><th class="th-det">Nombre groupes</th>
                     <td>{{ $plan->nb_grp }} groupes</td></tr>
+                <tr>
+                  <th class="th-det">Groupes ayant différent date</th>
+                  <td> {{ $plan->Has_Same_Dates == 1 ? 'Oui' : 'Non' }}</td>
+                </tr>
                 <tr><th class="th-det">Nb. particip. total</th>
                     <td>{{ $plan->nb_partcp_total }} participants</td></tr>
                 <tr><th class="th-det">Nb. cadres</th>
@@ -133,9 +137,19 @@
                 <tr><th class="th-det">Budget Total (HT)</th>
                     <td>{{ $plan->bdg_total }} DH</td></tr>
                 <tr><th class="th-det">Budget en Lettre (TTC)</th>
-                    <td>{{ ucfirst($plan->bdg_letter) }} dirhams</td></tr>
-                    <tr><th class="th-det">Pause</th>
-                      <td>{{ $plan->pause == 1 ? 'Oui' : 'Non'}}</td></tr>
+                    <td>{{ ucfirst($plan->bdg_letter) }} dirhams</td>
+                </tr>
+                <tr><th class="th-det">Pause</th>
+                    <td>{{ $plan->pause == 1 ? 'Oui' : 'Non'}}</td>
+                </tr>
+                <tr>
+                  <th class="th-det">Heur Début</th>
+                  <td>{{$plan->hr_debut}}</td>
+                </tr>
+                <tr>
+                  <th class="th-det">Heur Fin</th>
+                  <td> {{$plan->hr_fin}} </td>
+                </tr>
                 <tr><th class="th-det">Commentaire</th>
                     <td>{{ $plan->commentaire }}</td></tr>
                 {{-- <tr><th class="th-det">Fiche présence</th>

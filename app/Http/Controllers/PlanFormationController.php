@@ -158,6 +158,8 @@ class PlanFormationController extends Controller
                 'bdg_jour' => 'required|max:12',
                 'etat' => 'required',
                 'nb_dates' => 'required|max:10',
+                'hr_debut' => 'required|max:50',
+                'hr_fin' => 'required|max:50',
             ]);
 
             $plan = new PlanFormation();
@@ -216,7 +218,13 @@ class PlanFormationController extends Controller
             $plan->commentaire = $request->input("commentaire");
             $plan->etat = $request->input("etat");
             $plan->Nombre_Dates = $request->input("nb_dates");
-            $plan->Hasnt_Same_Dates = $request->input("grp_hasnt_same_dates");
+            if ($request->has('same_dates')) {
+              $plan->Has_Same_Dates = $request->input('same_dates');
+            } else {
+              $plan->Has_Same_Dates = 0;
+            }
+            $plan->hr_debut = $request->input('hr_debut');
+            $plan->hr_fin = $request->input('hr_fin');
 
 
             $docs = ['model5', 'model3', 'f4', 'fiche_eval',
@@ -357,7 +365,9 @@ class PlanFormationController extends Controller
                 'bdg_total' => 'required|max:12',
                 'bdg_jour' => 'required|max:12',
                 'etat' => 'required',
-                'nb_dates' => 'required|max:10'
+                'nb_dates' => 'required|max:10',
+                'hr_debut' => 'required|max:50',
+                'hr_fin' => 'required|max:50',
             ]);
 
             // $plan->n_form = $request->input("n_form");
@@ -403,6 +413,14 @@ class PlanFormationController extends Controller
             $plan->commentaire = $request->input("commentaire");
             $plan->etat = $request->input('etat');
             $plan->Nombre_Dates = $request->input('nb_dates');
+            if ($request->has('same_dates')) {
+              $plan->Has_Same_Dates = $request->input('same_dates');
+            } else {
+              $plan->Has_Same_Dates = 0;
+            }
+            $plan->hr_debut = $request->input('hr_debut');
+            $plan->hr_fin = $request->input('hr_fin');
+
 
 
             $docs = ['model5', 'model3', 'f4', 'fiche_eval',

@@ -22,7 +22,8 @@ class PlanFormation extends Model
         'support_form',
         'cv_inv',
         'avis_affich',
-
+        'hr_debut',
+        'hr_fin',
         'id_dom',
         'id_thm',
         'dt_debut',

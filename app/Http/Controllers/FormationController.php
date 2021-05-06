@@ -51,7 +51,7 @@ class FormationController extends Controller
     //find nb jour de Plan de formation
     public function FindNbJours(Request $request) {
         // $data = PlanFormation::find($request->nform)->nbjour;
-        $data = PlanFormation::select('n_form', 'nb_jour', 'nb_grp', 'dt_debut', 'dt_fin', 'nb_partcp_total','Nombre_Dates')
+        $data = PlanFormation::select('n_form', 'nb_jour', 'nb_grp', 'dt_debut', 'dt_fin', 'nb_partcp_total','Nombre_Dates','Has_Same_Dates')
                 ->where('plan_formations.n_form', $request->nForm)
                 ->get();
         return response()->json($data);
@@ -170,8 +170,8 @@ class FormationController extends Controller
                 // 'id_form' => 'required|unique:formations|max:50',
                 'groupe' => 'required|max:50',
                 'nb_benif' => 'required|max:50',
-                'hr_debut' => 'required|max:50',
-                'hr_fin' => 'required|max:50',
+                'hr_debut' => 'nullable|max:50',
+                'hr_fin' => 'nullable|max:50',
                 'pse_debut' => 'required|max:50',
                 'pse_fin' => 'required|max:50',
                 'date1' => 'date',
@@ -191,6 +191,7 @@ class FormationController extends Controller
             $interv = Intervenant::all();
 
             $formation = Formation::create($request->except('cin'));
+
 
             $last_group = PlanFormation::select('formations.*')
                             ->join('formations', 'formations.n_form', 'plan_formations.n_form')
@@ -300,8 +301,8 @@ class FormationController extends Controller
             $request->validate([
                 'groupe' => 'required|max:50',
                 'nb_benif' => 'required|max:50',
-                'hr_debut' => 'required|max:50',
-                'hr_fin' => 'required|max:50',
+                // 'hr_debut' => 'nullable|max:50',
+                // 'hr_fin' => 'nullable|max:50',
                 'pse_debut' => 'required|max:50',
                 'pse_fin' => 'required|max:50',
                 'date1' => 'date',
