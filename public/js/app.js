@@ -2223,6 +2223,83 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   runtimeCompiler: true,
   data: function data() {
@@ -2258,9 +2335,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       dates_actions: [],
       current_dates: null,
       isAllLoaded: false,
-      //title of page
+      // title of page
       title: {
-        ref_plan: ''
+        ref_plan: ""
       }
     };
   },
@@ -2273,11 +2350,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   methods: {
     DateFormat: function DateFormat(date) {
       if (date) {
-        var datestring = date.replace(/[^\w\s]/gi, '');
+        var datestring = date.replace(/[^\w\s]/gi, "");
         var year = datestring.charAt(0) + datestring.charAt(1) + datestring.charAt(2) + datestring.charAt(3);
         var month = datestring.charAt(4) + datestring.charAt(5);
         var day = datestring.charAt(6) + datestring.charAt(7);
-        return day + '/' + month + '/' + year;
+        return day + "/" + month + "/" + year;
       } else {// console.error("date is", date)
       }
     },
@@ -2290,7 +2367,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return axios.get('/fill-clients').then(function (res) {
+                return axios.get("/fill-clients").then(function (res) {
                   _this.clients = res.data; // console.log("clients : ", this.clients)
                 })["catch"](function (err) {
                   return console.error("err FillClients", err);
@@ -2314,7 +2391,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 _this2.ChangeFontSize();
 
-                console.log('nrc_entrp', _this2.nrc_entrp);
+                console.log("nrc_entrp", _this2.nrc_entrp);
                 _context2.next = 4;
                 return axios.get("/fill-reference-plan?nrcEntrp=".concat(_this2.nrc_entrp)).then(function (res) {
                   _this2.reference_plan = res.data;
@@ -2404,7 +2481,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   _this4.curr_cabinet_ncnss = res.data.ncnss;
                   _this4.curr_cabinet_adress = res.data.adress;
                   _this4.curr_cabinet_ville = res.data.ville;
-                  console.log('cabinet :', res.data);
+                  console.log("cabinet :", res.data);
                 })["catch"](function (err) {
                   return console.error("err FillCabinetInfo", err);
                 });
@@ -2507,11 +2584,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     ChangeFontSize: function ChangeFontSize() {
       if (this.actions_by_ref.length <= 3) {
-        document.querySelector('.paper').setAttribute('style', 'font-size: 18px; line-height: 2rem; font-family: \'Arial\', sans-serif;');
+        document.querySelector(".paper").setAttribute("style", "font-size: 18px; line-height: 2rem; font-family: 'Arial', sans-serif;");
       } else if (this.actions_by_ref.length <= 5) {
-        document.querySelector('.paper').setAttribute('style', 'font-size: 16px; line-height: 2rem; font-family: \'Arial\', sans-serif;');
+        document.querySelector(".paper").setAttribute("style", "font-size: 16px; line-height: 2rem; font-family: 'Arial', sans-serif;");
       } else {
-        document.querySelector('.paper').setAttribute('style', 'font-size: 15.5px; line-height: initial; font-family: \'Arial\', sans-serif;');
+        document.querySelector(".paper").setAttribute("style", "font-size: 15.5px; line-height: initial; font-family: 'Arial', sans-serif;");
       }
     }
   },
@@ -39753,7 +39830,7 @@ var render = function() {
             ],
             staticStyle: {
               width: "100%",
-              padding: ".5rem",
+              padding: "0.5rem",
               border: "1px solid #000"
             },
             attrs: { name: "client", id: "client" },
@@ -39787,7 +39864,7 @@ var render = function() {
               return _c(
                 "option",
                 { key: cl.nrc_entrp, domProps: { value: cl.nrc_entrp } },
-                [_vm._v(_vm._s(cl.raisoci))]
+                [_vm._v("\n          " + _vm._s(cl.raisoci) + "\n        ")]
               )
             })
           ],
@@ -39814,7 +39891,7 @@ var render = function() {
                 ],
                 staticStyle: {
                   width: "100%",
-                  padding: ".5rem",
+                  padding: "0.5rem",
                   border: "1px solid #000"
                 },
                 attrs: { name: "plans", id: "plans" },
@@ -39848,7 +39925,7 @@ var render = function() {
                   return _c(
                     "option",
                     { key: pdf.id_plan, domProps: { value: pdf.id_plan } },
-                    [_vm._v(_vm._s(pdf.refpdf))]
+                    [_vm._v("\n          " + _vm._s(pdf.refpdf) + "\n        ")]
                   )
                 })
               ],
@@ -39859,7 +39936,7 @@ var render = function() {
               {
                 staticStyle: {
                   width: "100%",
-                  padding: ".5rem",
+                  padding: "0.5rem",
                   border: "1px solid #000"
                 },
                 attrs: { name: "plans", id: "plans" }
@@ -39875,8 +39952,8 @@ var render = function() {
             staticClass: "btn-btn-primary",
             staticStyle: {
               background: "#00ff11",
-              margin: ".5rem 0",
-              padding: ".5rem"
+              margin: "0.5rem 0",
+              padding: "0.5rem"
             },
             attrs: { id: "dateBtn" },
             on: {
@@ -39897,7 +39974,7 @@ var render = function() {
       {
         staticClass: "paper",
         staticStyle: {
-          padding: ".5rem",
+          padding: "0.5rem",
           "font-family": "Calibri, 'Segoe UI', Geneva, Verdana, sans-serif",
           "background-color": "#fff",
           "font-size": "20px"
@@ -39911,7 +39988,7 @@ var render = function() {
               staticClass: "text-center",
               staticStyle: { "text-decoration": "underline", padding: "40px 0" }
             },
-            [_vm._v("ATTESTATION DE REFERENCE")]
+            [_vm._v("\n        ATTESTATION DE REFERENCE\n      ")]
           ),
           _vm._v(" "),
           _c(
@@ -39924,13 +40001,13 @@ var render = function() {
               }
             },
             [
-              _vm._v("\n        Nous soussignés,\n        « "),
+              _vm._v("\n        Nous soussignés, «\n        "),
               _c(
                 "strong",
                 { staticClass: "highlighted-danger", attrs: { id: "entrp" } },
                 [_vm._v(_vm._s(_vm.curr_client_raisoci || "(Entreprise)"))]
               ),
-              _vm._v(" »,\n\n        "),
+              _vm._v("\n        »,\n\n        "),
               _c(
                 "span",
                 {
@@ -39962,7 +40039,7 @@ var render = function() {
                   )
                 ]
               ),
-              _vm._v(" Dirhams,\n\n        dont le siège est sis à\n        "),
+              _vm._v("\n        Dirhams, dont le siège est sis à\n        "),
               _c(
                 "span",
                 {
@@ -40010,13 +40087,11 @@ var render = function() {
                       _vm._s(
                         _vm.curr_client_nom_dg1 || "(nom directeur entrp.)"
                       ) +
-                      "\n        "
+                      " "
                   )
                 ]
               ),
-              _vm._v(
-                ",\n\n        attestons par la présente que le Cabinet\n        "
-              ),
+              _vm._v(", attestons par la présente que le Cabinet\n        "),
               _c(
                 "span",
                 {
@@ -40028,7 +40103,7 @@ var render = function() {
                   _vm._v(
                     "\n          " +
                       _vm._s(_vm.curr_cabinet_raisoci || "(organisme)") +
-                      "\n        "
+                      " "
                   )
                 ]
               ),
@@ -40067,7 +40142,7 @@ var render = function() {
                 ]
               ),
               _vm._v(
-                " Dirhams,\n\n        inscrit au registre de commerce de\n        "
+                "\n        Dirhams, inscrit au registre de commerce de\n        "
               ),
               _c("span", [
                 _vm._v(
@@ -40076,7 +40151,7 @@ var render = function() {
                     "\n        "
                 )
               ]),
-              _vm._v(" sous le numéro\n        "),
+              _vm._v("\n        sous le numéro\n        "),
               _c(
                 "span",
                 {
@@ -40104,11 +40179,11 @@ var render = function() {
                   _vm._v(
                     "\n          " +
                       _vm._s(_vm.curr_cabinet_ncnss || "(CNSS organisme)") +
-                      "\n        "
+                      " "
                   )
                 ]
               ),
-              _vm._v(",\n\n        dont le siège social est sis au\n        "),
+              _vm._v(", dont le siège social est sis au\n        "),
               _c("span", { staticClass: "highlighted-danger" }, [
                 _vm._v(
                   "\n          " +
@@ -40117,7 +40192,7 @@ var render = function() {
                 )
               ]),
               _vm._v(
-                "\n\n        a réalisé pour le compte de notre société la mise en œuvre du plan du formation au titre de l’année\n        "
+                "\n\n        a réalisé pour le compte de notre société la mise en œuvre du plan du\n        formation au titre de l’année\n        "
               ),
               _c(
                 "span",
@@ -40127,13 +40202,11 @@ var render = function() {
                 },
                 [
                   _vm._v(
-                    "\n          " +
-                      _vm._s(_vm.curr_annee || "(année)") +
-                      "\n        "
+                    "\n          " + _vm._s(_vm.curr_annee || "(année)") + " "
                   )
                 ]
               ),
-              _vm._v(",\n\n        d’un budget de\n        "),
+              _vm._v(", d’un budget de\n        "),
               _c("strong", { staticClass: "highlighted-danger" }, [
                 _vm._v(
                   "\n          " +
@@ -40158,7 +40231,7 @@ var render = function() {
                   )
                 ]
               ),
-              _vm._v(" jours de formation.\n      ")
+              _vm._v("\n        jours de formation.\n      ")
             ]
           ),
           _vm._v(" "),
@@ -40199,7 +40272,7 @@ var render = function() {
                         _vm._v(
                           "\n              De " +
                             _vm._s(action.dates && action.dates.date_debut) +
-                            " à " +
+                            " à\n              " +
                             _vm._s(action.dates && action.dates.date_fin) +
                             "\n            "
                         )
@@ -40240,7 +40313,7 @@ var render = function() {
                 )
               ]),
               _vm._v(
-                " a répondu à nos attentes et a donné entière satisfaction.\n      "
+                "\n        a répondu à nos attentes et a donné entière satisfaction.\n      "
               )
             ]
           ),
@@ -40257,7 +40330,7 @@ var render = function() {
             },
             [
               _vm._v(
-                "\n        La présente attestation est établie pour servir et valoir ce que de droit.\n      "
+                "\n        La présente attestation est établie pour servir et valoir ce que de\n        droit.\n      "
               )
             ]
           ),
@@ -40287,13 +40360,14 @@ var render = function() {
                         "\n          "
                     )
                   ]),
-                  _vm._v(" le\n          "),
+                  _vm._v("\n          le\n          "),
                   _c("input", {
                     staticStyle: { width: "45%", "font-size": "17px" },
                     attrs: { type: "date", name: "", id: "lastDate" }
                   })
                 ]
               ),
+              _vm._v(" "),
               _c(
                 "div",
                 {
@@ -40307,7 +40381,7 @@ var render = function() {
                       staticClass: "select highlighted",
                       staticStyle: { "font-size": "16px" }
                     },
-                    [_vm._v("\n              Direction\n            ")]
+                    [_vm._v("\n            Direction\n          ")]
                   ),
                   _vm._v(" "),
                   _c(
@@ -40318,9 +40392,9 @@ var render = function() {
                     },
                     [
                       _vm._v(
-                        "\n              " +
+                        "\n            " +
                           _vm._s(_vm.curr_client_raisoci || "(entreprise)") +
-                          "\n            "
+                          "\n          "
                       )
                     ]
                   )
