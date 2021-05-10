@@ -484,14 +484,9 @@
                 </a>
                 <!-- * ITEMS SUB MENU -->
                 <ul class="nav nav-treeview ml-3">
+                  
                   <li class="nav-item">
-                    <a href="/add-drb-of" class="nav-link">
-                    <i class="fa fa-plus-circle nav-icon"></i>
-                    <p>Ajout</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="/drb-of" class="nav-link">
+                    <a href="/list-drb" class="nav-link">
                     <i class="fa fa-list nav-icon"></i>
                     <p>Liste</p>
                     </a>
