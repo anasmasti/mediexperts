@@ -24,13 +24,13 @@
           <div class="row">
               <div class="form-group col-lg-3 col-sm-12" style="margin : auto ;">
               <label>E/S</label>
-              <input class="form-control" value="" type="text" id="entr_soc" name="montant_entrp_ht" placeholder="Entreprise.." readonly>
+              <input class="form-control" value="" type="text" id="nrc_entrp" name="nrc_entrp" placeholder="Entreprise.." readonly>
               </div>
 
 
               <div class="form-group col-lg-3 col-sm-12" style="margin : auto ;">
                 <label>RefPdf</label>
-                <input class="form-control" value="" type="text" id="ref_pdf" name="ref_pdf" placeholder="RefPdf.." readonly>
+                <input class="form-control" value="" type="text" id="refpdf" name="refpdf" placeholder="RefPdf.." readonly>
               </div>
 
               <div class="form-group col-lg-3 col-sm-12" style="margin : auto ;">
@@ -90,15 +90,15 @@
                     <div class="form-group">
                       <div class="custom-control custom-checkbox">
                         <input type="checkbox" name="model5" id="model5" class="custom-control-input"/>
-                        <label for="mod5" class="custom-control-label">Modéle 5</label>
+                        <label for="model5" class="custom-control-label">Modéle 5</label>
                       </div>
                       <div class="custom-control custom-checkbox">
-                        <input type="checkbox" name="fiche_eval_synth" id="fiche_eval_synth" class="custom-control-input"/>
-                        <label for="fiche-ev-syn" class="custom-control-label">Fiche d'évaluation synthétique</label>
+                        <input type="checkbox" name="fiche_eval_sythetique" id="fiche_eval_sythetique" class="custom-control-input"/>
+                        <label for="fiche_eval_sythetique" class="custom-control-label">Fiche d'évaluation synthétique</label>
                       </div>
                       <div class="custom-control custom-checkbox">
                         <input type="checkbox" name="model6" id="model6" class="custom-control-input"/>
-                        <label for="mod6" class="custom-control-label">Modéle 6</label>
+                        <label for="model6" class="custom-control-label">Modéle 6</label>
                       </div>
                     </div>
                   </div>
@@ -106,24 +106,24 @@
                     <label class="h5">Justifs Règlement</label>
                     <div class="form-group">
                       <div class="custom-control custom-checkbox">
-                        <input type="checkbox" name="facture_PF" id="facture_PF" class="custom-control-input"/>
-                        <label for="fact" class="custom-control-label">Factures</label>
+                        <input type="checkbox" name="factures" id="factures" class="custom-control-input"/>
+                        <label for="factures" class="custom-control-label">Factures</label>
                       </div>
                       <div class="custom-control custom-checkbox">
-                        <input type="checkbox" name="cop-cheq" id="cop-cheq" class="custom-control-input"/>
-                        <label for="cop-cheq" class="custom-control-label">Compries cheques / OV / LC</label>
+                        <input type="checkbox" name="compris_cheques" id="compris_cheques" class="custom-control-input"/>
+                        <label for="compris_cheques" class="custom-control-label">Compries cheques / OV / LC</label>
                       </div>
                       <div class="custom-control custom-checkbox">
-                        <input type="checkbox" name="remise_avis" id="remise_avis" class="custom-control-input"/>
-                        <label for="cop-rem" class="custom-control-label">Compries remises / Avis de débit</label>
+                        <input type="checkbox" name="compris_remise" id="compris_remise" class="custom-control-input"/>
+                        <label for="compris_remise" class="custom-control-label">Compries remises / Avis de débit</label>
                       </div>
                       <div class="custom-control custom-checkbox">
-                        <input type="checkbox" name="justif_paiem_entrp" id="justif_paiem_entrp" class="custom-control-input"/>
-                        <label for="relv-bq-soc" class="custom-control-label">Relevés bq societé</label>
+                        <input type="checkbox" name="relev_bq_societe" id="relev_bq_societe" class="custom-control-input"/>
+                        <label for="relev_bq_societe" class="custom-control-label">Relevés bq societé</label>
                       </div>
                       <div class="custom-control custom-checkbox">
-                        <input type="checkbox" name="justif_paiem_cab" id="justif_paiem_cab" class="custom-control-input"/>
-                        <label for="relv-bq-cab" class="custom-control-label">Relevés bq cabinet</label>
+                        <input type="checkbox" name="cabinet" id="cabinet" class="custom-control-input"/>
+                        <label for="cabinet" class="custom-control-label">Relevés bq cabinet</label>
                       </div>    
                     </div>
                   </div>
@@ -135,13 +135,13 @@
 
             <div class="form-group col-lg-3 col-sm-12">
               <label>Date dépot demande de Remboursement</label>
-              <input class="form-control" type="text" name="dt_dep_dem_rem" id="dt_dep_dem_rem" onmouseover="(this.type='date')"  placeholder="Date réalisation">
+              <input class="form-control" type="text" name="date_depot_dmd_rembrs" id="date_depot_dmd_rembrs" onmouseover="(this.type='date')"  placeholder="Date réalisation">
             </div>
 
             <div class="form-group col-lg-3 col-sm-12" style="margin : auto ;">
               <div class="custom-control custom-checkbox">
-                <input type="checkbox" name="acc_mod6" id="acc_mod6" class="custom-control-input">
-                <label for="acc_mod6" class="custom-control-label">Accusé Modele 6</label>
+                <input type="checkbox" name="accuse_model6" id="accuse_model6" class="custom-control-input">
+                <label for="accuse_model6" class="custom-control-label">Accusé Modele 6</label>
               </div>
             </div>
 
@@ -181,12 +181,12 @@
 
           <div class="form-group col-lg-3 col-sm-12" style="margin : auto ;">
               <label>Montant de Remboursement</label>
-              <input class="form-control" value="" type="text" id="montant_rmb" name="montant_rmb" placeholder="Montant Remboursement">
+              <input class="form-control" value="" type="text" id="montant_rembrs" name="montant_rembrs" placeholder="Montant Remboursement">
           </div>
 
           <div class="form-group col-lg-3 col-sm-12" style="margin : auto ;">
               <label>Date Remboursement</label>
-              <input class="form-control" type="text" name="dt_rem" id="dt_rem" onmouseover="(this.type='date')"  placeholder="Date réalisation">    
+              <input class="form-control" type="text" name="date_rembrs" id="date_rembrs" onmouseover="(this.type='date')"  placeholder="Date réalisation">    
           </div>
 
           <div class="form-group col-12 text-center" style="margin-top: 2rem ;">
