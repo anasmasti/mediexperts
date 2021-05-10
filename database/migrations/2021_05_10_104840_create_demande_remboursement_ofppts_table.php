@@ -14,24 +14,24 @@ class CreateDemandeRemboursementOfpptsTable extends Migration
     public function up()
     {
         Schema::create('demande_remboursement_ofppts', function (Blueprint $table) {
-            $table->bigIncrements('n_drf');
-            $table->bigInteger('nrc_entrp'); //FK
-            $table->string('refpdf');
+            $table->increments('n_drf');
+            $table->string('refpdf',100);
             $table->integer('n_contrat');
-            $table->string('model5');
-            $table->string('model6');
-            $table->string('accuse_model6');
-            $table->string('fiche_eval_sythetique');
-            $table->string('factures');
-            $table->string('compris_cheques');
-            $table->string('compris_remise');
-            $table->string('relev_bq_societe');
-            $table->string('cabinet');
+            $table->string('model5',100);
+            $table->string('model6',100);
+            $table->string('accuse_model6',100);
+            $table->string('fiche_eval_sythetique',100);
+            $table->string('factures',100);
+            $table->string('compris_cheques',100);
+            $table->string('compris_remise',100);
+            $table->string('relev_bq_societe',100);
+            $table->string('cabinet',100);
             $table->date('date_depot_dmd_rembrs');
             $table->date('date_rembrs');
-            $table->string('montant_rembrs');
-            $table->string('etat');
-            $table->integer('id_plan'); //FK
+            $table->string('montant_rembrs',100);
+            $table->string('etat',100);
+            $table->unsignedBigInteger('id_plan'); //FK
+            $table->unsignedBigInteger('nrc_entrp'); //FK
             $table->timestamps();
 
             $table->foreign('id_plan')
