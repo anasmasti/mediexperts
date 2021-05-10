@@ -46492,14 +46492,22 @@ var render = function() {
                 },
                 [
                   _vm._v(
+<<<<<<< HEAD
+                    "\r\n        J’atteste sur l’honneur que le bilan de réalisation du plan de formation de notre entreprise au titre de l’exercice "
+=======
                     "\n          J’atteste sur l’honneur que le bilan de réalisation du plan de\n          formation de notre entreprise au titre de l’exercice\n          "
+>>>>>>> 58bab2c1836ad494f366c9f46e49ee4b2f2226ee
                   ),
                   _c(
                     "span",
                     { staticStyle: { "background-color": "yellow" } },
                     [_vm._v(_vm._s(info.annee))]
                   ),
+<<<<<<< HEAD
+                  _vm._v("  Se présente comme suit :\r\n      ")
+=======
                   _vm._v(" Se\n          présente comme suit :\n        ")
+>>>>>>> 58bab2c1836ad494f366c9f46e49ee4b2f2226ee
                 ]
               )
             ]),
@@ -46563,24 +46571,40 @@ var render = function() {
                     [
                       _c("td", [
                         _vm._v(
+<<<<<<< HEAD
+                          "\r\n          Actions prévues dans le plan de formation année  "
+=======
                           "\n            Actions prévues dans le plan de formation année\n            "
+>>>>>>> 58bab2c1836ad494f366c9f46e49ee4b2f2226ee
                         ),
                         _c("span", [_vm._v(_vm._s(info.annee))])
                       ]),
                       _vm._v(" "),
                       _c("td", [
+<<<<<<< HEAD
+                        _vm._v("\r\n          Action réalisée (*)\r\n        ")
+=======
                         _vm._v("\n            Action réalisée (*)\n          ")
+>>>>>>> 58bab2c1836ad494f366c9f46e49ee4b2f2226ee
                       ]),
                       _vm._v(" "),
                       _c("td", [
                         _vm._v(
+<<<<<<< HEAD
+                          "\r\n        Dossier de remboursement déposé à l’UG CSF (*)\r\n        "
+=======
                           "\n            Dossier de remboursement déposé à l’UG CSF (*)\n          "
+>>>>>>> 58bab2c1836ad494f366c9f46e49ee4b2f2226ee
                         )
                       ]),
                       _vm._v(" "),
                       _c("td", [
                         _vm._v(
+<<<<<<< HEAD
+                          "\r\n          Observations (Raisons expliquant la non réalisation)\r\n        "
+=======
                           "\n            Observations (Raisons expliquant la non réalisation)\n          "
+>>>>>>> 58bab2c1836ad494f366c9f46e49ee4b2f2226ee
                         )
                       ])
                     ]
@@ -46640,7 +46664,11 @@ var render = function() {
             _vm._v(" "),
             _c("label", { staticStyle: { "font-weight": "bold" } }, [
               _vm._v(
+<<<<<<< HEAD
+                "\r\n      NB : L’acceptation du financement de l’ingénierie de l’année N par le CCE du GIAC dépend du taux de réalisation du plan de formation de l’année N-1\r\n    "
+=======
                 "\n        NB : L’acceptation du financement de l’ingénierie de l’année N par le\n        CCE du GIAC dépend du taux de réalisation du plan de formation de\n        l’année N-1\n      "
+>>>>>>> 58bab2c1836ad494f366c9f46e49ee4b2f2226ee
               )
             ])
           ]),
@@ -46653,7 +46681,11 @@ var render = function() {
             },
             [
               _c("label", { attrs: { for: "Directeur" } }, [
+<<<<<<< HEAD
+                _vm._v(" DIRECTION :\r\n      "),
+=======
                 _vm._v("\n        DIRECTION :\n        "),
+>>>>>>> 58bab2c1836ad494f366c9f46e49ee4b2f2226ee
                 _c("span", { staticStyle: { "background-color": "yellow" } }, [
                   _vm._v(" " + _vm._s(info.raisoci) + " ")
                 ]),

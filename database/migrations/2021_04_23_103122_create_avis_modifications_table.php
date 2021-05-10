@@ -67,11 +67,11 @@ class CreateAvisModificationsTable extends Migration
             $table->boolean('old_pause')->default(false);
 
 
-            $table->foreign('n_form')
-            ->references('id_form')
-            ->on('plan_formations')
-            ->onUpdate('cascade')
-            ->onDelete('cascade');
+            // $table->foreign('n_form')
+            // ->references('id_form')
+            // ->on('plan_formations')
+            // ->onUpdate('cascade')
+            // ->onDelete('cascade');
 
             $table->foreign('n_form')
             ->references('n_form')
