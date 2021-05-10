@@ -14,7 +14,7 @@ class CreateDemandeRemboursementOfpptsTable extends Migration
     public function up()
     {
         Schema::create('demande_remboursement_ofppts', function (Blueprint $table) {
-            $table->bigIncrements('n_drf')->primary();
+            $table->bigIncrements('n_drf');
             $table->bigInteger('nrc_entrp'); //FK
             $table->string('refpdf');
             $table->integer('n_contrat');
