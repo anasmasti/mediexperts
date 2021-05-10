@@ -3684,6 +3684,47 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -3701,7 +3742,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       title: ""
     };
   },
-  updated: function updated() {},
+  updated: function updated() {
+    this.SetTitle();
+  },
   mounted: function mounted() {
     this.$store.dispatch("G6/FetchClients");
   },
@@ -3734,7 +3777,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         var total_prevus = data.length;
 
         for (item in data) {
-          if (data[item].etat_formation == 'réalisé') {
+          if (data[item].etat_formation == "réalisé") {
             counter = counter + 1;
           }
         }
@@ -9295,7 +9338,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.desabled-checkbox[data-v-470f8774] {\n  filter: blur(8px);\n  -webkit-filter: blur(8px);\n  cursor: no-drop;\n}\n", ""]);
+exports.push([module.i, "\n.desabled-checkbox[data-v-470f8774] {\r\n  filter: blur(8px);\r\n  -webkit-filter: blur(8px);\r\n  cursor: no-drop;\n}\r\n", ""]);
 
 // exports
 
@@ -45009,8 +45052,7 @@ var render = function() {
                                 "G6/FecthSelectedRefG6Info",
                                 _vm.id_plan
                               ),
-                              _vm.CalculNombreActionRealise(),
-                              _vm.SetTitle()
+                              _vm.CalculNombreActionRealise()
                           }
                         ]
                       }
@@ -45081,7 +45123,7 @@ var render = function() {
                   staticStyle: { "font-size": "15px" },
                   attrs: { for: "raison_social" }
                 },
-                [_vm._v(" Raison Social :")]
+                [_vm._v("\n          Raison Social :")]
               ),
               _vm._v(" "),
               _c("span", { staticStyle: { "background-color": "yellow" } }, [
@@ -45113,21 +45155,21 @@ var render = function() {
                 },
                 [
                   _vm._v(
-                    "\n        J’atteste sur l’honneur que le bilan de réalisation du plan de formation de notre entreprise au titre de l’exercice "
+                    "\n          J’atteste sur l’honneur que le bilan de réalisation du plan de\n          formation de notre entreprise au titre de l’exercice\n          "
                   ),
                   _c(
                     "span",
                     { staticStyle: { "background-color": "yellow" } },
                     [_vm._v(_vm._s(info.annee))]
                   ),
-                  _vm._v("  Se présente comme suit :\n      ")
+                  _vm._v(" Se\n          présente comme suit :\n        ")
                 ]
               )
             ]),
             _vm._v(" "),
             _c("div", { staticStyle: { "margin-top": "5px" } }, [
               _c("label", { staticStyle: { "font-size": "15px" } }, [
-                _vm._v("Nombre des actions réalisées (1)  = ")
+                _vm._v("Nombre des actions réalisées (1) =\n        ")
               ]),
               _vm._v(" "),
               _c("span", { staticStyle: { "background-color": "yellow" } }, [
@@ -45137,11 +45179,15 @@ var render = function() {
             _vm._v(" "),
             _c("div", { staticStyle: { "margin-top": "5px" } }, [
               _c("label", { staticStyle: { "font-size": "15px" } }, [
-                _vm._v("Nombre total des actions prévues (2)  = ")
+                _vm._v("Nombre total des actions prévues (2) =\n        ")
               ]),
               _vm._v(" "),
               _c("span", { staticStyle: { "background-color": "yellow" } }, [
-                _vm._v(" " + _vm._s(_vm.actions_by_plan.length) + " ")
+                _vm._v(
+                  "\n          " +
+                    _vm._s(_vm.actions_by_plan.length) +
+                    "\n        "
+                )
               ])
             ]),
             _vm._v(" "),
@@ -45152,7 +45198,7 @@ var render = function() {
               _vm._v(" "),
               _c("span", { staticStyle: { "background-color": "yellow" } }, [
                 _vm._v(
-                  " " +
+                  "\n          " +
                     _vm._s(
                       _vm.nombreActionReas == 0
                         ? (_vm.tauxReas = 0)
@@ -45180,24 +45226,24 @@ var render = function() {
                     [
                       _c("td", [
                         _vm._v(
-                          "\n          Actions prévues dans le plan de formation année  "
+                          "\n            Actions prévues dans le plan de formation année\n            "
                         ),
                         _c("span", [_vm._v(_vm._s(info.annee))])
                       ]),
                       _vm._v(" "),
                       _c("td", [
-                        _vm._v("\n          Action réalisée (*)\n        ")
+                        _vm._v("\n            Action réalisée (*)\n          ")
                       ]),
                       _vm._v(" "),
                       _c("td", [
                         _vm._v(
-                          "\n        Dossier de remboursement déposé à l’UG CSF (*)\n        "
+                          "\n            Dossier de remboursement déposé à l’UG CSF (*)\n          "
                         )
                       ]),
                       _vm._v(" "),
                       _c("td", [
                         _vm._v(
-                          "\n          Observations (Raisons expliquant la non réalisation)\n        "
+                          "\n            Observations (Raisons expliquant la non réalisation)\n          "
                         )
                       ])
                     ]
@@ -45205,14 +45251,14 @@ var render = function() {
                   _vm._v(" "),
                   _vm._l(_vm.actions_by_plan, function(action, index) {
                     return _c("tr", { key: index, staticClass: "center" }, [
-                      _c("td", [_vm._v(" " + _vm._s(action.nom_theme) + " ")]),
+                      _c("td", [_vm._v(_vm._s(action.nom_theme))]),
                       _vm._v(" "),
                       action.etat_formation == "réalisé"
-                        ? _c("td", [_vm._v(" Oui ")])
+                        ? _c("td", [_vm._v("Oui")])
                         : _vm._e(),
                       _vm._v(" "),
                       action.etat_formation != "réalisé"
-                        ? _c("td", [_vm._v(" Non ")])
+                        ? _c("td", [_vm._v("Non")])
                         : _vm._e(),
                       _vm._v(" "),
                       action.etat_formation == "réalisé"
@@ -45246,10 +45292,10 @@ var render = function() {
             _vm._v(" "),
             _c("label", [
               _vm._v(
-                "(**) Ce taux doit être au minimum de 30% pour l’exercice "
+                "(**) Ce taux doit être au minimum de 30% pour l’exercice\n        "
               ),
               _c("span", { staticStyle: { "background-color": "yellow" } }, [
-                _vm._v(" " + _vm._s(info.annee) + " ")
+                _vm._v("\n          " + _vm._s(info.annee) + "\n        ")
               ])
             ]),
             _vm._v(" "),
@@ -45257,7 +45303,7 @@ var render = function() {
             _vm._v(" "),
             _c("label", { staticStyle: { "font-weight": "bold" } }, [
               _vm._v(
-                "\n      NB : L’acceptation du financement de l’ingénierie de l’année N par le CCE du GIAC dépend du taux de réalisation du plan de formation de l’année N-1\n    "
+                "\n        NB : L’acceptation du financement de l’ingénierie de l’année N par le\n        CCE du GIAC dépend du taux de réalisation du plan de formation de\n        l’année N-1\n      "
               )
             ])
           ]),
@@ -45270,7 +45316,7 @@ var render = function() {
             },
             [
               _c("label", { attrs: { for: "Directeur" } }, [
-                _vm._v(" DIRECTION :\n      "),
+                _vm._v("\n        DIRECTION :\n        "),
                 _c("span", { staticStyle: { "background-color": "yellow" } }, [
                   _vm._v(" " + _vm._s(info.raisoci) + " ")
                 ]),
@@ -45328,11 +45374,13 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("label", { staticStyle: { "margin-top": "10px" } }, [
-      _vm._v("Fait le : "),
+      _vm._v("Fait le :\n          "),
       _c("span", { staticStyle: { "background-color": "yellow" } }, [
-        _vm._v(" ......................................... ")
+        _vm._v(
+          "\n            .........................................\n          "
+        )
       ]),
-      _vm._v(" Cachet de l’entreprise et signature")
+      _vm._v("\n          Cachet de l’entreprise et signature")
     ])
   }
 ]
