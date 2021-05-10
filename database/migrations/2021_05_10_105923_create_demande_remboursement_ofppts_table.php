@@ -26,7 +26,7 @@ class CreateDemandeRemboursementOfpptsTable extends Migration
             $table->string('compris_cheques');
             $table->string('compris_remise');
             $table->string('relev_bq_societe');
-            $table->string('cabinet');
+            $table->string('relev_bq_cabinet');
             $table->date('date_depot_dmd_rembrs');
             $table->date('date_rembrs');
             $table->string('montant_rembrs');

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\{Plan,Client, Intervenant};
+use App\Plan,Client, Intervenant,App\DemandeRemboursementOfppt;
 use Dotenv\Validator;
 
 //Plan Formation
@@ -102,6 +102,28 @@ class PlanController extends Controller
             if ($count_refpdf_deja > 0) {
               $request->session()->flash('error', 'Vous avez déjà saisi un plan avec la même année!');
               return view('plan.add', ['plans' => $plans, 'client' => $client])->with('error');
+            }
+
+            if ($plans->etat == 'réalisé') {
+              $drb = new DemandeRemboursementOfppt();
+              $drb->id_plan = $plans->id_plan;
+              $drb->refpdf = $plans->refpdf;
+              $drb->nrc_entrp = $plans->nrc_e;
+              $drb->n_contrat = $plans->n_contrat;
+              $drb->etat = 'initié';
+              $drb->montant_rembrs = '0';
+              $drb->date_depot_dmd_rembrs = '01/01/2020';
+              $drb->date_rembrs = '01/01/2020';
+              $docs = ['model5','model6','accuse_model6','fiche_eval_sythetique',
+                        'factures','compris_cheques','compris_remise',
+                        'relev_bq_societe','relev_bq_cabinet'];
+                foreach ($docs as $doc) {
+
+                    $drb->$doc = "non préparé";
+
+              }
+            $request->session()->flash('Demande de remboursement a été initialisé');
+            //response("DR OFPPT has been intitialied");
             }
             $plans->save();
 
