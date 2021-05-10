@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Plan,Client, Intervenant,App\DemandeRemboursementOfppt;
+use App\{Plan,Client, Intervenant,DemandeRemboursementOfppt};
 use Dotenv\Validator;
 
 //Plan Formation
@@ -104,7 +104,9 @@ class PlanController extends Controller
               return view('plan.add', ['plans' => $plans, 'client' => $client])->with('error');
             }
 
-            if ($plans->etat == 'réalisé') {
+            $plans->save();
+
+            if ($request->input("etat") == "réalisé") {
               $drb = new DemandeRemboursementOfppt();
               $drb->id_plan = $plans->id_plan;
               $drb->refpdf = $plans->refpdf;
@@ -112,8 +114,9 @@ class PlanController extends Controller
               $drb->n_contrat = $plans->n_contrat;
               $drb->etat = 'initié';
               $drb->montant_rembrs = '0';
-              $drb->date_depot_dmd_rembrs = '01/01/2020';
-              $drb->date_rembrs = '01/01/2020';
+              $drb->date_depot_dmd_rembrs = '2020-01-01';
+              $drb->date_rembrs = '2020-01-01';
+
               $docs = ['model5','model6','accuse_model6','fiche_eval_sythetique',
                         'factures','compris_cheques','compris_remise',
                         'relev_bq_societe','relev_bq_cabinet'];
@@ -122,12 +125,13 @@ class PlanController extends Controller
                     $drb->$doc = "non préparé";
 
               }
-            $request->session()->flash('Demande de remboursement a été initialisé');
-            //response("DR OFPPT has been intitialied");
+              $request->session()->flash('warning', 'Demande de remboursement a été initialisé');
             }
-            $plans->save();
+
+            $drb->save();
 
             $request->session()->flash('added', 'Ajouté avec succès');
+
             return view('plan.add', ['plans' => $plans, 'client' => $client])->with('success');
         }
         else {
