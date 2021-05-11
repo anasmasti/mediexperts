@@ -3,9 +3,31 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\DemandeRemboursementOfppt;
 class DemandeRemboursementOfpptController extends Controller
 {
+    public function index(){
+        return view('DRB_Ofppt.view');
+    }
+    // public function edit(Request $request, $n_drf){
+    //     $pln = DemandeRemboursementOfppt::findOrFail($n_drf);
+    //     return view('DRB_Ofppt.edit',['pln '=>$pln ]);
+    // }
+
+    //liste de demande de remboursement 
+    public function Show(){
+        $pln = DemandeRemboursementOfppt::All();
+        return response()->json($pln);
+    }
+
+    public function edit(Request $request ){
+    //     $n_drf = DemandeRemboursementOfppt::select('demande_remboursement_ofppts.*')
+    //         ->where(['demande_remboursement_ofppts.n_drf', $n_drf])
+    //         ->first();
+    //   return view('DRB_OFPPT.edit', ['n_drf' => $n_drf]);
+    return view('DRB_OFPPT.edit');
+    }
+
     public function update(Request $request, $n_drf)
     {
         if ($request -> isMethod('POST')) {
@@ -36,7 +58,7 @@ class DemandeRemboursementOfpptController extends Controller
               'compris_cheques',
               'compris_remise',
               'relev_bq_societe',
-              'cabinet']
+              'relev_bq_cabinet'];
 
             foreach ($docs as $doc) {
                 if ($request->input($doc) != null) {

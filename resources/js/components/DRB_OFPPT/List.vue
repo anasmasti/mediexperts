@@ -24,20 +24,18 @@
           <th>Etat</th>
           <th>RefPdf</th>
           <th>Plan de formation</th>
-          <th>Année</th>
           <th class="action">Action</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>Test</td>
-          <td>Test</td>
-          <td>Test</td>
-          <td class="th-last d-inline-block text-truncate">Test</td>
+        <tr v-for="DRB_Ofppt in DRB_Ofppts" :key="DRB_Ofppt.n_drf">
+          <td>{{DRB_Ofppt.etat}}</td>
+          <td>{{DRB_Ofppt.refpdf}}</td>
+          <td class="th-last d-inline-block text-truncate">{{DRB_Ofppt.id_plan}}</td>
           <!-- <form method="GET"> -->
             <td class="action">
               <a href="/detail-drb-of" class="btn btn-primary" ><i class="fa fa-eye" style="color: white ;"></i></a>
-              <a href="/edit-drb" class="btn btn-warning"><i class="fa fa-edit"></i></a>
+              <a href="/edit-drb-ofppt" @click="sendnrdf(DRB_Ofppt.n_drf)" class="btn btn-warning"><i class="fa fa-edit"></i></a>
               <a class="btn btn-danger" ><i class="fa fa-trash-alt" style="color: white ;"></i></a>
             </td>
           <!-- </form> -->
@@ -53,18 +51,37 @@
 </div><!-- ./CARD -->
 
 </template>
-
-<script>
-export default {
-  mounted(){
-    
-      console.log("Hello from listVue")
-    
-  }
-
-}
-</script>
-
+ <script>
+import { mapState, mapActions } from 'vuex';
+ export default {
+            name: "DRB_Ofppts",
+             data() {
+               return {
+                  //  DRB_Ofppts: []
+               }
+             },
+            mounted() {
+              // this.$store.dispatch("DRB_OFPPT/getListOfDROfppt");
+              this.getListOfDROfppt
+            },
+            methods:{
+              sendnrdf(n_drf){
+                const parsed = JSON.stringify(n_drf);
+                localStorage.setItem('n_drb',parsed);
+              }
+            },
+            computed: {
+              ...mapState ("DRB_Ofppt", {
+                  DRB_Ofppts: state => state.DRB_Ofppts,
+              }),
+               
+              ...mapActions ("DRB_Ofppt", {
+                  getListOfDROfppt: 'getListOfDROfppt'
+              })
+               
+            }
+        }
+    </script>
 <style>
 
 </style>

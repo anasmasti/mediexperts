@@ -250,15 +250,22 @@ export default {
   name : "Edit" ,
   data() {
         return {
-            users: [
-                { firstName: 'Frank', lastName: 'Murphy', email: 'frank.murphy@test.com', role: 'User' },
-                { firstName: 'Vic', lastName: 'Reynolds', email: 'vic.reynolds@test.com', role: 'Admin' },
-                { firstName: 'Gina', lastName: 'Jabowski', email: 'gina.jabowski@test.com', role: 'Admin' },
-            ],
-            Dare: ''
-
+            ndrf: [],
+          
         };
     },
+  mounted() {
+    this.ndrf = JSON.parse(localStorage.getItem("n_drb"));
+          this.clearLS();
+  },
+  methods:{
+    clearLS(){
+      localStorage.clear();
+    },
+    returnNdrf(){
+
+    }
+  }
 }
 </script>
 
