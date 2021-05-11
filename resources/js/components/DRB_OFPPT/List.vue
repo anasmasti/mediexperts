@@ -24,7 +24,6 @@
           <th>Etat</th>
           <th>RefPdf</th>
           <th>Plan de formation</th>
-          <th>Année</th>
           <th class="action">Action</th>
         </tr>
       </thead>
@@ -33,18 +32,24 @@
           <td>Test</td>
           <td>Test</td>
           <td>Test</td>
-          <td class="th-last d-inline-block text-truncate">Test</td>
           <!-- <form method="GET"> -->
             <td class="action">
-              <a href="/detail-drb-of" class="btn btn-primary" ><i class="fa fa-eye" style="color: white ;"></i></a>
-              <a href="/edit-drb" class="btn btn-warning"><i class="fa fa-edit"></i></a>
+              <a href="/detail-drb-of" @click="SendId()" class="btn btn-primary" ><i class="fa fa-eye" style="color: white ;"></i></a>
+              <a href="#" @click="SendId()" class="btn btn-warning"><i class="fa fa-edit"></i></a>
               <a class="btn btn-danger" ><i class="fa fa-trash-alt" style="color: white ;"></i></a>
             </td>
           <!-- </form> -->
         </tr>
+        <!-- <h1>{{ this.testttttt }}</h1> -->
+        <!-- <button type="submit" @click="Testt()">click</button> -->
+        
       </tbody>
       
     </table>
+
+    <input v-model="id">
+    <!-- <button @click="SendId">Send</button> -->
+
   </div><!-- ./card-body -->
 
   <div class="card-footer">
@@ -55,13 +60,47 @@
 </template>
 
 <script>
-export default {
-  mounted(){
-    
-      console.log("Hello from listVue")
-    
-  }
 
+export default {
+  data(){
+        return{
+          id : [],
+          // testttttt: 'test'
+        }
+  },
+  // mounted(){
+    
+  //     if(localStorage.notes){
+  //       this.notes = localStorage.notes;
+  //     }
+    
+  // },
+  // watch: {
+  //   notes(newNotes){
+  //     localStorage.notes = newNotes ; 
+  //   }
+  // },
+  methods:{
+    SendId() {
+      const parsed = JSON.stringify(this.id);
+      localStorage.setItem('n_drb', parsed);
+    },
+    Test(){
+      console.log("Test");
+    }
+  },
+  // created : function(){
+  //   this.localData();
+  // },
+  // methods: {
+  //   localData(){
+  //     localStorage.setItem=('data','Test')
+  //   }
+  // },
+  // setInterval(() => {
+    
+  // }, 1000);
+  
 }
 </script>
 

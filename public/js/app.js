@@ -3528,7 +3528,95 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      cats: [],
+      newCat: null,
+      tst: []
+    };
+  },
+  mounted: function mounted() {
+    var Id = JSON.parse(localStorage.getItem("n_drb"));
+    this.tst = Id;
+    this.clearLS();
+  },
+  // mounted() {
+  //   if (localStorage.getItem('cats')) {
+  //     try {
+  //       this.cats = JSON.parse(localStorage.getItem('cats'));
+  //     } catch(e) {
+  //       localStorage.removeItem('cats');
+  //     }
+  //   }
+  // },
+  methods: {
+    addCat: function addCat() {
+      if (!this.newCat) {
+        return;
+      }
+
+      this.cats.push(this.newCat);
+      this.newCat = '';
+      this.saveCats();
+    },
+    removeCat: function removeCat(x) {
+      this.cats.splice(x, 1);
+      this.saveCats();
+    },
+    saveCats: function saveCats() {
+      var parsed = JSON.stringify(this.cats);
+      localStorage.setItem('cats', parsed);
+    },
+    clearLS: function clearLS() {
+      localStorage.clear();
+    }
+  }
+});
 
 /***/ }),
 
@@ -3879,10 +3967,47 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  mounted: function mounted() {
-    console.log("Hello from listVue");
-  }
+  data: function data() {
+    return {
+      id: [] // testttttt: 'test'
+
+    };
+  },
+  // mounted(){
+  //     if(localStorage.notes){
+  //       this.notes = localStorage.notes;
+  //     }
+  // },
+  // watch: {
+  //   notes(newNotes){
+  //     localStorage.notes = newNotes ; 
+  //   }
+  // },
+  methods: {
+    SendId: function SendId() {
+      var parsed = JSON.stringify(this.id);
+      localStorage.setItem('n_drb', parsed);
+    },
+    Test: function Test() {
+      console.log("Test");
+    }
+  } // created : function(){
+  //   this.localData();
+  // },
+  // methods: {
+  //   localData(){
+  //     localStorage.setItem=('data','Test')
+  //   }
+  // },
+  // setInterval(() => {
+  // }, 1000);
+
 });
 
 /***/ }),
@@ -45349,7 +45474,40 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("h1", [_vm._v("Testtttt")])
+  return _c(
+    "div",
+    { attrs: { id: "app" } },
+    [
+      _c("h2", [_vm._v("Chats")]),
+      _vm._v(" "),
+      _vm._l(_vm.cats, function(cat, n) {
+        return _c("div", { key: cat.id }, [
+          _c("p", [
+            _c("span", { staticClass: "cat" }, [_vm._v(_vm._s(cat))]),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                on: {
+                  click: function($event) {
+                    return _vm.removeCat(n)
+                  }
+                }
+              },
+              [_vm._v("Enlever")]
+            )
+          ])
+        ])
+      }),
+      _vm._v(" "),
+      _c("p", [
+        _c("input", { domProps: { value: _vm.tst } }),
+        _vm._v(" "),
+        _c("button", { on: { click: _vm.addCat } }, [_vm._v("Ajouter un chat")])
+      ])
+    ],
+    2
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -46137,110 +46295,139 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "card card-dark" }, [
+    _vm._m(0),
+    _vm._v(" "),
+    _c("div", { staticClass: "card-body table-striped p-0" }, [
+      _c("table", { staticClass: "table table-md" }, [
+        _vm._m(1),
+        _vm._v(" "),
+        _c("tbody", [
+          _c("tr", [
+            _c("td", [_vm._v("Test")]),
+            _vm._v(" "),
+            _c("td", [_vm._v("Test")]),
+            _vm._v(" "),
+            _c("td", [_vm._v("Test")]),
+            _vm._v(" "),
+            _c("td", { staticClass: "action" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "btn btn-primary",
+                  attrs: { href: "/detail-drb-of" },
+                  on: {
+                    click: function($event) {
+                      return _vm.SendId()
+                    }
+                  }
+                },
+                [
+                  _c("i", {
+                    staticClass: "fa fa-eye",
+                    staticStyle: { color: "white" }
+                  })
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "a",
+                {
+                  staticClass: "btn btn-warning",
+                  attrs: { href: "#" },
+                  on: {
+                    click: function($event) {
+                      return _vm.SendId()
+                    }
+                  }
+                },
+                [_c("i", { staticClass: "fa fa-edit" })]
+              ),
+              _vm._v(" "),
+              _vm._m(2)
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("input", {
+        directives: [
+          { name: "model", rawName: "v-model", value: _vm.id, expression: "id" }
+        ],
+        domProps: { value: _vm.id },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.id = $event.target.value
+          }
+        }
+      })
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "card-footer" })
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card card-dark" }, [
-      _c("div", { staticClass: "card-header" }, [
-        _c("div", { staticClass: "d-flex h-100" }, [
-          _c("h3", { staticClass: "card-title" }, [
-            _vm._v("Demandes remboursement OFPPT")
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "container h-100 " }, [
-            _c("form", { attrs: { action: "/searchofppt", method: "GET" } }, [
-              _c("div", { staticClass: "searchbar bu-sm" }, [
-                _c("input", {
-                  staticClass: "search_input",
-                  attrs: {
-                    type: "text",
-                    name: "searchofppt",
-                    placeholder: "Rechercher par N°.."
-                  }
-                }),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  { staticClass: "search_icon btn", attrs: { type: "submit" } },
-                  [_c("i", { staticClass: "fas fa-search" })]
-                )
-              ])
-            ])
-          ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "card-body table-striped p-0" }, [
-        _c("table", { staticClass: "table table-md" }, [
-          _c("thead", { staticClass: "thead" }, [
-            _c("tr", [
-              _c("th", [_vm._v("Etat")]),
-              _vm._v(" "),
-              _c("th", [_vm._v("RefPdf")]),
-              _vm._v(" "),
-              _c("th", [_vm._v("Plan de formation")]),
-              _vm._v(" "),
-              _c("th", [_vm._v("Année")]),
-              _vm._v(" "),
-              _c("th", { staticClass: "action" }, [_vm._v("Action")])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("tbody", [
-            _c("tr", [
-              _c("td", [_vm._v("Test")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("Test")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("Test")]),
+    return _c("div", { staticClass: "card-header" }, [
+      _c("div", { staticClass: "d-flex h-100" }, [
+        _c("h3", { staticClass: "card-title" }, [
+          _vm._v("Demandes remboursement OFPPT")
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "container h-100 " }, [
+          _c("form", { attrs: { action: "/searchofppt", method: "GET" } }, [
+            _c("div", { staticClass: "searchbar bu-sm" }, [
+              _c("input", {
+                staticClass: "search_input",
+                attrs: {
+                  type: "text",
+                  name: "searchofppt",
+                  placeholder: "Rechercher par N°.."
+                }
+              }),
               _vm._v(" "),
               _c(
-                "td",
-                { staticClass: "th-last d-inline-block text-truncate" },
-                [_vm._v("Test")]
-              ),
-              _vm._v(" "),
-              _c("td", { staticClass: "action" }, [
-                _c(
-                  "a",
-                  {
-                    staticClass: "btn btn-primary",
-                    attrs: { href: "/detail-drb-of" }
-                  },
-                  [
-                    _c("i", {
-                      staticClass: "fa fa-eye",
-                      staticStyle: { color: "white" }
-                    })
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "a",
-                  {
-                    staticClass: "btn btn-warning",
-                    attrs: { href: "/edit-drb" }
-                  },
-                  [_c("i", { staticClass: "fa fa-edit" })]
-                ),
-                _vm._v(" "),
-                _c("a", { staticClass: "btn btn-danger" }, [
-                  _c("i", {
-                    staticClass: "fa fa-trash-alt",
-                    staticStyle: { color: "white" }
-                  })
-                ])
-              ])
+                "button",
+                { staticClass: "search_icon btn", attrs: { type: "submit" } },
+                [_c("i", { staticClass: "fas fa-search" })]
+              )
             ])
           ])
         ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "card-footer" })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", { staticClass: "thead" }, [
+      _c("tr", [
+        _c("th", [_vm._v("Etat")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("RefPdf")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Plan de formation")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "action" }, [_vm._v("Action")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("a", { staticClass: "btn btn-danger" }, [
+      _c("i", {
+        staticClass: "fa fa-trash-alt",
+        staticStyle: { color: "white" }
+      })
     ])
   }
 ]
@@ -68536,14 +68723,15 @@ __webpack_require__.r(__webpack_exports__);
 /*!******************************************************!*\
   !*** ./resources/js/components/DRB_OFPPT/Détail.vue ***!
   \******************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _D_tail_vue_vue_type_template_id_0e66925d___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Détail.vue?vue&type=template&id=0e66925d& */ "./resources/js/components/DRB_OFPPT/Détail.vue?vue&type=template&id=0e66925d&");
 /* harmony import */ var _D_tail_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Détail.vue?vue&type=script&lang=js& */ "./resources/js/components/DRB_OFPPT/Détail.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _D_tail_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _D_tail_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -68573,7 +68761,7 @@ component.options.__file = "resources/js/components/DRB_OFPPT/Détail.vue"
 /*!*******************************************************************************!*\
   !*** ./resources/js/components/DRB_OFPPT/Détail.vue?vue&type=script&lang=js& ***!
   \*******************************************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
