@@ -23,7 +23,6 @@
 <script src={{ asset('js/myjs.js') }}></script>
 
 
-<<<<<<< HEAD
 <div class="modal" tabindex="-1" role="dialog" id="msg_error_accord">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -42,9 +41,6 @@
         </div>
       </div>
   </div>
-=======
-
->>>>>>> 8e98022b2ba40f1be478fb4f7c866cf02e101a62
 
 <!-- CARD -->
 <div class="card card-dark">
