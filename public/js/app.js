@@ -3879,24 +3879,18 @@ __webpack_require__.r(__webpack_exports__);
   name: "Edit",
   data: function data() {
     return {
-      users: [{
-        firstName: 'Frank',
-        lastName: 'Murphy',
-        email: 'frank.murphy@test.com',
-        role: 'User'
-      }, {
-        firstName: 'Vic',
-        lastName: 'Reynolds',
-        email: 'vic.reynolds@test.com',
-        role: 'Admin'
-      }, {
-        firstName: 'Gina',
-        lastName: 'Jabowski',
-        email: 'gina.jabowski@test.com',
-        role: 'Admin'
-      }],
-      Dare: ''
+      ndrf: []
     };
+  },
+  mounted: function mounted() {
+    this.ndrf = JSON.parse(localStorage.getItem("n_drb"));
+    this.clearLS();
+  },
+  methods: {
+    clearLS: function clearLS() {
+      localStorage.clear();
+    },
+    returnNdrf: function returnNdrf() {}
   }
 });
 
@@ -3911,103 +3905,100 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-/* harmony default export */ __webpack_exports__["default"] = ({
-  data: function data() {
-    return {
-      id: [] // testttttt: 'test'
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "DRB_Ofppts",
+  data: function data() {
+    return {//  DRB_Ofppts: []
     };
   },
-  // mounted(){
-  //     if(localStorage.notes){
-  //       this.notes = localStorage.notes;
-  //     }
-  // },
-  // watch: {
-  //   notes(newNotes){
-  //     localStorage.notes = newNotes ; 
-  //   }
-  // },
+  mounted: function mounted() {
+    // this.$store.dispatch("DRB_OFPPT/getListOfDROfppt");
+    this.getListOfDROfppt;
+  },
   methods: {
-    SendId: function SendId() {
-      var parsed = JSON.stringify(this.id);
+    sendnrdf: function sendnrdf(n_drf) {
+      var parsed = JSON.stringify(n_drf);
       localStorage.setItem('n_drb', parsed);
-    },
-    Test: function Test() {
-      console.log("Test");
     }
-  } // created : function(){
-  //   this.localData();
-  // },
-  // methods: {
-  //   localData(){
-  //     localStorage.setItem=('data','Test')
-  //   }
-  // },
-  // setInterval(() => {
-  // }, 1000);
-
+  },
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])("DRB_Ofppt", {
+    DRB_Ofppts: function DRB_Ofppts(state) {
+      return state.DRB_Ofppts;
+    }
+  })), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])("DRB_Ofppt", {
+    getListOfDROfppt: 'getListOfDROfppt'
+  }))
 });
 
 /***/ }),
@@ -46302,68 +46293,44 @@ var render = function() {
       _c("table", { staticClass: "table table-md" }, [
         _vm._m(1),
         _vm._v(" "),
-        _c("tbody", [
-          _c("tr", [
-            _c("td", [_vm._v("Test")]),
-            _vm._v(" "),
-            _c("td", [_vm._v("Test")]),
-            _vm._v(" "),
-            _c("td", [_vm._v("Test")]),
-            _vm._v(" "),
-            _c("td", { staticClass: "action" }, [
-              _c(
-                "a",
-                {
-                  staticClass: "btn btn-primary",
-                  attrs: { href: "/detail-drb-of" },
-                  on: {
-                    click: function($event) {
-                      return _vm.SendId()
-                    }
-                  }
-                },
-                [
-                  _c("i", {
-                    staticClass: "fa fa-eye",
-                    staticStyle: { color: "white" }
-                  })
-                ]
-              ),
+        _c(
+          "tbody",
+          _vm._l(_vm.DRB_Ofppts, function(DRB_Ofppt) {
+            return _c("tr", { key: DRB_Ofppt.n_drf }, [
+              _c("td", [_vm._v(_vm._s(DRB_Ofppt.etat))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(DRB_Ofppt.refpdf))]),
               _vm._v(" "),
               _c(
-                "a",
-                {
-                  staticClass: "btn btn-warning",
-                  attrs: { href: "#" },
-                  on: {
-                    click: function($event) {
-                      return _vm.SendId()
-                    }
-                  }
-                },
-                [_c("i", { staticClass: "fa fa-edit" })]
+                "td",
+                { staticClass: "th-last d-inline-block text-truncate" },
+                [_vm._v(_vm._s(DRB_Ofppt.id_plan))]
               ),
               _vm._v(" "),
-              _vm._m(2)
+              _c("td", { staticClass: "action" }, [
+                _vm._m(2, true),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    staticClass: "btn btn-warning",
+                    attrs: { href: "/edit-drb-ofppt" },
+                    on: {
+                      click: function($event) {
+                        return _vm.sendnrdf(DRB_Ofppt.n_drf)
+                      }
+                    }
+                  },
+                  [_c("i", { staticClass: "fa fa-edit" })]
+                ),
+                _vm._v(" "),
+                _vm._m(3, true)
+              ])
             ])
-          ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("input", {
-        directives: [
-          { name: "model", rawName: "v-model", value: _vm.id, expression: "id" }
-        ],
-        domProps: { value: _vm.id },
-        on: {
-          input: function($event) {
-            if ($event.target.composing) {
-              return
-            }
-            _vm.id = $event.target.value
-          }
-        }
-      })
+          }),
+          0
+        )
+      ])
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "card-footer" })
@@ -46418,6 +46385,16 @@ var staticRenderFns = [
         _c("th", { staticClass: "action" }, [_vm._v("Action")])
       ])
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      { staticClass: "btn btn-primary", attrs: { href: "/detail-drb-of" } },
+      [_c("i", { staticClass: "fa fa-eye", staticStyle: { color: "white" } })]
+    )
   },
   function() {
     var _vm = this
@@ -68723,15 +68700,14 @@ __webpack_require__.r(__webpack_exports__);
 /*!******************************************************!*\
   !*** ./resources/js/components/DRB_OFPPT/Détail.vue ***!
   \******************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _D_tail_vue_vue_type_template_id_0e66925d___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Détail.vue?vue&type=template&id=0e66925d& */ "./resources/js/components/DRB_OFPPT/Détail.vue?vue&type=template&id=0e66925d&");
 /* harmony import */ var _D_tail_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Détail.vue?vue&type=script&lang=js& */ "./resources/js/components/DRB_OFPPT/Détail.vue?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _D_tail_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _D_tail_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -68761,7 +68737,7 @@ component.options.__file = "resources/js/components/DRB_OFPPT/Détail.vue"
 /*!*******************************************************************************!*\
   !*** ./resources/js/components/DRB_OFPPT/Détail.vue?vue&type=script&lang=js& ***!
   \*******************************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -69530,6 +69506,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _modules_model3_index__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/model3/index */ "./resources/js/store/modules/model3/index.js");
 /* harmony import */ var _G6__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./G6 */ "./resources/js/store/G6/index.js");
+/* harmony import */ var _modules_DRB_Ofppt_index__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/DRB_Ofppt/index */ "./resources/js/store/modules/DRB_Ofppt/index.js");
+
 
 
 
@@ -69538,9 +69516,143 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
 var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
   modules: {
     model3: _modules_model3_index__WEBPACK_IMPORTED_MODULE_2__["model3"],
-    G6: _G6__WEBPACK_IMPORTED_MODULE_3__["G6"]
+    G6: _G6__WEBPACK_IMPORTED_MODULE_3__["G6"],
+    DRB_Ofppt: _modules_DRB_Ofppt_index__WEBPACK_IMPORTED_MODULE_4__["DRB_Ofppt"]
   }
 });
+
+/***/ }),
+
+/***/ "./resources/js/store/modules/DRB_Ofppt/actions.js":
+/*!*********************************************************!*\
+  !*** ./resources/js/store/modules/DRB_Ofppt/actions.js ***!
+  \*********************************************************/
+/*! exports provided: actions */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "actions", function() { return actions; });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+var actions = {
+  getListOfDROfppt: function getListOfDROfppt(_ref) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+      var commit;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              commit = _ref.commit;
+              _context.next = 3;
+              return axios.get("/list-drb-ofppt").then(function (res) {
+                commit('FETCH_DBR_OFPPT', res.data);
+                console.log('test drb ', data);
+              })["catch"](function (err) {
+                console.log(err);
+              });
+
+            case 3:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }))();
+  }
+};
+
+/***/ }),
+
+/***/ "./resources/js/store/modules/DRB_Ofppt/getters.js":
+/*!*********************************************************!*\
+  !*** ./resources/js/store/modules/DRB_Ofppt/getters.js ***!
+  \*********************************************************/
+/*! exports provided: getters */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getters", function() { return getters; });
+var getters = {
+  DRB_Ofppts: function DRB_Ofppts(state) {
+    return state.DRB_Ofppts;
+  }
+};
+
+/***/ }),
+
+/***/ "./resources/js/store/modules/DRB_Ofppt/index.js":
+/*!*******************************************************!*\
+  !*** ./resources/js/store/modules/DRB_Ofppt/index.js ***!
+  \*******************************************************/
+/*! exports provided: DRB_Ofppt */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DRB_Ofppt", function() { return DRB_Ofppt; });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _state__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./state */ "./resources/js/store/modules/DRB_Ofppt/state.js");
+/* harmony import */ var _mutations__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./mutations */ "./resources/js/store/modules/DRB_Ofppt/mutations.js");
+/* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./actions */ "./resources/js/store/modules/DRB_Ofppt/actions.js");
+/* harmony import */ var _getters__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./getters */ "./resources/js/store/modules/DRB_Ofppt/getters.js");
+
+
+
+
+
+
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__["default"]);
+var DRB_Ofppt = {
+  namespaced: true,
+  state: _state__WEBPACK_IMPORTED_MODULE_2__["state"],
+  getters: _getters__WEBPACK_IMPORTED_MODULE_5__["getters"],
+  mutations: _mutations__WEBPACK_IMPORTED_MODULE_3__["mutations"],
+  actions: _actions__WEBPACK_IMPORTED_MODULE_4__["actions"]
+};
+
+/***/ }),
+
+/***/ "./resources/js/store/modules/DRB_Ofppt/mutations.js":
+/*!***********************************************************!*\
+  !*** ./resources/js/store/modules/DRB_Ofppt/mutations.js ***!
+  \***********************************************************/
+/*! exports provided: mutations */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mutations", function() { return mutations; });
+var mutations = {
+  FETCH_DBR_OFPPT: function FETCH_DBR_OFPPT(state, data) {
+    state.DRB_Ofppts = data;
+  }
+}; //==========================================================
+
+/***/ }),
+
+/***/ "./resources/js/store/modules/DRB_Ofppt/state.js":
+/*!*******************************************************!*\
+  !*** ./resources/js/store/modules/DRB_Ofppt/state.js ***!
+  \*******************************************************/
+/*! exports provided: state */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "state", function() { return state; });
+var state = {
+  DRB_Ofppts: []
+};
 
 /***/ }),
 

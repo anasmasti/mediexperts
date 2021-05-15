@@ -13,6 +13,8 @@ use Illuminate\Http\Request;
 |
 */
 Route::post('store-avis-modif' , 'AvisModificationController@StoreUpdateAvisModif');
+Route::post('update-drb-ofppt' , 'DemandeRemboursementOfpptController@update');
+Route::post('delete-drb-ofppt' , 'DemandeRemboursementOfpptController@destroy');
 Route::middleware('auth:api')->get('/user', function (Request $request) {
 
   // Route::get('/fill-clients', 'FormulaireController@FillClients')->name('M1.print_m1');

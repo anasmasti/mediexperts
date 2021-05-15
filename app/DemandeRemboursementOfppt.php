@@ -22,7 +22,7 @@ class DemandeRemboursementOfppt extends Model
       'compris_cheques',
       'compris_remise',
       'relev_bq_societe',
-      'cabinet',
+      'relev_bq_cabinet',
       'date_depot_dmd_rembrs',
       'date_rembrs',
       'montant_rembrs',
