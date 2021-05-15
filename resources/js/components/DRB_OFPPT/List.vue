@@ -73,6 +73,7 @@ import { mapState, mapActions } from 'vuex';
             mounted() {
               // this.$store.dispatch("DRB_OFPPT/getListOfDROfppt");
               this.getListOfDROfppt
+               
             },
             methods:{
               sendnrdf(n_drf){
