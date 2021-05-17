@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\DemandeRemboursementOfppt;
+<<<<<<< HEAD
 use Illuminate\Support\Facades\Session;
 
 
@@ -50,30 +51,45 @@ class DemandeRemboursementOfpptController extends Controller
     public function update(Request $request, $n_drf)
     {
         if ($request -> isMethod('POST')) {
+=======
+class DemandeRemboursementOfpptController extends Controller
+{
+    public function index(){
+        return view('DRB_Ofppt.view');
+    }
+    // public function edit(Request $request, $n_drf){
+    //     $pln = DemandeRemboursementOfppt::findOrFail($n_drf);
+    //     return view('DRB_Ofppt.edit',['pln '=>$pln ]);
+    // }
+>>>>>>> 12cc41ce0e25ecc65b0ec0cafa971fc65dd2b8c2
 
-            // $request->validate([
-            // 'mod5' =>'accepted',
-            // 'mod5' =>'accepted',
-            // 'mod5' =>'accepted',
-            // 'mod5' =>'accepted',
-            // 'mod5' =>'accepted',
-            // 'mod5' =>'accepted',
-            // 'mod5' =>'accepted',
-            // 'mod5' =>'accepted',
-            // ]);
+    public function editRDB($n_drf){
+        $pln = DemandeRemboursementOfppt::select('demande_remboursement_ofppts.refpdf', 'demande_remboursement_ofppts.n_contrat', 'clients.raisoci')
+        ->join('clients', 'clients.nrc_entrp', 'demande_remboursement_ofppts.nrc_entrp')
+        ->where('demande_remboursement_ofppts.n_drf', $n_drf)
+        ->get();
+        return response()->json($pln);
+    }
 
-            $drb = DemandeRemboursementOfppt::select('demande_remboursement_ofppts.*')
-              ->from('demande_remboursement_ofppt')
-              ->where('n_drf', $n_drf)
-              ->first();
+    //liste de demande de remboursement 
+    public function Show(){
+        $pln = DemandeRemboursementOfppt::All();
+        return response()->json($pln);
+    }
 
+    public function edit(){
+    return view('DRB_OFPPT.edit');
+    }
 
-              $docs = [
-              'model5',
-              'model6',
-              'accuse_model6',
-              'fiche_eval_sythetique',
+//update demande de remboursement ofppt par envoyer le n_drf 
+    public function update(Request $request , $n_drf){
+        if ($request -> isMethod('POST')) {
+            $demandeRemboursementOFPPT = DemandeRemboursementOfppt::find($n_drf);
+            $docs = ['model5',
+             'model6',
+              'fiche_eval_sythetique', 
               'factures',
+<<<<<<< HEAD
               'compris_cheques',
               'compris_remise',
               'relev_bq_societe',
@@ -82,21 +98,34 @@ class DemandeRemboursementOfpptController extends Controller
             foreach ($docs as $doc) {
                 if ($request->input($doc) != null) {
                     $drb->$doc = 'préparé';
+=======
+               'compris_cheques',
+                'compris_remise',
+                 'relev_bq_societe', 
+                 'relev_bq_cabinet',
+                  'accuse_model6'];
+                  foreach ($docs as $doc) {
+              if ($request->$doc == '1') {
+                        $demandeRemboursementOFPPT->$doc = 'préparé';
+                    }
+                    else{
+                        $demandeRemboursementOFPPT->$doc = "non préparé";
+                    }
+>>>>>>> 12cc41ce0e25ecc65b0ec0cafa971fc65dd2b8c2
                 }
-                else {
-                    $drb->$doc = "non préparé";
-                }
-            }
-            $drb->date_depot_dmd_rembrs = $request->input('date_depot_dmd_rembrs');
-            $drb->montant_rembrs = $request->input('montant_rembrs');
-            $drb->date_rembrs = $request->input('date_rembrs');
-
-            $drb->save();
-
+            $demandeRemboursementOFPPT->montant_rembrs = $request->montant_rembrs ;
+            $demandeRemboursementOFPPT->date_rembrs = $request->date_rembrs ;
+            $demandeRemboursementOFPPT->date_depot_dmd_rembrs = $request->date_depot_dmd_rembrs ;
+            $demandeRemboursementOFPPT->etat = $request->etat ;
+            $demandeRemboursementOFPPT->save();
             $request->session()->flash('updated', 'Modifié avec succès');
+<<<<<<< HEAD
 
+=======
+>>>>>>> 12cc41ce0e25ecc65b0ec0cafa971fc65dd2b8c2
         }
     }
+   
     public function destroy(Request $request, $n_drf)
     {
         $drb = DemandeRemboursementOfppt::findOrFail($n_drf);
