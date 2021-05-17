@@ -8,9 +8,9 @@ export const actions = {
           }).catch(err => {
           console.log(err)
       });
-    
 
-      
+
+
   },
 //   async getListOfDROfpptEdit({commit}, ndrb) {
 //     await axios.get(`edit-drb-ofppt/`, { params: { ndrb: ndrb } })
@@ -31,6 +31,15 @@ async getListOfDROfpptEdit({ commit }, ndrb) {
       })
       .catch(err => console.log(err));
   },
+  async ReglEntrpInfo({ commit } , ndrb) {
+    await axios
+      .get(`/regEntrp-drb-ofppt/` + ndrb)
+      .then(({data}) => {
+        commit("FETCH_REGL_ENTREPRISE_INFO", data);
+        console.log("regl entreprise info", data);
+      })
+      .catch(err => console.log("cant get reg entrp info", err));
+  }
 // async updateListOfDROfpptEdit({commit}, ndrb) {
 //     await axios.post(`edit-drb-ofppt` , {
 //         params: { ndrb: ndrb } ,
