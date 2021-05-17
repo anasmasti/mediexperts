@@ -172,15 +172,6 @@ Route::post('/save-nfacture-df', 'DemandeFinancementController@SaveNFactureDF')-
 
 
 //***************  OFPPT DR ROUTES ***************
-<<<<<<< HEAD
-
-Route::get('/get-drf-by-id','DemandeRemboursementOfpptController@getDrfInfo');
-Route::get('/get-all-drf', 'DemandeRemboursementOfpptController@show');
-//**************** OFPPT VIEW ROUTE ***************
-Route::get('/all-drf','DemandeRemboursementOfpptController@AllDRF');
-Route::get('/get-drf-of/{ndrf}', 'DemandeRemboursementOfpptController@ShowUpdatingDrf');
-
-=======
 // Route::post('update-drb-ofppt/{n_drf}' , 'DemandeRemboursementOfpptController@update');
 // Route::post('delete-drb-ofppt/{n_drf}' , 'DemandeRemboursementOfpptController@destroy');
 
@@ -189,11 +180,11 @@ Route::get('/get-drf-of/{ndrf}', 'DemandeRemboursementOfpptController@ShowUpdati
  Route::get('/edit-drb-ofppt', 'DemandeRemboursementOfpptController@edit')->name('DRB_Ofppt.edit');
  Route::get('/list-drb-ofppt', 'DemandeRemboursementOfpptController@show')->name('DRB_Ofppt.show');
  Route::get('/edit-drb-ofppt/{ndrb}', 'DemandeRemboursementOfpptController@editRDB')->name('DRB_Ofppt.editD');
+ Route::get('/regEntrp-drb-ofppt/{ndrb}','DemandeRemboursementOfpptController@reglementEntreprise');
  Route::post('/edit-drb-ofppt/{ndrb}', 'DemandeRemboursementOfpptController@update')->name('DRB_Ofppt.update');
 
  // // Route::get('/detail-drb-of/{ndrb}', 'DemandeRemboursementOfpptController@show')->name('DRB_Ofppt.show');
 // Route::get('/detail-drb-of', 'DetailCntroller@detail')->name('DRB_Ofppt.show');
->>>>>>> 12cc41ce0e25ecc65b0ec0cafa971fc65dd2b8c2
 
 // Route::get('/add-drb-of', 'DemandeRemboursementOfpptController@store')->name('DRB_Ofppt.store');
 // Route::post('/add-drb-of', 'DemandeRemboursementOfpptController@store')->name('DRB_Ofppt.store');
@@ -202,13 +193,10 @@ Route::get('/get-drf-of/{ndrf}', 'DemandeRemboursementOfpptController@ShowUpdati
 // Route::post('/edit-drb-of/{ndrb}', 'DemandeRemboursementOfpptController@update')->name('DRB_Ofppt.update');
 // Route::get('/edit-drb', 'EditController@update')->name('DRB_Ofppt.update');
 
-<<<<<<< HEAD
-=======
 
 // Route::get('/searchofppt', 'DemandeRemboursementOfpptController@searchofppt');
 
 // Route::get('/del-drb-of/{ndrb}', 'DemandeRemboursementOfpptController@destroy')->name('DRB_Ofppt.destroy');
->>>>>>> 12cc41ce0e25ecc65b0ec0cafa971fc65dd2b8c2
 /********************************************************************/
 
 

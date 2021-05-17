@@ -486,7 +486,7 @@
                 <ul class="nav nav-treeview ml-3">
 
                   <li class="nav-item">
-                    <a href="/all-drf" class="nav-link">
+                    <a href="/list-drb" class="nav-link">
                     <i class="fa fa-list nav-icon"></i>
                     <p>Liste</p>
                     </a>
