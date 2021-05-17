@@ -43,7 +43,7 @@
           <td>{{DRB_Ofppt.refpdf}}</td>
           <td class="th-last d-inline-block text-truncate">{{DRB_Ofppt.id_plan}}</td>
             <td class="action">
-              <a href="/detail-drb-of" class="btn btn-primary" ><i class="fa fa-eye" style="color: white ;"></i></a>
+              <a href="/edit-drb-ofppt" class="btn btn-primary" ><i class="fa fa-eye" style="color: white ;"></i></a>
               <a href="/edit-drb-ofppt" @click="sendnrdf(DRB_Ofppt.n_drf)" class="btn btn-warning"><i class="fa fa-edit"></i></a>
               <a class="btn btn-danger" ><i class="fa fa-trash-alt" style="color: white ;"></i></a>
             </td>
@@ -64,7 +64,7 @@
  <script>
 import { mapState, mapActions } from 'vuex';
  export default {
-            name: "DRB_Ofppts",
+            name: "List",
              data() {
                return {
                   //  DRB_Ofppts: []
@@ -78,7 +78,8 @@ import { mapState, mapActions } from 'vuex';
             methods:{
               sendnrdf(n_drf){
                 const parsed = JSON.stringify(n_drf);
-                localStorage.setItem('n_drb',parsed);
+                localStorage.setItem('n_drf',parsed);
+                console.log(n_drf);
               }
             },
             computed: {

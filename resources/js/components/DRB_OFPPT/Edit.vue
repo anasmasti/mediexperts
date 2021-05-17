@@ -89,15 +89,15 @@
                     <label class="h5">Dossier de remboursement</label>
                     <div class="form-group">
                       <div class="custom-control custom-checkbox">
-                        <input type="checkbox" name="model5" v-model="model5" id="model5" class="custom-control-input"/>
+                        <input type="checkbox" name="model5" :v-model="DRB_Ofppt.model5 == 'préparé' ? model5 = true : model5 = false " :checked="model5 == true ? true : false" id="model5" class="custom-control-input"/>
                         <label for="model5" class="custom-control-label">Modéle 5</label>
                       </div>
                       <div class="custom-control custom-checkbox">
-                        <input type="checkbox" name="fiche_eval_sythetique" v-model="fiche_eval_sythetique" id="fiche_eval_sythetique" class="custom-control-input"/>
+                        <input type="checkbox" name="fiche_eval_sythetique" :v-model="DRB_Ofppt.fiche_eval_sythetique == 'préparé' ? fiche_eval_sythetique = true : model5 = false " :checked="fiche_eval_sythetique == true ? true : false" id="fiche_eval_sythetique" class="custom-control-input"/>
                         <label for="fiche_eval_sythetique" class="custom-control-label">Fiche d'évaluation synthétique</label>
                       </div>
                       <div class="custom-control custom-checkbox">
-                        <input type="checkbox" name="model6" v-model="model6" id="model6" class="custom-control-input"/>
+                        <input type="checkbox" name="model6" :v-model="DRB_Ofppt.model6 == 'préparé' ? model6 = true : model6 = false " :checked="model6 == true ? true : false" id="model6" class="custom-control-input"/>
                         <label for="model6" class="custom-control-label">Modéle 6</label>
                       </div>
                     </div>
@@ -106,23 +106,23 @@
                     <label class="h5">Justifs Règlement</label>
                     <div class="form-group">
                       <div class="custom-control custom-checkbox">
-                        <input type="checkbox" name="factures" v-model="factures" id="factures" class="custom-control-input"/>
+                        <input type="checkbox" name="factures" :v-model="DRB_Ofppt.factures == 'préparé' ? factures = true : factures = false " :checked="factures == true ? true : false" id="factures" class="custom-control-input"/>
                         <label for="factures" class="custom-control-label">Factures</label>
                       </div>
                       <div class="custom-control custom-checkbox">
-                        <input type="checkbox" name="compris_cheques" v-model="compris_cheques" id="compris_cheques" class="custom-control-input"/>
+                        <input type="checkbox" name="compris_cheques" :v-model="DRB_Ofppt.compris_cheques == 'préparé' ? compris_cheques = true : compris_cheques = false " :checked="compris_cheques == true ? true : false" id="compris_cheques" class="custom-control-input"/>
                         <label for="compris_cheques" class="custom-control-label">Compries cheques / OV / LC</label>
                       </div>
                       <div class="custom-control custom-checkbox">
-                        <input type="checkbox" name="compris_remise" v-model="compris_remise" id="compris_remise" class="custom-control-input"/>
+                        <input type="checkbox" name="compris_remise" :v-model="DRB_Ofppt.compris_remise == 'préparé' ? compris_remise = true : compris_remise = false " :checked="compris_remise == true ? true : false" id="compris_remise" class="custom-control-input"/>
                         <label for="compris_remise" class="custom-control-label">Compries remises / Avis de débit</label>
                       </div>
                       <div class="custom-control custom-checkbox">
-                        <input type="checkbox" name="relev_bq_societe" v-model="relev_bq_societe" id="relev_bq_societe" class="custom-control-input"/>
+                        <input type="checkbox" name="relev_bq_societe" :v-model="DRB_Ofppt.relev_bq_societe == 'préparé' ? relev_bq_societe = true : relev_bq_societe = false " :checked="relev_bq_societe == true ? true : false" id="relev_bq_societe" class="custom-control-input"/>
                         <label for="relev_bq_societe" class="custom-control-label">Relevés bq societé</label>
                       </div>
                       <div class="custom-control custom-checkbox">
-                        <input type="checkbox" name="relev_bq_cabinet" v-model="relev_bq_cabinet" id="relev_bq_cabinet" class="custom-control-input"/>
+                        <input type="checkbox" name="relev_bq_cabinet" :v-model="DRB_Ofppt.relev_bq_cabinet == 'préparé' ? relev_bq_cabinet = true : relev_bq_cabinet = false " :checked="relev_bq_cabinet == true ? true : false" id="relev_bq_cabinet" class="custom-control-input"/>
                         <label for="relev_bq_cabinet" class="custom-control-label">Relevés bq cabinet</label>
                       </div>    
                     </div>
@@ -226,8 +226,12 @@
             <label>Commentaire</label>
             <textarea class="form-control" type="text" rows="4" name="commentaire" maxlength="1900" placeholder="Commentaire .."></textarea>
           </div>
+
+          
         </div>
       </div>
+
+      
 
       <div class="form-group col-12"><hr></div>
 
@@ -245,15 +249,14 @@
 
 
 <script>  
-import { mapState, mapActions } from 'vuex';
-import { model3 } from '../../store/modules/model3';
+import { mapState } from 'vuex';
 export default {
   
   name : "Edit" ,
   data() {
         return {
             numero_remb: [],
-           // DRB_Ofppts: {},
+            // DRB_Ofppts: {},
             edited_DRB: [],
             model5:null,
             model6:null,
@@ -267,11 +270,9 @@ export default {
         };
     },
   mounted() {
-    this.numero_remb = JSON.parse(localStorage.getItem("n_drb"));
-     this.getListOfDROfpptEditByNumeroRemb(this.numero_remb)  
-     console.log(this.numero_remb);
-   
-  },
+    this.numero_remb = JSON.parse(localStorage.getItem("n_drf"));
+     this.getListOfDROfpptEditByNumeroRemb(this.numero_remb)
+     },
   methods:{
     clearLS(){
       localStorage.clear();
