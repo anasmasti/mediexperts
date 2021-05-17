@@ -3541,6 +3541,13 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -3787,28 +3794,164 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Edit",
   data: function data() {
-    return {
-      users: [{
-        firstName: 'Frank',
-        lastName: 'Murphy',
-        email: 'frank.murphy@test.com',
-        role: 'User'
-      }, {
-        firstName: 'Vic',
-        lastName: 'Reynolds',
-        email: 'vic.reynolds@test.com',
-        role: 'Admin'
-      }, {
-        firstName: 'Gina',
-        lastName: 'Jabowski',
-        email: 'gina.jabowski@test.com',
-        role: 'Admin'
-      }],
-      Dare: ''
-    };
+    return {};
+  },
+  mounted: function mounted() {
+    this.$store.dispatch('DRB_OFPPT/getSelectedDrf');
+  },
+  updated: function updated() {},
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])("DRB_OFPPT", {
+    drfById: function drfById(state) {
+      return state.drfById;
+    }
+  })),
+  methods: {
+    handleAction: function handleAction(actionName, value) {
+      this.$store.dispatch(actionName, value);
+    }
   }
 });
 
@@ -3823,6 +3966,16 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _resources_js_components_DRB_OFPPT_Edit_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! /resources/js/components/DRB_OFPPT/Edit.vue */ "./resources/js/components/DRB_OFPPT/Edit.vue");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_2__);
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -3879,9 +4032,51 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
+  name: "List",
+  components: {
+    Edit: _resources_js_components_DRB_OFPPT_Edit_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
+  data: function data() {
+    return {};
+  },
   mounted: function mounted() {
-    console.log("Hello from listVue");
+    this.$store.dispatch('DRB_OFPPT/FetchAllDrf');
+  },
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])("DRB_OFPPT", {
+    list_drfs: function list_drfs(state) {
+      return state.list_drfs;
+    },
+    drfById: function drfById(state) {
+      return state.drfById;
+    }
+  })),
+  methods: {
+    handleAction: function handleAction(actionName, value) {
+      this.$store.dispatch(actionName, value);
+    } // GetDrf() {
+    //   setTimeout(() => {
+    //     $('#edit').on('click' , function() {
+    //       document.createElement('<Edit ref="Edit" :DrfById="SelectedDrf"> </Edit>')
+    //     })
+    //     this.SelectedDrf = this.drfById;
+    //     vue.prototype.$DrfById = this.Drf;
+    //     console.log("-----R----",this.SelectedDrf);
+    //   }, 1000);
+    // },
+
   }
 });
 
@@ -9729,7 +9924,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\ntable[data-v-376179dc]{\n  margin: 10px auto;\n}\ntd[data-v-376179dc],th[data-v-376179dc]{\n  text-align: center;\n}\n.total_reg[data-v-376179dc]{\n  margin: 10px auto; \n  float: right;\n}\n.btn-Etat[data-v-376179dc]{\n  display: flex;\n  flex-direction: row;\n  flex-wrap: wrap;\n}\n\n", ""]);
+exports.push([module.i, "\ntable[data-v-376179dc] {\n  margin: 10px auto;\n}\ntd[data-v-376179dc],\nth[data-v-376179dc] {\n  text-align: center;\n}\n.total_reg[data-v-376179dc] {\n  margin: 10px auto;\n  float: right;\n}\n.btn-Etat[data-v-376179dc] {\n  display: flex;\n  flex-direction: row;\n  flex-wrap: wrap;\n}\n", ""]);
 
 // exports
 
@@ -45375,131 +45570,28 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _vm._m(0),
+    _vm._v(" "),
     _c("br"),
     _vm._v(" "),
     _c("div", { staticClass: "card card-dark" }, [
       _c("div", { staticClass: "card-header" }, [
         _c("h3", { staticClass: "card-title card-h3" }, [
-          _vm._v("\n          Modif. DRB OFPPT >\n          "),
+          _vm._v("\n        Modif. DRB OFPPT\n        "),
           _c("a", { attrs: { href: "#" } }, [
-            _vm._v("\n              Test\n          ")
+            _vm._v("\n          Test\n        ")
           ]),
-          _vm._v("\n          " + _vm._s(" > ") + "\n          "),
+          _vm._v("\n        " + _vm._s(" > ") + "\n        "),
           _c("a", { attrs: { href: "#" } }, [
-            _vm._v("\n              Test\n          ")
+            _vm._v("\n          Test\n        ")
           ])
         ])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "card-body" }, [
-        _c("div", { staticClass: "row" }, [
-          _vm._m(1),
-          _vm._v(" "),
-          _vm._m(2),
-          _vm._v(" "),
-          _vm._m(3),
-          _vm._v(" "),
-          _vm._m(4),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-group col-12" }, [
-            _c("label", [_vm._v("Réglement entreprise")]),
-            _vm._v(" "),
-            _c("div", { staticClass: "table-responsive" }, [
-              _c("table", { staticClass: "table table-striped" }, [
-                _vm._m(5),
-                _vm._v(" "),
-                _c(
-                  "tbody",
-                  _vm._l(_vm.users, function(user) {
-                    return _c("tr", { key: user.id }, [
-                      _c("th", { attrs: { scope: "row" } }, [_vm._v("TF")]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v("Mark")]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v("Otto")]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v("@mdo")]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v("1")]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v("Mark")]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v("Otto")]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v("@mdo")]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v("@mdo")])
-                    ])
-                  }),
-                  0
-                )
-              ])
-            ]),
-            _vm._v(" "),
-            _vm._m(6)
-          ]),
-          _vm._v(" "),
-          _vm._m(7),
-          _vm._v(" "),
-          _vm._m(8),
-          _vm._v(" "),
-          _vm._m(9),
-          _vm._v(" "),
-          _vm._m(10),
-          _vm._v(" "),
-          _vm._m(11),
-          _vm._v(" "),
-          _vm._m(12),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-group col-12" }, [
-            _c("label", [_vm._v("Remboursement OFPPT")]),
-            _vm._v(" "),
-            _c("div", { staticClass: "table-responsive" }, [
-              _c("table", { staticClass: "table table-striped" }, [
-                _vm._m(13),
-                _vm._v(" "),
-                _c(
-                  "tbody",
-                  _vm._l(_vm.users, function(user) {
-                    return _c("tr", { key: user.id }, [
-                      _c("th", { attrs: { scope: "row" } }, [_vm._v("TF")]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v("Mark")]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v("Otto")]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v("@mdo")]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v("1")]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v("Mark")]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v("Otto")])
-                    ])
-                  }),
-                  0
-                )
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _vm._m(14),
-          _vm._v(" "),
-          _vm._m(15),
-          _vm._v(" "),
-          _vm._m(16),
-          _vm._v(" "),
-          _vm._m(17),
-          _vm._v(" "),
-          _vm._m(18),
-          _vm._v(" "),
-          _vm._m(19)
-        ])
-      ]),
+      _vm._m(1),
       _vm._v(" "),
-      _vm._m(20),
+      _vm._m(2),
       _vm._v(" "),
-      _vm._m(21)
+      _vm._m(3)
     ])
   ])
 }
@@ -45518,578 +45610,567 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "form-group col-lg-3 col-sm-12",
-        staticStyle: { margin: "auto" }
-      },
-      [
-        _c("label", [_vm._v("E/S")]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control",
-          attrs: {
-            value: "",
-            type: "text",
-            id: "nrc_entrp",
-            name: "nrc_entrp",
-            placeholder: "Entreprise..",
-            readonly: ""
-          }
-        })
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "form-group col-lg-3 col-sm-12",
-        staticStyle: { margin: "auto" }
-      },
-      [
-        _c("label", [_vm._v("RefPdf")]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control",
-          attrs: {
-            value: "",
-            type: "text",
-            id: "refpdf",
-            name: "refpdf",
-            placeholder: "RefPdf..",
-            readonly: ""
-          }
-        })
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "form-group col-lg-3 col-sm-12",
-        staticStyle: { margin: "auto" }
-      },
-      [
-        _c("label", [_vm._v("N Contrat PF")]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control",
-          attrs: {
-            value: "",
-            type: "text",
-            id: "n_contrat",
-            name: "n_contrat",
-            placeholder: "N contrat",
-            readonly: ""
-          }
-        })
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group col-12" }, [_c("hr")])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("thead", [
-      _c("tr", [
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("N°Action")]),
-        _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Thème")]),
-        _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Total HT(DH)")]),
-        _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("TVA (20%)")]),
-        _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Total TTC")]),
-        _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [
-          _vm._v("Quote-part Entreprise")
-        ]),
-        _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("N° de  Facture")]),
-        _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [
-          _vm._v("Date paiement entreprise")
-        ]),
-        _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [
-          _vm._v("Mode et référence de paiement ")
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "total_reg" }, [
-      _c("label", { attrs: { for: "txt-total-reg" } }, [
-        _vm._v("Total Réglement : ")
-      ]),
-      _vm._v(" "),
-      _c("input", {
-        staticClass: "txt-total-reg",
-        attrs: { type: "text", id: "ttl_regl", name: "ttl_regl", readonly: "" }
-      })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group col-12" }, [_c("hr")])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group col-12" }, [
-      _c("div", { staticClass: "container" }, [
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-6" }, [
-            _c("label", { staticClass: "h5" }, [
-              _vm._v("Dossier de remboursement")
-            ]),
+    return _c("div", { staticClass: "card-body" }, [
+      _c("div", { staticClass: "row" }, [
+        _c(
+          "div",
+          {
+            staticClass: "form-group col-lg-3 col-sm-12",
+            staticStyle: { margin: "auto" }
+          },
+          [
+            _c("label", [_vm._v("E/S")]),
             _vm._v(" "),
-            _c("div", { staticClass: "form-group" }, [
-              _c("div", { staticClass: "custom-control custom-checkbox" }, [
-                _c("input", {
-                  staticClass: "custom-control-input",
-                  attrs: { type: "checkbox", name: "model5", id: "model5" }
-                }),
-                _vm._v(" "),
-                _c(
-                  "label",
-                  {
-                    staticClass: "custom-control-label",
-                    attrs: { for: "model5" }
-                  },
-                  [_vm._v("Modéle 5")]
-                )
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "custom-control custom-checkbox" }, [
-                _c("input", {
-                  staticClass: "custom-control-input",
-                  attrs: {
-                    type: "checkbox",
-                    name: "fiche_eval_sythetique",
-                    id: "fiche_eval_sythetique"
-                  }
-                }),
-                _vm._v(" "),
-                _c(
-                  "label",
-                  {
-                    staticClass: "custom-control-label",
-                    attrs: { for: "fiche_eval_sythetique" }
-                  },
-                  [_vm._v("Fiche d'évaluation synthétique")]
-                )
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "custom-control custom-checkbox" }, [
-                _c("input", {
-                  staticClass: "custom-control-input",
-                  attrs: { type: "checkbox", name: "model6", id: "model6" }
-                }),
-                _vm._v(" "),
-                _c(
-                  "label",
-                  {
-                    staticClass: "custom-control-label",
-                    attrs: { for: "model6" }
-                  },
-                  [_vm._v("Modéle 6")]
-                )
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-6" }, [
-            _c("label", { staticClass: "h5" }, [_vm._v("Justifs Règlement")]),
-            _vm._v(" "),
-            _c("div", { staticClass: "form-group" }, [
-              _c("div", { staticClass: "custom-control custom-checkbox" }, [
-                _c("input", {
-                  staticClass: "custom-control-input",
-                  attrs: { type: "checkbox", name: "factures", id: "factures" }
-                }),
-                _vm._v(" "),
-                _c(
-                  "label",
-                  {
-                    staticClass: "custom-control-label",
-                    attrs: { for: "factures" }
-                  },
-                  [_vm._v("Factures")]
-                )
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "custom-control custom-checkbox" }, [
-                _c("input", {
-                  staticClass: "custom-control-input",
-                  attrs: {
-                    type: "checkbox",
-                    name: "compris_cheques",
-                    id: "compris_cheques"
-                  }
-                }),
-                _vm._v(" "),
-                _c(
-                  "label",
-                  {
-                    staticClass: "custom-control-label",
-                    attrs: { for: "compris_cheques" }
-                  },
-                  [_vm._v("Compries cheques / OV / LC")]
-                )
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "custom-control custom-checkbox" }, [
-                _c("input", {
-                  staticClass: "custom-control-input",
-                  attrs: {
-                    type: "checkbox",
-                    name: "compris_remise",
-                    id: "compris_remise"
-                  }
-                }),
-                _vm._v(" "),
-                _c(
-                  "label",
-                  {
-                    staticClass: "custom-control-label",
-                    attrs: { for: "compris_remise" }
-                  },
-                  [_vm._v("Compries remises / Avis de débit")]
-                )
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "custom-control custom-checkbox" }, [
-                _c("input", {
-                  staticClass: "custom-control-input",
-                  attrs: {
-                    type: "checkbox",
-                    name: "relev_bq_societe",
-                    id: "relev_bq_societe"
-                  }
-                }),
-                _vm._v(" "),
-                _c(
-                  "label",
-                  {
-                    staticClass: "custom-control-label",
-                    attrs: { for: "relev_bq_societe" }
-                  },
-                  [_vm._v("Relevés bq societé")]
-                )
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "custom-control custom-checkbox" }, [
-                _c("input", {
-                  staticClass: "custom-control-input",
-                  attrs: { type: "checkbox", name: "cabinet", id: "cabinet" }
-                }),
-                _vm._v(" "),
-                _c(
-                  "label",
-                  {
-                    staticClass: "custom-control-label",
-                    attrs: { for: "cabinet" }
-                  },
-                  [_vm._v("Relevés bq cabinet")]
-                )
-              ])
-            ])
-          ])
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group col-12" }, [_c("hr")])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group col-lg-3 col-sm-12" }, [
-      _c("label", [_vm._v("Date dépot demande de Remboursement")]),
-      _vm._v(" "),
-      _c("input", {
-        staticClass: "form-control",
-        attrs: {
-          type: "text",
-          name: "date_depot_dmd_rembrs",
-          id: "date_depot_dmd_rembrs",
-          onmouseover: "(this.type='date')",
-          placeholder: "Date réalisation"
-        }
-      })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "form-group col-lg-3 col-sm-12",
-        staticStyle: { margin: "auto" }
-      },
-      [
-        _c("div", { staticClass: "custom-control custom-checkbox" }, [
-          _c("input", {
-            staticClass: "custom-control-input",
-            attrs: {
-              type: "checkbox",
-              name: "accuse_model6",
-              id: "accuse_model6"
-            }
-          }),
-          _vm._v(" "),
-          _c(
-            "label",
-            {
-              staticClass: "custom-control-label",
-              attrs: { for: "accuse_model6" }
-            },
-            [_vm._v("Accusé Modele 6")]
-          )
-        ])
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group col-12" }, [_c("hr")])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("thead", [
-      _c("tr", [
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("N°Action")]),
+            _c("input", {
+              staticClass: "form-control",
+              attrs: {
+                value: "",
+                type: "text",
+                id: "nrc_entrp",
+                name: "nrc_entrp",
+                placeholder: "Entreprise..",
+                readonly: ""
+              }
+            })
+          ]
+        ),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Thème")]),
-        _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Total HT(DH)")]),
-        _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Quote-part OFPPT")]),
-        _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Remboursement OFPPT")]),
-        _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Ecart/ Remboursement")]),
-        _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Justifs Ecart")])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group col-12" }, [_c("hr")])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "form-group col-lg-3 col-sm-12",
-        staticStyle: { margin: "auto" }
-      },
-      [
-        _c("label", [_vm._v("Montant de Remboursement")]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control",
-          attrs: {
-            value: "",
-            type: "text",
-            id: "montant_rembrs",
-            name: "montant_rembrs",
-            placeholder: "Montant Remboursement"
-          }
-        })
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "form-group col-lg-3 col-sm-12",
-        staticStyle: { margin: "auto" }
-      },
-      [
-        _c("label", [_vm._v("Date Remboursement")]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control",
-          attrs: {
-            type: "text",
-            name: "date_rembrs",
-            id: "date_rembrs",
-            onmouseover: "(this.type='date')",
-            placeholder: "Date réalisation"
-          }
-        })
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "form-group col-12 text-center",
-        staticStyle: { "margin-top": "2rem" }
-      },
-      [
-        _c("h4", [_vm._v("État demande")]),
+        _c("h1", [_vm._v("Data = {{}}")]),
         _vm._v(" "),
         _c(
           "div",
           {
-            staticClass: "btn-group btn-group-toggle btn-Etat",
-            attrs: { "data-toggle": "buttons" }
+            staticClass: "form-group col-lg-3 col-sm-12",
+            staticStyle: { margin: "auto" }
           },
           [
-            _c("label", { staticClass: "btn btn-warning" }, [
-              _vm._v("\n                  Initié\n                  "),
-              _c("i", { staticClass: "fas fa-battery-quarter" }),
+            _c("label", [_vm._v("RefPdf")]),
+            _vm._v(" "),
+            _c("input", {
+              staticClass: "form-control",
+              attrs: {
+                value: "",
+                type: "text",
+                id: "refpdf",
+                name: "refpdf",
+                placeholder: "RefPdf..",
+                readonly: ""
+              }
+            })
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "form-group col-lg-3 col-sm-12",
+            staticStyle: { margin: "auto" }
+          },
+          [
+            _c("label", [_vm._v("N Contrat PF")]),
+            _vm._v(" "),
+            _c("input", {
+              staticClass: "form-control",
+              attrs: {
+                value: "",
+                type: "text",
+                id: "n_contrat",
+                name: "n_contrat",
+                placeholder: "N contrat",
+                readonly: ""
+              }
+            })
+          ]
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-group col-12" }, [_c("hr")]),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-group col-12" }, [
+          _c("label", [_vm._v("Réglement entreprise")]),
+          _vm._v(" "),
+          _c("div", { staticClass: "table-responsive" }, [
+            _c("table", { staticClass: "table table-striped" }, [
+              _c("thead", [
+                _c("tr", [
+                  _c("th", { attrs: { scope: "col" } }, [_vm._v("N°Action")]),
+                  _vm._v(" "),
+                  _c("th", { attrs: { scope: "col" } }, [_vm._v("Thème")]),
+                  _vm._v(" "),
+                  _c("th", { attrs: { scope: "col" } }, [
+                    _vm._v("Total HT(DH)")
+                  ]),
+                  _vm._v(" "),
+                  _c("th", { attrs: { scope: "col" } }, [_vm._v("TVA (20%)")]),
+                  _vm._v(" "),
+                  _c("th", { attrs: { scope: "col" } }, [_vm._v("Total TTC")]),
+                  _vm._v(" "),
+                  _c("th", { attrs: { scope: "col" } }, [
+                    _vm._v("Quote-part Entreprise")
+                  ]),
+                  _vm._v(" "),
+                  _c("th", { attrs: { scope: "col" } }, [
+                    _vm._v("N° de Facture")
+                  ]),
+                  _vm._v(" "),
+                  _c("th", { attrs: { scope: "col" } }, [
+                    _vm._v("Date paiement entreprise")
+                  ]),
+                  _vm._v(" "),
+                  _c("th", { attrs: { scope: "col" } }, [
+                    _vm._v("Mode et référence de paiement")
+                  ])
+                ])
+              ]),
               _vm._v(" "),
-              _c("input", {
-                attrs: {
-                  type: "radio",
-                  name: "etat",
-                  id: "option1",
-                  autocomplete: "off",
-                  value: "initié"
-                }
-              })
+              _c("tbody", [
+                _c("tr", [
+                  _c("th", { attrs: { scope: "row" } }, [_vm._v("TF")])
+                ])
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "total_reg" }, [
+            _c("label", { attrs: { for: "txt-total-reg" } }, [
+              _vm._v("Total Réglement : ")
             ]),
             _vm._v(" "),
-            _c("label", { staticClass: "btn btn-warning" }, [
-              _vm._v("\n                  Payé\n                  "),
-              _c("i", { staticClass: "fas fa-dollar-sign" }),
+            _c("input", {
+              staticClass: "txt-total-reg",
+              attrs: {
+                type: "text",
+                id: "ttl_regl",
+                name: "ttl_regl",
+                readonly: ""
+              }
+            })
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-group col-12" }, [_c("hr")]),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-group col-12" }, [
+          _c("div", { staticClass: "container" }, [
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-6" }, [
+                _c("label", { staticClass: "h5" }, [
+                  _vm._v("Dossier de remboursement")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("div", { staticClass: "custom-control custom-checkbox" }, [
+                    _c("input", {
+                      staticClass: "custom-control-input",
+                      attrs: { type: "checkbox", name: "model5", id: "model5" }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "label",
+                      {
+                        staticClass: "custom-control-label",
+                        attrs: { for: "model5" }
+                      },
+                      [_vm._v("Modéle 5")]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "custom-control custom-checkbox" }, [
+                    _c("input", {
+                      staticClass: "custom-control-input",
+                      attrs: {
+                        type: "checkbox",
+                        name: "fiche_eval_sythetique",
+                        id: "fiche_eval_sythetique"
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "label",
+                      {
+                        staticClass: "custom-control-label",
+                        attrs: { for: "fiche_eval_sythetique" }
+                      },
+                      [_vm._v("Fiche d'évaluation synthétique")]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "custom-control custom-checkbox" }, [
+                    _c("input", {
+                      staticClass: "custom-control-input",
+                      attrs: { type: "checkbox", name: "model6", id: "model6" }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "label",
+                      {
+                        staticClass: "custom-control-label",
+                        attrs: { for: "model6" }
+                      },
+                      [_vm._v("Modéle 6")]
+                    )
+                  ])
+                ])
+              ]),
               _vm._v(" "),
+              _c("div", { staticClass: "col-6" }, [
+                _c("label", { staticClass: "h5" }, [
+                  _vm._v("Justifs Règlement")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("div", { staticClass: "custom-control custom-checkbox" }, [
+                    _c("input", {
+                      staticClass: "custom-control-input",
+                      attrs: {
+                        type: "checkbox",
+                        name: "factures",
+                        id: "factures"
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "label",
+                      {
+                        staticClass: "custom-control-label",
+                        attrs: { for: "factures" }
+                      },
+                      [_vm._v("Factures")]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "custom-control custom-checkbox" }, [
+                    _c("input", {
+                      staticClass: "custom-control-input",
+                      attrs: {
+                        type: "checkbox",
+                        name: "compris_cheques",
+                        id: "compris_cheques"
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "label",
+                      {
+                        staticClass: "custom-control-label",
+                        attrs: { for: "compris_cheques" }
+                      },
+                      [_vm._v("Compries cheques / OV / LC")]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "custom-control custom-checkbox" }, [
+                    _c("input", {
+                      staticClass: "custom-control-input",
+                      attrs: {
+                        type: "checkbox",
+                        name: "compris_remise",
+                        id: "compris_remise"
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "label",
+                      {
+                        staticClass: "custom-control-label",
+                        attrs: { for: "compris_remise" }
+                      },
+                      [_vm._v("Compries remises / Avis de débit")]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "custom-control custom-checkbox" }, [
+                    _c("input", {
+                      staticClass: "custom-control-input",
+                      attrs: {
+                        type: "checkbox",
+                        name: "relev_bq_societe",
+                        id: "relev_bq_societe"
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "label",
+                      {
+                        staticClass: "custom-control-label",
+                        attrs: { for: "relev_bq_societe" }
+                      },
+                      [_vm._v("Relevés bq societé")]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "custom-control custom-checkbox" }, [
+                    _c("input", {
+                      staticClass: "custom-control-input",
+                      attrs: {
+                        type: "checkbox",
+                        name: "cabinet",
+                        id: "cabinet"
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "label",
+                      {
+                        staticClass: "custom-control-label",
+                        attrs: { for: "cabinet" }
+                      },
+                      [_vm._v("Relevés bq cabinet")]
+                    )
+                  ])
+                ])
+              ])
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-group col-12" }, [_c("hr")]),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-group col-lg-3 col-sm-12" }, [
+          _c("label", [_vm._v("Date dépot demande de Remboursement")]),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "form-control",
+            attrs: {
+              type: "text",
+              name: "date_depot_dmd_rembrs",
+              id: "date_depot_dmd_rembrs",
+              onmouseover: "(this.type='date')",
+              placeholder: "Date réalisation"
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "form-group col-lg-3 col-sm-12",
+            staticStyle: { margin: "auto" }
+          },
+          [
+            _c("div", { staticClass: "custom-control custom-checkbox" }, [
               _c("input", {
+                staticClass: "custom-control-input",
                 attrs: {
-                  type: "radio",
-                  name: "etat",
-                  id: "option2",
-                  autocomplete: "off",
-                  value: "payé"
+                  type: "checkbox",
+                  name: "accuse_model6",
+                  id: "accuse_model6"
                 }
-              })
-            ]),
-            _vm._v(" "),
-            _c("label", { staticClass: "btn btn-warning" }, [
-              _vm._v(
-                "\n                  Instruction dossier\n                  "
-              ),
-              _c("i", { staticClass: "fas fa-hourglass-half" }),
+              }),
               _vm._v(" "),
-              _c("input", {
-                attrs: {
-                  type: "radio",
-                  name: "etat",
-                  id: "option2",
-                  autocomplete: "off",
-                  value: "instruction dossier"
-                }
-              })
-            ]),
-            _vm._v(" "),
-            _c("label", { staticClass: "btn btn-warning" }, [
-              _vm._v("\n                  Déposé\n                  "),
-              _c("i", { staticClass: "fas fa-folder-open" }),
-              _vm._v(" "),
-              _c("input", {
-                attrs: {
-                  type: "radio",
-                  name: "etat",
-                  id: "option2",
-                  autocomplete: "off",
-                  value: "déposé"
-                }
-              })
-            ]),
-            _vm._v(" "),
-            _c("label", { staticClass: "btn btn-warning" }, [
-              _vm._v("\n                  Remboursé\n                  "),
-              _c("i", { staticClass: "fas fa-check-double" }),
-              _vm._v(" "),
-              _c("input", {
-                attrs: {
-                  type: "radio",
-                  name: "etat",
-                  id: "option3",
-                  autocomplete: "off",
-                  value: "remboursé"
-                }
-              })
+              _c(
+                "label",
+                {
+                  staticClass: "custom-control-label",
+                  attrs: { for: "accuse_model6" }
+                },
+                [_vm._v("Accusé Modele 6")]
+              )
             ])
           ]
-        )
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group col-12" }, [_c("hr")])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group col-12" }, [
-      _c("label", [_vm._v("Commentaire")]),
-      _vm._v(" "),
-      _c("textarea", {
-        staticClass: "form-control",
-        attrs: {
-          type: "text",
-          rows: "4",
-          name: "commentaire",
-          maxlength: "1900",
-          placeholder: "Commentaire .."
-        }
-      })
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-group col-12" }, [_c("hr")]),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-group col-12" }, [
+          _c("label", [_vm._v("Remboursement OFPPT")]),
+          _vm._v(" "),
+          _c("div", { staticClass: "table-responsive" }, [
+            _c("table", { staticClass: "table table-striped" }, [
+              _c("thead", [
+                _c("tr", [
+                  _c("th", { attrs: { scope: "col" } }, [_vm._v("N°Action")]),
+                  _vm._v(" "),
+                  _c("th", { attrs: { scope: "col" } }, [_vm._v("Thème")]),
+                  _vm._v(" "),
+                  _c("th", { attrs: { scope: "col" } }, [
+                    _vm._v("Total HT(DH)")
+                  ]),
+                  _vm._v(" "),
+                  _c("th", { attrs: { scope: "col" } }, [
+                    _vm._v("Quote-part OFPPT")
+                  ]),
+                  _vm._v(" "),
+                  _c("th", { attrs: { scope: "col" } }, [
+                    _vm._v("Remboursement OFPPT")
+                  ]),
+                  _vm._v(" "),
+                  _c("th", { attrs: { scope: "col" } }, [
+                    _vm._v("Ecart/ Remboursement")
+                  ]),
+                  _vm._v(" "),
+                  _c("th", { attrs: { scope: "col" } }, [
+                    _vm._v("Justifs Ecart")
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("tbody", [
+                _c("tr", [
+                  _c("th", { attrs: { scope: "row" } }, [_vm._v("TF")])
+                ])
+              ])
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-group col-12" }, [_c("hr")]),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "form-group col-lg-3 col-sm-12",
+            staticStyle: { margin: "auto" }
+          },
+          [
+            _c("label", [_vm._v("Montant de Remboursement")]),
+            _vm._v(" "),
+            _c("input", {
+              staticClass: "form-control",
+              attrs: {
+                value: "",
+                type: "text",
+                id: "montant_rembrs",
+                name: "montant_rembrs",
+                placeholder: "Montant Remboursement"
+              }
+            })
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "form-group col-lg-3 col-sm-12",
+            staticStyle: { margin: "auto" }
+          },
+          [
+            _c("label", [_vm._v("Date Remboursement")]),
+            _vm._v(" "),
+            _c("input", {
+              staticClass: "form-control",
+              attrs: {
+                type: "text",
+                name: "date_rembrs",
+                id: "date_rembrs",
+                onmouseover: "(this.type='date')",
+                placeholder: "Date réalisation"
+              }
+            })
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "form-group col-12 text-center",
+            staticStyle: { "margin-top": "2rem" }
+          },
+          [
+            _c("h4", [_vm._v("État demande")]),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "btn-group btn-group-toggle btn-Etat",
+                attrs: { "data-toggle": "buttons" }
+              },
+              [
+                _c("label", { staticClass: "btn btn-warning" }, [
+                  _vm._v("\n              Initié\n              "),
+                  _c("i", { staticClass: "fas fa-battery-quarter" }),
+                  _vm._v(" "),
+                  _c("input", {
+                    attrs: {
+                      type: "radio",
+                      name: "etat",
+                      id: "option1",
+                      autocomplete: "off",
+                      value: "initié"
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("label", { staticClass: "btn btn-warning" }, [
+                  _vm._v("\n              Payé\n              "),
+                  _c("i", { staticClass: "fas fa-dollar-sign" }),
+                  _vm._v(" "),
+                  _c("input", {
+                    attrs: {
+                      type: "radio",
+                      name: "etat",
+                      id: "option2",
+                      autocomplete: "off",
+                      value: "payé"
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("label", { staticClass: "btn btn-warning" }, [
+                  _vm._v("\n              Instruction dossier\n              "),
+                  _c("i", { staticClass: "fas fa-hourglass-half" }),
+                  _vm._v(" "),
+                  _c("input", {
+                    attrs: {
+                      type: "radio",
+                      name: "etat",
+                      id: "option2",
+                      autocomplete: "off",
+                      value: "instruction dossier"
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("label", { staticClass: "btn btn-warning" }, [
+                  _vm._v("\n              Déposé\n              "),
+                  _c("i", { staticClass: "fas fa-folder-open" }),
+                  _vm._v(" "),
+                  _c("input", {
+                    attrs: {
+                      type: "radio",
+                      name: "etat",
+                      id: "option2",
+                      autocomplete: "off",
+                      value: "déposé"
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("label", { staticClass: "btn btn-warning" }, [
+                  _vm._v("\n              Remboursé\n              "),
+                  _c("i", { staticClass: "fas fa-check-double" }),
+                  _vm._v(" "),
+                  _c("input", {
+                    attrs: {
+                      type: "radio",
+                      name: "etat",
+                      id: "option3",
+                      autocomplete: "off",
+                      value: "remboursé"
+                    }
+                  })
+                ])
+              ]
+            )
+          ]
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-group col-12" }, [_c("hr")]),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-group col-12" }, [
+          _c("label", [_vm._v("Commentaire")]),
+          _vm._v(" "),
+          _c("textarea", {
+            staticClass: "form-control",
+            attrs: {
+              type: "text",
+              rows: "4",
+              name: "commentaire",
+              maxlength: "1900",
+              placeholder: "Commentaire .."
+            }
+          })
+        ])
+      ])
     ])
   },
   function() {
@@ -46106,7 +46187,10 @@ var staticRenderFns = [
       _c(
         "button",
         { staticClass: "btn bu-add", attrs: { type: "submit", id: "add" } },
-        [_c("i", { staticClass: "fas fa-pen-square icon" }), _vm._v("Modifier")]
+        [
+          _c("i", { staticClass: "fas fa-pen-square icon" }),
+          _vm._v("Modifier\n      ")
+        ]
       ),
       _vm._v(" "),
       _c("a", { staticClass: "btn bu-danger", attrs: { href: "/drb-gc" } }, [
@@ -46137,110 +46221,133 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "card card-dark" }, [
+    _vm._m(0),
+    _vm._v(" "),
+    _c("div", { staticClass: "card-body table-striped p-0" }, [
+      _c(
+        "table",
+        { staticClass: "table table-md" },
+        [
+          _vm._m(1),
+          _vm._v(" "),
+          _vm._l(_vm.list_drfs, function(drf, index) {
+            return _c("tbody", { key: index }, [
+              _c("tr", [
+                _c("td", [_vm._v(_vm._s(drf.etat))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(drf.refpdf))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(drf.id_plan))]),
+                _vm._v(" "),
+                _c(
+                  "td",
+                  { staticClass: "th-last d-inline-block text-truncate" },
+                  [_vm._v("Test")]
+                ),
+                _vm._v(" "),
+                _c("td", { staticClass: "action" }, [
+                  _vm._m(2, true),
+                  _vm._v(" "),
+                  _c(
+                    "a",
+                    {
+                      staticClass: "btn btn-warning",
+                      attrs: { id: "edit", href: "/get-drf-of/" + drf.n_drf },
+                      on: {
+                        click: function($event) {
+                          return _vm.handleAction(
+                            "DRB_OFPPT/getSelectedDrfId",
+                            drf.n_drf
+                          )
+                        }
+                      }
+                    },
+                    [_c("i", { staticClass: "fa fa-edit" })]
+                  ),
+                  _vm._v(" "),
+                  _vm._m(3, true)
+                ])
+              ])
+            ])
+          })
+        ],
+        2
+      )
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "card-footer" })
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card card-dark" }, [
-      _c("div", { staticClass: "card-header" }, [
-        _c("div", { staticClass: "d-flex h-100" }, [
-          _c("h3", { staticClass: "card-title" }, [
-            _vm._v("Demandes remboursement OFPPT")
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "container h-100 " }, [
-            _c("form", { attrs: { action: "/searchofppt", method: "GET" } }, [
-              _c("div", { staticClass: "searchbar bu-sm" }, [
-                _c("input", {
-                  staticClass: "search_input",
-                  attrs: {
-                    type: "text",
-                    name: "searchofppt",
-                    placeholder: "Rechercher par N°.."
-                  }
-                }),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  { staticClass: "search_icon btn", attrs: { type: "submit" } },
-                  [_c("i", { staticClass: "fas fa-search" })]
-                )
-              ])
-            ])
-          ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "card-body table-striped p-0" }, [
-        _c("table", { staticClass: "table table-md" }, [
-          _c("thead", { staticClass: "thead" }, [
-            _c("tr", [
-              _c("th", [_vm._v("Etat")]),
-              _vm._v(" "),
-              _c("th", [_vm._v("RefPdf")]),
-              _vm._v(" "),
-              _c("th", [_vm._v("Plan de formation")]),
-              _vm._v(" "),
-              _c("th", [_vm._v("Année")]),
-              _vm._v(" "),
-              _c("th", { staticClass: "action" }, [_vm._v("Action")])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("tbody", [
-            _c("tr", [
-              _c("td", [_vm._v("Test")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("Test")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("Test")]),
+    return _c("div", { staticClass: "card-header" }, [
+      _c("div", { staticClass: "d-flex h-100" }, [
+        _c("h3", { staticClass: "card-title" }, [
+          _vm._v("Demandes remboursement OFPPT")
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "container h-100 " }, [
+          _c("form", { attrs: { action: "/searchofppt", method: "GET" } }, [
+            _c("div", { staticClass: "searchbar bu-sm" }, [
+              _c("input", {
+                staticClass: "search_input",
+                attrs: {
+                  type: "text",
+                  name: "searchofppt",
+                  placeholder: "Rechercher par N°.."
+                }
+              }),
               _vm._v(" "),
               _c(
-                "td",
-                { staticClass: "th-last d-inline-block text-truncate" },
-                [_vm._v("Test")]
-              ),
-              _vm._v(" "),
-              _c("td", { staticClass: "action" }, [
-                _c(
-                  "a",
-                  {
-                    staticClass: "btn btn-primary",
-                    attrs: { href: "/detail-drb-of" }
-                  },
-                  [
-                    _c("i", {
-                      staticClass: "fa fa-eye",
-                      staticStyle: { color: "white" }
-                    })
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "a",
-                  {
-                    staticClass: "btn btn-warning",
-                    attrs: { href: "/edit-drb" }
-                  },
-                  [_c("i", { staticClass: "fa fa-edit" })]
-                ),
-                _vm._v(" "),
-                _c("a", { staticClass: "btn btn-danger" }, [
-                  _c("i", {
-                    staticClass: "fa fa-trash-alt",
-                    staticStyle: { color: "white" }
-                  })
-                ])
-              ])
+                "button",
+                { staticClass: "search_icon btn", attrs: { type: "submit" } },
+                [_c("i", { staticClass: "fas fa-search" })]
+              )
             ])
           ])
         ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "card-footer" })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", { staticClass: "thead" }, [
+      _c("tr", [
+        _c("th", [_vm._v("Etat")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("RefPdf")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Plan de formation")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Année")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "action" }, [_vm._v("Action")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("a", { staticClass: "btn btn-primary", attrs: { href: "#" } }, [
+      _c("i", { staticClass: "fa fa-eye", staticStyle: { color: "white" } })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("a", { staticClass: "btn btn-danger" }, [
+      _c("i", {
+        staticClass: "fa fa-trash-alt",
+        staticStyle: { color: "white" }
+      })
     ])
   }
 ]
@@ -46492,22 +46599,14 @@ var render = function() {
                 },
                 [
                   _vm._v(
-<<<<<<< HEAD
-                    "\r\n        J’atteste sur l’honneur que le bilan de réalisation du plan de formation de notre entreprise au titre de l’exercice "
-=======
                     "\n          J’atteste sur l’honneur que le bilan de réalisation du plan de\n          formation de notre entreprise au titre de l’exercice\n          "
->>>>>>> 58bab2c1836ad494f366c9f46e49ee4b2f2226ee
                   ),
                   _c(
                     "span",
                     { staticStyle: { "background-color": "yellow" } },
                     [_vm._v(_vm._s(info.annee))]
                   ),
-<<<<<<< HEAD
-                  _vm._v("  Se présente comme suit :\r\n      ")
-=======
                   _vm._v(" Se\n          présente comme suit :\n        ")
->>>>>>> 58bab2c1836ad494f366c9f46e49ee4b2f2226ee
                 ]
               )
             ]),
@@ -46571,40 +46670,24 @@ var render = function() {
                     [
                       _c("td", [
                         _vm._v(
-<<<<<<< HEAD
-                          "\r\n          Actions prévues dans le plan de formation année  "
-=======
                           "\n            Actions prévues dans le plan de formation année\n            "
->>>>>>> 58bab2c1836ad494f366c9f46e49ee4b2f2226ee
                         ),
                         _c("span", [_vm._v(_vm._s(info.annee))])
                       ]),
                       _vm._v(" "),
                       _c("td", [
-<<<<<<< HEAD
-                        _vm._v("\r\n          Action réalisée (*)\r\n        ")
-=======
                         _vm._v("\n            Action réalisée (*)\n          ")
->>>>>>> 58bab2c1836ad494f366c9f46e49ee4b2f2226ee
                       ]),
                       _vm._v(" "),
                       _c("td", [
                         _vm._v(
-<<<<<<< HEAD
-                          "\r\n        Dossier de remboursement déposé à l’UG CSF (*)\r\n        "
-=======
                           "\n            Dossier de remboursement déposé à l’UG CSF (*)\n          "
->>>>>>> 58bab2c1836ad494f366c9f46e49ee4b2f2226ee
                         )
                       ]),
                       _vm._v(" "),
                       _c("td", [
                         _vm._v(
-<<<<<<< HEAD
-                          "\r\n          Observations (Raisons expliquant la non réalisation)\r\n        "
-=======
                           "\n            Observations (Raisons expliquant la non réalisation)\n          "
->>>>>>> 58bab2c1836ad494f366c9f46e49ee4b2f2226ee
                         )
                       ])
                     ]
@@ -46664,11 +46747,7 @@ var render = function() {
             _vm._v(" "),
             _c("label", { staticStyle: { "font-weight": "bold" } }, [
               _vm._v(
-<<<<<<< HEAD
-                "\r\n      NB : L’acceptation du financement de l’ingénierie de l’année N par le CCE du GIAC dépend du taux de réalisation du plan de formation de l’année N-1\r\n    "
-=======
                 "\n        NB : L’acceptation du financement de l’ingénierie de l’année N par le\n        CCE du GIAC dépend du taux de réalisation du plan de formation de\n        l’année N-1\n      "
->>>>>>> 58bab2c1836ad494f366c9f46e49ee4b2f2226ee
               )
             ])
           ]),
@@ -46681,11 +46760,7 @@ var render = function() {
             },
             [
               _c("label", { attrs: { for: "Directeur" } }, [
-<<<<<<< HEAD
-                _vm._v(" DIRECTION :\r\n      "),
-=======
                 _vm._v("\n        DIRECTION :\n        "),
->>>>>>> 58bab2c1836ad494f366c9f46e49ee4b2f2226ee
                 _c("span", { staticStyle: { "background-color": "yellow" } }, [
                   _vm._v(" " + _vm._s(info.raisoci) + " ")
                 ]),
@@ -69134,6 +69209,194 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/store/DRB_OFPPT/actions.js":
+/*!*************************************************!*\
+  !*** ./resources/js/store/DRB_OFPPT/actions.js ***!
+  \*************************************************/
+/*! exports provided: actions */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "actions", function() { return actions; });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+var actions = {
+  FetchAllDrf: function FetchAllDrf(_ref) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+      var commit;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              commit = _ref.commit;
+              _context.next = 3;
+              return axios.get("/get-all-drf").then(function (_ref2) {
+                var data = _ref2.data;
+                commit("SET_DRF", data);
+                console.log("DRFS : ", data);
+              })["catch"](function (err) {
+                return console.error("err DRFS", err);
+              });
+
+            case 3:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }))();
+  },
+  getSelectedDrfId: function getSelectedDrfId(_ref3, nDrf) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+      var commit;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              commit = _ref3.commit;
+              _context2.next = 3;
+              return axios.get("/get-drf-of/".concat(nDrf), {
+                params: {
+                  nDrf: nDrf
+                }
+              }).then(function (_ref4) {
+                var data = _ref4.data;
+                commit("SET_DRF_BY_ID", data);
+                console.log("drf by ID : ", data);
+              })["catch"](function (err) {
+                return console.error("err can get drf by ID", err);
+              });
+
+            case 3:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2);
+    }))();
+  },
+  getSelectedDrf: function getSelectedDrf(_ref5) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+      var commit;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
+              commit = _ref5.commit;
+              _context3.next = 3;
+              return axios.get('/get-drf-by-id').then(function (_ref6) {
+                var data = _ref6.data;
+                commit("SET_DRF_BY_ID", data);
+                console.log("drf by ID : ", data);
+              })["catch"](function (err) {
+                return console.error("err can get drf by ID", err);
+              });
+
+            case 3:
+            case "end":
+              return _context3.stop();
+          }
+        }
+      }, _callee3);
+    }))();
+  }
+};
+
+/***/ }),
+
+/***/ "./resources/js/store/DRB_OFPPT/getter.js":
+/*!************************************************!*\
+  !*** ./resources/js/store/DRB_OFPPT/getter.js ***!
+  \************************************************/
+/*! exports provided: getter */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getter", function() { return getter; });
+var getter = {};
+
+/***/ }),
+
+/***/ "./resources/js/store/DRB_OFPPT/index.js":
+/*!***********************************************!*\
+  !*** ./resources/js/store/DRB_OFPPT/index.js ***!
+  \***********************************************/
+/*! exports provided: DRB_OFPPT */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DRB_OFPPT", function() { return DRB_OFPPT; });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _state__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./state */ "./resources/js/store/DRB_OFPPT/state.js");
+/* harmony import */ var _mutations__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./mutations */ "./resources/js/store/DRB_OFPPT/mutations.js");
+/* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./actions */ "./resources/js/store/DRB_OFPPT/actions.js");
+/* harmony import */ var _getter__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./getter */ "./resources/js/store/DRB_OFPPT/getter.js");
+
+
+
+
+
+
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__["default"]);
+var DRB_OFPPT = {
+  namespaced: true,
+  state: _state__WEBPACK_IMPORTED_MODULE_2__["state"],
+  getter: _getter__WEBPACK_IMPORTED_MODULE_5__["getter"],
+  mutations: _mutations__WEBPACK_IMPORTED_MODULE_3__["mutations"],
+  actions: _actions__WEBPACK_IMPORTED_MODULE_4__["actions"]
+};
+
+/***/ }),
+
+/***/ "./resources/js/store/DRB_OFPPT/mutations.js":
+/*!***************************************************!*\
+  !*** ./resources/js/store/DRB_OFPPT/mutations.js ***!
+  \***************************************************/
+/*! exports provided: mutations */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mutations", function() { return mutations; });
+var mutations = {
+  SET_DRF: function SET_DRF(state, data) {
+    state.list_drfs = data;
+  },
+  SET_DRF_BY_ID: function SET_DRF_BY_ID(state, data) {
+    state.drfById = data;
+  }
+};
+
+/***/ }),
+
+/***/ "./resources/js/store/DRB_OFPPT/state.js":
+/*!***********************************************!*\
+  !*** ./resources/js/store/DRB_OFPPT/state.js ***!
+  \***********************************************/
+/*! exports provided: state */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "state", function() { return state; });
+var state = {
+  list_drfs: [],
+  drfById: []
+};
+
+/***/ }),
+
 /***/ "./resources/js/store/G6/actions.js":
 /*!******************************************!*\
   !*** ./resources/js/store/G6/actions.js ***!
@@ -69374,6 +69637,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _modules_model3_index__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/model3/index */ "./resources/js/store/modules/model3/index.js");
 /* harmony import */ var _G6__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./G6 */ "./resources/js/store/G6/index.js");
+/* harmony import */ var _DRB_OFPPT__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./DRB_OFPPT */ "./resources/js/store/DRB_OFPPT/index.js");
+
 
 
 
@@ -69382,7 +69647,8 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
 var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
   modules: {
     model3: _modules_model3_index__WEBPACK_IMPORTED_MODULE_2__["model3"],
-    G6: _G6__WEBPACK_IMPORTED_MODULE_3__["G6"]
+    G6: _G6__WEBPACK_IMPORTED_MODULE_3__["G6"],
+    DRB_OFPPT: _DRB_OFPPT__WEBPACK_IMPORTED_MODULE_4__["DRB_OFPPT"]
   }
 });
 

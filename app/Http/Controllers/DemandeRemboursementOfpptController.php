@@ -3,9 +3,50 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\DemandeRemboursementOfppt;
+use Illuminate\Support\Facades\Session;
+
+
 
 class DemandeRemboursementOfpptController extends Controller
 {
+    private $id;
+
+    public function AllDRF() {
+      return view('DRB_Ofppt.view');
+    }
+
+    public function ShowUpdatingDrf(Request $request) {
+
+      $this->id = $request->nDrf;
+
+
+
+        Session::put('SelectedDrf', $this->id);
+        Session::save();
+
+        return view("DRB_Ofppt.edit");
+    }
+
+    public function getDrfInfo(Request $request) {
+
+      $data = DemandeRemboursementOfppt::select('demande_remboursement_ofppts.*')
+      ->where('demande_remboursement_ofppts.n_drf', $this->id)
+      ->get();
+
+        // $drf = Session::get('SelectedDrf');
+
+        return response()->json($data);
+      }
+
+    public function show() {
+
+      $data = DemandeRemboursementOfppt::all();
+
+      return response()->json($data);
+
+    }
+
     public function update(Request $request, $n_drf)
     {
         if ($request -> isMethod('POST')) {
@@ -36,7 +77,7 @@ class DemandeRemboursementOfpptController extends Controller
               'compris_cheques',
               'compris_remise',
               'relev_bq_societe',
-              'cabinet']
+              'relev_bq_cabinet'];
 
             foreach ($docs as $doc) {
                 if ($request->input($doc) != null) {
@@ -53,7 +94,7 @@ class DemandeRemboursementOfpptController extends Controller
             $drb->save();
 
             $request->session()->flash('updated', 'Modifié avec succès');
-    
+
         }
     }
     public function destroy(Request $request, $n_drf)
