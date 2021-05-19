@@ -3524,6 +3524,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -3572,28 +3579,137 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      cats: [],
-      newCat: null,
-      tst: []
+      numero_remb: []
     };
   },
   mounted: function mounted() {
-    var Id = JSON.parse(localStorage.getItem("n_drb"));
-    this.tst = Id;
-    this.clearLS();
+    this.numero_remb = JSON.parse(localStorage.getItem("n_drf"));
+    console.log(this.numero_remb);
+    this.handleAction("DRB_Ofppt/getListOfDROfpptEdit", this.numero_remb);
   },
-  // mounted() {
-  //   if (localStorage.getItem('cats')) {
-  //     try {
-  //       this.cats = JSON.parse(localStorage.getItem('cats'));
-  //     } catch(e) {
-  //       localStorage.removeItem('cats');
-  //     }
-  //   }
-  // },
   methods: {
     addCat: function addCat() {
       if (!this.newCat) {
@@ -3614,8 +3730,16 @@ __webpack_require__.r(__webpack_exports__);
     },
     clearLS: function clearLS() {
       localStorage.clear();
+    },
+    handleAction: function handleAction(actionName, value) {
+      this.$store.dispatch(actionName, value);
     }
-  }
+  },
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])("DRB_Ofppt", {
+    DRB_Ofppts: function DRB_Ofppts(state) {
+      return state.DRB_OfpptEdit;
+    }
+  }))
 });
 
 /***/ }),
@@ -3636,6 +3760,34 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -4018,12 +4170,49 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     };
   },
   mounted: function mounted() {
+    var _this = this;
+
     this.numero_remb = JSON.parse(localStorage.getItem("n_drf"));
     console.log(this.numero_remb);
     this.handleAction("DRB_Ofppt/getListOfDROfpptEdit", this.numero_remb);
-    this.handleAction("DRB_Ofppt/ReglEntrpInfo", this.numero_remb); // setTimeout(() => {
+    this.handleAction("DRB_Ofppt/ReglEntrpInfo", this.numero_remb);
+    setTimeout(function () {
+      _this.CalculTotalRegl();
+    }, 1500);
+    setTimeout(function () {
+      _this.model5 = _this.DRB_Ofppts[0].model5 === "préparé";
+      _this.model6 = _this.DRB_Ofppts[0].model6 === "préparé";
+      _this.fiche_eval_sythetique = _this.DRB_Ofppts[0].fiche_eval_sythetique === "préparé";
+      _this.factures = _this.DRB_Ofppts[0].factures === "préparé";
+      _this.compris_cheques = _this.DRB_Ofppts[0].compris_cheques === "préparé";
+      _this.compris_remise = _this.DRB_Ofppts[0].compris_remise === "préparé";
+      _this.relev_bq_societe = _this.DRB_Ofppts[0].relev_bq_societe === "préparé";
+      _this.relev_bq_cabinet = _this.DRB_Ofppts[0].relev_bq_cabinet === "préparé";
+      _this.accuse_model6 = _this.DRB_Ofppts[0].accuse_model6 === "préparé";
+    }, 1000);
+    setTimeout(function () {
+      if (_this.DRB_Ofppts[0].etat === "initié" || _this.DRB_Ofppts[0].etat === "payé" || _this.DRB_Ofppts[0].etat === "instruction dossier" || _this.DRB_Ofppts[0].etat === "déposé" || _this.DRB_Ofppts[0].etat === "remboursé") {
+        _this.etat = _this.DRB_Ofppts[0].etat;
 
-    this.selectedEtat(); // }, 3000);
+        var _loop = function _loop(i) {
+          var targetselected_etat = $("#opt".concat(i));
+
+          var selected_etat = $("#opt".concat(i)).text().toLowerCase().trim() == _this.etat;
+
+          if (selected_etat) {
+            $("#opt".concat(i)).addClass("active");
+          } else {
+            targetselected_etat.click(function () {
+              $("#opt".concat(i)).removeClass("active");
+            });
+          }
+        };
+
+        for (var i = 0; i < 4; i++) {
+          _loop(i);
+        }
+      }
+    }, 200);
   },
   updated: function updated() {},
   methods: {
@@ -4034,23 +4223,35 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       localStorage.clear();
     },
     CalculTotalRegl: function CalculTotalRegl() {
-      var _this = this;
+      var _this2 = this;
 
       var data = this.reglEntreprise;
       var item = 0;
       setTimeout(function () {
         for (item in data) {
           var QtRegl = data[item].bdg_total * .3 + data[item].bdg_total * .2;
-          _this.total_regl += QtRegl;
-          console.log("TTL REGL", QtRegl);
+          _this2.total_regl += QtRegl;
         }
       }, 1200);
       return this.total_regl;
     },
+    SelectedEtat: function SelectedEtat() {
+      var _this3 = this;
+
+      setTimeout(function () {
+        var data = _this3.DRB_Ofppts;
+        var etat = data[0].etat;
+
+        if (etat === "payé") {
+          _this3.etat = true;
+        }
+      }, 2000);
+    },
     updateDRB: function updateDRB() {
-      var _this2 = this;
+      var _this4 = this;
 
       var model5 = this.model5;
+      var model6 = this.model6;
       var fiche_eval_sythetique = this.fiche_eval_sythetique;
       var factures = this.factures;
       var compris_cheques = this.compris_cheques;
@@ -4072,16 +4273,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         compris_remise: compris_remise,
         relev_bq_societe: relev_bq_societe,
         relev_bq_cabinet: relev_bq_cabinet,
-        ccuse_model6: accuse_model6,
+        accuse_model6: accuse_model6,
         montant_rembrs: montant_rembrs.value,
         date_depot_dmd_rembrs: date_depot_dmd_rembrs.value,
         date_rembrs: date_rembrs.value,
         etat: etat,
         thems: thems
       }).then(function () {
-        _this2.$toastr.s("Modifié avec succès");
+        _this4.$toastr.s("Modifié avec succès");
       })["catch"](function (e) {
-        _this2.$toastr.e("Echec de modification");
+        _this4.$toastr.e("Echec de modification");
 
         throw e;
       });
@@ -4137,6 +4338,18 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -10066,7 +10279,26 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\ntable[data-v-376179dc] {\r\n  margin: 10px auto;\n}\ntd[data-v-376179dc],\r\nth[data-v-376179dc] {\r\n  text-align: center;\n}\n.total_reg[data-v-376179dc] {\r\n  margin: 10px auto;\r\n  float: right;\n}\n.btn-Etat[data-v-376179dc] {\r\n  display: flex;\r\n  flex-direction: row;\r\n  flex-wrap: wrap;\n}\r\n", ""]);
+exports.push([module.i, "\ntable[data-v-376179dc] {\r\n  margin: 10px auto;\n}\ntd[data-v-376179dc],\r\nth[data-v-376179dc] {\r\n  text-align: center;\n}\n.total_reg[data-v-376179dc] {\r\n  margin: 10px auto;\r\n  float: right;\n}\n.btn-Etat[data-v-376179dc] {\r\n  display: flex;\r\n  flex-direction: row;\r\n  flex-wrap: wrap;\n}\n.display_div[data-v-376179dc] {\r\n  display: flex;\r\n  flex-direction: row;\r\n  flex-wrap: wrap;\n}\n.display_div_child[data-v-376179dc] {\r\n  display: flex;\r\n  flex-direction: column;\n}\n.div_select_all[data-v-376179dc] {\r\n  float: right;\n}\r\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/DRB_OFPPT/List.vue?vue&type=style&index=0&id=55f1c8b4&scoped=true&lang=css&":
+/*!********************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/DRB_OFPPT/List.vue?vue&type=style&index=0&id=55f1c8b4&scoped=true&lang=css& ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.div_header[data-v-55f1c8b4]{\n  display: flex;\n  flex-direction: row;\n  /* flex-wrap: wrap; */\n}\n.searchbar[data-v-55f1c8b4]{\n  display: flex;\n  flex-direction: row;\n  /* flex-wrap: wrap; */\n}\n.search_icon[data-v-55f1c8b4]{\n  /* position: relative; */\n  /* float: right; */\n  /* right: 0%; */\n  display: flex;\n}\n@media only screen and (max-width: 600px) {\n.div_header[data-v-55f1c8b4]{\n    display: flex;\n    flex-direction: column;\n    /* align-items: center;*/\n}\n.searchbar[data-v-55f1c8b4]{\n    margin: auto;\n    align-self: center;\n    width: 100%;\n}\n.search_icon[data-v-55f1c8b4]{\n    position: relative;\n     float: right;\n     right: 0%;\n    /* display: flex; */\n}\n}\n", ""]);
 
 // exports
 
@@ -42108,6 +42340,36 @@ if(false) {}
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/DRB_OFPPT/List.vue?vue&type=style&index=0&id=55f1c8b4&scoped=true&lang=css&":
+/*!************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/DRB_OFPPT/List.vue?vue&type=style&index=0&id=55f1c8b4&scoped=true&lang=css& ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../../node_modules/css-loader??ref--6-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--6-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./List.vue?vue&type=style&index=0&id=55f1c8b4&scoped=true&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/DRB_OFPPT/List.vue?vue&type=style&index=0&id=55f1c8b4&scoped=true&lang=css&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/lib/addStyles.js":
 /*!****************************************************!*\
   !*** ./node_modules/style-loader/lib/addStyles.js ***!
@@ -45688,40 +45950,296 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { attrs: { id: "app" } },
     [
-      _c("h2", [_vm._v("Chats")]),
+      _vm._m(0),
       _vm._v(" "),
-      _vm._l(_vm.cats, function(cat, n) {
-        return _c("div", { key: cat.id }, [
-          _c("p", [
-            _c("span", { staticClass: "cat" }, [_vm._v(_vm._s(cat))]),
+      _vm._l(_vm.DRB_Ofppts, function(DRB_Ofppt) {
+        return _c(
+          "div",
+          {
+            key: DRB_Ofppt.n_drf,
+            staticClass: "card card-dark",
+            staticStyle: { width: "100%" }
+          },
+          [
+            _c("div", { staticClass: "card-header" }, [
+              _vm._m(1, true),
+              _vm._v(" "),
+              _c("h3", { staticClass: "card-title card-h3" }, [
+                _vm._v("\n          DRB OFPPT >\n          "),
+                _c("a", { attrs: { href: "/detail-df/" } }, [
+                  _vm._v("\n              Test\n          ")
+                ]),
+                _vm._v("\n          " + _vm._s(" > ") + "\n          "),
+                _c("a", { attrs: { href: "/detail-cl/" } }, [
+                  _vm._v("\n              Test\n          ")
+                ])
+              ]),
+              _vm._v(" "),
+              _vm._m(2, true),
+              _vm._v(" "),
+              _vm._m(3, true),
+              _vm._v(" "),
+              _vm._m(4, true)
+            ]),
             _vm._v(" "),
             _c(
-              "button",
-              {
-                on: {
-                  click: function($event) {
-                    return _vm.removeCat(n)
-                  }
-                }
-              },
-              [_vm._v("Enlever")]
+              "div",
+              { staticClass: "card-body p-0 table-responsive table-striped " },
+              [
+                _c("table", { staticClass: "table table-striped" }, [
+                  _vm._m(5, true),
+                  _vm._v(" "),
+                  _c("tbody", [
+                    _c("tr", [
+                      _c("th", [_vm._v("ÉTAT DEMANDE")]),
+                      _vm._v(" "),
+                      _c(
+                        "td",
+                        {
+                          staticClass: "th-det text-capitalize",
+                          attrs: { value: "testtttttt" }
+                        },
+                        [
+                          _c("i", { staticClass: "fa fa-battery-quarter" }),
+                          _vm._v(
+                            "\n                      " +
+                              _vm._s(DRB_Ofppt.etat) +
+                              "\n                  "
+                          )
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _vm._m(6, true),
+                    _vm._v(" "),
+                    _vm._m(7, true),
+                    _vm._v(" "),
+                    _c("tr", [
+                      _c("th", { staticClass: "th-det" }, [_vm._v("Factures")]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(DRB_Ofppt.factures))])
+                    ]),
+                    _vm._v(" "),
+                    _c("tr", [
+                      _c("th", { staticClass: "th-det" }, [
+                        _vm._v("Relevés bancaire societé")
+                      ]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(DRB_Ofppt.relev_bq_societe))])
+                    ]),
+                    _vm._v(" "),
+                    _c("tr", [
+                      _c("th", { staticClass: "th-det" }, [
+                        _vm._v("Relevés bancaire cabinet")
+                      ]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(DRB_Ofppt.relev_bq_cabinet))])
+                    ]),
+                    _vm._v(" "),
+                    _c("tr", [
+                      _c("th", { staticClass: "th-det" }, [
+                        _vm._v("Fiche d'évaluation synthétique")
+                      ]),
+                      _vm._v(" "),
+                      _c("td", [
+                        _vm._v(_vm._s(DRB_Ofppt.fiche_eval_sythetique))
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("tr", [
+                      _c("th", { staticClass: "th-det" }, [_vm._v("Model 5")]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(DRB_Ofppt.model5))])
+                    ]),
+                    _vm._v(" "),
+                    _c("tr", [
+                      _c("th", { staticClass: "th-det" }, [_vm._v("Model 6")]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(DRB_Ofppt.model6))])
+                    ]),
+                    _vm._v(" "),
+                    _c("tr", [
+                      _c("th", { staticClass: "th-det" }, [
+                        _vm._v("Accusé Modele 6")
+                      ]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(DRB_Ofppt.accuse_model6))])
+                    ]),
+                    _vm._v(" "),
+                    _vm._m(8, true),
+                    _vm._v(" "),
+                    _c("tr", [
+                      _c("th", { staticClass: "th-det" }, [
+                        _vm._v("Date dépôt demande rembours.")
+                      ]),
+                      _vm._v(" "),
+                      _c("td", [
+                        _vm._v(_vm._s(DRB_Ofppt.date_depot_dmd_rembrs))
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _vm._m(9, true),
+                    _vm._v(" "),
+                    _vm._m(10, true),
+                    _vm._v(" "),
+                    _c("tr", [
+                      _c("th", { staticClass: "th-det" }, [
+                        _vm._v("Montant remboursement")
+                      ]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(DRB_Ofppt.montant_rembrs))])
+                    ])
+                  ])
+                ])
+              ]
             )
-          ])
-        ])
-      }),
-      _vm._v(" "),
-      _c("p", [
-        _c("input", { domProps: { value: _vm.tst } }),
-        _vm._v(" "),
-        _c("button", { on: { click: _vm.addCat } }, [_vm._v("Ajouter un chat")])
-      ])
+          ]
+        )
+      })
     ],
     2
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticStyle: { display: "flex" } }, [
+      _c("div", { staticClass: "col-sm-6" }, [
+        _c("h1", { staticClass: "m-0 text-dark" }, [_vm._v("Détails")])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-sm-6" }, [
+        _c("ol", { staticClass: "breadcrumb float-sm-right" }, [
+          _c("li", { staticClass: "breadcrumb-item" }, [
+            _c("a", { attrs: { href: "/detail-drb-ofppt" } }, [
+              _vm._v("D.R OFPPT")
+            ])
+          ]),
+          _vm._v(" "),
+          _c("li", { staticClass: "breadcrumb-item active" }, [_vm._v("n_drb")])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      {
+        staticClass: "btn btn-dark btn-sm bu-lg-ic",
+        attrs: { href: "/drb-gc" }
+      },
+      [_c("i", { staticClass: "fa fa-arrow-left" })]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("a", { staticClass: "btn btn-sm btn-info float-right" }, [
+      _c("i", { staticClass: "fa fa-print" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("a", { staticClass: "btn btn-sm btn-danger float-right" }, [
+      _c("i", { staticClass: "fa fa-trash-alt" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      {
+        staticClass: "btn btn-sm btn-warning float-right",
+        attrs: { href: "/edit-drb-ofppt" }
+      },
+      [_c("i", { staticClass: "fa fa-edit" })]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", { staticClass: "thead" }, [
+      _c("tr", [
+        _c(
+          "div",
+          { staticClass: "progress", staticStyle: { height: "20px" } },
+          [
+            _c("div", {
+              staticClass: "progress-bar progress-bar-striped bg-success ",
+              staticStyle: { width: "20%" }
+            })
+          ]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", [
+      _c("th", { staticClass: "th-det" }, [_vm._v("Mission de rembours.")]),
+      _vm._v(" "),
+      _c("td", [
+        _c("a", { attrs: { href: "/detail-df/" } }, [
+          _vm._v("\n                       test\n                    ")
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", [
+      _c("td", { staticClass: "text-lg bg-dark", attrs: { colspan: "12" } }, [
+        _vm._v("PAIEMENT")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", [
+      _c("td", { staticClass: "text-lg bg-dark", attrs: { colspan: "12" } }, [
+        _vm._v("DÉPOT")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", [
+      _c("td", { staticClass: "text-lg bg-dark", attrs: { colspan: "12" } }, [
+        _vm._v("REMBOURSEMENT")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", [
+      _c("th", { staticClass: "th-det" }, [_vm._v("Date der. modif.")]),
+      _vm._v(" "),
+      _c("td", [_vm._v("test")])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -45754,13 +46272,13 @@ var render = function() {
       [
         _c("div", { staticClass: "card-header" }, [
           _c("h3", { staticClass: "card-title card-h3" }, [
-            _vm._v("\n          Modif. DRB OFPPT\n          "),
+            _vm._v("\n        Modif. DRB OFPPT\n        "),
             _c("a", { attrs: { href: "#" } }, [
-              _vm._v("\n            Test\n          ")
+              _vm._v("\n          Test\n        ")
             ]),
-            _vm._v("\n          " + _vm._s(" > ") + "\n          "),
+            _vm._v("\n        " + _vm._s(" > ") + "\n        "),
             _c("a", { attrs: { href: "#" } }, [
-              _vm._v("\n            Test\n          ")
+              _vm._v("\n          Test\n        ")
             ])
           ])
         ]),
@@ -45768,28 +46286,21 @@ var render = function() {
         _vm._l(_vm.DRB_Ofppts, function(DRB_Ofppt) {
           return _c("div", { key: DRB_Ofppt.n_drf, staticClass: "card-body" }, [
             _c("div", { staticClass: "row" }, [
-              _c(
-                "div",
-                {
-                  staticClass: "form-group col-lg-3 col-sm-12",
-                  staticStyle: { margin: "auto" }
-                },
-                [
-                  _c("label", [_vm._v("E/S")]),
-                  _vm._v(" "),
-                  _c("input", {
-                    staticClass: "form-control",
-                    attrs: {
-                      type: "text",
-                      id: "nrc_entrp",
-                      name: "nrc_entrp",
-                      placeholder: "Entreprise..",
-                      readonly: ""
-                    },
-                    domProps: { value: DRB_Ofppt.raisoci }
-                  })
-                ]
-              ),
+              _c("div", { staticClass: "form-group col-lg-3 col-sm-12" }, [
+                _c("label", [_vm._v("E/S")]),
+                _vm._v(" "),
+                _c("input", {
+                  staticClass: "form-control",
+                  attrs: {
+                    type: "text",
+                    id: "nrc_entrp",
+                    name: "nrc_entrp",
+                    placeholder: "Entreprise..",
+                    readonly: ""
+                  },
+                  domProps: { value: DRB_Ofppt.raisoci }
+                })
+              ]),
               _vm._v(" "),
               _c(
                 "div",
@@ -45902,7 +46413,9 @@ var render = function() {
                       })
                     ],
                     2
-                  )
+                  ),
+                  _vm._v(" "),
+                  _vm._m(3, true)
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "total_reg" }, [
@@ -45919,24 +46432,11 @@ var render = function() {
                       readonly: ""
                     },
                     domProps: { value: _vm.total_regl }
-                  }),
-                  _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      attrs: { type: "text" },
-                      on: {
-                        click: function($event) {
-                          return _vm.CalculTotalRegl()
-                        }
-                      }
-                    },
-                    [_vm._v("Test")]
-                  )
+                  })
                 ])
               ]),
               _vm._v(" "),
-              _vm._m(3, true),
+              _vm._m(4, true),
               _vm._v(" "),
               _c("div", { staticClass: "form-group col-12" }, [
                 _c("div", { staticClass: "container" }, [
@@ -45952,18 +46452,46 @@ var render = function() {
                           { staticClass: "custom-control custom-checkbox" },
                           [
                             _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.model5,
+                                  expression: "model5"
+                                }
+                              ],
                               staticClass: "custom-control-input",
                               attrs: {
                                 type: "checkbox",
                                 name: "model5",
-                                "v-model":
-                                  DRB_Ofppt.model5 == "préparé"
-                                    ? (_vm.model5 = true)
-                                    : (_vm.model5 = false),
                                 id: "model5"
                               },
                               domProps: {
-                                checked: _vm.model5 == true ? true : false
+                                checked: Array.isArray(_vm.model5)
+                                  ? _vm._i(_vm.model5, null) > -1
+                                  : _vm.model5
+                              },
+                              on: {
+                                change: function($event) {
+                                  var $$a = _vm.model5,
+                                    $$el = $event.target,
+                                    $$c = $$el.checked ? true : false
+                                  if (Array.isArray($$a)) {
+                                    var $$v = null,
+                                      $$i = _vm._i($$a, $$v)
+                                    if ($$el.checked) {
+                                      $$i < 0 &&
+                                        (_vm.model5 = $$a.concat([$$v]))
+                                    } else {
+                                      $$i > -1 &&
+                                        (_vm.model5 = $$a
+                                          .slice(0, $$i)
+                                          .concat($$a.slice($$i + 1)))
+                                    }
+                                  } else {
+                                    _vm.model5 = $$c
+                                  }
+                                }
                               }
                             }),
                             _vm._v(" "),
@@ -45983,21 +46511,50 @@ var render = function() {
                           { staticClass: "custom-control custom-checkbox" },
                           [
                             _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.fiche_eval_sythetique,
+                                  expression: "fiche_eval_sythetique"
+                                }
+                              ],
                               staticClass: "custom-control-input",
                               attrs: {
                                 type: "checkbox",
                                 name: "fiche_eval_sythetique",
-                                "v-model":
-                                  DRB_Ofppt.fiche_eval_sythetique == "préparé"
-                                    ? (_vm.fiche_eval_sythetique = true)
-                                    : (_vm.model5 = false),
                                 id: "fiche_eval_sythetique"
                               },
                               domProps: {
-                                checked:
-                                  _vm.fiche_eval_sythetique == true
-                                    ? true
-                                    : false
+                                checked: Array.isArray(
+                                  _vm.fiche_eval_sythetique
+                                )
+                                  ? _vm._i(_vm.fiche_eval_sythetique, null) > -1
+                                  : _vm.fiche_eval_sythetique
+                              },
+                              on: {
+                                change: function($event) {
+                                  var $$a = _vm.fiche_eval_sythetique,
+                                    $$el = $event.target,
+                                    $$c = $$el.checked ? true : false
+                                  if (Array.isArray($$a)) {
+                                    var $$v = null,
+                                      $$i = _vm._i($$a, $$v)
+                                    if ($$el.checked) {
+                                      $$i < 0 &&
+                                        (_vm.fiche_eval_sythetique = $$a.concat(
+                                          [$$v]
+                                        ))
+                                    } else {
+                                      $$i > -1 &&
+                                        (_vm.fiche_eval_sythetique = $$a
+                                          .slice(0, $$i)
+                                          .concat($$a.slice($$i + 1)))
+                                    }
+                                  } else {
+                                    _vm.fiche_eval_sythetique = $$c
+                                  }
+                                }
                               }
                             }),
                             _vm._v(" "),
@@ -46017,18 +46574,46 @@ var render = function() {
                           { staticClass: "custom-control custom-checkbox" },
                           [
                             _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.model6,
+                                  expression: "model6"
+                                }
+                              ],
                               staticClass: "custom-control-input",
                               attrs: {
                                 type: "checkbox",
                                 name: "model6",
-                                "v-model":
-                                  DRB_Ofppt.model6 == "préparé"
-                                    ? (_vm.model6 = true)
-                                    : (_vm.model6 = false),
                                 id: "model6"
                               },
                               domProps: {
-                                checked: _vm.model6 == true ? true : false
+                                checked: Array.isArray(_vm.model6)
+                                  ? _vm._i(_vm.model6, null) > -1
+                                  : _vm.model6
+                              },
+                              on: {
+                                change: function($event) {
+                                  var $$a = _vm.model6,
+                                    $$el = $event.target,
+                                    $$c = $$el.checked ? true : false
+                                  if (Array.isArray($$a)) {
+                                    var $$v = null,
+                                      $$i = _vm._i($$a, $$v)
+                                    if ($$el.checked) {
+                                      $$i < 0 &&
+                                        (_vm.model6 = $$a.concat([$$v]))
+                                    } else {
+                                      $$i > -1 &&
+                                        (_vm.model6 = $$a
+                                          .slice(0, $$i)
+                                          .concat($$a.slice($$i + 1)))
+                                    }
+                                  } else {
+                                    _vm.model6 = $$c
+                                  }
+                                }
                               }
                             }),
                             _vm._v(" "),
@@ -46056,18 +46641,46 @@ var render = function() {
                           { staticClass: "custom-control custom-checkbox" },
                           [
                             _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.factures,
+                                  expression: "factures"
+                                }
+                              ],
                               staticClass: "custom-control-input",
                               attrs: {
                                 type: "checkbox",
                                 name: "factures",
-                                "v-model":
-                                  DRB_Ofppt.factures == "préparé"
-                                    ? (_vm.factures = true)
-                                    : (_vm.factures = false),
                                 id: "factures"
                               },
                               domProps: {
-                                checked: _vm.factures == true ? true : false
+                                checked: Array.isArray(_vm.factures)
+                                  ? _vm._i(_vm.factures, null) > -1
+                                  : _vm.factures
+                              },
+                              on: {
+                                change: function($event) {
+                                  var $$a = _vm.factures,
+                                    $$el = $event.target,
+                                    $$c = $$el.checked ? true : false
+                                  if (Array.isArray($$a)) {
+                                    var $$v = null,
+                                      $$i = _vm._i($$a, $$v)
+                                    if ($$el.checked) {
+                                      $$i < 0 &&
+                                        (_vm.factures = $$a.concat([$$v]))
+                                    } else {
+                                      $$i > -1 &&
+                                        (_vm.factures = $$a
+                                          .slice(0, $$i)
+                                          .concat($$a.slice($$i + 1)))
+                                    }
+                                  } else {
+                                    _vm.factures = $$c
+                                  }
+                                }
                               }
                             }),
                             _vm._v(" "),
@@ -46087,19 +46700,48 @@ var render = function() {
                           { staticClass: "custom-control custom-checkbox" },
                           [
                             _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.compris_cheques,
+                                  expression: "compris_cheques"
+                                }
+                              ],
                               staticClass: "custom-control-input",
                               attrs: {
                                 type: "checkbox",
                                 name: "compris_cheques",
-                                "v-model":
-                                  DRB_Ofppt.compris_cheques == "préparé"
-                                    ? (_vm.compris_cheques = true)
-                                    : (_vm.compris_cheques = false),
                                 id: "compris_cheques"
                               },
                               domProps: {
-                                checked:
-                                  _vm.compris_cheques == true ? true : false
+                                checked: Array.isArray(_vm.compris_cheques)
+                                  ? _vm._i(_vm.compris_cheques, null) > -1
+                                  : _vm.compris_cheques
+                              },
+                              on: {
+                                change: function($event) {
+                                  var $$a = _vm.compris_cheques,
+                                    $$el = $event.target,
+                                    $$c = $$el.checked ? true : false
+                                  if (Array.isArray($$a)) {
+                                    var $$v = null,
+                                      $$i = _vm._i($$a, $$v)
+                                    if ($$el.checked) {
+                                      $$i < 0 &&
+                                        (_vm.compris_cheques = $$a.concat([
+                                          $$v
+                                        ]))
+                                    } else {
+                                      $$i > -1 &&
+                                        (_vm.compris_cheques = $$a
+                                          .slice(0, $$i)
+                                          .concat($$a.slice($$i + 1)))
+                                    }
+                                  } else {
+                                    _vm.compris_cheques = $$c
+                                  }
+                                }
                               }
                             }),
                             _vm._v(" "),
@@ -46119,19 +46761,46 @@ var render = function() {
                           { staticClass: "custom-control custom-checkbox" },
                           [
                             _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.compris_remise,
+                                  expression: "compris_remise"
+                                }
+                              ],
                               staticClass: "custom-control-input",
                               attrs: {
                                 type: "checkbox",
                                 name: "compris_remise",
-                                "v-model":
-                                  DRB_Ofppt.compris_remise == "préparé"
-                                    ? (_vm.compris_remise = true)
-                                    : (_vm.compris_remise = false),
                                 id: "compris_remise"
                               },
                               domProps: {
-                                checked:
-                                  _vm.compris_remise == true ? true : false
+                                checked: Array.isArray(_vm.compris_remise)
+                                  ? _vm._i(_vm.compris_remise, null) > -1
+                                  : _vm.compris_remise
+                              },
+                              on: {
+                                change: function($event) {
+                                  var $$a = _vm.compris_remise,
+                                    $$el = $event.target,
+                                    $$c = $$el.checked ? true : false
+                                  if (Array.isArray($$a)) {
+                                    var $$v = null,
+                                      $$i = _vm._i($$a, $$v)
+                                    if ($$el.checked) {
+                                      $$i < 0 &&
+                                        (_vm.compris_remise = $$a.concat([$$v]))
+                                    } else {
+                                      $$i > -1 &&
+                                        (_vm.compris_remise = $$a
+                                          .slice(0, $$i)
+                                          .concat($$a.slice($$i + 1)))
+                                    }
+                                  } else {
+                                    _vm.compris_remise = $$c
+                                  }
+                                }
                               }
                             }),
                             _vm._v(" "),
@@ -46151,19 +46820,48 @@ var render = function() {
                           { staticClass: "custom-control custom-checkbox" },
                           [
                             _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.relev_bq_societe,
+                                  expression: "relev_bq_societe"
+                                }
+                              ],
                               staticClass: "custom-control-input",
                               attrs: {
                                 type: "checkbox",
                                 name: "relev_bq_societe",
-                                "v-model":
-                                  DRB_Ofppt.relev_bq_societe == "préparé"
-                                    ? (_vm.relev_bq_societe = true)
-                                    : (_vm.relev_bq_societe = false),
                                 id: "relev_bq_societe"
                               },
                               domProps: {
-                                checked:
-                                  _vm.relev_bq_societe == true ? true : false
+                                checked: Array.isArray(_vm.relev_bq_societe)
+                                  ? _vm._i(_vm.relev_bq_societe, null) > -1
+                                  : _vm.relev_bq_societe
+                              },
+                              on: {
+                                change: function($event) {
+                                  var $$a = _vm.relev_bq_societe,
+                                    $$el = $event.target,
+                                    $$c = $$el.checked ? true : false
+                                  if (Array.isArray($$a)) {
+                                    var $$v = null,
+                                      $$i = _vm._i($$a, $$v)
+                                    if ($$el.checked) {
+                                      $$i < 0 &&
+                                        (_vm.relev_bq_societe = $$a.concat([
+                                          $$v
+                                        ]))
+                                    } else {
+                                      $$i > -1 &&
+                                        (_vm.relev_bq_societe = $$a
+                                          .slice(0, $$i)
+                                          .concat($$a.slice($$i + 1)))
+                                    }
+                                  } else {
+                                    _vm.relev_bq_societe = $$c
+                                  }
+                                }
                               }
                             }),
                             _vm._v(" "),
@@ -46183,19 +46881,48 @@ var render = function() {
                           { staticClass: "custom-control custom-checkbox" },
                           [
                             _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.relev_bq_cabinet,
+                                  expression: "relev_bq_cabinet"
+                                }
+                              ],
                               staticClass: "custom-control-input",
                               attrs: {
                                 type: "checkbox",
                                 name: "relev_bq_cabinet",
-                                "v-model":
-                                  DRB_Ofppt.relev_bq_cabinet == "préparé"
-                                    ? (_vm.relev_bq_cabinet = true)
-                                    : (_vm.relev_bq_cabinet = false),
                                 id: "relev_bq_cabinet"
                               },
                               domProps: {
-                                checked:
-                                  _vm.relev_bq_cabinet == true ? true : false
+                                checked: Array.isArray(_vm.relev_bq_cabinet)
+                                  ? _vm._i(_vm.relev_bq_cabinet, null) > -1
+                                  : _vm.relev_bq_cabinet
+                              },
+                              on: {
+                                change: function($event) {
+                                  var $$a = _vm.relev_bq_cabinet,
+                                    $$el = $event.target,
+                                    $$c = $$el.checked ? true : false
+                                  if (Array.isArray($$a)) {
+                                    var $$v = null,
+                                      $$i = _vm._i($$a, $$v)
+                                    if ($$el.checked) {
+                                      $$i < 0 &&
+                                        (_vm.relev_bq_cabinet = $$a.concat([
+                                          $$v
+                                        ]))
+                                    } else {
+                                      $$i > -1 &&
+                                        (_vm.relev_bq_cabinet = $$a
+                                          .slice(0, $$i)
+                                          .concat($$a.slice($$i + 1)))
+                                    }
+                                  } else {
+                                    _vm.relev_bq_cabinet = $$c
+                                  }
+                                }
                               }
                             }),
                             _vm._v(" "),
@@ -46214,38 +46941,111 @@ var render = function() {
                   ])
                 ]),
                 _vm._v(" "),
-                _vm._m(4, true),
+                _vm._m(5, true),
                 _vm._v(" "),
                 _c(
                   "div",
                   {
-                    staticClass: "form-group col-lg-12 col-sm-12",
+                    staticClass: "form-group col-lg-12 col-sm-12 display_div",
                     staticStyle: { display: "flex", "flex-direction": "'row'" }
                   },
                   [
                     _c(
                       "div",
                       {
-                        staticClass: "form-group col-lg-6 col-sm-12 ",
-                        staticStyle: { margin: "auto" }
+                        staticClass:
+                          "form-group col-lg-6 col-sm-12 display_div1"
                       },
                       [
-                        _c("label", [
-                          _vm._v("Date dépot demande de Remboursement")
-                        ]),
-                        _vm._v(" "),
-                        _c("input", {
-                          staticClass: "form-control",
-                          staticStyle: { width: "50%" },
-                          attrs: {
-                            type: "text",
-                            name: "date_depot_dmd_rembrs",
-                            id: "date_depot_dmd_rembrs",
-                            onmouseover: "(this.type='date')",
-                            placeholder: "Date réalisation"
+                        _c(
+                          "div",
+                          {
+                            staticClass: "form-group col-lg-6 col-sm-12 ",
+                            staticStyle: { margin: "2em 2em 2em 0" }
                           },
-                          domProps: { value: DRB_Ofppt.date_depot_dmd_rembrs }
-                        })
+                          [
+                            _c("label", [
+                              _vm._v("Date dépot demande de Remboursement")
+                            ]),
+                            _vm._v(" "),
+                            _c("input", {
+                              staticClass: "form-control",
+                              attrs: {
+                                type: "text",
+                                name: "date_depot_dmd_rembrs",
+                                id: "date_depot_dmd_rembrs",
+                                onmouseover: "(this.type='date')",
+                                placeholder: "Date réalisation"
+                              },
+                              domProps: {
+                                value: DRB_Ofppt.date_depot_dmd_rembrs
+                              }
+                            })
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "form-group col-lg-6 col-sm-12 custom-control custom-checkbox",
+                            staticStyle: { margin: "auto 1rem" }
+                          },
+                          [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.accuse_model6,
+                                  expression: "accuse_model6"
+                                }
+                              ],
+                              staticClass: "custom-control-input",
+                              attrs: {
+                                type: "checkbox",
+                                name: "accuse_model6",
+                                id: "accuse_model6"
+                              },
+                              domProps: {
+                                checked: Array.isArray(_vm.accuse_model6)
+                                  ? _vm._i(_vm.accuse_model6, null) > -1
+                                  : _vm.accuse_model6
+                              },
+                              on: {
+                                change: function($event) {
+                                  var $$a = _vm.accuse_model6,
+                                    $$el = $event.target,
+                                    $$c = $$el.checked ? true : false
+                                  if (Array.isArray($$a)) {
+                                    var $$v = null,
+                                      $$i = _vm._i($$a, $$v)
+                                    if ($$el.checked) {
+                                      $$i < 0 &&
+                                        (_vm.accuse_model6 = $$a.concat([$$v]))
+                                    } else {
+                                      $$i > -1 &&
+                                        (_vm.accuse_model6 = $$a
+                                          .slice(0, $$i)
+                                          .concat($$a.slice($$i + 1)))
+                                    }
+                                  } else {
+                                    _vm.accuse_model6 = $$c
+                                  }
+                                }
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "label",
+                              {
+                                staticClass: "custom-control-label ",
+                                attrs: { for: "accuse_model6" }
+                              },
+                              [_vm._v("Accusé Modele 6")]
+                            )
+                          ]
+                        )
                       ]
                     ),
                     _vm._v(" "),
@@ -46253,49 +47053,65 @@ var render = function() {
                       "div",
                       {
                         staticClass:
-                          "form-group col-lg-6 col-sm-12 custom-control custom-checkbox",
-                        staticStyle: { margin: "auto" }
+                          "form-group col-lg-6 col-sm-12 display_div_child"
                       },
                       [
-                        _c("input", {
-                          staticClass: "custom-control-input",
-                          attrs: {
-                            type: "checkbox",
-                            name: "accuse_model6",
-                            id: "accuse_model6",
-                            "v-model":
-                              DRB_Ofppt.accuse_model6 == "préparé"
-                                ? (_vm.accuse_model6 = true)
-                                : (_vm.accuse_model6 = false)
+                        _c(
+                          "div",
+                          {
+                            staticClass: "form-group col-lg-6 col-sm-12",
+                            staticStyle: { margin: "2em 2em 2em 0" }
                           },
-                          domProps: {
-                            checked: _vm.accuse_model6 == true ? true : false
-                          }
-                        }),
+                          [
+                            _c("label", [_vm._v("Montant de Remboursement")]),
+                            _vm._v(" "),
+                            _c("input", {
+                              staticClass: "form-control",
+                              attrs: {
+                                type: "text",
+                                id: "montant_rembrs",
+                                name: "montant_rembrs",
+                                placeholder: "Montant Remboursement"
+                              },
+                              domProps: { value: DRB_Ofppt.montant_rembrs }
+                            })
+                          ]
+                        ),
                         _vm._v(" "),
                         _c(
-                          "label",
-                          {
-                            staticClass: "custom-control-label",
-                            attrs: { for: "accuse_model6" }
-                          },
-                          [_vm._v("Accusé Modele 6")]
+                          "div",
+                          { staticClass: "form-group col-lg-6 col-sm-12" },
+                          [
+                            _c("label", [_vm._v("Date Remboursement")]),
+                            _vm._v(" "),
+                            _c("input", {
+                              staticClass: "form-control",
+                              attrs: {
+                                type: "text",
+                                name: "date_rembrs",
+                                id: "date_rembrs",
+                                onmouseover: "(this.type='date')",
+                                placeholder: "Date réalisation"
+                              },
+                              domProps: { value: DRB_Ofppt.date_rembrs }
+                            })
+                          ]
                         )
                       ]
                     )
                   ]
                 ),
                 _vm._v(" "),
-                _vm._m(5, true),
-                _vm._v(" "),
                 _vm._m(6, true),
+                _vm._v(" "),
+                _vm._m(7, true),
                 _vm._v(" "),
                 _c("div", { staticClass: "form-group col-12" }, [
                   _c("label", [_vm._v("Remboursement OFPPT")]),
                   _vm._v(" "),
                   _c("div", { staticClass: "table-responsive" }, [
                     _c("table", { staticClass: "table table-striped" }, [
-                      _vm._m(7, true),
+                      _vm._m(8, true),
                       _vm._v(" "),
                       _c(
                         "tbody",
@@ -46397,61 +47213,12 @@ var render = function() {
                     ])
                   ]),
                   _vm._v(" "),
-                  _vm._m(8, true),
+                  _vm._m(9, true),
                   _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      staticClass: "form-group col-lg-12 col-sm-12",
-                      staticStyle: { display: "flex", "flex-direction": "row" }
-                    },
-                    [
-                      _c(
-                        "div",
-                        {
-                          staticClass: "form-group col-lg-3 col-sm-12",
-                          staticStyle: { margin: "auto" }
-                        },
-                        [
-                          _c("label", [_vm._v("Montant de Remboursement")]),
-                          _vm._v(" "),
-                          _c("input", {
-                            staticClass: "form-control",
-                            attrs: {
-                              type: "text",
-                              id: "montant_rembrs",
-                              name: "montant_rembrs",
-                              placeholder: "Montant Remboursement"
-                            },
-                            domProps: { value: DRB_Ofppt.montant_rembrs }
-                          })
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "form-group col-lg-3 col-sm-12",
-                          staticStyle: { margin: "auto" }
-                        },
-                        [
-                          _c("label", [_vm._v("Date Remboursement")]),
-                          _vm._v(" "),
-                          _c("input", {
-                            staticClass: "form-control",
-                            attrs: {
-                              type: "text",
-                              name: "date_rembrs",
-                              id: "date_rembrs",
-                              onmouseover: "(this.type='date')",
-                              placeholder: "Date réalisation"
-                            },
-                            domProps: { value: DRB_Ofppt.date_rembrs }
-                          })
-                        ]
-                      )
-                    ]
-                  )
+                  _c("div", {
+                    staticClass: "form-group col-lg-12 col-sm-12",
+                    staticStyle: { display: "flex", "flex-direction": "row" }
+                  })
                 ])
               ])
             ])
@@ -46461,25 +47228,198 @@ var render = function() {
       2
     ),
     _vm._v(" "),
-    _vm._m(9),
+    _c(
+      "div",
+      {
+        staticClass: "form-group col-12 text-center",
+        staticStyle: { "margin-top": "2rem" }
+      },
+      [
+        _c("label", [_vm._v(_vm._s(_vm.etat))]),
+        _vm._v(" "),
+        _c("h4", [_vm._v("État demande")]),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "btn-group btn-group-toggle btn-checked btn-Etat",
+            attrs: { role: "group" }
+          },
+          [
+            _c(
+              "label",
+              { staticClass: "btn btn-warning", attrs: { id: "opt1" } },
+              [
+                _vm._v("\n        Initié\n        "),
+                _c("i", { staticClass: "fas fa-battery-quarter" }),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.etat,
+                      expression: "etat"
+                    }
+                  ],
+                  attrs: {
+                    type: "radio",
+                    name: "etat",
+                    id: "option1",
+                    autocomplete: "off",
+                    value: "initié"
+                  },
+                  domProps: { checked: _vm._q(_vm.etat, "initié") },
+                  on: {
+                    change: function($event) {
+                      _vm.etat = "initié"
+                    }
+                  }
+                })
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "label",
+              { staticClass: "btn btn-warning", attrs: { id: "opt2" } },
+              [
+                _vm._v("\n        Payé\n\n        "),
+                _c("i", { staticClass: "fas fa-dollar-sign" }),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.etat,
+                      expression: "etat"
+                    }
+                  ],
+                  attrs: {
+                    type: "radio",
+                    name: "etat",
+                    id: "option2",
+                    autocomplete: "off",
+                    value: "payé"
+                  },
+                  domProps: { checked: _vm._q(_vm.etat, "payé") },
+                  on: {
+                    change: function($event) {
+                      _vm.etat = "payé"
+                    }
+                  }
+                })
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "label",
+              { staticClass: "btn btn-warning", attrs: { id: "opt3" } },
+              [
+                _vm._v("\n        Instruction dossier\n        "),
+                _c("i", { staticClass: "fas fa-hourglass-half" }),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.etat,
+                      expression: "etat"
+                    }
+                  ],
+                  attrs: {
+                    type: "radio",
+                    name: "etat",
+                    id: "option3",
+                    autocomplete: "off",
+                    value: "instruction dossier"
+                  },
+                  domProps: {
+                    checked: _vm._q(_vm.etat, "instruction dossier")
+                  },
+                  on: {
+                    change: function($event) {
+                      _vm.etat = "instruction dossier"
+                    }
+                  }
+                })
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "label",
+              { staticClass: "btn btn-warning", attrs: { id: "opt4" } },
+              [
+                _vm._v("\n        Déposé\n        "),
+                _c("i", { staticClass: "fas fa-folder-open" }),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.etat,
+                      expression: "etat"
+                    }
+                  ],
+                  attrs: {
+                    type: "radio",
+                    name: "etat",
+                    id: "option4",
+                    autocomplete: "off",
+                    value: "déposé"
+                  },
+                  domProps: { checked: _vm._q(_vm.etat, "déposé") },
+                  on: {
+                    change: function($event) {
+                      _vm.etat = "déposé"
+                    }
+                  }
+                })
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "label",
+              { staticClass: "btn btn-warning", attrs: { id: "opt5" } },
+              [
+                _vm._v("\n        Remboursé\n        "),
+                _c("i", { staticClass: "fas fa-check-double" }),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.etat,
+                      expression: "etat"
+                    }
+                  ],
+                  attrs: {
+                    type: "radio",
+                    name: "etat",
+                    id: "option5",
+                    autocomplete: "off",
+                    value: "remboursé"
+                  },
+                  domProps: { checked: _vm._q(_vm.etat, "remboursé") },
+                  on: {
+                    change: function($event) {
+                      _vm.etat = "remboursé"
+                    }
+                  }
+                })
+              ]
+            )
+          ]
+        )
+      ]
+    ),
     _vm._v(" "),
     _vm._m(10),
     _vm._v(" "),
     _vm._m(11),
-    _vm._v(" "),
-    _vm._m(12),
-    _vm._v(" "),
-    _c(
-      "button",
-      {
-        on: {
-          click: function($event) {
-            return _vm.getTheme()
-          }
-        }
-      },
-      [_vm._v("theme")]
-    ),
     _vm._v(" "),
     _c("div", { staticClass: "card-footer text-center" }, [
       _c(
@@ -46496,7 +47436,7 @@ var render = function() {
         [_c("i", { staticClass: "fas fa-pen-square icon" }), _vm._v("Modifier")]
       ),
       _vm._v(" "),
-      _vm._m(13)
+      _vm._m(12)
     ])
   ])
 }
@@ -46548,6 +47488,35 @@ var staticRenderFns = [
         ])
       ])
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass:
+          "form-group col-lg-12 col-sm-12 custom-control custom-checkbox"
+      },
+      [
+        _c("div", { staticClass: "div_select_all" }, [
+          _c("input", {
+            staticClass: "custom-control-input",
+            attrs: { type: "checkbox", name: "select_all", id: "select_all" }
+          }),
+          _vm._v(" "),
+          _c(
+            "label",
+            {
+              staticClass: "custom-control-label ",
+              attrs: { for: "select_all" }
+            },
+            [_vm._v("selectionner tout")]
+          )
+        ])
+      ]
+    )
   },
   function() {
     var _vm = this
@@ -46630,113 +47599,9 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group col-12" }, [_c("hr")])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "form-group col-12 text-center",
-        staticStyle: { "margin-top": "2rem" }
-      },
-      [
-        _c("h4", [_vm._v("État demande")]),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass: "btn-group btn-group-toggle btn-Etat",
-            attrs: { "data-toggle": "buttons" }
-          },
-          [
-            _c("label", { staticClass: "btn btn-warning" }, [
-              _vm._v("\n              Initié\n              "),
-              _c("i", { staticClass: "fas fa-battery-quarter" }),
-              _vm._v(" "),
-              _c("input", {
-                attrs: {
-                  type: "radio",
-                  name: "etat",
-                  id: "option1",
-                  autocomplete: "off",
-                  value: "initié"
-                }
-              })
-            ]),
-            _vm._v(" "),
-            _c("label", { staticClass: "btn btn-warning" }, [
-              _vm._v("\n              Payé\n              "),
-              _c("i", { staticClass: "fas fa-dollar-sign" }),
-              _vm._v(" "),
-              _c("input", {
-                attrs: {
-                  type: "radio",
-                  name: "etat",
-                  id: "option2",
-                  autocomplete: "off",
-                  value: "payé"
-                }
-              })
-            ]),
-            _vm._v(" "),
-            _c("label", { staticClass: "btn btn-warning" }, [
-              _vm._v("\n              Instruction dossier\n              "),
-              _c("i", { staticClass: "fas fa-hourglass-half" }),
-              _vm._v(" "),
-              _c("input", {
-                attrs: {
-                  type: "radio",
-                  name: "etat",
-                  id: "option2",
-                  autocomplete: "off",
-                  value: "instruction dossier"
-                }
-              })
-            ]),
-            _vm._v(" "),
-            _c("label", { staticClass: "btn btn-warning" }, [
-              _vm._v("\n              Déposé\n              "),
-              _c("i", { staticClass: "fas fa-folder-open" }),
-              _vm._v(" "),
-              _c("input", {
-                attrs: {
-                  type: "radio",
-                  name: "etat",
-                  id: "option2",
-                  autocomplete: "off",
-                  value: "déposé"
-                }
-              })
-            ]),
-            _vm._v(" "),
-            _c("label", { staticClass: "btn btn-warning" }, [
-              _vm._v("\n              Remboursé\n              "),
-              _c("i", { staticClass: "fas fa-check-double" }),
-              _vm._v(" "),
-              _c("input", {
-                attrs: {
-                  type: "radio",
-                  id: "option3",
-                  autocomplete: "off",
-                  value: "remboursé"
-                }
-              })
-            ])
-          ]
-        )
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c(
       "a",
-      { staticClass: "btn bu-danger", attrs: { href: "/drb-gc" } },
+      { staticClass: "btn bu-danger", attrs: { href: "/list-drb" } },
       [_c("i", { staticClass: "fas fa-window-close icon" }), _vm._v("Annuler")]
     )
   }
@@ -46747,10 +47612,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/DRB_OFPPT/List.vue?vue&type=template&id=55f1c8b4&":
-/*!*****************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/DRB_OFPPT/List.vue?vue&type=template&id=55f1c8b4& ***!
-  \*****************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/DRB_OFPPT/List.vue?vue&type=template&id=55f1c8b4&scoped=true&":
+/*!*****************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/DRB_OFPPT/List.vue?vue&type=template&id=55f1c8b4&scoped=true& ***!
+  \*****************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -46766,50 +47631,81 @@ var render = function() {
     _vm._m(0),
     _vm._v(" "),
     _c("div", { staticClass: "card-body table-striped p-0" }, [
-      _c("table", { staticClass: "table table-md" }, [
-        _vm._m(1),
-        _vm._v(" "),
-        _c(
-          "tbody",
-          _vm._l(_vm.DRB_Ofppts, function(DRB_Ofppt) {
-            return _c("tr", { key: DRB_Ofppt.n_drf }, [
-              _c("td", [_vm._v(_vm._s(DRB_Ofppt.etat))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(DRB_Ofppt.refpdf))]),
-              _vm._v(" "),
-              _c(
-                "td",
-                { staticClass: "th-last d-inline-block text-truncate" },
-                [_vm._v(_vm._s(DRB_Ofppt.id_plan))]
-              ),
-              _vm._v(" "),
-              _c("td", { staticClass: "action" }, [
-                _vm._m(2, true),
-                _vm._v(" "),
+      _c("div", { staticClass: "table-responsive" }, [
+        _c("table", { staticClass: "table table-md" }, [
+          _vm._m(1),
+          _vm._v(" "),
+          _c(
+            "tbody",
+            _vm._l(_vm.DRB_Ofppts, function(DRB_Ofppt) {
+              return _c("tr", { key: DRB_Ofppt.n_drf }, [
                 _c(
-                  "a",
+                  "td",
                   {
-                    staticClass: "btn btn-warning",
-                    attrs: { href: "/edit-drb-ofppt" },
-                    on: {
-                      click: function($event) {
-                        return _vm.sendnrdf(DRB_Ofppt.n_drf)
-                      }
-                    }
+                    class:
+                      DRB_Ofppt.etat.toLowerCase() == "remboursé"
+                        ? "d-flex flex-nowrap progress-bar progress-bar-striped bg-light"
+                        : "d-flex flex-nowrap progress-bar progress-bar-striped bg-warning progress-bar-animated"
                   },
-                  [_c("i", { staticClass: "fa fa-edit" })]
+                  [
+                    DRB_Ofppt.etat.toLowerCase() == "payé"
+                      ? _c("i", { staticClass: "fa fa-dollar-sign" })
+                      : _vm._e(),
+                    _vm._v(" "),
+                    DRB_Ofppt.etat.toLowerCase() == "initié"
+                      ? _c("i", { staticClass: "fa fa-battery-quarter" })
+                      : _vm._e(),
+                    _vm._v(" "),
+                    DRB_Ofppt.etat.toLowerCase() == "instruction dossier"
+                      ? _c("i", { staticClass: "fa fa-hourglass-half" })
+                      : _vm._e(),
+                    _vm._v(" "),
+                    DRB_Ofppt.etat.toLowerCase() == "déposé"
+                      ? _c("i", { staticClass: "fa fa-folder-open" })
+                      : _vm._e(),
+                    _vm._v(" "),
+                    DRB_Ofppt.etat.toLowerCase() == "remboursé"
+                      ? _c("i", { staticClass: "fa fa-check-circle" })
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _c("strong", [_vm._v(_vm._s(DRB_Ofppt.etat))])
+                  ]
                 ),
                 _vm._v(" "),
-                _vm._m(3, true)
+                _c("td", [_vm._v(_vm._s(DRB_Ofppt.refpdf))]),
+                _vm._v(" "),
+                _c(
+                  "td",
+                  { staticClass: "th-last d-inline-block text-truncate" },
+                  [_vm._v(_vm._s(DRB_Ofppt.id_plan))]
+                ),
+                _vm._v(" "),
+                _c("td", { staticClass: "action" }, [
+                  _vm._m(2, true),
+                  _vm._v(" "),
+                  _c(
+                    "a",
+                    {
+                      staticClass: "btn btn-warning",
+                      attrs: { href: "/edit-drb-ofppt" },
+                      on: {
+                        click: function($event) {
+                          return _vm.sendnrdf(DRB_Ofppt.n_drf)
+                        }
+                      }
+                    },
+                    [_c("i", { staticClass: "fa fa-edit" })]
+                  ),
+                  _vm._v(" "),
+                  _vm._m(3, true)
+                ])
               ])
-            ])
-          }),
-          0
-        )
+            }),
+            0
+          )
+        ])
       ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "card-footer" })
+    ])
   ])
 }
 var staticRenderFns = [
@@ -46818,7 +47714,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-header" }, [
-      _c("div", { staticClass: "d-flex h-100" }, [
+      _c("div", { staticClass: "d-flex h-100 div_header" }, [
         _c("h3", { staticClass: "card-title" }, [
           _vm._v("Demandes remboursement OFPPT")
         ]),
@@ -46866,9 +47762,11 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("a", { staticClass: "btn btn-primary", attrs: { href: "#" } }, [
-      _c("i", { staticClass: "fa fa-eye", staticStyle: { color: "white" } })
-    ])
+    return _c(
+      "a",
+      { staticClass: "btn btn-primary", attrs: { href: "/detail-drb-ofppt" } },
+      [_c("i", { staticClass: "fa fa-eye", staticStyle: { color: "white" } })]
+    )
   },
   function() {
     var _vm = this
@@ -69335,9 +70233,11 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _List_vue_vue_type_template_id_55f1c8b4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./List.vue?vue&type=template&id=55f1c8b4& */ "./resources/js/components/DRB_OFPPT/List.vue?vue&type=template&id=55f1c8b4&");
+/* harmony import */ var _List_vue_vue_type_template_id_55f1c8b4_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./List.vue?vue&type=template&id=55f1c8b4&scoped=true& */ "./resources/js/components/DRB_OFPPT/List.vue?vue&type=template&id=55f1c8b4&scoped=true&");
 /* harmony import */ var _List_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./List.vue?vue&type=script&lang=js& */ "./resources/js/components/DRB_OFPPT/List.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _List_vue_vue_type_style_index_0_id_55f1c8b4_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./List.vue?vue&type=style&index=0&id=55f1c8b4&scoped=true&lang=css& */ "./resources/js/components/DRB_OFPPT/List.vue?vue&type=style&index=0&id=55f1c8b4&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
 
 
 
@@ -69345,13 +70245,13 @@ __webpack_require__.r(__webpack_exports__);
 
 /* normalize component */
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
   _List_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _List_vue_vue_type_template_id_55f1c8b4___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _List_vue_vue_type_template_id_55f1c8b4___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _List_vue_vue_type_template_id_55f1c8b4_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _List_vue_vue_type_template_id_55f1c8b4_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
-  null,
+  "55f1c8b4",
   null
   
 )
@@ -69377,19 +70277,35 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/DRB_OFPPT/List.vue?vue&type=template&id=55f1c8b4&":
-/*!***********************************************************************************!*\
-  !*** ./resources/js/components/DRB_OFPPT/List.vue?vue&type=template&id=55f1c8b4& ***!
-  \***********************************************************************************/
+/***/ "./resources/js/components/DRB_OFPPT/List.vue?vue&type=style&index=0&id=55f1c8b4&scoped=true&lang=css&":
+/*!*************************************************************************************************************!*\
+  !*** ./resources/js/components/DRB_OFPPT/List.vue?vue&type=style&index=0&id=55f1c8b4&scoped=true&lang=css& ***!
+  \*************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_List_vue_vue_type_style_index_0_id_55f1c8b4_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader!../../../../node_modules/css-loader??ref--6-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--6-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./List.vue?vue&type=style&index=0&id=55f1c8b4&scoped=true&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/DRB_OFPPT/List.vue?vue&type=style&index=0&id=55f1c8b4&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_List_vue_vue_type_style_index_0_id_55f1c8b4_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_List_vue_vue_type_style_index_0_id_55f1c8b4_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_List_vue_vue_type_style_index_0_id_55f1c8b4_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_List_vue_vue_type_style_index_0_id_55f1c8b4_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+
+
+/***/ }),
+
+/***/ "./resources/js/components/DRB_OFPPT/List.vue?vue&type=template&id=55f1c8b4&scoped=true&":
+/*!***********************************************************************************************!*\
+  !*** ./resources/js/components/DRB_OFPPT/List.vue?vue&type=template&id=55f1c8b4&scoped=true& ***!
+  \***********************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_List_vue_vue_type_template_id_55f1c8b4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./List.vue?vue&type=template&id=55f1c8b4& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/DRB_OFPPT/List.vue?vue&type=template&id=55f1c8b4&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_List_vue_vue_type_template_id_55f1c8b4___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_List_vue_vue_type_template_id_55f1c8b4_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./List.vue?vue&type=template&id=55f1c8b4&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/DRB_OFPPT/List.vue?vue&type=template&id=55f1c8b4&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_List_vue_vue_type_template_id_55f1c8b4_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_List_vue_vue_type_template_id_55f1c8b4___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_List_vue_vue_type_template_id_55f1c8b4_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
