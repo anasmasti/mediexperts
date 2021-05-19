@@ -26,7 +26,7 @@
       >
       <!-- <input type="hidden" v-if="1==1 ? etat = DRB_Ofppt.etat : etat = DRB_Ofppt.etat "> -->
         <div class="row">
-          <div class="form-group col-lg-3 col-sm-12" style="margin : auto ;">
+          <div class="form-group col-lg-3 col-sm-12" >
             <label>E/S</label>
             <input
               class="form-control"
@@ -94,10 +94,23 @@
                       <td>{{(info.bdg_total *.3) + (info.bdg_total *.2) }}</td>
                       <td>{{info.n_facture}}</td>
                       <td> <input type="date"> </td>
-                      <td> <input type="text"> </td>
+                      <td> <input type="text" :id="`PD${info.n_drf}`"> </td>
                   </tr>
                 </tbody>
               </table>
+              <div class="form-group col-lg-12 col-sm-12 custom-control custom-checkbox">
+                    <div class="div_select_all">
+                      <input
+                        type="checkbox"
+                        name="select_all"
+                        id="select_all"
+                        class="custom-control-input"
+                      />
+                      <label for="select_all" class="custom-control-label "
+                        >selectionner tout</label
+                      >
+                    </div>
+            </div>
             </div>
 
             <div class="total_reg">
@@ -110,7 +123,7 @@
                 readonly
                 :value="total_regl"
               />
-              <button type="text" @click="SelectedEtat()">Test</button>
+              <!-- <button type="text" @click="SelectedEtat()">Test</button> -->
             </div>
           </div>
 
@@ -167,35 +180,65 @@
 
               <div class="form-group col-12"><hr /></div>
 
-        <div class="form-group col-lg-12 col-sm-12" style="display: flex ;flex-direction : 'row' ;">
+        <div class="form-group col-lg-12 col-sm-12 display_div" style="display: flex ;flex-direction : 'row' ;">
 
-           <div class="form-group col-lg-6 col-sm-12 " style="margin: auto ;">
-              <label>Date dépot demande de Remboursement</label>
-              <input
-                class="form-control"
-                type="text"
-                name="date_depot_dmd_rembrs"
-                id="date_depot_dmd_rembrs"
-                onmouseover="(this.type='date')"
-                placeholder="Date réalisation"
-                style="width: 50% ;"
-                :value=DRB_Ofppt.date_depot_dmd_rembrs
-              />
+           <div class="form-group col-lg-6 col-sm-12 display_div1">
+              <div class="form-group col-lg-6 col-sm-12 " style="margin : 2em 2em 2em 0 ;">
+                <label>Date dépot demande de Remboursement</label>
+                <input
+                  class="form-control"
+                  type="text"
+                  name="date_depot_dmd_rembrs"
+                  id="date_depot_dmd_rembrs"
+                  onmouseover="(this.type='date')"
+                  placeholder="Date réalisation"
+                  :value=DRB_Ofppt.date_depot_dmd_rembrs
+                  
+                />
+              </div>
+
+              <div class="form-group col-lg-6 col-sm-12 custom-control custom-checkbox" style="margin: auto 1rem ;">
+                <input
+                  type="checkbox"
+                  name="accuse_model6"
+                  id="accuse_model6"
+                  class="custom-control-input"
+                  v-model="accuse_model6"
+                />
+                <label for="accuse_model6" class="custom-control-label "
+                  >Accusé Modele 6</label
+                >
+              </div>
             </div>
 
-          <div class="form-group col-lg-6 col-sm-12 custom-control custom-checkbox" style="margin: auto;">
-            <input
-              type="checkbox"
-              name="accuse_model6"
-              id="accuse_model6"
-              class="custom-control-input"
-              :v-model="DRB_Ofppt.accuse_model6 == 'préparé' ? accuse_model6 = true : accuse_model6 = false " 
-              :checked="accuse_model6 == true ? true : false"
-            />
-            <label for="accuse_model6" class="custom-control-label"
-              >Accusé Modele 6</label
-            >
-          </div>
+           <div class="form-group col-lg-6 col-sm-12 display_div_child">
+              <div class="form-group col-lg-6 col-sm-12" style="margin : 2em 2em 2em 0 ;">
+                <label>Montant de Remboursement</label>
+                <input
+                  class="form-control"
+                  :value=DRB_Ofppt.montant_rembrs
+                  type="text"
+                  id="montant_rembrs"
+                  name="montant_rembrs"
+                  placeholder="Montant Remboursement"
+                />
+              </div>
+
+              <div class="form-group col-lg-6 col-sm-12" >
+                <label>Date Remboursement</label>
+                <input
+                  class="form-control"
+                  type="text"
+                  name="date_rembrs"
+                  id="date_rembrs"
+                  onmouseover="(this.type='date')"
+                  placeholder="Date réalisation"
+                  :value=DRB_Ofppt.date_rembrs
+                />
+              </div>
+           </div>
+
+          
         </div>
 
         <div class="form-group col-12"><hr /></div>
@@ -236,30 +279,7 @@
           
 
           <div class="form-group col-lg-12 col-sm-12" style="display : flex ; flex-direction: row ;">
-            <div class="form-group col-lg-3 col-sm-12" style="margin : auto ;">
-              <label>Montant de Remboursement</label>
-              <input
-                class="form-control"
-                :value=DRB_Ofppt.montant_rembrs
-                type="text"
-                id="montant_rembrs"
-                name="montant_rembrs"
-                placeholder="Montant Remboursement"
-              />
-            </div>
-
-            <div class="form-group col-lg-3 col-sm-12" style="margin : auto ;">
-              <label>Date Remboursement</label>
-              <input
-                class="form-control"
-                type="text"
-                name="date_rembrs"
-                id="date_rembrs"
-                onmouseover="(this.type='date')"
-                placeholder="Date réalisation"
-                :value=DRB_Ofppt.date_rembrs
-              />
-            </div>
+            
           </div> 
 
 
@@ -348,10 +368,10 @@
             </label>
           </div>
       </div>
-<button @click="selectedEtat()"></button>
+<!-- <button @click="selectedEtat()"></button> -->
     <div class="card-footer text-center">
           <button class="btn bu-add" type="submit" id="add" @click="updateDRB()"><i class="fas fa-pen-square icon"></i>Modifier</button>
-          <a class="btn bu-danger" href="/drb-gc"><i class="fas fa-window-close icon"></i>Annuler</a>
+          <a class="btn bu-danger" href="/list-drb"><i class="fas fa-window-close icon"></i>Annuler</a>
     </div>
     </div>
 </template>
@@ -407,7 +427,7 @@ export default {
       this.relev_bq_societe = this.DRB_Ofppts[0].relev_bq_societe === 'préparé'
       this.relev_bq_cabinet = this.DRB_Ofppts[0].relev_bq_cabinet === 'préparé'
       this.accuse_model6 = this.DRB_Ofppts[0].accuse_model6 === 'préparé'
-    }, 900);
+    }, 1000);
 
   },
   updated() {
@@ -470,7 +490,7 @@ export default {
           compris_remise: compris_remise,
           relev_bq_societe: relev_bq_societe,
           relev_bq_cabinet: relev_bq_cabinet,
-          ccuse_model6: accuse_model6,
+          accuse_model6: accuse_model6,
           montant_rembrs: montant_rembrs.value,
           date_depot_dmd_rembrs: date_depot_dmd_rembrs.value,
           date_rembrs: date_rembrs.value,
@@ -496,6 +516,10 @@ export default {
             
         }
 
+    },
+
+    selectAll(){
+      
     }
   },
   computed: {
@@ -529,6 +553,23 @@ th {
   flex-direction: row;
   flex-wrap: wrap;
 }
+
+.display_div{
+  display: flex;
+  flex-direction: row ;
+  flex-wrap: wrap;
+}
+
+.display_div_child{
+  display: flex;
+  flex-direction: column ;
+}
+
+
+.div_select_all{
+   float: right;
+}
+
 </style>
 
 

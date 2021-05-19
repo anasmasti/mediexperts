@@ -2,7 +2,7 @@
   <div class="card card-dark">
     <!-- card-header -->
     <div class="card-header">
-      <div class="d-flex h-100">
+      <div class="d-flex h-100 div_header">
         <h3 class="card-title">Demandes&nbsp;remboursement&nbsp;OFPPT</h3>
         <div class="container h-100 ">
           <form action="/searchofppt" method="GET">
@@ -24,30 +24,44 @@
 
   <!-- /.card-header -->
   <div class="card-body table-striped p-0">
-    <table class="table table-md">
-      <thead class="thead">
-        <tr>
-          <th>Etat</th>
-          <th>RefPdf</th>
-          <th>Plan de formation</th>
-          <th class="action">Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="DRB_Ofppt in DRB_Ofppts" :key="DRB_Ofppt.n_drf">
-          <td>{{DRB_Ofppt.etat}}</td>
-          <td>{{DRB_Ofppt.refpdf}}</td>
-          <td class="th-last d-inline-block text-truncate">{{DRB_Ofppt.id_plan}}</td>
-            <td class="action">
-              <a href="#" class="btn btn-primary" ><i class="fa fa-eye" style="color: white ;"></i></a>
-              <a href="/edit-drb-ofppt" @click="sendnrdf(DRB_Ofppt.n_drf)" class="btn btn-warning"><i class="fa fa-edit"></i></a>
-              <a class="btn btn-danger" ><i class="fa fa-trash-alt" style="color: white ;"></i></a>
+    <div class="table-responsive">
+
+      <table class="table table-md">
+        <thead class="thead">
+          <tr>
+            <th>Etat</th>
+            <th>RefPdf</th>
+            <th>Plan de formation</th>
+            <th class="action">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="DRB_Ofppt in DRB_Ofppts" :key="DRB_Ofppt.n_drf">
+            <td :class="DRB_Ofppt.etat.toLowerCase()=='remboursé' ? 'd-flex flex-nowrap progress-bar progress-bar-striped bg-light' : 'd-flex flex-nowrap progress-bar progress-bar-striped bg-warning progress-bar-animated' ">
+              <i class="fa fa-dollar-sign" v-if="DRB_Ofppt.etat.toLowerCase()=='payé'">
+              </i>
+              <i class="fa fa-battery-quarter" v-if="DRB_Ofppt.etat.toLowerCase()=='initié'">
+              </i>
+              <i class="fa fa-hourglass-half" v-if="DRB_Ofppt.etat.toLowerCase()=='instruction dossier'">
+              </i>
+              <i class="fa fa-folder-open" v-if="DRB_Ofppt.etat.toLowerCase()=='déposé'">
+              </i>
+              <i class="fa fa-check-circle" v-if="DRB_Ofppt.etat.toLowerCase()=='remboursé'">
+              </i>
+              <strong>{{DRB_Ofppt.etat}}</strong>
             </td>
-        </tr>
-        
-      </tbody>
-      
-    </table>
+            <td>{{DRB_Ofppt.refpdf}}</td>
+            <td class="th-last d-inline-block text-truncate">{{DRB_Ofppt.id_plan}}</td>
+              <td class="action">
+                <a href="/detail-drb-ofppt" class="btn btn-primary" ><i class="fa fa-eye" style="color: white ;"></i></a>
+                <a href="/edit-drb-ofppt" @click="sendnrdf(DRB_Ofppt.n_drf)" class="btn btn-warning"><i class="fa fa-edit"></i></a>
+                <a class="btn btn-danger" ><i class="fa fa-trash-alt" style="color: white ;"></i></a>
+              </td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
 
   </div><!-- ./card-body -->
 
@@ -94,3 +108,43 @@ import { mapState , mapActions } from 'vuex';
         }
     </script>
 
+<style scoped>
+  .div_header{
+    display: flex;
+    flex-direction: row;
+    /* flex-wrap: wrap; */
+  }
+  .searchbar{
+    display: flex;
+    flex-direction: row;
+    /* flex-wrap: wrap; */
+  }
+
+  .search_icon{
+    /* position: relative; */
+    /* float: right; */
+    /* right: 0%; */
+    display: flex;
+  }
+
+  @media only screen and (max-width: 600px) {
+    .div_header{
+      display: flex;
+      flex-direction: column;
+      /* align-items: center;*/
+    }
+
+    .searchbar{
+      margin: auto;
+      align-self: center;
+      width: 100%;
+    }
+
+    .search_icon{
+      position: relative;
+       float: right;
+       right: 0%;
+      /* display: flex; */
+    }
+  }
+</style>
