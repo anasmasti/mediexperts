@@ -24,6 +24,7 @@
         v-for="DRB_Ofppt in DRB_Ofppts"
         :key="DRB_Ofppt.n_drf"
       >
+      <!-- <input type="hidden" v-if="1==1 ? etat = DRB_Ofppt.etat : etat = DRB_Ofppt.etat "> -->
         <div class="row">
           <div class="form-group col-lg-3 col-sm-12" style="margin : auto ;">
             <label>E/S</label>
@@ -92,8 +93,8 @@
                       <td>{{info.bdg_total + (info.bdg_total * .2)}}</td>
                       <td>{{(info.bdg_total *.3) + (info.bdg_total *.2) }}</td>
                       <td>{{info.n_facture}}</td>
-                      <td> <input type="date"> </td>
-                      <td> <input type="text"> </td>
+                      <td> <input :id="'DP:'+info.id_thm" :name="'DP:'+info.id_thm" type="date"></td>
+                      <td> <input :id="'MDP:'+info.id_thm" :name="'MDP:'+info.id_thm" type="text"> </td>
                   </tr>
                 </tbody>
               </table>
@@ -116,7 +117,6 @@
           <div class="form-group col-12"><hr /></div>
 
           <div class="form-group col-12">
-<<<<<<< HEAD
               <div class="container">
                 <div class="row">
                   <div class="col-6">
@@ -159,144 +159,37 @@
                         <input type="checkbox" name="relev_bq_cabinet" :v-model="DRB_Ofppt.relev_bq_cabinet == 'préparé' ? relev_bq_cabinet = true : relev_bq_cabinet = false " :checked="relev_bq_cabinet == true ? true : false" id="relev_bq_cabinet" class="custom-control-input"/>
                         <label for="relev_bq_cabinet" class="custom-control-label">Relevés bq cabinet</label>
                       </div>    
-=======
-            <div class="container">
-              <div class="row">
-                <div class="col-6">
-                  <label class="h5">Dossier de remboursement</label>
-                  <div class="form-group">
-                    <div class="custom-control custom-checkbox">
-                      <input
-                        type="checkbox"
-                        name="model5"
-                        v-model="model5"
-                        id="model5"
-                        class="custom-control-input"
-                      />
-                      <label for="model5" class="custom-control-label"
-                        >Modéle 5</label
-                      >
-                    </div>
-                    <div class="custom-control custom-checkbox">
-                      <input
-                        type="checkbox"
-                        name="fiche_eval_sythetique"
-                        v-model="fiche_eval_sythetique"
-                        id="fiche_eval_sythetique"
-                        class="custom-control-input"
-                      />
-                      <label
-                        for="fiche_eval_sythetique"
-                        class="custom-control-label"
-                        >Fiche d'évaluation synthétique</label
-                      >
-                    </div>
-                    <div class="custom-control custom-checkbox">
-                      <input
-                        type="checkbox"
-                        name="model6"
-                        v-model="model6"
-                        id="model6"
-                        class="custom-control-input"
-                      />
-                      <label for="model6" class="custom-control-label"
-                        >Modéle 6</label
-                      >
-                    </div>
-                  </div>
-                </div>
-                <div class="col-6">
-                  <label class="h5">Justifs Règlement</label>
-                  <div class="form-group">
-                    <div class="custom-control custom-checkbox">
-                      <input
-                        type="checkbox"
-                        name="factures"
-                        v-model="factures"
-                        id="factures"
-                        class="custom-control-input"
-                      />
-                      <label for="factures" class="custom-control-label"
-                        >Factures</label
-                      >
-                    </div>
-                    <div class="custom-control custom-checkbox">
-                      <input
-                        type="checkbox"
-                        name="compris_cheques"
-                        v-model="compris_cheques"
-                        id="compris_cheques"
-                        class="custom-control-input"
-                      />
-                      <label for="compris_cheques" class="custom-control-label"
-                        >Compries cheques / OV / LC</label
-                      >
-                    </div>
-                    <div class="custom-control custom-checkbox">
-                      <input
-                        type="checkbox"
-                        name="compris_remise"
-                        v-model="compris_remise"
-                        id="compris_remise"
-                        class="custom-control-input"
-                      />
-                      <label for="compris_remise" class="custom-control-label"
-                        >Compries remises / Avis de débit</label
-                      >
-                    </div>
-                    <div class="custom-control custom-checkbox">
-                      <input
-                        type="checkbox"
-                        name="relev_bq_societe"
-                        v-model="relev_bq_societe"
-                        id="relev_bq_societe"
-                        class="custom-control-input"
-                      />
-                      <label for="relev_bq_societe" class="custom-control-label"
-                        >Relevés bq societé</label
-                      >
-                    </div>
-                    <div class="custom-control custom-checkbox">
-                      <input
-                        type="checkbox"
-                        name="relev_bq_cabinet"
-                        v-model="relev_bq_cabinet"
-                        id="relev_bq_cabinet"
-                        class="custom-control-input"
-                      />
-                      <label for="relev_bq_cabinet" class="custom-control-label"
-                        >Relevés bq cabinet</label
-                      >
->>>>>>> 22533a051a9d19af28cac64959701bebdde08957
                     </div>
                   </div>
                 </div>
               </div>
+
+              <div class="form-group col-12"><hr /></div>
+
+        <div class="form-group col-lg-12 col-sm-12" style="display: flex ;flex-direction : 'row' ;">
+
+           <div class="form-group col-lg-6 col-sm-12 " style="margin: auto ;">
+              <label>Date dépot demande de Remboursement</label>
+              <input
+                class="form-control"
+                type="text"
+                name="date_depot_dmd_rembrs"
+                id="date_depot_dmd_rembrs"
+                onmouseover="(this.type='date')"
+                placeholder="Date réalisation"
+                style="width: 50% ;"
+                :value=DRB_Ofppt.date_depot_dmd_rembrs
+              />
             </div>
-          </div>
-        </div>
 
-        <div class="form-group col-12"><hr /></div>
-
-        <div class="form-group col-lg-3 col-sm-12">
-          <label>Date dépot demande de Remboursement</label>
-          <input
-            class="form-control"
-            type="text"
-            name="date_depot_dmd_rembrs"
-            id="date_depot_dmd_rembrs"
-            onmouseover="(this.type='date')"
-            placeholder="Date réalisation"
-          />
-        </div>
-
-        <div class="form-group col-lg-3 col-sm-12" style="margin : auto ;">
-          <div class="custom-control custom-checkbox">
+          <div class="form-group col-lg-6 col-sm-12 custom-control custom-checkbox" style="margin: auto;">
             <input
               type="checkbox"
               name="accuse_model6"
               id="accuse_model6"
               class="custom-control-input"
+              :v-model="DRB_Ofppt.accuse_model6 == 'préparé' ? accuse_model6 = true : accuse_model6 = false " 
+              :checked="accuse_model6 == true ? true : false"
             />
             <label for="accuse_model6" class="custom-control-label"
               >Accusé Modele 6</label
@@ -324,121 +217,61 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <th>{{ }}</th>
-                  <td>{{}}</td>
-                  <td>{{}}</td>
-                  <td>@mdo</td>
-                  <td>{{}}</td>
-                  <td>Mark</td>
-                  <td>Otto</td>
+                <tr v-for="(info , index) in reglEntreprise" :key="index">
+                  <th>{{ info.n_action }}</th>
+                  <td>{{info.nom_theme}}</td>
+                  <td>{{info.bdg_total}}</td>
+                  <td>{{(info.bdg_total * .7).toFixed(2)}}</td>
+                  <td><input type="text" name="'RMBOFPPT:'+info.id_thm" :id="'RMBOFPPT:'+info.id_thm" v-model="rmb_ofppt[index]"></td>
+                  <td><label :id="`EcartOFPPT:${info.id_thm}`" :name="`EcartOFPPT:${info.id_thm}`">{{((info.bdg_total * (70/100)) - rmb_ofppt[index]).toFixed(2)}}</label></td>
+                  <td><input type="text" :name="'justifEcart:'+info.id_thm" :id="'justifEcart:'+info.id_thm" v-model="justifs_ecart"></td>
                 </tr>
               </tbody>
             </table>
           </div>
-        </div>
-      </div>
 
-      <div class="form-group col-12"><hr /></div>
-
-      <div class="form-group col-lg-3 col-sm-12" style="margin : auto ;">
-        <label>Montant de Remboursement</label>
-        <input
-          class="form-control"
-          value=""
-          type="text"
-          id="montant_rembrs"
-          name="montant_rembrs"
-          placeholder="Montant Remboursement"
-        />
-      </div>
-
-      <div class="form-group col-lg-3 col-sm-12" style="margin : auto ;">
-        <label>Date Remboursement</label>
-        <input
-          class="form-control"
-          type="text"
-          name="date_rembrs"
-          id="date_rembrs"
-          onmouseover="(this.type='date')"
-          placeholder="Date réalisation"
-        />
-      </div>
-
-<<<<<<< HEAD
-          <div class="form-group col-12">
-            <label>Commentaire</label>
-            <textarea class="form-control" type="text" rows="4" name="commentaire" maxlength="1900" placeholder="Commentaire .."></textarea>
-          </div>
+          <div class="form-group col-12"><hr /></div>
 
           
+
+          <div class="form-group col-lg-12 col-sm-12" style="display : flex ; flex-direction: row ;">
+            <div class="form-group col-lg-3 col-sm-12" style="margin : auto ;">
+              <label>Montant de Remboursement</label>
+              <input
+                class="form-control"
+                :value=DRB_Ofppt.montant_rembrs
+                type="text"
+                id="montant_rembrs"
+                name="montant_rembrs"
+                placeholder="Montant Remboursement"
+              />
+            </div>
+
+            <div class="form-group col-lg-3 col-sm-12" style="margin : auto ;">
+              <label>Date Remboursement</label>
+              <input
+                class="form-control"
+                type="text"
+                name="date_rembrs"
+                id="date_rembrs"
+                onmouseover="(this.type='date')"
+                placeholder="Date réalisation"
+                :value=DRB_Ofppt.date_rembrs
+              />
+            </div>
+          </div> 
+
+
+
+            </div>
+          </div>
         </div>
       </div>
 
       
 
-      <div class="form-group col-12"><hr></div>
-=======
-      <div class="form-group col-12 text-center" style="margin-top: 2rem ;">
-        <h4>État demande</h4>
-        <div class="btn-group btn-group-toggle btn-Etat" data-toggle="buttons">
-          <label class="btn btn-warning">
-            Initié
-            <i class="fas fa-battery-quarter"></i>
-            <input
-              type="radio"
-              name="etat"
-              id="option1"
-              autocomplete="off"
-              value="initié"
-            />
-          </label>
-          <label class="btn btn-warning">
-            Payé
-            <i class="fas fa-dollar-sign"></i>
-            <input
-              type="radio"
-              name="etat"
-              id="option2"
-              autocomplete="off"
-              value="payé"
-            />
-          </label>
-          <label class="btn btn-warning">
-            Instruction dossier
-            <i class="fas fa-hourglass-half"></i>
-            <input
-              type="radio"
-              name="etat"
-              id="option2"
-              autocomplete="off"
-              value="instruction dossier"
-            />
-          </label>
-          <label class="btn btn-warning">
-            Déposé
-            <i class="fas fa-folder-open"></i>
-            <input
-              type="radio"
-              name="etat"
-              id="option2"
-              autocomplete="off"
-              value="déposé"
-            />
-          </label>
-          <label class="btn btn-warning">
-            Remboursé
-            <i class="fas fa-check-double"></i>
-            <input
-              type="radio"
-              name="etat"
-              id="option3"
-              autocomplete="off"
-              value="remboursé"
-            />
-          </label>
         </div>
-      </div>
+
 
       <div class="form-group col-12"><hr /></div>
 
@@ -453,57 +286,86 @@
           placeholder="Commentaire .."
         ></textarea>
       </div>
+      <div class="form-group col-12"><hr /></div>
+      <div class="form-group col-12 text-center" style="margin-top: 2rem ;" >
+          <h4>État demande</h4>
+          <div class="btn-group btn-group-toggle btn-Etat" data-toggle="buttons">
+            <label class="btn btn-warning">
+              Initié
+              <i class="fas fa-battery-quarter"></i>
+              <input
+                type="radio"
+                name="etat"
+                id="option1"
+                autocomplete="off"
+                value="initié"
+              />
+            </label>
+            <label class="btn btn-warning">
+              Payé
+              <i class="fas fa-dollar-sign"></i>
+              <input
+                type="radio"
+                name="etat"
+                id="option2"
+                autocomplete="off"
+                value="payé"
+              />
+            </label>
+            <label class="btn btn-warning">
+              Instruction dossier
+              <i class="fas fa-hourglass-half"></i>
+              <input
+                type="radio"
+                name="etat"
+                id="option2"
+                autocomplete="off"
+                value="instruction dossier"
+              />
+            </label>
+            <label class="btn btn-warning">
+              Déposé
+              <i class="fas fa-folder-open"></i>
+              <input
+                type="radio"
+                name="etat"
+                id="option2"
+                autocomplete="off"
+                value="déposé"
+              />
+            </label>
+            <label class="btn btn-warning">
+              Remboursé
+              <i class="fas fa-check-double"></i>
+              <input
+                type="radio"
+                
+                id="option3"
+                autocomplete="off"
+                value="remboursé" 
+              />
+            </label>
+          </div>
+      </div>
+<button @click="getTheme()">theme</button>
+    <div class="card-footer text-center">
+          <button class="btn bu-add" type="submit" id="add" @click="updateDRB()"><i class="fas fa-pen-square icon"></i>Modifier</button>
+          <a class="btn bu-danger" href="/drb-gc"><i class="fas fa-window-close icon"></i>Annuler</a>
     </div>
-
-  <div class="form-group col-12"><hr /></div>
->>>>>>> 22533a051a9d19af28cac64959701bebdde08957
-
-  <div class="card-footer text-center">
-        <button class="btn bu-add" type="submit" id="add" @click="updateDRB()"><i class="fas fa-pen-square icon"></i>Modifier</button>
-        <a class="btn bu-danger" href="/drb-gc"><i class="fas fa-window-close icon"></i>Annuler</a>
-  </div>
-   </div>
+    </div>
 </template>
 
-<<<<<<< HEAD
 
 <script>  
 import { mapState } from 'vuex';
-=======
-<script>
-import { mapState } from "vuex";
->>>>>>> 22533a051a9d19af28cac64959701bebdde08957
 export default {
   name: "Edit",
   data() {
-<<<<<<< HEAD
-        return {
-            numero_remb: [],
-            // DRB_Ofppts: {},
-            edited_DRB: [],
-            model5:null,
-            model6:null,
-            fiche_eval_sythetique:null,
-            factures:null,
-            compris_cheques:null,
-            compris_remise:null,
-            relev_bq_societe:null,
-            relev_bq_cabinet:null,
-            accuse_model6:null
-        };
-    },
-  mounted() {
-    this.numero_remb = JSON.parse(localStorage.getItem("n_drf"));
-     this.getListOfDROfpptEditByNumeroRemb(this.numero_remb)
-     },
-  methods:{
-    clearLS(){
-=======
     return {
       numero_remb: [],
       // DRB_Ofppts: {},
       edited_DRB: [],
-      model5: false,
+      model5: null,
       model6: null,
       fiche_eval_sythetique: null,
       factures: null,
@@ -512,14 +374,22 @@ export default {
       relev_bq_societe: null,
       relev_bq_cabinet: null,
       accuse_model6: null,
-      total_regl : null
+      total_regl : null,
+      rmb_ofppt : [],
+      justifs_ecart : null, 
+      etat : null
     };
   },
   mounted() {
-    this.numero_remb = JSON.parse(localStorage.getItem("n_drb"));
+    this.numero_remb = JSON.parse(localStorage.getItem("n_drf"));
     console.log(this.numero_remb);
     this.handleAction("DRB_Ofppt/getListOfDROfpptEdit", this.numero_remb);
     this.handleAction("DRB_Ofppt/ReglEntrpInfo", this.numero_remb);
+    // setTimeout(() => {
+    
+      this.selectedEtat();    
+      // }, 3000);
+   
   },
   updated() {
 
@@ -529,7 +399,6 @@ export default {
       this.$store.dispatch(actionName, value);
     },
     clearLS() {
->>>>>>> 22533a051a9d19af28cac64959701bebdde08957
       localStorage.clear();
     },
     CalculTotalRegl() {
@@ -542,12 +411,10 @@ export default {
             console.log("TTL REGL", QtRegl);
         }
       }, 1200);
-
       return this.total_regl
     },
     updateDRB() {
       let model5 = this.model5;
-      let model6 = this.model6;
       let fiche_eval_sythetique = this.fiche_eval_sythetique;
       let factures = this.factures;
       let compris_cheques = this.compris_cheques;
@@ -559,6 +426,8 @@ export default {
       let date_depot_dmd_rembrs = document.getElementById("date_depot_dmd_rembrs");
       let date_rembrs = document.getElementById("date_rembrs");
       let etat = $("input:radio[name=etat]:checked").val();
+      let thems = this.getTheme();
+      
       axios
         .post("/edit-drb-ofppt/" + this.numero_remb, {
           model6: model6,
@@ -573,7 +442,8 @@ export default {
           montant_rembrs: montant_rembrs.value,
           date_depot_dmd_rembrs: date_depot_dmd_rembrs.value,
           date_rembrs: date_rembrs.value,
-          etat: etat
+          etat: etat,
+          thems:  thems
         })
         .then(() => {
           this.$toastr.s("Modifié avec succès");
@@ -582,6 +452,29 @@ export default {
           this.$toastr.e("Echec de modification");
           throw e;
         });
+    },
+    getTheme(){
+        let thems = [];
+        let data = this.reglEntreprise;
+        let item = 0;
+        for ( item in data) {
+        thems.push(data[item].id_thm);
+        }
+       console.log(thems);
+       return thems;
+
+    },
+    selectedEtat(){
+      let data = this.DRB_Ofppts;
+     let item = 0;
+
+       for ( item in data) {
+            this.etat=data[item].etat;
+            
+               document.getElementById('option3').checked = true;
+            
+        }
+
     }
   },
   computed: {
@@ -616,5 +509,3 @@ th {
   flex-wrap: wrap;
 }
 </style>
-
-

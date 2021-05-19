@@ -14,20 +14,9 @@ class CreateDemandeRemboursementOfpptsTable extends Migration
     public function up()
     {
         Schema::create('demande_remboursement_ofppts', function (Blueprint $table) {
-            $table->increments('n_drf');
+            $table->bigIncrements('n_drf');
             $table->string('refpdf',100);
             $table->integer('n_contrat');
-<<<<<<< HEAD:database/migrations/2021_05_10_090008_create_demande_remboursement_ofppts_table.php
-            $table->string('model5');
-            $table->string('model6');
-            $table->string('accuse_model6');
-            $table->string('fiche_eval_sythetique');
-            $table->string('factures');
-            $table->string('compris_cheques');
-            $table->string('compris_remise');
-            $table->string('relev_bq_societe');
-            $table->string('relev_bq_cabinet');
-=======
             $table->string('model5',100);
             $table->string('model6',100);
             $table->string('accuse_model6',100);
@@ -36,15 +25,20 @@ class CreateDemandeRemboursementOfpptsTable extends Migration
             $table->string('compris_cheques',100);
             $table->string('compris_remise',100);
             $table->string('relev_bq_societe',100);
-            $table->string('cabinet',100);
->>>>>>> b9e5ab5bdad7bcf3042a9359382a84fa1346726f:database/migrations/2021_05_10_104840_create_demande_remboursement_ofppts_table.php
+            $table->string('relev_bq_cabinet',100);
             $table->date('date_depot_dmd_rembrs');
             $table->date('date_rembrs');
             $table->string('montant_rembrs',100);
             $table->string('etat',100);
+            $table->string('nrc_entrp',50); //FK
             $table->unsignedBigInteger('id_plan'); //FK
-            $table->unsignedBigInteger('nrc_entrp'); //FK
             $table->timestamps();
+
+            $table->foreign('nrc_entrp')
+            ->references('nrc_entrp')
+            ->on('clients')
+            ->onUpdate('cascade')
+            ->onDelete('cascade');
 
             $table->foreign('id_plan')
             ->references('id_plan')
@@ -52,11 +46,7 @@ class CreateDemandeRemboursementOfpptsTable extends Migration
             ->onUpdate('cascade')
             ->onDelete('cascade');
 
-            $table->foreign('nrc_entrp')
-            ->references('nrc_entrp')
-            ->on('clients')
-            ->onUpdate('cascade')
-            ->onDelete('cascade');
+            
         });
     }
 

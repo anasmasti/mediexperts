@@ -73,18 +73,34 @@ class DemandeRemboursementOfpptController extends Controller
                  'relev_bq_cabinet',
                   'accuse_model6'];
                   foreach ($docs as $doc) {
-              if ($request->$doc == '1') {
+              if ($request->$doc == true) {
                         $demandeRemboursementOFPPT->$doc = 'préparé';
                     }
                     else{
                         $demandeRemboursementOFPPT->$doc = "non préparé";
                     }
                 }
+            $idplan = $demandeRemboursementOFPPT->id_plan;
             $demandeRemboursementOFPPT->montant_rembrs = $request->montant_rembrs ;
             $demandeRemboursementOFPPT->date_rembrs = $request->date_rembrs ;
             $demandeRemboursementOFPPT->date_depot_dmd_rembrs = $request->date_depot_dmd_rembrs ;
             $demandeRemboursementOFPPT->etat = $request->etat ;
             $demandeRemboursementOFPPT->save();
+
+            $thems=$request->thems;
+             foreach ($thems as $them){
+               // $reglEntreprise = DB::table('plan_formations')->where(['id_thm', '=', $them],['id_plan', '=', $idplan])->first();
+                $reglEntreprise = DB::table('plan_formations')->where('id_thm', '=', $them)->first();
+                $reglEntreprise->datePaiementEntreprise = $request->input('DP:',$them);
+                $reglEntreprise->ModeReferencePaiement = $request->input('MDP:',$them);
+                // $reglEntreprise->RemboursementOFPPT = $request->input('RMBOFPPT:',$them);
+                // $reglEntreprise->EcartRemboursement = $request->input('EcartOFPPT:',$them);
+                // $reglEntreprise->JustifsEcart = $request->input('justifEcart:',$them);
+                // $reglEntreprise
+             }
+             $reglEntreprise->save();
+            
+
             $request->session()->flash('updated', 'Modifié avec succès');
         }
     }
