@@ -73,7 +73,7 @@ class DemandeRemboursementOfpptController extends Controller
                  'relev_bq_cabinet',
                   'accuse_model6'];
                   foreach ($docs as $doc) {
-              if ($request->$doc == '1') {
+              if ($request->$doc == true) {
                         $demandeRemboursementOFPPT->$doc = 'préparé';
                     }
                     else{

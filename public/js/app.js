@@ -3994,6 +3994,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Edit",
@@ -4001,7 +4002,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     return {
       numero_remb: [],
       // DRB_Ofppts: {},
-      edited_DRB: [],
+      edited_DRB: null,
       model5: false,
       model6: null,
       fiche_eval_sythetique: null,
@@ -4018,12 +4019,30 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     };
   },
   mounted: function mounted() {
+    var _this = this;
+
     this.numero_remb = JSON.parse(localStorage.getItem("n_drf"));
     console.log(this.numero_remb);
     this.handleAction("DRB_Ofppt/getListOfDROfpptEdit", this.numero_remb);
     this.handleAction("DRB_Ofppt/ReglEntrpInfo", this.numero_remb); // setTimeout(() => {
 
     this.selectedEtat(); // }, 3000);
+    // this.SelectedEtat();
+
+    setTimeout(function () {
+      _this.CalculTotalRegl();
+    }, 1500);
+    setTimeout(function () {
+      _this.model5 = _this.DRB_Ofppts[0].model5 === 'préparé';
+      _this.model6 = _this.DRB_Ofppts[0].model6 === 'préparé';
+      _this.fiche_eval_sythetique = _this.DRB_Ofppts[0].fiche_eval_sythetique === 'préparé';
+      _this.factures = _this.DRB_Ofppts[0].factures === 'préparé';
+      _this.compris_cheques = _this.DRB_Ofppts[0].compris_cheques === 'préparé';
+      _this.compris_remise = _this.DRB_Ofppts[0].compris_remise === 'préparé';
+      _this.relev_bq_societe = _this.DRB_Ofppts[0].relev_bq_societe === 'préparé';
+      _this.relev_bq_cabinet = _this.DRB_Ofppts[0].relev_bq_cabinet === 'préparé';
+      _this.accuse_model6 = _this.DRB_Ofppts[0].accuse_model6 === 'préparé';
+    }, 900);
   },
   updated: function updated() {},
   methods: {
@@ -4034,21 +4053,32 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       localStorage.clear();
     },
     CalculTotalRegl: function CalculTotalRegl() {
-      var _this = this;
+      var _this2 = this;
 
       var data = this.reglEntreprise;
       var item = 0;
       setTimeout(function () {
         for (item in data) {
           var QtRegl = data[item].bdg_total * .3 + data[item].bdg_total * .2;
-          _this.total_regl += QtRegl;
-          console.log("TTL REGL", QtRegl);
+          _this2.total_regl += QtRegl;
         }
       }, 1200);
       return this.total_regl;
     },
+    SelectedEtat: function SelectedEtat() {
+      var _this3 = this;
+
+      setTimeout(function () {
+        var data = _this3.DRB_Ofppts;
+        var etat = data[0].etat;
+
+        if (etat === "payé") {
+          _this3.etat = true;
+        }
+      }, 2000);
+    },
     updateDRB: function updateDRB() {
-      var _this2 = this;
+      var _this4 = this;
 
       var model5 = this.model5;
       var fiche_eval_sythetique = this.fiche_eval_sythetique;
@@ -4077,9 +4107,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         date_rembrs: date_rembrs.value,
         etat: etat
       }).then(function () {
-        _this2.$toastr.s("Modifié avec succès");
+        _this4.$toastr.s("Modifié avec succès");
       })["catch"](function (e) {
-        _this2.$toastr.e("Echec de modification");
+        _this4.$toastr.e("Echec de modification");
 
         throw e;
       });
@@ -4123,16 +4153,6 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -45890,9 +45910,14 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "total_reg" }, [
-                  _c("label", { attrs: { for: "txt-total-reg" } }, [
-                    _vm._v("Total Réglement : ")
-                  ]),
+                  _c(
+                    "label",
+                    {
+                      attrs: { for: "txt-total-reg" },
+                      on: { "": function($event) {} }
+                    },
+                    [_vm._v("Total Réglement : ")]
+                  ),
                   _vm._v(" "),
                   _c("input", {
                     staticClass: "txt-total-reg",
@@ -45911,7 +45936,7 @@ var render = function() {
                       attrs: { type: "text" },
                       on: {
                         click: function($event) {
-                          return _vm.CalculTotalRegl()
+                          return _vm.SelectedEtat()
                         }
                       }
                     },
@@ -45936,18 +45961,46 @@ var render = function() {
                           { staticClass: "custom-control custom-checkbox" },
                           [
                             _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.model5,
+                                  expression: "model5"
+                                }
+                              ],
                               staticClass: "custom-control-input",
                               attrs: {
                                 type: "checkbox",
                                 name: "model5",
-                                "v-model":
-                                  DRB_Ofppt.model5 == "préparé"
-                                    ? (_vm.model5 = true)
-                                    : (_vm.model5 = false),
                                 id: "model5"
                               },
                               domProps: {
-                                checked: _vm.model5 == true ? true : false
+                                checked: Array.isArray(_vm.model5)
+                                  ? _vm._i(_vm.model5, null) > -1
+                                  : _vm.model5
+                              },
+                              on: {
+                                change: function($event) {
+                                  var $$a = _vm.model5,
+                                    $$el = $event.target,
+                                    $$c = $$el.checked ? true : false
+                                  if (Array.isArray($$a)) {
+                                    var $$v = null,
+                                      $$i = _vm._i($$a, $$v)
+                                    if ($$el.checked) {
+                                      $$i < 0 &&
+                                        (_vm.model5 = $$a.concat([$$v]))
+                                    } else {
+                                      $$i > -1 &&
+                                        (_vm.model5 = $$a
+                                          .slice(0, $$i)
+                                          .concat($$a.slice($$i + 1)))
+                                    }
+                                  } else {
+                                    _vm.model5 = $$c
+                                  }
+                                }
                               }
                             }),
                             _vm._v(" "),
@@ -45967,21 +46020,50 @@ var render = function() {
                           { staticClass: "custom-control custom-checkbox" },
                           [
                             _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.fiche_eval_sythetique,
+                                  expression: "fiche_eval_sythetique"
+                                }
+                              ],
                               staticClass: "custom-control-input",
                               attrs: {
                                 type: "checkbox",
                                 name: "fiche_eval_sythetique",
-                                "v-model":
-                                  DRB_Ofppt.fiche_eval_sythetique == "préparé"
-                                    ? (_vm.fiche_eval_sythetique = true)
-                                    : (_vm.model5 = false),
                                 id: "fiche_eval_sythetique"
                               },
                               domProps: {
-                                checked:
-                                  _vm.fiche_eval_sythetique == true
-                                    ? true
-                                    : false
+                                checked: Array.isArray(
+                                  _vm.fiche_eval_sythetique
+                                )
+                                  ? _vm._i(_vm.fiche_eval_sythetique, null) > -1
+                                  : _vm.fiche_eval_sythetique
+                              },
+                              on: {
+                                change: function($event) {
+                                  var $$a = _vm.fiche_eval_sythetique,
+                                    $$el = $event.target,
+                                    $$c = $$el.checked ? true : false
+                                  if (Array.isArray($$a)) {
+                                    var $$v = null,
+                                      $$i = _vm._i($$a, $$v)
+                                    if ($$el.checked) {
+                                      $$i < 0 &&
+                                        (_vm.fiche_eval_sythetique = $$a.concat(
+                                          [$$v]
+                                        ))
+                                    } else {
+                                      $$i > -1 &&
+                                        (_vm.fiche_eval_sythetique = $$a
+                                          .slice(0, $$i)
+                                          .concat($$a.slice($$i + 1)))
+                                    }
+                                  } else {
+                                    _vm.fiche_eval_sythetique = $$c
+                                  }
+                                }
                               }
                             }),
                             _vm._v(" "),
@@ -46001,18 +46083,46 @@ var render = function() {
                           { staticClass: "custom-control custom-checkbox" },
                           [
                             _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.model6,
+                                  expression: "model6"
+                                }
+                              ],
                               staticClass: "custom-control-input",
                               attrs: {
                                 type: "checkbox",
                                 name: "model6",
-                                "v-model":
-                                  DRB_Ofppt.model6 == "préparé"
-                                    ? (_vm.model6 = true)
-                                    : (_vm.model6 = false),
                                 id: "model6"
                               },
                               domProps: {
-                                checked: _vm.model6 == true ? true : false
+                                checked: Array.isArray(_vm.model6)
+                                  ? _vm._i(_vm.model6, null) > -1
+                                  : _vm.model6
+                              },
+                              on: {
+                                change: function($event) {
+                                  var $$a = _vm.model6,
+                                    $$el = $event.target,
+                                    $$c = $$el.checked ? true : false
+                                  if (Array.isArray($$a)) {
+                                    var $$v = null,
+                                      $$i = _vm._i($$a, $$v)
+                                    if ($$el.checked) {
+                                      $$i < 0 &&
+                                        (_vm.model6 = $$a.concat([$$v]))
+                                    } else {
+                                      $$i > -1 &&
+                                        (_vm.model6 = $$a
+                                          .slice(0, $$i)
+                                          .concat($$a.slice($$i + 1)))
+                                    }
+                                  } else {
+                                    _vm.model6 = $$c
+                                  }
+                                }
                               }
                             }),
                             _vm._v(" "),
@@ -46040,18 +46150,46 @@ var render = function() {
                           { staticClass: "custom-control custom-checkbox" },
                           [
                             _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.factures,
+                                  expression: "factures"
+                                }
+                              ],
                               staticClass: "custom-control-input",
                               attrs: {
                                 type: "checkbox",
                                 name: "factures",
-                                "v-model":
-                                  DRB_Ofppt.factures == "préparé"
-                                    ? (_vm.factures = true)
-                                    : (_vm.factures = false),
                                 id: "factures"
                               },
                               domProps: {
-                                checked: _vm.factures == true ? true : false
+                                checked: Array.isArray(_vm.factures)
+                                  ? _vm._i(_vm.factures, null) > -1
+                                  : _vm.factures
+                              },
+                              on: {
+                                change: function($event) {
+                                  var $$a = _vm.factures,
+                                    $$el = $event.target,
+                                    $$c = $$el.checked ? true : false
+                                  if (Array.isArray($$a)) {
+                                    var $$v = null,
+                                      $$i = _vm._i($$a, $$v)
+                                    if ($$el.checked) {
+                                      $$i < 0 &&
+                                        (_vm.factures = $$a.concat([$$v]))
+                                    } else {
+                                      $$i > -1 &&
+                                        (_vm.factures = $$a
+                                          .slice(0, $$i)
+                                          .concat($$a.slice($$i + 1)))
+                                    }
+                                  } else {
+                                    _vm.factures = $$c
+                                  }
+                                }
                               }
                             }),
                             _vm._v(" "),
@@ -46071,19 +46209,48 @@ var render = function() {
                           { staticClass: "custom-control custom-checkbox" },
                           [
                             _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.compris_cheques,
+                                  expression: "compris_cheques"
+                                }
+                              ],
                               staticClass: "custom-control-input",
                               attrs: {
                                 type: "checkbox",
                                 name: "compris_cheques",
-                                "v-model":
-                                  DRB_Ofppt.compris_cheques == "préparé"
-                                    ? (_vm.compris_cheques = true)
-                                    : (_vm.compris_cheques = false),
                                 id: "compris_cheques"
                               },
                               domProps: {
-                                checked:
-                                  _vm.compris_cheques == true ? true : false
+                                checked: Array.isArray(_vm.compris_cheques)
+                                  ? _vm._i(_vm.compris_cheques, null) > -1
+                                  : _vm.compris_cheques
+                              },
+                              on: {
+                                change: function($event) {
+                                  var $$a = _vm.compris_cheques,
+                                    $$el = $event.target,
+                                    $$c = $$el.checked ? true : false
+                                  if (Array.isArray($$a)) {
+                                    var $$v = null,
+                                      $$i = _vm._i($$a, $$v)
+                                    if ($$el.checked) {
+                                      $$i < 0 &&
+                                        (_vm.compris_cheques = $$a.concat([
+                                          $$v
+                                        ]))
+                                    } else {
+                                      $$i > -1 &&
+                                        (_vm.compris_cheques = $$a
+                                          .slice(0, $$i)
+                                          .concat($$a.slice($$i + 1)))
+                                    }
+                                  } else {
+                                    _vm.compris_cheques = $$c
+                                  }
+                                }
                               }
                             }),
                             _vm._v(" "),
@@ -46103,19 +46270,46 @@ var render = function() {
                           { staticClass: "custom-control custom-checkbox" },
                           [
                             _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.compris_remise,
+                                  expression: "compris_remise"
+                                }
+                              ],
                               staticClass: "custom-control-input",
                               attrs: {
                                 type: "checkbox",
                                 name: "compris_remise",
-                                "v-model":
-                                  DRB_Ofppt.compris_remise == "préparé"
-                                    ? (_vm.compris_remise = true)
-                                    : (_vm.compris_remise = false),
                                 id: "compris_remise"
                               },
                               domProps: {
-                                checked:
-                                  _vm.compris_remise == true ? true : false
+                                checked: Array.isArray(_vm.compris_remise)
+                                  ? _vm._i(_vm.compris_remise, null) > -1
+                                  : _vm.compris_remise
+                              },
+                              on: {
+                                change: function($event) {
+                                  var $$a = _vm.compris_remise,
+                                    $$el = $event.target,
+                                    $$c = $$el.checked ? true : false
+                                  if (Array.isArray($$a)) {
+                                    var $$v = null,
+                                      $$i = _vm._i($$a, $$v)
+                                    if ($$el.checked) {
+                                      $$i < 0 &&
+                                        (_vm.compris_remise = $$a.concat([$$v]))
+                                    } else {
+                                      $$i > -1 &&
+                                        (_vm.compris_remise = $$a
+                                          .slice(0, $$i)
+                                          .concat($$a.slice($$i + 1)))
+                                    }
+                                  } else {
+                                    _vm.compris_remise = $$c
+                                  }
+                                }
                               }
                             }),
                             _vm._v(" "),
@@ -46135,19 +46329,48 @@ var render = function() {
                           { staticClass: "custom-control custom-checkbox" },
                           [
                             _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.relev_bq_societe,
+                                  expression: "relev_bq_societe"
+                                }
+                              ],
                               staticClass: "custom-control-input",
                               attrs: {
                                 type: "checkbox",
                                 name: "relev_bq_societe",
-                                "v-model":
-                                  DRB_Ofppt.relev_bq_societe == "préparé"
-                                    ? (_vm.relev_bq_societe = true)
-                                    : (_vm.relev_bq_societe = false),
                                 id: "relev_bq_societe"
                               },
                               domProps: {
-                                checked:
-                                  _vm.relev_bq_societe == true ? true : false
+                                checked: Array.isArray(_vm.relev_bq_societe)
+                                  ? _vm._i(_vm.relev_bq_societe, null) > -1
+                                  : _vm.relev_bq_societe
+                              },
+                              on: {
+                                change: function($event) {
+                                  var $$a = _vm.relev_bq_societe,
+                                    $$el = $event.target,
+                                    $$c = $$el.checked ? true : false
+                                  if (Array.isArray($$a)) {
+                                    var $$v = null,
+                                      $$i = _vm._i($$a, $$v)
+                                    if ($$el.checked) {
+                                      $$i < 0 &&
+                                        (_vm.relev_bq_societe = $$a.concat([
+                                          $$v
+                                        ]))
+                                    } else {
+                                      $$i > -1 &&
+                                        (_vm.relev_bq_societe = $$a
+                                          .slice(0, $$i)
+                                          .concat($$a.slice($$i + 1)))
+                                    }
+                                  } else {
+                                    _vm.relev_bq_societe = $$c
+                                  }
+                                }
                               }
                             }),
                             _vm._v(" "),
@@ -46167,19 +46390,48 @@ var render = function() {
                           { staticClass: "custom-control custom-checkbox" },
                           [
                             _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.relev_bq_cabinet,
+                                  expression: "relev_bq_cabinet"
+                                }
+                              ],
                               staticClass: "custom-control-input",
                               attrs: {
                                 type: "checkbox",
                                 name: "relev_bq_cabinet",
-                                "v-model":
-                                  DRB_Ofppt.relev_bq_cabinet == "préparé"
-                                    ? (_vm.relev_bq_cabinet = true)
-                                    : (_vm.relev_bq_cabinet = false),
                                 id: "relev_bq_cabinet"
                               },
                               domProps: {
-                                checked:
-                                  _vm.relev_bq_cabinet == true ? true : false
+                                checked: Array.isArray(_vm.relev_bq_cabinet)
+                                  ? _vm._i(_vm.relev_bq_cabinet, null) > -1
+                                  : _vm.relev_bq_cabinet
+                              },
+                              on: {
+                                change: function($event) {
+                                  var $$a = _vm.relev_bq_cabinet,
+                                    $$el = $event.target,
+                                    $$c = $$el.checked ? true : false
+                                  if (Array.isArray($$a)) {
+                                    var $$v = null,
+                                      $$i = _vm._i($$a, $$v)
+                                    if ($$el.checked) {
+                                      $$i < 0 &&
+                                        (_vm.relev_bq_cabinet = $$a.concat([
+                                          $$v
+                                        ]))
+                                    } else {
+                                      $$i > -1 &&
+                                        (_vm.relev_bq_cabinet = $$a
+                                          .slice(0, $$i)
+                                          .concat($$a.slice($$i + 1)))
+                                    }
+                                  } else {
+                                    _vm.relev_bq_cabinet = $$c
+                                  }
+                                }
                               }
                             }),
                             _vm._v(" "),
@@ -46845,11 +47097,9 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "a",
-      { staticClass: "btn btn-primary", attrs: { href: "/edit-drb-ofppt" } },
-      [_c("i", { staticClass: "fa fa-eye", staticStyle: { color: "white" } })]
-    )
+    return _c("a", { staticClass: "btn btn-primary", attrs: { href: "#" } }, [
+      _c("i", { staticClass: "fa fa-eye", staticStyle: { color: "white" } })
+    ])
   },
   function() {
     var _vm = this

@@ -101,7 +101,7 @@
             </div>
 
             <div class="total_reg">
-              <label for="txt-total-reg">Total Réglement : </label>
+              <label @ for="txt-total-reg">Total Réglement : </label>
               <input
                 type="text"
                 class="txt-total-reg"
@@ -110,7 +110,7 @@
                 readonly
                 :value="total_regl"
               />
-              <button type="text" @click="CalculTotalRegl()">Test</button>
+              <button type="text" @click="SelectedEtat()">Test</button>
             </div>
           </div>
 
@@ -123,15 +123,16 @@
                     <label class="h5">Dossier de remboursement</label>
                     <div class="form-group">
                       <div class="custom-control custom-checkbox">
-                        <input type="checkbox" name="model5" :v-model="DRB_Ofppt.model5 == 'préparé' ? model5 = true : model5 = false " :checked="model5 == true ? true : false" id="model5" class="custom-control-input"/>
+                        <input type="checkbox" name="model5" v-model="model5" id="model5" class="custom-control-input"/>
                         <label for="model5" class="custom-control-label">Modéle 5</label>
+                        <!-- <h1>{{ model5 }}</h1> -->
                       </div>
                       <div class="custom-control custom-checkbox">
-                        <input type="checkbox" name="fiche_eval_sythetique" :v-model="DRB_Ofppt.fiche_eval_sythetique == 'préparé' ? fiche_eval_sythetique = true : model5 = false " :checked="fiche_eval_sythetique == true ? true : false" id="fiche_eval_sythetique" class="custom-control-input"/>
+                        <input type="checkbox" name="fiche_eval_sythetique" v-model="fiche_eval_sythetique" id="fiche_eval_sythetique" class="custom-control-input"/>
                         <label for="fiche_eval_sythetique" class="custom-control-label">Fiche d'évaluation synthétique</label>
                       </div>
                       <div class="custom-control custom-checkbox">
-                        <input type="checkbox" name="model6" :v-model="DRB_Ofppt.model6 == 'préparé' ? model6 = true : model6 = false " :checked="model6 == true ? true : false" id="model6" class="custom-control-input"/>
+                        <input type="checkbox" name="model6" v-model="model6" id="model6" class="custom-control-input"/>
                         <label for="model6" class="custom-control-label">Modéle 6</label>
                       </div>
                     </div>
@@ -140,23 +141,23 @@
                     <label class="h5">Justifs Règlement</label>
                     <div class="form-group">
                       <div class="custom-control custom-checkbox">
-                        <input type="checkbox" name="factures" :v-model="DRB_Ofppt.factures == 'préparé' ? factures = true : factures = false " :checked="factures == true ? true : false" id="factures" class="custom-control-input"/>
+                        <input type="checkbox" name="factures" v-model="factures" id="factures" class="custom-control-input"/>
                         <label for="factures" class="custom-control-label">Factures</label>
                       </div>
                       <div class="custom-control custom-checkbox">
-                        <input type="checkbox" name="compris_cheques" :v-model="DRB_Ofppt.compris_cheques == 'préparé' ? compris_cheques = true : compris_cheques = false " :checked="compris_cheques == true ? true : false" id="compris_cheques" class="custom-control-input"/>
+                        <input type="checkbox" name="compris_cheques" v-model="compris_cheques" id="compris_cheques" class="custom-control-input"/>
                         <label for="compris_cheques" class="custom-control-label">Compries cheques / OV / LC</label>
                       </div>
                       <div class="custom-control custom-checkbox">
-                        <input type="checkbox" name="compris_remise" :v-model="DRB_Ofppt.compris_remise == 'préparé' ? compris_remise = true : compris_remise = false " :checked="compris_remise == true ? true : false" id="compris_remise" class="custom-control-input"/>
+                        <input type="checkbox" name="compris_remise" v-model="compris_remise" id="compris_remise" class="custom-control-input"/>
                         <label for="compris_remise" class="custom-control-label">Compries remises / Avis de débit</label>
                       </div>
                       <div class="custom-control custom-checkbox">
-                        <input type="checkbox" name="relev_bq_societe" :v-model="DRB_Ofppt.relev_bq_societe == 'préparé' ? relev_bq_societe = true : relev_bq_societe = false " :checked="relev_bq_societe == true ? true : false" id="relev_bq_societe" class="custom-control-input"/>
+                        <input type="checkbox" name="relev_bq_societe" v-model="relev_bq_societe" id="relev_bq_societe" class="custom-control-input"/>
                         <label for="relev_bq_societe" class="custom-control-label">Relevés bq societé</label>
                       </div>
                       <div class="custom-control custom-checkbox">
-                        <input type="checkbox" name="relev_bq_cabinet" :v-model="DRB_Ofppt.relev_bq_cabinet == 'préparé' ? relev_bq_cabinet = true : relev_bq_cabinet = false " :checked="relev_bq_cabinet == true ? true : false" id="relev_bq_cabinet" class="custom-control-input"/>
+                        <input type="checkbox" name="relev_bq_cabinet" v-model="relev_bq_cabinet"  id="relev_bq_cabinet" class="custom-control-input"/>
                         <label for="relev_bq_cabinet" class="custom-control-label">Relevés bq cabinet</label>
                       </div>    
                     </div>
@@ -364,7 +365,7 @@ export default {
     return {
       numero_remb: [],
       // DRB_Ofppts: {},
-      edited_DRB: [],
+      edited_DRB: null,
       model5: false,
       model6: null,
       fiche_eval_sythetique: null,
@@ -390,17 +391,37 @@ export default {
       this.selectedEtat();    
       // }, 3000);
    
+    // this.SelectedEtat();
+    setTimeout(() => {
+      this.CalculTotalRegl();
+      
+    }, 1500);
+
+    setTimeout(() => {
+      this.model5 = this.DRB_Ofppts[0].model5 === 'préparé'
+      this.model6 = this.DRB_Ofppts[0].model6 === 'préparé'
+      this.fiche_eval_sythetique = this.DRB_Ofppts[0].fiche_eval_sythetique === 'préparé'
+      this.factures = this.DRB_Ofppts[0].factures === 'préparé'
+      this.compris_cheques = this.DRB_Ofppts[0].compris_cheques === 'préparé'
+      this.compris_remise = this.DRB_Ofppts[0].compris_remise === 'préparé'
+      this.relev_bq_societe = this.DRB_Ofppts[0].relev_bq_societe === 'préparé'
+      this.relev_bq_cabinet = this.DRB_Ofppts[0].relev_bq_cabinet === 'préparé'
+      this.accuse_model6 = this.DRB_Ofppts[0].accuse_model6 === 'préparé'
+    }, 900);
+
   },
   updated() {
-
+  
   },
   methods: {
      handleAction(actionName, value) {
       this.$store.dispatch(actionName, value);
     },
+
     clearLS() {
       localStorage.clear();
     },
+
     CalculTotalRegl() {
       let data = this.reglEntreprise;
       let item = 0;
@@ -408,11 +429,24 @@ export default {
           for ( item in data) {
             let QtRegl = (data[item].bdg_total *.3) + (data[item].bdg_total *.2);
             this.total_regl +=QtRegl;
-            console.log("TTL REGL", QtRegl);
         }
       }, 1200);
       return this.total_regl
     },
+    SelectedEtat () {
+
+   
+        setTimeout(() => {
+          let data = this.DRB_Ofppts;
+          let etat = data[0].etat;
+          if (etat === "payé") {
+            this.etat = true
+          } 
+
+        }, 2000);
+        
+        
+      },  
     updateDRB() {
       let model5 = this.model5;
       let fiche_eval_sythetique = this.fiche_eval_sythetique;
