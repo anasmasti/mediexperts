@@ -3625,9 +3625,572 @@ __webpack_require__.r(__webpack_exports__);
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/DRB_OFPPT/Edit.vue?vue&type=script&lang=js& ***!
   \*************************************************************************************************************************************************************************/
 /*! exports provided: default */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: C:\\Users\\HP\\MediexpertsV1.0.1\\mediexperts\\resources\\js\\components\\DRB_OFPPT\\Edit.vue: Unexpected token (610:0)\n\n\u001b[0m \u001b[90m 608 |\u001b[39m       edited_DRB\u001b[33m:\u001b[39m \u001b[36mnull\u001b[39m\u001b[33m,\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 609 |\u001b[39m       model5\u001b[33m:\u001b[39m \u001b[36mfalse\u001b[39m\u001b[33m,\u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 610 |\u001b[39m \u001b[33m<<\u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<\u001b[39m \u001b[33mHEAD\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m     |\u001b[39m \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 611 |\u001b[39m       model6\u001b[33m:\u001b[39m \u001b[36mfalse\u001b[39m\u001b[33m,\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 612 |\u001b[39m       fiche_eval_sythetique\u001b[33m:\u001b[39m \u001b[36mfalse\u001b[39m\u001b[33m,\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 613 |\u001b[39m       factures\u001b[33m:\u001b[39m \u001b[36mfalse\u001b[39m\u001b[33m,\u001b[39m\u001b[0m\n    at Parser._raise (C:\\Users\\HP\\MediexpertsV1.0.1\\mediexperts\\node_modules\\@babel\\parser\\lib\\index.js:807:17)\n    at Parser.raiseWithData (C:\\Users\\HP\\MediexpertsV1.0.1\\mediexperts\\node_modules\\@babel\\parser\\lib\\index.js:800:17)\n    at Parser.raise (C:\\Users\\HP\\MediexpertsV1.0.1\\mediexperts\\node_modules\\@babel\\parser\\lib\\index.js:761:17)\n    at Parser.unexpected (C:\\Users\\HP\\MediexpertsV1.0.1\\mediexperts\\node_modules\\@babel\\parser\\lib\\index.js:9931:16)\n    at Parser.parseIdentifierName (C:\\Users\\HP\\MediexpertsV1.0.1\\mediexperts\\node_modules\\@babel\\parser\\lib\\index.js:12105:18)\n    at Parser.parseIdentifier (C:\\Users\\HP\\MediexpertsV1.0.1\\mediexperts\\node_modules\\@babel\\parser\\lib\\index.js:12078:23)\n    at Parser.parseMaybePrivateName (C:\\Users\\HP\\MediexpertsV1.0.1\\mediexperts\\node_modules\\@babel\\parser\\lib\\index.js:11415:19)\n    at Parser.parsePropertyName (C:\\Users\\HP\\MediexpertsV1.0.1\\mediexperts\\node_modules\\@babel\\parser\\lib\\index.js:11892:155)\n    at Parser.parsePropertyDefinition (C:\\Users\\HP\\MediexpertsV1.0.1\\mediexperts\\node_modules\\@babel\\parser\\lib\\index.js:11778:22)\n    at Parser.parseObjectLike (C:\\Users\\HP\\MediexpertsV1.0.1\\mediexperts\\node_modules\\@babel\\parser\\lib\\index.js:11693:25)\n    at Parser.parseExprAtom (C:\\Users\\HP\\MediexpertsV1.0.1\\mediexperts\\node_modules\\@babel\\parser\\lib\\index.js:11249:23)\n    at Parser.parseExprSubscripts (C:\\Users\\HP\\MediexpertsV1.0.1\\mediexperts\\node_modules\\@babel\\parser\\lib\\index.js:10904:23)\n    at Parser.parseUpdate (C:\\Users\\HP\\MediexpertsV1.0.1\\mediexperts\\node_modules\\@babel\\parser\\lib\\index.js:10884:21)\n    at Parser.parseMaybeUnary (C:\\Users\\HP\\MediexpertsV1.0.1\\mediexperts\\node_modules\\@babel\\parser\\lib\\index.js:10862:23)\n    at Parser.parseExprOps (C:\\Users\\HP\\MediexpertsV1.0.1\\mediexperts\\node_modules\\@babel\\parser\\lib\\index.js:10719:23)\n    at Parser.parseMaybeConditional (C:\\Users\\HP\\MediexpertsV1.0.1\\mediexperts\\node_modules\\@babel\\parser\\lib\\index.js:10693:23)\n    at Parser.parseMaybeAssign (C:\\Users\\HP\\MediexpertsV1.0.1\\mediexperts\\node_modules\\@babel\\parser\\lib\\index.js:10656:21)\n    at Parser.parseExpressionBase (C:\\Users\\HP\\MediexpertsV1.0.1\\mediexperts\\node_modules\\@babel\\parser\\lib\\index.js:10601:23)\n    at C:\\Users\\HP\\MediexpertsV1.0.1\\mediexperts\\node_modules\\@babel\\parser\\lib\\index.js:10595:39\n    at Parser.allowInAnd (C:\\Users\\HP\\MediexpertsV1.0.1\\mediexperts\\node_modules\\@babel\\parser\\lib\\index.js:12304:16)\n    at Parser.parseExpression (C:\\Users\\HP\\MediexpertsV1.0.1\\mediexperts\\node_modules\\@babel\\parser\\lib\\index.js:10595:17)\n    at Parser.parseReturnStatement (C:\\Users\\HP\\MediexpertsV1.0.1\\mediexperts\\node_modules\\@babel\\parser\\lib\\index.js:12843:28)\n    at Parser.parseStatementContent (C:\\Users\\HP\\MediexpertsV1.0.1\\mediexperts\\node_modules\\@babel\\parser\\lib\\index.js:12513:21)\n    at Parser.parseStatement (C:\\Users\\HP\\MediexpertsV1.0.1\\mediexperts\\node_modules\\@babel\\parser\\lib\\index.js:12465:17)\n    at Parser.parseBlockOrModuleBlockBody (C:\\Users\\HP\\MediexpertsV1.0.1\\mediexperts\\node_modules\\@babel\\parser\\lib\\index.js:13054:25)\n    at Parser.parseBlockBody (C:\\Users\\HP\\MediexpertsV1.0.1\\mediexperts\\node_modules\\@babel\\parser\\lib\\index.js:13045:10)\n    at Parser.parseBlock (C:\\Users\\HP\\MediexpertsV1.0.1\\mediexperts\\node_modules\\@babel\\parser\\lib\\index.js:13029:10)\n    at Parser.parseFunctionBody (C:\\Users\\HP\\MediexpertsV1.0.1\\mediexperts\\node_modules\\@babel\\parser\\lib\\index.js:11983:24)\n    at Parser.parseFunctionBodyAndFinish (C:\\Users\\HP\\MediexpertsV1.0.1\\mediexperts\\node_modules\\@babel\\parser\\lib\\index.js:11967:10)\n    at Parser.parseMethod (C:\\Users\\HP\\MediexpertsV1.0.1\\mediexperts\\node_modules\\@babel\\parser\\lib\\index.js:11917:10)\n    at Parser.parseObjectMethod (C:\\Users\\HP\\MediexpertsV1.0.1\\mediexperts\\node_modules\\@babel\\parser\\lib\\index.js:11846:19)\n    at Parser.parseObjPropValue (C:\\Users\\HP\\MediexpertsV1.0.1\\mediexperts\\node_modules\\@babel\\parser\\lib\\index.js:11879:23)\n    at Parser.parsePropertyDefinition (C:\\Users\\HP\\MediexpertsV1.0.1\\mediexperts\\node_modules\\@babel\\parser\\lib\\index.js:11803:10)\n    at Parser.parseObjectLike (C:\\Users\\HP\\MediexpertsV1.0.1\\mediexperts\\node_modules\\@babel\\parser\\lib\\index.js:11693:25)\n    at Parser.parseExprAtom (C:\\Users\\HP\\MediexpertsV1.0.1\\mediexperts\\node_modules\\@babel\\parser\\lib\\index.js:11249:23)\n    at Parser.parseExprSubscripts (C:\\Users\\HP\\MediexpertsV1.0.1\\mediexperts\\node_modules\\@babel\\parser\\lib\\index.js:10904:23)");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "Edit",
+  data: function data() {
+    return {
+      numero_remb: [],
+      // DRB_Ofppts: {},
+      edited_DRB: null,
+      model5: false,
+      model6: false,
+      fiche_eval_sythetique: false,
+      factures: false,
+      compris_cheques: false,
+      compris_remise: false,
+      relev_bq_societe: false,
+      relev_bq_cabinet: false,
+      accuse_model6: false,
+      total_regl: null,
+      etat: null,
+      checked: null
+    };
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    this.numero_remb = JSON.parse(localStorage.getItem("n_drf"));
+    console.log(this.numero_remb);
+    this.handleAction("DRB_Ofppt/getListOfDROfpptEdit", this.numero_remb);
+    this.handleAction("DRB_Ofppt/ReglEntrpInfo", this.numero_remb);
+    setTimeout(function () {
+      _this.CalculTotalRegl();
+    }, 1500);
+    setTimeout(function () {
+      _this.model5 = _this.DRB_Ofppts[0].model5 === "préparé";
+      _this.model6 = _this.DRB_Ofppts[0].model6 === "préparé";
+      _this.fiche_eval_sythetique = _this.DRB_Ofppts[0].fiche_eval_sythetique === "préparé";
+      _this.factures = _this.DRB_Ofppts[0].factures === "préparé";
+      _this.compris_cheques = _this.DRB_Ofppts[0].compris_cheques === "préparé";
+      _this.compris_remise = _this.DRB_Ofppts[0].compris_remise === "préparé";
+      _this.relev_bq_societe = _this.DRB_Ofppts[0].relev_bq_societe === "préparé";
+      _this.relev_bq_cabinet = _this.DRB_Ofppts[0].relev_bq_cabinet === "préparé";
+      _this.accuse_model6 = _this.DRB_Ofppts[0].accuse_model6 === "préparé";
+    }, 900);
+    setTimeout(function () {
+      if (_this.DRB_Ofppts[0].etat === "initié" || _this.DRB_Ofppts[0].etat === "payé" || _this.DRB_Ofppts[0].etat === "instruction dossier" || _this.DRB_Ofppts[0].etat === "déposé" || _this.DRB_Ofppts[0].etat === "remboursé") {
+        _this.etat = _this.DRB_Ofppts[0].etat;
+
+        var _loop = function _loop(i) {
+          var targetselected_etat = $("#opt".concat(i));
+
+          var selected_etat = $("#opt".concat(i)).text().toLowerCase().trim() == _this.etat;
+
+          if (selected_etat) {
+            $("#opt".concat(i)).addClass("active");
+          } else {
+            targetselected_etat.click(function () {
+              $("#opt".concat(i)).removeClass("active");
+            });
+          }
+        };
+
+        for (var i = 0; i < 4; i++) {
+          _loop(i);
+        }
+      }
+    }, 200);
+  },
+  updated: function updated() {},
+  methods: {
+    handleAction: function handleAction(actionName, value) {
+      this.$store.dispatch(actionName, value);
+    },
+    clearLS: function clearLS() {
+      localStorage.clear();
+    },
+    CalculTotalRegl: function CalculTotalRegl() {
+      var _this2 = this;
+
+      var data = this.reglEntreprise;
+      var item = 0;
+      setTimeout(function () {
+        for (item in data) {
+          var QtRegl = data[item].bdg_total * 0.3 + data[item].bdg_total * 0.2;
+          _this2.total_regl += QtRegl;
+        }
+      }, 1200);
+      return this.total_regl;
+    },
+    updateDRB: function updateDRB() {
+      var _this3 = this;
+
+      var model5 = this.model5;
+      var model6 = this.model6;
+      var fiche_eval_sythetique = this.fiche_eval_sythetique;
+      var factures = this.factures;
+      var compris_cheques = this.compris_cheques;
+      var compris_remise = this.compris_remise;
+      var relev_bq_societe = this.relev_bq_societe;
+      var relev_bq_cabinet = this.relev_bq_cabinet;
+      var accuse_model6 = this.accuse_model6;
+      var montant_rembrs = document.getElementById("montant_rembrs");
+      var date_depot_dmd_rembrs = document.getElementById("date_depot_dmd_rembrs");
+      var date_rembrs = document.getElementById("date_rembrs");
+      var etat = $("input:radio[name=etat]:checked").val();
+      axios.post("/edit-drb-ofppt/" + this.numero_remb, {
+        model6: model6,
+        model5: model5,
+        fiche_eval_sythetique: fiche_eval_sythetique,
+        factures: factures,
+        compris_cheques: compris_cheques,
+        compris_remise: compris_remise,
+        relev_bq_societe: relev_bq_societe,
+        relev_bq_cabinet: relev_bq_cabinet,
+        ccuse_model6: accuse_model6,
+        montant_rembrs: montant_rembrs.value,
+        date_depot_dmd_rembrs: date_depot_dmd_rembrs.value,
+        date_rembrs: date_rembrs.value,
+        etat: etat
+      }).then(function () {
+        _this3.$toastr.s("Modifié avec succès");
+      })["catch"](function (e) {
+        _this3.$toastr.e("Echec de modification");
+
+        throw e;
+      });
+    }
+  },
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])("DRB_Ofppt", {
+    DRB_Ofppts: function DRB_Ofppts(state) {
+      return state.DRB_OfpptEdit;
+    },
+    reglEntreprise: function reglEntreprise(state) {
+      return state.reglEntreprise;
+    } // ndrf: state => state.ndrf,
+
+  }))
+});
 
 /***/ }),
 
@@ -45253,8 +45816,1229 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function () {}
-var staticRenderFns = []
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _vm._m(0),
+    _vm._v(" "),
+    _c("br"),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "card card-dark" },
+      [
+        _c("div", { staticClass: "card-header" }, [
+          _c("h3", { staticClass: "card-title card-h3" }, [
+            _vm._v("\n        Modif. DRB OFPPT\n        "),
+            _c("a", { attrs: { href: "#" } }, [
+              _vm._v("\n          Test\n        ")
+            ]),
+            _vm._v("\n        " + _vm._s(" > ") + "\n        "),
+            _c("a", { attrs: { href: "#" } }, [
+              _vm._v("\n          Test\n        ")
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _vm._l(_vm.DRB_Ofppts, function(DRB_Ofppt) {
+          return _c("div", { key: DRB_Ofppt.n_drf, staticClass: "card-body" }, [
+            _c("div", { staticClass: "row" }, [
+              _c(
+                "div",
+                {
+                  staticClass: "form-group col-lg-3 col-sm-12",
+                  staticStyle: { margin: "auto" }
+                },
+                [
+                  _c("label", [_vm._v("E/S")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      id: "nrc_entrp",
+                      name: "nrc_entrp",
+                      placeholder: "Entreprise..",
+                      readonly: ""
+                    },
+                    domProps: { value: DRB_Ofppt.raisoci }
+                  })
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "form-group col-lg-3 col-sm-12",
+                  staticStyle: { margin: "auto" }
+                },
+                [
+                  _c("label", [_vm._v("RefPdf")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      id: "refpdf",
+                      name: "refpdf",
+                      placeholder: "RefPdf..",
+                      readonly: ""
+                    },
+                    domProps: { value: DRB_Ofppt.refpdf }
+                  })
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "form-group col-lg-3 col-sm-12",
+                  staticStyle: { margin: "auto" }
+                },
+                [
+                  _c("label", [_vm._v("N Contrat PF")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      id: "n_contrat",
+                      name: "n_contrat",
+                      placeholder: "N contrat",
+                      readonly: ""
+                    },
+                    domProps: { value: DRB_Ofppt.n_contrat }
+                  })
+                ]
+              ),
+              _vm._v(" "),
+              _vm._m(1, true),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group col-12" }, [
+                _c("label", [_vm._v("Réglement entreprise")]),
+                _vm._v(" "),
+                _c("div", { staticClass: "table-responsive" }, [
+                  _c(
+                    "table",
+                    { staticClass: "table table-striped" },
+                    [
+                      _vm._m(2, true),
+                      _vm._v(" "),
+                      _vm._l(_vm.reglEntreprise, function(info, index) {
+                        return _c("tbody", { key: index }, [
+                          _c("tr", [
+                            _c("th", [_vm._v(_vm._s(info.n_action))]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v(_vm._s(info.nom_theme))]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v(_vm._s(info.bdg_total))]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v(_vm._s(info.bdg_total * 0.2))]),
+                            _vm._v(" "),
+                            _c("td", [
+                              _vm._v(
+                                _vm._s(info.bdg_total + info.bdg_total * 0.2)
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("td", [
+                              _vm._v(
+                                _vm._s(
+                                  info.bdg_total * 0.3 + info.bdg_total * 0.2
+                                )
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v(_vm._s(info.n_facture))]),
+                            _vm._v(" "),
+                            _vm._m(3, true),
+                            _vm._v(" "),
+                            _vm._m(4, true)
+                          ])
+                        ])
+                      })
+                    ],
+                    2
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "total_reg" }, [
+                  _c(
+                    "label",
+                    {
+                      attrs: { for: "txt-total-reg" },
+                      on: { "": function($event) {} }
+                    },
+                    [_vm._v("Total Réglement : ")]
+                  ),
+                  _vm._v(" "),
+                  _c("input", {
+                    staticClass: "txt-total-reg",
+                    attrs: {
+                      type: "text",
+                      id: "ttl_regl",
+                      name: "ttl_regl",
+                      readonly: ""
+                    },
+                    domProps: { value: _vm.total_regl }
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      attrs: { type: "text" },
+                      on: {
+                        click: function($event) {
+                          return _vm.SelectedEtat()
+                        }
+                      }
+                    },
+                    [_vm._v("Test")]
+                  )
+                ])
+              ]),
+              _vm._v(" "),
+              _vm._m(5, true),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group col-12" }, [
+                _c("div", { staticClass: "container" }, [
+                  _c("div", { staticClass: "row" }, [
+                    _c("div", { staticClass: "col-6" }, [
+                      _c("label", { staticClass: "h5" }, [
+                        _vm._v("Dossier de remboursement")
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "form-group" }, [
+                        _c(
+                          "div",
+                          { staticClass: "custom-control custom-checkbox" },
+                          [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.model5,
+                                  expression: "model5"
+                                }
+                              ],
+                              staticClass: "custom-control-input",
+                              attrs: {
+                                type: "checkbox",
+                                name: "model5",
+                                id: "model5"
+                              },
+                              domProps: {
+                                checked: Array.isArray(_vm.model5)
+                                  ? _vm._i(_vm.model5, null) > -1
+                                  : _vm.model5
+                              },
+                              on: {
+                                change: function($event) {
+                                  var $$a = _vm.model5,
+                                    $$el = $event.target,
+                                    $$c = $$el.checked ? true : false
+                                  if (Array.isArray($$a)) {
+                                    var $$v = null,
+                                      $$i = _vm._i($$a, $$v)
+                                    if ($$el.checked) {
+                                      $$i < 0 &&
+                                        (_vm.model5 = $$a.concat([$$v]))
+                                    } else {
+                                      $$i > -1 &&
+                                        (_vm.model5 = $$a
+                                          .slice(0, $$i)
+                                          .concat($$a.slice($$i + 1)))
+                                    }
+                                  } else {
+                                    _vm.model5 = $$c
+                                  }
+                                }
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "label",
+                              {
+                                staticClass: "custom-control-label",
+                                attrs: { for: "model5" }
+                              },
+                              [_vm._v("Modéle 5")]
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "custom-control custom-checkbox" },
+                          [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.fiche_eval_sythetique,
+                                  expression: "fiche_eval_sythetique"
+                                }
+                              ],
+                              staticClass: "custom-control-input",
+                              attrs: {
+                                type: "checkbox",
+                                name: "fiche_eval_sythetique",
+                                id: "fiche_eval_sythetique"
+                              },
+                              domProps: {
+                                checked: Array.isArray(
+                                  _vm.fiche_eval_sythetique
+                                )
+                                  ? _vm._i(_vm.fiche_eval_sythetique, null) > -1
+                                  : _vm.fiche_eval_sythetique
+                              },
+                              on: {
+                                change: function($event) {
+                                  var $$a = _vm.fiche_eval_sythetique,
+                                    $$el = $event.target,
+                                    $$c = $$el.checked ? true : false
+                                  if (Array.isArray($$a)) {
+                                    var $$v = null,
+                                      $$i = _vm._i($$a, $$v)
+                                    if ($$el.checked) {
+                                      $$i < 0 &&
+                                        (_vm.fiche_eval_sythetique = $$a.concat(
+                                          [$$v]
+                                        ))
+                                    } else {
+                                      $$i > -1 &&
+                                        (_vm.fiche_eval_sythetique = $$a
+                                          .slice(0, $$i)
+                                          .concat($$a.slice($$i + 1)))
+                                    }
+                                  } else {
+                                    _vm.fiche_eval_sythetique = $$c
+                                  }
+                                }
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "label",
+                              {
+                                staticClass: "custom-control-label",
+                                attrs: { for: "fiche_eval_sythetique" }
+                              },
+                              [_vm._v("Fiche d'évaluation synthétique")]
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "custom-control custom-checkbox" },
+                          [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.model6,
+                                  expression: "model6"
+                                }
+                              ],
+                              staticClass: "custom-control-input",
+                              attrs: {
+                                type: "checkbox",
+                                name: "model6",
+                                id: "model6"
+                              },
+                              domProps: {
+                                checked: Array.isArray(_vm.model6)
+                                  ? _vm._i(_vm.model6, null) > -1
+                                  : _vm.model6
+                              },
+                              on: {
+                                change: function($event) {
+                                  var $$a = _vm.model6,
+                                    $$el = $event.target,
+                                    $$c = $$el.checked ? true : false
+                                  if (Array.isArray($$a)) {
+                                    var $$v = null,
+                                      $$i = _vm._i($$a, $$v)
+                                    if ($$el.checked) {
+                                      $$i < 0 &&
+                                        (_vm.model6 = $$a.concat([$$v]))
+                                    } else {
+                                      $$i > -1 &&
+                                        (_vm.model6 = $$a
+                                          .slice(0, $$i)
+                                          .concat($$a.slice($$i + 1)))
+                                    }
+                                  } else {
+                                    _vm.model6 = $$c
+                                  }
+                                }
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "label",
+                              {
+                                staticClass: "custom-control-label",
+                                attrs: { for: "model6" }
+                              },
+                              [_vm._v("Modéle 6")]
+                            )
+                          ]
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-6" }, [
+                      _c("label", { staticClass: "h5" }, [
+                        _vm._v("Justifs Règlement")
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "form-group" }, [
+                        _c(
+                          "div",
+                          { staticClass: "custom-control custom-checkbox" },
+                          [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.factures,
+                                  expression: "factures"
+                                }
+                              ],
+                              staticClass: "custom-control-input",
+                              attrs: {
+                                type: "checkbox",
+                                name: "factures",
+                                id: "factures"
+                              },
+                              domProps: {
+                                checked: Array.isArray(_vm.factures)
+                                  ? _vm._i(_vm.factures, null) > -1
+                                  : _vm.factures
+                              },
+                              on: {
+                                change: function($event) {
+                                  var $$a = _vm.factures,
+                                    $$el = $event.target,
+                                    $$c = $$el.checked ? true : false
+                                  if (Array.isArray($$a)) {
+                                    var $$v = null,
+                                      $$i = _vm._i($$a, $$v)
+                                    if ($$el.checked) {
+                                      $$i < 0 &&
+                                        (_vm.factures = $$a.concat([$$v]))
+                                    } else {
+                                      $$i > -1 &&
+                                        (_vm.factures = $$a
+                                          .slice(0, $$i)
+                                          .concat($$a.slice($$i + 1)))
+                                    }
+                                  } else {
+                                    _vm.factures = $$c
+                                  }
+                                }
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "label",
+                              {
+                                staticClass: "custom-control-label",
+                                attrs: { for: "factures" }
+                              },
+                              [_vm._v("Factures")]
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "custom-control custom-checkbox" },
+                          [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.compris_cheques,
+                                  expression: "compris_cheques"
+                                }
+                              ],
+                              staticClass: "custom-control-input",
+                              attrs: {
+                                type: "checkbox",
+                                name: "compris_cheques",
+                                id: "compris_cheques"
+                              },
+                              domProps: {
+                                checked: Array.isArray(_vm.compris_cheques)
+                                  ? _vm._i(_vm.compris_cheques, null) > -1
+                                  : _vm.compris_cheques
+                              },
+                              on: {
+                                change: function($event) {
+                                  var $$a = _vm.compris_cheques,
+                                    $$el = $event.target,
+                                    $$c = $$el.checked ? true : false
+                                  if (Array.isArray($$a)) {
+                                    var $$v = null,
+                                      $$i = _vm._i($$a, $$v)
+                                    if ($$el.checked) {
+                                      $$i < 0 &&
+                                        (_vm.compris_cheques = $$a.concat([
+                                          $$v
+                                        ]))
+                                    } else {
+                                      $$i > -1 &&
+                                        (_vm.compris_cheques = $$a
+                                          .slice(0, $$i)
+                                          .concat($$a.slice($$i + 1)))
+                                    }
+                                  } else {
+                                    _vm.compris_cheques = $$c
+                                  }
+                                }
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "label",
+                              {
+                                staticClass: "custom-control-label",
+                                attrs: { for: "compris_cheques" }
+                              },
+                              [_vm._v("Compries cheques / OV / LC")]
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "custom-control custom-checkbox" },
+                          [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.compris_remise,
+                                  expression: "compris_remise"
+                                }
+                              ],
+                              staticClass: "custom-control-input",
+                              attrs: {
+                                type: "checkbox",
+                                name: "compris_remise",
+                                id: "compris_remise"
+                              },
+                              domProps: {
+                                checked: Array.isArray(_vm.compris_remise)
+                                  ? _vm._i(_vm.compris_remise, null) > -1
+                                  : _vm.compris_remise
+                              },
+                              on: {
+                                change: function($event) {
+                                  var $$a = _vm.compris_remise,
+                                    $$el = $event.target,
+                                    $$c = $$el.checked ? true : false
+                                  if (Array.isArray($$a)) {
+                                    var $$v = null,
+                                      $$i = _vm._i($$a, $$v)
+                                    if ($$el.checked) {
+                                      $$i < 0 &&
+                                        (_vm.compris_remise = $$a.concat([$$v]))
+                                    } else {
+                                      $$i > -1 &&
+                                        (_vm.compris_remise = $$a
+                                          .slice(0, $$i)
+                                          .concat($$a.slice($$i + 1)))
+                                    }
+                                  } else {
+                                    _vm.compris_remise = $$c
+                                  }
+                                }
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "label",
+                              {
+                                staticClass: "custom-control-label",
+                                attrs: { for: "compris_remise" }
+                              },
+                              [_vm._v("Compries remises / Avis de débit")]
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "custom-control custom-checkbox" },
+                          [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.relev_bq_societe,
+                                  expression: "relev_bq_societe"
+                                }
+                              ],
+                              staticClass: "custom-control-input",
+                              attrs: {
+                                type: "checkbox",
+                                name: "relev_bq_societe",
+                                id: "relev_bq_societe"
+                              },
+                              domProps: {
+                                checked: Array.isArray(_vm.relev_bq_societe)
+                                  ? _vm._i(_vm.relev_bq_societe, null) > -1
+                                  : _vm.relev_bq_societe
+                              },
+                              on: {
+                                change: function($event) {
+                                  var $$a = _vm.relev_bq_societe,
+                                    $$el = $event.target,
+                                    $$c = $$el.checked ? true : false
+                                  if (Array.isArray($$a)) {
+                                    var $$v = null,
+                                      $$i = _vm._i($$a, $$v)
+                                    if ($$el.checked) {
+                                      $$i < 0 &&
+                                        (_vm.relev_bq_societe = $$a.concat([
+                                          $$v
+                                        ]))
+                                    } else {
+                                      $$i > -1 &&
+                                        (_vm.relev_bq_societe = $$a
+                                          .slice(0, $$i)
+                                          .concat($$a.slice($$i + 1)))
+                                    }
+                                  } else {
+                                    _vm.relev_bq_societe = $$c
+                                  }
+                                }
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "label",
+                              {
+                                staticClass: "custom-control-label",
+                                attrs: { for: "relev_bq_societe" }
+                              },
+                              [_vm._v("Relevés bq societé")]
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "custom-control custom-checkbox" },
+                          [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.relev_bq_cabinet,
+                                  expression: "relev_bq_cabinet"
+                                }
+                              ],
+                              staticClass: "custom-control-input",
+                              attrs: {
+                                type: "checkbox",
+                                name: "relev_bq_cabinet",
+                                id: "relev_bq_cabinet"
+                              },
+                              domProps: {
+                                checked: Array.isArray(_vm.relev_bq_cabinet)
+                                  ? _vm._i(_vm.relev_bq_cabinet, null) > -1
+                                  : _vm.relev_bq_cabinet
+                              },
+                              on: {
+                                change: function($event) {
+                                  var $$a = _vm.relev_bq_cabinet,
+                                    $$el = $event.target,
+                                    $$c = $$el.checked ? true : false
+                                  if (Array.isArray($$a)) {
+                                    var $$v = null,
+                                      $$i = _vm._i($$a, $$v)
+                                    if ($$el.checked) {
+                                      $$i < 0 &&
+                                        (_vm.relev_bq_cabinet = $$a.concat([
+                                          $$v
+                                        ]))
+                                    } else {
+                                      $$i > -1 &&
+                                        (_vm.relev_bq_cabinet = $$a
+                                          .slice(0, $$i)
+                                          .concat($$a.slice($$i + 1)))
+                                    }
+                                  } else {
+                                    _vm.relev_bq_cabinet = $$c
+                                  }
+                                }
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "label",
+                              {
+                                staticClass: "custom-control-label",
+                                attrs: { for: "relev_bq_cabinet" }
+                              },
+                              [_vm._v("Relevés bq cabinet")]
+                            )
+                          ]
+                        )
+                      ])
+                    ])
+                  ])
+                ])
+              ])
+            ])
+          ])
+        }),
+        _vm._v(" "),
+        _vm._m(6),
+        _vm._v(" "),
+        _vm._m(7),
+        _vm._v(" "),
+        _vm._m(8),
+        _vm._v(" "),
+        _vm._m(9),
+        _vm._v(" "),
+        _vm._m(10),
+        _vm._v(" "),
+        _vm._m(11)
+      ],
+      2
+    ),
+    _vm._v(" "),
+    _vm._m(12),
+    _vm._v(" "),
+    _vm._m(13),
+    _vm._v(" "),
+    _vm._m(14),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "form-group col-12 text-center",
+        staticStyle: { "margin-top": "2rem" }
+      },
+      [
+        _c("label", [_vm._v(_vm._s(_vm.etat))]),
+        _vm._v(" "),
+        _c("h4", [_vm._v("État demande")]),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "btn-group btn-group-toggle btn-checked btn-Etat",
+            attrs: { role: "group" }
+          },
+          [
+            _c(
+              "label",
+              { staticClass: "btn btn-warning", attrs: { id: "opt1" } },
+              [
+                _vm._v("\n        Initié\n        "),
+                _c("i", { staticClass: "fas fa-battery-quarter" }),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.etat,
+                      expression: "etat"
+                    }
+                  ],
+                  attrs: {
+                    type: "radio",
+                    name: "etat",
+                    id: "option1",
+                    autocomplete: "off",
+                    value: "initié"
+                  },
+                  domProps: { checked: _vm._q(_vm.etat, "initié") },
+                  on: {
+                    change: function($event) {
+                      _vm.etat = "initié"
+                    }
+                  }
+                })
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "label",
+              { staticClass: "btn btn-warning", attrs: { id: "opt2" } },
+              [
+                _vm._v("\n        Payé\n\n        "),
+                _c("i", { staticClass: "fas fa-dollar-sign" }),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.etat,
+                      expression: "etat"
+                    }
+                  ],
+                  attrs: {
+                    type: "radio",
+                    name: "etat",
+                    id: "option2",
+                    autocomplete: "off",
+                    value: "payé"
+                  },
+                  domProps: { checked: _vm._q(_vm.etat, "payé") },
+                  on: {
+                    change: function($event) {
+                      _vm.etat = "payé"
+                    }
+                  }
+                })
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "label",
+              { staticClass: "btn btn-warning", attrs: { id: "opt3" } },
+              [
+                _vm._v("\n        Instruction dossier\n        "),
+                _c("i", { staticClass: "fas fa-hourglass-half" }),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.etat,
+                      expression: "etat"
+                    }
+                  ],
+                  attrs: {
+                    type: "radio",
+                    name: "etat",
+                    id: "option3",
+                    autocomplete: "off",
+                    value: "instruction dossier"
+                  },
+                  domProps: {
+                    checked: _vm._q(_vm.etat, "instruction dossier")
+                  },
+                  on: {
+                    change: function($event) {
+                      _vm.etat = "instruction dossier"
+                    }
+                  }
+                })
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "label",
+              { staticClass: "btn btn-warning", attrs: { id: "opt4" } },
+              [
+                _vm._v("\n        Déposé\n        "),
+                _c("i", { staticClass: "fas fa-folder-open" }),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.etat,
+                      expression: "etat"
+                    }
+                  ],
+                  attrs: {
+                    type: "radio",
+                    name: "etat",
+                    id: "option4",
+                    autocomplete: "off",
+                    value: "déposé"
+                  },
+                  domProps: { checked: _vm._q(_vm.etat, "déposé") },
+                  on: {
+                    change: function($event) {
+                      _vm.etat = "déposé"
+                    }
+                  }
+                })
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "label",
+              { staticClass: "btn btn-warning", attrs: { id: "opt5" } },
+              [
+                _vm._v("\n        Remboursé\n        "),
+                _c("i", { staticClass: "fas fa-check-double" }),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.etat,
+                      expression: "etat"
+                    }
+                  ],
+                  attrs: {
+                    type: "radio",
+                    name: "etat",
+                    id: "option5",
+                    autocomplete: "off",
+                    value: "remboursé"
+                  },
+                  domProps: { checked: _vm._q(_vm.etat, "remboursé") },
+                  on: {
+                    change: function($event) {
+                      _vm.etat = "remboursé"
+                    }
+                  }
+                })
+              ]
+            )
+          ]
+        )
+      ]
+    ),
+    _vm._v(" "),
+    _vm._m(15),
+    _vm._v(" "),
+    _vm._m(16),
+    _vm._v(" "),
+    _vm._m(17),
+    _vm._v(" "),
+    _c("div", { staticClass: "card-footer text-center" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn bu-add",
+          attrs: { type: "submit", id: "add" },
+          on: {
+            click: function($event) {
+              return _vm.updateDRB()
+            }
+          }
+        },
+        [
+          _c("i", { staticClass: "fas fa-pen-square icon" }),
+          _vm._v("Modifier\n    ")
+        ]
+      ),
+      _vm._v(" "),
+      _vm._m(18)
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-sm-12" }, [
+      _c("h1", { staticClass: "m-0 text-dark" }, [
+        _vm._v("Demande remboursement OFPPT")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group col-12" }, [_c("hr")])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("N°Action")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Thème")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Total HT(DH)")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("TVA (20%)")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Total TTC")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [
+          _vm._v("Quote-part Entreprise")
+        ]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("N° de Facture")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [
+          _vm._v("Date paiement entreprise")
+        ]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [
+          _vm._v("Mode et référence de paiement")
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [_c("input", { attrs: { type: "date" } })])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [_c("input", { attrs: { type: "text" } })])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group col-12" }, [_c("hr")])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group col-12" }, [_c("hr")])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group col-lg-3 col-sm-12" }, [
+      _c("label", [_vm._v("Date dépot demande de Remboursement")]),
+      _vm._v(" "),
+      _c("input", {
+        staticClass: "form-control",
+        attrs: {
+          type: "text",
+          name: "date_depot_dmd_rembrs",
+          id: "date_depot_dmd_rembrs",
+          onmouseover: "(this.type='date')",
+          placeholder: "Date réalisation"
+        }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass: "form-group col-lg-3 col-sm-12",
+        staticStyle: { margin: "auto" }
+      },
+      [
+        _c("div", { staticClass: "custom-control custom-checkbox" }, [
+          _c("input", {
+            staticClass: "custom-control-input",
+            attrs: {
+              type: "checkbox",
+              name: "accuse_model6",
+              id: "accuse_model6"
+            }
+          }),
+          _vm._v(" "),
+          _c(
+            "label",
+            {
+              staticClass: "custom-control-label",
+              attrs: { for: "accuse_model6" }
+            },
+            [_vm._v("Accusé Modele 6")]
+          )
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group col-12" }, [_c("hr")])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group col-12" }, [_c("hr")])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group col-12" }, [
+      _c("label", [_vm._v("Remboursement OFPPT")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "table-responsive" }, [
+        _c("table", { staticClass: "table table-striped" }, [
+          _c("thead", [
+            _c("tr", [
+              _c("th", { attrs: { scope: "col" } }, [_vm._v("N°Action")]),
+              _vm._v(" "),
+              _c("th", { attrs: { scope: "col" } }, [_vm._v("Thème")]),
+              _vm._v(" "),
+              _c("th", { attrs: { scope: "col" } }, [_vm._v("Total HT(DH)")]),
+              _vm._v(" "),
+              _c("th", { attrs: { scope: "col" } }, [
+                _vm._v("Quote-part OFPPT")
+              ]),
+              _vm._v(" "),
+              _c("th", { attrs: { scope: "col" } }, [
+                _vm._v("Remboursement OFPPT")
+              ]),
+              _vm._v(" "),
+              _c("th", { attrs: { scope: "col" } }, [
+                _vm._v("Ecart/ Remboursement")
+              ]),
+              _vm._v(" "),
+              _c("th", { attrs: { scope: "col" } }, [_vm._v("Justifs Ecart")])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("tbody", [
+            _c("tr", [
+              _c("th", [_vm._v("{{}}")]),
+              _vm._v(" "),
+              _c("td", [_vm._v("{{}}")]),
+              _vm._v(" "),
+              _c("td", [_vm._v("{{}}")]),
+              _vm._v(" "),
+              _c("td", [_vm._v("@mdo")]),
+              _vm._v(" "),
+              _c("td", [_vm._v("{{}}")]),
+              _vm._v(" "),
+              _c("td", [_vm._v("Mark")]),
+              _vm._v(" "),
+              _c("td", [_vm._v("Otto")])
+            ])
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group col-12" }, [_c("hr")])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass: "form-group col-lg-3 col-sm-12",
+        staticStyle: { margin: "auto" }
+      },
+      [
+        _c("label", [_vm._v("Montant de Remboursement")]),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "form-control",
+          attrs: {
+            value: "",
+            type: "text",
+            id: "montant_rembrs",
+            name: "montant_rembrs",
+            placeholder: "Montant Remboursement"
+          }
+        })
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass: "form-group col-lg-3 col-sm-12",
+        staticStyle: { margin: "auto" }
+      },
+      [
+        _c("label", [_vm._v("Date Remboursement")]),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "form-control",
+          attrs: {
+            type: "text",
+            name: "date_rembrs",
+            id: "date_rembrs",
+            onmouseover: "(this.type='date')",
+            placeholder: "Date réalisation"
+          }
+        })
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group col-12" }, [_c("hr")])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group col-12" }, [
+      _c("label", [_vm._v("Commentaire")]),
+      _vm._v(" "),
+      _c("textarea", {
+        staticClass: "form-control",
+        attrs: {
+          type: "text",
+          rows: "4",
+          name: "commentaire",
+          maxlength: "1900",
+          placeholder: "Commentaire .."
+        }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group col-12" }, [_c("hr")])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      { staticClass: "btn bu-danger", attrs: { href: "/drb-gc" } },
+      [_c("i", { staticClass: "fas fa-window-close icon" }), _vm._v("Annuler")]
+    )
+  }
+]
+render._withStripped = true
 
 
 
