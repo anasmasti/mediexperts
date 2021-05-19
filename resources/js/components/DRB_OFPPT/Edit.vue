@@ -25,7 +25,7 @@
         :key="DRB_Ofppt.n_drf"
       >
         <div class="row">
-          <div class="form-group col-lg-3 col-sm-12" style="margin : auto ;">
+          <div class="form-group col-lg-3 col-sm-12" >
             <label>E/S</label>
             <input
               class="form-control"
@@ -97,6 +97,19 @@
                   </tr>
                 </tbody>
               </table>
+              <div class="form-group col-lg-12 col-sm-12 custom-control custom-checkbox">
+                    <div class="div_select_all">
+                      <input
+                        type="checkbox"
+                        name="select_all"
+                        id="select_all"
+                        class="custom-control-input"
+                      />
+                      <label for="select_all" class="custom-control-label "
+                        >selectionner tout</label
+                      >
+                    </div>
+            </div>
             </div>
 
             <div class="total_reg">
@@ -109,7 +122,7 @@
                 readonly
                 :value="total_regl"
               />
-              <button type="text" @click="SelectedEtat()">Test</button>
+              <!-- <button type="text" @click="SelectedEtat()">Test</button> -->
             </div>
           </div>
 
@@ -391,7 +404,6 @@
     </div>
 
     <div class="form-group col-12"><hr /></div>
-
     <div class="form-group col-12">
       <label>Commentaire</label>
       <textarea
@@ -402,18 +414,9 @@
         maxlength="1900"
         placeholder="Commentaire .."
       ></textarea>
+      
     </div>
-    <div class="form-group col-12"><hr /></div>
-
-    <div class="card-footer text-center">
-      <button class="btn bu-add" type="submit" id="add" @click="updateDRB()">
-        <i class="fas fa-pen-square icon"></i>Modifier
-      </button>
-      <a class="btn bu-danger" href="/drb-gc"
-        ><i class="fas fa-window-close icon"></i>Annuler</a
-      >
-    </div>
-  </div>
+  </div> 
 </template>
 
 <script>
@@ -450,17 +453,16 @@ export default {
     }, 1500);
 
     setTimeout(() => {
-      this.model5 = this.DRB_Ofppts[0].model5 === "préparé";
-      this.model6 = this.DRB_Ofppts[0].model6 === "préparé";
-      this.fiche_eval_sythetique =
-        this.DRB_Ofppts[0].fiche_eval_sythetique === "préparé";
-      this.factures = this.DRB_Ofppts[0].factures === "préparé";
-      this.compris_cheques = this.DRB_Ofppts[0].compris_cheques === "préparé";
-      this.compris_remise = this.DRB_Ofppts[0].compris_remise === "préparé";
-      this.relev_bq_societe = this.DRB_Ofppts[0].relev_bq_societe === "préparé";
-      this.relev_bq_cabinet = this.DRB_Ofppts[0].relev_bq_cabinet === "préparé";
-      this.accuse_model6 = this.DRB_Ofppts[0].accuse_model6 === "préparé";
-    }, 900);
+      this.model5 = this.DRB_Ofppts[0].model5 === 'préparé'
+      this.model6 = this.DRB_Ofppts[0].model6 === 'préparé'
+      this.fiche_eval_sythetique = this.DRB_Ofppts[0].fiche_eval_sythetique === 'préparé'
+      this.factures = this.DRB_Ofppts[0].factures === 'préparé'
+      this.compris_cheques = this.DRB_Ofppts[0].compris_cheques === 'préparé'
+      this.compris_remise = this.DRB_Ofppts[0].compris_remise === 'préparé'
+      this.relev_bq_societe = this.DRB_Ofppts[0].relev_bq_societe === 'préparé'
+      this.relev_bq_cabinet = this.DRB_Ofppts[0].relev_bq_cabinet === 'préparé'
+      this.accuse_model6 = this.DRB_Ofppts[0].accuse_model6 === 'préparé'
+    }, 1000);
 
     setTimeout(() => {
       if (
@@ -542,7 +544,7 @@ export default {
           compris_remise: compris_remise,
           relev_bq_societe: relev_bq_societe,
           relev_bq_cabinet: relev_bq_cabinet,
-          ccuse_model6: accuse_model6,
+          accuse_model6: accuse_model6,
           montant_rembrs: montant_rembrs.value,
           date_depot_dmd_rembrs: date_depot_dmd_rembrs.value,
           date_rembrs: date_rembrs.value,
@@ -587,4 +589,21 @@ th {
   flex-direction: row;
   flex-wrap: wrap;
 }
+
+.display_div{
+  display: flex;
+  flex-direction: row ;
+  flex-wrap: wrap;
+}
+
+.display_div_child{
+  display: flex;
+  flex-direction: column ;
+}
+
+
+.div_select_all{
+   float: right;
+}
+
 </style>
