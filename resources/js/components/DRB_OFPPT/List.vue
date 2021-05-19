@@ -34,26 +34,15 @@
         </tr>
       </thead>
       <tbody>
-<!-- <<<<<<< HEAD -->
-       <!-- <tr>
-          <td>Test</td>
-          <td>Test</td>
-          <td>Test</td>
-           <form method="GET"> 
-            <td class="action">
-              <a href="/detail-drb-of" @click="SendId()" class="btn btn-primary" ><i class="fa fa-eye" style="color: white ;"></i></a>
-              <a href="#" @click="SendId()" class="btn btn-warning"><i class="fa fa-edit"></i></a>
-=======-->
         <tr v-for="DRB_Ofppt in DRB_Ofppts" :key="DRB_Ofppt.n_drf">
           <td>{{DRB_Ofppt.etat}}</td>
           <td>{{DRB_Ofppt.refpdf}}</td>
           <td class="th-last d-inline-block text-truncate">{{DRB_Ofppt.id_plan}}</td>
             <td class="action">
-              <a href="/edit-drb-ofppt" class="btn btn-primary" ><i class="fa fa-eye" style="color: white ;"></i></a>
+              <a href="#" class="btn btn-primary" ><i class="fa fa-eye" style="color: white ;"></i></a>
               <a href="/edit-drb-ofppt" @click="sendnrdf(DRB_Ofppt.n_drf)" class="btn btn-warning"><i class="fa fa-edit"></i></a>
               <a class="btn btn-danger" ><i class="fa fa-trash-alt" style="color: white ;"></i></a>
             </td>
-<<<<<<< HEAD
         </tr>
         
       </tbody>
@@ -64,14 +53,6 @@
 
   <div class="card-footer">
   </div>
-=======
-            <!-- </form> -->
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <!-- ./card-body -->
->>>>>>> 22533a051a9d19af28cac64959701bebdde08957
 
     <div class="card-footer">
 
@@ -80,7 +61,7 @@
   <!-- ./CARD -->
 </template>
  <script>
-import { mapState, mapActions } from 'vuex';
+import { mapState , mapActions } from 'vuex';
  export default {
             name: "List",
              data() {
