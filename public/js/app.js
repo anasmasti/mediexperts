@@ -4139,6 +4139,123 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Edit",
@@ -4148,18 +4265,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       // DRB_Ofppts: {},
       edited_DRB: null,
       model5: false,
-      model6: null,
-      fiche_eval_sythetique: null,
-      factures: null,
-      compris_cheques: null,
-      compris_remise: null,
-      relev_bq_societe: null,
-      relev_bq_cabinet: null,
-      accuse_model6: null,
+      model6: false,
+      fiche_eval_sythetique: false,
+      factures: false,
+      compris_cheques: false,
+      compris_remise: false,
+      relev_bq_societe: false,
+      relev_bq_cabinet: false,
+      accuse_model6: false,
       total_regl: null,
-      rmb_ofppt: null,
-      justifs_ecart: null,
-      etat: null
+      etat: null,
+      checked: null
     };
   },
   mounted: function mounted() {
@@ -4187,6 +4303,25 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       _this.relev_bq_cabinet = _this.DRB_Ofppts[0].relev_bq_cabinet === 'préparé';
       _this.accuse_model6 = _this.DRB_Ofppts[0].accuse_model6 === 'préparé';
     }, 1000);
+    setTimeout(function () {
+      if (_this.DRB_Ofppts[0].etat === "initié" || _this.DRB_Ofppts[0].etat === "payé" || _this.DRB_Ofppts[0].etat === "instruction dossier" || _this.DRB_Ofppts[0].etat === "déposé" || _this.DRB_Ofppts[0].etat === "remboursé") {
+        _this.etat = _this.DRB_Ofppts[0].etat;
+
+        for (var i = 0; i < 4; i++) {
+          var targetselected_etat = $("#opt".concat(i));
+
+          var selected_etat = $("#opt".concat(i)).text().toLowerCase().trim() == _this.etat;
+
+          if (selected_etat) {
+            $("#opt".concat(i)).addClass("active");
+          } else {
+            targetselected_etat.click(function (e) {
+              e.addClass("active");
+            });
+          }
+        }
+      }
+    }, 200);
   },
   updated: function updated() {},
   methods: {
@@ -4203,26 +4338,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var item = 0;
       setTimeout(function () {
         for (item in data) {
-          var QtRegl = data[item].bdg_total * .3 + data[item].bdg_total * .2;
+          var QtRegl = data[item].bdg_total * 0.3 + data[item].bdg_total * 0.2;
           _this2.total_regl += QtRegl;
         }
       }, 1200);
       return this.total_regl;
     },
-    SelectedEtat: function SelectedEtat() {
-      var _this3 = this;
-
-      setTimeout(function () {
-        var data = _this3.DRB_Ofppts;
-        var etat = data[0].etat;
-
-        if (etat === "payé") {
-          _this3.etat = true;
-        }
-      }, 2000);
-    },
     updateDRB: function updateDRB() {
-      var _this4 = this;
+      var _this3 = this;
 
       var model5 = this.model5;
       var fiche_eval_sythetique = this.fiche_eval_sythetique;
@@ -4251,9 +4374,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         date_rembrs: date_rembrs.value,
         etat: etat
       }).then(function () {
-        _this4.$toastr.s("Modifié avec succès");
+        _this3.$toastr.s("Modifié avec succès");
       })["catch"](function (e) {
-        _this4.$toastr.e("Echec de modification");
+        _this3.$toastr.e("Echec de modification");
 
         throw e;
       });
@@ -46238,13 +46361,13 @@ var render = function() {
       [
         _c("div", { staticClass: "card-header" }, [
           _c("h3", { staticClass: "card-title card-h3" }, [
-            _vm._v("\n          Modif. DRB OFPPT\n          "),
+            _vm._v("\n        Modif. DRB OFPPT\n        "),
             _c("a", { attrs: { href: "#" } }, [
-              _vm._v("\n            Test\n          ")
+              _vm._v("\n          Test\n        ")
             ]),
-            _vm._v("\n          " + _vm._s(" > ") + "\n          "),
+            _vm._v("\n        " + _vm._s(" > ") + "\n        "),
             _c("a", { attrs: { href: "#" } }, [
-              _vm._v("\n            Test\n          ")
+              _vm._v("\n          Test\n        ")
             ])
           ])
         ]),
@@ -46335,9 +46458,7 @@ var render = function() {
                             _vm._v(" "),
                             _c("td", [_vm._v(_vm._s(info.bdg_total))]),
                             _vm._v(" "),
-                            _c("td", [
-                              _vm._v(_vm._s(info.bdg_total * 0.2) + " ")
-                            ]),
+                            _c("td", [_vm._v(_vm._s(info.bdg_total * 0.2))]),
                             _vm._v(" "),
                             _c("td", [
                               _vm._v(
@@ -46357,11 +46478,7 @@ var render = function() {
                             _vm._v(" "),
                             _vm._m(3, true),
                             _vm._v(" "),
-                            _c("td", [
-                              _c("input", {
-                                attrs: { type: "text", id: "PD" + info.n_drf }
-                              })
-                            ])
+                            _vm._m(4, true)
                           ])
                         ])
                       })
@@ -46369,7 +46486,7 @@ var render = function() {
                     2
                   ),
                   _vm._v(" "),
-                  _vm._m(4, true)
+                  _vm._m(5, true)
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "total_reg" }, [
@@ -46395,7 +46512,7 @@ var render = function() {
                 ])
               ]),
               _vm._v(" "),
-              _vm._m(5, true),
+              _vm._m(6, true),
               _vm._v(" "),
               _c("div", { staticClass: "form-group col-12" }, [
                 _c("div", { staticClass: "container" }, [
@@ -46898,287 +47015,248 @@ var render = function() {
                       ])
                     ])
                   ])
-                ]),
-                _vm._v(" "),
-                _vm._m(6, true),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass: "form-group col-lg-12 col-sm-12 display_div",
-                    staticStyle: { display: "flex", "flex-direction": "'row'" }
-                  },
-                  [
-                    _c(
-                      "div",
-                      {
-                        staticClass:
-                          "form-group col-lg-6 col-sm-12 display_div1"
-                      },
-                      [
-                        _c(
-                          "div",
-                          {
-                            staticClass: "form-group col-lg-6 col-sm-12 ",
-                            staticStyle: { margin: "2em 2em 2em 0" }
-                          },
-                          [
-                            _c("label", [
-                              _vm._v("Date dépot demande de Remboursement")
-                            ]),
-                            _vm._v(" "),
-                            _c("input", {
-                              staticClass: "form-control",
-                              attrs: {
-                                type: "text",
-                                name: "date_depot_dmd_rembrs",
-                                id: "date_depot_dmd_rembrs",
-                                onmouseover: "(this.type='date')",
-                                placeholder: "Date réalisation"
-                              },
-                              domProps: {
-                                value: DRB_Ofppt.date_depot_dmd_rembrs
-                              }
-                            })
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          {
-                            staticClass:
-                              "form-group col-lg-6 col-sm-12 custom-control custom-checkbox",
-                            staticStyle: { margin: "auto 1rem" }
-                          },
-                          [
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.accuse_model6,
-                                  expression: "accuse_model6"
-                                }
-                              ],
-                              staticClass: "custom-control-input",
-                              attrs: {
-                                type: "checkbox",
-                                name: "accuse_model6",
-                                id: "accuse_model6"
-                              },
-                              domProps: {
-                                checked: Array.isArray(_vm.accuse_model6)
-                                  ? _vm._i(_vm.accuse_model6, null) > -1
-                                  : _vm.accuse_model6
-                              },
-                              on: {
-                                change: function($event) {
-                                  var $$a = _vm.accuse_model6,
-                                    $$el = $event.target,
-                                    $$c = $$el.checked ? true : false
-                                  if (Array.isArray($$a)) {
-                                    var $$v = null,
-                                      $$i = _vm._i($$a, $$v)
-                                    if ($$el.checked) {
-                                      $$i < 0 &&
-                                        (_vm.accuse_model6 = $$a.concat([$$v]))
-                                    } else {
-                                      $$i > -1 &&
-                                        (_vm.accuse_model6 = $$a
-                                          .slice(0, $$i)
-                                          .concat($$a.slice($$i + 1)))
-                                    }
-                                  } else {
-                                    _vm.accuse_model6 = $$c
-                                  }
-                                }
-                              }
-                            }),
-                            _vm._v(" "),
-                            _c(
-                              "label",
-                              {
-                                staticClass: "custom-control-label ",
-                                attrs: { for: "accuse_model6" }
-                              },
-                              [_vm._v("Accusé Modele 6")]
-                            )
-                          ]
-                        )
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass:
-                          "form-group col-lg-6 col-sm-12 display_div_child"
-                      },
-                      [
-                        _c(
-                          "div",
-                          {
-                            staticClass: "form-group col-lg-6 col-sm-12",
-                            staticStyle: { margin: "2em 2em 2em 0" }
-                          },
-                          [
-                            _c("label", [_vm._v("Montant de Remboursement")]),
-                            _vm._v(" "),
-                            _c("input", {
-                              staticClass: "form-control",
-                              attrs: {
-                                type: "text",
-                                id: "montant_rembrs",
-                                name: "montant_rembrs",
-                                placeholder: "Montant Remboursement"
-                              },
-                              domProps: { value: DRB_Ofppt.montant_rembrs }
-                            })
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          { staticClass: "form-group col-lg-6 col-sm-12" },
-                          [
-                            _c("label", [_vm._v("Date Remboursement")]),
-                            _vm._v(" "),
-                            _c("input", {
-                              staticClass: "form-control",
-                              attrs: {
-                                type: "text",
-                                name: "date_rembrs",
-                                id: "date_rembrs",
-                                onmouseover: "(this.type='date')",
-                                placeholder: "Date réalisation"
-                              },
-                              domProps: { value: DRB_Ofppt.date_rembrs }
-                            })
-                          ]
-                        )
-                      ]
-                    )
-                  ]
-                ),
-                _vm._v(" "),
-                _vm._m(7, true),
-                _vm._v(" "),
-                _vm._m(8, true),
-                _vm._v(" "),
-                _c("div", { staticClass: "form-group col-12" }, [
-                  _c("label", [_vm._v("Remboursement OFPPT")]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "table-responsive" }, [
-                    _c("table", { staticClass: "table table-striped" }, [
-                      _vm._m(9, true),
-                      _vm._v(" "),
-                      _c(
-                        "tbody",
-                        _vm._l(_vm.reglEntreprise, function(info, index) {
-                          return _c("tr", { key: index }, [
-                            _c("th", [_vm._v(_vm._s(info.n_action))]),
-                            _vm._v(" "),
-                            _c("td", [_vm._v(_vm._s(info.nom_theme))]),
-                            _vm._v(" "),
-                            _c("td", [_vm._v(_vm._s(info.bdg_total))]),
-                            _vm._v(" "),
-                            _c("td", [
-                              _vm._v(_vm._s((info.bdg_total * 0.7).toFixed(2)))
-                            ]),
-                            _vm._v(" "),
-                            _c("td", [
-                              _c("input", {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: _vm.rmb_ofppt,
-                                    expression: "rmb_ofppt"
-                                  }
-                                ],
-                                attrs: {
-                                  type: "text",
-                                  name: "rmb_ofppt",
-                                  id: "rmb_ofppt"
-                                },
-                                domProps: { value: _vm.rmb_ofppt },
-                                on: {
-                                  input: function($event) {
-                                    if ($event.target.composing) {
-                                      return
-                                    }
-                                    _vm.rmb_ofppt = $event.target.value
-                                  }
-                                }
-                              })
-                            ]),
-                            _vm._v(" "),
-                            _c("td", [
-                              _vm._v(
-                                _vm._s(
-                                  (
-                                    info.bdg_total * (70 / 100) -
-                                    _vm.rmb_ofppt
-                                  ).toFixed(2)
-                                )
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("td", [
-                              _c("input", {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: _vm.justifs_ecart,
-                                    expression: "justifs_ecart"
-                                  }
-                                ],
-                                attrs: {
-                                  type: "text",
-                                  name: "justifs_ecart",
-                                  id: "justifs_ecart"
-                                },
-                                domProps: { value: _vm.justifs_ecart },
-                                on: {
-                                  input: function($event) {
-                                    if ($event.target.composing) {
-                                      return
-                                    }
-                                    _vm.justifs_ecart = $event.target.value
-                                  }
-                                }
-                              })
-                            ])
-                          ])
-                        }),
-                        0
-                      )
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _vm._m(10, true),
-                  _vm._v(" "),
-                  _c("div", {
-                    staticClass: "form-group col-lg-12 col-sm-12",
-                    staticStyle: { display: "flex", "flex-direction": "row" }
-                  })
                 ])
               ])
             ])
           ])
-        })
+        }),
+        _vm._v(" "),
+        _vm._m(7),
+        _vm._v(" "),
+        _vm._m(8),
+        _vm._v(" "),
+        _vm._m(9),
+        _vm._v(" "),
+        _vm._m(10),
+        _vm._v(" "),
+        _vm._m(11),
+        _vm._v(" "),
+        _vm._m(12)
       ],
       2
     ),
     _vm._v(" "),
-    _vm._m(11),
-    _vm._v(" "),
-    _vm._m(12),
-    _vm._v(" "),
     _vm._m(13),
     _vm._v(" "),
     _vm._m(14),
+    _vm._v(" "),
+    _vm._m(15),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "form-group col-12 text-center",
+        staticStyle: { "margin-top": "2rem" }
+      },
+      [
+        _c("label", [_vm._v(_vm._s(_vm.etat))]),
+        _vm._v(" "),
+        _c("h4", [_vm._v("État demande")]),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "btn-group btn-group-toggle btn-checked btn-Etat",
+            attrs: { role: "group" }
+          },
+          [
+            _c(
+              "label",
+              { staticClass: "btn btn-warning", attrs: { id: "opt1" } },
+              [
+                _vm._v("\n        Initié\n        "),
+                _c("i", { staticClass: "fas fa-battery-quarter" }),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.etat,
+                      expression: "etat"
+                    }
+                  ],
+                  attrs: {
+                    type: "radio",
+                    name: "etat",
+                    id: "option1",
+                    autocomplete: "off",
+                    value: "initié"
+                  },
+                  domProps: { checked: _vm._q(_vm.etat, "initié") },
+                  on: {
+                    change: function($event) {
+                      _vm.etat = "initié"
+                    }
+                  }
+                })
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "label",
+              { staticClass: "btn btn-warning", attrs: { id: "opt2" } },
+              [
+                _vm._v("\n        Payé\n\n        "),
+                _c("i", { staticClass: "fas fa-dollar-sign" }),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.etat,
+                      expression: "etat"
+                    }
+                  ],
+                  attrs: {
+                    type: "radio",
+                    name: "etat",
+                    id: "option2",
+                    autocomplete: "off",
+                    value: "payé"
+                  },
+                  domProps: { checked: _vm._q(_vm.etat, "payé") },
+                  on: {
+                    change: function($event) {
+                      _vm.etat = "payé"
+                    }
+                  }
+                })
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "label",
+              { staticClass: "btn btn-warning", attrs: { id: "opt3" } },
+              [
+                _vm._v("\n        Instruction dossier\n        "),
+                _c("i", { staticClass: "fas fa-hourglass-half" }),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.etat,
+                      expression: "etat"
+                    }
+                  ],
+                  attrs: {
+                    type: "radio",
+                    name: "etat",
+                    id: "option3",
+                    autocomplete: "off",
+                    value: "instruction dossier"
+                  },
+                  domProps: {
+                    checked: _vm._q(_vm.etat, "instruction dossier")
+                  },
+                  on: {
+                    change: function($event) {
+                      _vm.etat = "instruction dossier"
+                    }
+                  }
+                })
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "label",
+              { staticClass: "btn btn-warning", attrs: { id: "opt4" } },
+              [
+                _vm._v("\n        Déposé\n        "),
+                _c("i", { staticClass: "fas fa-folder-open" }),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.etat,
+                      expression: "etat"
+                    }
+                  ],
+                  attrs: {
+                    type: "radio",
+                    name: "etat",
+                    id: "option4",
+                    autocomplete: "off",
+                    value: "déposé"
+                  },
+                  domProps: { checked: _vm._q(_vm.etat, "déposé") },
+                  on: {
+                    change: function($event) {
+                      _vm.etat = "déposé"
+                    }
+                  }
+                })
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "label",
+              { staticClass: "btn btn-warning", attrs: { id: "opt5" } },
+              [
+                _vm._v("\n        Remboursé\n        "),
+                _c("i", { staticClass: "fas fa-check-double" }),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.etat,
+                      expression: "etat"
+                    }
+                  ],
+                  attrs: {
+                    type: "radio",
+                    name: "etat",
+                    id: "option5",
+                    autocomplete: "off",
+                    value: "remboursé"
+                  },
+                  domProps: { checked: _vm._q(_vm.etat, "remboursé") },
+                  on: {
+                    change: function($event) {
+                      _vm.etat = "remboursé"
+                    }
+                  }
+                })
+              ]
+            )
+          ]
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "card-footer text-center" }, [
+          _c(
+            "button",
+            {
+              staticClass: "btn bu-add",
+              attrs: { type: "submit", id: "add" },
+              on: {
+                click: function($event) {
+                  return _vm.updateDRB()
+                }
+              }
+            },
+            [
+              _c("i", { staticClass: "fas fa-pen-square icon" }),
+              _vm._v("Modifier")
+            ]
+          ),
+          _vm._v(" "),
+          _vm._m(16)
+        ])
+      ]
+    ),
+    _vm._v(" "),
+    _vm._m(17),
+    _vm._v(" "),
+    _vm._m(18),
+    _vm._v(" "),
+    _vm._m(19),
     _vm._v(" "),
     _c("div", { staticClass: "card-footer text-center" }, [
       _c(
@@ -47192,10 +47270,13 @@ var render = function() {
             }
           }
         },
-        [_c("i", { staticClass: "fas fa-pen-square icon" }), _vm._v("Modifier")]
+        [
+          _c("i", { staticClass: "fas fa-pen-square icon" }),
+          _vm._v("Modifier\n    ")
+        ]
       ),
       _vm._v(" "),
-      _vm._m(15)
+      _vm._m(20)
     ])
   ])
 }
@@ -47258,6 +47339,12 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
+    return _c("td", [_c("input", { attrs: { type: "text" } })])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
     return _c(
       "div",
       {
@@ -47299,7 +47386,53 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group col-12" }, [_c("hr")])
+    return _c("div", { staticClass: "form-group col-lg-3 col-sm-12" }, [
+      _c("label", [_vm._v("Date dépot demande de Remboursement")]),
+      _vm._v(" "),
+      _c("input", {
+        staticClass: "form-control",
+        attrs: {
+          type: "text",
+          name: "date_depot_dmd_rembrs",
+          id: "date_depot_dmd_rembrs",
+          onmouseover: "(this.type='date')",
+          placeholder: "Date réalisation"
+        }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass: "form-group col-lg-3 col-sm-12",
+        staticStyle: { margin: "auto" }
+      },
+      [
+        _c("div", { staticClass: "custom-control custom-checkbox" }, [
+          _c("input", {
+            staticClass: "custom-control-input",
+            attrs: {
+              type: "checkbox",
+              name: "accuse_model6",
+              id: "accuse_model6"
+            }
+          }),
+          _vm._v(" "),
+          _c(
+            "label",
+            {
+              staticClass: "custom-control-label",
+              attrs: { for: "accuse_model6" }
+            },
+            [_vm._v("Accusé Modele 6")]
+          )
+        ])
+      ]
+    )
   },
   function() {
     var _vm = this
@@ -47311,21 +47444,59 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("thead", [
-      _c("tr", [
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("N°Action")]),
-        _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Thème")]),
-        _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Total HT(DH)")]),
-        _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Quote-part OFPPT")]),
-        _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Remboursement OFPPT")]),
-        _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Ecart/ Remboursement")]),
-        _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Justifs Ecart")])
+    return _c("div", { staticClass: "form-group col-12" }, [_c("hr")])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group col-12" }, [
+      _c("label", [_vm._v("Remboursement OFPPT")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "table-responsive" }, [
+        _c("table", { staticClass: "table table-striped" }, [
+          _c("thead", [
+            _c("tr", [
+              _c("th", { attrs: { scope: "col" } }, [_vm._v("N°Action")]),
+              _vm._v(" "),
+              _c("th", { attrs: { scope: "col" } }, [_vm._v("Thème")]),
+              _vm._v(" "),
+              _c("th", { attrs: { scope: "col" } }, [_vm._v("Total HT(DH)")]),
+              _vm._v(" "),
+              _c("th", { attrs: { scope: "col" } }, [
+                _vm._v("Quote-part OFPPT")
+              ]),
+              _vm._v(" "),
+              _c("th", { attrs: { scope: "col" } }, [
+                _vm._v("Remboursement OFPPT")
+              ]),
+              _vm._v(" "),
+              _c("th", { attrs: { scope: "col" } }, [
+                _vm._v("Ecart/ Remboursement")
+              ]),
+              _vm._v(" "),
+              _c("th", { attrs: { scope: "col" } }, [_vm._v("Justifs Ecart")])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("tbody", [
+            _c("tr", [
+              _c("th", [_vm._v("{{}}")]),
+              _vm._v(" "),
+              _c("td", [_vm._v("{{}}")]),
+              _vm._v(" "),
+              _c("td", [_vm._v("{{}}")]),
+              _vm._v(" "),
+              _c("td", [_vm._v("@mdo")]),
+              _vm._v(" "),
+              _c("td", [_vm._v("{{}}")]),
+              _vm._v(" "),
+              _c("td", [_vm._v("Mark")]),
+              _vm._v(" "),
+              _c("td", [_vm._v("Otto")])
+            ])
+          ])
+        ])
       ])
     ])
   },
@@ -47334,6 +47505,68 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "form-group col-12" }, [_c("hr")])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass: "form-group col-lg-3 col-sm-12",
+        staticStyle: { margin: "auto" }
+      },
+      [
+        _c("label", [_vm._v("Montant de Remboursement")]),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "form-control",
+          attrs: {
+            value: "",
+            type: "text",
+            id: "montant_rembrs",
+            name: "montant_rembrs",
+            placeholder: "Montant Remboursement"
+          }
+        })
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass: "form-group col-lg-3 col-sm-12",
+        staticStyle: { margin: "auto" }
+      },
+      [
+        _c("label", [_vm._v("Date Remboursement")]),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "form-control",
+          attrs: {
+            type: "text",
+            name: "date_rembrs",
+            id: "date_rembrs",
+            onmouseover: "(this.type='date')",
+            placeholder: "Date réalisation"
+          }
+        })
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      { staticClass: "btn bu-danger", attrs: { href: "/list-drb" } },
+      [_c("i", { staticClass: "fas fa-window-close icon" }), _vm._v("Annuler")]
+    )
   },
   function() {
     var _vm = this
@@ -47371,106 +47604,8 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c(
-      "div",
-      {
-        staticClass: "form-group col-12 text-center",
-        staticStyle: { "margin-top": "2rem" }
-      },
-      [
-        _c("h4", [_vm._v("État demande")]),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass: "btn-group btn-group-toggle btn-Etat",
-            attrs: { "data-toggle": "buttons" }
-          },
-          [
-            _c("label", { staticClass: "btn btn-warning" }, [
-              _vm._v("\n              Initié\n              "),
-              _c("i", { staticClass: "fas fa-battery-quarter" }),
-              _vm._v(" "),
-              _c("input", {
-                attrs: {
-                  type: "radio",
-                  name: "etat",
-                  id: "option1",
-                  autocomplete: "off",
-                  value: "initié"
-                }
-              })
-            ]),
-            _vm._v(" "),
-            _c("label", { staticClass: "btn btn-warning" }, [
-              _vm._v("\n              Payé\n              "),
-              _c("i", { staticClass: "fas fa-dollar-sign" }),
-              _vm._v(" "),
-              _c("input", {
-                attrs: {
-                  type: "radio",
-                  name: "etat",
-                  id: "option2",
-                  autocomplete: "off",
-                  value: "payé"
-                }
-              })
-            ]),
-            _vm._v(" "),
-            _c("label", { staticClass: "btn btn-warning" }, [
-              _vm._v("\n              Instruction dossier\n              "),
-              _c("i", { staticClass: "fas fa-hourglass-half" }),
-              _vm._v(" "),
-              _c("input", {
-                attrs: {
-                  type: "radio",
-                  name: "etat",
-                  id: "option2",
-                  autocomplete: "off",
-                  value: "instruction dossier"
-                }
-              })
-            ]),
-            _vm._v(" "),
-            _c("label", { staticClass: "btn btn-warning" }, [
-              _vm._v("\n              Déposé\n              "),
-              _c("i", { staticClass: "fas fa-folder-open" }),
-              _vm._v(" "),
-              _c("input", {
-                attrs: {
-                  type: "radio",
-                  name: "etat",
-                  id: "option2",
-                  autocomplete: "off",
-                  value: "déposé"
-                }
-              })
-            ]),
-            _vm._v(" "),
-            _c("label", { staticClass: "btn btn-warning" }, [
-              _vm._v("\n              Remboursé\n              "),
-              _c("i", { staticClass: "fas fa-check-double" }),
-              _vm._v(" "),
-              _c("input", {
-                attrs: {
-                  type: "radio",
-                  id: "option3",
-                  autocomplete: "off",
-                  value: "remboursé"
-                }
-              })
-            ])
-          ]
-        )
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
       "a",
-      { staticClass: "btn bu-danger", attrs: { href: "/list-drb" } },
+      { staticClass: "btn bu-danger", attrs: { href: "/drb-gc" } },
       [_c("i", { staticClass: "fas fa-window-close icon" }), _vm._v("Annuler")]
     )
   }
