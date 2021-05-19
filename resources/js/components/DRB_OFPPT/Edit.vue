@@ -25,7 +25,7 @@
         :key="DRB_Ofppt.n_drf"
       >
         <div class="row">
-          <div class="form-group col-lg-3 col-sm-12" >
+          <div class="form-group col-lg-3 col-sm-12">
             <label>E/S</label>
             <input
               class="form-control"
@@ -97,19 +97,21 @@
                   </tr>
                 </tbody>
               </table>
-              <div class="form-group col-lg-12 col-sm-12 custom-control custom-checkbox">
-                    <div class="div_select_all">
-                      <input
-                        type="checkbox"
-                        name="select_all"
-                        id="select_all"
-                        class="custom-control-input"
-                      />
-                      <label for="select_all" class="custom-control-label "
-                        >selectionner tout</label
-                      >
-                    </div>
-            </div>
+              <div
+                class="form-group col-lg-12 col-sm-12 custom-control custom-checkbox"
+              >
+                <div class="div_select_all">
+                  <input
+                    type="checkbox"
+                    name="select_all"
+                    id="select_all"
+                    class="custom-control-input"
+                  />
+                  <label for="select_all" class="custom-control-label "
+                    >selectionner tout</label
+                  >
+                </div>
+              </div>
             </div>
 
             <div class="total_reg">
@@ -413,10 +415,10 @@
         name="commentaire"
         maxlength="1900"
         placeholder="Commentaire .."
-      ></textarea>
-      
+      >
+      </textarea>
     </div>
-  </div> 
+  </div>
 </template>
 
 <script>
@@ -453,15 +455,16 @@ export default {
     }, 1500);
 
     setTimeout(() => {
-      this.model5 = this.DRB_Ofppts[0].model5 === 'préparé'
-      this.model6 = this.DRB_Ofppts[0].model6 === 'préparé'
-      this.fiche_eval_sythetique = this.DRB_Ofppts[0].fiche_eval_sythetique === 'préparé'
-      this.factures = this.DRB_Ofppts[0].factures === 'préparé'
-      this.compris_cheques = this.DRB_Ofppts[0].compris_cheques === 'préparé'
-      this.compris_remise = this.DRB_Ofppts[0].compris_remise === 'préparé'
-      this.relev_bq_societe = this.DRB_Ofppts[0].relev_bq_societe === 'préparé'
-      this.relev_bq_cabinet = this.DRB_Ofppts[0].relev_bq_cabinet === 'préparé'
-      this.accuse_model6 = this.DRB_Ofppts[0].accuse_model6 === 'préparé'
+      this.model5 = this.DRB_Ofppts[0].model5 === "préparé";
+      this.model6 = this.DRB_Ofppts[0].model6 === "préparé";
+      this.fiche_eval_sythetique =
+        this.DRB_Ofppts[0].fiche_eval_sythetique === "préparé";
+      this.factures = this.DRB_Ofppts[0].factures === "préparé";
+      this.compris_cheques = this.DRB_Ofppts[0].compris_cheques === "préparé";
+      this.compris_remise = this.DRB_Ofppts[0].compris_remise === "préparé";
+      this.relev_bq_societe = this.DRB_Ofppts[0].relev_bq_societe === "préparé";
+      this.relev_bq_cabinet = this.DRB_Ofppts[0].relev_bq_cabinet === "préparé";
+      this.accuse_model6 = this.DRB_Ofppts[0].accuse_model6 === "préparé";
     }, 1000);
 
     setTimeout(() => {
@@ -590,20 +593,18 @@ th {
   flex-wrap: wrap;
 }
 
-.display_div{
+.display_div {
   display: flex;
-  flex-direction: row ;
+  flex-direction: row;
   flex-wrap: wrap;
 }
 
-.display_div_child{
+.display_div_child {
   display: flex;
-  flex-direction: column ;
+  flex-direction: column;
 }
 
-
-.div_select_all{
-   float: right;
+.div_select_all {
+  float: right;
 }
-
 </style>

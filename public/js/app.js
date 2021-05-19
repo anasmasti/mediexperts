@@ -4181,6 +4181,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Edit",
@@ -4214,15 +4216,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       _this.CalculTotalRegl();
     }, 1500);
     setTimeout(function () {
-      _this.model5 = _this.DRB_Ofppts[0].model5 === 'préparé';
-      _this.model6 = _this.DRB_Ofppts[0].model6 === 'préparé';
-      _this.fiche_eval_sythetique = _this.DRB_Ofppts[0].fiche_eval_sythetique === 'préparé';
-      _this.factures = _this.DRB_Ofppts[0].factures === 'préparé';
-      _this.compris_cheques = _this.DRB_Ofppts[0].compris_cheques === 'préparé';
-      _this.compris_remise = _this.DRB_Ofppts[0].compris_remise === 'préparé';
-      _this.relev_bq_societe = _this.DRB_Ofppts[0].relev_bq_societe === 'préparé';
-      _this.relev_bq_cabinet = _this.DRB_Ofppts[0].relev_bq_cabinet === 'préparé';
-      _this.accuse_model6 = _this.DRB_Ofppts[0].accuse_model6 === 'préparé';
+      _this.model5 = _this.DRB_Ofppts[0].model5 === "préparé";
+      _this.model6 = _this.DRB_Ofppts[0].model6 === "préparé";
+      _this.fiche_eval_sythetique = _this.DRB_Ofppts[0].fiche_eval_sythetique === "préparé";
+      _this.factures = _this.DRB_Ofppts[0].factures === "préparé";
+      _this.compris_cheques = _this.DRB_Ofppts[0].compris_cheques === "préparé";
+      _this.compris_remise = _this.DRB_Ofppts[0].compris_remise === "préparé";
+      _this.relev_bq_societe = _this.DRB_Ofppts[0].relev_bq_societe === "préparé";
+      _this.relev_bq_cabinet = _this.DRB_Ofppts[0].relev_bq_cabinet === "préparé";
+      _this.accuse_model6 = _this.DRB_Ofppts[0].accuse_model6 === "préparé";
     }, 1000);
     setTimeout(function () {
       if (_this.DRB_Ofppts[0].etat === "initié" || _this.DRB_Ofppts[0].etat === "payé" || _this.DRB_Ofppts[0].etat === "instruction dossier" || _this.DRB_Ofppts[0].etat === "déposé" || _this.DRB_Ofppts[0].etat === "remboursé") {
@@ -10284,7 +10286,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\ntable[data-v-376179dc] {\r\n  margin: 10px auto;\n}\ntd[data-v-376179dc],\r\nth[data-v-376179dc] {\r\n  text-align: center;\n}\n.total_reg[data-v-376179dc] {\r\n  margin: 10px auto;\r\n  float: right;\n}\n.btn-Etat[data-v-376179dc] {\r\n  display: flex;\r\n  flex-direction: row;\r\n  flex-wrap: wrap;\n}\n.display_div[data-v-376179dc]{\r\n  display: flex;\r\n  flex-direction: row ;\r\n  flex-wrap: wrap;\n}\n.display_div_child[data-v-376179dc]{\r\n  display: flex;\r\n  flex-direction: column ;\n}\n.div_select_all[data-v-376179dc]{\r\n   float: right;\n}\r\n\r\n", ""]);
+exports.push([module.i, "\ntable[data-v-376179dc] {\r\n  margin: 10px auto;\n}\ntd[data-v-376179dc],\r\nth[data-v-376179dc] {\r\n  text-align: center;\n}\n.total_reg[data-v-376179dc] {\r\n  margin: 10px auto;\r\n  float: right;\n}\n.btn-Etat[data-v-376179dc] {\r\n  display: flex;\r\n  flex-direction: row;\r\n  flex-wrap: wrap;\n}\n.display_div[data-v-376179dc] {\r\n  display: flex;\r\n  flex-direction: row;\r\n  flex-wrap: wrap;\n}\n.display_div_child[data-v-376179dc] {\r\n  display: flex;\r\n  flex-direction: column;\n}\n.div_select_all[data-v-376179dc] {\r\n  float: right;\n}\r\n", ""]);
 
 // exports
 
