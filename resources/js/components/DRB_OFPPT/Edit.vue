@@ -24,6 +24,7 @@
         v-for="DRB_Ofppt in DRB_Ofppts"
         :key="DRB_Ofppt.n_drf"
       >
+      <!-- <input type="hidden" v-if="1==1 ? etat = DRB_Ofppt.etat : etat = DRB_Ofppt.etat "> -->
         <div class="row">
           <div class="form-group col-lg-3 col-sm-12" style="margin : auto ;">
             <label>E/S</label>
@@ -228,13 +229,83 @@
                   </div>
                 </div>
               </div>
+<<<<<<< HEAD
             </div>
           </div>
         </div>
       </div>
+=======
 
-      <div class="form-group col-12"><hr /></div>
+              <div class="form-group col-12"><hr /></div>
 
+        <div class="form-group col-lg-12 col-sm-12" style="display: flex ;flex-direction : 'row' ;">
+
+           <div class="form-group col-lg-6 col-sm-12 " style="margin: auto ;">
+              <label>Date dépot demande de Remboursement</label>
+              <input
+                class="form-control"
+                type="text"
+                name="date_depot_dmd_rembrs"
+                id="date_depot_dmd_rembrs"
+                onmouseover="(this.type='date')"
+                placeholder="Date réalisation"
+                style="width: 50% ;"
+                :value=DRB_Ofppt.date_depot_dmd_rembrs
+              />
+            </div>
+
+          <div class="form-group col-lg-6 col-sm-12 custom-control custom-checkbox" style="margin: auto;">
+            <input
+              type="checkbox"
+              name="accuse_model6"
+              id="accuse_model6"
+              class="custom-control-input"
+              :v-model="DRB_Ofppt.accuse_model6 == 'préparé' ? accuse_model6 = true : accuse_model6 = false " 
+              :checked="accuse_model6 == true ? true : false"
+            />
+            <label for="accuse_model6" class="custom-control-label"
+              >Accusé Modele 6</label
+            >
+          </div>
+        </div>
+
+        <div class="form-group col-12"><hr /></div>
+
+        <div class="form-group col-12"><hr /></div>
+
+        <div class="form-group col-12">
+          <label>Remboursement OFPPT</label>
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">N°Action</th>
+                  <th scope="col">Thème</th>
+                  <th scope="col">Total HT(DH)</th>
+                  <th scope="col">Quote-part OFPPT</th>
+                  <th scope="col">Remboursement OFPPT</th>
+                  <th scope="col">Ecart/ Remboursement</th>
+                  <th scope="col">Justifs Ecart</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="(info , index) in reglEntreprise" :key="index">
+                  <th>{{ info.n_action }}</th>
+                  <td>{{info.nom_theme}}</td>
+                  <td>{{info.bdg_total}}</td>
+                  <td>{{(info.bdg_total * .7).toFixed(2)}}</td>
+                  <td><input type="text" name="rmb_ofppt" id="rmb_ofppt" v-model="rmb_ofppt"></td>
+                  <td>{{((info.bdg_total * (70/100)) - rmb_ofppt).toFixed(2)}}</td>
+                  <td><input type="text" name="justifs_ecart" id="justifs_ecart" v-model="justifs_ecart"></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+>>>>>>> 2aa90d6ea7aa53d5e2c0e432283fba58b06075b4
+
+          <div class="form-group col-12"><hr /></div>
+
+<<<<<<< HEAD
       <div class="form-group col-lg-3 col-sm-12">
         <label>Date dépot demande de Remboursement</label>
         <input
@@ -262,6 +333,48 @@
       </div>
 
       <div class="form-group col-12"><hr /></div>
+=======
+          
+
+          <div class="form-group col-lg-12 col-sm-12" style="display : flex ; flex-direction: row ;">
+            <div class="form-group col-lg-3 col-sm-12" style="margin : auto ;">
+              <label>Montant de Remboursement</label>
+              <input
+                class="form-control"
+                :value=DRB_Ofppt.montant_rembrs
+                type="text"
+                id="montant_rembrs"
+                name="montant_rembrs"
+                placeholder="Montant Remboursement"
+              />
+            </div>
+
+            <div class="form-group col-lg-3 col-sm-12" style="margin : auto ;">
+              <label>Date Remboursement</label>
+              <input
+                class="form-control"
+                type="text"
+                name="date_rembrs"
+                id="date_rembrs"
+                onmouseover="(this.type='date')"
+                placeholder="Date réalisation"
+                :value=DRB_Ofppt.date_rembrs
+              />
+            </div>
+          </div> 
+
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      
+
+        </div>
+
+>>>>>>> 2aa90d6ea7aa53d5e2c0e432283fba58b06075b4
 
       <div class="form-group col-12"><hr /></div>
 
@@ -294,6 +407,7 @@
           </table>
         </div>
       </div>
+<<<<<<< HEAD
     </div>
 
     <div class="form-group col-12"><hr /></div>
@@ -387,7 +501,74 @@
             v-model="etat"
           />
         </label>
+=======
+      <div class="form-group col-12"><hr /></div>
+      <div class="form-group col-12 text-center" style="margin-top: 2rem ;" >
+          <h4>État demande</h4>
+          <div class="btn-group btn-group-toggle btn-Etat" data-toggle="buttons">
+            <label class="btn btn-warning">
+              Initié
+              <i class="fas fa-battery-quarter"></i>
+              <input
+                type="radio"
+                name="etat"
+                id="option1"
+                autocomplete="off"
+                value="initié"
+              />
+            </label>
+            <label class="btn btn-warning">
+              Payé
+              <i class="fas fa-dollar-sign"></i>
+              <input
+                type="radio"
+                name="etat"
+                id="option2"
+                autocomplete="off"
+                value="payé"
+              />
+            </label>
+            <label class="btn btn-warning">
+              Instruction dossier
+              <i class="fas fa-hourglass-half"></i>
+              <input
+                type="radio"
+                name="etat"
+                id="option2"
+                autocomplete="off"
+                value="instruction dossier"
+              />
+            </label>
+            <label class="btn btn-warning">
+              Déposé
+              <i class="fas fa-folder-open"></i>
+              <input
+                type="radio"
+                name="etat"
+                id="option2"
+                autocomplete="off"
+                value="déposé"
+              />
+            </label>
+            <label class="btn btn-warning">
+              Remboursé
+              <i class="fas fa-check-double"></i>
+              <input
+                type="radio"
+                
+                id="option3"
+                autocomplete="off"
+                value="remboursé" 
+              />
+            </label>
+          </div>
+>>>>>>> 2aa90d6ea7aa53d5e2c0e432283fba58b06075b4
       </div>
+<button @click="selectedEtat()"></button>
+    <div class="card-footer text-center">
+          <button class="btn bu-add" type="submit" id="add" @click="updateDRB()"><i class="fas fa-pen-square icon"></i>Modifier</button>
+          <a class="btn bu-danger" href="/drb-gc"><i class="fas fa-window-close icon"></i>Annuler</a>
+    </div>
     </div>
 
     <div class="form-group col-12"><hr /></div>
@@ -426,6 +607,7 @@ export default {
       // DRB_Ofppts: {},
       edited_DRB: null,
       model5: false,
+<<<<<<< HEAD
       model6: false,
       fiche_eval_sythetique: false,
       factures: false,
@@ -437,6 +619,20 @@ export default {
       total_regl: null,
       etat: null,
       checked: null
+=======
+      model6: null,
+      fiche_eval_sythetique: null,
+      factures: null,
+      compris_cheques: null,
+      compris_remise: null,
+      relev_bq_societe: null,
+      relev_bq_cabinet: null,
+      accuse_model6: null,
+      total_regl : null,
+      rmb_ofppt : null,
+      justifs_ecart : null, 
+      etat : null
+>>>>>>> 2aa90d6ea7aa53d5e2c0e432283fba58b06075b4
     };
   },
   mounted() {
@@ -444,7 +640,16 @@ export default {
     console.log(this.numero_remb);
     this.handleAction("DRB_Ofppt/getListOfDROfpptEdit", this.numero_remb);
     this.handleAction("DRB_Ofppt/ReglEntrpInfo", this.numero_remb);
+<<<<<<< HEAD
 
+=======
+    // setTimeout(() => {
+    
+      this.selectedEtat();    
+      // }, 3000);
+   
+    // this.SelectedEtat();
+>>>>>>> 2aa90d6ea7aa53d5e2c0e432283fba58b06075b4
     setTimeout(() => {
       this.CalculTotalRegl();
     }, 1500);
@@ -513,12 +718,15 @@ export default {
           this.total_regl += QtRegl;
         }
       }, 1200);
+<<<<<<< HEAD
 
       return this.total_regl;
+=======
+      return this.total_regl
+>>>>>>> 2aa90d6ea7aa53d5e2c0e432283fba58b06075b4
     },
     updateDRB() {
       let model5 = this.model5;
-      let model6 = this.model6;
       let fiche_eval_sythetique = this.fiche_eval_sythetique;
       let factures = this.factures;
       let compris_cheques = this.compris_cheques;
@@ -555,6 +763,19 @@ export default {
           this.$toastr.e("Echec de modification");
           throw e;
         });
+    },
+
+    selectedEtat(){
+      let data = this.DRB_Ofppts;
+     let item = 0;
+
+       for ( item in data) {
+            this.etat=data[item].etat;
+            
+               document.getElementById('option3').checked = true;
+            
+        }
+
     }
   },
   computed: {
