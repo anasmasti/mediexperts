@@ -43,25 +43,12 @@
               <a href="/edit-drb-ofppt" @click="sendnrdf(DRB_Ofppt.n_drf)" class="btn btn-warning"><i class="fa fa-edit"></i></a>
               <a class="btn btn-danger" ><i class="fa fa-trash-alt" style="color: white ;"></i></a>
             </td>
-<<<<<<< HEAD
             <!-- </form> -->
           </tr>
         </tbody>
       </table>
     </div>
     <!-- ./card-body -->
-=======
-        </tr>
-        
-      </tbody>
-      
-    </table>
-
-  </div><!-- ./card-body -->
-
-  <div class="card-footer">
-  </div>
->>>>>>> 0a4faefddbbe4c8db4cc99827398dac64f93065b
 
     <div class="card-footer">
 
