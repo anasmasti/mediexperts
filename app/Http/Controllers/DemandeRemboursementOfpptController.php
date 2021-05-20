@@ -87,18 +87,21 @@ class DemandeRemboursementOfpptController extends Controller
             $demandeRemboursementOFPPT->etat = $request->etat ;
             $demandeRemboursementOFPPT->save();
 
-            $thems=$request->thems;
-             foreach ($thems as $them){
-               // $reglEntreprise = DB::table('plan_formations')->where(['id_thm', '=', $them],['id_plan', '=', $idplan])->first();
-                $reglEntreprise = DB::table('plan_formations')->where('id_thm', '=', $them)->first();
-                $reglEntreprise->datePaiementEntreprise = $request->input('DP:',$them);
-                $reglEntreprise->ModeReferencePaiement = $request->input('MDP:',$them);
-                // $reglEntreprise->RemboursementOFPPT = $request->input('RMBOFPPT:',$them);
-                // $reglEntreprise->EcartRemboursement = $request->input('EcartOFPPT:',$them);
-                // $reglEntreprise->JustifsEcart = $request->input('justifEcart:',$them);
-                // $reglEntreprise
+            $thems = $request->thems;
+             foreach($thems as $them) {
+               
+                $reglEntreprise = PlanFormation::find($them['n_form']);
+
+                if ($reglEntreprise->n_form == $them['n_form']) {
+                    $reglEntreprise->datePaiementEntreprise = $them['date_paiement'];
+                    $reglEntreprise->ModeReferencePaiement = $them['mode_paiement'];
+                    $reglEntreprise->RemboursementOFPPT = $them['rembrs_ofppt'];
+                    $reglEntreprise->EcartRemboursement = $them['ecart_rembrs_ofppt'];
+                    $reglEntreprise->JustifsEcart = $them['justif_ecart'];
+                }
+                $reglEntreprise->save();
              }
-             $reglEntreprise->save();
+             
             
 
             $request->session()->flash('updated', 'Modifié avec succès');
@@ -115,6 +118,6 @@ class DemandeRemboursementOfpptController extends Controller
         $request->session()->flash('deleted', 'Supprimé avec succès');
 
     }
-
+ 
     //
 }

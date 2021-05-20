@@ -183,7 +183,7 @@ Route::post('/save-nfacture-df', 'DemandeFinancementController@SaveNFactureDF')-
  Route::get('/regEntrp-drb-ofppt/{ndrb}','DemandeRemboursementOfpptController@reglementEntreprise');
  Route::post('/edit-drb-ofppt/{ndrb}', 'DemandeRemboursementOfpptController@update')->name('DRB_Ofppt.update');
  Route::get('/detail-drb-ofppt', 'DetailCntroller@Detail')->name('DRB_Ofppt.detail');
-
+ Route::get('/token', function () { return csrf_token(); });
  // // Route::get('/detail-drb-of/{ndrb}', 'DemandeRemboursementOfpptController@show')->name('DRB_Ofppt.show');
 // Route::get('/detail-drb-of', 'DetailCntroller@detail')->name('DRB_Ofppt.show');
 

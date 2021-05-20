@@ -4166,7 +4166,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       total_regl: null,
       rmb_ofppt: [],
       justifs_ecart: null,
-      etat: null
+      etat: null,
+      themes: []
     };
   },
   mounted: function mounted() {
@@ -4212,7 +4213,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           _loop(i);
         }
       }
-    }, 200);
+    }, 800);
   },
   updated: function updated() {},
   methods: {
@@ -4235,20 +4236,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }, 1200);
       return this.total_regl;
     },
-    SelectedEtat: function SelectedEtat() {
-      var _this3 = this;
-
-      setTimeout(function () {
-        var data = _this3.DRB_Ofppts;
-        var etat = data[0].etat;
-
-        if (etat === "payé") {
-          _this3.etat = true;
-        }
-      }, 2000);
-    },
     updateDRB: function updateDRB() {
-      var _this4 = this;
+      var _this3 = this;
 
       var model5 = this.model5;
       var model6 = this.model6;
@@ -4263,7 +4252,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var date_depot_dmd_rembrs = document.getElementById("date_depot_dmd_rembrs");
       var date_rembrs = document.getElementById("date_rembrs");
       var etat = $("input:radio[name=etat]:checked").val();
-      var thems = getTheme();
       axios.post("/edit-drb-ofppt/" + this.numero_remb, {
         model6: model6,
         model5: model5,
@@ -4278,35 +4266,34 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         date_depot_dmd_rembrs: date_depot_dmd_rembrs.value,
         date_rembrs: date_rembrs.value,
         etat: etat,
-        thems: thems
+        thems: this.themes
       }).then(function () {
-        _this4.$toastr.s("Modifié avec succès");
+        _this3.$toastr.s("Modifié avec succès");
       })["catch"](function (e) {
-        _this4.$toastr.e("Echec de modification");
+        _this3.$toastr.e("Echec de modification");
 
         throw e;
       });
     },
     getTheme: function getTheme() {
-      var thems = [];
+      this.themes = [];
       var data = this.reglEntreprise;
       var item = 0;
 
       for (item in data) {
-        thems.push(data[item].id_thm);
+        console.log();
+        this.themes.push({
+          id_theme: data[item].id_thm,
+          n_form: data[item].n_form,
+          date_paiement: document.getElementById("DP:".concat(data[item].id_thm)).value,
+          mode_paiement: document.getElementById("MDP:".concat(data[item].id_thm)).value,
+          rembrs_ofppt: document.getElementById("RMBOFPPT:".concat(data[item].id_thm)).value,
+          ecart_rembrs_ofppt: document.getElementById("EcartOFPPT:".concat(data[item].id_thm)).textContent.trim(),
+          justif_ecart: document.getElementById("justifEcart:".concat(data[item].id_thm)).value
+        });
       }
 
-      console.log(thems);
-      return thems;
-    },
-    selectedEtat: function selectedEtat() {
-      var data = this.DRB_Ofppts;
-      var item = 0;
-
-      for (item in data) {
-        this.etat = data[item].etat;
-        document.getElementById('option3').checked = true;
-      }
+      console.log(JSON.parse(JSON.stringify(this.themes)));
     }
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])("DRB_Ofppt", {
@@ -4315,8 +4302,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     reglEntreprise: function reglEntreprise(state) {
       return state.reglEntreprise;
-    } // ndrf: state => state.ndrf,
-
+    }
   }))
 });
 
@@ -46391,11 +46377,7 @@ var render = function() {
                             _vm._v(" "),
                             _c("td", [
                               _c("input", {
-                                attrs: {
-                                  id: "DP:" + info.id_thm,
-                                  name: "DP:" + info.id_thm,
-                                  type: "date"
-                                }
+                                attrs: { id: "DP:" + info.id_thm, type: "date" }
                               })
                             ]),
                             _vm._v(" "),
@@ -47419,7 +47401,33 @@ var render = function() {
     _vm._v(" "),
     _vm._m(10),
     _vm._v(" "),
-    _vm._m(11),
+    _c("div", { staticClass: "form-group col-12" }, [
+      _c("label", [_vm._v("Commentaire")]),
+      _vm._v(" "),
+      _c("textarea", {
+        staticClass: "form-control",
+        attrs: {
+          type: "text",
+          rows: "4",
+          name: "commentaire",
+          maxlength: "1900",
+          placeholder: "Commentaire .."
+        }
+      }),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          attrs: { type: "button" },
+          on: {
+            click: function($event) {
+              return _vm.getTheme()
+            }
+          }
+        },
+        [_vm._v("TEST")]
+      )
+    ]),
     _vm._v(" "),
     _c("div", { staticClass: "card-footer text-center" }, [
       _c(
@@ -47436,7 +47444,7 @@ var render = function() {
         [_c("i", { staticClass: "fas fa-pen-square icon" }), _vm._v("Modifier")]
       ),
       _vm._v(" "),
-      _vm._m(12)
+      _vm._m(11)
     ])
   ])
 }
@@ -47575,25 +47583,6 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "form-group col-12" }, [_c("hr")])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group col-12" }, [
-      _c("label", [_vm._v("Commentaire")]),
-      _vm._v(" "),
-      _c("textarea", {
-        staticClass: "form-control",
-        attrs: {
-          type: "text",
-          rows: "4",
-          name: "commentaire",
-          maxlength: "1900",
-          placeholder: "Commentaire .."
-        }
-      })
-    ])
   },
   function() {
     var _vm = this
@@ -71687,8 +71676,8 @@ var state = {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\mediexperts\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\mediexperts\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\HP\MediexpertsV1.0.1\mediexperts\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\HP\MediexpertsV1.0.1\mediexperts\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

@@ -92,7 +92,7 @@
                       <td>{{info.bdg_total + (info.bdg_total * .2)}}</td>
                       <td>{{(info.bdg_total *.3) + (info.bdg_total *.2) }}</td>
                       <td>{{info.n_facture}}</td>
-                      <td> <input :id="'DP:'+info.id_thm" :name="'DP:'+info.id_thm" type="date"></td>
+                      <td> <input :id="'DP:'+info.id_thm" type="date"></td>
                       <td> <input :id="'MDP:'+info.id_thm" :name="'MDP:'+info.id_thm" type="text"> </td>
                   </tr>
                 </tbody>
@@ -124,7 +124,6 @@
                 readonly
                 :value="total_regl"
               />
-              <!-- <button type="text" @click="SelectedEtat()">Test</button> -->
             </div>
           </div>
 
@@ -375,6 +374,7 @@
         placeholder="Commentaire .."
       >
       </textarea>
+      <button type="button" @click="getTheme()">TEST</button>
     </div>
     <div class="card-footer text-center">
           <button class="btn bu-add" type="submit" id="add" @click="updateDRB()"><i class="fas fa-pen-square icon"></i>Modifier</button>
@@ -405,7 +405,9 @@ export default {
       total_regl : null,
       rmb_ofppt : [],
       justifs_ecart : null, 
-      etat : null
+      etat : null,
+      themes: [], 
+    
     };
   },
   mounted() {
@@ -413,6 +415,7 @@ export default {
     console.log(this.numero_remb);
     this.handleAction("DRB_Ofppt/getListOfDROfpptEdit", this.numero_remb);
     this.handleAction("DRB_Ofppt/ReglEntrpInfo", this.numero_remb);
+    
     setTimeout(() => {
       this.CalculTotalRegl();
       
@@ -421,8 +424,7 @@ export default {
     setTimeout(() => {
       this.model5 = this.DRB_Ofppts[0].model5 === "préparé";
       this.model6 = this.DRB_Ofppts[0].model6 === "préparé";
-      this.fiche_eval_sythetique =
-        this.DRB_Ofppts[0].fiche_eval_sythetique === "préparé";
+      this.fiche_eval_sythetique = this.DRB_Ofppts[0].fiche_eval_sythetique === "préparé";
       this.factures = this.DRB_Ofppts[0].factures === "préparé";
       this.compris_cheques = this.DRB_Ofppts[0].compris_cheques === "préparé";
       this.compris_remise = this.DRB_Ofppts[0].compris_remise === "préparé";
@@ -459,7 +461,7 @@ export default {
           }
         }
       }
-    }, 200);
+    }, 800);
   },
   updated() {
   
@@ -481,21 +483,7 @@ export default {
         }
       }, 1200);
       return this.total_regl
-    },
-    SelectedEtat () {
-
-   
-        setTimeout(() => {
-          let data = this.DRB_Ofppts;
-          let etat = data[0].etat;
-          if (etat === "payé") {
-            this.etat = true
-          } 
-
-        }, 2000);
-        
-        
-      },  
+    }, 
     updateDRB() {
       let model5 = this.model5;
       let model6 = this.model6;
@@ -510,7 +498,7 @@ export default {
       let date_depot_dmd_rembrs = document.getElementById("date_depot_dmd_rembrs");
       let date_rembrs = document.getElementById("date_rembrs");
       let etat = $("input:radio[name=etat]:checked").val();
-      let thems = getTheme();
+      
       
       axios
         .post("/edit-drb-ofppt/" + this.numero_remb, {
@@ -527,7 +515,7 @@ export default {
           date_depot_dmd_rembrs: date_depot_dmd_rembrs.value,
           date_rembrs: date_rembrs.value,
           etat: etat,
-          thems:  thems
+          thems: this.themes
         })
         .then(() => {
           this.$toastr.s("Modifié avec succès");
@@ -538,34 +526,31 @@ export default {
         });
     },
     getTheme(){
-        let thems = [];
+      this.themes = []
         let data = this.reglEntreprise;
         let item = 0;
-        for ( item in data) {
-        thems.push(data[item].id_thm);
-        }
-       console.log(thems);
-       return thems;
 
-    },
-    selectedEtat(){
-      let data = this.DRB_Ofppts;
-     let item = 0;
+        for (item in data) {          
+          console.log(  ) ;
+          this.themes.push(
+            {
+              id_theme : data[item].id_thm,
+              n_form : data[item].n_form,
+              date_paiement: document.getElementById(`DP:${data[item].id_thm}`).value,
+              mode_paiement: document.getElementById(`MDP:${data[item].id_thm}`).value,
+              rembrs_ofppt: document.getElementById(`RMBOFPPT:${data[item].id_thm}`).value,
+              ecart_rembrs_ofppt : document.getElementById(`EcartOFPPT:${data[item].id_thm}`).textContent.trim(),
+              justif_ecart :  document.getElementById(`justifEcart:${data[item].id_thm}`).value,
 
-       for ( item in data) {
-            this.etat=data[item].etat;
-            
-               document.getElementById('option3').checked = true;
-            
-        }
-
+            })
+        } 
+        console.log(JSON.parse(JSON.stringify(this.themes)));
     }
   },
   computed: {
     ...mapState("DRB_Ofppt", {
       DRB_Ofppts: state => state.DRB_OfpptEdit,
       reglEntreprise: state  => state.reglEntreprise
-      // ndrf: state => state.ndrf,
     })
 
   }
