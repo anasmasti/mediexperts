@@ -299,7 +299,7 @@
       <label>{{ etat }}</label>
       <h4>État demande</h4>
       <div class="btn-group btn-group-toggle btn-checked btn-Etat" role="group">
-        <label id="opt1" class="btn btn-warning">
+        <label class="btn btn-warning" for="option1">
           Initié
           <i class="fas fa-battery-quarter"></i>
           <input
@@ -309,11 +309,12 @@
             autocomplete="off"
             value="initié"
             v-model="etat"
+            onchange="Test()"
           />
         </label>
-        <label id="opt2" class="btn btn-warning">
-          Payé
 
+        <label id="opt2" class="btn btn-warning" for="option2">
+          Payé
           <i class="fas fa-dollar-sign"></i>
           <input
             type="radio"
@@ -324,7 +325,7 @@
             v-model="etat"
           />
         </label>
-        <label id="opt3" class="btn btn-warning">
+        <label id="opt3" class="btn btn-warning" for="option3">
           Instruction dossier
           <i class="fas fa-hourglass-half"></i>
           <input
@@ -336,7 +337,7 @@
             v-model="etat"
           />
         </label>
-        <label id="opt4" class="btn btn-warning">
+        <label id="opt4" class="btn btn-warning" for="option4">
           Déposé
           <i class="fas fa-folder-open"></i>
           <input
@@ -348,7 +349,7 @@
             v-model="etat"
           />
         </label>
-        <label id="opt5" class="btn btn-warning">
+        <label id="opt5" class="btn btn-warning" for="option5">
           Remboursé
           <i class="fas fa-check-double"></i>
           <input
@@ -358,6 +359,7 @@
             autocomplete="off"
             value="remboursé"
             v-model="etat"
+            checked
           />
         </label>
       </div>
@@ -405,7 +407,8 @@ export default {
       total_regl : null,
       rmb_ofppt : null,
       justifs_ecart : null, 
-      etat : null
+      etat : null,
+      active_radio : null,
     };
   },
   mounted() {
@@ -449,9 +452,12 @@ export default {
               .text()
               .toLowerCase()
               .trim() == this.etat;
+            console.log('Testttttttttt : ', selected_etat);
 
           if (selected_etat) {
             $(`#opt${i}`).addClass("active");
+            this.active_radio = $(`#opt${i}`);
+            console.log('active radio :' , `#opt${i}`);
           } else {
             targetselected_etat.click(() => {
               $(`#opt${i}`).removeClass("active");
@@ -459,12 +465,15 @@ export default {
           }
         }
       }
-    }, 200);
+    }, 2000);
+
+     setTimeout(() => {
+        console.log('Tesrrrrrrrrr',this.DRB_Ofppts[0].etat);
+      }, 3000);
   },
-  updated() {
-  
-  },
+
   methods: {
+
      handleAction(actionName, value) {
       this.$store.dispatch(actionName, value);
     },
@@ -535,7 +544,36 @@ export default {
           this.$toastr.e("Echec de modification");
           throw e;
         });
-    }
+    },
+
+    Test(){
+        // document.getElementById('option1').checked = true ; 
+        setTimeout(() => {
+          for (let i = 0; i < 4; i++) {
+          let targetselected_etat = $(`#opt${i}`);
+
+          let selected_etat =
+            $(`#opt${i}`)
+              .text()
+              .toLowerCase()
+              .trim() == this.etat;
+
+          if (selected_etat) {
+            // $(`#opt${i}`).addClass("active");
+            // $(this.active_radio).click().removeClass("active")
+            // // $(`#opt${i}`).addClass("active");
+            // console.log("hey from if");
+            // this.active_radio = $(`#opt${i}`);
+            console.log(this.etat);
+          } else {
+            // targetselected_etat.click(() => {
+            //   $(`#opt${i}`).removeClass("active");
+            // });
+            targetselected_etat.click().removeClass("active")
+          }
+        }
+        }, 2000);
+     },
   },
   computed: {
     ...mapState("DRB_Ofppt", {

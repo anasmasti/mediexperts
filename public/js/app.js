@@ -4146,6 +4146,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Edit",
@@ -4166,7 +4168,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       total_regl: null,
       rmb_ofppt: null,
       justifs_ecart: null,
-      etat: null
+      etat: null,
+      active_radio: null
     };
   },
   mounted: function mounted() {
@@ -4199,8 +4202,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
           var selected_etat = $("#opt".concat(i)).text().toLowerCase().trim() == _this.etat;
 
+          console.log('Testttttttttt : ', selected_etat);
+
           if (selected_etat) {
             $("#opt".concat(i)).addClass("active");
+            _this.active_radio = $("#opt".concat(i));
+            console.log('active radio :', "#opt".concat(i));
           } else {
             targetselected_etat.click(function () {
               $("#opt".concat(i)).removeClass("active");
@@ -4212,9 +4219,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           _loop(i);
         }
       }
-    }, 200);
+    }, 2000);
+    setTimeout(function () {
+      console.log('Tesrrrrrrrrr', _this.DRB_Ofppts[0].etat);
+    }, 3000);
   },
-  updated: function updated() {},
   methods: {
     handleAction: function handleAction(actionName, value) {
       this.$store.dispatch(actionName, value);
@@ -4284,6 +4293,32 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
         throw e;
       });
+    },
+    Test: function Test() {
+      var _this5 = this;
+
+      // document.getElementById('option1').checked = true ; 
+      setTimeout(function () {
+        for (var i = 0; i < 4; i++) {
+          var targetselected_etat = $("#opt".concat(i));
+
+          var selected_etat = $("#opt".concat(i)).text().toLowerCase().trim() == _this5.etat;
+
+          if (selected_etat) {
+            // $(`#opt${i}`).addClass("active");
+            // $(this.active_radio).click().removeClass("active")
+            // // $(`#opt${i}`).addClass("active");
+            // console.log("hey from if");
+            // this.active_radio = $(`#opt${i}`);
+            console.log(_this5.etat);
+          } else {
+            // targetselected_etat.click(() => {
+            //   $(`#opt${i}`).removeClass("active");
+            // });
+            targetselected_etat.click().removeClass("active");
+          }
+        }
+      }, 2000);
     }
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])("DRB_Ofppt", {
@@ -47205,7 +47240,7 @@ var render = function() {
           [
             _c(
               "label",
-              { staticClass: "btn btn-warning", attrs: { id: "opt1" } },
+              { staticClass: "btn btn-warning", attrs: { for: "option1" } },
               [
                 _vm._v("\n        Initié\n        "),
                 _c("i", { staticClass: "fas fa-battery-quarter" }),
@@ -47224,7 +47259,8 @@ var render = function() {
                     name: "etat",
                     id: "option1",
                     autocomplete: "off",
-                    value: "initié"
+                    value: "initié",
+                    onchange: "Test()"
                   },
                   domProps: { checked: _vm._q(_vm.etat, "initié") },
                   on: {
@@ -47238,9 +47274,12 @@ var render = function() {
             _vm._v(" "),
             _c(
               "label",
-              { staticClass: "btn btn-warning", attrs: { id: "opt2" } },
+              {
+                staticClass: "btn btn-warning",
+                attrs: { id: "opt2", for: "option2" }
+              },
               [
-                _vm._v("\n        Payé\n\n        "),
+                _vm._v("\n        Payé\n        "),
                 _c("i", { staticClass: "fas fa-dollar-sign" }),
                 _vm._v(" "),
                 _c("input", {
@@ -47271,7 +47310,10 @@ var render = function() {
             _vm._v(" "),
             _c(
               "label",
-              { staticClass: "btn btn-warning", attrs: { id: "opt3" } },
+              {
+                staticClass: "btn btn-warning",
+                attrs: { id: "opt3", for: "option3" }
+              },
               [
                 _vm._v("\n        Instruction dossier\n        "),
                 _c("i", { staticClass: "fas fa-hourglass-half" }),
@@ -47306,7 +47348,10 @@ var render = function() {
             _vm._v(" "),
             _c(
               "label",
-              { staticClass: "btn btn-warning", attrs: { id: "opt4" } },
+              {
+                staticClass: "btn btn-warning",
+                attrs: { id: "opt4", for: "option4" }
+              },
               [
                 _vm._v("\n        Déposé\n        "),
                 _c("i", { staticClass: "fas fa-folder-open" }),
@@ -47339,7 +47384,10 @@ var render = function() {
             _vm._v(" "),
             _c(
               "label",
-              { staticClass: "btn btn-warning", attrs: { id: "opt5" } },
+              {
+                staticClass: "btn btn-warning",
+                attrs: { id: "opt5", for: "option5" }
+              },
               [
                 _vm._v("\n        Remboursé\n        "),
                 _c("i", { staticClass: "fas fa-check-double" }),
@@ -47358,7 +47406,8 @@ var render = function() {
                     name: "etat",
                     id: "option5",
                     autocomplete: "off",
-                    value: "remboursé"
+                    value: "remboursé",
+                    checked: ""
                   },
                   domProps: { checked: _vm._q(_vm.etat, "remboursé") },
                   on: {
@@ -71660,8 +71709,8 @@ var state = {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\HP\MediexpertsV1.0.1\mediexperts\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\HP\MediexpertsV1.0.1\mediexperts\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\xampp\htdocs\Nouveau dossier\mediexperts\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\Nouveau dossier\mediexperts\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
