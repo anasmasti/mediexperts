@@ -4148,6 +4148,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Edit",
@@ -4155,7 +4161,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     return {
       numero_remb: [],
       // DRB_Ofppts: {},
-      edited_DRB: null,
+      edited_DRB: [],
       model5: false,
       model6: null,
       fiche_eval_sythetique: null,
@@ -4166,10 +4172,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       relev_bq_cabinet: null,
       accuse_model6: null,
       total_regl: null,
-      rmb_ofppt: null,
+      rmb_ofppt: [],
       justifs_ecart: null,
       etat: null,
-      active_radio: null
+      active_radio: null,
+      mode_ref_peiement: []
     };
   },
   mounted: function mounted() {
@@ -4202,29 +4209,88 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
           var selected_etat = $("#opt".concat(i)).text().toLowerCase().trim() == _this.etat;
 
-          console.log('Testttttttttt : ', selected_etat);
-
           if (selected_etat) {
-            $("#opt".concat(i)).addClass("active");
-            _this.active_radio = $("#opt".concat(i));
-            console.log('active radio :', "#opt".concat(i));
+            $("#opt".concat(i)).removeClass("btn-warning");
+            $("#opt".concat(i)).addClass("btn-success active");
+            _this.active_radio = "#opt".concat(i); // this.active_radio =`#opt${i}`;
+            // console.log('active radio :' , `#opt${i}`);
           } else {
             targetselected_etat.click(function () {
-              $("#opt".concat(i)).removeClass("active");
+              // $(`#opt${i}`).removeClass("btn-warning");
+              $("#opt".concat(i)).removeClass("btn-success active");
             });
           }
         };
 
-        for (var i = 0; i < 4; i++) {
+        for (var i = 1; i <= 5; i++) {
           _loop(i);
         }
       }
-    }, 2000);
-    setTimeout(function () {
-      console.log('Tesrrrrrrrrr', _this.DRB_Ofppts[0].etat);
-    }, 3000);
+    }, 1200);
   },
   methods: {
+    DateValidation: function DateValidation() {
+      // setTimeout(() => {
+      // let Date_depo_dem = document.getElementById('date_depot_dmd_rembrs').value;
+      // let Date_remb = document.getElementById('date_rembrs').value;
+      // if (Date_depo_dem > Date_remb) {
+      //     return true;
+      // }
+      // else
+      // {
+      //     this.$toastr.e("Echec de modification");
+      //     return false;
+      // }
+      //   // console.log('date 1 : ',document.getElementById('date_depot_dmd_rembrs').value);
+      // }, 1000);
+      // console.log('date 2 : ',Date_remb);
+      var Date_remb = document.getElementById('date_rembrs');
+      var Date_depo_dem = document.getElementById('date_depot_dmd_rembrs');
+
+      if (Date_depo_dem.value == '' || Date_depo_dem.value > Date_remb.value) {
+        // document.getElementById('date_rembrs').value = '';
+        document.getElementById('date_rembrs').disabled = true;
+        this.$toastr.e("Date dépot demande de Remboursement doit etre inferieur a la Date de Remboursement ");
+      } else if (Date_depo_dem.value != '') {
+        document.getElementById('date_rembrs').disabled = false;
+      }
+    },
+    select_all: function select_all(id_thm) {
+      var checkId = document.getElementById('select_all');
+      var thems = [];
+      var data = this.reglEntreprise;
+      var item = 0;
+
+      for (item in data) {
+        thems.push(data[item].id_thm);
+      }
+
+      if (checkId.checked) {
+        var Frs_id_Mode = 'MDP:' + thems[0];
+        var Frs_id_Date = 'DP:' + thems[0];
+
+        if (document.getElementById(Frs_id_Mode).value != '' && document.getElementById(Frs_id_Date).value != '') {
+          for (var index = 1; index < thems.length; index++) {
+            var id_Mode = 'MDP:' + thems[index];
+            var id_Date = 'DP:' + thems[index];
+            document.getElementById(id_Mode).value = document.getElementById(Frs_id_Mode).value;
+            document.getElementById(id_Date).value = document.getElementById(Frs_id_Date).value;
+          }
+        } else {
+          this.$toastr.e("Merci d'entrer les premier ' Date paiement entreprise ' et ' Mode et référence de paiement' !!");
+          checkId.checked = false;
+        }
+      } else {
+        for (var _index = 1; _index < thems.length; _index++) {
+          var _id_Mode = 'MDP:' + thems[_index];
+
+          var _id_Date = 'DP:' + thems[_index];
+
+          document.getElementById(_id_Mode).value = '';
+          document.getElementById(_id_Date).value = '';
+        }
+      }
+    },
     handleAction: function handleAction(actionName, value) {
       this.$store.dispatch(actionName, value);
     },
@@ -4271,7 +4337,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var montant_rembrs = document.getElementById("montant_rembrs");
       var date_depot_dmd_rembrs = document.getElementById("date_depot_dmd_rembrs");
       var date_rembrs = document.getElementById("date_rembrs");
-      var etat = $("input:radio[name=etat]:checked").val();
+      var etat = $("input:radio[name=etat]:checked").val(); // let thems = this.getTheme();
+
       axios.post("/edit-drb-ofppt/" + this.numero_remb, {
         model6: model6,
         model5: model5,
@@ -4285,7 +4352,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         montant_rembrs: montant_rembrs.value,
         date_depot_dmd_rembrs: date_depot_dmd_rembrs.value,
         date_rembrs: date_rembrs.value,
-        etat: etat
+        etat: etat // thems:  thems
+
       }).then(function () {
         _this4.$toastr.s("Modifié avec succès");
       })["catch"](function (e) {
@@ -4294,31 +4362,44 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         throw e;
       });
     },
-    Test: function Test() {
+    checkEtat: function checkEtat() {
       var _this5 = this;
 
-      // document.getElementById('option1').checked = true ; 
       setTimeout(function () {
-        for (var i = 0; i < 4; i++) {
-          var targetselected_etat = $("#opt".concat(i));
-
+        for (var i = 1; i <= 5; i++) {
           var selected_etat = $("#opt".concat(i)).text().toLowerCase().trim() == _this5.etat;
 
           if (selected_etat) {
-            // $(`#opt${i}`).addClass("active");
-            // $(this.active_radio).click().removeClass("active")
-            // // $(`#opt${i}`).addClass("active");
-            // console.log("hey from if");
-            // this.active_radio = $(`#opt${i}`);
-            console.log(_this5.etat);
-          } else {
-            // targetselected_etat.click(() => {
-            //   $(`#opt${i}`).removeClass("active");
-            // });
-            targetselected_etat.click().removeClass("active");
+            $(_this5.active_radio).removeClass("btn-success active");
+            $(_this5.active_radio).addClass("btn-warning");
+            _this5.active_radio = "#opt".concat(i); // console.log(this.active_radio);
+
+            $("#opt".concat(i)).removeClass("btn-warning");
+            $("#opt".concat(i)).addClass("btn-success active"); // console.log('active radio :' , `#opt${i}`);
+            // console.log('Testttttttttt : ', selected_etat);
+            // console.log(this.etat);
           }
         }
-      }, 2000);
+      }, 200);
+    }
+  },
+  // getTheme(){
+  //     let thems = [];
+  //     let data = this.reglEntreprise;
+  //     let item = 0;
+  //     for ( item in data) {
+  //     thems.push(data[item].id_thm);
+  //     }
+  //    console.log(thems);
+  //    return thems;
+  // },
+  selectedEtat: function selectedEtat() {
+    var data = this.DRB_Ofppts;
+    var item = 0;
+
+    for (item in data) {
+      this.etat = data[item].etat;
+      document.getElementById('option3').checked = true;
     }
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])("DRB_Ofppt", {
@@ -4350,12 +4431,6 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -10297,7 +10372,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\ntable[data-v-376179dc] {\r\n  margin: 10px auto;\n}\ntd[data-v-376179dc],\r\nth[data-v-376179dc] {\r\n  text-align: center;\n}\n.total_reg[data-v-376179dc] {\r\n  margin: 10px auto;\r\n  float: right;\n}\n.btn-Etat[data-v-376179dc] {\r\n  display: flex;\r\n  flex-direction: row;\r\n  flex-wrap: wrap;\n}\n.display_div[data-v-376179dc] {\r\n  display: flex;\r\n  flex-direction: row;\r\n  flex-wrap: wrap;\n}\n.display_div_child[data-v-376179dc] {\r\n  display: flex;\r\n  flex-direction: column;\n}\n.div_select_all[data-v-376179dc] {\r\n  float: right;\n}\r\n", ""]);
+exports.push([module.i, "\ntable[data-v-376179dc] {\r\n  margin: 10px auto;\n}\ntd[data-v-376179dc],\r\nth[data-v-376179dc] {\r\n  text-align: center;\n}\n.total_reg[data-v-376179dc] {\r\n  margin: 10px auto;\r\n  float: right;\n}\n.btn-Etat[data-v-376179dc] {\r\n  display: flex;\r\n  flex-direction: row;\r\n  flex-wrap: wrap;\n}\n.display_div[data-v-376179dc] {\r\n  display: flex;\r\n  flex-direction: row;\r\n  flex-wrap: wrap;\n}\n.display_div_child[data-v-376179dc] {\r\n  display: flex;\r\n  flex-direction: column;\n}\n.div_select_all[data-v-376179dc] {\r\n  float: right;\n}\n.EcartOFPPT[data-v-376179dc]{\r\n  align-items: center;\r\n  text-align: center;\r\n  -webkit-text-decoration: black;\r\n          text-decoration: black;\r\n  background-color: transparent;\r\n  border: none;\r\n  font-weight:bold;\n}\r\n", ""]);
 
 // exports
 
@@ -46407,9 +46482,25 @@ var render = function() {
                             _vm._v(" "),
                             _c("td", [_vm._v(_vm._s(info.n_facture))]),
                             _vm._v(" "),
-                            _vm._m(3, true),
+                            _c("td", [
+                              _c("input", {
+                                attrs: {
+                                  id: "DP:" + info.id_thm,
+                                  name: "DP:" + info.id_thm,
+                                  type: "date"
+                                }
+                              })
+                            ]),
                             _vm._v(" "),
-                            _vm._m(4, true)
+                            _c("td", [
+                              _c("input", {
+                                attrs: {
+                                  id: "MDP:" + info.id_thm,
+                                  name: "MDP:" + info.id_thm,
+                                  type: "text"
+                                }
+                              })
+                            ])
                           ])
                         ])
                       })
@@ -46417,18 +46508,45 @@ var render = function() {
                     2
                   ),
                   _vm._v(" "),
-                  _vm._m(5, true)
+                  _c(
+                    "div",
+                    {
+                      staticClass:
+                        "form-group col-lg-12 col-sm-12 custom-control custom-checkbox"
+                    },
+                    [
+                      _c("div", { staticClass: "div_select_all" }, [
+                        _c("input", {
+                          staticClass: "custom-control-input",
+                          attrs: {
+                            type: "checkbox",
+                            name: "select_all",
+                            id: "select_all"
+                          },
+                          on: {
+                            change: function($event) {
+                              return _vm.select_all()
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c(
+                          "label",
+                          {
+                            staticClass: "custom-control-label ",
+                            attrs: { for: "select_all" }
+                          },
+                          [_vm._v("selectionner tout")]
+                        )
+                      ])
+                    ]
+                  )
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "total_reg" }, [
-                  _c(
-                    "label",
-                    {
-                      attrs: { for: "txt-total-reg" },
-                      on: { "": function($event) {} }
-                    },
-                    [_vm._v("Total Réglement : ")]
-                  ),
+                  _c("label", { attrs: { for: "txt-total-reg" } }, [
+                    _vm._v("Total Réglement : ")
+                  ]),
                   _vm._v(" "),
                   _c("input", {
                     staticClass: "txt-total-reg",
@@ -46443,7 +46561,7 @@ var render = function() {
                 ])
               ]),
               _vm._v(" "),
-              _vm._m(6, true),
+              _vm._m(3, true),
               _vm._v(" "),
               _c("div", { staticClass: "form-group col-12" }, [
                 _c("div", { staticClass: "container" }, [
@@ -46948,7 +47066,7 @@ var render = function() {
                   ])
                 ]),
                 _vm._v(" "),
-                _vm._m(7, true),
+                _vm._m(4, true),
                 _vm._v(" "),
                 _c(
                   "div",
@@ -46986,6 +47104,11 @@ var render = function() {
                               },
                               domProps: {
                                 value: DRB_Ofppt.date_depot_dmd_rembrs
+                              },
+                              on: {
+                                change: function($event) {
+                                  return _vm.DateValidation()
+                                }
                               }
                             })
                           ]
@@ -47100,7 +47223,12 @@ var render = function() {
                                 onmouseover: "(this.type='date')",
                                 placeholder: "Date réalisation"
                               },
-                              domProps: { value: DRB_Ofppt.date_rembrs }
+                              domProps: { value: DRB_Ofppt.date_rembrs },
+                              on: {
+                                change: function($event) {
+                                  return _vm.DateValidation()
+                                }
+                              }
                             })
                           ]
                         )
@@ -47109,16 +47237,16 @@ var render = function() {
                   ]
                 ),
                 _vm._v(" "),
-                _vm._m(8, true),
+                _vm._m(5, true),
                 _vm._v(" "),
-                _vm._m(9, true),
+                _vm._m(6, true),
                 _vm._v(" "),
                 _c("div", { staticClass: "form-group col-12" }, [
                   _c("label", [_vm._v("Remboursement OFPPT")]),
                   _vm._v(" "),
                   _c("div", { staticClass: "table-responsive" }, [
                     _c("table", { staticClass: "table table-striped" }, [
-                      _vm._m(10, true),
+                      _vm._m(7, true),
                       _vm._v(" "),
                       _c(
                         "tbody",
@@ -47140,36 +47268,52 @@ var render = function() {
                                   {
                                     name: "model",
                                     rawName: "v-model",
-                                    value: _vm.rmb_ofppt,
-                                    expression: "rmb_ofppt"
+                                    value: _vm.rmb_ofppt[index],
+                                    expression: "rmb_ofppt[index]"
                                   }
                                 ],
                                 attrs: {
                                   type: "text",
-                                  name: "rmb_ofppt",
-                                  id: "rmb_ofppt"
+                                  name: "'RMBOFPPT:'+info.id_thm",
+                                  id: "RMBOFPPT:" + info.id_thm
                                 },
-                                domProps: { value: _vm.rmb_ofppt },
+                                domProps: { value: _vm.rmb_ofppt[index] },
                                 on: {
                                   input: function($event) {
                                     if ($event.target.composing) {
                                       return
                                     }
-                                    _vm.rmb_ofppt = $event.target.value
+                                    _vm.$set(
+                                      _vm.rmb_ofppt,
+                                      index,
+                                      $event.target.value
+                                    )
                                   }
                                 }
                               })
                             ]),
                             _vm._v(" "),
                             _c("td", [
-                              _vm._v(
-                                _vm._s(
-                                  (
-                                    info.bdg_total * (70 / 100) -
-                                    _vm.rmb_ofppt
-                                  ).toFixed(2)
-                                )
-                              )
+                              _c("input", {
+                                staticClass: "EcartOFPPT",
+                                attrs: {
+                                  id: "EcartOFPPT:" + info.id_thm,
+                                  name: "EcartOFPPT:" + info.id_thm,
+                                  disabled: ""
+                                },
+                                domProps: {
+                                  value:
+                                    (
+                                      info.bdg_total * (70 / 100) -
+                                      _vm.rmb_ofppt[index]
+                                    ).toFixed(2) == "NaN"
+                                      ? "0"
+                                      : (
+                                          info.bdg_total * (70 / 100) -
+                                          _vm.rmb_ofppt[index]
+                                        ).toFixed(2)
+                                }
+                              })
                             ]),
                             _vm._v(" "),
                             _c("td", [
@@ -47184,8 +47328,8 @@ var render = function() {
                                 ],
                                 attrs: {
                                   type: "text",
-                                  name: "justifs_ecart",
-                                  id: "justifs_ecart"
+                                  name: "justifEcart:" + info.id_thm,
+                                  id: "justifEcart:" + info.id_thm
                                 },
                                 domProps: { value: _vm.justifs_ecart },
                                 on: {
@@ -47205,7 +47349,7 @@ var render = function() {
                     ])
                   ]),
                   _vm._v(" "),
-                  _vm._m(11, true),
+                  _vm._m(8, true),
                   _vm._v(" "),
                   _c("div", {
                     staticClass: "form-group col-lg-12 col-sm-12",
@@ -47240,7 +47384,10 @@ var render = function() {
           [
             _c(
               "label",
-              { staticClass: "btn btn-warning", attrs: { for: "option1" } },
+              {
+                staticClass: "btn btn-warning",
+                attrs: { id: "opt1", for: "option1" }
+              },
               [
                 _vm._v("\n        Initié\n        "),
                 _c("i", { staticClass: "fas fa-battery-quarter" }),
@@ -47259,11 +47406,13 @@ var render = function() {
                     name: "etat",
                     id: "option1",
                     autocomplete: "off",
-                    value: "initié",
-                    onchange: "Test()"
+                    value: "initié"
                   },
                   domProps: { checked: _vm._q(_vm.etat, "initié") },
                   on: {
+                    click: function($event) {
+                      return _vm.checkEtat()
+                    },
                     change: function($event) {
                       _vm.etat = "initié"
                     }
@@ -47300,6 +47449,9 @@ var render = function() {
                   },
                   domProps: { checked: _vm._q(_vm.etat, "payé") },
                   on: {
+                    click: function($event) {
+                      return _vm.checkEtat()
+                    },
                     change: function($event) {
                       _vm.etat = "payé"
                     }
@@ -47338,6 +47490,9 @@ var render = function() {
                     checked: _vm._q(_vm.etat, "instruction dossier")
                   },
                   on: {
+                    click: function($event) {
+                      return _vm.checkEtat()
+                    },
                     change: function($event) {
                       _vm.etat = "instruction dossier"
                     }
@@ -47374,6 +47529,9 @@ var render = function() {
                   },
                   domProps: { checked: _vm._q(_vm.etat, "déposé") },
                   on: {
+                    click: function($event) {
+                      return _vm.checkEtat()
+                    },
                     change: function($event) {
                       _vm.etat = "déposé"
                     }
@@ -47406,11 +47564,13 @@ var render = function() {
                     name: "etat",
                     id: "option5",
                     autocomplete: "off",
-                    value: "remboursé",
-                    checked: ""
+                    value: "remboursé"
                   },
                   domProps: { checked: _vm._q(_vm.etat, "remboursé") },
                   on: {
+                    click: function($event) {
+                      return _vm.checkEtat()
+                    },
                     change: function($event) {
                       _vm.etat = "remboursé"
                     }
@@ -47423,9 +47583,9 @@ var render = function() {
       ]
     ),
     _vm._v(" "),
-    _vm._m(12),
+    _vm._m(9),
     _vm._v(" "),
-    _vm._m(13),
+    _vm._m(10),
     _vm._v(" "),
     _c("div", { staticClass: "card-footer text-center" }, [
       _c(
@@ -47442,7 +47602,7 @@ var render = function() {
         [_c("i", { staticClass: "fas fa-pen-square icon" }), _vm._v("Modifier")]
       ),
       _vm._v(" "),
-      _vm._m(14)
+      _vm._m(11)
     ])
   ])
 }
@@ -47494,47 +47654,6 @@ var staticRenderFns = [
         ])
       ])
     ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", [_c("input", { attrs: { type: "date" } })])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", [_c("input", { attrs: { type: "text" } })])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass:
-          "form-group col-lg-12 col-sm-12 custom-control custom-checkbox"
-      },
-      [
-        _c("div", { staticClass: "div_select_all" }, [
-          _c("input", {
-            staticClass: "custom-control-input",
-            attrs: { type: "checkbox", name: "select_all", id: "select_all" }
-          }),
-          _vm._v(" "),
-          _c(
-            "label",
-            {
-              staticClass: "custom-control-label ",
-              attrs: { for: "select_all" }
-            },
-            [_vm._v("selectionner tout")]
-          )
-        ])
-      ]
-    )
   },
   function() {
     var _vm = this
@@ -47723,11 +47842,7 @@ var render = function() {
           )
         ])
       ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "card-footer" }),
-    _vm._v(" "),
-    _c("div", { staticClass: "card-footer" })
+    ])
   ])
 }
 var staticRenderFns = [

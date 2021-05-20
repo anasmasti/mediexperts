@@ -65,14 +65,8 @@
 
   </div><!-- ./card-body -->
 
-  <div class="card-footer">
+  
   </div>
-
-    <div class="card-footer">
-
-    </div>
-  </div>
-  <!-- ./CARD -->
 </template>
  <script>
 import { mapState , mapActions } from 'vuex';
