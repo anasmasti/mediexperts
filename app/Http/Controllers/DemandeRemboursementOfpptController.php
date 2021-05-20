@@ -9,6 +9,11 @@ class DemandeRemboursementOfpptController extends Controller
     public function index(){
         return view('DRB_Ofppt.view');
     }
+
+    public function Detail()
+    {
+        return view('DRB_Ofppt.detail');
+    }
     // public function edit(Request $request, $n_drf){
     //     $pln = DemandeRemboursementOfppt::findOrFail($n_drf);
     //     return view('DRB_Ofppt.edit',['pln '=>$pln ]);
@@ -84,6 +89,7 @@ class DemandeRemboursementOfpptController extends Controller
             $demandeRemboursementOFPPT->montant_rembrs = $request->montant_rembrs ;
             $demandeRemboursementOFPPT->date_rembrs = $request->date_rembrs ;
             $demandeRemboursementOFPPT->date_depot_dmd_rembrs = $request->date_depot_dmd_rembrs ;
+            $demandeRemboursementOFPPT->commenter = $request->commenter;
             $demandeRemboursementOFPPT->etat = $request->etat ;
             $demandeRemboursementOFPPT->save();
 
@@ -112,9 +118,6 @@ class DemandeRemboursementOfpptController extends Controller
     {
         $drb = DemandeRemboursementOfppt::findOrFail($n_drf);
         $drb -> delete();
-        // $df = DemandeFinancement::findOrFail($ndf);
-        // $df -> delete();
-
         $request->session()->flash('deleted', 'Supprimé avec succès');
 
     }

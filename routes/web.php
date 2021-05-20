@@ -172,33 +172,16 @@ Route::post('/save-nfacture-df', 'DemandeFinancementController@SaveNFactureDF')-
 
 
 //***************  OFPPT DR ROUTES ***************
-// Route::post('update-drb-ofppt/{n_drf}' , 'DemandeRemboursementOfpptController@update');
-// Route::post('delete-drb-ofppt/{n_drf}' , 'DemandeRemboursementOfpptController@destroy');
 
-// Route::get('/drb-of', 'DemandeRemboursementOfpptController@index')->name('DRB_Ofppt.index');
  Route::get('/list-drb', 'DemandeRemboursementOfpptController@index')->name('DRB_Ofppt.index');
  Route::get('/edit-drb-ofppt', 'DemandeRemboursementOfpptController@edit')->name('DRB_Ofppt.edit');
  Route::get('/list-drb-ofppt', 'DemandeRemboursementOfpptController@show')->name('DRB_Ofppt.show');
  Route::get('/edit-drb-ofppt/{ndrb}', 'DemandeRemboursementOfpptController@editRDB')->name('DRB_Ofppt.editD');
  Route::get('/regEntrp-drb-ofppt/{ndrb}','DemandeRemboursementOfpptController@reglementEntreprise');
  Route::post('/edit-drb-ofppt/{ndrb}', 'DemandeRemboursementOfpptController@update')->name('DRB_Ofppt.update');
- Route::get('/detail-drb-ofppt', 'DetailCntroller@Detail')->name('DRB_Ofppt.detail');
- Route::get('/token', function () { return csrf_token(); });
- // // Route::get('/detail-drb-of/{ndrb}', 'DemandeRemboursementOfpptController@show')->name('DRB_Ofppt.show');
-// Route::get('/detail-drb-of', 'DetailCntroller@detail')->name('DRB_Ofppt.show');
-
-// Route::get('/add-drb-of', 'DemandeRemboursementOfpptController@store')->name('DRB_Ofppt.store');
-// Route::post('/add-drb-of', 'DemandeRemboursementOfpptController@store')->name('DRB_Ofppt.store');
-
-// Route::get('/edit-drb-of/{ndrb}', 'DemandeRemboursementOfpptController@update')->name('DRB_Ofppt.update');
-// Route::post('/edit-drb-of/{ndrb}', 'DemandeRemboursementOfpptController@update')->name('DRB_Ofppt.update');
-// Route::get('/edit-drb', 'EditController@update')->name('DRB_Ofppt.update');
-
-
-// Route::get('/searchofppt', 'DemandeRemboursementOfpptController@searchofppt');
-
-// Route::get('/del-drb-of/{ndrb}', 'DemandeRemboursementOfpptController@destroy')->name('DRB_Ofppt.destroy');
-/********************************************************************/
+ Route::get('/detail-drb-ofppt', 'DemandeRemboursementOfpptController@Detail')->name('DRB_Ofppt.detail');
+ Route::post('/delete-drf/{ndrb}', 'DemandeRemboursementOfpptController@destroy');
+ 
 
 
 //*************** PLAN FORMATION ROUTES ***************

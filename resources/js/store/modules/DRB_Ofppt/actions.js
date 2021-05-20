@@ -39,23 +39,14 @@ async getListOfDROfpptEdit({ commit }, ndrb) {
         console.log("regl entreprise info", data);
       })
       .catch(err => console.log("cant get reg entrp info", err));
-  }
-// async updateListOfDROfpptEdit({commit}, ndrb) {
-//     await axios.post(`edit-drb-ofppt` , {
-//         params: { ndrb: ndrb } ,
-//       })
-//       .then(res => {
-//           commit('FETCH_DBR_OFPPT_Edit', res.data)
-//           console.log('test data ', data )
-//       }).catch(err => {
-//       console.log(err)
-//   });
-
-// }
+  },
+  async DeleteDrf(ndrb) {
+    await axios 
+      .post(`/delete-drf/`+ ndrb)
+      .then(() => {
+        console.log('delected');
+      })
+      .catch(err => console.log("cant delete drf", err));
+  },
 }
 
-/*
-let sellerId = 317737
-
-function getSellerAnalyticsTotals() {
-    return axios.get(`http://localhost:8000/api/v1/seller/${sellerId}/analytics`);*/

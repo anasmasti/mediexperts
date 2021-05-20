@@ -92,7 +92,7 @@
                       <td>{{info.bdg_total + (info.bdg_total * .2)}}</td>
                       <td>{{(info.bdg_total *.3) + (info.bdg_total *.2) }}</td>
                       <td>{{info.n_facture}}</td>
-                      <td> <input :id="'DP:'+info.id_thm" type="date"></td>
+                      <td> <input :id="'DP:'+info.id_thm" :name="'DP:'+info.id_thm" type="date" ></td>
                       <td> <input :id="'MDP:'+info.id_thm" :name="'MDP:'+info.id_thm" type="text"> </td>
                   </tr>
                 </tbody>
@@ -106,6 +106,7 @@
                     name="select_all"
                     id="select_all"
                     class="custom-control-input"
+                    @change="select_all()"
                   />
                   <label for="select_all" class="custom-control-label "
                     >selectionner tout</label
@@ -193,7 +194,7 @@
                   onmouseover="(this.type='date')"
                   placeholder="Date réalisation"
                   :value=DRB_Ofppt.date_depot_dmd_rembrs
-                  
+                  @change="DateValidation()"
                 />
               </div>
 
@@ -234,6 +235,7 @@
                   onmouseover="(this.type='date')"
                   placeholder="Date réalisation"
                   :value=DRB_Ofppt.date_rembrs
+                  @change="DateValidation()"
                 />
               </div>
            </div>
@@ -267,8 +269,9 @@
                   <td>{{info.bdg_total}}</td>
                   <td>{{(info.bdg_total * .7).toFixed(2)}}</td>
                   <td><input type="text" name="'RMBOFPPT:'+info.id_thm" :id="'RMBOFPPT:'+info.id_thm" v-model="rmb_ofppt[index]"></td>
-                  <td><label :id="`EcartOFPPT:${info.id_thm}`" :name="`EcartOFPPT:${info.id_thm}`">{{((info.bdg_total * (70/100)) - rmb_ofppt[index]).toFixed(2)}}</label></td>
-                  <td><input type="text" :name="'justifEcart:'+info.id_thm" :id="'justifEcart:'+info.id_thm" v-model="justifs_ecart"></td>
+                  <!-- <td><label :id="`EcartOFPPT:${info.id_thm}`" :name="`EcartOFPPT:${info.id_thm}`" :v-model="test">{{((info.bdg_total * (70/100)) - rmb_ofppt[index]).toFixed(2)}}</label></td> -->
+                  <td><input class="EcartOFPPT" :id="`EcartOFPPT:${info.id_thm}`" :name="`EcartOFPPT:${info.id_thm}`" :value="((info.bdg_total * (70/100)) - rmb_ofppt[index]).toFixed(2) == 'NaN' ? '0' : ((info.bdg_total * (70/100)) - rmb_ofppt[index]).toFixed(2)" disabled /></td>
+                  <td><input type="text" :name="'justifEcart:'+info.id_thm" :id="'justifEcart:'+info.id_thm" ></td>
                 </tr>
               </tbody>
             </table>
@@ -297,8 +300,8 @@
     <div class="form-group col-12 text-center" style="margin-top: 2rem ;">
       <label>{{ etat }}</label>
       <h4>État demande</h4>
-      <div class="btn-group btn-group-toggle btn-checked btn-Etat" role="group">
-        <label id="opt1" class="btn btn-warning">
+      <div  class="btn-group btn-group-toggle btn-checked btn-Etat" role="group">
+        <label id="opt1" class="btn btn-warning" for="option1">
           Initié
           <i class="fas fa-battery-quarter"></i>
           <input
@@ -308,11 +311,12 @@
             autocomplete="off"
             value="initié"
             v-model="etat"
+            @click="checkEtat()"
           />
         </label>
-        <label id="opt2" class="btn btn-warning">
-          Payé
 
+        <label id="opt2" class="btn btn-warning" for="option2">
+          Payé
           <i class="fas fa-dollar-sign"></i>
           <input
             type="radio"
@@ -321,9 +325,10 @@
             autocomplete="off"
             value="payé"
             v-model="etat"
+            @click="checkEtat()"
           />
         </label>
-        <label id="opt3" class="btn btn-warning">
+        <label id="opt3" class="btn btn-warning" for="option3">
           Instruction dossier
           <i class="fas fa-hourglass-half"></i>
           <input
@@ -333,9 +338,10 @@
             autocomplete="off"
             value="instruction dossier"
             v-model="etat"
+            @click="checkEtat()"
           />
         </label>
-        <label id="opt4" class="btn btn-warning">
+        <label id="opt4" class="btn btn-warning" for="option4">
           Déposé
           <i class="fas fa-folder-open"></i>
           <input
@@ -345,9 +351,10 @@
             autocomplete="off"
             value="déposé"
             v-model="etat"
+            @click="checkEtat()"
           />
         </label>
-        <label id="opt5" class="btn btn-warning">
+        <label id="opt5" class="btn btn-warning" for="option5">
           Remboursé
           <i class="fas fa-check-double"></i>
           <input
@@ -357,6 +364,7 @@
             autocomplete="off"
             value="remboursé"
             v-model="etat"
+            @click="checkEtat()"
           />
         </label>
       </div>
@@ -372,12 +380,12 @@
         name="commentaire"
         maxlength="1900"
         placeholder="Commentaire .."
+        v-model="comment"
       >
       </textarea>
-      <button type="button" @click="getTheme()">TEST</button>
     </div>
     <div class="card-footer text-center">
-          <button class="btn bu-add" type="submit" id="add" @click="updateDRB()"><i class="fas fa-pen-square icon"></i>Modifier</button>
+          <button class="btn bu-add" type="submit" id="add" @click="updateDRB();getTheme()"><i class="fas fa-pen-square icon"></i>Modifier</button>
           <a class="btn bu-danger" href="/list-drb"><i class="fas fa-window-close icon"></i>Annuler</a>
     </div>
   </div>
@@ -407,7 +415,9 @@ export default {
       justifs_ecart : null, 
       etat : null,
       themes: [], 
-    
+      active_radio : null,
+      mode_ref_peiement : [] ,
+      comment:''
     };
   },
   mounted() {
@@ -443,7 +453,7 @@ export default {
       ) {
         this.etat = this.DRB_Ofppts[0].etat;
 
-        for (let i = 0; i < 4; i++) {
+        for (let i = 1; i <= 5; i++) {
           let targetselected_etat = $(`#opt${i}`);
 
           let selected_etat =
@@ -451,12 +461,17 @@ export default {
               .text()
               .toLowerCase()
               .trim() == this.etat;
-
+            
           if (selected_etat) {
-            $(`#opt${i}`).addClass("active");
+            $(`#opt${i}`).removeClass("btn-warning");
+            $(`#opt${i}`).addClass("btn-success active");
+            this.active_radio = `#opt${i}`;
+            // this.active_radio =`#opt${i}`;
+            // console.log('active radio :' , `#opt${i}`);
           } else {
             targetselected_etat.click(() => {
-              $(`#opt${i}`).removeClass("active");
+              // $(`#opt${i}`).removeClass("btn-warning");
+              $(`#opt${i}`).removeClass("btn-success active");
             });
           }
         }
@@ -466,7 +481,67 @@ export default {
   updated() {
   
   },
+
   methods: {
+
+    DateValidation(){
+      
+      let Date_remb = document.getElementById('date_rembrs');
+      let Date_depo_dem = document.getElementById('date_depot_dmd_rembrs');
+
+      if (Date_depo_dem.value == '' || Date_depo_dem.value > Date_remb.value) {
+        // document.getElementById('date_rembrs').value = '';
+        document.getElementById('date_rembrs').disabled = true ;
+        this.$toastr.e("Date dépot demande de Remboursement doit etre inferieur a la Date de Remboursement ");
+
+      }
+      else if(Date_depo_dem.value != ''){
+        document.getElementById('date_rembrs').disabled = false ;
+      }
+
+
+    },
+
+    select_all(id_thm){
+    let checkId = document.getElementById('select_all');
+
+      let thems = [];
+          let data = this.reglEntreprise;
+          let item = 0;
+          for ( item in data) {
+            thems.push(data[item].id_thm);
+          }
+
+      if(checkId.checked){
+          let Frs_id_Mode = 'MDP:'+thems[0];
+          let Frs_id_Date = 'DP:'+thems[0];
+
+          if (document.getElementById(Frs_id_Mode).value != '' && document.getElementById(Frs_id_Date).value != '') {
+            for (let index = 1; index < thems.length; index++) {
+              let id_Mode = 'MDP:'+thems[index];
+              let id_Date = 'DP:'+thems[index];
+              document.getElementById(id_Mode).value = document.getElementById(Frs_id_Mode).value ;
+              document.getElementById(id_Date).value = document.getElementById(Frs_id_Date).value ;
+            }
+          }
+          else{
+           this.$toastr.e("Merci d'entrer les premier ' Date paiement entreprise ' et ' Mode et référence de paiement' !!");
+           checkId.checked = false;
+          }
+
+      }
+      else{
+          for (let index = 1; index < thems.length; index++) {
+            let id_Mode = 'MDP:'+thems[index];
+            let id_Date = 'DP:'+thems[index];
+            document.getElementById(id_Mode).value = '' ;
+            document.getElementById(id_Date).value = '' ;
+          }
+      }
+      
+
+    },
+
      handleAction(actionName, value) {
       this.$store.dispatch(actionName, value);
     },
@@ -484,7 +559,7 @@ export default {
       }, 1200);
       return this.total_regl
     }, 
-    updateDRB() {
+    async updateDRB() {
       let model5 = this.model5;
       let model6 = this.model6;
       let fiche_eval_sythetique = this.fiche_eval_sythetique;
@@ -499,7 +574,7 @@ export default {
       let date_rembrs = document.getElementById("date_rembrs");
       let etat = $("input:radio[name=etat]:checked").val();
       
-      
+      await this.getTheme()
       axios
         .post("/edit-drb-ofppt/" + this.numero_remb, {
           model6: model6,
@@ -515,7 +590,8 @@ export default {
           date_depot_dmd_rembrs: date_depot_dmd_rembrs.value,
           date_rembrs: date_rembrs.value,
           etat: etat,
-          thems: this.themes
+          thems: this.themes,
+          commenter: this.comment
         })
         .then(() => {
           this.$toastr.s("Modifié avec succès");
@@ -539,14 +615,41 @@ export default {
               date_paiement: document.getElementById(`DP:${data[item].id_thm}`).value,
               mode_paiement: document.getElementById(`MDP:${data[item].id_thm}`).value,
               rembrs_ofppt: document.getElementById(`RMBOFPPT:${data[item].id_thm}`).value,
-              ecart_rembrs_ofppt : document.getElementById(`EcartOFPPT:${data[item].id_thm}`).textContent.trim(),
+              ecart_rembrs_ofppt : document.getElementById(`EcartOFPPT:${data[item].id_thm}`).value,
               justif_ecart :  document.getElementById(`justifEcart:${data[item].id_thm}`).value,
 
             })
         } 
         console.log(JSON.parse(JSON.stringify(this.themes)));
-    }
-  },
+    },
+
+    checkEtat(){
+        setTimeout(() => {
+          for (let i = 1 ; i <= 5; i++) {
+
+          let selected_etat =
+            $(`#opt${i}`)
+              .text()
+              .toLowerCase()
+              .trim() == this.etat;
+            
+
+            if(selected_etat){
+              $(this.active_radio).removeClass("btn-success active");
+              $(this.active_radio).addClass("btn-warning");
+              this.active_radio = `#opt${i}`;
+              $(`#opt${i}`).removeClass("btn-warning");
+              $(`#opt${i}`).addClass("btn-success active");
+              
+            }
+
+          }
+        }, 200);
+      }
+    },
+  
+  
+
   computed: {
     ...mapState("DRB_Ofppt", {
       DRB_Ofppts: state => state.DRB_OfpptEdit,
@@ -591,6 +694,15 @@ th {
 
 .div_select_all {
   float: right;
+}
+
+.EcartOFPPT{
+  align-items: center;
+  text-align: center;
+  text-decoration: black;
+  background-color: transparent;
+  border: none;
+  font-weight:bold;
 }
 </style>
 

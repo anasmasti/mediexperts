@@ -3670,34 +3670,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -3717,7 +3689,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
 
       this.cats.push(this.newCat);
-      this.newCat = '';
+      this.newCat = "";
       this.saveCats();
     },
     removeCat: function removeCat(x) {
@@ -3726,7 +3698,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     saveCats: function saveCats() {
       var parsed = JSON.stringify(this.cats);
-      localStorage.setItem('cats', parsed);
+      localStorage.setItem("cats", parsed);
     },
     clearLS: function clearLS() {
       localStorage.clear();
@@ -3753,13 +3725,29 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -4167,7 +4155,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       rmb_ofppt: [],
       justifs_ecart: null,
       etat: null,
-      themes: []
+      themes: [],
+      active_radio: null,
+      mode_ref_peiement: [],
+      comment: ''
     };
   },
   mounted: function mounted() {
@@ -4201,15 +4192,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           var selected_etat = $("#opt".concat(i)).text().toLowerCase().trim() == _this.etat;
 
           if (selected_etat) {
-            $("#opt".concat(i)).addClass("active");
+            $("#opt".concat(i)).removeClass("btn-warning");
+            $("#opt".concat(i)).addClass("btn-success active");
+            _this.active_radio = "#opt".concat(i); // this.active_radio =`#opt${i}`;
+            // console.log('active radio :' , `#opt${i}`);
           } else {
             targetselected_etat.click(function () {
-              $("#opt".concat(i)).removeClass("active");
+              // $(`#opt${i}`).removeClass("btn-warning");
+              $("#opt".concat(i)).removeClass("btn-success active");
             });
           }
         };
 
-        for (var i = 0; i < 4; i++) {
+        for (var i = 1; i <= 5; i++) {
           _loop(i);
         }
       }
@@ -4217,6 +4212,54 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   updated: function updated() {},
   methods: {
+    DateValidation: function DateValidation() {
+      var Date_remb = document.getElementById('date_rembrs');
+      var Date_depo_dem = document.getElementById('date_depot_dmd_rembrs');
+
+      if (Date_depo_dem.value == '' || Date_depo_dem.value > Date_remb.value) {
+        // document.getElementById('date_rembrs').value = '';
+        document.getElementById('date_rembrs').disabled = true;
+        this.$toastr.e("Date dépot demande de Remboursement doit etre inferieur a la Date de Remboursement ");
+      } else if (Date_depo_dem.value != '') {
+        document.getElementById('date_rembrs').disabled = false;
+      }
+    },
+    select_all: function select_all(id_thm) {
+      var checkId = document.getElementById('select_all');
+      var thems = [];
+      var data = this.reglEntreprise;
+      var item = 0;
+
+      for (item in data) {
+        thems.push(data[item].id_thm);
+      }
+
+      if (checkId.checked) {
+        var Frs_id_Mode = 'MDP:' + thems[0];
+        var Frs_id_Date = 'DP:' + thems[0];
+
+        if (document.getElementById(Frs_id_Mode).value != '' && document.getElementById(Frs_id_Date).value != '') {
+          for (var index = 1; index < thems.length; index++) {
+            var id_Mode = 'MDP:' + thems[index];
+            var id_Date = 'DP:' + thems[index];
+            document.getElementById(id_Mode).value = document.getElementById(Frs_id_Mode).value;
+            document.getElementById(id_Date).value = document.getElementById(Frs_id_Date).value;
+          }
+        } else {
+          this.$toastr.e("Merci d'entrer les premier ' Date paiement entreprise ' et ' Mode et référence de paiement' !!");
+          checkId.checked = false;
+        }
+      } else {
+        for (var _index = 1; _index < thems.length; _index++) {
+          var _id_Mode = 'MDP:' + thems[_index];
+
+          var _id_Date = 'DP:' + thems[_index];
+
+          document.getElementById(_id_Mode).value = '';
+          document.getElementById(_id_Date).value = '';
+        }
+      }
+    },
     handleAction: function handleAction(actionName, value) {
       this.$store.dispatch(actionName, value);
     },
@@ -4239,41 +4282,60 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     updateDRB: function updateDRB() {
       var _this3 = this;
 
-      var model5 = this.model5;
-      var model6 = this.model6;
-      var fiche_eval_sythetique = this.fiche_eval_sythetique;
-      var factures = this.factures;
-      var compris_cheques = this.compris_cheques;
-      var compris_remise = this.compris_remise;
-      var relev_bq_societe = this.relev_bq_societe;
-      var relev_bq_cabinet = this.relev_bq_cabinet;
-      var accuse_model6 = this.accuse_model6;
-      var montant_rembrs = document.getElementById("montant_rembrs");
-      var date_depot_dmd_rembrs = document.getElementById("date_depot_dmd_rembrs");
-      var date_rembrs = document.getElementById("date_rembrs");
-      var etat = $("input:radio[name=etat]:checked").val();
-      axios.post("/edit-drb-ofppt/" + this.numero_remb, {
-        model6: model6,
-        model5: model5,
-        fiche_eval_sythetique: fiche_eval_sythetique,
-        factures: factures,
-        compris_cheques: compris_cheques,
-        compris_remise: compris_remise,
-        relev_bq_societe: relev_bq_societe,
-        relev_bq_cabinet: relev_bq_cabinet,
-        accuse_model6: accuse_model6,
-        montant_rembrs: montant_rembrs.value,
-        date_depot_dmd_rembrs: date_depot_dmd_rembrs.value,
-        date_rembrs: date_rembrs.value,
-        etat: etat,
-        thems: this.themes
-      }).then(function () {
-        _this3.$toastr.s("Modifié avec succès");
-      })["catch"](function (e) {
-        _this3.$toastr.e("Echec de modification");
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var model5, model6, fiche_eval_sythetique, factures, compris_cheques, compris_remise, relev_bq_societe, relev_bq_cabinet, accuse_model6, montant_rembrs, date_depot_dmd_rembrs, date_rembrs, etat;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                model5 = _this3.model5;
+                model6 = _this3.model6;
+                fiche_eval_sythetique = _this3.fiche_eval_sythetique;
+                factures = _this3.factures;
+                compris_cheques = _this3.compris_cheques;
+                compris_remise = _this3.compris_remise;
+                relev_bq_societe = _this3.relev_bq_societe;
+                relev_bq_cabinet = _this3.relev_bq_cabinet;
+                accuse_model6 = _this3.accuse_model6;
+                montant_rembrs = document.getElementById("montant_rembrs");
+                date_depot_dmd_rembrs = document.getElementById("date_depot_dmd_rembrs");
+                date_rembrs = document.getElementById("date_rembrs");
+                etat = $("input:radio[name=etat]:checked").val();
+                _context.next = 15;
+                return _this3.getTheme();
 
-        throw e;
-      });
+              case 15:
+                axios.post("/edit-drb-ofppt/" + _this3.numero_remb, {
+                  model6: model6,
+                  model5: model5,
+                  fiche_eval_sythetique: fiche_eval_sythetique,
+                  factures: factures,
+                  compris_cheques: compris_cheques,
+                  compris_remise: compris_remise,
+                  relev_bq_societe: relev_bq_societe,
+                  relev_bq_cabinet: relev_bq_cabinet,
+                  accuse_model6: accuse_model6,
+                  montant_rembrs: montant_rembrs.value,
+                  date_depot_dmd_rembrs: date_depot_dmd_rembrs.value,
+                  date_rembrs: date_rembrs.value,
+                  etat: etat,
+                  thems: _this3.themes,
+                  commenter: _this3.comment
+                }).then(function () {
+                  _this3.$toastr.s("Modifié avec succès");
+                })["catch"](function (e) {
+                  _this3.$toastr.e("Echec de modification");
+
+                  throw e;
+                });
+
+              case 16:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
     },
     getTheme: function getTheme() {
       this.themes = [];
@@ -4288,15 +4350,32 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           date_paiement: document.getElementById("DP:".concat(data[item].id_thm)).value,
           mode_paiement: document.getElementById("MDP:".concat(data[item].id_thm)).value,
           rembrs_ofppt: document.getElementById("RMBOFPPT:".concat(data[item].id_thm)).value,
-          ecart_rembrs_ofppt: document.getElementById("EcartOFPPT:".concat(data[item].id_thm)).textContent.trim(),
+          ecart_rembrs_ofppt: document.getElementById("EcartOFPPT:".concat(data[item].id_thm)).value,
           justif_ecart: document.getElementById("justifEcart:".concat(data[item].id_thm)).value
         });
       }
 
       console.log(JSON.parse(JSON.stringify(this.themes)));
+    },
+    checkEtat: function checkEtat() {
+      var _this4 = this;
+
+      setTimeout(function () {
+        for (var i = 1; i <= 5; i++) {
+          var selected_etat = $("#opt".concat(i)).text().toLowerCase().trim() == _this4.etat;
+
+          if (selected_etat) {
+            $(_this4.active_radio).removeClass("btn-success active");
+            $(_this4.active_radio).addClass("btn-warning");
+            _this4.active_radio = "#opt".concat(i);
+            $("#opt".concat(i)).removeClass("btn-warning");
+            $("#opt".concat(i)).addClass("btn-success active");
+          }
+        }
+      }, 200);
     }
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])("DRB_Ofppt", {
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])("DRB_Ofppt", {
     DRB_Ofppts: function DRB_Ofppts(state) {
       return state.DRB_OfpptEdit;
     },
@@ -4394,22 +4473,53 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "List",
   data: function data() {
-    return {//  DRB_Ofppts: []
-    };
+    return {};
   },
   mounted: function mounted() {
-    // this.$store.dispatch("DRB_OFPPT/getListOfDROfppt");
     this.getListOfDROfppt;
   },
   methods: {
     sendnrdf: function sendnrdf(n_drf) {
       var parsed = JSON.stringify(n_drf);
-      localStorage.setItem('n_drf', parsed);
+      localStorage.setItem("n_drf", parsed);
       console.log(n_drf);
+    },
+    handleAction: function handleAction(actionName, value) {
+      this.$store.dispatch(actionName, value);
     }
   },
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])("DRB_Ofppt", {
@@ -4417,7 +4527,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return state.DRB_Ofppts;
     }
   })), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])("DRB_Ofppt", {
-    getListOfDROfppt: 'getListOfDROfppt'
+    getListOfDROfppt: "getListOfDROfppt",
+    DeleteDrf: "DeleteDrf"
   }))
 });
 
@@ -10265,7 +10376,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\ntable[data-v-376179dc] {\r\n  margin: 10px auto;\n}\ntd[data-v-376179dc],\r\nth[data-v-376179dc] {\r\n  text-align: center;\n}\n.total_reg[data-v-376179dc] {\r\n  margin: 10px auto;\r\n  float: right;\n}\n.btn-Etat[data-v-376179dc] {\r\n  display: flex;\r\n  flex-direction: row;\r\n  flex-wrap: wrap;\n}\n.display_div[data-v-376179dc] {\r\n  display: flex;\r\n  flex-direction: row;\r\n  flex-wrap: wrap;\n}\n.display_div_child[data-v-376179dc] {\r\n  display: flex;\r\n  flex-direction: column;\n}\n.div_select_all[data-v-376179dc] {\r\n  float: right;\n}\r\n", ""]);
+exports.push([module.i, "\ntable[data-v-376179dc] {\r\n  margin: 10px auto;\n}\ntd[data-v-376179dc],\r\nth[data-v-376179dc] {\r\n  text-align: center;\n}\n.total_reg[data-v-376179dc] {\r\n  margin: 10px auto;\r\n  float: right;\n}\n.btn-Etat[data-v-376179dc] {\r\n  display: flex;\r\n  flex-direction: row;\r\n  flex-wrap: wrap;\n}\n.display_div[data-v-376179dc] {\r\n  display: flex;\r\n  flex-direction: row;\r\n  flex-wrap: wrap;\n}\n.display_div_child[data-v-376179dc] {\r\n  display: flex;\r\n  flex-direction: column;\n}\n.div_select_all[data-v-376179dc] {\r\n  float: right;\n}\n.EcartOFPPT[data-v-376179dc]{\r\n  align-items: center;\r\n  text-align: center;\r\n  -webkit-text-decoration: black;\r\n          text-decoration: black;\r\n  background-color: transparent;\r\n  border: none;\r\n  font-weight:bold;\n}\r\n", ""]);
 
 // exports
 
@@ -10284,7 +10395,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.div_header[data-v-55f1c8b4]{\n  display: flex;\n  flex-direction: row;\n  /* flex-wrap: wrap; */\n}\n.searchbar[data-v-55f1c8b4]{\n  display: flex;\n  flex-direction: row;\n  /* flex-wrap: wrap; */\n}\n.search_icon[data-v-55f1c8b4]{\n  /* position: relative; */\n  /* float: right; */\n  /* right: 0%; */\n  display: flex;\n}\n@media only screen and (max-width: 600px) {\n.div_header[data-v-55f1c8b4]{\n    display: flex;\n    flex-direction: column;\n    /* align-items: center;*/\n}\n.searchbar[data-v-55f1c8b4]{\n    margin: auto;\n    align-self: center;\n    width: 100%;\n}\n.search_icon[data-v-55f1c8b4]{\n    position: relative;\n     float: right;\n     right: 0%;\n    /* display: flex; */\n}\n}\n", ""]);
+exports.push([module.i, "\n.div_header[data-v-55f1c8b4] {\r\n  display: flex;\r\n  flex-direction: row;\n}\n.searchbar[data-v-55f1c8b4] {\r\n  display: flex;\r\n  flex-direction: row;\n}\n.search_icon[data-v-55f1c8b4] {\r\n  display: flex;\n}\n@media only screen and (max-width: 600px) {\n.div_header[data-v-55f1c8b4] {\r\n    display: flex;\r\n    flex-direction: column;\n}\n.searchbar[data-v-55f1c8b4] {\r\n    margin: auto;\r\n    align-self: center;\r\n    width: 100%;\n}\n.search_icon[data-v-55f1c8b4] {\r\n    position: relative;\r\n    float: right;\r\n    right: 0%;\n}\n}\r\n", ""]);
 
 // exports
 
@@ -45952,13 +46063,13 @@ var render = function() {
               _vm._m(1, true),
               _vm._v(" "),
               _c("h3", { staticClass: "card-title card-h3" }, [
-                _vm._v("\n          DRB OFPPT >\n          "),
+                _vm._v("\n        DRB OFPPT >\n        "),
                 _c("a", { attrs: { href: "/detail-df/" } }, [
-                  _vm._v("\n              Test\n          ")
+                  _vm._v("\n          Test\n        ")
                 ]),
-                _vm._v("\n          " + _vm._s(" > ") + "\n          "),
+                _vm._v("\n        " + _vm._s(" > ") + "\n        "),
                 _c("a", { attrs: { href: "/detail-cl/" } }, [
-                  _vm._v("\n              Test\n          ")
+                  _vm._v("\n          Test\n        ")
                 ])
               ]),
               _vm._v(" "),
@@ -45989,17 +46100,15 @@ var render = function() {
                         [
                           _c("i", { staticClass: "fa fa-battery-quarter" }),
                           _vm._v(
-                            "\n                      " +
+                            "\n              " +
                               _vm._s(DRB_Ofppt.etat) +
-                              "\n                  "
+                              "\n            "
                           )
                         ]
                       )
                     ]),
                     _vm._v(" "),
                     _vm._m(6, true),
-                    _vm._v(" "),
-                    _vm._m(7, true),
                     _vm._v(" "),
                     _c("tr", [
                       _c("th", { staticClass: "th-det" }, [_vm._v("Factures")]),
@@ -46053,7 +46162,7 @@ var render = function() {
                       _c("td", [_vm._v(_vm._s(DRB_Ofppt.accuse_model6))])
                     ]),
                     _vm._v(" "),
-                    _vm._m(8, true),
+                    _vm._m(7, true),
                     _vm._v(" "),
                     _c("tr", [
                       _c("th", { staticClass: "th-det" }, [
@@ -46065,9 +46174,15 @@ var render = function() {
                       ])
                     ]),
                     _vm._v(" "),
-                    _vm._m(9, true),
+                    _vm._m(8, true),
                     _vm._v(" "),
-                    _vm._m(10, true),
+                    _c("tr", [
+                      _c("th", { staticClass: "th-det" }, [
+                        _vm._v("Date der. modif.")
+                      ]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(DRB_Ofppt.date_rembrs))])
+                    ]),
                     _vm._v(" "),
                     _c("tr", [
                       _c("th", { staticClass: "th-det" }, [
@@ -46176,20 +46291,6 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("tr", [
-      _c("th", { staticClass: "th-det" }, [_vm._v("Mission de rembours.")]),
-      _vm._v(" "),
-      _c("td", [
-        _c("a", { attrs: { href: "/detail-df/" } }, [
-          _vm._v("\n                       test\n                    ")
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("tr", [
       _c("td", { staticClass: "text-lg bg-dark", attrs: { colspan: "12" } }, [
         _vm._v("PAIEMENT")
       ])
@@ -46213,16 +46314,6 @@ var staticRenderFns = [
       _c("td", { staticClass: "text-lg bg-dark", attrs: { colspan: "12" } }, [
         _vm._v("REMBOURSEMENT")
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("tr", [
-      _c("th", { staticClass: "th-det" }, [_vm._v("Date der. modif.")]),
-      _vm._v(" "),
-      _c("td", [_vm._v("test")])
     ])
   }
 ]
@@ -46377,7 +46468,11 @@ var render = function() {
                             _vm._v(" "),
                             _c("td", [
                               _c("input", {
-                                attrs: { id: "DP:" + info.id_thm, type: "date" }
+                                attrs: {
+                                  id: "DP:" + info.id_thm,
+                                  name: "DP:" + info.id_thm,
+                                  type: "date"
+                                }
                               })
                             ]),
                             _vm._v(" "),
@@ -46397,7 +46492,39 @@ var render = function() {
                     2
                   ),
                   _vm._v(" "),
-                  _vm._m(3, true)
+                  _c(
+                    "div",
+                    {
+                      staticClass:
+                        "form-group col-lg-12 col-sm-12 custom-control custom-checkbox"
+                    },
+                    [
+                      _c("div", { staticClass: "div_select_all" }, [
+                        _c("input", {
+                          staticClass: "custom-control-input",
+                          attrs: {
+                            type: "checkbox",
+                            name: "select_all",
+                            id: "select_all"
+                          },
+                          on: {
+                            change: function($event) {
+                              return _vm.select_all()
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c(
+                          "label",
+                          {
+                            staticClass: "custom-control-label ",
+                            attrs: { for: "select_all" }
+                          },
+                          [_vm._v("selectionner tout")]
+                        )
+                      ])
+                    ]
+                  )
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "total_reg" }, [
@@ -46418,7 +46545,7 @@ var render = function() {
                 ])
               ]),
               _vm._v(" "),
-              _vm._m(4, true),
+              _vm._m(3, true),
               _vm._v(" "),
               _c("div", { staticClass: "form-group col-12" }, [
                 _c("div", { staticClass: "container" }, [
@@ -46923,7 +47050,7 @@ var render = function() {
                   ])
                 ]),
                 _vm._v(" "),
-                _vm._m(5, true),
+                _vm._m(4, true),
                 _vm._v(" "),
                 _c(
                   "div",
@@ -46961,6 +47088,11 @@ var render = function() {
                               },
                               domProps: {
                                 value: DRB_Ofppt.date_depot_dmd_rembrs
+                              },
+                              on: {
+                                change: function($event) {
+                                  return _vm.DateValidation()
+                                }
                               }
                             })
                           ]
@@ -47075,7 +47207,12 @@ var render = function() {
                                 onmouseover: "(this.type='date')",
                                 placeholder: "Date réalisation"
                               },
-                              domProps: { value: DRB_Ofppt.date_rembrs }
+                              domProps: { value: DRB_Ofppt.date_rembrs },
+                              on: {
+                                change: function($event) {
+                                  return _vm.DateValidation()
+                                }
+                              }
                             })
                           ]
                         )
@@ -47084,16 +47221,16 @@ var render = function() {
                   ]
                 ),
                 _vm._v(" "),
-                _vm._m(6, true),
+                _vm._m(5, true),
                 _vm._v(" "),
-                _vm._m(7, true),
+                _vm._m(6, true),
                 _vm._v(" "),
                 _c("div", { staticClass: "form-group col-12" }, [
                   _c("label", [_vm._v("Remboursement OFPPT")]),
                   _vm._v(" "),
                   _c("div", { staticClass: "table-responsive" }, [
                     _c("table", { staticClass: "table table-striped" }, [
-                      _vm._m(8, true),
+                      _vm._m(7, true),
                       _vm._v(" "),
                       _c(
                         "tbody",
@@ -47141,50 +47278,34 @@ var render = function() {
                             ]),
                             _vm._v(" "),
                             _c("td", [
-                              _c(
-                                "label",
-                                {
-                                  attrs: {
-                                    id: "EcartOFPPT:" + info.id_thm,
-                                    name: "EcartOFPPT:" + info.id_thm
-                                  }
+                              _c("input", {
+                                staticClass: "EcartOFPPT",
+                                attrs: {
+                                  id: "EcartOFPPT:" + info.id_thm,
+                                  name: "EcartOFPPT:" + info.id_thm,
+                                  disabled: ""
                                 },
-                                [
-                                  _vm._v(
-                                    _vm._s(
-                                      (
-                                        info.bdg_total * (70 / 100) -
-                                        _vm.rmb_ofppt[index]
-                                      ).toFixed(2)
-                                    )
-                                  )
-                                ]
-                              )
+                                domProps: {
+                                  value:
+                                    (
+                                      info.bdg_total * (70 / 100) -
+                                      _vm.rmb_ofppt[index]
+                                    ).toFixed(2) == "NaN"
+                                      ? "0"
+                                      : (
+                                          info.bdg_total * (70 / 100) -
+                                          _vm.rmb_ofppt[index]
+                                        ).toFixed(2)
+                                }
+                              })
                             ]),
                             _vm._v(" "),
                             _c("td", [
                               _c("input", {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: _vm.justifs_ecart,
-                                    expression: "justifs_ecart"
-                                  }
-                                ],
                                 attrs: {
                                   type: "text",
                                   name: "justifEcart:" + info.id_thm,
                                   id: "justifEcart:" + info.id_thm
-                                },
-                                domProps: { value: _vm.justifs_ecart },
-                                on: {
-                                  input: function($event) {
-                                    if ($event.target.composing) {
-                                      return
-                                    }
-                                    _vm.justifs_ecart = $event.target.value
-                                  }
                                 }
                               })
                             ])
@@ -47195,7 +47316,7 @@ var render = function() {
                     ])
                   ]),
                   _vm._v(" "),
-                  _vm._m(9, true),
+                  _vm._m(8, true),
                   _vm._v(" "),
                   _c("div", {
                     staticClass: "form-group col-lg-12 col-sm-12",
@@ -47230,7 +47351,10 @@ var render = function() {
           [
             _c(
               "label",
-              { staticClass: "btn btn-warning", attrs: { id: "opt1" } },
+              {
+                staticClass: "btn btn-warning",
+                attrs: { id: "opt1", for: "option1" }
+              },
               [
                 _vm._v("\n        Initié\n        "),
                 _c("i", { staticClass: "fas fa-battery-quarter" }),
@@ -47253,6 +47377,9 @@ var render = function() {
                   },
                   domProps: { checked: _vm._q(_vm.etat, "initié") },
                   on: {
+                    click: function($event) {
+                      return _vm.checkEtat()
+                    },
                     change: function($event) {
                       _vm.etat = "initié"
                     }
@@ -47263,9 +47390,12 @@ var render = function() {
             _vm._v(" "),
             _c(
               "label",
-              { staticClass: "btn btn-warning", attrs: { id: "opt2" } },
+              {
+                staticClass: "btn btn-warning",
+                attrs: { id: "opt2", for: "option2" }
+              },
               [
-                _vm._v("\n        Payé\n\n        "),
+                _vm._v("\n        Payé\n        "),
                 _c("i", { staticClass: "fas fa-dollar-sign" }),
                 _vm._v(" "),
                 _c("input", {
@@ -47286,6 +47416,9 @@ var render = function() {
                   },
                   domProps: { checked: _vm._q(_vm.etat, "payé") },
                   on: {
+                    click: function($event) {
+                      return _vm.checkEtat()
+                    },
                     change: function($event) {
                       _vm.etat = "payé"
                     }
@@ -47296,7 +47429,10 @@ var render = function() {
             _vm._v(" "),
             _c(
               "label",
-              { staticClass: "btn btn-warning", attrs: { id: "opt3" } },
+              {
+                staticClass: "btn btn-warning",
+                attrs: { id: "opt3", for: "option3" }
+              },
               [
                 _vm._v("\n        Instruction dossier\n        "),
                 _c("i", { staticClass: "fas fa-hourglass-half" }),
@@ -47321,6 +47457,9 @@ var render = function() {
                     checked: _vm._q(_vm.etat, "instruction dossier")
                   },
                   on: {
+                    click: function($event) {
+                      return _vm.checkEtat()
+                    },
                     change: function($event) {
                       _vm.etat = "instruction dossier"
                     }
@@ -47331,7 +47470,10 @@ var render = function() {
             _vm._v(" "),
             _c(
               "label",
-              { staticClass: "btn btn-warning", attrs: { id: "opt4" } },
+              {
+                staticClass: "btn btn-warning",
+                attrs: { id: "opt4", for: "option4" }
+              },
               [
                 _vm._v("\n        Déposé\n        "),
                 _c("i", { staticClass: "fas fa-folder-open" }),
@@ -47354,6 +47496,9 @@ var render = function() {
                   },
                   domProps: { checked: _vm._q(_vm.etat, "déposé") },
                   on: {
+                    click: function($event) {
+                      return _vm.checkEtat()
+                    },
                     change: function($event) {
                       _vm.etat = "déposé"
                     }
@@ -47364,7 +47509,10 @@ var render = function() {
             _vm._v(" "),
             _c(
               "label",
-              { staticClass: "btn btn-warning", attrs: { id: "opt5" } },
+              {
+                staticClass: "btn btn-warning",
+                attrs: { id: "opt5", for: "option5" }
+              },
               [
                 _vm._v("\n        Remboursé\n        "),
                 _c("i", { staticClass: "fas fa-check-double" }),
@@ -47387,6 +47535,9 @@ var render = function() {
                   },
                   domProps: { checked: _vm._q(_vm.etat, "remboursé") },
                   on: {
+                    click: function($event) {
+                      return _vm.checkEtat()
+                    },
                     change: function($event) {
                       _vm.etat = "remboursé"
                     }
@@ -47399,12 +47550,20 @@ var render = function() {
       ]
     ),
     _vm._v(" "),
-    _vm._m(10),
+    _vm._m(9),
     _vm._v(" "),
     _c("div", { staticClass: "form-group col-12" }, [
       _c("label", [_vm._v("Commentaire")]),
       _vm._v(" "),
       _c("textarea", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.comment,
+            expression: "comment"
+          }
+        ],
         staticClass: "form-control",
         attrs: {
           type: "text",
@@ -47412,21 +47571,17 @@ var render = function() {
           name: "commentaire",
           maxlength: "1900",
           placeholder: "Commentaire .."
-        }
-      }),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          attrs: { type: "button" },
-          on: {
-            click: function($event) {
-              return _vm.getTheme()
-            }
-          }
         },
-        [_vm._v("TEST")]
-      )
+        domProps: { value: _vm.comment },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.comment = $event.target.value
+          }
+        }
+      })
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "card-footer text-center" }, [
@@ -47437,14 +47592,15 @@ var render = function() {
           attrs: { type: "submit", id: "add" },
           on: {
             click: function($event) {
-              return _vm.updateDRB()
+              _vm.updateDRB()
+              _vm.getTheme()
             }
           }
         },
         [_c("i", { staticClass: "fas fa-pen-square icon" }), _vm._v("Modifier")]
       ),
       _vm._v(" "),
-      _vm._m(11)
+      _vm._m(10)
     ])
   ])
 }
@@ -47496,35 +47652,6 @@ var staticRenderFns = [
         ])
       ])
     ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass:
-          "form-group col-lg-12 col-sm-12 custom-control custom-checkbox"
-      },
-      [
-        _c("div", { staticClass: "div_select_all" }, [
-          _c("input", {
-            staticClass: "custom-control-input",
-            attrs: { type: "checkbox", name: "select_all", id: "select_all" }
-          }),
-          _vm._v(" "),
-          _c(
-            "label",
-            {
-              staticClass: "custom-control-label ",
-              attrs: { for: "select_all" }
-            },
-            [_vm._v("selectionner tout")]
-          )
-        ])
-      ]
-    )
   },
   function() {
     var _vm = this
@@ -47666,7 +47793,13 @@ var render = function() {
                 _c(
                   "td",
                   { staticClass: "th-last d-inline-block text-truncate" },
-                  [_vm._v(_vm._s(DRB_Ofppt.id_plan))]
+                  [
+                    _vm._v(
+                      "\n              " +
+                        _vm._s(DRB_Ofppt.id_plan) +
+                        "\n            "
+                    )
+                  ]
                 ),
                 _vm._v(" "),
                 _c("td", { staticClass: "action" }, [
@@ -47686,7 +47819,26 @@ var render = function() {
                     [_c("i", { staticClass: "fa fa-edit" })]
                   ),
                   _vm._v(" "),
-                  _vm._m(3, true)
+                  _c(
+                    "a",
+                    {
+                      staticClass: "btn btn-danger",
+                      on: {
+                        click: function($event) {
+                          return _vm.handleAction(
+                            "DRB_Ofppt/DeleteDrf",
+                            DRB_Ofppt.n_drf
+                          )
+                        }
+                      }
+                    },
+                    [
+                      _c("i", {
+                        staticClass: "fa fa-trash-alt",
+                        staticStyle: { color: "white" }
+                      })
+                    ]
+                  )
                 ])
               ])
             }),
@@ -47756,17 +47908,6 @@ var staticRenderFns = [
       { staticClass: "btn btn-primary", attrs: { href: "/detail-drb-ofppt" } },
       [_c("i", { staticClass: "fa fa-eye", staticStyle: { color: "white" } })]
     )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("a", { staticClass: "btn btn-danger" }, [
-      _c("i", {
-        staticClass: "fa fa-trash-alt",
-        staticStyle: { color: "white" }
-      })
-    ])
   }
 ]
 render._withStripped = true
@@ -71003,24 +71144,29 @@ var actions = {
         }
       }, _callee3);
     }))();
-  } // async updateListOfDROfpptEdit({commit}, ndrb) {
-  //     await axios.post(`edit-drb-ofppt` , {
-  //         params: { ndrb: ndrb } ,
-  //       })
-  //       .then(res => {
-  //           commit('FETCH_DBR_OFPPT_Edit', res.data)
-  //           console.log('test data ', data )
-  //       }).catch(err => {
-  //       console.log(err)
-  //   });
-  // }
+  },
+  DeleteDrf: function DeleteDrf(ndrb) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+        while (1) {
+          switch (_context4.prev = _context4.next) {
+            case 0:
+              _context4.next = 2;
+              return axios.post("/delete-drf/" + ndrb).then(function () {
+                console.log('delected');
+              })["catch"](function (err) {
+                return console.log("cant delete drf", err);
+              });
 
+            case 2:
+            case "end":
+              return _context4.stop();
+          }
+        }
+      }, _callee4);
+    }))();
+  }
 };
-/*
-let sellerId = 317737
-
-function getSellerAnalyticsTotals() {
-    return axios.get(`http://localhost:8000/api/v1/seller/${sellerId}/analytics`);*/
 
 /***/ }),
 

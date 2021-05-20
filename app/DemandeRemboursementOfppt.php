@@ -27,6 +27,7 @@ class DemandeRemboursementOfppt extends Model
       'date_rembrs',
       'montant_rembrs',
       'etat',
+      'commenter',
       'id_plan',
     ];
 
