@@ -24,6 +24,13 @@ class DemandeRemboursementOfpptController extends Controller
         return response()->json($pln);
     }
 
+    public function searchdrf($n_drf)
+    {
+        $searchdrb = $n_drf;
+        $drf = DemandeRemboursementOfppt::where('n_drf', 'LIKE', '%'. $searchdrb . '%')->get();
+        return response()->json($drf);
+    }
+
     public function reglementEntreprise($n_drf) {
       $reglEntrp = DemandeRemboursementOfppt::select(
         'demande_remboursement_ofppts.n_drf',
@@ -100,6 +107,12 @@ class DemandeRemboursementOfpptController extends Controller
                     $reglEntreprise->RemboursementOFPPT = $them['rembrs_ofppt'];
                     $reglEntreprise->EcartRemboursement = $them['ecart_rembrs_ofppt'];
                     $reglEntreprise->JustifsEcart = $them['justif_ecart'];
+                    if($request->$select_all_ch == true){
+                        $reglEntreprise->payerAllPF = 'true';
+                    }
+                   else{
+                        $reglEntreprise->payerAllPF = 'false';
+                    }
                 }
                 $reglEntreprise->save();
              }
