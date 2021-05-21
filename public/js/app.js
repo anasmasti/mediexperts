@@ -4134,6 +4134,125 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Edit",
@@ -4158,7 +4277,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       themes: [],
       active_radio: null,
       mode_ref_peiement: [],
-      comment: ''
+      comment: "",
+      montant_rembrs: null
     };
   },
   mounted: function mounted() {
@@ -4181,6 +4301,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       _this.relev_bq_societe = _this.DRB_Ofppts[0].relev_bq_societe === "préparé";
       _this.relev_bq_cabinet = _this.DRB_Ofppts[0].relev_bq_cabinet === "préparé";
       _this.accuse_model6 = _this.DRB_Ofppts[0].accuse_model6 === "préparé";
+      _this.montant_rembrs = _this.DRB_Ofppts[0].montant_rembrs;
     }, 1000);
     setTimeout(function () {
       if (_this.DRB_Ofppts[0].etat === "initié" || _this.DRB_Ofppts[0].etat === "payé" || _this.DRB_Ofppts[0].etat === "instruction dossier" || _this.DRB_Ofppts[0].etat === "déposé" || _this.DRB_Ofppts[0].etat === "remboursé") {
@@ -4210,22 +4331,21 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }
     }, 800);
   },
-  updated: function updated() {},
   methods: {
     DateValidation: function DateValidation() {
-      var Date_remb = document.getElementById('date_rembrs');
-      var Date_depo_dem = document.getElementById('date_depot_dmd_rembrs');
+      var Date_remb = document.getElementById("date_rembrs");
+      var Date_depo_dem = document.getElementById("date_depot_dmd_rembrs");
 
-      if (Date_depo_dem.value == '' || Date_depo_dem.value > Date_remb.value) {
+      if (Date_depo_dem.value == "" || Date_depo_dem.value > Date_remb.value) {
         // document.getElementById('date_rembrs').value = '';
-        document.getElementById('date_rembrs').disabled = true;
+        document.getElementById("date_rembrs").disabled = true;
         this.$toastr.e("Date dépot demande de Remboursement doit etre inferieur a la Date de Remboursement ");
-      } else if (Date_depo_dem.value != '') {
-        document.getElementById('date_rembrs').disabled = false;
+      } else if (Date_depo_dem.value != "") {
+        document.getElementById("date_rembrs").disabled = false;
       }
     },
     select_all: function select_all(id_thm) {
-      var checkId = document.getElementById('select_all');
+      var checkId = document.getElementById("select_all");
       var thems = [];
       var data = this.reglEntreprise;
       var item = 0;
@@ -4235,13 +4355,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }
 
       if (checkId.checked) {
-        var Frs_id_Mode = 'MDP:' + thems[0];
-        var Frs_id_Date = 'DP:' + thems[0];
+        var Frs_id_Mode = "MDP:" + thems[0];
+        var Frs_id_Date = "DP:" + thems[0];
 
-        if (document.getElementById(Frs_id_Mode).value != '' && document.getElementById(Frs_id_Date).value != '') {
+        if (document.getElementById(Frs_id_Mode).value != "" && document.getElementById(Frs_id_Date).value != "") {
           for (var index = 1; index < thems.length; index++) {
-            var id_Mode = 'MDP:' + thems[index];
-            var id_Date = 'DP:' + thems[index];
+            var id_Mode = "MDP:" + thems[index];
+            var id_Date = "DP:" + thems[index];
             document.getElementById(id_Mode).value = document.getElementById(Frs_id_Mode).value;
             document.getElementById(id_Date).value = document.getElementById(Frs_id_Date).value;
           }
@@ -4251,12 +4371,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }
       } else {
         for (var _index = 1; _index < thems.length; _index++) {
-          var _id_Mode = 'MDP:' + thems[_index];
+          var _id_Mode = "MDP:" + thems[_index];
 
-          var _id_Date = 'DP:' + thems[_index];
+          var _id_Date = "DP:" + thems[_index];
 
-          document.getElementById(_id_Mode).value = '';
-          document.getElementById(_id_Date).value = '';
+          document.getElementById(_id_Mode).value = "";
+          document.getElementById(_id_Date).value = "";
         }
       }
     },
@@ -4273,7 +4393,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var item = 0;
       setTimeout(function () {
         for (item in data) {
-          var QtRegl = data[item].bdg_total * .3 + data[item].bdg_total * .2;
+          var QtRegl = data[item].bdg_total * 0.3 + data[item].bdg_total * 0.2;
           _this2.total_regl += QtRegl;
         }
       }, 1200);
@@ -4283,7 +4403,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this3 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var model5, model6, fiche_eval_sythetique, factures, compris_cheques, compris_remise, relev_bq_societe, relev_bq_cabinet, accuse_model6, montant_rembrs, date_depot_dmd_rembrs, date_rembrs, etat;
+        var model5, model6, fiche_eval_sythetique, factures, compris_cheques, compris_remise, relev_bq_societe, relev_bq_cabinet, accuse_model6, date_depot_dmd_rembrs, date_rembrs, etat;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -4297,25 +4417,24 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 relev_bq_societe = _this3.relev_bq_societe;
                 relev_bq_cabinet = _this3.relev_bq_cabinet;
                 accuse_model6 = _this3.accuse_model6;
-                montant_rembrs = document.getElementById("montant_rembrs");
                 date_depot_dmd_rembrs = document.getElementById("date_depot_dmd_rembrs");
                 date_rembrs = document.getElementById("date_rembrs");
                 etat = $("input:radio[name=etat]:checked").val();
-                _context.next = 15;
+                _context.next = 14;
                 return _this3.getTheme();
 
-              case 15:
+              case 14:
                 axios.post("/edit-drb-ofppt/" + _this3.numero_remb, {
-                  model6: model6,
-                  model5: model5,
-                  fiche_eval_sythetique: fiche_eval_sythetique,
+                  model6: _this3.model6,
+                  model5: _this3.model5,
+                  fiche_eval_sythetique: _this3.fiche_eval_sythetique,
                   factures: factures,
                   compris_cheques: compris_cheques,
                   compris_remise: compris_remise,
                   relev_bq_societe: relev_bq_societe,
                   relev_bq_cabinet: relev_bq_cabinet,
                   accuse_model6: accuse_model6,
-                  montant_rembrs: montant_rembrs.value,
+                  montant_rembrs: _this3.montant_rembrs,
                   date_depot_dmd_rembrs: date_depot_dmd_rembrs.value,
                   date_rembrs: date_rembrs.value,
                   etat: etat,
@@ -4329,7 +4448,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   throw e;
                 });
 
-              case 16:
+              case 15:
               case "end":
                 return _context.stop();
             }
@@ -4503,6 +4622,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "List",
@@ -4512,24 +4634,20 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   mounted: function mounted() {
     this.getListOfDROfppt;
   },
-  methods: {
+  methods: _objectSpread({
     sendnrdf: function sendnrdf(n_drf) {
       var parsed = JSON.stringify(n_drf);
       localStorage.setItem("n_drf", parsed);
-      console.log(n_drf);
     },
     handleAction: function handleAction(actionName, value) {
       this.$store.dispatch(actionName, value);
     }
-  },
+  }, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])("DRB_Ofppt", ["DeleteDrf"])),
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])("DRB_Ofppt", {
     DRB_Ofppts: function DRB_Ofppts(state) {
       return state.DRB_Ofppts;
     }
-  })), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])("DRB_Ofppt", {
-    getListOfDROfppt: "getListOfDROfppt",
-    DeleteDrf: "DeleteDrf"
-  }))
+  })), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])("DRB_Ofppt", ["getListOfDROfppt"]))
 });
 
 /***/ }),
@@ -10376,7 +10494,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\ntable[data-v-376179dc] {\r\n  margin: 10px auto;\n}\ntd[data-v-376179dc],\r\nth[data-v-376179dc] {\r\n  text-align: center;\n}\n.total_reg[data-v-376179dc] {\r\n  margin: 10px auto;\r\n  float: right;\n}\n.btn-Etat[data-v-376179dc] {\r\n  display: flex;\r\n  flex-direction: row;\r\n  flex-wrap: wrap;\n}\n.display_div[data-v-376179dc] {\r\n  display: flex;\r\n  flex-direction: row;\r\n  flex-wrap: wrap;\n}\n.display_div_child[data-v-376179dc] {\r\n  display: flex;\r\n  flex-direction: column;\n}\n.div_select_all[data-v-376179dc] {\r\n  float: right;\n}\n.EcartOFPPT[data-v-376179dc]{\r\n  align-items: center;\r\n  text-align: center;\r\n  -webkit-text-decoration: black;\r\n          text-decoration: black;\r\n  background-color: transparent;\r\n  border: none;\r\n  font-weight:bold;\n}\r\n", ""]);
+exports.push([module.i, "\ntable[data-v-376179dc] {\r\n  margin: 10px auto;\n}\ntd[data-v-376179dc],\r\nth[data-v-376179dc] {\r\n  text-align: center;\n}\n.total_reg[data-v-376179dc] {\r\n  margin: 10px auto;\r\n  float: right;\n}\n.btn-Etat[data-v-376179dc] {\r\n  display: flex;\r\n  flex-direction: row;\r\n  flex-wrap: wrap;\n}\n.display_div[data-v-376179dc] {\r\n  display: flex;\r\n  flex-direction: row;\r\n  flex-wrap: wrap;\n}\n.display_div_child[data-v-376179dc] {\r\n  display: flex;\r\n  flex-direction: column;\n}\n.div_select_all[data-v-376179dc] {\r\n  float: right;\n}\n.EcartOFPPT[data-v-376179dc] {\r\n  align-items: center;\r\n  text-align: center;\r\n  -webkit-text-decoration: black;\r\n          text-decoration: black;\r\n  background-color: transparent;\r\n  border: none;\r\n  font-weight: bold;\n}\r\n", ""]);
 
 // exports
 
@@ -46446,9 +46564,7 @@ var render = function() {
                             _vm._v(" "),
                             _c("td", [_vm._v(_vm._s(info.bdg_total))]),
                             _vm._v(" "),
-                            _c("td", [
-                              _vm._v(_vm._s(info.bdg_total * 0.2) + " ")
-                            ]),
+                            _c("td", [_vm._v(_vm._s(info.bdg_total * 0.2))]),
                             _vm._v(" "),
                             _c("td", [
                               _vm._v(
@@ -47044,58 +47160,6 @@ var render = function() {
                               [_vm._v("Relevés bq cabinet")]
                             )
                           ]
-                        )
-                      ])
-                    ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _vm._m(4, true),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass: "form-group col-lg-12 col-sm-12 display_div",
-                    staticStyle: { display: "flex", "flex-direction": "'row'" }
-                  },
-                  [
-                    _c(
-                      "div",
-                      {
-                        staticClass:
-                          "form-group col-lg-6 col-sm-12 display_div1"
-                      },
-                      [
-                        _c(
-                          "div",
-                          {
-                            staticClass: "form-group col-lg-6 col-sm-12 ",
-                            staticStyle: { margin: "2em 2em 2em 0" }
-                          },
-                          [
-                            _c("label", [
-                              _vm._v("Date dépot demande de Remboursement")
-                            ]),
-                            _vm._v(" "),
-                            _c("input", {
-                              staticClass: "form-control",
-                              attrs: {
-                                type: "text",
-                                name: "date_depot_dmd_rembrs",
-                                id: "date_depot_dmd_rembrs",
-                                onmouseover: "(this.type='date')",
-                                placeholder: "Date réalisation"
-                              },
-                              domProps: {
-                                value: DRB_Ofppt.date_depot_dmd_rembrs
-                              },
-                              on: {
-                                change: function($event) {
-                                  return _vm.DateValidation()
-                                }
-                              }
-                            })
-                          ]
                         ),
                         _vm._v(" "),
                         _c(
@@ -47160,6 +47224,56 @@ var render = function() {
                             )
                           ]
                         )
+                      ])
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "form-group col-lg-12 col-sm-12 display_div",
+                    staticStyle: { display: "flex", "flex-direction": "'row'" }
+                  },
+                  [
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "form-group col-lg-6 col-sm-12 display_div1"
+                      },
+                      [
+                        _c(
+                          "div",
+                          {
+                            staticClass: "form-group col-lg-6 col-sm-12 ",
+                            staticStyle: { margin: "2em 2em 2em 0" }
+                          },
+                          [
+                            _c("label", [
+                              _vm._v("Date dépot demande de Remboursement")
+                            ]),
+                            _vm._v(" "),
+                            _c("input", {
+                              staticClass: "form-control",
+                              attrs: {
+                                type: "text",
+                                name: "date_depot_dmd_rembrs",
+                                id: "date_depot_dmd_rembrs",
+                                onmouseover: "(this.type='date')",
+                                placeholder: "Date réalisation"
+                              },
+                              domProps: {
+                                value: DRB_Ofppt.date_depot_dmd_rembrs
+                              },
+                              on: {
+                                change: function($event) {
+                                  return _vm.DateValidation()
+                                }
+                              }
+                            })
+                          ]
+                        )
                       ]
                     ),
                     _vm._v(" "),
@@ -47180,6 +47294,14 @@ var render = function() {
                             _c("label", [_vm._v("Montant de Remboursement")]),
                             _vm._v(" "),
                             _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.montant_rembrs,
+                                  expression: "montant_rembrs"
+                                }
+                              ],
                               staticClass: "form-control",
                               attrs: {
                                 type: "text",
@@ -47187,7 +47309,15 @@ var render = function() {
                                 name: "montant_rembrs",
                                 placeholder: "Montant Remboursement"
                               },
-                              domProps: { value: DRB_Ofppt.montant_rembrs }
+                              domProps: { value: _vm.montant_rembrs },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.montant_rembrs = $event.target.value
+                                }
+                              }
                             })
                           ]
                         ),
@@ -47221,16 +47351,16 @@ var render = function() {
                   ]
                 ),
                 _vm._v(" "),
-                _vm._m(5, true),
+                _vm._m(4, true),
                 _vm._v(" "),
-                _vm._m(6, true),
+                _vm._m(5, true),
                 _vm._v(" "),
                 _c("div", { staticClass: "form-group col-12" }, [
                   _c("label", [_vm._v("Remboursement OFPPT")]),
                   _vm._v(" "),
                   _c("div", { staticClass: "table-responsive" }, [
                     _c("table", { staticClass: "table table-striped" }, [
-                      _vm._m(7, true),
+                      _vm._m(6, true),
                       _vm._v(" "),
                       _c(
                         "tbody",
@@ -47316,7 +47446,7 @@ var render = function() {
                     ])
                   ]),
                   _vm._v(" "),
-                  _vm._m(8, true),
+                  _vm._m(7, true),
                   _vm._v(" "),
                   _c("div", {
                     staticClass: "form-group col-lg-12 col-sm-12",
@@ -47550,7 +47680,7 @@ var render = function() {
       ]
     ),
     _vm._v(" "),
-    _vm._m(9),
+    _vm._m(8),
     _vm._v(" "),
     _c("div", { staticClass: "form-group col-12" }, [
       _c("label", [_vm._v("Commentaire")]),
@@ -47597,10 +47727,13 @@ var render = function() {
             }
           }
         },
-        [_c("i", { staticClass: "fas fa-pen-square icon" }), _vm._v("Modifier")]
+        [
+          _c("i", { staticClass: "fas fa-pen-square icon" }),
+          _vm._v("Modifier\n    ")
+        ]
       ),
       _vm._v(" "),
-      _vm._m(10)
+      _vm._m(9)
     ])
   ])
 }
@@ -47652,12 +47785,6 @@ var staticRenderFns = [
         ])
       ])
     ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group col-12" }, [_c("hr")])
   },
   function() {
     var _vm = this
@@ -47790,20 +47917,41 @@ var render = function() {
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(DRB_Ofppt.refpdf))]),
                 _vm._v(" "),
-                _c(
-                  "td",
-                  { staticClass: "th-last d-inline-block text-truncate" },
-                  [
-                    _vm._v(
-                      "\n              " +
-                        _vm._s(DRB_Ofppt.id_plan) +
-                        "\n            "
-                    )
-                  ]
-                ),
+                _c("td", [
+                  _vm._v(
+                    "\n              " +
+                      _vm._s(DRB_Ofppt.id_plan) +
+                      "\n            "
+                  )
+                ]),
                 _vm._v(" "),
-                _c("td", { staticClass: "action" }, [
-                  _vm._m(2, true),
+                _c("td", [
+                  _vm._v(
+                    "\n             " +
+                      _vm._s(DRB_Ofppt.commenter) +
+                      "\n            "
+                  )
+                ]),
+                _vm._v(" "),
+                _c("td", [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "btn btn-primary",
+                      attrs: { href: "/detail-drb-ofppt" },
+                      on: {
+                        click: function($event) {
+                          return _vm.sendnrdf(DRB_Ofppt.n_drf)
+                        }
+                      }
+                    },
+                    [
+                      _c("i", {
+                        staticClass: "fa fa-eye",
+                        staticStyle: { color: "white" }
+                      })
+                    ]
+                  ),
                   _vm._v(" "),
                   _c(
                     "a",
@@ -47825,10 +47973,7 @@ var render = function() {
                       staticClass: "btn btn-danger",
                       on: {
                         click: function($event) {
-                          return _vm.handleAction(
-                            "DRB_Ofppt/DeleteDrf",
-                            DRB_Ofppt.n_drf
-                          )
+                          return _vm.DeleteDrf(DRB_Ofppt.n_drf)
                         }
                       }
                     },
@@ -47895,19 +48040,11 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Plan de formation")]),
         _vm._v(" "),
-        _c("th", { staticClass: "action" }, [_vm._v("Action")])
+        _c("th", [_vm._v("Commenter")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Action")])
       ])
     ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "a",
-      { staticClass: "btn btn-primary", attrs: { href: "/detail-drb-ofppt" } },
-      [_c("i", { staticClass: "fa fa-eye", staticStyle: { color: "white" } })]
-    )
   }
 ]
 render._withStripped = true
@@ -71071,9 +71208,9 @@ var actions = {
             case 0:
               commit = _ref.commit;
               _context.next = 3;
-              return axios.get("/list-drb-ofppt").then(function (res) {
-                commit('FETCH_DBR_OFPPT', res.data);
-                console.log('test drb ', data);
+              return axios.get("/list-drb-ofppt").then(function (_ref2) {
+                var data = _ref2.data;
+                commit("FETCH_DBR_OFPPT", data);
               })["catch"](function (err) {
                 console.log(err);
               });
@@ -71086,28 +71223,19 @@ var actions = {
       }, _callee);
     }))();
   },
-  //   async getListOfDROfpptEdit({commit}, ndrb) {
-  //     await axios.get(`edit-drb-ofppt/`, { params: { ndrb: ndrb } })
-  //       .then(res => {
-  //           commit('FETCH_DBR_OFPPT_Edit', res.data)
-  //           console.log('test data ', data )
-  //       }).catch(err => {
-  //       console.log(err)
-  //   });
-  // },
-  getListOfDROfpptEdit: function getListOfDROfpptEdit(_ref2, ndrb) {
+  getListOfDROfpptEdit: function getListOfDROfpptEdit(_ref3, ndrb) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
       var commit;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
-              commit = _ref2.commit;
+              commit = _ref3.commit;
               _context2.next = 3;
-              return axios.get("/edit-drb-ofppt/" + ndrb).then(function (_ref3) {
-                var data = _ref3.data;
+              return axios.get("/edit-drb-ofppt/" + ndrb).then(function (_ref4) {
+                var data = _ref4.data;
                 commit("FETCH_DBR_OFPPT_Edit", data);
-                console.log("test edited data : ", data);
+                console.log();
               })["catch"](function (err) {
                 return console.log(err);
               });
@@ -71120,19 +71248,18 @@ var actions = {
       }, _callee2);
     }))();
   },
-  ReglEntrpInfo: function ReglEntrpInfo(_ref4, ndrb) {
+  ReglEntrpInfo: function ReglEntrpInfo(_ref5, ndrb) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
       var commit;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
         while (1) {
           switch (_context3.prev = _context3.next) {
             case 0:
-              commit = _ref4.commit;
+              commit = _ref5.commit;
               _context3.next = 3;
-              return axios.get("/regEntrp-drb-ofppt/" + ndrb).then(function (_ref5) {
-                var data = _ref5.data;
+              return axios.get("/regEntrp-drb-ofppt/" + ndrb).then(function (_ref6) {
+                var data = _ref6.data;
                 commit("FETCH_REGL_ENTREPRISE_INFO", data);
-                console.log("regl entreprise info", data);
               })["catch"](function (err) {
                 return console.log("cant get reg entrp info", err);
               });
@@ -71145,20 +71272,26 @@ var actions = {
       }, _callee3);
     }))();
   },
-  DeleteDrf: function DeleteDrf(ndrb) {
+  DeleteDrf: function DeleteDrf(_ref7, ndrb) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+      var commit, state;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
         while (1) {
           switch (_context4.prev = _context4.next) {
             case 0:
-              _context4.next = 2;
-              return axios.post("/delete-drf/" + ndrb).then(function () {
-                console.log('delected');
+              commit = _ref7.commit, state = _ref7.state;
+              _context4.next = 3;
+              return axios["delete"]("/delete-drf/" + ndrb).then(function () {
+                var data = state.DRB_Ofppts;
+                var result = data.filter(function (item) {
+                  return item.n_drf != ndrb;
+                });
+                commit("FETCH_DBR_OFPPT", result);
               })["catch"](function (err) {
                 return console.log("cant delete drf", err);
               });
 
-            case 2:
+            case 3:
             case "end":
               return _context4.stop();
           }
@@ -71241,7 +71374,6 @@ __webpack_require__.r(__webpack_exports__);
 var mutations = {
   FETCH_DBR_OFPPT: function FETCH_DBR_OFPPT(state, data) {
     state.DRB_Ofppts = data;
-    console.log('drb ofppt', state.DRB_Ofppts);
   },
   FETCH_DBR_OFPPT_Edit: function FETCH_DBR_OFPPT_Edit(state, data) {
     state.DRB_OfpptEdit = data;

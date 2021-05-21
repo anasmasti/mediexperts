@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\{DemandeRemboursementOfppt,PlanFormation,Formation,Theme};
 class DemandeRemboursementOfpptController extends Controller
 {
+
     public function index(){
         return view('DRB_Ofppt.view');
     }
@@ -14,11 +15,6 @@ class DemandeRemboursementOfpptController extends Controller
     {
         return view('DRB_Ofppt.detail');
     }
-    // public function edit(Request $request, $n_drf){
-    //     $pln = DemandeRemboursementOfppt::findOrFail($n_drf);
-    //     return view('DRB_Ofppt.edit',['pln '=>$pln ]);
-    // }
-
     public function editRDB($n_drf){
 
         $pln = DemandeRemboursementOfppt::select('demande_remboursement_ofppts.*','clients.raisoci')
@@ -108,15 +104,14 @@ class DemandeRemboursementOfpptController extends Controller
                 $reglEntreprise->save();
              }
              
-            
-
             $request->session()->flash('updated', 'Modifié avec succès');
+            
         }
     }
 
     public function destroy(Request $request, $n_drf)
     {
-        $drb = DemandeRemboursementOfppt::findOrFail($n_drf);
+        $drb = DemandeRemboursementOfppt::find($n_drf);
         $drb -> delete();
         $request->session()->flash('deleted', 'Supprimé avec succès');
 

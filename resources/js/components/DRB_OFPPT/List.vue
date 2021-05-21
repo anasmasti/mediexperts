@@ -31,7 +31,8 @@
               <th>Etat</th>
               <th>RefPdf</th>
               <th>Plan de formation</th>
-              <th class="action">Action</th>
+              <th>Commenter</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
@@ -71,11 +72,15 @@
                 <strong>{{ DRB_Ofppt.etat }}</strong>
               </td>
               <td>{{ DRB_Ofppt.refpdf }}</td>
-              <td class="th-last d-inline-block text-truncate">
+              <td>
                 {{ DRB_Ofppt.id_plan }}
               </td>
-              <td class="action">
+              <td>
+               {{ DRB_Ofppt.commenter}}
+              </td>
+              <td>
                 <a href="/detail-drb-ofppt" class="btn btn-primary"
+                  @click="sendnrdf(DRB_Ofppt.n_drf)"
                   ><i class="fa fa-eye" style="color: white ;"></i
                 ></a>
                 <a
@@ -84,11 +89,9 @@
                   class="btn btn-warning"
                   ><i class="fa fa-edit"></i
                 ></a>
-                <a
-                  @click="handleAction('DRB_Ofppt/DeleteDrf', DRB_Ofppt.n_drf)"
-                  class="btn btn-danger"
-                  ><i class="fa fa-trash-alt" style="color: white ;"></i
-                ></a>
+                <a @click="DeleteDrf(DRB_Ofppt.n_drf)" class="btn btn-danger">
+                  <i class="fa fa-trash-alt" style="color: white ;"></i>
+                </a>
               </td>
             </tr>
           </tbody>
@@ -105,28 +108,28 @@ export default {
   data() {
     return {};
   },
+
   mounted() {
     this.getListOfDROfppt;
   },
+
   methods: {
     sendnrdf(n_drf) {
       const parsed = JSON.stringify(n_drf);
       localStorage.setItem("n_drf", parsed);
-      console.log(n_drf);
     },
     handleAction(actionName, value) {
       this.$store.dispatch(actionName, value);
-    }
+    },
+    ...mapActions("DRB_Ofppt", ["DeleteDrf"]),
   },
+
   computed: {
     ...mapState("DRB_Ofppt", {
       DRB_Ofppts: state => state.DRB_Ofppts
     }),
 
-    ...mapActions("DRB_Ofppt", {
-      getListOfDROfppt: "getListOfDROfppt",
-      DeleteDrf: "DeleteDrf"
-    })
+    ...mapActions("DRB_Ofppt", ["getListOfDROfppt"])
   }
 };
 </script>

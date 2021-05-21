@@ -180,7 +180,7 @@ Route::post('/save-nfacture-df', 'DemandeFinancementController@SaveNFactureDF')-
  Route::get('/regEntrp-drb-ofppt/{ndrb}','DemandeRemboursementOfpptController@reglementEntreprise');
  Route::post('/edit-drb-ofppt/{ndrb}', 'DemandeRemboursementOfpptController@update')->name('DRB_Ofppt.update');
  Route::get('/detail-drb-ofppt', 'DemandeRemboursementOfpptController@Detail')->name('DRB_Ofppt.detail');
- Route::post('/delete-drf/{ndrb}', 'DemandeRemboursementOfpptController@destroy');
+ Route::delete('/delete-drf/{ndrb}', 'DemandeRemboursementOfpptController@destroy');
  
 
 
