@@ -12,18 +12,11 @@
 </head>
 
 <body>
-
 <div id="app">
   <model-3></model-3>
 </div>
-
 {{-- MIX BLADE WITH Vue.js --}}
 <script src="{{ mix('js/app.js')}}">
-
 </script>
-
-
-
-
 </body>
 </html>

@@ -12,6 +12,7 @@ class PlanFormation extends Model
     [
         'n_form',
         'n_action',
+        'pause',
 
         //docs
         'model5', //fiche pres
@@ -21,12 +22,14 @@ class PlanFormation extends Model
         'support_form',
         'cv_inv',
         'avis_affich',
-
+        'hr_debut',
+        'hr_fin',
         'id_dom',
         'id_thm',
         'dt_debut',
         'dt_fin',
         'nb_jour',
+        'Nombre_Dates',
         'nb_heure',
         'type_form',
         'organisme',
@@ -42,7 +45,14 @@ class PlanFormation extends Model
         'id_inv',
         'nrc_e',
         'etat',
-        'commentaire'
+        'commentaire',
+        'Has_Same_Dates',
+        //avis de modife
+        'date_realisation',
+        'organisme_formations',
+        'lieu_formations',
+        'horaire_formations',
+        'type_action',
     ];
 
 

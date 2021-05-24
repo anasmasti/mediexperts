@@ -38,11 +38,14 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+        return csrf_token(); 
+
     }
+    
 
     public function logout(Request $request)
     {
-    Auth::logout();
-    return redirect('/login');
+        Auth::logout();
+        return redirect('/login');
     }
 }

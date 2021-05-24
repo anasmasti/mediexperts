@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -12,7 +13,16 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+Route::post('store-avis-modif' , 'AvisModificationController@StoreUpdateAvisModif');
+
+Route::post('update-drb-ofppt' , 'DemandeRemboursementOfpptController@update');
+Route::post('delete-drb-ofppt' , 'DemandeRemboursementOfpptController@destroy');
+Route::get('test-theme','DemandeRemboursementOfpptController@getTheme');
+
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
+
   // Route::get('/fill-clients', 'FormulaireController@FillClients')->name('M1.print_m1');
+  
+  
 });

@@ -150,13 +150,13 @@
           </div>
           <div class="info">
           @if (Auth::user()->type_user == "user")
-            <a href="#" class="d-block">{{ Auth::user()->firstname }} {{ Auth::user()->name }}</a>
+            <h6 class="d-block text-light">{{ Auth::user()->firstname }} {{ Auth::user()->name }}</h6>
             <span class="right badge badge-warning">Utilisateur</span>
           @elseif (Auth::user()->type_user == "admin")
-            <a href="#" class="d-block">{{ Auth::user()->firstname }} {{ Auth::user()->name }}</a>
+            <h6 class="d-block text-light">{{ Auth::user()->firstname }} {{ Auth::user()->name }}</h6>
             <span class="right badge badge-danger">Administrateur</span>
           @else
-            <a href="#" class="d-block">{{ Auth::user()->firstname }} {{ Auth::user()->name }}</a>
+            <h6 class="d-block text-light">{{ Auth::user()->firstname }} {{ Auth::user()->name }}</h6>
             <span class="right badge badge-info">{{ ucfirst(Auth::user()->type_user) }}</span>
           @endif
           </div>
@@ -397,7 +397,7 @@
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="/planformation" class="nav-link">
+                    <a href="/PlanFormation" class="nav-link">
                     <i class="fa fa-list nav-icon"></i>
                     <p>Liste</p>
                     </a>
@@ -484,14 +484,9 @@
                 </a>
                 <!-- * ITEMS SUB MENU -->
                 <ul class="nav nav-treeview ml-3">
+
                   <li class="nav-item">
-                    <a href="/add-drb-of" class="nav-link">
-                    <i class="fa fa-plus-circle nav-icon"></i>
-                    <p>Ajout</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="/drb-of" class="nav-link">
+                    <a href="/list-drb" class="nav-link">
                     <i class="fa fa-list nav-icon"></i>
                     <p>Liste</p>
                     </a>
@@ -707,15 +702,15 @@
 
       </div>
       <!-- Default to the left -->
-      <strong><a href="#" style="color:#dab515;">Medi Experts&nbsp;</a>
-      Copyright &copy; 2019</strong>
+      <strong><a href="#" style="color:#dab515;">Mediexperts&nbsp;</a>
+      Copyright &copy; 2021</strong>
     </footer> --}}
 
     <footer class="main-footer">
       <strong class="">Mediexperts </strong>
       <strong>{{ date('Y') }}</strong>
       <div class="float-right d-none d-sm-inline-block">
-      <b>Version</b> <strong>1.0.2</strong>
+      <b>Version</b> <strong>2.0.0</strong>
       </div>
     </footer>
 

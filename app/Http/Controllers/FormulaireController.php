@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\{DemandeFinancement,Client,Cabinet,DemandeRemboursementGiac,Plan,PlanFormation,Formation,Personnel,MissionIntervenant,Giac,Domaine,Theme};
-use PDF;
-use DB;
+use App\{DemandeFinancement,Client,Cabinet,DemandeRemboursementGiac,Plan,PlanFormation,Formation,Personnel,MissionIntervenant,Giac,Domaine,Theme,AvisModification};
+use Illuminate\Foundation\Console\Presets\React;
+//use Knp\Snappy\Pdf;
+use Illuminate\Support\Facades\DB;
+
 
 class FormulaireController extends Controller
 {
@@ -41,6 +43,11 @@ class FormulaireController extends Controller
       //, ['client' => $client]
       );
     }
+    public function print_G6 (Request $request) {
+
+      return view('_formulaires.G6');
+
+    }
     public function FillClients(Request $request) {
       $data = Client::all();
       return response()->json($data);
@@ -64,7 +71,7 @@ class FormulaireController extends Controller
       'formations.date11','formations.date12','formations.date13','formations.date14','formations.date15',
       'formations.date16','formations.date17','formations.date18','formations.date19','formations.date20',
       'formations.date21','formations.date22','formations.date23','formations.date24','formations.date25',
-      'formations.date26','formations.date27','formations.date28','formations.date29','formations.date30')
+      'formations.date26','formations.date27','formations.date28','formations.date29','formations.date30', 'plan_formations.nb_partcp_total' , 'plan_formations.organisme')
         ->join('formations', 'plan_formations.n_form', 'formations.n_form')
         ->where('formations.n_form', $request->nForm)
         ->orderBy('plan_formations.dt_debut', 'asc')
@@ -196,9 +203,17 @@ class FormulaireController extends Controller
 
       return response()->json($data);
     }
+    public function FillG6Info (Request $request) {
+      $data= Plan::select('plans.annee','plans.id_plan','plans.refpdf','clients.raisoci','clients.nom_dg1','clients.fonct_dg1','plans.nrc_e', 'clients.nrc_entrp')
+      ->join('clients', 'plans.nrc_e', 'clients.nrc_entrp')
+      ->where('plans.id_plan', $request->idPlan)
+      ->get();
+
+      return response()->json($data);
+    }
     public function FillPlansByReference(Request $request) {
       $data = Client::select('plan_formations.*', 'themes.nom_theme','domaines.nom_domain','plans.*',
-        'cabinets.raisoci as raisoci_cab', 'cabinets.ncnss as ncnss_cab', 'plans.annee')
+        'cabinets.raisoci as raisoci_cab', 'cabinets.ncnss as ncnss_cab', 'plans.annee','plan_formations.etat as etat_formation')
         ->join('plans', 'clients.nrc_entrp', 'plans.nrc_e')
         ->join('plan_formations', 'plans.id_plan', 'plan_formations.id_plan')
         ->join('themes', 'plan_formations.id_thm', 'themes.id_theme')
@@ -211,6 +226,49 @@ class FormulaireController extends Controller
         ->get();
       return response()->json($data);
     }
+
+    public function FillavisModif(Request $request) {
+      $data = Formation::select('formations.*' , 'plan_formations.*')
+        ->join('plan_formations', 'formations.n_form' , 'plan_formations.n_form')
+        ->where('plan_formations.n_form' , $request->nForm)
+        ->get();
+        return response()->json($data);
+    }
+
+    public function GetInfoAvisModifByGroupe (Request $request) {
+      $data = Formation::select('formations.*' , 'plan_formations.*')
+        ->join('plan_formations', 'formations.n_form' , 'plan_formations.n_form')
+        ->where('formations.id_form' , $request->idForm)
+        ->get();
+        return response()->json($data);
+    }
+
+    public function GetOldInfoAvisModif(Request $request) {
+      $data = AvisModification::select('avis_modifications.*')
+      ->where('avis_modifications.n_form' , $request->nForm)
+      // ->orderby('groupe' , 'ASC')
+      ->get();
+
+      return response()->json($data);
+    }
+
+    public function GetNomResponsableModel3(Request $request){
+      $data = Client::select('clients.nom_resp')
+      ->where('clients.nrc_entrp', $request->nrcEntrp)
+      ->get();
+
+      return response()->json($data);
+    }
+
+    public function GetNomTheme(Request $request) {
+      $data = PlanFormation::select('themes.nom_theme')
+      ->join('themes', 'themes.id_theme', 'plan_formations.id_thm')
+      ->where('plan_formations.n_form', $request->nForm)
+      ->get();
+
+      return response()->json($data);
+    }
+
     public function print_avis_aff(Request $request) {
       $client = Client::all();
       return view('_formulaires.avis-affichage', ['client' => $client]);
@@ -274,6 +332,12 @@ class FormulaireController extends Controller
       $data = Plan::select('plans.*','clients.raisoci')
       ->join('Clients', 'clients.nrc_entrp', '=', 'plans.nrc_e')
       ->where('clients.nrc_entrp', $request->nrc)->get();
+      return response()->json($data);
+    }
+
+    public function FillAllCabinets(Request $request)
+    {
+      $data = Cabinet::all();
       return response()->json($data);
     }
 

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddStoreNContrat extends Migration
+class AddNombreDate extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,12 @@ class AddStoreNContrat extends Migration
      */
     public function up()
     {
-        Schema::table('demande_financements', function (Blueprint $table) {
-            $table->string('n_contrat',50);
-        });
+      Schema::table('plan_formations', function (Blueprint $table) {
+
+        $table->integer('Nombre_Dates');
+
+
+      });
     }
 
     /**
@@ -25,8 +28,9 @@ class AddStoreNContrat extends Migration
      */
     public function down()
     {
-        Schema::table('demande_financements', function (Blueprint $table) {
-            //
-        });
+      Schema::table('plan_formations', function (Blueprint $table) {
+
+        $table->dropColumn(['Nombre_Dates']);
+    });
     }
 }

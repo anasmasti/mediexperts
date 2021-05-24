@@ -14,7 +14,8 @@ class CreateOldActionFormations extends Migration
     public function up()
     {
         Schema::create('old_action_formations', function (Blueprint $table) {
-          $table->bigIncrements('old_n_form');
+
+          $table->unsignedBigInteger('old_n_form');
           // $table->string('old_refpdf')->unique();
           $table->string('old_id_dom', 300); //domaine
           $table->string('old_id_thm', 300); //theme
@@ -45,15 +46,17 @@ class CreateOldActionFormations extends Migration
           $table->double('old_bdg_total');
           $table->string('old_bdg_letter', 200)->nullable();
           $table->string('old_etat', 50)->default("aucun");
-          $table->unsignedBigInteger('old_id_inv');
           $table->unsignedBigInteger('old_id_plan');
           $table->string('old_commentaire', 5000)->nullable();
 
-          $table->foreign('old_id_inv')
-          ->references('id_interv')
-          ->on('intervenants')
+
+          $table->foreign('old_n_form')
+          ->references('n_form')
+          ->on('plan_formations')
           ->onUpdate('cascade')
           ->onDelete('cascade');
+
+          $table->primary('old_n_form');
 
           $table->foreign('old_id_plan')
           ->references('id_plan')

@@ -136,7 +136,7 @@
           <div class="icon">
             <i class="fas fa-calendar-alt"></i>
           </div>
-          <a href="/planformation" class="small-box-footer">
+          <a href="/PlanFormation" class="small-box-footer">
             Aller à <i class="fa fa-arrow-circle-right"></i>
           </a>
         </div>
@@ -382,7 +382,10 @@
 
               <div class="info-box-content">
                 <span class="info-box-text">Modèles 3</span>
-                <span class="info-box-number"><a href="/print-m3">Imprimer</a></span>
+                <div class="d-flex">
+                <span class="info-box-number"><a href="/print-m3">Imprimer - </a></span>
+                <span class="info-box-number"><a href="/avis-modif"> Modifier</a></span>
+                </div>
               </div>
               <!-- /.info-box-content -->
             </div>
@@ -409,6 +412,7 @@
               <div class="info-box-content">
                 <span class="info-box-text">Modèles 5</span>
                 <span class="info-box-number"><a href="/print-m5">Imprimer</a></span>
+
               </div>
               <!-- /.info-box-content -->
             </div>
@@ -530,6 +534,17 @@
             <div class="info-box-content">
               <span class="info-box-text">Attes. référence intervenant</span>
               <span class="info-box-number"><a href="/print-att-reference-df-inv">Imprimer</a></span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+        </div>
+        <div class="col-lg-4 col-sm-12 col-md-4">
+          <div class="info-box mb-3 bg-light">
+            <span class="info-box-icon"><i class="fas fa-print"></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">G6</span>
+              <span class="info-box-number"><a href="/print-g6">Imprimer</a></span>
             </div>
             <!-- /.info-box-content -->
           </div>

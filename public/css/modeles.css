@@ -62,7 +62,6 @@ span { padding: .1rem; }
   font-weight: 700; text-align: center;
 }
 
-
 @media print {
   .hide-from-print { display: none; }
   .highlighted { background-color: #fff !important; }

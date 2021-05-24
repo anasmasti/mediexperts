@@ -58,16 +58,16 @@
           de <a href="/detail-cl/{{$formation["nrc_entrp"]}}">{{$formation["raisoci"]}}</a>
           </td>
         </tr>
-        <tr><th class="th-det">N° facture</th>
-          <td>{{ $formation->n_facture }}</td></tr>
+        {{-- <tr><th class="th-det">N° facture</th>
+          <td>{{ $formation->n_facture }}</td></tr> --}}
         <tr><th class="th-det">Groupe</th>
           <td>{{ $formation->groupe }}</td></tr>
         <tr><th class="th-det">Nb. bénificiares</th>
           <td>{{ $formation->nb_benif }}</td></tr>
-        <tr><th class="th-det">Heure début</th>
-          <td>{{ $formation->hr_debut }}</td></tr>
-        <tr><th class="th-det">Heure fin</th>
-          <td>{{ $formation->hr_fin }}</td></tr>
+        {{-- <tr><th class="th-det">Heure début</th>
+          <td>{{ $formation->hr_debut }}</td></tr> --}}
+        {{-- <tr><th class="th-det">Heure fin</th>
+          <td>{{ $formation->hr_fin }}</td></tr> --}}
         <tr><th class="th-det">Pause début</th>
           <td>{{ $formation->pse_debut }}</td></tr>
         <tr><th class="th-det">Pause fin</th>

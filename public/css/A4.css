@@ -1,0 +1,7 @@
+body {
+  height: 882px;
+  width: 700px;
+  /* to centre page on screen*/
+  margin-left: auto;
+  margin-right: auto;
+}

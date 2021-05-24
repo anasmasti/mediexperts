@@ -21,6 +21,8 @@ export default {
   mounted() {
     this.FillClients();
   },
+  computed: {
+  },
   methods: {
     DateFormat(date) {
       if (date) {

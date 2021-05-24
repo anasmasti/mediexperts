@@ -9,7 +9,7 @@
   </div><!-- /.col -->
   <div class="col-sm-6">
     <ol class="breadcrumb float-sm-right">
-      <li class="breadcrumb-item"><a href="/planformation">Actions plan formation</a></li>
+      <li class="breadcrumb-item"><a href="/PlanFormation">Actions plan formation</a></li>
       <li class="breadcrumb-item active">Liste</li>
     </ol>
   </div><!-- /.col -->
@@ -79,7 +79,7 @@
               ->first();
           @endphp
 
-          <td class="{{ ($pf->etat == "réalisé") ? 'font-weight-bold badge-success' : ($pf->etat == "planifié" ? 'font-weight-bold badge-warning' : 'font-weight-bold badge-danger') }}">{{ ucfirst($pf->etat) }}</td>
+          <td class="{{ ($pf->etat == "réalisé") ? 'font-weight-bold badge-success' : ($pf->etat == "planifié" ? 'font-weight-bold badge-warning' : ($pf->etat == "modifié"  ? 'font-weight-bold badge-primary' : 'font-weight-bold badge-danger')) }}">{{ ucfirst($pf->etat) }}</td>
           {{-- <td>{{ $pf["n_form"] }}</td> --}}
           <td>{{ $refpdf["refpdf"] }}</td>
           <td>{{ $pf->n_action }}</td>

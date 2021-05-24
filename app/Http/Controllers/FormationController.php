@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\{Formation,PlanFormation,Client,Theme,Domaine,Personnel,Plan,Intervenant,FormationPersonnel};
-use DB;
-use Alert;
+use Illuminate\Support\Facades\DB;
+
 
 class FormationController extends Controller
 {
@@ -51,7 +51,7 @@ class FormationController extends Controller
     //find nb jour de Plan de formation
     public function FindNbJours(Request $request) {
         // $data = PlanFormation::find($request->nform)->nbjour;
-        $data = PlanFormation::select('n_form', 'nb_jour', 'nb_grp', 'dt_debut', 'dt_fin', 'nb_partcp_total')
+        $data = PlanFormation::select('n_form', 'nb_jour', 'nb_grp', 'dt_debut', 'dt_fin', 'nb_partcp_total','Nombre_Dates','Has_Same_Dates')
                 ->where('plan_formations.n_form', $request->nForm)
                 ->get();
         return response()->json($data);
@@ -123,7 +123,7 @@ class FormationController extends Controller
         ->where([['clients.nrc_entrp', '=', $request->nrc], ['plans.annee', '=', $request->annee]])
         ->get();
 
-        return view('planformation.view', ['plan' => $plan]);
+        return view('PlanFormation.view', ['plan' => $plan]);
     }
     public function SaveNFacture(Request $request) {
       // $formation = Formation::findOrFail($request->nFacture);
@@ -170,8 +170,8 @@ class FormationController extends Controller
                 // 'id_form' => 'required|unique:formations|max:50',
                 'groupe' => 'required|max:50',
                 'nb_benif' => 'required|max:50',
-                'hr_debut' => 'required|max:50',
-                'hr_fin' => 'required|max:50',
+                'hr_debut' => 'nullable|max:50',
+                'hr_fin' => 'nullable|max:50',
                 'pse_debut' => 'required|max:50',
                 'pse_fin' => 'required|max:50',
                 'date1' => 'date',
@@ -192,6 +192,7 @@ class FormationController extends Controller
 
             $formation = Formation::create($request->except('cin'));
 
+
             $last_group = PlanFormation::select('formations.*')
                             ->join('formations', 'formations.n_form', 'plan_formations.n_form')
                             ->where('plan_formations.n_form', $request->input("n_form"))
@@ -209,6 +210,7 @@ class FormationController extends Controller
             // }
 
             //get all inputs at once (with the same name as "name[]")
+
             $cins = $request->cin;
             $counter = 0;
             if ($cins) {
@@ -299,8 +301,8 @@ class FormationController extends Controller
             $request->validate([
                 'groupe' => 'required|max:50',
                 'nb_benif' => 'required|max:50',
-                'hr_debut' => 'required|max:50',
-                'hr_fin' => 'required|max:50',
+                // 'hr_debut' => 'nullable|max:50',
+                // 'hr_fin' => 'nullable|max:50',
                 'pse_debut' => 'required|max:50',
                 'pse_fin' => 'required|max:50',
                 'date1' => 'date',

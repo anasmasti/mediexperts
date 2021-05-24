@@ -129,7 +129,7 @@
         @endif
       </div>
 
-      <div class="form-group col-lg-3 col-sm-12">
+      {{-- <div class="form-group col-lg-3 col-sm-12">
         <label>Heure début</label>
         <div class='input-group date'>
           <input class="form-control timerpicker {{ $errors->has('hr_debut') ? 'is-invalid' : '' }}" value="{{$formation->hr_debut}}" type="text" id="hr_debut" name="hr_debut" />
@@ -142,9 +142,9 @@
             <strong>{{ $errors->first('hr_debut') }}</strong>
           </span>
         @endif
-      </div>
+      </div> --}}
 
-      <div class="form-group col-lg-3 col-sm-12">
+      {{-- <div class="form-group col-lg-3 col-sm-12">
         <label>Heure fin</label>
         <div class='input-group date'>
           <input class="form-control timerpicker {{ $errors->has('hr_fin') ? 'is-invalid' : '' }}" value="{{$formation->hr_fin}}" type="text" id="hr_fin" name="hr_fin" />
@@ -157,7 +157,7 @@
             <strong>{{ $errors->first('hr_fin') }}</strong>
           </span>
         @endif
-      </div>
+      </div> --}}
 
       <div class="form-group col-lg-3 col-sm-12">
         <label>Pause début</label>
@@ -285,7 +285,14 @@ $(document).ready(function() {
       success: function(data) {
         console.log('success nb_jour !!');
         console.log(data);
-        nbJour = data[0].nb_jour;
+        if (data[0].Has_Same_Dates == 1) {
+          nbJour = data[0].Nombre_Dates / data[0].nb_grp
+          return nbJour
+        } else {
+          nbJour = data[0].Nombre_Dates
+          return nbJour
+        }
+
       },
       error: function(msg) { console.log('error getting nb_jour !!'); }
     }); //ajax
@@ -301,7 +308,7 @@ $(document).ready(function() {
           for (var i = 1; i <= nbJour; i++) {
             createDateInput +=
             `<div class="form-group col-lg-3 col-sm-12">
-            <label for="date`+i+`">Jour `+i+`</label>
+            <label for="date`+i+`">Date `+i+`</label>
             <input class="form-control {{ $errors->has('date`+i+`') ? 'is-invalid' : '' }}" type="date" value="`+data[0]["date"+i]+`" name="date`+i+`" onmouseover="(this.type='date')" placeholder="date`+i+`" >
               @if ($errors->has('date`+i+`'))
                 <span class="invalid-feedback" role="alert">

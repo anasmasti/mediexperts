@@ -24,7 +24,7 @@
     </div><!-- /.col -->
     <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="/planformation">Action formation</a></li>
+            <li class="breadcrumb-item"><a href="/PlanFormation">Action formation</a></li>
             <li class="breadcrumb-item active">N° {{ $plan->n_form }}</li>
         </ol>
     </div><!-- /.col -->
@@ -210,6 +210,19 @@
                     {{ $errors->first('dt_debut') }}
                 </span>
            @endif
+           <label>Pause</label>
+           <div class="form-check">
+             <input class="form-check-input" type="radio" value="1" name="pause">
+             <label class="form-check-label">
+               Oui
+             </label>
+           </div>
+           <div class="form-check">
+             <input class="form-check-input" type="radio" value="0" name="pause" checked>
+             <label class="form-check-label">
+               Non
+             </label>
+           </div>
         </div>
 
         <div class="form-group col-lg-3 col-md-6 col-12"><label>Date fin</label>
@@ -228,7 +241,20 @@
                     {{ $errors->first('nb_jour') }}
                 </span>
            @endif
-        </div>
+           <label for="nb_dates">Nb. Dates</label>
+           <input type="text" class="form-control {{ $errors->has('nb_dates') ? 'is-invalid' : '' }}" value="{{$plan->Nombre_Dates}}" name="nb_dates" id="nb_dates" onkeyup="CalcNbJour();CalcBdgJourn();ValidationNbDatesIfSameDates()" onclick="NbHeurValidation()" onkeypress="return isNumberKey(event)" placeholder="nb. dates">
+           @if ($errors->has('nb_dates'))
+           <span class="invalid-feedback" role="alert">
+             {{$errors->first('nb_dates') }}
+           </span>
+           @endif
+          <span class="text-danger" id="nb_dates_msg"></span>
+          <div class="form-check">
+            <input type="checkbox" name="same_dates" onchange="ValidationNbDatesIfSameDates()" value="1" {{$plan->Has_Same_Dates == 1 ? 'checked' : ''}} id="same_dates" class="form-check-input">
+            <label for="grp_hasnt_same_dates" class="form-check-label">Groupes ayant différent date</label> <br>
+            <label class="text-danger" id="sameDateError"></label>
+          </div>
+          </div>
 
         <div class="form-group col-lg-3 col-md-6 col-12"><label>Nb. heures (durée total)</label>
             <input class="form-control {{ $errors->has('nb_heure') ? 'is-invalid' : '' }}" value="{{$plan->nb_heure}}" type="text" name="nb_heure" id="nb_heure" min="0" maxlength="15" onkeyup="CalcBdgJourn()" onkeypress="return isNumberKey(event)" placeholder="nb. jour" >
@@ -295,7 +321,7 @@
         @endif
         </div>
 
-        <div class="form-group col-lg-3 col-md-6 col-12"><label>Nb. groupes</label><input class="form-control {{ $errors->has('nb_grp') ? 'is-invalid' : '' }}" value="{{$plan->nb_grp}}" type="text" name="nb_grp" min="0" maxlength="15" onkeypress="return isNumberKey(event)" placeholder="Nombre" >
+        <div class="form-group col-lg-3 col-md-6 col-12"><label>Nb. groupes</label><input class="form-control {{ $errors->has('nb_grp') ? 'is-invalid' : '' }}" value="{{$plan->nb_grp}}" type="text" name="nb_grp" id="nb_grp" min="0" maxlength="15" onkeypress="return isNumberKey(event)" placeholder="Nombre" >
         @if ($errors->has('nb_grp'))
             <span class="invalid-feedback" role="alert">
                 {{ $errors->first('nb_grp') }}
@@ -368,7 +394,7 @@
 
         <div class="form-group col-lg-3 col-md-6 col-12"><label>État</label>
             <select class="form-control {{ $errors->has('etat') ? 'is-invalid' : '' }}" name="etat" id="etat" value="{{$plan->etat}}">
-              <?php $etat_plan = ['planifié', 'réalisé', 'annulé']; ?>
+              <?php $etat_plan = ['planifié', 'réalisé', 'annulé' , 'modifié']; ?>
               @foreach ($etat_plan as $etat)
                 <option {{($plan->etat == $etat) ? 'selected' : ''}} value="{{$etat}}">{{ucfirst($etat)}}</option>
               @endforeach
@@ -379,6 +405,35 @@
                 </span>
             @endif
         </div>
+        <div class="form-group col-lg-3 col-sm-12">
+        <label>Heure début</label>
+        <div class='input-group date'>
+          <input class="form-control timerpicker {{ $errors->has('hr_debut') ? 'is-invalid' : '' }}" value="{{$plan->hr_debut}}" type="text" id="hr_debut" name="hr_debut" />
+          <div class="input-group-append" data-target="#timepicker" data-toggle="datetimepicker">
+            <div class="input-group-text"><i class="far fa-clock"></i></div>
+          </div>
+        </div>
+        @if ($errors->has('hr_debut'))
+          <span class="invalid-feedback" role="alert">
+            <strong>{{ $errors->first('hr_debut') }}</strong>
+          </span>
+        @endif
+      </div>
+
+      <div class="form-group col-lg-3 col-sm-12">
+        <label>Heure fin</label>
+        <div class='input-group date'>
+          <input class="form-control timerpicker {{ $errors->has('hr_fin') ? 'is-invalid' : '' }}" value="{{$plan->hr_fin}}" type="text" id="hr_fin" name="hr_fin" />
+          <div class="input-group-append" data-target="#timepicker" data-toggle="datetimepicker">
+            <div class="input-group-text"><i class="far fa-clock"></i></div>
+          </div>
+        </div>
+        @if ($errors->has('hr_fin'))
+          <span class="invalid-feedback" role="alert">
+            <strong>{{ $errors->first('hr_fin') }}</strong>
+          </span>
+        @endif
+      </div>
 
         {{-- <div class="form-group col-lg-3 col-md-6 col-12">
             <label>Documents</label>
@@ -410,7 +465,7 @@
 
     <div class="card-footer">
         <button class="btn bu-add" type="submit" id="edit"><i class="fas fa-pen-square icon"></i>Modifier</button>
-        <a class="btn bu-danger" href="/planformation"><i class="fas fa-window-close icon"></i>Annuler</a>
+        <a class="btn bu-danger" href="/PlanFormation"><i class="fas fa-window-close icon"></i>Annuler</a>
     </div>
 
     </form>

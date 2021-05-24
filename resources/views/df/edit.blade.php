@@ -22,6 +22,25 @@
 {{-- jquery scripts --}}
 <script src={{ asset('js/jquery.js') }}></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+<div class="modal" tabindex="-1" role="dialog" id="msg_error_accord">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header bg-danger text-lite">
+            <h5 class="modal-title">Il y a une erreur</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            Accord informations requises
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+  </div>
 {{-- jquery scripts --}}
 
 <!-- CARD -->
@@ -1379,49 +1398,49 @@
     <div class="form-group col-12 text-center">
         <h4>État demande</h4>
         <div class="btn-group btn-group-toggle" data-toggle="buttons">
-            <label class="btn {{ mb_strtolower($df->etat)=='initié' ? 'btn-success active' : 'btn-warning' }}">
+            <label class="btn {{ mb_strtolower($df->etat)=='initié' ? 'btn-success active' : 'btn-warning' }}" name="btnEtat">
                 Initié
                 <i class="fas fa-battery-quarter"></i>
                 <input type="radio" name="etat" id="option1" autocomplete="off" value="initié"
                   {{ mb_strtolower($df->etat)=='initié' ? 'checked' : '' }}>
             </label>
 
-            <label class="btn {{ mb_strtolower($df->etat)=='instruction dossier' ? 'btn-success active' : 'btn-warning' }}">
+            <label class="btn {{ mb_strtolower($df->etat)=='instruction dossier' ? 'btn-success active' : 'btn-warning' }}" name="btnEtat">
                 Instruction dossier
                 <i class="fas fa-hourglass-half"></i>
                 <input type="radio" name="etat" id="option2" autocomplete="off" value="instruction dossier"
                   {{ mb_strtolower($df->etat)=='instruction dossier' ? 'checked' : '' }}>
             </label>
 
-            <label class="btn {{ mb_strtolower($df->etat)=='déposé' ? 'btn-success active' : 'btn-warning' }}">
+            <label class="btn {{ mb_strtolower($df->etat)=='déposé' ? 'btn-success active' : 'btn-warning' }}" name="btnEtat">
                 Déposé
                 <i class="fas fa-folder-open"></i>
                 <input type="radio" name="etat" id="option3" autocomplete="off" value="déposé"
                   {{ mb_strtolower($df->etat)=='déposé' ? 'checked' : '' }}>
             </label>
 
-            <label class="btn {{ mb_strtolower($df->etat)=='accordé' ? 'btn-success active' : 'btn-warning' }}">
+            <label class="btn {{ mb_strtolower($df->etat)=='accordé' ? 'btn-success active' : 'btn-warning' }}" name="btnEtat">
                 Accordé
                 <i class="fas fa-signature"></i>
-                <input type="radio" name="etat" id="option4" autocomplete="off" value="accordé"
+                <input type="radio" name="etat" id="option4" onchange="AccordValidate()" autocomplete="off" value="accordé"
                   {{ mb_strtolower($df->etat)=='accordé' ? 'checked' : '' }}>
             </label>
 
-            <label class="btn {{ mb_strtolower($df->etat)=='réalisé' ? 'btn-success active' : 'btn-warning' }}">
+            <label class="btn {{ mb_strtolower($df->etat)=='réalisé' ? 'btn-success active' : 'btn-warning' }}" name="btnEtat">
                 Réalisé
                 <i class="fas fa-check-square"></i>
-                <input type="radio" name="etat" id="option5" autocomplete="off" value="réalisé"
+                <input type="radio" name="etat" id="option5" onchange="AccordValidate()" autocomplete="off" value="réalisé"
                   {{ mb_strtolower($df->etat)=='réalisé' ? 'checked' : '' }}>
             </label>
 
-            <label class="btn {{ mb_strtolower($df->etat)=='approuvé' ? 'btn-success active' : 'btn-warning' }}">
+            <label class="btn {{ mb_strtolower($df->etat)=='approuvé' ? 'btn-success active' : 'btn-warning' }}" name="btnEtat">
                 Approuvé
                 <i class="fas fa-check-double"></i>
-                <input type="radio" name="etat" id="option6" autocomplete="off" value="approuvé"
+                <input type="radio" name="etat" onchange="AccordValidate()" id="option6" autocomplete="off" value="approuvé"
                   {{ mb_strtolower($df->etat)=='approuvé' ? 'checked' : '' }}>
             </label>
 
-            <label class="btn {{ mb_strtolower($df->etat)=='annulé' ? 'btn-danger active' : 'btn-danger' }}">
+            <label class="btn {{ mb_strtolower($df->etat)=='annulé' ? 'btn-danger active' : 'btn-danger' }}" name="btnEtat">
                 Annulé
                 <i class="fas fa-times"></i>
                 <input type="radio" name="etat" id="option0" autocomplete="off" value="annulé"

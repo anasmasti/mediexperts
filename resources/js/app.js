@@ -4,10 +4,15 @@
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
+import { store } from './store';
+import VueToastr from 'vue-toastr';
 
 require('./bootstrap');
 
 const Vue = require('vue');
+
+Vue.use(require('vue-moment'));
+Vue.use(VueToastr);
 // import Model1 from './components/Model1.vue';
 
 /**
@@ -27,14 +32,21 @@ Vue.component('model-3', require('../js/components/Model3.vue').default);
 Vue.component('plan-formation', require('../js/components/PlanFormation.vue').default);
 Vue.component('avis-affichage', require('../js/components/AvisAffichage.vue').default);
 Vue.component('att-reference-plan', require('../js/components/AttReferencePlan.vue').default);
+Vue.component('avis-modification', require('../js/components/AvisModification.vue').default);
+Vue.component('print-g6', require('../js/components/G6.vue').default);
+Vue.component('List', require('../js/components/DRB_OFPPT/List.vue').default);
+Vue.component('Edit', require('../js/components/DRB_OFPPT/Edit.vue').default);
+Vue.component('Détail', require('../js/components/DRB_OFPPT/Détail.vue').default);
+
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
-
+window.onload = () => {
 const app = new Vue({
-  el: '#app'
-});
-
+  el: '#app',
+  store,
+  });
+}

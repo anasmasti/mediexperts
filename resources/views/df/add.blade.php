@@ -1086,10 +1086,10 @@
                 @endif
             </div>
 
-          <div class="form-group col-lg-6 col-md-6 col-sm-6 col-12">
+          {{-- <div class="form-group col-lg-6 col-md-6 col-sm-6 col-12">
             <label> N° Contrat</label>
-            <input class="form-control" type="text" name="n_contrat" placeholder="Saisir N° Contrat">
-          </div>
+            <input class="form-control" type="text" name="n_contrat" id="n_contrat" placeholder="Saisir N° Contrat">
+          </div> --}}
 
             {{-- <div class="form-group col-lg-3 col-md-6 col-12">
             <label for=""></label>
@@ -1435,6 +1435,22 @@
             @endif
             <a class="btn btn-danger" href="/df"><i class="fas fa-window-close"></i>&nbsp;Annuler</a>
         </div>
+
+        <div class="modal" tabindex="-1" role="dialog" id="msg_error_accord">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header bg-danger text-lite">
+                    <h5 class="modal-title">Error Message</h5>
+                  </div>
+                  <div class="modal-body">
+                    Accord informations requises
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+          </div>
 
         </form>
 

@@ -1,3 +1,5 @@
+//const {Alert} = require("bootstrap");
+
 // ALLOW ONLY NUMBERS
 function isNumberKey(evt) {
     let charCode = (evt.which) ? evt.which : event.keyCode
@@ -40,16 +42,17 @@ function checkDate() {
         document.getElementById("date-more").value = currentDate.getTime();
     }
 }
-
 function CalcBdgJourn() {
     let bdgLetter = document.getElementById("bdg_letter");
     let bdgTotal = document.getElementById("bdg_total");
     let bdgJour = document.getElementById("bdg_jour");
     let nbJour = document.getElementById("nb_jour");
     let nbHeure = document.getElementById("nb_heure");
+    setTimeout(() => {
+      bdgTotal.value = (((nbHeure.value * nbJour.value) / 6) * bdgJour.value).toFixed(2);
+      bdgLetter.value = NumberToLetter(((bdgJour.value * nbJour.value) + bdgTotal.value * .2).toFixed(2), "DIRHAM", "Centimes").toUpperCase();
+    }, 1000);
 
-    bdgTotal.value = (((nbHeure.value * nbJour.value) / 6) * bdgJour.value).toFixed(2);
-    bdgLetter.value = NumberToLetter(((bdgJour.value * nbJour.value) + bdgTotal.value * .2).toFixed(2), "DIRHAM", "Centimes").toUpperCase();
 }
 
 function DateFormat(date) {
@@ -58,6 +61,64 @@ function DateFormat(date) {
     let month = datestring.charAt(4) + datestring.charAt(5);
     let day = datestring.charAt(6) + datestring.charAt(7);
     return (day + '/' + month + '/' + year);
+}
+
+function NbHeurValidation (){
+  let nbHeur = document.getElementById("nb_heure");
+  let nbDates = document.getElementById("nb_dates");
+
+  if (nbHeur.value == 0){
+    nbDates.disabled = true;
+    document.getElementById("nb_dates_msg").innerHTML ='<p><i class="fas fa-info-circle"></i> Remplir Nombre Heures Premièrement </p>'
+    setTimeout(() => {
+      document.getElementById("nb_dates_msg").innerHTML =''
+    }, 5000);
+  }
+  else if (nbHeur.value != 0){
+    nbDates.disabled = false;
+  }
+}
+function CalcNbJour() {
+
+  let NbHeurs = document.getElementById("nb_heure");
+  let NbDates = document.getElementById("nb_dates");
+  let nbJour = document.getElementById("nb_jour");
+
+  nbJour.value = ((NbHeurs.value * NbDates.value)/ 6);
+  nbjour = parseFloat(nbJour.value);
+
+  if (Number.isInteger(nbjour)){
+    document.getElementById("nb_dates_msg").innerHTML ='<p class="text-success"><i class="fas fa-check-circle"></i> Nombre Dates valide </p>'
+    setTimeout(() => {
+      document.getElementById("nb_dates_msg").innerHTML =''
+    }, 5000);
+  }
+  else{
+    document.getElementById("nb_dates_msg").innerHTML ='<p><i class="fas fa-info-circle"></i> Nombre Dates est Invalide </p>'
+    setTimeout(() => {
+      document.getElementById("nb_dates_msg").innerHTML =''
+    }, 5000);
+  }
+}
+
+function ValidationNbDatesIfSameDates() {
+
+  let hasSameDates = document.getElementById("same_dates")
+  let nbDates = document.getElementById("nb_dates")
+  let nbGrp = document.getElementById("nb_grp")
+
+  if (hasSameDates.checked == true && nbDates.value % nbGrp.value != 0 ) {
+
+    document.getElementById("sameDateError").innerHTML = '<p><i class="fas fa-info-circle"></i> Nombre dates est invalide pour les groupes ayant même dates</p>'
+    hasSameDates.checked = false
+
+  }else {
+    document.getElementById("sameDateError").innerHTML = '<p class="text-success"><i class="fas fa-check-circle"></i> Nombre dates valide pour les groupes ayant même dates</p>'
+
+    setTimeout(() => {
+      document.getElementById("sameDateError").innerHTML = ''
+    }, 5000);
+  }
 }
 
 
@@ -222,6 +283,8 @@ function AccordValidate() {
         for (let i = 0; i < btnEtat.length; i++) {
             setTimeout(() => {
                 btnEtat[i].classList.remove("active");
+                btnEtat[i].classList.remove("btn-success");
+                btnEtat[i].classList.add("btn-warning");
             }, 100);
 
         }
@@ -235,12 +298,6 @@ function AccordValidate() {
         $("#msg_error_accord").modal("show");
     }
 }
-
-
-
-
-
-
 
 
 //****************************************************************************************/
@@ -272,6 +329,8 @@ function checkEtatRb() {
         $('label[for=drb_ds], input#drb_ds').fadeOut(200);
     }
 }
+
+
 
 
 

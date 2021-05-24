@@ -3,215 +3,144 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Input;
-use App\{DemandeRemboursementOfppt,Client};
-use Alert;
+use App\{DemandeRemboursementOfppt, PlanFormation, Formation, Theme};
 
 class DemandeRemboursementOfpptController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request)
+
+    public function index()
     {
-        //clean session keys
-        $request->session()->forget(['added', 'updated']);
-        $request->session()->forget(['success', 'info', 'warning', 'error']);
-
-        $drb = DemandeRemboursementOfppt::all();
-        $client = client::all();
-
-        return view('DRB_Ofppt.view', ['drb' => $drb, 'client'=>$client]);
+        return view('DRB_Ofppt.view');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function Detail()
     {
-        //
+        return view('DRB_Ofppt.detail');
     }
-    public function searchofppt(Request $request)
-    {   $searchofppt = $request->input ( 'searchofppt' );
-        $drb = DemandeRemboursementOfppt::where('n_drb', 'LIKE', '%'. $searchofppt . '%')->get();
-        //get client
-        $client = Client::all();
-        return view('DRB_Ofppt.view', ['drb'=>$drb, 'client'=>$client]);
-    }
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function editRDB($n_drf)
     {
-        if ($request -> isMethod('POST')) {
 
-            $request->validate([
-                'n_drb' => 'required|unique:demande_remboursement_ofppts|max:15',
-                'nrc_e' => 'required|max:15',
-                'dt_envoi' => 'required|date|before_or_equal:'.date('Y-m-d'),
-                'dt_pay_entrp' => 'required|date|before_or_equal:'.date('Y-m-d'),
-                'montant_entrp_ttc' => 'required|max:15|gt:montant_entrp_ht',
-                'montant_entrp_ht' => 'required|max:15|lt:montant_entrp_ttc',
-                'dt_depo_drb' => 'required|date|before:dt_rb',
-                'dt_rb' => 'required|date|before_or_equal:'.date('Y-m-d'),
-                'montant_rb' => 'required|max:15',
-                'commentaire' => 'max:900'
-            ]);
+        $pln = DemandeRemboursementOfppt::select('demande_remboursement_ofppts.*', 'clients.raisoci')
+            ->join('clients', 'clients.nrc_entrp', 'demande_remboursement_ofppts.nrc_entrp')
+            ->where('demande_remboursement_ofppts.n_drf', $n_drf)
+            ->get();
+        return response()->json($pln);
+    }
 
-            $drb = new DemandeRemboursementOfppt();
-            $drb->n_drb = $request->input('n_drb');
-            $drb->nrc_e = $request->input('nrc_e');
+    public function searchdrf($n_drf)
+    {
+        $searchdrb = $n_drf;
+        $drf = DemandeRemboursementOfppt::where('refpdf', 'LIKE', '%'. $searchdrb . '%')->get();
+        return response()->json($drf);
+    }
 
-            $docs = ['model5','f4','fiche_eval_synth','model6','facture_PF','remise_avis','releve',
-                    'justif_paiem_entrp','justif_paiem_cab','plan_form'];
+    public function reglementEntreprise($n_drf) {
+      $reglEntrp = DemandeRemboursementOfppt::select(
+        'demande_remboursement_ofppts.n_drf',
+        'demande_remboursement_ofppts.id_plan',
+        'plan_formations.id_plan',
+        'plan_formations.n_action',
+        'plan_formations.n_form',
+        'plan_formations.id_thm',
+        'plan_formations.bdg_total',
+        'plan_formations.datePaiementEntreprise',
+        'plan_formations.ModeReferencePaiement',
+        'plan_formations.RemboursementOFPPT',
+        'plan_formations.EcartRemboursement',
+        'plan_formations.JustifsEcart',
+        'plan_formations.payerAllPF',
+        'clients.raisoci',
+        'plans.id_plan',
+        'formations.n_form',
+        'formations.n_facture',
+        'themes.id_theme',
+        'themes.nom_theme',
+        
+        )
+            ->join('clients', 'clients.nrc_entrp', 'demande_remboursement_ofppts.nrc_entrp')
+            ->join('plans', 'plans.id_plan', 'demande_remboursement_ofppts.id_plan')
+            ->join('plan_formations', 'plan_formations.id_plan', 'demande_remboursement_ofppts.id_plan')
+            ->join('formations', 'plan_formations.n_form', 'formations.n_form')
+            ->join('themes', 'plan_formations.id_thm', 'themes.id_theme')
+            ->where('demande_remboursement_ofppts.n_drf', $n_drf)
+            ->get();
+        return response()->json($reglEntrp);
+    }
 
+    //liste de demande de remboursement
+    public function Show()
+    {
+        $pln = DemandeRemboursementOfppt::All();
+        return response()->json($pln);
+    }
+
+    public function edit()
+    {
+        return view('DRB_OFPPT.edit');
+    }
+
+    //update demande de remboursement ofppt par envoyer le n_drf
+    public function update(Request $request, $n_drf)
+    {
+        if ($request->isMethod('POST')) {
+            $demandeRemboursementOFPPT = DemandeRemboursementOfppt::find($n_drf);
+            $docs = [
+                'model5',
+                'model6',
+                'fiche_eval_sythetique',
+                'factures',
+                'compris_cheques',
+                'compris_remise',
+                'relev_bq_societe',
+                'relev_bq_cabinet',
+                'accuse_model6'
+            ];
             foreach ($docs as $doc) {
-                if ($request->input($doc) !== null) {
-                    $drb->$doc = "préparé";
-                }
-                else {
-                    $drb->$doc = "non préparé";
+                if ($request->$doc == true) {
+                    $demandeRemboursementOFPPT->$doc = 'préparé';
+                } else {
+                    $demandeRemboursementOFPPT->$doc = "non préparé";
                 }
             }
+            $idplan = $demandeRemboursementOFPPT->id_plan;
+            $demandeRemboursementOFPPT->montant_rembrs = $request->montant_rembrs;
+            $demandeRemboursementOFPPT->date_rembrs = $request->date_rembrs;
+            $demandeRemboursementOFPPT->date_depot_dmd_rembrs = $request->date_depot_dmd_rembrs;
+            $demandeRemboursementOFPPT->commenter = $request->commenter;
+            $demandeRemboursementOFPPT->etat = $request->etat;
+            $demandeRemboursementOFPPT->save();
 
-            $drb->dt_envoi = $request->input('dt_envoi');
-            $drb->annee_csf = $request->input('annee_csf');
-            $drb->dt_pay_entrp = $request->input('dt_pay_entrp');
-            $drb->montant_entrp_ttc = $request->input('montant_entrp_ttc');
-            $drb->montant_entrp_ht = $request->input('montant_entrp_ht');
-            $drb->dt_depo_drb = $request->input('dt_depo_drb');
-            $drb->dt_rb = $request->input('dt_rb');
-            $drb->montant_rb = $request->input('montant_rb');
-            $drb->moyen_rb = $request->input('moyen_rb');
+            $thems = $request->thems;
+            foreach ($thems as $them) {
 
-            $drb->commentaire = $request->input('commentaire');
-            $drb->save();
+                $reglEntreprise = PlanFormation::find($them['n_form']);
 
-            $client = Client::all();
-
-            $request->session()->flash('added', 'Ajouté avec succès');
-            return view('DRB_Ofppt.add', ['drb' => $drb, 'client' => $client])->with('success');
-        }
-        else {
-            $client = Client::all();
-            $drb = DemandeRemboursementOfppt::all();
-
-            return view('DRB_Ofppt.add', ['drb' => $drb, 'client' => $client]);
-        }
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Request $request, $ndrb, $nrc)
-    {
-        $drb = DemandeRemboursementOfppt::findOrFail($ndrb);
-
-        $nrc = Client::findOrFail($nrc);
-        $client = client::all();
-
-        return view('DRB_Ofppt.detail', ['drb'=>$drb, 'client'=>$client, 'nrc'=>$nrc]);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $ndrb)
-    {
-        if ($request -> isMethod('POST')) {
-
-            $request->validate([
-                'nrc_e' => 'required|max:15',
-                'dt_envoi' => 'required|date|before_or_equal:'.date('Y-m-d'),
-                'dt_pay_entrp' => 'required|date|before_or_equal:'.date('Y-m-d'),
-                'montant_entrp_ttc' => 'required|max:15|gt:montant_entrp_ht',
-                'montant_entrp_ht' => 'required|max:15|lt:montant_entrp_ttc',
-                'dt_depo_drb' => 'required|date|before:dt_rb',
-                'dt_rb' => 'required|date|before_or_equal:'.date('Y-m-d'),
-                'montant_rb' => 'required|max:15',
-                'commentaire' => 'max:900'
-            ]);
-
-            $drb = DemandeRemboursementOfppt::findOrFail($ndrb);
-
-            $drb->nrc_e = $request->input('nrc_e');
-
-            $docs = ['model5','f4','fiche_eval_synth','model6','facture_PF','remise_avis','releve',
-                    'justif_paiem_entrp','justif_paiem_cab','plan_form'];
-
-            foreach ($docs as $doc) {
-                if ($request->input($doc) !== null) {
-                    $drb->$doc = "préparé";
+                if ($reglEntreprise->n_form == $them['n_form']) {
+                    $reglEntreprise->datePaiementEntreprise = $them['date_paiement'];
+                    $reglEntreprise->ModeReferencePaiement = $them['mode_paiement'];
+                    $reglEntreprise->RemboursementOFPPT = $them['rembrs_ofppt'];
+                    $reglEntreprise->EcartRemboursement = $them['ecart_rembrs_ofppt'];
+                    $reglEntreprise->JustifsEcart = $them['justif_ecart'];
+                    if($request->select_all_ch == true){
+                        $reglEntreprise->payerAllPF = 'true';
+                    }
+                   else{
+                        $reglEntreprise->payerAllPF = 'false';
+                    }
                 }
-                else {
-                    $drb->$doc = "non préparé";
-                }
+                $reglEntreprise->save();
             }
-
-            $drb->dt_pay_entrp = $request->input('dt_pay_entrp');
-            $drb->montant_entrp_ttc = $request->input('montant_entrp_ttc');
-            $drb->montant_entrp_ht = $request->input('montant_entrp_ht');
-            $drb->dt_depo_drb = $request->input('dt_depo_drb');
-            $drb->dt_rb = $request->input('dt_rb');
-            $drb->montant_rb = $request->input('montant_rb');
-            $drb->moyen_rb = $request->input('moyen_rb');
-            // //moyen paiement (if radio)
-            // $drb->cheque = $request->input('cheque');
-            // $drb->cheque = $request->input('ordre_virm');
-            // $drb->cheque = $request->input('effet');
-
-            $drb->commentaire = $request->input('commentaire');
-            $drb->save();
 
             $request->session()->flash('updated', 'Modifié avec succès');
-            return redirect('/detail-drb-of/'.$ndrb)->with('success');
-        }
-        else {
-            $drb = DemandeRemboursementOfppt::findOrFail($ndrb);
-            $client = Client::all();
-
-            return view('DRB_Ofppt.edit', ['drb'=>$drb, 'client'=>$client]);
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Request $request, $ndrb)
+    public function destroy(Request $request, $n_drf)
     {
-        $drb = DemandeRemboursementOfppt::findOrFail($ndrb);
-        $drb -> delete();
-
+        $drb = DemandeRemboursementOfppt::find($n_drf);
+        $drb->delete();
         $request->session()->flash('deleted', 'Supprimé avec succès');
-
-        return redirect('/drb-of');
     }
+
+    //
 }

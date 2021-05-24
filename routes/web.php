@@ -13,6 +13,7 @@
 
 use App\Http\Controllers\FormulaireController;
 
+
 Auth::routes(['verify' => true]);
 
 // Route::group(['middleware' => ['auth', 'admin']], function() { //begin */
@@ -165,26 +166,23 @@ Route::get('/del-drb-gc/{ndrb}', 'DemandeRemboursementGiacController@destroy')->
 Route::get('/print-facture-drb/{ndrb}/{nrc}', 'DemandeRemboursementGiacController@FactureDrbGiac')->name('DRB_GIAC.FactureDrbGiac');
 Route::post('/save-nfacture-giac', 'DemandeRemboursementGiacController@SaveNFactureGiac')->name('DRB_GIAC.SaveNFactureGiac');
 
-Route::get('/print-facture-df/{ndrb}/{nrc}', 'DemandeFinancementController@FactureDF')->name('DF.FactureDF');
+Route::get('/print-facture-df/{nrc}', 'DemandeFinancementController@FactureDF')->name('DF.FactureDF');
 Route::post('/save-nfacture-df', 'DemandeFinancementController@SaveNFactureDF')->name('DF.SaveNFactureDF');
 /********************************************************************/
 
 
 //***************  OFPPT DR ROUTES ***************
-Route::get('/drb-of', 'DemandeRemboursementOfpptController@index')->name('DRB_Ofppt.index');
-Route::get('/detail-drb-of/{ndrb}', 'DemandeRemboursementOfpptController@show')->name('DRB_Ofppt.show');
 
-Route::get('/add-drb-of', 'DemandeRemboursementOfpptController@store')->name('DRB_Ofppt.store');
-Route::post('/add-drb-of', 'DemandeRemboursementOfpptController@store')->name('DRB_Ofppt.store');
-
-Route::get('/edit-drb-of/{ndrb}', 'DemandeRemboursementOfpptController@update')->name('DRB_Ofppt.update');
-Route::post('/edit-drb-of/{ndrb}', 'DemandeRemboursementOfpptController@update')->name('DRB_Ofppt.update');
-
-
-Route::get('/searchofppt', 'DemandeRemboursementOfpptController@searchofppt');
-
-Route::get('/del-drb-of/{ndrb}', 'DemandeRemboursementOfpptController@destroy')->name('DRB_Ofppt.destroy');
-/********************************************************************/
+ Route::get('/list-drb', 'DemandeRemboursementOfpptController@index')->name('DRB_Ofppt.index');
+ Route::get('/edit-drb-ofppt', 'DemandeRemboursementOfpptController@edit')->name('DRB_Ofppt.edit');
+ Route::get('/list-drb-ofppt', 'DemandeRemboursementOfpptController@show')->name('DRB_Ofppt.show');
+ Route::get('/edit-drb-ofppt/{ndrb}', 'DemandeRemboursementOfpptController@editRDB')->name('DRB_Ofppt.editD');
+ Route::get('/regEntrp-drb-ofppt/{ndrb}','DemandeRemboursementOfpptController@reglementEntreprise');
+ Route::post('/edit-drb-ofppt/{ndrb}', 'DemandeRemboursementOfpptController@update')->name('DRB_Ofppt.update');
+ Route::get('/detail-drb-ofppt', 'DemandeRemboursementOfpptController@Detail')->name('DRB_Ofppt.detail');
+ Route::delete('/delete-drf/{ndrb}', 'DemandeRemboursementOfpptController@destroy');
+ Route::get('/search-drf/{ndrf}', 'DemandeRemboursementOfpptController@searchdrf');
+ 
 
 
 //*************** PLAN FORMATION ROUTES ***************
@@ -204,7 +202,7 @@ Route::get('/del-plan/{id_plan}', 'PlanController@destroy')->name('PLAN.destroy'
 
 
 //*************** ACTION FORMATION ROUTES ***************
-Route::get('/planformation', 'PlanFormationController@index')->name('PF.index');
+Route::get('/PlanFormation', 'PlanFormationController@index')->name('PF.index');
 Route::get('/act-form-cl/{nrc}/{annee}', 'PlanFormationController@ActionFormationClient')->name('PF.ActionFormationClient');
 Route::get('/detail-pf/{nf}', 'PlanFormationController@show')->name('PF.show');
 
@@ -222,6 +220,10 @@ Route::get('/finddomaindependvilleclient', 'PlanFormationController@FindDomainDe
 Route::get('/findorganismeinterv', 'PlanFormationController@FindOrganismeInterv');
 
 Route::get('/del-pf/{nform}/{id_plan}', 'PlanFormationController@destroy')->name('PF.destroy');
+Route::get('/avis-modif','PlanFormationController@avismodif')->name('av.modification');
+Route::get('/avis-modif','PlanFormationController@print_avismodif')->name('print.avismodif');
+
+
 /********************************************************************/
 
 
@@ -337,6 +339,7 @@ Route::get('/print-f3/{nrc}', 'FormulaireController@print_f3')->name('F3.print_f
 
 Route::get('/print-m1', 'FormulaireController@print_m1')->name('M1.print_m1');
 Route::get('/print-m3', 'FormulaireController@print_m3')->name('M3.print_m3');
+Route::get('/print-g6' , 'FormulaireController@print_G6')->name('G6.print_G6');
 
 Route::get('/fill-clients', 'FormulaireController@FillClients')->name('M1.print_m1');
 Route::get('/fill-client-plans', 'FormulaireController@FillClientPlans')->name('M1.FillClientPlans');
@@ -362,6 +365,7 @@ Route::get('/fill-dates-plan', 'FormulaireController@FillDatesPlan')->name('plan
 Route::get('/print-pf', 'FormulaireController@print_pf')->name('plan_formations.print_pf');
 Route::get('/fill-plans-by-reference', 'FormulaireController@FillPlansByReference')->name('plan_formations.FillPlansByReference');
 Route::get('/fill-reference-plan', 'FormulaireController@FillReferencesPlan')->name('plan_formations.FillReferencesPlan');
+Route::get('/fill-g6-info' , 'FormulaireController@FillG6Info');
 
 
 Route::get('/print-m6', 'FormulaireController@print_m6')->name('M6.print_m6');
@@ -372,12 +376,18 @@ Route::get('/print-fiche-evaluation', 'FormulaireController@print_fiche_evaluati
 Route::get('/fill-fiche-evaluation', 'FormulaireController@FillFicheEval')->name('Fiche_Evaluation.FillFicheEval');
 Route::get('/fill-dates-form', 'FormulaireController@FillDatesForm')->name('Fiche_Evaluation.FillDatesForm');
 
-Route::get('/fill-action-form', 'FormulaireController@FillActionFormation')->name('ActionFormation.FillActionFormation');
-Route::get('/print-avis-aff', 'FormulaireController@print_avis_aff')->name('ActionFormation.print_avis_aff');
+Route::get('/fill-action-form', 'FormulaireController@FillActionFormation')->name('PlanFormation.FillActionFormation');
+Route::get('/print-avis-aff', 'FormulaireController@print_avis_aff')->name('PlanFormation.print_avis_aff');
 
-Route::get('/print-att-reference-plan', 'FormulaireController@print_att_reference_plan')->name('ActionFormation.print_att_reference_plan');
-Route::get('/fill-cabinet-info', 'FormulaireController@FillCabinetInfo')->name('ActionFormation.FillCabinetInfo');
+Route::get('/print-att-reference-plan', 'FormulaireController@print_att_reference_plan')->name('PlanFormation.print_att_reference_plan');
+Route::get('/fill-cabinet-info', 'FormulaireController@FillCabinetInfo')->name('PlanFormation.FillCabinetInfo');
 Route::get('/fill-plan-by-client', 'FormulaireController@FillPlansByClient')->name('PlanByClinet');
+Route::get('/fill-all-organisme' , 'FormulaireController@FillAllCabinets')->name('FillOrganisme');
+Route::get('/fill-avis-modif' , 'FormulaireController@FillavisModif')->name('FillAvisModif');
+Route::get('/fill-avis-modif-by-groupe' , 'FormulaireController@GetInfoAvisModifByGroupe');
+Route::get('/old-avis-modif-by-theme', 'FormulaireController@GetOldInfoAvisModif');
+Route::get('/get-nom-responsable-m3', 'FormulaireController@GetNomResponsableModel3');
+Route::get('/get-nom-theme' , 'FormulaireController@GetNomTheme');
 /********************************************************************/
 
 
@@ -388,6 +398,7 @@ Route::get('/fill-df-list', 'FicheMissionController@FillDFList')->name('DF.FillD
 Route::get('/find-df-info', 'FicheMissionController@FindDFInfo')->name('DF.FindDFInfo');
 Route::get('/find-cab-info', 'FicheMissionController@FindCabinetInfo')->name('DF.FindCabinetInfo');
 Route::get('/find-inv-info', 'FicheMissionController@FindIntervInfo')->name('DF.FindIntervInfo');
+Route::get('/test' , 'PlanFormationController@Test')->name('Test');
 
 
 }); //end middlware verified

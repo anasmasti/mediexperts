@@ -19,8 +19,6 @@ class CreateFormationsTable extends Migration
             $table->date('dt_facture')->nullable();
             $table->integer('groupe')->default(0);
             $table->string('nb_benif', 50);
-            $table->string('hr_debut', 50);
-            $table->string('hr_fin', 50);
             $table->string('pse_debut', 50);
             $table->string('pse_fin', 50);
             $table->date('date1');

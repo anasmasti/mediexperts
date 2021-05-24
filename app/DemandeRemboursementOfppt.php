@@ -6,39 +6,32 @@ use Illuminate\Database\Eloquent\Model;
 
 class DemandeRemboursementOfppt extends Model
 {
-    protected $primaryKey = 'n_drb';
+    //
+    protected $primaryKey = 'n_drf';
 
-    protected $fillable =
-    ['n_drb',
+    protected $fillable = [
+      'n_drf',
+      'nrc_entrp',
+      'refpdf',
+      'n_contrat',
+      'model5',
+      'model6',
+      'accuse_model6',
+      'fiche_eval_sythetique',
+      'factures',
+      'compris_cheques',
+      'compris_remise',
+      'relev_bq_societe',
+      'relev_bq_cabinet',
+      'date_depot_dmd_rembrs',
+      'date_rembrs',
+      'montant_rembrs',
+      'etat',
+      'commenter',
+      'id_plan',
+    ];
 
-    //docs
-    'model5',
-    'f4',
-    'fiche_eval_synth',
-    'model6',
-    'facture_PF',
-    //moyens paiement
-    'moyen_rb',
-    'remise_avis',
-    'releve',
-    'montant_rb',
-    //les justifs. paiement
-    'justif_paiem_entrp',
-    'justif_paiem_cab',
-    'plan_form',
-
-    'dt_envoi',
-    'annee_csf',
-    'dt_pay_entrp',
-    'montant_entrp_ttc',
-    'montant_entrp_ht',
-    'dt_depo_drb',
-    'dt_rb',
-    'commentaire',
-    'nrc_e'];
-
-    
-    public function cliens() {
-      return $this->belongsTo(Client::class);
+    public function plans() {
+      return $this->belongsTo('App\Models\Plan');
     }
 }

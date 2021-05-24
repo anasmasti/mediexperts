@@ -2,11 +2,8 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Input;
 use App\{Client,Giac,Actionnaire,DemandeFinancement,DemandeRemboursementOfppt,PlanFormation};
-use Session;
-use Alert;
-use DB;
+use Illuminate\Support\Facades\DB;
 
 class ClientController extends Controller
 {
@@ -21,7 +18,7 @@ class ClientController extends Controller
         $request->session()->forget(['added', 'updated']);
         $request->session()->forget(['success', 'info', 'warning', 'error']);
 
-        $client = Client::all();
+        $client = Client::orderBy('created_at' , 'desc')->get();
         $giac = Giac::all();
         $action = Actionnaire::all();
         $df = DemandeFinancement::all();

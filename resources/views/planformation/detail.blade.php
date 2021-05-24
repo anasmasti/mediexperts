@@ -8,7 +8,7 @@
     </div><!-- /.col -->
     <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="/planformation">Action formation</a></li>
+            <li class="breadcrumb-item"><a href="/PlanFormation">Action formation</a></li>
             <li class="breadcrumb-item active">{{ $plan->n_form }}</li>
         </ol>
     </div><!-- /.col -->
@@ -23,7 +23,7 @@
 <div class="card card-dark">
     <!-- card-header -->
     <div class="card-header">
-      <a class="btn btn-dark btn-sm bu-lg-ic" href="/planformation"><i class="fa fa-arrow-left"></i></a>
+      <a class="btn btn-dark btn-sm bu-lg-ic" href="/PlanFormation"><i class="fa fa-arrow-left"></i></a>
       <h3 class="card-title card-h3">Action N° {{ $plan->n_form }} > {{ $plan_props['raisoci'] }}</h3>
       <a class="btn btn-sm btn-danger bu-ic" onclick="confirmDelete({{$plan->n_form}}, 'pf/')"><i class="fa fa-trash-alt"></i></a>
       <a class="btn btn-sm btn-warning bu-ic" href="/edit-pf/{{ $plan->n_form }}"><i class="fa fa-edit"></i></a>
@@ -108,6 +108,8 @@
                     <td>{{ $plan->dt_fin }}</td></tr>
                 <tr><th class="th-det">Nb. jours</th>
                     <td>{{ $plan->nb_jour }} Jours</td></tr>
+                <tr><th class="th-det">Nb. Dates</th>
+                    <td>{{ $plan->Nombre_Dates }} Dates</td></tr>
                 <tr><th class="th-det">Type formation</th>
                     <td>{{ $plan->type_form }}</td></tr>
                 <tr><th class="th-det">Organisme</th>
@@ -118,6 +120,10 @@
                     <td>{{ $plan->nom_resp }}</td></tr>
                 <tr><th class="th-det">Nombre groupes</th>
                     <td>{{ $plan->nb_grp }} groupes</td></tr>
+                <tr>
+                  <th class="th-det">Groupes ayant différent date</th>
+                  <td> {{ $plan->Has_Same_Dates == 1 ? 'Oui' : 'Non' }}</td>
+                </tr>
                 <tr><th class="th-det">Nb. particip. total</th>
                     <td>{{ $plan->nb_partcp_total }} participants</td></tr>
                 <tr><th class="th-det">Nb. cadres</th>
@@ -131,7 +137,19 @@
                 <tr><th class="th-det">Budget Total (HT)</th>
                     <td>{{ $plan->bdg_total }} DH</td></tr>
                 <tr><th class="th-det">Budget en Lettre (TTC)</th>
-                    <td>{{ ucfirst($plan->bdg_letter) }} dirhams</td></tr>
+                    <td>{{ ucfirst($plan->bdg_letter) }} dirhams</td>
+                </tr>
+                <tr><th class="th-det">Pause</th>
+                    <td>{{ $plan->pause == 1 ? 'Oui' : 'Non'}}</td>
+                </tr>
+                <tr>
+                  <th class="th-det">Heur Début</th>
+                  <td>{{$plan->hr_debut}}</td>
+                </tr>
+                <tr>
+                  <th class="th-det">Heur Fin</th>
+                  <td> {{$plan->hr_fin}} </td>
+                </tr>
                 <tr><th class="th-det">Commentaire</th>
                     <td>{{ $plan->commentaire }}</td></tr>
                 {{-- <tr><th class="th-det">Fiche présence</th>
