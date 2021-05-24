@@ -283,6 +283,8 @@ function AccordValidate() {
         for (let i = 0; i < btnEtat.length; i++) {
             setTimeout(() => {
                 btnEtat[i].classList.remove("active");
+                btnEtat[i].classList.remove("btn-success");
+                btnEtat[i].classList.add("btn-warning");
             }, 100);
 
         }
