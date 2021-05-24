@@ -11,9 +11,10 @@
                 class="search_input"
                 type="text"
                 name="searchofppt"
+                id="searchofppt"
                 placeholder="Rechercher par N°.."
               />
-              <button type="submit" class="search_icon btn">
+              <button @click="search()" type="button" class="search_icon btn">
                 <i class="fas fa-search"></i>
               </button>
             </div>
@@ -89,9 +90,39 @@
                   class="btn btn-warning"
                   ><i class="fa fa-edit"></i
                 ></a>
-                <a @click="DeleteDrf(DRB_Ofppt.n_drf)" class="btn btn-danger">
+                <a data-toggle="modal" data-target="#deleteModal" class="btn btn-danger">
                   <i class="fa fa-trash-alt" style="color: white ;"></i>
                 </a>
+                  <div id="deleteModal" class="modal fade">
+                      <div class="modal-dialog modal-dialog-centered modal-confirm">
+                          <div class="modal-content">
+                              <div class="modal-header flex-column">
+                                  <div class="icon-box icon-box-danger">
+                                      <i class="material-icons">close</i>
+                                  </div>
+                                  <p class="modal-title h1 pt-3 w-100" id="modalDeleteTitle">
+                                    Êtes-vous sur ?
+                                  </p>
+                                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                              </div>
+                              <div class="modal-body">
+                                  <p id="modalDeleteMessage">
+                                      Une fois supprimé, vous ne pourrez plus récupérer cet enregistrement!
+                                  </p>
+                              </div>
+                              <div class="modal-footer justify-content-center">
+                                  <a @click="DeleteDrf(DRB_Ofppt.n_drf)" id="deleteBtn" style="color : white" class="btn btn-danger">
+                                      <i class="material-icons" >delete_forever</i>
+                                      Supprimer
+                                  </a>
+                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                      <i class="material-icons">cancel</i>
+                                      Annuler
+                                  </button>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
               </td>
             </tr>
           </tbody>
@@ -100,6 +131,10 @@
     </div>
     
     <!-- ./card-body -->
+
+
+    <!-- delete model -->
+  
   </div>
 </template>
 <script>
@@ -112,6 +147,7 @@ export default {
 
   mounted() {
     this.getListOfDROfppt;
+    
   },
 
   methods: {
@@ -122,12 +158,18 @@ export default {
     handleAction(actionName, value) {
       this.$store.dispatch(actionName, value);
     },
+    search(){
+      let ndrf = document.getElementById('searchofppt').value;
+      this.handleAction("DRB_Ofppt/rechercher", ndrf);
+      console.log('ndrf : '+ndrf);
+
+    },
     ...mapActions("DRB_Ofppt", ["DeleteDrf"]),
   },
 
   computed: {
     ...mapState("DRB_Ofppt", {
-      DRB_Ofppts: state => state.DRB_Ofppts
+      DRB_Ofppts: state => state.DRB_Ofppts,
     }),
 
     ...mapActions("DRB_Ofppt", ["getListOfDROfppt"])

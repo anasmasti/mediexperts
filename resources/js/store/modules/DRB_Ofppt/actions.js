@@ -37,5 +37,14 @@ export const actions = {
          commit("FETCH_DBR_OFPPT", result);
       })
       .catch(err => console.log("cant delete drf", err));
+  },
+  async rechercher({ commit }, ndrb){
+    await axios
+      .get("/search-drf/" + ndrb)
+      .then(({ data }) => {
+        commit("FETCH_DRBOFPPT_RECHERCHE", data);
+        console.log();
+      })
+      .catch(err => console.log(err));
   }
 };

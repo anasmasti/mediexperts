@@ -5,24 +5,24 @@
     </div>
     <!-- /.col --><br />
 
-    <div class="card card-dark">
+    <div class="card card-dark" v-for="DRB_Ofppt in DRB_Ofppts"
+        :key="DRB_Ofppt.n_drf">
       <div class="card-header">
         <h3 class="card-title card-h3">
           Modif. DRB OFPPT
-          <a href="#">
-            Test
+          {{ " > " }}
+          <a href="/list-drb">
+            List Demande remboursement OFPPT
           </a>
           {{ " > " }}
-          <a href="#">
-            Test
+          <a href="/detail-drb-ofppt">
+            {{ DRB_Ofppt.raisoci }}
           </a>
         </h3>
       </div>
 
       <div
         class="card-body"
-        v-for="DRB_Ofppt in DRB_Ofppts"
-        :key="DRB_Ofppt.n_drf"
       >
         <div class="row">
           <div class="form-group col-lg-3 col-sm-12">
@@ -97,6 +97,7 @@
                         :id="'DP:' + info.id_thm"
                         :name="'DP:' + info.id_thm"
                         type="date"
+                        v-model="date_paiement[index]"
                       />
                     </td>
                     <td>
@@ -104,6 +105,7 @@
                         :id="'MDP:' + info.id_thm"
                         :name="'MDP:' + info.id_thm"
                         type="text"
+                        v-model="ModeReferencePaiement[index]"
                       />
                     </td>
                   </tr>
@@ -118,6 +120,7 @@
                     name="select_all"
                     id="select_all"
                     class="custom-control-input"
+                     v-model="select_all_ch"
                     @change="select_all()"
                   />
                   <label for="select_all" class="custom-control-label "
@@ -251,7 +254,32 @@
                         >Relevés bq cabinet</label
                       >
                     </div>
-                    <div
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          
+
+            <div
+              class="form-group col-lg-12 col-sm-12 display_div"
+              style="display: flex ;flex-direction : 'row' ;"
+            >
+              <div class="form-group col-lg-6 col-sm-12 display_div1">
+               <div class="form-group col-lg-6 col-sm-12" style="margin : 2em 2em 2em 0 ;">
+                  <label>Date Remboursement</label>
+                  <input
+                    class="form-control"
+                    type="text"
+                    name="date_rembrs"
+                    id="date_rembrs"
+                    onmouseover="(this.type='date')"
+                    placeholder="Date réalisation"
+                    v-model="date_rembrs"
+                    @change="DateValidation()"
+                  />
+                </div>
+                <div
                       class="form-group col-lg-6 col-sm-12 custom-control custom-checkbox"
                       style="margin: auto 1rem ;"
                     >
@@ -266,34 +294,6 @@
                         >Accusé Modele 6</label
                       >
                     </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          
-
-            <div
-              class="form-group col-lg-12 col-sm-12 display_div"
-              style="display: flex ;flex-direction : 'row' ;"
-            >
-              <div class="form-group col-lg-6 col-sm-12 display_div1">
-                <div
-                  class="form-group col-lg-6 col-sm-12 "
-                  style="margin : 2em 2em 2em 0 ;"
-                >
-                  <label>Date dépot demande de Remboursement</label>
-                  <input
-                    class="form-control"
-                    type="text"
-                    name="date_depot_dmd_rembrs"
-                    id="date_depot_dmd_rembrs"
-                    onmouseover="(this.type='date')"
-                    placeholder="Date réalisation"
-                    :value="DRB_Ofppt.date_depot_dmd_rembrs"
-                    @change="DateValidation()"
-                  />
-                </div>
               </div>
 
               <div class="form-group col-lg-6 col-sm-12 display_div_child">
@@ -312,16 +312,18 @@
                   />
                 </div>
 
-                <div class="form-group col-lg-6 col-sm-12">
-                  <label>Date Remboursement</label>
+                 <div
+                  class="form-group col-lg-6 col-sm-12 "
+                >
+                  <label>Date dépot demande de Remboursement</label>
                   <input
                     class="form-control"
                     type="text"
-                    name="date_rembrs"
-                    id="date_rembrs"
+                    name="date_depot_dmd_rembrs"
+                    id="date_depot_dmd_rembrs"
                     onmouseover="(this.type='date')"
                     placeholder="Date réalisation"
-                    :value="DRB_Ofppt.date_rembrs"
+                    v-model="date_depot_dmd_rembrs"
                     @change="DateValidation()"
                   />
                 </div>
@@ -386,6 +388,7 @@
                           type="text"
                           :name="'justifEcart:' + info.id_thm"
                           :id="'justifEcart:' + info.id_thm"
+                           v-model="JustifsEcart[index]"
                         />
                       </td>
                     </tr>
@@ -501,6 +504,7 @@
         @click="
           updateDRB();
           getTheme();
+          redir();
         "
       >
         <i class="fas fa-pen-square icon"></i>Modifier
@@ -521,7 +525,7 @@ export default {
       numero_remb: [],
       // DRB_Ofppts: {},
       edited_DRB: [],
-      model5: false,
+      model5: null,
       model6: null,
       fiche_eval_sythetique: null,
       factures: null,
@@ -538,7 +542,13 @@ export default {
       active_radio: null,
       mode_ref_peiement: [],
       comment: "",
-      montant_rembrs: null
+      montant_rembrs: null,
+      date_depot_dmd_rembrs:null,
+      date_rembrs:null,
+      select_all_ch:null,
+      date_paiement:[],
+      ModeReferencePaiement:[],
+      JustifsEcart:[]
     };
   },
   mounted() {
@@ -561,7 +571,21 @@ export default {
       this.relev_bq_societe = this.DRB_Ofppts[0].relev_bq_societe === "préparé";
       this.relev_bq_cabinet = this.DRB_Ofppts[0].relev_bq_cabinet === "préparé";
       this.accuse_model6 = this.DRB_Ofppts[0].accuse_model6 === "préparé";
-      this.montant_rembrs =  this.DRB_Ofppts[0].montant_rembrs
+      this.montant_rembrs =  this.DRB_Ofppts[0].montant_rembrs;
+      this.date_depot_dmd_rembrs =  this.DRB_Ofppts[0].date_depot_dmd_rembrs;
+      this.date_rembrs =  this.DRB_Ofppts[0].date_rembrs;
+      this.select_all_ch= this.DRB_Ofppts[0].payerAllPF;
+    }, 1000);
+
+      setTimeout(() => {
+       let data = this.reglEntreprise;
+      let item = 0;
+      for (item in data) {
+        this.date_paiement.push(data[item].datePaiementEntreprise);
+        this.ModeReferencePaiement.push(data[item].ModeReferencePaiement);
+        this.rmb_ofppt.push(data[item].RemboursementOFPPT);
+         this.JustifsEcart.push(data[item].JustifsEcart);
+      }
     }, 1000);
     setTimeout(() => {
       if (
@@ -614,7 +638,7 @@ export default {
       }
     },
 
-    select_all(id_thm) {
+    select_all() {
       let checkId = document.getElementById("select_all");
 
       let thems = [];
@@ -676,19 +700,7 @@ export default {
       return this.total_regl;
     },
     async updateDRB() {
-      let model5 = this.model5;
-      let model6 = this.model6;
-      let fiche_eval_sythetique = this.fiche_eval_sythetique;
-      let factures = this.factures;
-      let compris_cheques = this.compris_cheques;
-      let compris_remise = this.compris_remise;
-      let relev_bq_societe = this.relev_bq_societe;
-      let relev_bq_cabinet = this.relev_bq_cabinet;
-      let accuse_model6 = this.accuse_model6;
-      let date_depot_dmd_rembrs = document.getElementById(
-        "date_depot_dmd_rembrs"
-      );
-      let date_rembrs = document.getElementById("date_rembrs");
+     
       let etat = $("input:radio[name=etat]:checked").val();
 
       await this.getTheme();
@@ -697,21 +709,23 @@ export default {
           model6: this.model6,
           model5: this.model5,
           fiche_eval_sythetique: this.fiche_eval_sythetique,
-          factures: factures,
-          compris_cheques: compris_cheques,
-          compris_remise: compris_remise,
-          relev_bq_societe: relev_bq_societe,
-          relev_bq_cabinet: relev_bq_cabinet,
-          accuse_model6: accuse_model6,
+          factures: this.factures,
+          compris_cheques: this.compris_cheques,
+          compris_remise: this.compris_remise,
+          relev_bq_societe: this.relev_bq_societe,
+          relev_bq_cabinet: this.relev_bq_cabinet,
+          accuse_model6: this.accuse_model6,
           montant_rembrs: this.montant_rembrs,
-          date_depot_dmd_rembrs: date_depot_dmd_rembrs.value,
-          date_rembrs: date_rembrs.value,
+          date_depot_dmd_rembrs: this.date_depot_dmd_rembrs,
+          date_rembrs: this.date_rembrs,
           etat: etat,
           thems: this.themes,
-          commenter: this.comment
+          commenter: this.comment, 
+          select_all_ch:this.select_all_ch
         })
         .then(() => {
           this.$toastr.s("Modifié avec succès");
+           console.log('select all :: '+this.select_all_ch)
         })
         .catch(e => {
           this.$toastr.e("Echec de modification");
@@ -743,6 +757,12 @@ export default {
         });
       }
       console.log(JSON.parse(JSON.stringify(this.themes)));
+
+    },
+    redir(){
+      const parsed = JSON.stringify("Edit");
+      localStorage.setItem("LS_redirection", parsed);
+      window.location.href ='/detail-drb-ofppt';
     },
 
     checkEtat() {
