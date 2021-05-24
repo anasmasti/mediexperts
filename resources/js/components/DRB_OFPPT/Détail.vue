@@ -9,9 +9,9 @@
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
           <li class="breadcrumb-item">
-            <a href="/detail-drb-ofppt">D.R OFPPT</a>
+            <a href="/list-drb">D.R OFPPT</a>
           </li>
-          <li class="breadcrumb-item active">n_drb</li>
+          <li class="breadcrumb-item active">{{ this.numero_remb }}</li>
         </ol>
       </div>
     </div>
@@ -23,20 +23,20 @@
     >
       <!-- card-header -->
       <div class="card-header">
-        <a class="btn btn-dark btn-sm bu-lg-ic" href="/drb-gc"
+        <a class="btn btn-dark btn-sm bu-lg-ic" href="/list-drb"
           ><i class="fa fa-arrow-left"></i
         ></a>
 
         <h3 class="card-title card-h3">
           DRB OFPPT >
-          <a href="/detail-df/">
+          <a href="/list-drb">
             <!-- {{ ucfirst($demande['type_miss']) }} -->
-            Test
+            List Demande remboursement OFPPT
           </a>
           {{ " > " }}
-          <a href="/detail-cl/">
+          <a href="#">
             <!-- {{ $demande['raisoci'] }} -->
-            Test
+            {{ DRB_Ofppt.raisoci }}
           </a>
         </h3>
 
@@ -72,6 +72,14 @@
               <td class="th-det text-capitalize" value="testtttttt">
                 <i class="fa fa-battery-quarter"></i>
                 {{ DRB_Ofppt.etat }}
+              </td>
+            </tr>
+
+            <tr>
+              <th>E/S</th>
+              <td class="th-det text-capitalize" value="testtttttt">
+                <i class="fa fa-battery-quarter"></i>
+                {{ DRB_Ofppt.raisoci }}
               </td>
             </tr>
 
@@ -150,6 +158,14 @@ export default {
     this.numero_remb = JSON.parse(localStorage.getItem("n_drf"));
     console.log(this.numero_remb);
     this.handleAction("DRB_Ofppt/getListOfDROfpptEdit", this.numero_remb);
+
+
+    if (JSON.parse(localStorage.getItem("LS_redirection"))) {
+      this.$toastr.s("Modifié avec succès");
+      localStorage.removeItem("LS_redirection")
+      
+    }
+      
   },
   methods: {
     addCat() {
