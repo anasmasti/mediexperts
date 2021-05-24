@@ -4271,6 +4271,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Edit",
@@ -4387,37 +4390,25 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     select_all: function select_all() {
       var checkId = document.getElementById("select_all");
-      var thems = [];
       var data = this.reglEntreprise;
+      var first = this.reglEntreprise;
       var item = 0;
 
-      for (item in data) {
-        thems.push(data[item].id_thm);
-      }
-
       if (checkId.checked) {
-        var Frs_id_Mode = "MDP:" + thems[0];
-        var Frs_id_Date = "DP:" + thems[0];
-
-        if (document.getElementById(Frs_id_Mode).value != "" && document.getElementById(Frs_id_Date).value != "") {
-          for (var index = 1; index < thems.length; index++) {
-            var id_Mode = "MDP:" + thems[index];
-            var id_Date = "DP:" + thems[index];
-            document.getElementById(id_Mode).value = document.getElementById(Frs_id_Mode).value;
-            document.getElementById(id_Date).value = document.getElementById(Frs_id_Date).value;
+        if (document.getElementById("MDP:" + first[0].id_thm).value != "" && document.getElementById("DP:" + first[0].id_thm).value != "") {
+          for (item in data) {
+            this.ModeReferencePaiement[item] = this.ModeReferencePaiement[0];
+            this.date_paiement[item] = this.date_paiement[0];
           }
         } else {
-          this.$toastr.e("Merci d'entrer les premier ' Date paiement entreprise ' et ' Mode et référence de paiement' !!");
-          checkId.checked = false;
+          this.$toastr.e("Merci d'entrer les premier ' Date paiement entreprise ' et ' Mode et référence de paiement' !!"); // checkId.checked = false;
+
+          this.select_all_ch = false;
         }
       } else {
-        for (var _index = 1; _index < thems.length; _index++) {
-          var _id_Mode = "MDP:" + thems[_index];
-
-          var _id_Date = "DP:" + thems[_index];
-
-          document.getElementById(_id_Mode).value = "";
-          document.getElementById(_id_Date).value = "";
+        for (item in data) {
+          this.ModeReferencePaiement[item] = "";
+          this.date_paiement[item] = "";
         }
       }
     },
@@ -47367,6 +47358,8 @@ var render = function() {
                     ])
                   ]),
                   _vm._v(" "),
+                  _vm._m(4, true),
+                  _vm._v(" "),
                   _c(
                     "div",
                     {
@@ -47583,8 +47576,6 @@ var render = function() {
                       )
                     ]
                   ),
-                  _vm._v(" "),
-                  _vm._m(4, true),
                   _vm._v(" "),
                   _vm._m(5, true),
                   _vm._v(" "),

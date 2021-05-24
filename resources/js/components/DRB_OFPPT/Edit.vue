@@ -254,19 +254,21 @@
                         >Relevés bq cabinet</label
                       >
                     </div>
+                    
                   </div>
                 </div>
               </div>
             </div>
 
-          
+          <div class="form-group col-12"><hr /></div>
 
             <div
               class="form-group col-lg-12 col-sm-12 display_div"
               style="display: flex ;flex-direction : 'row' ;"
             >
               <div class="form-group col-lg-6 col-sm-12 display_div1">
-               <div class="form-group col-lg-6 col-sm-12" style="margin : 2em 2em 2em 0 ;">
+                
+                <div class="form-group col-lg-6 col-sm-12" style="margin : 2em 2em 2em 0 ;">
                   <label>Date Remboursement</label>
                   <input
                     class="form-control"
@@ -327,10 +329,11 @@
                     @change="DateValidation()"
                   />
                 </div>
+
               </div>
             </div>
 
-            <div class="form-group col-12"><hr /></div>
+            
 
             <div class="form-group col-12"><hr /></div>
 
@@ -640,46 +643,41 @@ export default {
 
     select_all() {
       let checkId = document.getElementById("select_all");
-
-      let thems = [];
       let data = this.reglEntreprise;
+      let first = this.reglEntreprise;
       let item = 0;
-      for (item in data) {
-        thems.push(data[item].id_thm);
-      }
+
 
       if (checkId.checked) {
-        let Frs_id_Mode = "MDP:" + thems[0];
-        let Frs_id_Date = "DP:" + thems[0];
 
-        if (
-          document.getElementById(Frs_id_Mode).value != "" &&
-          document.getElementById(Frs_id_Date).value != ""
-        ) {
-          for (let index = 1; index < thems.length; index++) {
-            let id_Mode = "MDP:" + thems[index];
-            let id_Date = "DP:" + thems[index];
-            document.getElementById(id_Mode).value = document.getElementById(
-              Frs_id_Mode
-            ).value;
-            document.getElementById(id_Date).value = document.getElementById(
-              Frs_id_Date
-            ).value;
+          if (
+            document.getElementById("MDP:"+first[0].id_thm).value != "" &&
+            document.getElementById("DP:"+first[0].id_thm).value != ""
+          ) {
+            for (item in data) {
+               
+              this.ModeReferencePaiement[item] = this.ModeReferencePaiement[0];
+              this.date_paiement[item] =this.date_paiement[0];
+
+            }
+          } else {
+
+              this.$toastr.e(
+                "Merci d'entrer les premier ' Date paiement entreprise ' et ' Mode et référence de paiement' !!"
+              );
+              // checkId.checked = false;
+              this.select_all_ch = false
+
           }
-        } else {
-          this.$toastr.e(
-            "Merci d'entrer les premier ' Date paiement entreprise ' et ' Mode et référence de paiement' !!"
-          );
-          checkId.checked = false;
-        }
       } else {
-        for (let index = 1; index < thems.length; index++) {
-          let id_Mode = "MDP:" + thems[index];
-          let id_Date = "DP:" + thems[index];
-          document.getElementById(id_Mode).value = "";
-          document.getElementById(id_Date).value = "";
-        }
+
+            for (item in data) {
+               this.ModeReferencePaiement[item] = "";
+              this.date_paiement[item] ="";
+            }
+
       }
+
     },
 
     handleAction(actionName, value) {
