@@ -208,6 +208,7 @@
 
   <div style="width:100%; height:30px;"><!--space--></div>
 
+
   <div class="container">
     <span class="text-bold">Arrêtée la présente facture à la somme de : </span>
     <input type="text" id="montantText" class="" style="display: inline !important; width:50%" readonly>
@@ -234,7 +235,7 @@
     $(document).ready(function () {
       setTimeout(() => {
         let bdgLetterInput = $('#montantText');
-        bdgLetterInput.val(NumberToLetter(@php echo$bdgTTCLetter; @endphp).toUpperCase());
+        bdgLetterInput.val(NumberToLetter(@php echo $bdgTTCLetter; @endphp).toUpperCase() + " DIRHAMS");
       }, 1000);
 
 

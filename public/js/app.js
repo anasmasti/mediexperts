@@ -1977,7 +1977,330 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-/* harmony default export */ __webpack_exports__["default"] = (_defineProperty({
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
   runtimeCompiler: true,
   data: function data() {
     return {
@@ -2011,21 +2334,27 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       plan_formation: [],
       dates_actions: [],
       current_dates: null,
-      isAllLoaded: false
+      isAllLoaded: false,
+      // title of page
+      title: {
+        ref_plan: ""
+      }
     };
   },
   mounted: function mounted() {
     this.FillClients();
   },
-  computed: {},
+  updated: function updated() {
+    document.title = "AR - ".concat(this.title.ref_plan);
+  },
   methods: {
     DateFormat: function DateFormat(date) {
       if (date) {
-        var datestring = date.replace(/[^\w\s]/gi, '');
+        var datestring = date.replace(/[^\w\s]/gi, "");
         var year = datestring.charAt(0) + datestring.charAt(1) + datestring.charAt(2) + datestring.charAt(3);
         var month = datestring.charAt(4) + datestring.charAt(5);
         var day = datestring.charAt(6) + datestring.charAt(7);
-        return day + '/' + month + '/' + year;
+        return day + "/" + month + "/" + year;
       } else {// console.error("date is", date)
       }
     },
@@ -2038,7 +2367,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return axios.get('/fill-clients').then(function (res) {
+                return axios.get("/fill-clients").then(function (res) {
                   _this.clients = res.data; // console.log("clients : ", this.clients)
                 })["catch"](function (err) {
                   return console.error("err FillClients", err);
@@ -2062,7 +2391,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 _this2.ChangeFontSize();
 
-                console.log('nrc_entrp', _this2.nrc_entrp);
+                console.log("nrc_entrp", _this2.nrc_entrp);
                 _context2.next = 4;
                 return axios.get("/fill-reference-plan?nrcEntrp=".concat(_this2.nrc_entrp)).then(function (res) {
                   _this2.reference_plan = res.data;
@@ -2108,6 +2437,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   _this3.FillCabinetInfo();
 
                   console.log("actions_by_ref : ", _this3.actions_by_ref);
+                  _this3.title.ref_plan = _this3.actions_by_ref[0].refpdf;
                 }).then(function () {
                   // fill dates action
                   _this3.actions_by_ref.forEach(function (action) {
@@ -2152,7 +2482,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   _this4.curr_cabinet_ncnss = res.data.ncnss;
                   _this4.curr_cabinet_adress = res.data.adress;
                   _this4.curr_cabinet_ville = res.data.ville;
-                  console.log('cabinet :', res.data);
+                  console.log("cabinet :", res.data);
                 })["catch"](function (err) {
                   return console.error("err FillCabinetInfo", err);
                 });
@@ -2255,15 +2585,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     ChangeFontSize: function ChangeFontSize() {
       if (this.actions_by_ref.length <= 3) {
-        document.querySelector('.paper').setAttribute('style', 'font-size: 18px; line-height: 2rem; font-family: \'Arial\', sans-serif;');
+        document.querySelector(".paper").setAttribute("style", "font-size: 18px; line-height: 2rem; font-family: 'Arial', sans-serif;");
       } else if (this.actions_by_ref.length <= 5) {
-        document.querySelector('.paper').setAttribute('style', 'font-size: 16px; line-height: 2rem; font-family: \'Arial\', sans-serif;');
+        document.querySelector(".paper").setAttribute("style", "font-size: 16px; line-height: 2rem; font-family: 'Arial', sans-serif;");
       } else {
-        document.querySelector('.paper').setAttribute('style', 'font-size: 15.5px; line-height: initial; font-family: \'Arial\', sans-serif;');
+        document.querySelector(".paper").setAttribute("style", "font-size: 15.5px; line-height: initial; font-family: 'Arial', sans-serif;");
       }
     }
-  }
-}, "computed", {}));
+  },
+  // methods
+  computed: {} // computed
+
+});
 
 /***/ }),
 

@@ -320,7 +320,7 @@ class ClientController extends Controller
                 'fix_2'=> 'max:14',
                 'fax_1'=> 'max:20',
                 'fax_2'=> 'max:14',
-                'website'=> 'required|max:50|unique:clients,website,'.$client->nrc_entrp.',nrc_entrp',
+                'website'=> 'max:50|unique:clients,website,'.$client->nrc_entrp.',nrc_entrp',
                 'nom_dg1'=> 'required|max:50',
                 'fonct_dg1'=> 'required|max:50',
                 'gsm_dg1'=> 'max:50',
