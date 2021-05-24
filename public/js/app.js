@@ -5023,16 +5023,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "List",
   data: function data() {
-    return {};
+    return {
+      ndrf: null
+    };
   },
   mounted: function mounted() {
     this.getListOfDROfppt;
+    console.log(this.getListOfDROfppt);
   },
-  methods: _objectSpread({
+  methods: _objectSpread(_objectSpread({
     sendnrdf: function sendnrdf(n_drf) {
       var parsed = JSON.stringify(n_drf);
       localStorage.setItem("n_drf", parsed);
@@ -5045,7 +5050,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.handleAction("DRB_Ofppt/rechercher", ndrf);
       console.log('ndrf : ' + ndrf);
     }
-  }, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])("DRB_Ofppt", ["DeleteDrf"])),
+  }, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])("DRB_Ofppt", ["DeleteDrf"])), {}, {
+    redir: function redir(ndrf) {
+      console.log(ndrf);
+      window.location.href = '/list-drb';
+    },
+    remplir: function remplir(ndrf) {
+      this.ndrf = ndrf;
+      console.log(this.ndrf);
+    }
+  }),
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])("DRB_Ofppt", {
     DRB_Ofppts: function DRB_Ofppts(state) {
       return state.DRB_Ofppts;
@@ -48791,7 +48805,27 @@ var render = function() {
                     [_c("i", { staticClass: "fa fa-edit" })]
                   ),
                   _vm._v(" "),
-                  _vm._m(1, true),
+                  _c(
+                    "a",
+                    {
+                      staticClass: "btn btn-danger",
+                      attrs: {
+                        "data-toggle": "modal",
+                        "data-target": "#deleteModal"
+                      },
+                      on: {
+                        click: function($event) {
+                          return _vm.remplir(DRB_Ofppt.n_drf)
+                        }
+                      }
+                    },
+                    [
+                      _c("i", {
+                        staticClass: "fa fa-trash-alt",
+                        staticStyle: { color: "white" }
+                      })
+                    ]
+                  ),
                   _vm._v(" "),
                   _c(
                     "div",
@@ -48805,9 +48839,9 @@ var render = function() {
                         },
                         [
                           _c("div", { staticClass: "modal-content" }, [
-                            _vm._m(2, true),
+                            _vm._m(1, true),
                             _vm._v(" "),
-                            _vm._m(3, true),
+                            _vm._m(2, true),
                             _vm._v(" "),
                             _c(
                               "div",
@@ -48824,7 +48858,8 @@ var render = function() {
                                     attrs: { id: "deleteBtn" },
                                     on: {
                                       click: function($event) {
-                                        return _vm.DeleteDrf(DRB_Ofppt.n_drf)
+                                        _vm.DeleteDrf(_vm.ndrf)
+                                        _vm.redir()
                                       }
                                     }
                                   },
@@ -48838,7 +48873,7 @@ var render = function() {
                                   ]
                                 ),
                                 _vm._v(" "),
-                                _vm._m(4, true)
+                                _vm._m(3, true)
                               ]
                             )
                           ])
@@ -48874,24 +48909,6 @@ var staticRenderFns = [
         _c("th", [_vm._v("Action")])
       ])
     ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "a",
-      {
-        staticClass: "btn btn-danger",
-        attrs: { "data-toggle": "modal", "data-target": "#deleteModal" }
-      },
-      [
-        _c("i", {
-          staticClass: "fa fa-trash-alt",
-          staticStyle: { color: "white" }
-        })
-      ]
-    )
   },
   function() {
     var _vm = this
