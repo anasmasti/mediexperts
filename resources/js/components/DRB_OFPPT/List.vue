@@ -90,7 +90,7 @@
                   class="btn btn-warning"
                   ><i class="fa fa-edit"></i
                 ></a>
-                <a data-toggle="modal" data-target="#deleteModal" class="btn btn-danger">
+                <a data-toggle="modal" data-target="#deleteModal" @click="remplir(DRB_Ofppt.n_drf)" class="btn btn-danger">
                   <i class="fa fa-trash-alt" style="color: white ;"></i>
                 </a>
                   <div id="deleteModal" class="modal fade">
@@ -111,14 +111,16 @@
                                   </p>
                               </div>
                               <div class="modal-footer justify-content-center">
-                                  <a @click="DeleteDrf(DRB_Ofppt.n_drf)" id="deleteBtn" style="color : white" class="btn btn-danger">
+                                  <a  id="deleteBtn" @click="DeleteDrf(ndrf); redir()" style="color : white" class="btn btn-danger">
                                       <i class="material-icons" >delete_forever</i>
                                       Supprimer
                                   </a>
-                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                  <button type="button"  class="btn btn-secondary" data-dismiss="modal">
                                       <i class="material-icons">cancel</i>
                                       Annuler
                                   </button>
+
+                                  
                               </div>
                           </div>
                       </div>
@@ -141,11 +143,14 @@ import { mapState, mapActions } from "vuex";
 export default {
   name: "List",
   data() {
-    return {};
+    return {
+      ndrf:null
+    };
   },
 
   mounted() {
     this.getListOfDROfppt;
+    console.log(this.getListOfDROfppt);
     
   },
 
@@ -164,6 +169,14 @@ export default {
 
     },
     ...mapActions("DRB_Ofppt", ["DeleteDrf"]),
+    redir(ndrf){
+      console.log(ndrf);
+      window.location.href ='/list-drb';
+    },
+    remplir(ndrf){
+      this.ndrf = ndrf;
+      console.log(this.ndrf);
+    }
   },
 
   computed: {
