@@ -493,7 +493,8 @@
       </textarea>
     </div>
     <div class="card-footer text-center">
-      <button
+      <a
+        href="/detail-drb-ofppt"
         class="btn bu-add"
         type="submit"
         id="add"
@@ -503,7 +504,7 @@
         "
       >
         <i class="fas fa-pen-square icon"></i>Modifier
-      </button>
+      </a>
       <a class="btn bu-danger" href="/list-drb"
         ><i class="fas fa-window-close icon"></i>Annuler</a
       >
@@ -562,7 +563,6 @@ export default {
       this.accuse_model6 = this.DRB_Ofppts[0].accuse_model6 === "préparé";
       this.montant_rembrs =  this.DRB_Ofppts[0].montant_rembrs
     }, 1000);
-
     setTimeout(() => {
       if (
         this.DRB_Ofppts[0].etat === "initié" ||

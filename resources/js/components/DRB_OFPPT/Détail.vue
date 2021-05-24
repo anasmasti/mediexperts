@@ -23,7 +23,7 @@
     >
       <!-- card-header -->
       <div class="card-header">
-        <a class="btn btn-dark btn-sm bu-lg-ic" href="/drb-gc"
+        <a class="btn btn-dark btn-sm bu-lg-ic" href="/list-drb"
           ><i class="fa fa-arrow-left"></i
         ></a>
 

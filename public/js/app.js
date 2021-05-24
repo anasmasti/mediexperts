@@ -4253,6 +4253,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Edit",
@@ -4522,6 +4523,7 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
 //
 //
 //
@@ -46351,7 +46353,7 @@ var staticRenderFns = [
       "a",
       {
         staticClass: "btn btn-dark btn-sm bu-lg-ic",
-        attrs: { href: "/drb-gc" }
+        attrs: { href: "/list-drb" }
       },
       [_c("i", { staticClass: "fa fa-arrow-left" })]
     )
@@ -47716,10 +47718,10 @@ var render = function() {
     _vm._v(" "),
     _c("div", { staticClass: "card-footer text-center" }, [
       _c(
-        "button",
+        "a",
         {
           staticClass: "btn bu-add",
-          attrs: { type: "submit", id: "add" },
+          attrs: { href: "/detail-drb-ofppt", type: "submit", id: "add" },
           on: {
             click: function($event) {
               _vm.updateDRB()
