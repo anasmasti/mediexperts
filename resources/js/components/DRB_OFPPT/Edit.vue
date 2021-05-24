@@ -97,6 +97,7 @@
                         :id="'DP:' + info.id_thm"
                         :name="'DP:' + info.id_thm"
                         type="date"
+                        v-model="date_paiement[index]"
                       />
                     </td>
                     <td>
@@ -104,6 +105,7 @@
                         :id="'MDP:' + info.id_thm"
                         :name="'MDP:' + info.id_thm"
                         type="text"
+                        v-model="ModeReferencePaiement[index]"
                       />
                     </td>
                   </tr>
@@ -386,6 +388,7 @@
                           type="text"
                           :name="'justifEcart:' + info.id_thm"
                           :id="'justifEcart:' + info.id_thm"
+                           v-model="JustifsEcart[index]"
                         />
                       </td>
                     </tr>
@@ -500,7 +503,7 @@
         @click="
           updateDRB();
           getTheme();
-          redir();
+         redir();
         "
       >
         <i  class="fas fa-pen-square icon"></i>Modifier
@@ -541,7 +544,10 @@ export default {
       montant_rembrs: null,
       date_depot_dmd_rembrs:null,
       date_rembrs:null,
-      select_all_ch:null
+      select_all_ch:null,
+      date_paiement:[],
+      ModeReferencePaiement:[],
+      JustifsEcart:[]
     };
   },
   mounted() {
@@ -567,7 +573,20 @@ export default {
       this.montant_rembrs =  this.DRB_Ofppts[0].montant_rembrs;
       this.date_depot_dmd_rembrs =  this.DRB_Ofppts[0].date_depot_dmd_rembrs;
       this.date_rembrs =  this.DRB_Ofppts[0].date_rembrs;
+      this.select_all_ch= this.DRB_Ofppts[0].payerAllPF;
     }, 1000);
+
+      setTimeout(() => {
+       let data = this.reglEntreprise;
+      let item = 0;
+      for (item in data) {
+        this.date_paiement.push(data[item].datePaiementEntreprise);
+        this.ModeReferencePaiement.push(data[item].ModeReferencePaiement);
+        this.rmb_ofppt.push(data[item].RemboursementOFPPT);
+         this.JustifsEcart.push(data[item].JustifsEcart);
+      }
+    }, 1000);
+
 
     setTimeout(() => {
       if (
@@ -620,7 +639,7 @@ export default {
       }
     },
 
-    select_all(id_thm) {
+    select_all() {
       let checkId = document.getElementById("select_all");
 
       let thems = [];
@@ -703,11 +722,11 @@ export default {
           etat: etat,
           thems: this.themes,
           commenter: this.comment, 
-          // select_all_ch:this.select_all_ch
+          select_all_ch:this.select_all_ch
         })
         .then(() => {
           this.$toastr.s("Modifié avec succès");
-          // console.log('select all :: '+this.select_all_ch)
+           console.log('select all :: '+this.select_all_ch)
         })
         .catch(e => {
           this.$toastr.e("Echec de modification");

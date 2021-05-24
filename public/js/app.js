@@ -4267,6 +4267,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Edit",
@@ -4295,7 +4298,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       montant_rembrs: null,
       date_depot_dmd_rembrs: null,
       date_rembrs: null,
-      select_all_ch: null
+      select_all_ch: null,
+      date_paiement: [],
+      ModeReferencePaiement: [],
+      JustifsEcart: []
     };
   },
   mounted: function mounted() {
@@ -4321,6 +4327,21 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       _this.montant_rembrs = _this.DRB_Ofppts[0].montant_rembrs;
       _this.date_depot_dmd_rembrs = _this.DRB_Ofppts[0].date_depot_dmd_rembrs;
       _this.date_rembrs = _this.DRB_Ofppts[0].date_rembrs;
+      _this.select_all_ch = _this.DRB_Ofppts[0].payerAllPF;
+    }, 1000);
+    setTimeout(function () {
+      var data = _this.reglEntreprise;
+      var item = 0;
+
+      for (item in data) {
+        _this.date_paiement.push(data[item].datePaiementEntreprise);
+
+        _this.ModeReferencePaiement.push(data[item].ModeReferencePaiement);
+
+        _this.rmb_ofppt.push(data[item].RemboursementOFPPT);
+
+        _this.JustifsEcart.push(data[item].JustifsEcart);
+      }
     }, 1000);
     setTimeout(function () {
       if (_this.DRB_Ofppts[0].etat === "initié" || _this.DRB_Ofppts[0].etat === "payé" || _this.DRB_Ofppts[0].etat === "instruction dossier" || _this.DRB_Ofppts[0].etat === "déposé" || _this.DRB_Ofppts[0].etat === "remboursé") {
@@ -4363,7 +4384,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         document.getElementById("date_rembrs").disabled = false;
       }
     },
-    select_all: function select_all(id_thm) {
+    select_all: function select_all() {
       var checkId = document.getElementById("select_all");
       var thems = [];
       var data = this.reglEntreprise;
@@ -4447,11 +4468,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   date_rembrs: _this3.date_rembrs,
                   etat: etat,
                   thems: _this3.themes,
-                  commenter: _this3.comment // select_all_ch:this.select_all_ch
-
+                  commenter: _this3.comment,
+                  select_all_ch: _this3.select_all_ch
                 }).then(function () {
-                  _this3.$toastr.s("Modifié avec succès"); // console.log('select all :: '+this.select_all_ch)
+                  _this3.$toastr.s("Modifié avec succès");
 
+                  console.log('select all :: ' + _this3.select_all_ch);
                 })["catch"](function (e) {
                   _this3.$toastr.e("Echec de modification");
 
@@ -46679,20 +46701,64 @@ var render = function() {
                               _vm._v(" "),
                               _c("td", [
                                 _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.date_paiement[index],
+                                      expression: "date_paiement[index]"
+                                    }
+                                  ],
                                   attrs: {
                                     id: "DP:" + info.id_thm,
                                     name: "DP:" + info.id_thm,
                                     type: "date"
+                                  },
+                                  domProps: { value: _vm.date_paiement[index] },
+                                  on: {
+                                    input: function($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.$set(
+                                        _vm.date_paiement,
+                                        index,
+                                        $event.target.value
+                                      )
+                                    }
                                   }
                                 })
                               ]),
                               _vm._v(" "),
                               _c("td", [
                                 _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.ModeReferencePaiement[index],
+                                      expression: "ModeReferencePaiement[index]"
+                                    }
+                                  ],
                                   attrs: {
                                     id: "MDP:" + info.id_thm,
                                     name: "MDP:" + info.id_thm,
                                     type: "text"
+                                  },
+                                  domProps: {
+                                    value: _vm.ModeReferencePaiement[index]
+                                  },
+                                  on: {
+                                    input: function($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.$set(
+                                        _vm.ModeReferencePaiement,
+                                        index,
+                                        $event.target.value
+                                      )
+                                    }
                                   }
                                 })
                               ])
@@ -47599,10 +47665,31 @@ var render = function() {
                               _vm._v(" "),
                               _c("td", [
                                 _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.JustifsEcart[index],
+                                      expression: "JustifsEcart[index]"
+                                    }
+                                  ],
                                   attrs: {
                                     type: "text",
                                     name: "justifEcart:" + info.id_thm,
                                     id: "justifEcart:" + info.id_thm
+                                  },
+                                  domProps: { value: _vm.JustifsEcart[index] },
+                                  on: {
+                                    input: function($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.$set(
+                                        _vm.JustifsEcart,
+                                        index,
+                                        $event.target.value
+                                      )
+                                    }
                                   }
                                 })
                               ])
