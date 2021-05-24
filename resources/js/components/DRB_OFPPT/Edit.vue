@@ -251,7 +251,34 @@
                         >Relevés bq cabinet</label
                       >
                     </div>
-                    <div
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          <div class="form-group col-12"><hr /></div>
+
+            <div
+              class="form-group col-lg-12 col-sm-12 display_div"
+              style="display: flex ;flex-direction : 'row' ;"
+            >
+              <div class="form-group col-lg-6 col-sm-12 display_div1">
+                
+                <div class="form-group col-lg-6 col-sm-12" style="margin : 2em 2em 2em 0 ;">
+                  <label>Date Remboursement</label>
+                  <input
+                    class="form-control"
+                    type="text"
+                    name="date_rembrs"
+                    id="date_rembrs"
+                    onmouseover="(this.type='date')"
+                    placeholder="Date réalisation"
+                    :value="DRB_Ofppt.date_rembrs"
+                    @change="DateValidation()"
+                  />
+                </div>
+                <div
                       class="form-group col-lg-6 col-sm-12 custom-control custom-checkbox"
                       style="margin: auto 1rem ;"
                     >
@@ -266,34 +293,6 @@
                         >Accusé Modele 6</label
                       >
                     </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          
-
-            <div
-              class="form-group col-lg-12 col-sm-12 display_div"
-              style="display: flex ;flex-direction : 'row' ;"
-            >
-              <div class="form-group col-lg-6 col-sm-12 display_div1">
-                <div
-                  class="form-group col-lg-6 col-sm-12 "
-                  style="margin : 2em 2em 2em 0 ;"
-                >
-                  <label>Date dépot demande de Remboursement</label>
-                  <input
-                    class="form-control"
-                    type="text"
-                    name="date_depot_dmd_rembrs"
-                    id="date_depot_dmd_rembrs"
-                    onmouseover="(this.type='date')"
-                    placeholder="Date réalisation"
-                    :value="DRB_Ofppt.date_depot_dmd_rembrs"
-                    @change="DateValidation()"
-                  />
-                </div>
               </div>
 
               <div class="form-group col-lg-6 col-sm-12 display_div_child">
@@ -312,23 +311,27 @@
                   />
                 </div>
 
-                <div class="form-group col-lg-6 col-sm-12">
-                  <label>Date Remboursement</label>
+                <div
+                  class="form-group col-lg-6 col-sm-12 "
+                  
+                >
+                  <label>Date dépot demande de Remboursement</label>
                   <input
                     class="form-control"
                     type="text"
-                    name="date_rembrs"
-                    id="date_rembrs"
+                    name="date_depot_dmd_rembrs"
+                    id="date_depot_dmd_rembrs"
                     onmouseover="(this.type='date')"
                     placeholder="Date réalisation"
-                    :value="DRB_Ofppt.date_rembrs"
+                    :value="DRB_Ofppt.date_depot_dmd_rembrs"
                     @change="DateValidation()"
                   />
                 </div>
+
               </div>
             </div>
 
-            <div class="form-group col-12"><hr /></div>
+            
 
             <div class="form-group col-12"><hr /></div>
 

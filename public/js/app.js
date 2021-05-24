@@ -4253,6 +4253,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Edit",
@@ -47160,6 +47163,54 @@ var render = function() {
                               [_vm._v("Relevés bq cabinet")]
                             )
                           ]
+                        )
+                      ])
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _vm._m(4, true),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "form-group col-lg-12 col-sm-12 display_div",
+                    staticStyle: { display: "flex", "flex-direction": "'row'" }
+                  },
+                  [
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "form-group col-lg-6 col-sm-12 display_div1"
+                      },
+                      [
+                        _c(
+                          "div",
+                          {
+                            staticClass: "form-group col-lg-6 col-sm-12",
+                            staticStyle: { margin: "2em 2em 2em 0" }
+                          },
+                          [
+                            _c("label", [_vm._v("Date Remboursement")]),
+                            _vm._v(" "),
+                            _c("input", {
+                              staticClass: "form-control",
+                              attrs: {
+                                type: "text",
+                                name: "date_rembrs",
+                                id: "date_rembrs",
+                                onmouseover: "(this.type='date')",
+                                placeholder: "Date réalisation"
+                              },
+                              domProps: { value: DRB_Ofppt.date_rembrs },
+                              on: {
+                                change: function($event) {
+                                  return _vm.DateValidation()
+                                }
+                              }
+                            })
+                          ]
                         ),
                         _vm._v(" "),
                         _c(
@@ -47224,56 +47275,6 @@ var render = function() {
                             )
                           ]
                         )
-                      ])
-                    ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass: "form-group col-lg-12 col-sm-12 display_div",
-                    staticStyle: { display: "flex", "flex-direction": "'row'" }
-                  },
-                  [
-                    _c(
-                      "div",
-                      {
-                        staticClass:
-                          "form-group col-lg-6 col-sm-12 display_div1"
-                      },
-                      [
-                        _c(
-                          "div",
-                          {
-                            staticClass: "form-group col-lg-6 col-sm-12 ",
-                            staticStyle: { margin: "2em 2em 2em 0" }
-                          },
-                          [
-                            _c("label", [
-                              _vm._v("Date dépot demande de Remboursement")
-                            ]),
-                            _vm._v(" "),
-                            _c("input", {
-                              staticClass: "form-control",
-                              attrs: {
-                                type: "text",
-                                name: "date_depot_dmd_rembrs",
-                                id: "date_depot_dmd_rembrs",
-                                onmouseover: "(this.type='date')",
-                                placeholder: "Date réalisation"
-                              },
-                              domProps: {
-                                value: DRB_Ofppt.date_depot_dmd_rembrs
-                              },
-                              on: {
-                                change: function($event) {
-                                  return _vm.DateValidation()
-                                }
-                              }
-                            })
-                          ]
-                        )
                       ]
                     ),
                     _vm._v(" "),
@@ -47324,20 +47325,24 @@ var render = function() {
                         _vm._v(" "),
                         _c(
                           "div",
-                          { staticClass: "form-group col-lg-6 col-sm-12" },
+                          { staticClass: "form-group col-lg-6 col-sm-12 " },
                           [
-                            _c("label", [_vm._v("Date Remboursement")]),
+                            _c("label", [
+                              _vm._v("Date dépot demande de Remboursement")
+                            ]),
                             _vm._v(" "),
                             _c("input", {
                               staticClass: "form-control",
                               attrs: {
                                 type: "text",
-                                name: "date_rembrs",
-                                id: "date_rembrs",
+                                name: "date_depot_dmd_rembrs",
+                                id: "date_depot_dmd_rembrs",
                                 onmouseover: "(this.type='date')",
                                 placeholder: "Date réalisation"
                               },
-                              domProps: { value: DRB_Ofppt.date_rembrs },
+                              domProps: {
+                                value: DRB_Ofppt.date_depot_dmd_rembrs
+                              },
                               on: {
                                 change: function($event) {
                                   return _vm.DateValidation()
@@ -47350,8 +47355,6 @@ var render = function() {
                     )
                   ]
                 ),
-                _vm._v(" "),
-                _vm._m(4, true),
                 _vm._v(" "),
                 _vm._m(5, true),
                 _vm._v(" "),
@@ -71954,8 +71957,8 @@ var state = {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\HP\MediexpertsV1.0.1\mediexperts\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\HP\MediexpertsV1.0.1\mediexperts\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\xampp\htdocs\Nouveau dossier\mediexperts\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\Nouveau dossier\mediexperts\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
