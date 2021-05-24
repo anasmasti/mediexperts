@@ -99,7 +99,7 @@
 
 <div class="hide-from-print">
   <div style="display:flex; justify-content:space-between;">
-    <a class="bu-print" id="" href="/df-gc">Retour</a>
+    <a class="bu-print" id="" href="/df">Retour</a>
     <a class="bu-print" id="" href="#" onclick="window.print()">Imprimer le formulaire</a>
   </div>
 </div>

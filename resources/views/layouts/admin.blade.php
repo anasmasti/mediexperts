@@ -150,13 +150,23 @@
           </div>
           <div class="info">
           @if (Auth::user()->type_user == "user")
+            <h6 class="d-block text-light">{{ Auth::user()->firstname }} {{ Auth::user()->name }}</h6>
             <span class="right badge badge-warning">Utilisateur</span>
           @elseif (Auth::user()->type_user == "admin")
-            <a href="#" class="d-block">{{ Auth::user()->firstname }} {{ Auth::user()->name }}</a>
+            <h6 class="d-block text-light">{{ Auth::user()->firstname }} {{ Auth::user()->name }}</h6>
             <span class="right badge badge-danger">Administrateur</span>
           @else
-            <a href="#" class="d-block">{{ Auth::user()->firstname }} {{ Auth::user()->name }}</a>
+            <h6 class="d-block text-light">{{ Auth::user()->firstname }} {{ Auth::user()->name }}</h6>
             <span class="right badge badge-info">{{ ucfirst(Auth::user()->type_user) }}</span>
+          @endif
+          </div>
+        </div>
+      <!-- Sidebar user panel (optional) -->
+      </div>
+
+      @if (Auth::user()->type_user == "user" || Auth::user()->type_user == "admin")
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column nav-compact" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
              with font-awesome or any other icon font library -->
