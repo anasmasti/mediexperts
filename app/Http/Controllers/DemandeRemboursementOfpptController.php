@@ -30,7 +30,7 @@ class DemandeRemboursementOfpptController extends Controller
     public function searchdrf($n_drf)
     {
         $searchdrb = $n_drf;
-        $drf = DemandeRemboursementOfppt::where('n_drf', 'LIKE', '%'. $searchdrb . '%')->get();
+        $drf = DemandeRemboursementOfppt::where('refpdf', 'LIKE', '%'. $searchdrb . '%')->get();
         return response()->json($drf);
     }
 
