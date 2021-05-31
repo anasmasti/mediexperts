@@ -224,7 +224,8 @@ class PlanController extends Controller
             }
 
             $plans->save();
-
+            $checkDRB =  Plan::findOrFail($id_plan);
+            if($checkDRB == null){
             if ($request->input("etat") == "réalisé") {
               $drb = new DemandeRemboursementOfppt();
               $drb->id_plan = $plans->id_plan;
@@ -244,10 +245,12 @@ class PlanController extends Controller
                     $drb->$doc = "non préparé";
 
               }
+              $drb->save();
               $request->session()->flash('warning', 'Demande de remboursement a été initialisé');
             }
+        }
 
-            $drb->save();
+           
 
             $request->session()->flash('updated', 'Modifié avec succès');
             return redirect('/detail-plan/'.$id_plan)->with('success');
