@@ -179,7 +179,7 @@ class PlanController extends Controller
     public function update(Request $request, $id_plan)
     {
         if ($request -> isMethod('POST')) {
-
+            
             $plans = Plan::findOrFail($id_plan);
 
             $request->validate([
@@ -217,43 +217,43 @@ class PlanController extends Controller
 
             // si le "plan" est réalisé! mettre à jour l'etat de toutes les "actions formations"
             if (mb_strtolower($plans->etat) === "réalisé") {
-              DB::table('plan_formations')
+                DB::table('plan_formations')
                 ->join('plans', 'plan_formations.id_plan', 'plans.id_plan')
                 ->where('plan_formations.id_plan', $id_plan)
                 ->update(['plan_formations.etat' => "réalisé"]);
             }
 
             $plans->save();
-            $checkDRB =  Plan::findOrFail($id_plan);
-            if($checkDRB == null){
-            if ($request->input("etat") == "réalisé") {
-              $drb = new DemandeRemboursementOfppt();
-              $drb->id_plan = $plans->id_plan;
-              $drb->refpdf = $plans->refpdf;
-              $drb->nrc_entrp = $plans->nrc_e;
-              $drb->n_contrat = $plans->n_contrat;
-              $drb->etat = 'initié';
-              $drb->montant_rembrs = '0';
-              $drb->date_depot_dmd_rembrs = '2020-01-01';
-              $drb->date_rembrs = '2020-01-01';
 
-              $docs = ['model5','model6','accuse_model6','fiche_eval_sythetique',
-                        'factures','compris_cheques','compris_remise',
-                        'relev_bq_societe','relev_bq_cabinet'];
-                foreach ($docs as $doc) {
+            $checkDRB =  DemandeRemboursementOfppt::where('id_plan', '=', $id_plan)->get();
+             if($checkDRB->isEmpty()){
+               if ($request->input("etat") == "réalisé") {
+                    $drb = new DemandeRemboursementOfppt();
+                    $drb->id_plan = $plans->id_plan;
+                    $drb->refpdf = $plans->refpdf;
+                    $drb->nrc_entrp = $plans->nrc_e;
+                    $drb->n_contrat = $plans->n_contrat;
+                    $drb->etat = 'initié';
+                    $drb->montant_rembrs = '0';
+                    $drb->date_depot_dmd_rembrs = '2020-01-01';
+                    $drb->date_rembrs = '2020-01-01';
 
-                    $drb->$doc = "non préparé";
+                    $docs = ['model5','model6','accuse_model6','fiche_eval_sythetique',
+                                'factures','compris_cheques','compris_remise',
+                                'relev_bq_societe','relev_bq_cabinet'];
+                        foreach ($docs as $doc) {
 
-              }
-              $drb->save();
-              $request->session()->flash('warning', 'Demande de remboursement a été initialisé');
+                            $drb->$doc = "non préparé";
+
+                    }
+                    $drb->save();
+                    $request->session()->flash('warning', 'Demande de remboursement a été initialisé');
+                    }
             }
-        }
-
-           
-
+            
             $request->session()->flash('updated', 'Modifié avec succès');
             return redirect('/detail-plan/'.$id_plan)->with('success');
+          
         }
         else {
             $plans = Plan::findOrFail($id_plan);
