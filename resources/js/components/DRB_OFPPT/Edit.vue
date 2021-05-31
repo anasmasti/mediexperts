@@ -25,7 +25,7 @@
         class="card-body"
       >
         <div class="row">
-          <div class="form-group col-lg-3 col-sm-12">
+          <div class="form-group col-lg-4 col-sm-12" style="margin : auto ;">
             <label>E/S</label>
             <input
               class="form-control"
@@ -38,7 +38,7 @@
             />
           </div>
 
-          <div class="form-group col-lg-3 col-sm-12" style="margin : auto ;">
+          <div class="form-group col-lg-4 col-sm-12" style="margin : auto ;">
             <label>RefPdf</label>
             <input
               class="form-control"
@@ -51,7 +51,7 @@
             />
           </div>
 
-          <div class="form-group col-lg-3 col-sm-12" style="margin : auto ;">
+          <div class="form-group col-lg-4 col-sm-12" style="margin : auto ;">
             <label>N Contrat PF</label>
             <input
               class="form-control"
@@ -68,31 +68,31 @@
 
           <div class="form-group col-12">
             <label>Réglement entreprise</label>
-            <div class="table-responsive">
-              <table class="table table-striped">
+            <div class="table-responsive table_reg_entr">
+              <table class="table table-striped" style="width:100%;">
                 <thead>
                   <tr>
-                    <th scope="col">N°Action</th>
-                    <th scope="col">Thème</th>
-                    <th scope="col">Total HT(DH)</th>
-                    <th scope="col">TVA (20%)</th>
-                    <th scope="col">Total TTC</th>
-                    <th scope="col">Quote-part Entreprise</th>
-                    <th scope="col">N° de Facture</th>
-                    <th scope="col">Date paiement entreprise</th>
-                    <th scope="col">Mode et référence de paiement</th>
+                    <th >N°Action</th>
+                    <th >Thème</th>
+                    <th >Total HT(DH)</th>
+                    <th >TVA (20%)</th>
+                    <th >Total TTC</th>
+                    <th >Quote-part Entreprise</th>
+                    <th >N° de Facture</th>
+                    <th >Date paiement entreprise</th>
+                    <th >Mode et référence de paiement</th>
                   </tr>
                 </thead>
                 <tbody v-for="(info, index) in reglEntreprise" :key="index">
                   <tr>
-                    <th>{{ info.n_action }}</th>
-                    <td>{{ info.nom_theme }}</td>
-                    <td>{{ info.bdg_total }}</td>
-                    <td>{{ info.bdg_total * 0.2 }}</td>
-                    <td>{{ info.bdg_total + info.bdg_total * 0.2 }}</td>
-                    <td>{{ info.bdg_total * 0.3 + info.bdg_total * 0.2 }}</td>
-                    <td>{{ info.n_facture }}</td>
-                    <td>
+                    <th >{{ info.n_action }}</th>
+                    <td >{{ info.nom_theme }}</td>
+                    <td >{{ info.bdg_total }}</td>
+                    <td >{{ info.bdg_total * 0.2 }}</td>
+                    <td >{{ info.bdg_total + info.bdg_total * 0.2 }}</td>
+                    <td >{{ info.bdg_total * 0.3 + info.bdg_total * 0.2 }}</td>
+                    <td >{{ info.n_facture }}</td>
+                    <td >
                       <input
                         :id="'DP:' + info.id_thm"
                         :name="'DP:' + info.id_thm"
@@ -100,7 +100,7 @@
                         v-model="date_paiement[index]"
                       />
                     </td>
-                    <td>
+                    <td >
                       <input
                         :id="'MDP:' + info.id_thm"
                         :name="'MDP:' + info.id_thm"
@@ -111,7 +111,10 @@
                   </tr>
                 </tbody>
               </table>
-              <div
+             
+            </div>
+            
+            <div
                 class="form-group col-lg-12 col-sm-12 custom-control custom-checkbox"
               >
                 <div class="div_select_all">
@@ -128,7 +131,6 @@
                   >
                 </div>
               </div>
-            </div>
 
             <div class="total_reg">
               <label for="txt-total-reg">Total Réglement : </label>
@@ -206,6 +208,7 @@
                         >Factures</label
                       >
                     </div>
+
                     <div class="custom-control custom-checkbox">
                       <input
                         type="checkbox"
@@ -215,9 +218,10 @@
                         class="custom-control-input"
                       />
                       <label for="compris_cheques" class="custom-control-label"
-                        >Compries cheques / OV / LC</label
+                        >Copies chèques / OV / LC</label
                       >
                     </div>
+
                     <div class="custom-control custom-checkbox">
                       <input
                         type="checkbox"
@@ -227,9 +231,10 @@
                         class="custom-control-input"
                       />
                       <label for="compris_remise" class="custom-control-label"
-                        >Compries remises / Avis de débit</label
+                        >Copies remises / Avis de débit</label
                       >
                     </div>
+
                     <div class="custom-control custom-checkbox">
                       <input
                         type="checkbox"
@@ -242,6 +247,7 @@
                         >Relevés bq societé</label
                       >
                     </div>
+
                     <div class="custom-control custom-checkbox">
                       <input
                         type="checkbox"
@@ -254,36 +260,36 @@
                         >Relevés bq cabinet</label
                       >
                     </div>
-                    
                   </div>
                 </div>
               </div>
             </div>
+           <!-- <div class="form-group col-12"><hr /></div> -->
 
-          <div class="form-group col-12"><hr /></div>
-
-            <div
-              class="form-group col-lg-12 col-sm-12 display_div"
-              style="display: flex ;flex-direction : 'row' ;"
-            >
-              <div class="form-group col-lg-6 col-sm-12 display_div1">
-                
-                <div class="form-group col-lg-6 col-sm-12" style="margin : 2em 2em 2em 0 ;">
-                  <label>Date Remboursement</label>
-                  <input
-                    class="form-control"
-                    type="text"
-                    name="date_rembrs"
-                    id="date_rembrs"
-                    onmouseover="(this.type='date')"
-                    placeholder="Date réalisation"
-                    v-model="date_rembrs"
-                    @change="DateValidation()"
-                  />
+            <div class="container" style="margin-top:2em;">
+              <div class="row">
+                <div class="col-md-6">
+                   <div
+                      class="form-group col-lg-12 col-sm-12 " 
+                      style="margin-top:auto;margin-bottum:auto;margin-left:0;"
+                    >
+                      <label>Date dépot demande de Remboursement</label>
+                      <input
+                        class="form-control"
+                        type="text"
+                        name="date_depot_dmd_rembrs"
+                        id="date_depot_dmd_rembrs"
+                        onmouseover="(this.type='date')"
+                        placeholder="Date réalisation"
+                        v-model="date_depot_dmd_rembrs"
+                        @change="DateValidation()"
+                      />
+                    </div>
                 </div>
-                <div
+                <div class="col-md-6">
+                   <div
                       class="form-group col-lg-6 col-sm-12 custom-control custom-checkbox"
-                      style="margin: auto 1rem ;"
+                      style="margin-top:20px;margin-bottum:20px;"
                     >
                       <input
                         type="checkbox"
@@ -293,14 +299,24 @@
                         v-model="accuse_model6"
                       />
                       <label for="accuse_model6" class="custom-control-label "
-                        >Accusé Modele 6</label
+                        >Accusé Modéle 6</label
                       >
                     </div>
+                </div>
               </div>
+            </div>
 
-              <div class="form-group col-lg-6 col-sm-12 display_div_child">
+
+          <div class="form-group col-12"><hr /></div>
+
+            <div
+              class="form-group col-lg-12 col-sm-12 display_div"
+              style="display: flex ;flex-direction : 'row' ;"
+            >
+              <div class="form-group col-lg-6 col-sm-12 display_div1">
+                
                 <div
-                  class="form-group col-lg-6 col-sm-12"
+                  class="form-group col-lg-12 col-sm-12"
                   style="margin : 2em 2em 2em 0 ;"
                 >
                   <label>Montant de Remboursement</label>
@@ -313,19 +329,21 @@
                     v-model="montant_rembrs"
                   />
                 </div>
+                
+              </div>
 
-                 <div
-                  class="form-group col-lg-6 col-sm-12 "
-                >
-                  <label>Date dépot demande de Remboursement</label>
+              <div class="form-group col-lg-6 col-sm-12 display_div_child">
+
+                <div class="form-group col-lg-12 col-sm-12" style="margin : 2em 2em 2em 0 ;">
+                  <label >Date Remboursement</label>
                   <input
                     class="form-control"
                     type="text"
-                    name="date_depot_dmd_rembrs"
-                    id="date_depot_dmd_rembrs"
+                    name="date_rembrs"
+                    id="date_rembrs"
                     onmouseover="(this.type='date')"
                     placeholder="Date réalisation"
-                    v-model="date_depot_dmd_rembrs"
+                    v-model="date_rembrs"
                     @change="DateValidation()"
                   />
                 </div>
@@ -338,11 +356,12 @@
             <div class="form-group col-12"><hr /></div>
 
             <div class="form-group col-12">
-              <label>Remboursement OFPPT</label>
+              <label style="margin-top:1em;">Remboursement OFPPT</label>
+            <div class="form-group col-12" style="margin:0 auto;"><hr /></div>
               <div class="table-responsive">
-                <table class="table table-striped">
+                <table class="table table-striped table_remb_ofppt">
                   <thead>
-                    <tr>
+                    <tr  style="  border-top: hidden;">
                       <th scope="col">N°Action</th>
                       <th scope="col">Thème</th>
                       <th scope="col">Total HT(DH)</th>
@@ -387,8 +406,7 @@
                         />
                       </td>
                       <td>
-                        <input
-                          type="text"
+                        <textarea
                           :name="'justifEcart:' + info.id_thm"
                           :id="'justifEcart:' + info.id_thm"
                            v-model="JustifsEcart[index]"
@@ -398,13 +416,6 @@
                   </tbody>
                 </table>
               </div>
-
-              <div class="form-group col-12"><hr /></div>
-
-              <div
-                class="form-group col-lg-12 col-sm-12"
-                style="display : flex ; flex-direction: row ;"
-              ></div>
             </div>
           </div>
         </div>
@@ -836,5 +847,30 @@ th {
   background-color: transparent;
   border: none;
   font-weight: bold;
+}
+
+.div_dtdepo_accusemod6{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.table_reg_entr{
+  width: 100%;
+
+}
+
+.table-responsive{
+  overflow-x: hidden;
+}
+
+@media only screen and (max-width: 1000px) {
+.table-responsive{
+  overflow-x: scroll;
+ }
+}
+
+th , td{
+  font-size:14px;height:-10px;
 }
 </style>
