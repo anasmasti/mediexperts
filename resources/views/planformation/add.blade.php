@@ -181,6 +181,73 @@
       </div>
       {{-- ***************** ./ THEMES ***************** --}}
 
+      
+      <div class="form-group col-lg-3 col-md-6 col-12 mb-5">
+
+        <label>Nb. d’heures par jour </label>
+          <input class="form-control bg-warning {{ $errors->has('nb_heure') ? 'is-invalid' : '' }}" type="text" name="nb_heure" id="nb_heure" min="0" maxlength="15" onkeyup="CalcBdgJourn();CalcNbJour()" onchange="NbHeurValidation()" onkeypress="return isNumberKey(event)" placeholder="nb. jour" >
+          @if ($errors->has('nb_heure'))
+            <span class="invalid-feedback" role="alert">
+              {{ $errors->first('nb_heure') }}
+            </span>
+          @endif
+
+          <label for="nb_dates">Nb. Dates</label>
+          <input type="text" class="form-control {{ $errors->has('nb_dates') ? 'is-invalid' : '' }}" name="nb_dates" id="nb_dates" onkeyup="CalcNbJour();CalcBdgJourn();ValidationNbDatesIfSameDates()" onclick="NbHeurValidation()" onkeypress="return isNumberKey(event)" placeholder="nb. dates">
+          @if ($errors->has('nb_dates'))
+          <span class="invalid-feedback" role="alert">
+            {{$errors->first('nb_dates') }}
+          </span>
+          @endif
+          <span class="text-danger" id="nb_dates_msg"></span>
+          <div class="form-check">
+            <input type="checkbox" value="1" onchange="ValidationNbDatesIfSameDates()" name="same_dates" id="same_dates" class="form-check-input">
+            <label for="grp_hasnt_same_dates" class="form-check-label">Groupe ayant même dates</label> <br>
+            <label class="text-danger" id="sameDateError"></label>
+          </div>
+
+        <label>Nb. de jours </label>
+        <input class="form-control {{ $errors->has('nb_jour') ? 'is-invalid' : '' }}  " value="{{old('nb_jour')}}" type="text" onkeyup="CalcNbJour();CalcBdgJourn()" name="nb_jour" id="nb_jour" min="0" maxlength="15"  onkeypress="return isNumberKey(event)" placeholder="nb. jour">
+        @if ($errors->has('nb_jour'))
+          <span class="invalid-feedback" role="alert">
+            {{ $errors->first('nb_jour') }}
+          </span>
+        @endif
+
+      </div>
+     
+
+      <div class="form-group col-lg-3 col-md-6 col-12"><label>Date début</label>
+        <input class="form-control {{ $errors->has('dt_debut') ? 'is-invalid' : '' }}" value="{{old('dt_debut')}}" type="text" name="dt_debut" onmouseover="(this.type='date')" id="" onchange="checkDate()" placeholder="Date début" >
+        @if ($errors->has('dt_debut'))
+          <span class="invalid-feedback" role="alert">
+            {{ $errors->first('dt_debut') }}
+          </span>
+        @endif
+        <label>Pause</label>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" value="1" name="pause">
+          <label class="form-check-label">
+            Oui
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" value="0" name="pause" checked>
+          <label class="form-check-label">
+            Non
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group col-lg-3 col-md-6 col-12"><label>Date fin</label>
+        <input class="form-control {{ $errors->has('dt_fin') ? 'is-invalid' : '' }}" value="{{old('dt_fin')}}" type="text" name="dt_fin" onmouseover="(this.type='date')" id="" onchange="checkDate()" placeholder="Date fin" >
+        @if ($errors->has('dt_fin'))
+          <span class="invalid-feedback" role="alert">
+            {{ $errors->first('dt_fin') }}
+          </span>
+        @endif
+      </div>
+
       {{-- DOCS --}}
       <div class="form-group col-lg-3 col-md-6 col-12">
         <label>Documents</label>
@@ -217,69 +284,8 @@
       </div>
       {{-- ./ DOCS --}}
 
-      <div class="form-group col-lg-3 col-md-6 col-12"><label>Date début</label>
-        <input class="form-control {{ $errors->has('dt_debut') ? 'is-invalid' : '' }}" value="{{old('dt_debut')}}" type="text" name="dt_debut" onmouseover="(this.type='date')" id="" onchange="checkDate()" placeholder="Date début" >
-        @if ($errors->has('dt_debut'))
-          <span class="invalid-feedback" role="alert">
-            {{ $errors->first('dt_debut') }}
-          </span>
-        @endif
-        <label>Pause</label>
-        <div class="form-check">
-          <input class="form-check-input" type="radio" value="1" name="pause">
-          <label class="form-check-label">
-            Oui
-          </label>
+      <div class="form-group col-lg-3 col-md-6 col-12"><label style="color: transparent">.</label><input class="form-control" type="text" style="background: transparent;border:none;" readonly>
         </div>
-        <div class="form-check">
-          <input class="form-check-input" type="radio" value="0" name="pause" checked>
-          <label class="form-check-label">
-            Non
-          </label>
-        </div>
-      </div>
-
-      <div class="form-group col-lg-3 col-md-6 col-12"><label>Date fin</label>
-        <input class="form-control {{ $errors->has('dt_fin') ? 'is-invalid' : '' }}" value="{{old('dt_fin')}}" type="text" name="dt_fin" onmouseover="(this.type='date')" id="" onchange="checkDate()" placeholder="Date fin" >
-        @if ($errors->has('dt_fin'))
-          <span class="invalid-feedback" role="alert">
-            {{ $errors->first('dt_fin') }}
-          </span>
-        @endif
-      </div>
-
-      <div class="form-group col-lg-3 col-md-6 col-12"><label>Nb. de jours </label>
-        <input class="form-control {{ $errors->has('nb_jour') ? 'is-invalid' : '' }}" value="{{old('nb_jour')}}" type="text" onkeyup="CalcNbJour();CalcBdgJourn()" name="nb_jour" id="nb_jour" min="0" maxlength="15"  onkeypress="return isNumberKey(event)" placeholder="nb. jour">
-        @if ($errors->has('nb_jour'))
-          <span class="invalid-feedback" role="alert">
-            {{ $errors->first('nb_jour') }}
-          </span>
-        @endif
-        <label for="nb_dates">Nb. Dates</label>
-        <input type="text" class="form-control {{ $errors->has('nb_dates') ? 'is-invalid' : '' }}" name="nb_dates" id="nb_dates" onkeyup="CalcNbJour();CalcBdgJourn();ValidationNbDatesIfSameDates()" onclick="NbHeurValidation()" onkeypress="return isNumberKey(event)" placeholder="nb. dates">
-        @if ($errors->has('nb_dates'))
-        <span class="invalid-feedback" role="alert">
-          {{$errors->first('nb_dates') }}
-        </span>
-        @endif
-        <span class="text-danger" id="nb_dates_msg"></span>
-        <div class="form-check">
-          <input type="checkbox" value="1" onchange="ValidationNbDatesIfSameDates()" name="same_dates" id="same_dates" class="form-check-input">
-          <label for="grp_hasnt_same_dates" class="form-check-label">Groupe ayant même dates</label> <br>
-          <label class="text-danger" id="sameDateError"></label>
-        </div>
-      </div>
-
-
-
-      <div class="form-group col-lg-3 col-md-6 col-12"><label>Nb. d’heures par jour </label>
-        <input class="form-control bg-warning {{ $errors->has('nb_heure') ? 'is-invalid' : '' }}" type="text" name="nb_heure" id="nb_heure" min="0" maxlength="15" onkeyup="CalcBdgJourn();CalcNbJour()" onchange="NbHeurValidation()" onkeypress="return isNumberKey(event)" placeholder="nb. jour" >
-        @if ($errors->has('nb_heure'))
-          <span class="invalid-feedback" role="alert">
-            {{ $errors->first('nb_heure') }}
-          </span>
-        @endif
-      </div>
 
       <div class="form-group col-lg-3 col-md-6 col-12">
         <label for="type_form">Type formation</label>

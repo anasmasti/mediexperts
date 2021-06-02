@@ -167,41 +167,38 @@
         </div>
         {{-- ***************** ./ THEMES ***************** --}}
 
-        {{-- DOCS --}}
-        <div class="form-group col-lg-3 col-md-6 col-12">
-          <label>Documents</label>
-          <div class="form-group">
-            <div class="custom-control custom-checkbox">
-                <input type="checkbox" name="model5" id="model5" class="custom-control-input" @if (mb_strtolower($plan->model5)=="préparé") checked @endif>
-                <label for="model5" class="custom-control-label">Modèles 5</label>
-            </div>
-            <div class="custom-control custom-checkbox">
-                <input type="checkbox" name="model3" id="model3" class="custom-control-input" @if (mb_strtolower($plan->model3)=="préparé") checked @endif>
-                <label for="model3" class="custom-control-label">Modèles 3</label>
-            </div>
-            <div class="custom-control custom-checkbox">
-                <input type="checkbox" name="f4" id="f4" class="custom-control-input" @if (mb_strtolower($plan->f4)=="préparé") checked @endif>
-                <label for="f4" class="custom-control-label">Formulaires 4</label>
-            </div>
-            <div class="custom-control custom-checkbox">
-                <input type="checkbox" name="fiche_eval" id="fiche_eval" class="custom-control-input" @if (mb_strtolower($plan->fiche_eval)=="préparé") checked @endif>
-                <label for="fiche_eval" class="custom-control-label">Fiches d'évaluation</label>
-            </div>
-            <div class="custom-control custom-checkbox">
-                <input type="checkbox" name="support_form" id="support_form" class="custom-control-input" @if (mb_strtolower($plan->support_form)=="préparé") checked @endif>
-                <label for="support_form" class="custom-control-label">Supports de formation</label>
-            </div>
-            <div class="custom-control custom-checkbox">
-                <input type="checkbox" name="cv_inv" id="cv_inv" class="custom-control-input" @if (mb_strtolower($plan->cv_inv)=="préparé") checked @endif>
-                <label for="cv_inv" class="custom-control-label">Les CV des intervenants</label>
-            </div>
-            <div class="custom-control custom-checkbox">
-                <input type="checkbox" name="avis_affich" id="avis_affich" class="custom-control-input" @if (mb_strtolower($plan->avis_affich)=="préparé") checked @endif>
-                <label for="avis_affich" class="custom-control-label">Avis d'affichage</label>
-            </div>
+        <div class="form-group col-lg-3 col-md-6 col-12 mb-5">
+            
+            <label>Nb. heures (durée total)</label>
+            <input class="form-control {{ $errors->has('nb_heure') ? 'is-invalid' : '' }}" value="{{$plan->nb_heure}}" type="text" name="nb_heure" id="nb_heure" min="0" maxlength="15" onkeyup="CalcBdgJourn()" onkeypress="return isNumberKey(event)" placeholder="nb. jour" >
+            @if ($errors->has('nb_heure'))
+                <span class="invalid-feedback" role="alert">
+                    {{ $errors->first('nb_heure') }}
+                </span>
+           @endif
+
+           <label for="nb_dates">Nb. Dates</label>
+           <input type="text" class="form-control {{ $errors->has('nb_dates') ? 'is-invalid' : '' }}" value="{{$plan->Nombre_Dates}}" name="nb_dates" id="nb_dates" onkeyup="CalcNbJour();CalcBdgJourn();ValidationNbDatesIfSameDates()" onclick="NbHeurValidation()" onkeypress="return isNumberKey(event)" placeholder="nb. dates">
+           @if ($errors->has('nb_dates'))
+           <span class="invalid-feedback" role="alert">
+             {{$errors->first('nb_dates') }}
+           </span>
+           @endif
+          <span class="text-danger" id="nb_dates_msg"></span>
+          <div class="form-check">
+            <input type="checkbox" name="same_dates" onchange="ValidationNbDatesIfSameDates()" value="1" {{$plan->Has_Same_Dates == 1 ? 'checked' : ''}} id="same_dates" class="form-check-input">
+            <label for="grp_hasnt_same_dates" class="form-check-label">Groupes ayant différent date</label> <br>
+            <label class="text-danger" id="sameDateError"></label>
           </div>
+            
+          <label>Nb. jours</label>
+          <input class="form-control {{ $errors->has('nb_jour') ? 'is-invalid' : '' }}" value="{{$plan->nb_jour}}" type="text" name="nb_jour" id="nb_jour" min="0" maxlength="15" onkeyup="CalcBdgJourn()" onkeypress="return isNumberKey(event)" placeholder="nb. jour" >
+          @if ($errors->has('nb_jour'))
+            <span class="invalid-feedback" role="alert">
+                  {{ $errors->first('nb_jour') }}
+            </span>
+          @endif
         </div>
-        {{-- ./ DOCS --}}
 
         <div class="form-group col-lg-3 col-md-6 col-12"><label>Date début</label>
             <input class="form-control {{ $errors->has('dt_debut') ? 'is-invalid' : '' }}" value="{{$plan->dt_debut}}" type="date" name="dt_debut" onmouseover="(this.type='date')" id="" onchange="checkDate()" placeholder="Date début" >
@@ -234,35 +231,43 @@
            @endif
         </div>
 
-        <div class="form-group col-lg-3 col-md-6 col-12"><label>Nb. jours</label>
-            <input class="form-control {{ $errors->has('nb_jour') ? 'is-invalid' : '' }}" value="{{$plan->nb_jour}}" type="text" name="nb_jour" id="nb_jour" min="0" maxlength="15" onkeyup="CalcBdgJourn()" onkeypress="return isNumberKey(event)" placeholder="nb. jour" >
-            @if ($errors->has('nb_jour'))
-                <span class="invalid-feedback" role="alert">
-                    {{ $errors->first('nb_jour') }}
-                </span>
-           @endif
-           <label for="nb_dates">Nb. Dates</label>
-           <input type="text" class="form-control {{ $errors->has('nb_dates') ? 'is-invalid' : '' }}" value="{{$plan->Nombre_Dates}}" name="nb_dates" id="nb_dates" onkeyup="CalcNbJour();CalcBdgJourn();ValidationNbDatesIfSameDates()" onclick="NbHeurValidation()" onkeypress="return isNumberKey(event)" placeholder="nb. dates">
-           @if ($errors->has('nb_dates'))
-           <span class="invalid-feedback" role="alert">
-             {{$errors->first('nb_dates') }}
-           </span>
-           @endif
-          <span class="text-danger" id="nb_dates_msg"></span>
-          <div class="form-check">
-            <input type="checkbox" name="same_dates" onchange="ValidationNbDatesIfSameDates()" value="1" {{$plan->Has_Same_Dates == 1 ? 'checked' : ''}} id="same_dates" class="form-check-input">
-            <label for="grp_hasnt_same_dates" class="form-check-label">Groupes ayant différent date</label> <br>
-            <label class="text-danger" id="sameDateError"></label>
+        {{-- DOCS --}}
+        <div class="form-group col-lg-3 col-md-6 col-12">
+            <label>Documents</label>
+            <div class="form-group">
+              <div class="custom-control custom-checkbox">
+                  <input type="checkbox" name="model5" id="model5" class="custom-control-input" @if (mb_strtolower($plan->model5)=="préparé") checked @endif>
+                  <label for="model5" class="custom-control-label">Modèles 5</label>
+              </div>
+              <div class="custom-control custom-checkbox">
+                  <input type="checkbox" name="model3" id="model3" class="custom-control-input" @if (mb_strtolower($plan->model3)=="préparé") checked @endif>
+                  <label for="model3" class="custom-control-label">Modèles 3</label>
+              </div>
+              <div class="custom-control custom-checkbox">
+                  <input type="checkbox" name="f4" id="f4" class="custom-control-input" @if (mb_strtolower($plan->f4)=="préparé") checked @endif>
+                  <label for="f4" class="custom-control-label">Formulaires 4</label>
+              </div>
+              <div class="custom-control custom-checkbox">
+                  <input type="checkbox" name="fiche_eval" id="fiche_eval" class="custom-control-input" @if (mb_strtolower($plan->fiche_eval)=="préparé") checked @endif>
+                  <label for="fiche_eval" class="custom-control-label">Fiches d'évaluation</label>
+              </div>
+              <div class="custom-control custom-checkbox">
+                  <input type="checkbox" name="support_form" id="support_form" class="custom-control-input" @if (mb_strtolower($plan->support_form)=="préparé") checked @endif>
+                  <label for="support_form" class="custom-control-label">Supports de formation</label>
+              </div>
+              <div class="custom-control custom-checkbox">
+                  <input type="checkbox" name="cv_inv" id="cv_inv" class="custom-control-input" @if (mb_strtolower($plan->cv_inv)=="préparé") checked @endif>
+                  <label for="cv_inv" class="custom-control-label">Les CV des intervenants</label>
+              </div>
+              <div class="custom-control custom-checkbox">
+                  <input type="checkbox" name="avis_affich" id="avis_affich" class="custom-control-input" @if (mb_strtolower($plan->avis_affich)=="préparé") checked @endif>
+                  <label for="avis_affich" class="custom-control-label">Avis d'affichage</label>
+              </div>
+            </div>
           </div>
-          </div>
+          {{-- ./ DOCS --}}
 
-        <div class="form-group col-lg-3 col-md-6 col-12"><label>Nb. heures (durée total)</label>
-            <input class="form-control {{ $errors->has('nb_heure') ? 'is-invalid' : '' }}" value="{{$plan->nb_heure}}" type="text" name="nb_heure" id="nb_heure" min="0" maxlength="15" onkeyup="CalcBdgJourn()" onkeypress="return isNumberKey(event)" placeholder="nb. jour" >
-            @if ($errors->has('nb_heure'))
-                <span class="invalid-feedback" role="alert">
-                    {{ $errors->first('nb_heure') }}
-                </span>
-           @endif
+        <div class="form-group col-lg-3 col-md-6 col-12"><label style="color: transparent">.</label><input class="form-control" type="text" style="background: transparent;border:none;" readonly>
         </div>
 
         <div class="form-group col-lg-3 col-md-6 col-12">
@@ -463,9 +468,9 @@
     </div><!--./card-body-->
 
 
-    <div class="card-footer">
-        <button class="btn bu-add" type="submit" id="edit"><i class="fas fa-pen-square icon"></i>Modifier</button>
-        <a class="btn bu-danger" href="/PlanFormation"><i class="fas fa-window-close icon"></i>Annuler</a>
+    <div class="card-footer  text-center">
+            <button class="btn bu-add" type="submit" id="edit"><i class="fas fa-pen-square icon"></i>Modifier</button>
+            <a class="btn bu-danger" href="/PlanFormation"><i class="fas fa-window-close icon"></i>Annuler</a>
     </div>
 
     </form>
