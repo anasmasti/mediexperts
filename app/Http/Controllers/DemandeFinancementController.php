@@ -258,14 +258,15 @@ class DemandeFinancementController extends Controller
                         if($chk->type_miss ==$request->input('type_miss')){
                             //m3ndksh l7a9 tmodifier lhad la date 
                            // return response()->json($chk);
-                            $request->session()->flash('error', '555La date et le nom de l\'entreprise existes déjà ');
+                            $request->session()->flash('error', 'La date et le nom de l\'entreprise existes déjà ');
     
                         }
                         else{
                             if($check_exist->isEmpty()){
+                                $df->save();
                                 // modifier la DRB avec les nouveaux montants et quote part
                                 if ( $etat_demande == "accordé" || $etat_demande == "réalisé" || $etat_demande == "approuvé") {
-                               
+                                   
                                     $drb->n_df = $df->n_df;
                                     $drb->etat = "initié";
     
@@ -293,7 +294,7 @@ class DemandeFinancementController extends Controller
                          }
                             //3ndek l7a9
                             
-                            $df->save();
+                            
                             $request->session()->flash('updated', 'demande finanacement Ajouté avec succès');
                             
                         }
@@ -301,10 +302,9 @@ class DemandeFinancementController extends Controller
                 }
                 else{
                     if($check_exist->isEmpty()){
-                                
+                        $df->save();  
                         // modifier la DRB avec les nouveaux montants et quote part
                         if ( $etat_demande == "accordé" || $etat_demande == "réalisé" || $etat_demande == "approuvé") {
-                               
                             $drb->n_df = $df->n_df;
                             $drb->etat = "initié";
 
@@ -330,7 +330,7 @@ class DemandeFinancementController extends Controller
                     
                  }
                     //3ndek l7a9
-                    $df->save();
+                    
                     $request->session()->flash('updated', 'demande finanacement Ajouté avec succès');
                 }
            
@@ -561,7 +561,7 @@ class DemandeFinancementController extends Controller
                         if($chk->type_miss ==$request->input('type_miss')){
                             //m3ndksh l7a9 tmodifier lhad la date 
                            // return response()->json($chk);
-                            $request->session()->flash('error', '555La date et le nom de l\'entreprise existes déjà ');
+                            $request->session()->flash('error', 'La date et le nom de l\'entreprise existes déjà ');
     
                         }
                         else{
