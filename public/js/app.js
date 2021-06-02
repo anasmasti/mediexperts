@@ -4603,6 +4603,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Edit",
@@ -11116,7 +11127,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\ntable[data-v-376179dc] {\r\n  margin: 10px auto;\n}\ntd[data-v-376179dc],\r\nth[data-v-376179dc] {\r\n  text-align: center;\n}\n.total_reg[data-v-376179dc] {\r\n  margin: 10px auto;\r\n  float: right;\n}\n.btn-Etat[data-v-376179dc] {\r\n  display: flex;\r\n  flex-direction: row;\r\n  flex-wrap: wrap;\n}\n.display_div[data-v-376179dc] {\r\n  display: flex;\r\n  flex-direction: row;\r\n  flex-wrap: wrap;\n}\n.display_div_child[data-v-376179dc] {\r\n  display: flex;\r\n  flex-direction: column;\n}\n.div_select_all[data-v-376179dc] {\r\n  float: right;\n}\n.EcartOFPPT[data-v-376179dc] {\r\n  align-items: center;\r\n  text-align: center;\r\n  -webkit-text-decoration: black;\r\n          text-decoration: black;\r\n  background-color: transparent;\r\n  border: none;\r\n  font-weight: bold;\n}\r\n", ""]);
+exports.push([module.i, "\ntable[data-v-376179dc] {\r\n  margin: 10px auto;\n}\ntd[data-v-376179dc],\r\nth[data-v-376179dc] {\r\n  text-align: center;\n}\n.total_reg[data-v-376179dc] {\r\n  margin: 10px auto;\r\n  float: right;\n}\n.btn-Etat[data-v-376179dc] {\r\n  display: flex;\r\n  flex-direction: row;\r\n  flex-wrap: wrap;\n}\n.display_div[data-v-376179dc] {\r\n  display: flex;\r\n  flex-direction: row;\r\n  flex-wrap: wrap;\n}\n.display_div_child[data-v-376179dc] {\r\n  display: flex;\r\n  flex-direction: column;\n}\n.div_select_all[data-v-376179dc] {\r\n  float: right;\n}\n.EcartOFPPT[data-v-376179dc] {\r\n  align-items: center;\r\n  text-align: center;\r\n  -webkit-text-decoration: black;\r\n          text-decoration: black;\r\n  background-color: transparent;\r\n  border: none;\r\n  font-weight: bold;\n}\n.div_dtdepo_accusemod6[data-v-376179dc]{\r\n  display: flex;\r\n  flex-direction: row;\r\n  justify-content: center;\n}\n.table_reg_entr[data-v-376179dc]{\r\n  width: 100%;\n}\n.table-responsive[data-v-376179dc]{\r\n  overflow-x: hidden;\n}\n@media only screen and (max-width: 1000px) {\n.table-responsive[data-v-376179dc]{\r\n  overflow-x: scroll;\n}\n}\nth[data-v-376179dc], td[data-v-376179dc]{\r\n  font-size:14px;height:-10px;\n}\r\n", ""]);
 
 // exports
 
@@ -47130,26 +47141,33 @@ var render = function() {
             _vm._v(" "),
             _c("div", { staticClass: "card-body" }, [
               _c("div", { staticClass: "row" }, [
-                _c("div", { staticClass: "form-group col-lg-3 col-sm-12" }, [
-                  _c("label", [_vm._v("E/S")]),
-                  _vm._v(" "),
-                  _c("input", {
-                    staticClass: "form-control",
-                    attrs: {
-                      type: "text",
-                      id: "nrc_entrp",
-                      name: "nrc_entrp",
-                      placeholder: "Entreprise..",
-                      readonly: ""
-                    },
-                    domProps: { value: DRB_Ofppt.raisoci }
-                  })
-                ]),
+                _c(
+                  "div",
+                  {
+                    staticClass: "form-group col-lg-4 col-sm-12",
+                    staticStyle: { margin: "auto" }
+                  },
+                  [
+                    _c("label", [_vm._v("E/S")]),
+                    _vm._v(" "),
+                    _c("input", {
+                      staticClass: "form-control",
+                      attrs: {
+                        type: "text",
+                        id: "nrc_entrp",
+                        name: "nrc_entrp",
+                        placeholder: "Entreprise..",
+                        readonly: ""
+                      },
+                      domProps: { value: DRB_Ofppt.raisoci }
+                    })
+                  ]
+                ),
                 _vm._v(" "),
                 _c(
                   "div",
                   {
-                    staticClass: "form-group col-lg-3 col-sm-12",
+                    staticClass: "form-group col-lg-4 col-sm-12",
                     staticStyle: { margin: "auto" }
                   },
                   [
@@ -47172,7 +47190,7 @@ var render = function() {
                 _c(
                   "div",
                   {
-                    staticClass: "form-group col-lg-3 col-sm-12",
+                    staticClass: "form-group col-lg-4 col-sm-12",
                     staticStyle: { margin: "auto" }
                   },
                   [
@@ -47197,179 +47215,194 @@ var render = function() {
                 _c("div", { staticClass: "form-group col-12" }, [
                   _c("label", [_vm._v("Réglement entreprise")]),
                   _vm._v(" "),
-                  _c("div", { staticClass: "table-responsive" }, [
-                    _c(
-                      "table",
-                      { staticClass: "table table-striped" },
-                      [
-                        _vm._m(2, true),
-                        _vm._v(" "),
-                        _vm._l(_vm.reglEntreprise, function(info, index) {
-                          return _c("tbody", { key: index }, [
-                            _c("tr", [
-                              _c("th", [_vm._v(_vm._s(info.n_action))]),
-                              _vm._v(" "),
-                              _c("td", [_vm._v(_vm._s(info.nom_theme))]),
-                              _vm._v(" "),
-                              _c("td", [_vm._v(_vm._s(info.bdg_total))]),
-                              _vm._v(" "),
-                              _c("td", [_vm._v(_vm._s(info.bdg_total * 0.2))]),
-                              _vm._v(" "),
-                              _c("td", [
-                                _vm._v(
-                                  _vm._s(info.bdg_total + info.bdg_total * 0.2)
-                                )
-                              ]),
-                              _vm._v(" "),
-                              _c("td", [
-                                _vm._v(
-                                  _vm._s(
-                                    info.bdg_total * 0.3 + info.bdg_total * 0.2
+                  _c(
+                    "div",
+                    { staticClass: "table-responsive table_reg_entr" },
+                    [
+                      _c(
+                        "table",
+                        {
+                          staticClass: "table table-striped",
+                          staticStyle: { width: "100%" }
+                        },
+                        [
+                          _vm._m(2, true),
+                          _vm._v(" "),
+                          _vm._l(_vm.reglEntreprise, function(info, index) {
+                            return _c("tbody", { key: index }, [
+                              _c("tr", [
+                                _c("th", [_vm._v(_vm._s(info.n_action))]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s(info.nom_theme))]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s(info.bdg_total))]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _vm._v(_vm._s(info.bdg_total * 0.2))
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _vm._v(
+                                    _vm._s(
+                                      info.bdg_total + info.bdg_total * 0.2
+                                    )
                                   )
-                                )
-                              ]),
-                              _vm._v(" "),
-                              _c("td", [_vm._v(_vm._s(info.n_facture))]),
-                              _vm._v(" "),
-                              _c("td", [
-                                _c("input", {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: _vm.date_paiement[index],
-                                      expression: "date_paiement[index]"
-                                    }
-                                  ],
-                                  attrs: {
-                                    id: "DP:" + info.id_thm,
-                                    name: "DP:" + info.id_thm,
-                                    type: "date"
-                                  },
-                                  domProps: { value: _vm.date_paiement[index] },
-                                  on: {
-                                    input: function($event) {
-                                      if ($event.target.composing) {
-                                        return
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _vm._v(
+                                    _vm._s(
+                                      info.bdg_total * 0.3 +
+                                        info.bdg_total * 0.2
+                                    )
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s(info.n_facture))]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.date_paiement[index],
+                                        expression: "date_paiement[index]"
                                       }
-                                      _vm.$set(
-                                        _vm.date_paiement,
-                                        index,
-                                        $event.target.value
-                                      )
-                                    }
-                                  }
-                                })
-                              ]),
-                              _vm._v(" "),
-                              _c("td", [
-                                _c("input", {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: _vm.ModeReferencePaiement[index],
-                                      expression: "ModeReferencePaiement[index]"
-                                    }
-                                  ],
-                                  attrs: {
-                                    id: "MDP:" + info.id_thm,
-                                    name: "MDP:" + info.id_thm,
-                                    type: "text"
-                                  },
-                                  domProps: {
-                                    value: _vm.ModeReferencePaiement[index]
-                                  },
-                                  on: {
-                                    input: function($event) {
-                                      if ($event.target.composing) {
-                                        return
+                                    ],
+                                    attrs: {
+                                      id: "DP:" + info.id_thm,
+                                      name: "DP:" + info.id_thm,
+                                      type: "date"
+                                    },
+                                    domProps: {
+                                      value: _vm.date_paiement[index]
+                                    },
+                                    on: {
+                                      input: function($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.$set(
+                                          _vm.date_paiement,
+                                          index,
+                                          $event.target.value
+                                        )
                                       }
-                                      _vm.$set(
-                                        _vm.ModeReferencePaiement,
-                                        index,
-                                        $event.target.value
-                                      )
                                     }
-                                  }
-                                })
+                                  })
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.ModeReferencePaiement[index],
+                                        expression:
+                                          "ModeReferencePaiement[index]"
+                                      }
+                                    ],
+                                    attrs: {
+                                      id: "MDP:" + info.id_thm,
+                                      name: "MDP:" + info.id_thm,
+                                      type: "text"
+                                    },
+                                    domProps: {
+                                      value: _vm.ModeReferencePaiement[index]
+                                    },
+                                    on: {
+                                      input: function($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.$set(
+                                          _vm.ModeReferencePaiement,
+                                          index,
+                                          $event.target.value
+                                        )
+                                      }
+                                    }
+                                  })
+                                ])
                               ])
                             ])
-                          ])
-                        })
-                      ],
-                      2
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass:
-                          "form-group col-lg-12 col-sm-12 custom-control custom-checkbox"
-                      },
-                      [
-                        _c("div", { staticClass: "div_select_all" }, [
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.select_all_ch,
-                                expression: "select_all_ch"
-                              }
-                            ],
-                            staticClass: "custom-control-input",
-                            attrs: {
-                              type: "checkbox",
-                              name: "select_all",
-                              id: "select_all"
-                            },
-                            domProps: {
-                              checked: Array.isArray(_vm.select_all_ch)
-                                ? _vm._i(_vm.select_all_ch, null) > -1
-                                : _vm.select_all_ch
-                            },
-                            on: {
-                              change: [
-                                function($event) {
-                                  var $$a = _vm.select_all_ch,
-                                    $$el = $event.target,
-                                    $$c = $$el.checked ? true : false
-                                  if (Array.isArray($$a)) {
-                                    var $$v = null,
-                                      $$i = _vm._i($$a, $$v)
-                                    if ($$el.checked) {
-                                      $$i < 0 &&
-                                        (_vm.select_all_ch = $$a.concat([$$v]))
-                                    } else {
-                                      $$i > -1 &&
-                                        (_vm.select_all_ch = $$a
-                                          .slice(0, $$i)
-                                          .concat($$a.slice($$i + 1)))
-                                    }
-                                  } else {
-                                    _vm.select_all_ch = $$c
-                                  }
-                                },
-                                function($event) {
-                                  return _vm.select_all()
-                                }
-                              ]
-                            }
-                          }),
-                          _vm._v(" "),
-                          _c(
-                            "label",
+                          })
+                        ],
+                        2
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass:
+                        "form-group col-lg-12 col-sm-12 custom-control custom-checkbox"
+                    },
+                    [
+                      _c("div", { staticClass: "div_select_all" }, [
+                        _c("input", {
+                          directives: [
                             {
-                              staticClass: "custom-control-label ",
-                              attrs: { for: "select_all" }
-                            },
-                            [_vm._v("selectionner tout")]
-                          )
-                        ])
-                      ]
-                    )
-                  ]),
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.select_all_ch,
+                              expression: "select_all_ch"
+                            }
+                          ],
+                          staticClass: "custom-control-input",
+                          attrs: {
+                            type: "checkbox",
+                            name: "select_all",
+                            id: "select_all"
+                          },
+                          domProps: {
+                            checked: Array.isArray(_vm.select_all_ch)
+                              ? _vm._i(_vm.select_all_ch, null) > -1
+                              : _vm.select_all_ch
+                          },
+                          on: {
+                            change: [
+                              function($event) {
+                                var $$a = _vm.select_all_ch,
+                                  $$el = $event.target,
+                                  $$c = $$el.checked ? true : false
+                                if (Array.isArray($$a)) {
+                                  var $$v = null,
+                                    $$i = _vm._i($$a, $$v)
+                                  if ($$el.checked) {
+                                    $$i < 0 &&
+                                      (_vm.select_all_ch = $$a.concat([$$v]))
+                                  } else {
+                                    $$i > -1 &&
+                                      (_vm.select_all_ch = $$a
+                                        .slice(0, $$i)
+                                        .concat($$a.slice($$i + 1)))
+                                  }
+                                } else {
+                                  _vm.select_all_ch = $$c
+                                }
+                              },
+                              function($event) {
+                                return _vm.select_all()
+                              }
+                            ]
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c(
+                          "label",
+                          {
+                            staticClass: "custom-control-label ",
+                            attrs: { for: "select_all" }
+                          },
+                          [_vm._v("selectionner tout")]
+                        )
+                      ])
+                    ]
+                  ),
                   _vm._v(" "),
                   _c("div", { staticClass: "total_reg" }, [
                     _c("label", { attrs: { for: "txt-total-reg" } }, [
@@ -47705,7 +47738,7 @@ var render = function() {
                                   staticClass: "custom-control-label",
                                   attrs: { for: "compris_cheques" }
                                 },
-                                [_vm._v("Compries cheques / OV / LC")]
+                                [_vm._v("Copies chèques / OV / LC")]
                               )
                             ]
                           ),
@@ -47766,7 +47799,7 @@ var render = function() {
                                   staticClass: "custom-control-label",
                                   attrs: { for: "compris_remise" }
                                 },
-                                [_vm._v("Compries remises / Avis de débit")]
+                                [_vm._v("Copies remises / Avis de débit")]
                               )
                             ]
                           ),
@@ -47897,52 +47930,48 @@ var render = function() {
                     ])
                   ]),
                   _vm._v(" "),
-                  _vm._m(4, true),
-                  _vm._v(" "),
                   _c(
                     "div",
                     {
-                      staticClass: "form-group col-lg-12 col-sm-12 display_div",
-                      staticStyle: {
-                        display: "flex",
-                        "flex-direction": "'row'"
-                      }
+                      staticClass: "container",
+                      staticStyle: { "margin-top": "2em" }
                     },
                     [
-                      _c(
-                        "div",
-                        {
-                          staticClass:
-                            "form-group col-lg-6 col-sm-12 display_div1"
-                        },
-                        [
+                      _c("div", { staticClass: "row" }, [
+                        _c("div", { staticClass: "col-md-6" }, [
                           _c(
                             "div",
                             {
-                              staticClass: "form-group col-lg-6 col-sm-12",
-                              staticStyle: { margin: "2em 2em 2em 0" }
+                              staticClass: "form-group col-lg-12 col-sm-12 ",
+                              staticStyle: {
+                                "margin-top": "auto",
+                                "margin-bottum": "auto",
+                                "margin-left": "0"
+                              }
                             },
                             [
-                              _c("label", [_vm._v("Date Remboursement")]),
+                              _c("label", [
+                                _vm._v("Date dépot demande de Remboursement")
+                              ]),
                               _vm._v(" "),
                               _c("input", {
                                 directives: [
                                   {
                                     name: "model",
                                     rawName: "v-model",
-                                    value: _vm.date_rembrs,
-                                    expression: "date_rembrs"
+                                    value: _vm.date_depot_dmd_rembrs,
+                                    expression: "date_depot_dmd_rembrs"
                                   }
                                 ],
                                 staticClass: "form-control",
                                 attrs: {
                                   type: "text",
-                                  name: "date_rembrs",
-                                  id: "date_rembrs",
+                                  name: "date_depot_dmd_rembrs",
+                                  id: "date_depot_dmd_rembrs",
                                   onmouseover: "(this.type='date')",
                                   placeholder: "Date réalisation"
                                 },
-                                domProps: { value: _vm.date_rembrs },
+                                domProps: { value: _vm.date_depot_dmd_rembrs },
                                 on: {
                                   change: function($event) {
                                     return _vm.DateValidation()
@@ -47951,19 +47980,25 @@ var render = function() {
                                     if ($event.target.composing) {
                                       return
                                     }
-                                    _vm.date_rembrs = $event.target.value
+                                    _vm.date_depot_dmd_rembrs =
+                                      $event.target.value
                                   }
                                 }
                               })
                             ]
-                          ),
-                          _vm._v(" "),
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-6" }, [
                           _c(
                             "div",
                             {
                               staticClass:
                                 "form-group col-lg-6 col-sm-12 custom-control custom-checkbox",
-                              staticStyle: { margin: "auto 1rem" }
+                              staticStyle: {
+                                "margin-top": "20px",
+                                "margin-bottum": "20px"
+                              }
                             },
                             [
                               _c("input", {
@@ -48018,24 +48053,38 @@ var render = function() {
                                   staticClass: "custom-control-label ",
                                   attrs: { for: "accuse_model6" }
                                 },
-                                [_vm._v("Accusé Modele 6")]
+                                [_vm._v("Accusé Modéle 6")]
                               )
                             ]
                           )
-                        ]
-                      ),
-                      _vm._v(" "),
+                        ])
+                      ])
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _vm._m(4, true),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "form-group col-lg-12 col-sm-12 display_div",
+                      staticStyle: {
+                        display: "flex",
+                        "flex-direction": "'row'"
+                      }
+                    },
+                    [
                       _c(
                         "div",
                         {
                           staticClass:
-                            "form-group col-lg-6 col-sm-12 display_div_child"
+                            "form-group col-lg-6 col-sm-12 display_div1"
                         },
                         [
                           _c(
                             "div",
                             {
-                              staticClass: "form-group col-lg-6 col-sm-12",
+                              staticClass: "form-group col-lg-12 col-sm-12",
                               staticStyle: { margin: "2em 2em 2em 0" }
                             },
                             [
@@ -48068,34 +48117,44 @@ var render = function() {
                                 }
                               })
                             ]
-                          ),
-                          _vm._v(" "),
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass:
+                            "form-group col-lg-6 col-sm-12 display_div_child"
+                        },
+                        [
                           _c(
                             "div",
-                            { staticClass: "form-group col-lg-6 col-sm-12 " },
+                            {
+                              staticClass: "form-group col-lg-12 col-sm-12",
+                              staticStyle: { margin: "2em 2em 2em 0" }
+                            },
                             [
-                              _c("label", [
-                                _vm._v("Date dépot demande de Remboursement")
-                              ]),
+                              _c("label", [_vm._v("Date Remboursement")]),
                               _vm._v(" "),
                               _c("input", {
                                 directives: [
                                   {
                                     name: "model",
                                     rawName: "v-model",
-                                    value: _vm.date_depot_dmd_rembrs,
-                                    expression: "date_depot_dmd_rembrs"
+                                    value: _vm.date_rembrs,
+                                    expression: "date_rembrs"
                                   }
                                 ],
                                 staticClass: "form-control",
                                 attrs: {
                                   type: "text",
-                                  name: "date_depot_dmd_rembrs",
-                                  id: "date_depot_dmd_rembrs",
+                                  name: "date_rembrs",
+                                  id: "date_rembrs",
                                   onmouseover: "(this.type='date')",
                                   placeholder: "Date réalisation"
                                 },
-                                domProps: { value: _vm.date_depot_dmd_rembrs },
+                                domProps: { value: _vm.date_rembrs },
                                 on: {
                                   change: function($event) {
                                     return _vm.DateValidation()
@@ -48104,8 +48163,7 @@ var render = function() {
                                     if ($event.target.composing) {
                                       return
                                     }
-                                    _vm.date_depot_dmd_rembrs =
-                                      $event.target.value
+                                    _vm.date_rembrs = $event.target.value
                                   }
                                 }
                               })
@@ -48119,125 +48177,127 @@ var render = function() {
                   _vm._m(5, true),
                   _vm._v(" "),
                   _c("div", { staticClass: "form-group col-12" }, [
-                    _c("label", [_vm._v("Remboursement OFPPT")]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "table-responsive" }, [
-                      _c("table", { staticClass: "table table-striped" }, [
-                        _vm._m(6, true),
-                        _vm._v(" "),
-                        _c(
-                          "tbody",
-                          _vm._l(_vm.reglEntreprise, function(info, index) {
-                            return _c("tr", { key: index }, [
-                              _c("th", [_vm._v(_vm._s(info.n_action))]),
-                              _vm._v(" "),
-                              _c("td", [_vm._v(_vm._s(info.nom_theme))]),
-                              _vm._v(" "),
-                              _c("td", [_vm._v(_vm._s(info.bdg_total))]),
-                              _vm._v(" "),
-                              _c("td", [
-                                _vm._v(
-                                  _vm._s((info.bdg_total * 0.7).toFixed(2))
-                                )
-                              ]),
-                              _vm._v(" "),
-                              _c("td", [
-                                _c("input", {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: _vm.rmb_ofppt[index],
-                                      expression: "rmb_ofppt[index]"
-                                    }
-                                  ],
-                                  attrs: {
-                                    type: "text",
-                                    name: "'RMBOFPPT:'+info.id_thm",
-                                    id: "RMBOFPPT:" + info.id_thm
-                                  },
-                                  domProps: { value: _vm.rmb_ofppt[index] },
-                                  on: {
-                                    input: function($event) {
-                                      if ($event.target.composing) {
-                                        return
-                                      }
-                                      _vm.$set(
-                                        _vm.rmb_ofppt,
-                                        index,
-                                        $event.target.value
-                                      )
-                                    }
-                                  }
-                                })
-                              ]),
-                              _vm._v(" "),
-                              _c("td", [
-                                _c("input", {
-                                  staticClass: "EcartOFPPT",
-                                  attrs: {
-                                    id: "EcartOFPPT:" + info.id_thm,
-                                    name: "EcartOFPPT:" + info.id_thm,
-                                    disabled: ""
-                                  },
-                                  domProps: {
-                                    value:
-                                      (
-                                        info.bdg_total * (70 / 100) -
-                                        _vm.rmb_ofppt[index]
-                                      ).toFixed(2) == "NaN"
-                                        ? "0"
-                                        : (
-                                            info.bdg_total * (70 / 100) -
-                                            _vm.rmb_ofppt[index]
-                                          ).toFixed(2)
-                                  }
-                                })
-                              ]),
-                              _vm._v(" "),
-                              _c("td", [
-                                _c("input", {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: _vm.JustifsEcart[index],
-                                      expression: "JustifsEcart[index]"
-                                    }
-                                  ],
-                                  attrs: {
-                                    type: "text",
-                                    name: "justifEcart:" + info.id_thm,
-                                    id: "justifEcart:" + info.id_thm
-                                  },
-                                  domProps: { value: _vm.JustifsEcart[index] },
-                                  on: {
-                                    input: function($event) {
-                                      if ($event.target.composing) {
-                                        return
-                                      }
-                                      _vm.$set(
-                                        _vm.JustifsEcart,
-                                        index,
-                                        $event.target.value
-                                      )
-                                    }
-                                  }
-                                })
-                              ])
-                            ])
-                          }),
-                          0
-                        )
-                      ])
+                    _c("label", { staticStyle: { "margin-top": "1em" } }, [
+                      _vm._v("Remboursement OFPPT")
                     ]),
                     _vm._v(" "),
-                    _vm._m(7, true),
+                    _vm._m(6, true),
                     _vm._v(" "),
-                    _c("div", {
-                      staticClass: "form-group col-lg-12 col-sm-12",
-                      staticStyle: { display: "flex", "flex-direction": "row" }
-                    })
+                    _c("div", { staticClass: "table-responsive" }, [
+                      _c(
+                        "table",
+                        { staticClass: "table table-striped table_remb_ofppt" },
+                        [
+                          _vm._m(7, true),
+                          _vm._v(" "),
+                          _c(
+                            "tbody",
+                            _vm._l(_vm.reglEntreprise, function(info, index) {
+                              return _c("tr", { key: index }, [
+                                _c("th", [_vm._v(_vm._s(info.n_action))]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s(info.nom_theme))]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s(info.bdg_total))]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _vm._v(
+                                    _vm._s((info.bdg_total * 0.7).toFixed(2))
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.rmb_ofppt[index],
+                                        expression: "rmb_ofppt[index]"
+                                      }
+                                    ],
+                                    attrs: {
+                                      type: "text",
+                                      name: "'RMBOFPPT:'+info.id_thm",
+                                      id: "RMBOFPPT:" + info.id_thm
+                                    },
+                                    domProps: { value: _vm.rmb_ofppt[index] },
+                                    on: {
+                                      input: function($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.$set(
+                                          _vm.rmb_ofppt,
+                                          index,
+                                          $event.target.value
+                                        )
+                                      }
+                                    }
+                                  })
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _c("input", {
+                                    staticClass: "EcartOFPPT",
+                                    attrs: {
+                                      id: "EcartOFPPT:" + info.id_thm,
+                                      name: "EcartOFPPT:" + info.id_thm,
+                                      disabled: ""
+                                    },
+                                    domProps: {
+                                      value:
+                                        (
+                                          info.bdg_total * (70 / 100) -
+                                          _vm.rmb_ofppt[index]
+                                        ).toFixed(2) == "NaN"
+                                          ? "0"
+                                          : (
+                                              info.bdg_total * (70 / 100) -
+                                              _vm.rmb_ofppt[index]
+                                            ).toFixed(2)
+                                    }
+                                  })
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _c("textarea", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.JustifsEcart[index],
+                                        expression: "JustifsEcart[index]"
+                                      }
+                                    ],
+                                    attrs: {
+                                      name: "justifEcart:" + info.id_thm,
+                                      id: "justifEcart:" + info.id_thm
+                                    },
+                                    domProps: {
+                                      value: _vm.JustifsEcart[index]
+                                    },
+                                    on: {
+                                      input: function($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.$set(
+                                          _vm.JustifsEcart,
+                                          index,
+                                          $event.target.value
+                                        )
+                                      }
+                                    }
+                                  })
+                                ])
+                              ])
+                            }),
+                            0
+                          )
+                        ]
+                      )
+                    ])
                   ])
                 ])
               ])
@@ -48548,29 +48608,23 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", [
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("N°Action")]),
+        _c("th", [_vm._v("N°Action")]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Thème")]),
+        _c("th", [_vm._v("Thème")]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Total HT(DH)")]),
+        _c("th", [_vm._v("Total HT(DH)")]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("TVA (20%)")]),
+        _c("th", [_vm._v("TVA (20%)")]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Total TTC")]),
+        _c("th", [_vm._v("Total TTC")]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [
-          _vm._v("Quote-part Entreprise")
-        ]),
+        _c("th", [_vm._v("Quote-part Entreprise")]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("N° de Facture")]),
+        _c("th", [_vm._v("N° de Facture")]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [
-          _vm._v("Date paiement entreprise")
-        ]),
+        _c("th", [_vm._v("Date paiement entreprise")]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [
-          _vm._v("Mode et référence de paiement")
-        ])
+        _c("th", [_vm._v("Mode et référence de paiement")])
       ])
     ])
   },
@@ -48596,8 +48650,18 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "form-group col-12", staticStyle: { margin: "0 auto" } },
+      [_c("hr")]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
     return _c("thead", [
-      _c("tr", [
+      _c("tr", { staticStyle: { "border-top": "hidden" } }, [
         _c("th", { attrs: { scope: "col" } }, [_vm._v("N°Action")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Thème")]),
@@ -48613,12 +48677,6 @@ var staticRenderFns = [
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Justifs Ecart")])
       ])
     ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group col-12" }, [_c("hr")])
   },
   function() {
     var _vm = this
