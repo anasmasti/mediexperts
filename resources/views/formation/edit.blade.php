@@ -69,7 +69,7 @@
       </div>
 
 
-
+<!-- 
       <div class="form-group col-lg-6 col-md-6 col-12">
           <label for="id_inv">Intervenant</label>
           <select class="form-control {{ $errors->has('id_inv') ? 'is-invalid' : '' }}" name="id_inv" id="id_inv" value="{{$formation->id_inv}}">
@@ -91,7 +91,7 @@
               {{ $errors->first('id_inv') }}
           </span>
           @endif
-      </div>
+      </div> -->
 
       {{-- <div class="form-group col-lg-3 col-sm-12"><label>ID Formation</label>
         <input class="form-control {{ $errors->has('id_form') ? 'is-invalid' : '' }}" value="{{$formation->id_form}}" type="text" id="id_form" name="id_form" min="0" maxlength="20" placeholder="ID formation" readonly>

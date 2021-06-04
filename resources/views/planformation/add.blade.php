@@ -185,7 +185,7 @@
       <div class="form-group col-lg-3 col-md-6 col-12 mb-5">
 
         <label>Nb. d’heures par jour </label>
-          <input class="form-control bg-warning {{ $errors->has('nb_heure') ? 'is-invalid' : '' }}" type="text" name="nb_heure" id="nb_heure" min="0" maxlength="15" onkeyup="CalcBdgJourn();CalcNbJour()" onchange="NbHeurValidation()" onkeypress="return isNumberKey(event)" placeholder="nb. jour" >
+          <input class="form-control bg-warning {{ $errors->has('nb_heure') ? 'is-invalid' : '' }}" type="text" name="nb_heure" id="nb_heure" min="0" maxlength="15" onkeyup="CalcBdgJourn();CalcNbJour()" onchange="NbHeurValidation()" onkeypress="return isNumberKey(event)" placeholder="nb. heurs" >
           @if ($errors->has('nb_heure'))
             <span class="invalid-feedback" role="alert">
               {{ $errors->first('nb_heure') }}

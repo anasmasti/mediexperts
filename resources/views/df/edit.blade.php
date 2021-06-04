@@ -557,10 +557,10 @@
             <tr id="tr_d_cheque">
                 <td>Chèques</td>
                 <td>
-                    {{-- <div class="custom-control custom-radio text-center">
+                    <div class="custom-control custom-radio text-center">
                         <input type="radio" name="d_cheque" id="d_cheque_cab" class="custom-control-input" value="cabinet" @if (mb_strtolower($df->d_cheque)=="cabinet") checked @endif>
                         <label for="d_cheque_cab" class="custom-control-label">&nbsp;</label>
-                    </div> --}}
+                    </div> 
                 </td>
                 <td>
                     <div class="custom-control custom-radio text-center">
@@ -762,6 +762,8 @@
                 <td>Dossier Juridique (Statut, PV, RIB, RC)</td>
                 <td>
                     <div class="custom-control custom-radio text-center">
+                    <input type="radio" name="doss_jury" id="doss_jury_cl" class="custom-control-input" value="cabinet" @if (mb_strtolower($df->doss_jury)=="cabinet") checked @endif>
+                        <label for="doss_jury_cl" class="custom-control-label">&nbsp;</label>
                     </div>
                 </td>
                 <td>
