@@ -256,7 +256,6 @@ class DemandeFinancementController extends Controller
                 else if($nb_DF_Entr_Anne == 1){
                     foreach($checkDRB_gc_Annee_Entr as $chk){
                         if($chk->type_miss ==$request->input('type_miss')){
-                            //m3ndksh l7a9 tmodifier lhad la date 
                            // return response()->json($chk);
                             $request->session()->flash('error', 'La date et le nom de l\'entreprise existes déjà ');
     
@@ -292,7 +291,6 @@ class DemandeFinancementController extends Controller
                                 
                           
                          }
-                            //3ndek l7a9
                             
                             
                             $request->session()->flash('updated', 'demande finanacement Ajouté avec succès');
@@ -329,7 +327,6 @@ class DemandeFinancementController extends Controller
                         }
                     
                  }
-                    //3ndek l7a9
                     
                     $request->session()->flash('updated', 'demande finanacement Ajouté avec succès');
                 }
