@@ -295,7 +295,7 @@ class DemandeFinancementController extends Controller
                             //3ndek l7a9
                             
                             
-                            $request->session()->flash('updated', 'demande finanacement Ajouté avec succès');
+                            $request->session()->flash('updated', 'Testdemande finanacement Ajouté avec succès');
                             
                         }
                     }

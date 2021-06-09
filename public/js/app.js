@@ -4614,6 +4614,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Edit",
@@ -4645,7 +4648,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       select_all_ch: null,
       date_paiement: [],
       ModeReferencePaiement: [],
-      JustifsEcart: []
+      JustifsEcart: [],
+      prvDate: null
     };
   },
   mounted: function mounted() {
@@ -4656,7 +4660,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     this.handleAction("DRB_Ofppt/getListOfDROfpptEdit", this.numero_remb);
     this.handleAction("DRB_Ofppt/ReglEntrpInfo", this.numero_remb);
     setTimeout(function () {
-      _this.CalculTotalRegl();
+      // this.CalculTotalRegl("DefaultValue");
+      _this.CalculTotalReglLoad();
     }, 1500);
     setTimeout(function () {
       _this.model5 = _this.DRB_Ofppts[0].model5 === "préparé";
@@ -4733,23 +4738,31 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var data = this.reglEntreprise;
       var first = this.reglEntreprise;
       var item = 0;
+      var QtRegl = null;
+      this.total_regl = null;
 
       if (checkId.checked) {
         if (document.getElementById("MDP:" + first[0].id_thm).value != "" && document.getElementById("DP:" + first[0].id_thm).value != "") {
           for (item in data) {
             this.ModeReferencePaiement[item] = this.ModeReferencePaiement[0];
             this.date_paiement[item] = this.date_paiement[0];
+            QtRegl = data[item].bdg_total * 0.3 + data[item].bdg_total * 0.2;
+            this.total_regl += QtRegl;
+            console.log("Total value : " + this.total_regl);
           }
         } else {
           this.$toastr.e("Merci d'entrer les premier ' Date paiement entreprise ' et ' Mode et référence de paiement' !!"); // checkId.checked = false;
 
           this.select_all_ch = false;
+          checkId.checked = false;
         }
       } else {
         for (item in data) {
           this.ModeReferencePaiement[item] = "";
           this.date_paiement[item] = "";
         }
+
+        this.total_regl = null;
       }
     },
     handleAction: function handleAction(actionName, value) {
@@ -4758,18 +4771,52 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     clearLS: function clearLS() {
       localStorage.clear();
     },
-    CalculTotalRegl: function CalculTotalRegl() {
+    CalculTotalRegl: function CalculTotalRegl(id) {
+      var data = this.reglEntreprise;
+      var item = 0;
+      var QtRegl = null;
+      var dtPaimentEntr = document.getElementById(id).value;
+      var dbId = id.split(':');
+      var Pdate = this.prvDate; // setTimeout(() => {
+
+      for (item in data) {
+        console.log("Valueeee :" + Pdate);
+
+        if (Pdate == "" && dtPaimentEntr != "") {
+          if (data[item].id_thm == dbId[1]) {
+            QtRegl = data[item].bdg_total * 0.3 + data[item].bdg_total * 0.2;
+            this.total_regl += QtRegl;
+            this.getPrvDate(id);
+          }
+        } else if (dtPaimentEntr == "" && data[item].id_thm == dbId[1]) {
+          QtRegl = data[item].bdg_total * 0.3 + data[item].bdg_total * 0.2;
+          this.total_regl = this.total_regl - QtRegl;
+          console.log("qte : " + this.total_reg);
+        }
+      } // }, 1200);
+
+
+      return this.total_regl;
+    },
+    CalculTotalReglLoad: function CalculTotalReglLoad() {
       var _this2 = this;
 
       var data = this.reglEntreprise;
       var item = 0;
+      var QtRegl = null;
       setTimeout(function () {
         for (item in data) {
-          var QtRegl = data[item].bdg_total * 0.3 + data[item].bdg_total * 0.2;
-          _this2.total_regl += QtRegl;
+          if (data[item].datePaiementEntreprise != null) {
+            QtRegl = data[item].bdg_total * 0.3 + data[item].bdg_total * 0.2;
+            _this2.total_regl += QtRegl;
+
+            _this2.getPrvDate('DP:' + data[item].id_thm);
+          }
         }
       }, 1200);
-      return this.total_regl;
+    },
+    getPrvDate: function getPrvDate(id) {
+      this.prvDate = document.getElementById(id).value;
     },
     updateDRB: function updateDRB() {
       var _this3 = this;
@@ -47279,6 +47326,16 @@ var render = function() {
                                       value: _vm.date_paiement[index]
                                     },
                                     on: {
+                                      mouseover: function($event) {
+                                        return _vm.getPrvDate(
+                                          "DP:" + info.id_thm
+                                        )
+                                      },
+                                      change: function($event) {
+                                        return _vm.CalculTotalRegl(
+                                          "DP:" + info.id_thm
+                                        )
+                                      },
                                       input: function($event) {
                                         if ($event.target.composing) {
                                           return
