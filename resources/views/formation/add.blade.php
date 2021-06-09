@@ -71,7 +71,7 @@
           @endif
       </div>
 
-      <div class="form-group col-lg-6 col-12">
+      <!-- <div class="form-group col-lg-6 col-12">
         <label for="id_inv">Intervenant</label>
         @if (count($interv)==0)
           <a class="btn bu-icon bu-sm btn-sm" href="/add-inv"><i class="fa fa-plus"></i></a> {{--button add--}}
@@ -101,7 +101,7 @@
             {{ $errors->first('id_inv') }}
           </span>
           @endif
-      </div>
+      </div> -->
 
       {{-- <div class="form-group col-lg-3 col-sm-12"><label>ID formation</label>
         <input class="form-control {{ $errors->has('id_form') ? 'is-invalid' : '' }}" type="text" value="{{rand(1, 10000000)}}" name="id_form" min="0" maxlength="20" placeholder="ID Formation" readonly>

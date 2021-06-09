@@ -125,10 +125,10 @@ class PlanController extends Controller
                     $drb->$doc = "non préparé";
 
               }
+              $drb->save();
               $request->session()->flash('warning', 'Demande de remboursement a été initialisé');
             }
 
-            $drb->save();
 
             $request->session()->flash('added', 'Ajouté avec succès');
 
