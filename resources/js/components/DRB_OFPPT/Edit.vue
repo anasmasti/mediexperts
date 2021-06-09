@@ -98,6 +98,8 @@
                         :name="'DP:' + info.id_thm"
                         type="date"
                         v-model="date_paiement[index]"
+                        @mouseover="getPrvDate('DP:' + info.id_thm)"
+                        @change="CalculTotalRegl('DP:' + info.id_thm)"
                       />
                     </td>
                     <td >
@@ -111,6 +113,7 @@
                   </tr>
                 </tbody>
               </table>
+             <!-- <label for="">Value : {{prvDate}}</label> -->
              
             </div>
             
@@ -562,7 +565,8 @@ export default {
       select_all_ch:null,
       date_paiement:[],
       ModeReferencePaiement:[],
-      JustifsEcart:[]
+      JustifsEcart:[],
+      prvDate : null
     };
   },
   mounted() {
@@ -572,7 +576,8 @@ export default {
     this.handleAction("DRB_Ofppt/ReglEntrpInfo", this.numero_remb);
 
     setTimeout(() => {
-      this.CalculTotalRegl();
+      // this.CalculTotalRegl("DefaultValue");
+      this.CalculTotalReglLoad();
     }, 1500);
 
     setTimeout(() => {
@@ -635,6 +640,8 @@ export default {
         }
       }
     }, 800);
+
+    
   },
   methods: {
     DateValidation() {
@@ -657,7 +664,8 @@ export default {
       let data = this.reglEntreprise;
       let first = this.reglEntreprise;
       let item = 0;
-
+      let QtRegl = null ;
+      this.total_regl = null;
 
       if (checkId.checked) {
 
@@ -670,7 +678,12 @@ export default {
               this.ModeReferencePaiement[item] = this.ModeReferencePaiement[0];
               this.date_paiement[item] =this.date_paiement[0];
 
+              
+              QtRegl = data[item].bdg_total * 0.3 + data[item].bdg_total * 0.2;
+              this.total_regl += QtRegl;
+              console.log("Total value : "+this.total_regl);
             }
+
           } else {
 
               this.$toastr.e(
@@ -678,6 +691,8 @@ export default {
               );
               // checkId.checked = false;
               this.select_all_ch = false
+               checkId.checked = false ;
+
 
           }
       } else {
@@ -686,10 +701,13 @@ export default {
                this.ModeReferencePaiement[item] = "";
               this.date_paiement[item] ="";
             }
+            
+            this.total_regl = null ;
 
       }
 
     },
+
 
     handleAction(actionName, value) {
       this.$store.dispatch(actionName, value);
@@ -697,17 +715,68 @@ export default {
     clearLS() {
       localStorage.clear();
     },
-    CalculTotalRegl() {
+    CalculTotalRegl(id) {
       let data = this.reglEntreprise;
       let item = 0;
-      setTimeout(() => {
+      let QtRegl = null ;
+      let dtPaimentEntr = document.getElementById(id).value
+      let dbId = id.split(':');
+      let Pdate = this.prvDate
+
+      // setTimeout(() => {
+
         for (item in data) {
-          let QtRegl = data[item].bdg_total * 0.3 + data[item].bdg_total * 0.2;
-          this.total_regl += QtRegl;
-        }
-      }, 1200);
+          
+           console.log("Valueeee :"+Pdate);
+           if (Pdate == "" && dtPaimentEntr != "") {
+                
+              if (data[item].id_thm == dbId[1]) {
+
+                QtRegl = data[item].bdg_total * 0.3 + data[item].bdg_total * 0.2;
+                this.total_regl += QtRegl;
+                
+                this.getPrvDate(id);
+
+              }
+              
+            }else if( dtPaimentEntr == "" && data[item].id_thm == dbId[1]){
+                QtRegl = data[item].bdg_total * 0.3 + data[item].bdg_total * 0.2;
+                this.total_regl = this.total_regl - QtRegl;
+                console.log("qte : "+this.total_reg);
+              }
+          }
+          
+
+      // }, 1200);
       return this.total_regl;
     },
+
+    CalculTotalReglLoad(){
+      let data = this.reglEntreprise;
+      let item = 0;
+       let QtRegl = null ;
+
+      setTimeout(() => {
+
+        for (item in data) {
+          
+            if (data[item].	datePaiementEntreprise != null) {
+              QtRegl = data[item].bdg_total * 0.3 + data[item].bdg_total * 0.2;
+                this.total_regl += QtRegl;
+                this.getPrvDate('DP:' + data[item].id_thm);
+            }
+            
+              
+            }
+          
+
+      }, 1200);
+    },
+
+    getPrvDate(id){
+       this.prvDate = document.getElementById(id).value;
+    },
+
     async updateDRB() {
      
       let etat = $("input:radio[name=etat]:checked").val();

@@ -293,7 +293,7 @@ class DemandeFinancementController extends Controller
                          }
                             
                             
-                            $request->session()->flash('updated', 'demande finanacement Ajouté avec succès');
+                            $request->session()->flash('updated', 'Testdemande finanacement Ajouté avec succès');
                             
                         }
                     }
