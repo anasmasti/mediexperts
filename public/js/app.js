@@ -2636,7 +2636,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       plan_formation: [],
       dates_actions: [],
       current_dates: null,
-      isAllLoaded: false
+      isAllLoaded: false,
+      lieu: '',
+      annee: ''
     };
   },
   mounted: function mounted() {
@@ -2644,6 +2646,32 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   computed: {},
   methods: {
+    setLieuAndAnnee: function setLieuAndAnnee() {
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var data;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return _this.actions_by_ref;
+
+              case 2:
+                data = _context.sent;
+                _this.lieu = data[0].lieu;
+                _this.annee = data[0].annee;
+                console.log('----L A---', _this.lieu, _this.annee);
+
+              case 6:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
+    },
     DateFormat: function DateFormat(date) {
       if (date) {
         var datestring = date.replace(/[^\w\s]/gi, '');
@@ -2655,30 +2683,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }
     },
     FillClients: function FillClients() {
-      var _this = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                _this.coutTotalPlan = 0;
-                _context.next = 3;
-                return axios.get('/fill-clients').then(function (res) {
-                  _this.clients = res.data; //console.log("clients : ", this.clients)
-                })["catch"](function (err) {
-                  return console.error("err FillClients", err);
-                });
-
-              case 3:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee);
-      }))();
-    },
-    FillReferencesPlan: function FillReferencesPlan() {
       var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
@@ -2686,14 +2690,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                console.log('nrc_entrp', _this2.nrc_entrp);
+                _this2.coutTotalPlan = 0;
                 _context2.next = 3;
-                return axios.get("/fill-reference-plan?nrcEntrp=".concat(_this2.nrc_entrp)).then(function (res) {
-                  _this2.reference_plan = res.data;
-                  _this2.curr_client = res.data[0].raisoci;
-                  console.log("reference_plan : ", _this2.reference_plan);
+                return axios.get('/fill-clients').then(function (res) {
+                  _this2.clients = res.data; //console.log("clients : ", this.clients)
                 })["catch"](function (err) {
-                  return console.log("err FillReferencesPlan", err);
+                  return console.error("err FillClients", err);
                 });
 
               case 3:
@@ -2704,7 +2706,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee2);
       }))();
     },
-    FillPlanByReference: function FillPlanByReference() {
+    FillReferencesPlan: function FillReferencesPlan() {
       var _this3 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
@@ -2712,28 +2714,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                _context3.next = 2;
-                return axios.get("/fill-plans-by-reference?idPlan=".concat(_this3.id_plan)).then(function (res) {
-                  _this3.actions_by_ref = res.data;
-                  _this3.curr_annee = res.data[0].annee;
-                  console.log("actions_by_ref : ", _this3.actions_by_ref);
-                }).then(function () {
-                  // fill dates action
-                  _this3.actions_by_ref.forEach(function (action) {
-                    // calculer le cout estimatif
-                    _this3.coutTotalPlan += action.bdg_total;
-
-                    _this3.FillDates(action.n_form);
-                  });
+                console.log('nrc_entrp', _this3.nrc_entrp);
+                _context3.next = 3;
+                return axios.get("/fill-reference-plan?nrcEntrp=".concat(_this3.nrc_entrp)).then(function (res) {
+                  _this3.reference_plan = res.data;
+                  _this3.curr_client = res.data[0].raisoci;
+                  console.log("reference_plan : ", _this3.reference_plan);
                 })["catch"](function (err) {
-                  return console.error("err FillPlanByReference", err);
+                  return console.log("err FillReferencesPlan", err);
                 });
 
-              case 2:
-                _this3.isAllLoaded = true;
-                console.log("isallloaded", _this3.isAllLoaded);
-
-              case 4:
+              case 3:
               case "end":
                 return _context3.stop();
             }
@@ -2741,7 +2732,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee3);
       }))();
     },
-    FillDates: function FillDates(nform) {
+    FillPlanByReference: function FillPlanByReference() {
       var _this4 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
@@ -2750,15 +2741,27 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context4.prev = _context4.next) {
               case 0:
                 _context4.next = 2;
-                return axios.get("/fill-dates-plan?nForm=".concat(nform)).then(function (res) {
-                  _this4.dates_actions = res.data;
+                return axios.get("/fill-plans-by-reference?idPlan=".concat(_this4.id_plan)).then(function (res) {
+                  _this4.actions_by_ref = res.data;
+                  _this4.curr_annee = res.data[0].annee;
+                  console.log("actions_by_ref : ", _this4.actions_by_ref);
                 }).then(function () {
-                  _this4.AssignDates(nform);
+                  // fill dates action
+                  _this4.actions_by_ref.forEach(function (action) {
+                    // calculer le cout estimatif
+                    _this4.coutTotalPlan += action.bdg_total;
+
+                    _this4.FillDates(action.n_form);
+                  });
                 })["catch"](function (err) {
-                  return console.error("err FillDates", err);
+                  return console.error("err FillPlanByReference", err);
                 });
 
               case 2:
+                _this4.isAllLoaded = true;
+                console.log("isallloaded", _this4.isAllLoaded);
+
+              case 4:
               case "end":
                 return _context4.stop();
             }
@@ -2766,7 +2769,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee4);
       }))();
     },
-    AssignDates: function AssignDates(nform) {
+    FillDates: function FillDates(nform) {
       var _this5 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
@@ -2775,9 +2778,34 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context5.prev = _context5.next) {
               case 0:
                 _context5.next = 2;
-                return _this5.actions_by_ref.forEach(function (action) {
+                return axios.get("/fill-dates-plan?nForm=".concat(nform)).then(function (res) {
+                  _this5.dates_actions = res.data;
+                }).then(function () {
+                  _this5.AssignDates(nform);
+                })["catch"](function (err) {
+                  return console.error("err FillDates", err);
+                });
+
+              case 2:
+              case "end":
+                return _context5.stop();
+            }
+          }
+        }, _callee5);
+      }))();
+    },
+    AssignDates: function AssignDates(nform) {
+      var _this6 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee6() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee6$(_context6) {
+          while (1) {
+            switch (_context6.prev = _context6.next) {
+              case 0:
+                _context6.next = 2;
+                return _this6.actions_by_ref.forEach(function (action) {
                   if (action.n_form == nform) {
-                    _this5.dates_actions.forEach(function (forma) {
+                    _this6.dates_actions.forEach(function (forma) {
                       if (forma.n_form == nform) {
                         Object.assign(action, {
                           dates: {}
@@ -2796,10 +2824,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 2:
               case "end":
-                return _context5.stop();
+                return _context6.stop();
             }
           }
-        }, _callee5);
+        }, _callee6);
       }))();
     },
     ResetCoutTotalPlan: function ResetCoutTotalPlan() {
@@ -44687,7 +44715,7 @@ var render = function() {
             attrs: { id: "dateBtn" },
             on: {
               click: function($event) {
-                return _vm.FillReferencesPlan()
+                _vm.FillReferencesPlan(), _vm.setLieuAndAnnee()
               }
             }
           },
@@ -44709,16 +44737,68 @@ var render = function() {
         }
       },
       [
-        _vm._m(1),
+        _c("div", { staticClass: "container center" }, [
+          _c(
+            "h1",
+            {
+              staticStyle: {
+                padding: "5px !important",
+                margin: "0",
+                "font-size": "24px"
+              }
+            },
+            [
+              _vm._v("\r\n        « Société:\r\n        "),
+              _c("strong", { attrs: { id: "entrp" } }, [
+                _vm._v(" " + _vm._s(_vm.lieu))
+              ]),
+              _vm._v("\r\n        »\r\n      ")
+            ]
+          )
+        ]),
         _vm._v(" "),
-        _vm._m(2),
+        _c("div", { staticClass: "container text-center" }, [
+          _c(
+            "h3",
+            {
+              staticClass: "text-bold",
+              staticStyle: {
+                "text-transform": "uppercase",
+                "margin-bottom": "10px !important"
+              }
+            },
+            [
+              _vm._v("\r\n        Plan de formation:\r\n        "),
+              _c("span", { attrs: { name: "year", id: "year" } }, [
+                _vm._v(" " + _vm._s(_vm.annee))
+              ])
+            ]
+          )
+        ]),
         _vm._v(" "),
         _c("div", { staticStyle: { width: "100%", height: "15px" } }),
         _vm._v(" "),
-        _vm._m(3),
+        _c(
+          "div",
+          {
+            staticClass: "container text-center",
+            staticStyle: { padding: "0px 50px 20px 50px" }
+          },
+          [
+            _c("span", [
+              _vm._v(
+                "Nous informons l’ensemble du personnel que le plan de formation relatif à l’année: "
+              ),
+              _c("span", { attrs: { id: "year2" } }, [
+                _vm._v(_vm._s(_vm.annee))
+              ]),
+              _vm._v(" se présente comme suit :")
+            ])
+          ]
+        ),
         _vm._v(" "),
         _c("table", [
-          _vm._m(4),
+          _vm._m(1),
           _vm._v(" "),
           _c(
             "tbody",
@@ -45030,72 +45110,6 @@ var staticRenderFns = [
           },
           [_vm._v("Imprimer le formulaire")]
         )
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container center" }, [
-      _c(
-        "h1",
-        {
-          staticStyle: {
-            padding: "5px !important",
-            margin: "0",
-            "font-size": "24px"
-          }
-        },
-        [
-          _vm._v("\r\n        « Société\r\n        "),
-          _c("strong", { attrs: { id: "entrp" } }, [_vm._v("(Entreprise)")]),
-          _vm._v("\r\n        »\r\n      ")
-        ]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container text-center" }, [
-      _c(
-        "h3",
-        {
-          staticClass: "text-bold",
-          staticStyle: {
-            "text-transform": "uppercase",
-            "margin-bottom": "10px !important"
-          }
-        },
-        [
-          _vm._v("\r\n        Plan de formation\r\n        "),
-          _c("span", { attrs: { name: "year", id: "year" } }, [
-            _vm._v("(année)")
-          ])
-        ]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "container text-center",
-        staticStyle: { padding: "0px 50px 20px 50px" }
-      },
-      [
-        _c("span", [
-          _vm._v(
-            "Nous informons l’ensemble du personnel que le plan de formation relatif à l’année "
-          ),
-          _c("span", { attrs: { id: "year2" } }, [_vm._v("(année)")]),
-          _vm._v(" se présente comme suit :")
-        ])
       ]
     )
   },
@@ -73017,8 +73031,8 @@ var state = {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\HP\Desktop\Projects\Worrk\Mediexperts_App\mediexperts-v2\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\HP\Desktop\Projects\Worrk\Mediexperts_App\mediexperts-v2\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\HP\Desktop\mediexpers v2.0\mediexperts\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\HP\Desktop\mediexpers v2.0\mediexperts\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
