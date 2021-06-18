@@ -16,6 +16,8 @@ export default {
       dates_actions: [],
       current_dates: null,
       isAllLoaded: false,
+      lieu: '',
+      annee: ''
     }
   },
   mounted() {
@@ -24,6 +26,12 @@ export default {
   computed: {
   },
   methods: {
+    async setLieuAndAnnee()  {
+      let data = await this.actions_by_ref
+      this.lieu = data[0].lieu
+      this.annee = data[0].annee
+      console.log('----L A---',this.lieu,this.annee);
+    },
     DateFormat(date) {
       if (date) {
         let datestring = date.replace(/[^\w\s]/gi, '');
@@ -146,7 +154,7 @@ export default {
     </div>
 
     <div class="btn-group">
-      <button class="btn-btn-primary" id="dateBtn" v-on:click="FillReferencesPlan();" style="background: #00ff11; margin: .5rem 0; padding: .5rem;">
+      <button class="btn-btn-primary" id="dateBtn" v-on:click="FillReferencesPlan(),setLieuAndAnnee();" style="background: #00ff11; margin: .5rem 0; padding: .5rem;">
         Remplir les dates
       </button>
     </div>
@@ -161,16 +169,16 @@ export default {
 
     <div class="container center">
       <h1 style="padding: 5px !important; margin:0; font-size: 24px;">
-        « Société
-        <strong id="entrp">(Entreprise)</strong>
+        « Société:
+        <strong id="entrp"> {{lieu}}</strong>
         »
       </h1>
     </div>
 
     <div class="container text-center">
       <h3 class="text-bold" style="text-transform: uppercase; margin-bottom: 10px !important;">
-        Plan de formation
-        <span name="year" id="year">(année)</span>
+        Plan de formation:
+        <span name="year" id="year"> {{annee}}</span>
       </h3>
 
     </div>
@@ -178,7 +186,7 @@ export default {
     <div style="width:100%; height:15px;"><!--space--></div>
 
     <div class="container text-center" style="padding: 0px 50px 20px 50px;">
-      <span>Nous informons l’ensemble du personnel que le plan de formation relatif à l’année <span id="year2">(année)</span> se présente comme suit :</span>
+      <span>Nous informons l’ensemble du personnel que le plan de formation relatif à l’année: <span id="year2">{{annee}}</span> se présente comme suit :</span>
     </div>
 
     <!-- {{-- FORMATIONS --}} -->
