@@ -90,7 +90,7 @@
 
 </div>
 
-<div style="width:100%;">
+<div class="hide-from-print" style="width:100%;">
   <label for="action">Sélectionner l'action de formation :</label>
   <select name="action" id="action" style="width:100%; padding: .5rem; border: 1px solid #000;">
     {{-- auto filled --}}
