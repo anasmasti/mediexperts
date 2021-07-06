@@ -138,7 +138,7 @@
         <span class="text-bold">Entreprise &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;:</span>
       </div>
       <div style="width:75%;">
-        <input type="text" id="client" name="client" readonly>
+        <input type="text" id="raisoci" name="raisoci" readonly>
       </div>
     </div>
     <div style="width:100%; height:5px;"><!--space--></div>
@@ -237,6 +237,7 @@
       $.get('/fill-plan-by-client', {'nrc': nrc})
         .done((data) => {
           console.log("success action !!", data);
+          console.log("---", data[0].raisoci);
           data.forEach(elem => {
             fillDropdown += `<option value="${elem.id_plan}"> ${elem.refpdf}  </option>`;
           });
@@ -245,6 +246,7 @@
           if (data.length) {
             $('#plans').append('<option selected disabled>--sélectionner une action</option>');
             $('#plans').append(fillDropdown);
+            $('#raisoci').val(data[0].raisoci);
           }
           else {
             $('#plans').append('<option selected disabled>(vide) aucune action</option>');
