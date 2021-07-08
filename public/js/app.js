@@ -73031,8 +73031,13 @@ var state = {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
+<<<<<<< HEAD
 __webpack_require__(/*! C:\Users\HP\Desktop\Projects\Work\Mediexperts_App\mediexperts-v2\resources\js\app.js */"./resources/js/app.js");
 module.exports = __webpack_require__(/*! C:\Users\HP\Desktop\Projects\Work\Mediexperts_App\mediexperts-v2\resources\sass\app.scss */"./resources/sass/app.scss");
+=======
+__webpack_require__(/*! C:\Users\HP\Desktop\Mediexperts v_2\mediexperts\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\HP\Desktop\Mediexperts v_2\mediexperts\resources\sass\app.scss */"./resources/sass/app.scss");
+>>>>>>> 0fba9bdc83c1d77d60ef74239db6be6e412b4e77
 
 
 /***/ })
