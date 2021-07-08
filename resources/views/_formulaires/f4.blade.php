@@ -37,6 +37,9 @@
     .flex-row {
       display: flex; flex-flow: row wrap; width: 100%;
     }
+    /* ul.select2-selection__rendered {
+      padding-right: 12px !important; 
+} */
     .container { width: 100%; }
     .bordered { border: 1px solid #000; }
     .highlighted { background-color: #ffff99 !important; }
@@ -62,6 +65,11 @@
   @media print {
     .hide-from-print { display: none !important; }
     .highlighted { background-color: #fff !important; }
+    .select {
+      max-width: 100%;
+      overflow: hidden;
+      white-space: normal;
+    }
   }
 </style>
 
