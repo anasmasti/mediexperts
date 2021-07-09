@@ -6,7 +6,7 @@
 
       <div class="card">
         <div>
-          <h4 style="text-align: center;  font-weight: bold !important;">{{ __("S'enregistrer") }}</h4>
+          <h4 style="text-align: center; font-weight: bold !important;">{{ __("S'enregistrer") }}</h4>
         </div>
 
         <div class="card-body">

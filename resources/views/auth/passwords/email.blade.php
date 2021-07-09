@@ -5,8 +5,8 @@
     <div class="row justify-content-center" style="margin-top:130px;">
         <div class="col-md-6">
             <div class="card">
-                <div class="card-header">
-                    <h4 style=" text-align: center;">{{ __('Réinitialiser le mot de passe') }}</h4>
+                <div>
+                    <h4 style=" text-align: center; font-weight: bold !important;">{{ __('Réinitialiser le mot de passe') }}</h4>
                 </div>
 
                 <div class="card-body">
@@ -20,7 +20,7 @@
                         @csrf
 
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right"><i class="fas fa-envelope fa-2x"></i></label>
+                            <label for="email" class="col-md-4 col-form-label text-md-right text-secondary"><i class="fas fa-envelope fa-2x"></i></label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
@@ -35,7 +35,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-" style="background-color: #e2b424;font-weight: bold;color:#ffffff">
+                                <button type="submit" class="btn auth_btn">
                                     {{ __('Réinitialiser le mot de passe') }}
                                 </button>
                             </div>
