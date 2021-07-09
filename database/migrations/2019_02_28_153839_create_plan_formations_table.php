@@ -48,6 +48,7 @@ class CreatePlanFormationsTable extends Migration
             $table->unsignedBigInteger('id_inv');
             $table->unsignedBigInteger('id_plan');
             $table->string('commentaire', 5000)->nullable();
+          
 
             $table->foreign('id_inv')
             ->references('id_interv')

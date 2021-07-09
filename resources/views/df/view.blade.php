@@ -116,7 +116,7 @@
             <a href="#" class="btn btn-danger" a="/del-df/{{ $d->n_df }}" onclick="confirmDelete({{$d->n_df}}, 'df/')"><i class="fa fa-trash-alt"></i></a>
           @endif
 
-          <a class="btn btn-dark" href="/print-facture-df/{{$entrp['nrc_entrp']}}">
+          <a class="btn btn-dark" href="/print-facture-df/{{ $d->n_df }}">
             <i class="fa fa-print"></i>
             <abbr></abbr>
           </a>

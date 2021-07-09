@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Att. Référ. Intervenant</title>
+  <title id="docTitle">Att. Référ. Intervenant</title>
   <script src={{ asset('js/jquery.js') }}></script>
   <script src={{ asset('js/myjs.js') }}></script>
 </head>
@@ -93,6 +93,8 @@
       @endforeach
     </select>
   </div>
+  <input type="hidden" id="titleNomEntrp" value="">
+
 
 
   <div style="width:100%;">
@@ -164,14 +166,18 @@
       <span class="" id="jourMiss">(nb. jour mission)</span> jours.
     </p>
 
+    <input type="hidden" id="titleTypeMiss" value="">
+    <input type="hidden" id="titleAnneeMiss" value="">
+
     <p style="text-align: justify; text-justify: initial; line-height: 1.7rem; font-weight: 300; padding: 40px 0px 10px 0px;">
       <select class="select text-bold highlighted" style="font-size: 18px;">
         <option value="">M.</option>
         <option value="">Mme.</option>
       </select>
-      <strong id="nomPrenomInv">{{mb_strtoupper($interv[0]['nom'])}} {{mb_strtoupper($interv[0]['prenom'])}}</strong> a répondu à nos attentes et a donné entière satisfaction.
+      <strong id="nomPrenomInv" >{{mb_strtoupper($interv[0]['nom'])}} {{mb_strtoupper($interv[0]['prenom'])}}</strong> a répondu à nos attentes et a donné entière satisfaction.
     </p>
-
+    <input type="hidden" id="titleNomInterv" value="{{mb_strtoupper($interv[0]['nom'])}}">
+    
     <p style="text-align: justify; text-justify: initial; line-height: 1.7rem; font-weight: 300;">
       La présente attestation est établie pour servir et valoir ce que de droit.
     </p>
@@ -182,12 +188,8 @@
         <input type="date" name="" id="lastDate" style="width: 50%; font-size: 17px;" />
 
         <div class="text-center" style="margin: 20px; margin-left: 50%;">
-          <select class="select highlighted" style="font-size: 18px;">
-            <option value="">M.</option>
-            <option value="">Mme.</option>
-          </select>
-          <span id="entrpDgNom2">(.......)</span>
-          <p style="display: block;" id="entrpDgFonction2">(.......)</p>
+          <span>Direction</span>
+          <p style="display: block;" id="entrpNom">(.......)</p>
         </div>
 
       </p>
@@ -227,8 +229,8 @@
             $('#entrpSiege').html(data[0].sg_soci);
             $('#entrpDgNom').html(data[0].nom_dg1);
             $('#entrpDgFonction').html(data[0].fonct_dg1);
-            $('#entrpDgNom2').html(data[0].nom_dg1);
-            $('#entrpDgFonction2').html(data[0].fonct_dg1);
+            $('#entrpNom').html(data[0].raisoci);
+            $('#titleNomEntrp').val(data[0].raisoci);
           } else {
             fillDropdownDS = '<option selected disabled>(vide) aucune mission</option>';
             $('#df').append(fillDropdownDS);
@@ -254,6 +256,10 @@
             $('#montantMiss').html(data.bdg_accord);
             $('#jourMiss').html(data.jr_hm_valid);
             $('#lastDate').val(data.dt_fin_miss);
+            $('#titleTypeMiss').val(data.type_miss);
+            $('#titleAnneeMiss').val(data.annee_exerc);
+            $('#docTitle').html(`AR - ${$('#titleNomEntrp').val()} - ${$('#titleNomInterv').val()} - ${$('#titleTypeMiss').val()} - ${$('#titleAnneeMiss').val()}`);
+             
           } else {
             // reset
             $('#anneeMiss,#typeMiss,#montantMiss,#jourMiss').html("....5....");
@@ -290,12 +296,18 @@
           console.log("success interv : ", data);
           if (Object.keys(data).length) {
             $('#nomPrenomInv').html((data.nom+" "+data.prenom).toUpperCase());
+            $('#titleNomInterv').val(data.nom);
+            $('#docTitle').html(`AR - ${$('#titleNomEntrp').val()} - ${$('#titleNomInterv').val()} - ${$('#titleTypeMiss').val()} - ${$('#titleAnneeMiss').val()}`);
+
           } else {
             $('#nomPrenomInv').html('.......');
           }
-        });
+        })
     });
 
+    $(document).on('change', () => {
+      $('#docTitle').html(`AR  - ${$('#titleNomEntrp').val()} - ${$('#titleNomInterv').val()} - ${$('#titleTypeMiss').val()} - ${$('#titleAnneeMiss').val()}`);
+    });
 
   }); //ready
 </script>

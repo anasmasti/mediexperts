@@ -37,6 +37,9 @@
     .flex-row {
       display: flex; flex-flow: row wrap; width: 100%;
     }
+    /* ul.select2-selection__rendered {
+      padding-right: 12px !important; 
+} */
     .container { width: 100%; }
     .bordered { border: 1px solid #000; }
     .highlighted { background-color: #ffff99 !important; }
@@ -62,6 +65,11 @@
   @media print {
     .hide-from-print { display: none !important; }
     .highlighted { background-color: #fff !important; }
+    .select {
+      max-width: 100%;
+      overflow: hidden;
+      white-space: normal;
+    }
   }
 </style>
 
@@ -90,7 +98,7 @@
 
 </div>
 
-<div style="width:100%;">
+<div class="hide-from-print" style="width:100%;">
   <label for="action">Sélectionner l'action de formation :</label>
   <select name="action" id="action" style="width:100%; padding: .5rem; border: 1px solid #000;">
     {{-- auto filled --}}

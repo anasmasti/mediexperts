@@ -17,9 +17,12 @@ Route::post('store-avis-modif' , 'AvisModificationController@StoreUpdateAvisModi
 
 Route::post('update-drb-ofppt' , 'DemandeRemboursementOfpptController@update');
 Route::post('delete-drb-ofppt' , 'DemandeRemboursementOfpptController@destroy');
+Route::get('test-theme','DemandeRemboursementOfpptController@getTheme');
+
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
 
   // Route::get('/fill-clients', 'FormulaireController@FillClients')->name('M1.print_m1');
-
+  
+  
 });

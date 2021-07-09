@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Att. Référ. Organisme</title>
+  <title id="docTitle">Att. Référ. Organisme</title>
   <script src={{ asset('js/jquery.js') }}></script>
   <script src={{ asset('js/myjs.js') }}></script>
 </head>
@@ -126,6 +126,8 @@
         <option value="">Mme.</option>
       </select>
       <span class="" id="entrpDgNom">(nom directeur entrp.)</span>,
+      <input type="hidden" id="titleNomEntrp" value="">
+
 
       attestons par la présente que le Cabinet
       <select id="cabinet" class="select text-bold highlighted" style="font-size: 18px;">
@@ -149,6 +151,8 @@
       « <strong class="" id="typeMiss">(type mission)</strong> »,
       Pour un montant global de
       <strong class="" id="montantMiss">(montant HT mission)</strong>
+      <input type="hidden" id="titleTypeMiss" value="">
+      <input type="hidden" id="titleAnneeMiss" value="">
       <strong> Dirhams HT</strong>
       et une durée de
       <span class="" id="jourMiss">(nb. jour mission)</span> jours.
@@ -168,12 +172,9 @@
         <input type="date" name="" id="lastDate" style="width: 50%; font-size: 17px;" />
 
         <div class="text-center" style="margin: 20px; margin-left: 50%;">
-          <select class="select highlighted" style="font-size: 18px;">
-            <option value="">M.</option>
-            <option value="">Mme.</option>
-          </select>
-          <span id="entrpDgNom2">(.......)</span>
-          <p style="display: block;" id="entrpDgFonction2">(.......)</p>
+         
+          <span>Direction</span>
+          <p style="display: block;" id="entrpNom">(.......)</p>
         </div>
 
       </p>
@@ -213,8 +214,8 @@
             $('#entrpSiege').html(data[0].sg_soci);
             $('#entrpDgNom').html(data[0].nom_dg1);
             $('#entrpDgFonction').html(data[0].fonct_dg1);
-            $('#entrpDgNom2').html(data[0].nom_dg1);
-            $('#entrpDgFonction2').html(data[0].fonct_dg1);
+            $('#entrpNom').html(data[0].raisoci);
+            $('#titleNomEntrp').val(data[0].raisoci);
           } else {
             fillDropdownDS = '<option selected disabled>(vide) aucune mission</option>';
             $('#df').append(fillDropdownDS);
@@ -240,6 +241,10 @@
             $('#montantMiss').html(data.bdg_accord);
             $('#jourMiss').html(data.jr_hm_valid);
             $('#lastDate').val(data.dt_fin_miss);
+            $('#titleTypeMiss').val(data.type_miss);
+            $('#titleAnneeMiss').val(data.annee_exerc);
+            $('#docTitle').html(`AR - ${$('#titleNomEntrp').val()} - ${$('#titleTypeMiss').val()} - ${$('#titleAnneeMiss').val()}`);
+
           } else {
             // reset
             $('#anneeMiss,#typeMiss,#montantMiss,#jourMiss').html("....5....");
@@ -261,6 +266,7 @@
           }
         });
     });
+ 
 
 
   }); //ready

@@ -1,61 +1,50 @@
 export const actions = {
-
-    async getListOfDROfppt({commit}) {
-        await axios.get(`/list-drb-ofppt`)
-          .then(res => {
-              commit('FETCH_DBR_OFPPT', res.data)
-              console.log('test drb ', data )
-          }).catch(err => {
-          console.log(err)
-      });
-
-
-
-  },
-//   async getListOfDROfpptEdit({commit}, ndrb) {
-//     await axios.get(`edit-drb-ofppt/`, { params: { ndrb: ndrb } })
-//       .then(res => {
-//           commit('FETCH_DBR_OFPPT_Edit', res.data)
-//           console.log('test data ', data )
-//       }).catch(err => {
-//       console.log(err)
-//   });
-
-// },
-async getListOfDROfpptEdit({ commit }, ndrb) {
+  async getListOfDROfppt({ commit }) {
     await axios
-      .get(`/edit-drb-ofppt/` + ndrb )
+      .get(`/list-drb-ofppt`)
+      .then(({data}) => {
+        commit("FETCH_DBR_OFPPT", data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  },
+
+  async getListOfDROfpptEdit({ commit }, ndrb) {
+    await axios
+      .get(`/edit-drb-ofppt/` + ndrb)
       .then(({ data }) => {
         commit("FETCH_DBR_OFPPT_Edit", data);
-        console.log("test edited data : ", data);
+        console.log();
       })
       .catch(err => console.log(err));
   },
-  async ReglEntrpInfo({ commit } , ndrb) {
+  async ReglEntrpInfo({ commit }, ndrb) {
     await axios
       .get(`/regEntrp-drb-ofppt/` + ndrb)
-      .then(({data}) => {
+      .then(({ data }) => {
         commit("FETCH_REGL_ENTREPRISE_INFO", data);
-        console.log("regl entreprise info", data);
       })
       .catch(err => console.log("cant get reg entrp info", err));
+  },
+
+  async DeleteDrf({ commit, state }, ndrb) {
+    await axios
+      .delete(`/delete-drf/` + ndrb)
+      .then( () => {
+         let data = state.DRB_Ofppts;
+         let result = (data.filter( item => item.n_drf != ndrb));
+         commit("FETCH_DBR_OFPPT", result);
+      })
+      .catch(err => console.log("cant delete drf", err));
+  },
+  async rechercher({ commit }, ndrb){
+    await axios
+      .get("/search-drf/" + ndrb)
+      .then(({ data }) => {
+        commit("FETCH_DRBOFPPT_RECHERCHE", data);
+        console.log();
+      })
+      .catch(err => console.log(err));
   }
-// async updateListOfDROfpptEdit({commit}, ndrb) {
-//     await axios.post(`edit-drb-ofppt` , {
-//         params: { ndrb: ndrb } ,
-//       })
-//       .then(res => {
-//           commit('FETCH_DBR_OFPPT_Edit', res.data)
-//           console.log('test data ', data )
-//       }).catch(err => {
-//       console.log(err)
-//   });
-
-// }
-}
-
-/*
-let sellerId = 317737
-
-function getSellerAnalyticsTotals() {
-    return axios.get(`http://localhost:8000/api/v1/seller/${sellerId}/analytics`);*/
+};
