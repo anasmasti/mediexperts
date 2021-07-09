@@ -28,7 +28,7 @@
 
     <div id="app">
     <div class="wrappercus-bg background"> <!--modified-->
-        <nav class="navbar navbar-expand navbar-light"><!--cus-nav-->
+        <nav class="navbar navbar-expand navbar-light mt-lg-3 mx-lg-3 mb-5 mb-lg-0"><!--cus-nav-->
                 {{-- <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a> --}}
@@ -58,11 +58,11 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item " >
-                                <a class="nav-link /*text-warning*/" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a class="nav-link /*text-warning*/ auth_btn" href="{{ route('login') }}">{{ __('Login') }}</a>
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link /*text-warning*/" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link /*text-warning*/ auth_btn mx-lg-3" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
                             @endif
                         @else

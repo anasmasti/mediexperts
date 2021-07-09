@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center " style="margin-top:110px;">
-        <div class="col-md-6">
+<div class="container d-flex justify-content-center align-items-center auth_content">
+    <div class="row">
+        <div class="col-12">
             <div class="card">
-                <div class="card-header">
-                    <h4 style="text-align: center;" >{{ __('S\'identifier') }}</h4>
+                <div>
+                    <h4 style="text-align: center; font-weight: bold !important;" >{{ __('S\'identifier') }}</h4>
                 </div>
 
                 <div class="card-body">
@@ -14,7 +14,7 @@
                         @csrf
 
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right"><i class="fas fa-envelope fa-2x"></i></label>
+                            <label for="email" class="col-md-4 col-form-label text-md-right text-secondary"><i class="fas fa-envelope fa-2x"></i></label>
 
                             <div class="col-md-6">
                                 <input id="email" placeholder="Email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
@@ -28,7 +28,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right"><i class="fas fa-lock fa-2x"></i></label>
+                            <label for="password" class="col-md-4 col-form-label text-md-right text-secondary"><i class="fas fa-lock fa-2x"></i></label>
 
                             <div class="col-md-6">
                                 <input id="password" placeholder="Mot de passe" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
@@ -55,7 +55,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn" style="background-color: #e2b424;font-weight: bold;color:#ffffff">
+                                <button type="submit" class="btn auth_btn">
                                     {{ __('Se connecter') }}
                                 </button>
 
