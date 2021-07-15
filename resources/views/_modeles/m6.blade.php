@@ -161,7 +161,7 @@
     </div>
   </div>
 
-  <div id="footer" class="container flex-row mt-5" style="position:fixed !important; bottom:0; width:100%; padding-bottom:10px;">
+  <div id="footer" class="container flex-row mt-5" style="position:fixed !important; bottom:0; width:100%; padding-bottom:190px;">
 
     <div style="margin-left: auto; padding-right: 5rem">
         <span id="dirigeant2" class="upper"></span><br>
