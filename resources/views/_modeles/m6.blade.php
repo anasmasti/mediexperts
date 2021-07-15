@@ -115,7 +115,7 @@
 <div class="" style="padding:.5rem; font-family:Calibri, 'Segoe UI', Geneva, Verdana, sans-serif; background-color: #fff;">
   <div class="container flex-row bordered center">
     <span style="width:100%; font-size: 20px; font-weight:600;">Modèle 6</span>
-    <span style="width:100%;">Attestation certifiant la réalisation des action</span>
+    <span style="width:100%;">Attestation certifiant la réalisation des actions</span>
   </div>
 
   <div style="width:100%; height:100px;"><!--space--></div>
