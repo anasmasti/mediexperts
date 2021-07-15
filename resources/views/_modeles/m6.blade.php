@@ -16,7 +16,7 @@
     padding:20px; height:27.9cm; width:21cm; padding-left:.25px;
   }
   input { width:100%; padding: .2rem; border: none !important; outline: none !important; }
-  .select { width:100%; padding: .2rem; margin: .1rem; border-color: #fff !important; outline-color: #fff !important;
+  .select { width:100%; padding: .2rem; margin: .1rem; border-color: #fff !important; outline-color: #fff !important; 
     -moz-appearance:none; /* Firefox */
     -webkit-appearance:none; /* Safari and Chrome */
     appearance:none;
@@ -68,8 +68,13 @@
     background-position: left;
   }
   @media print {
+    html, body {
+    width: 210mm;
+    height: 297mm;       
+  }
     .hide-from-print { display: none; }
     .select { background-color: #fff; }
+
   }
   #selectedCSP {
     font-weight: 700; text-align: center;
@@ -124,32 +129,39 @@
 
   <div class="container">
     <p style="font-size:18px;">
-      Je soussigne M
+      Je soussigne 
+      <select class="select" name="genre" style="width:auto !important; padding:0; margin:0; font-size:16px;" id="genre">
+        <option value="Mr">Mr</option>
+        <option value="Mme">Mme</option>
+      </select>
       <select class="select" id="dirigeant" style="width:auto !important; padding:0; margin:0; font-size:16px;">
-        <option> …………….</option>
+        <option>.......</option>
       </select>
       Qualité
       <select class="select" id="qualite" style="width:auto !important; padding:0; margin:0; font-size:16px;">
-        <option value="">….....……….</option>
+        <option value="">.......</option>
       </select>
       certifie par la
-      présente   que   l’entreprise
-      <span id="entrp">  ...…………………………....………</span>
-           a     réalisée,   au  titre   de  l’exercice
+      présente que l’entreprise
+      <strong><span id="entrp">...........</span></strong>
+           a réalisée, au titre de l’exercice
+           <strong>
       <span id="annee"></span>
+
+           </strong>
       , les actions de formation citées ci après dans le cadre des Contrats
       Spéciaux de Formation et a procèdé à la liquidation des dépenses relatives des dites
       actions :
     </p>
   </div>
 
-  <div class="container upper">
+  <div class="container">
     <div id="themes" style="font-size:18px; padding-left:4rem;">
       {{-- auto filled --}}
     </div>
   </div>
 
-  <div id="footer" class="container flex-row" style="position:fixed !important; bottom:0; width:100%; padding-bottom:200px;">
+  <div id="footer" class="container flex-row mt-5" style="position:fixed !important; bottom:0; width:100%; padding-bottom:10px;">
 
     <div style="margin-left: auto; padding-right: 5rem">
         <span id="dirigeant2" class="upper"></span><br>
