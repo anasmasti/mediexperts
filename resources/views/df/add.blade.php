@@ -126,6 +126,7 @@
                 <label>Type Mission</label>
                 <select class="form-control {{ $errors->has('type_miss') ? ' is-invalid' : '' }}" name="type_miss" id="type_miss" onchange="checkEtat()">
                     <option disabled selected>*</option>
+                    <option value="normal">normal</option>
                     <option value="diagnostic stratégique">diagnostic stratégique</option>
                     <option value="Ingénierie de formation">Ingénierie de formation</option>
                     {{-- <option value="diagnostic stratégique et ingénierie de formation">diagnostic stratégique et ingénierie de formation</option> --}}
