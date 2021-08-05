@@ -124,7 +124,7 @@
     <div class="form-group col-lg-3 col-md-6 col-sm-6 col-12">
         <label>Type Mission</label>
         <select class="form-control {{ $errors->has('type_miss') ? ' is-invalid' : '' }}" name="type_miss" id="type_miss" onchange="checkEtat()">
-          @php $typemission = ["diagnostic stratégique", "ingénierie de formation"]; @endphp
+          @php $typemission = ["diagnostic stratégique", "ingénierie de formation", "normal"]; @endphp
           @foreach ($typemission as $mission)
             @if (mb_strtolower($mission) == mb_strtolower($df->type_miss))
               <option value="{{$mission}}" selected>{{ucfirst($mission)}}</option>

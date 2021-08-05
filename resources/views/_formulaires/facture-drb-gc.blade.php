@@ -172,30 +172,40 @@
         {{ $drb['bdg_accord'] + ($drb['bdg_accord'] * .2) }} DH
       </th>
     </tr>
+    @php
+    if($drb['type_miss'] != "normal")
+    {
+      echo '
     <tr>
       {{-- Prix total x Part GIAC --}}
       <th colspan="3" style="padding: 1rem;">QUOTE PART GIAC TIERS PAYANT H.T.</th>
-      <th>
-        @if ($drb['part_giac'] == "70%")
-          {{ ($drb["bdg_accord"] * .7) }} DH
-        @elseif ($drb['part_giac'] == "80%")
-          {{ ($drb["bdg_accord"] * .8) }} DH
-        @endif
+      <th>';
+        if ($drb['part_giac'] == "70%")
+          echo $drb["bdg_accord"] * .7 .' DH';
+        else if ($drb['part_giac'] == "80%")
+          echo $drb["bdg_accord"] * .8 .' DH';
+          echo ' 
       </th>
     </tr>
-    <tr>
+   
+     
+    <tr >
       <th colspan="3" style="padding: 1rem;">
         QUOTE PART ENTREPRISE TTC
-        (<span id="prcQuotePartGiac">{{ $drb['prc_cote_part'] }}</span> du montant Total H.T + TVA du montant global)
+        (<span id="prcQuotePartGiac">'.$drb["prc_cote_part"] .'</span> du montant Total H.T + TVA du montant global)
       </th>
-      <th>
-        @if ($drb['prc_cote_part'] == "30%")
-          {{ ($drb["bdg_accord"] * .2) + ($drb["bdg_accord"] * .3) }} DH
-        @elseif ($drb['prc_cote_part'] == "20%")
-          {{ ($drb["bdg_accord"] * .2) + ($drb["bdg_accord"] * .2) }} DH
-        @endif
-      </th>
-    </tr>
+      <th>';
+        if ($drb['prc_cote_part'] == "30%"){
+          echo ($drb["bdg_accord"] * .2) + ($drb["bdg_accord"] * .3) .' DH';
+        }
+        else if ($drb['prc_cote_part'] == "20%"){
+          echo ($drb["bdg_accord"] * .2) + ($drb["bdg_accord"] * .2) .' DH';
+        }
+     echo' </th>
+    </tr>';
+    }
+    
+    @endphp
   </table>
 
   <div style="width:100%; height:30px;"><!--space--></div>
