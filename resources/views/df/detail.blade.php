@@ -123,6 +123,12 @@
               {{ ucfirst($df->type_miss) }}
             </td>
           </tr>
+          <tr>
+            <th>Type contrat</th>
+            <td class="th-det">
+              {{ ucfirst($df->type_contrat) }}
+            </td>
+          </tr>
 
           <tr>
             <th>GIAC de rattachement</th>

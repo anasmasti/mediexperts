@@ -12,6 +12,7 @@ class DemandeFinancement extends Model
     'n_df', //1
     'd_eligib_csf_entrp', //1+ ••••
     'type_miss', //1
+    'type_contrat', //1
     'annee_exerc', //1
     'gc_rattach', //1 +*
 

@@ -173,11 +173,11 @@
       </th>
     </tr>
     @php
-    if($df['type_miss'] != "normal")
+    if($df['type_contrat'] != "normal")
     {
     echo '
     <tr>
-      {{-- Prix total x Part GIAC --}}
+      
       <th colspan="3" style="padding: 1rem;">QUOTE PART GIAC TIERS PAYANT H.T.</th>
       <th>';
 

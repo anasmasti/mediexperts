@@ -120,6 +120,7 @@ class DemandeFinancementController extends Controller
                 'type_miss' => 'required|max:150',
                 'annee_exerc' => 'required|min:4|starts_with:20',
                 'bdg_pf' => 'nullable|max:20',
+                'type_contrat' => 'nullable',
                 'nb_interv' => 'nullable|max:3', //2
                 'dt_df' => 'nullable|date', //2
                 'jr_hm_demande' => 'nullable|max:10', //2
@@ -148,6 +149,7 @@ class DemandeFinancementController extends Controller
                 $ndf = $df->n_df;
             $df->nrc_e = $request->input('nrc_e');
             $df->type_miss = $request->input('type_miss');
+            $df->type_contrat = $request->input('type_contrat');
             $df->gc_rattach = $request->input('gc_rattach');
             $df->nb_interv = $request->input('nb_interv');
             $df->annee_exerc = $request->input("annee_exerc");
@@ -421,6 +423,7 @@ class DemandeFinancementController extends Controller
                 'nrc_e' => 'required',
                 'annee_exerc' => 'required|min:4|starts_with:20',
                 'n_contrat' => 'nullable|max:20',
+                'type_contrat' => 'nullable',
                 'nb_interv' => 'nullable|max:3', //2
                 'dt_df' => 'nullable|date', //2
                 'jr_hm_demande' => 'nullable|max:15', //2
@@ -453,7 +456,7 @@ class DemandeFinancementController extends Controller
             $df->nb_interv = $request->input('nb_interv');
             $df->dt_df = $request->input('dt_df');
             $df->jr_hm_demande = $request->input('jr_hm_demande');
-           
+            $df->type_contrat = $request->input('type_contrat');
             $df->bdg_demande = $request->input('bdg_demande');
             $df->prc_cote_part_demande = $request->input('prc_cote_part_demande');
             $df->d_bulltin_adhes = $request->input('d_bulltin_adhes');
