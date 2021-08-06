@@ -314,13 +314,17 @@ class DemandeFinancementController extends Controller
                             $drb->montant_entrp_ht = $bdg_acc;
                             $drb->montant_entrp_ttc = $quote_part;
 
-                            if ($request->input('prc_cote_part') == "20%") {
+                            if ($request->input('prc_cote_part') === "20%") {
                                 $drb->montant_rb = $bdg_acc * .8;
                                 $drb->part_giac = "80%";
                             }
-                            else if ($request->input('prc_cote_part') == "30%") {
+                            else if ($request->input('prc_cote_part') === "30%") {
                                 $drb->montant_rb = $bdg_acc * .7;
                                 $drb->part_giac = "70%";
+                            }
+                            else{
+                                $drb->montant_rb = $bdg_acc * .5;
+                                $drb->part_giac = "50%";
                             }
                             $drb->save();
                            
@@ -545,7 +549,7 @@ class DemandeFinancementController extends Controller
             ->get();
             $check_exist = DemandeRemboursementGiac::select('demande_remboursement_giacs.*')
             ->where('n_df', '=',$ndf)
-        ->get();
+            ->first();
            // return response()->json($check_exist);
            $etat_demande = mb_strtolower($request->input('etat'));
             $nb_DF_Entr_Anne = count($checkDRB_gc_Annee_Entr);
@@ -565,7 +569,7 @@ class DemandeFinancementController extends Controller
     
                         }
                         else{
-                            if($check_exist->isEmpty()){
+                            if($check_exist === null){
                                 // modifier la DRB avec les nouveaux montants et quote part
                                 if ( $etat_demande == "accordé" || $etat_demande == "réalisé" || $etat_demande == "approuvé") {
                                
@@ -594,6 +598,33 @@ class DemandeFinancementController extends Controller
                                 
                           
                          }
+                         else{
+                            if ( $etat_demande == "accordé" || $etat_demande == "réalisé" || $etat_demande == "approuvé") {
+                               
+                              
+                                
+
+                                $bdg_acc = $request->input('bdg_accord');
+                                $quote_part = $request->input('cote_part_entrp');
+
+                                $check_exist->montant_entrp_ht = $bdg_acc;
+                                $check_exist->montant_entrp_ttc = $quote_part;
+
+                                if ($request->input('prc_cote_part') == "20%") {
+                                    $check_exist->montant_rb = $bdg_acc * .8;
+                                    $check_exist->part_giac = "80%";
+                                }
+                                else if ($request->input('prc_cote_part') == "30%") {
+                                    $check_exist->montant_rb = $bdg_acc * .7;
+                                    $check_exist->part_giac = "70%";
+                                }
+                                $check_exist->save();
+                               
+                                // $request->session()->flash('added', '1) Demande financement ajouté avec succès');
+                                $request->session()->flash('info', '2) Demande de remboursement GIAC initié');
+                            }
+                            
+                         }
                             //3ndek l7a9
                             
                             $df->type_miss = $request->input('type_miss');
@@ -604,7 +635,7 @@ class DemandeFinancementController extends Controller
                     }
                 }
                 else{
-                    if($check_exist->isEmpty()){
+                    if($check_exist === null){
                                 
                         // modifier la DRB avec les nouveaux montants et quote part
                         if ( $etat_demande == "accordé" || $etat_demande == "réalisé" || $etat_demande == "approuvé") {
@@ -633,6 +664,33 @@ class DemandeFinancementController extends Controller
                         }
                     
                  }
+                 else{
+                    if ( $etat_demande == "accordé" || $etat_demande == "réalisé" || $etat_demande == "approuvé") {
+                       
+                      
+                        
+
+                        $bdg_acc = $request->input('bdg_accord');
+                        $quote_part = $request->input('cote_part_entrp');
+
+                        $check_exist->montant_entrp_ht = $bdg_acc;
+                        $check_exist->montant_entrp_ttc = $quote_part;
+
+                        if ($request->input('prc_cote_part') == "20%") {
+                            $check_exist->montant_rb = $bdg_acc * .8;
+                            $check_exist->part_giac = "80%";
+                        }
+                        else if ($request->input('prc_cote_part') == "30%") {
+                            $check_exist->montant_rb = $bdg_acc * .7;
+                            $check_exist->part_giac = "70%";
+                        }
+                        $check_exist->save();
+                       
+                        // $request->session()->flash('added', '1) Demande financement ajouté avec succès');
+                        $request->session()->flash('info', '2) Demande de remboursement GIAC initié');
+                    }
+                    
+                 }
                     //3ndek l7a9
                     $df->type_miss = $request->input('type_miss');
                      $df->annee_exerc = $request->input("annee_exerc");
@@ -641,7 +699,7 @@ class DemandeFinancementController extends Controller
             }
             else{
                 // return response()->json($check_exist);
-                if($check_exist->isEmpty()){
+                if($check_exist === null){
                                 
                     // modifier la DRB avec les nouveaux montants et quote part
                     if ( $etat_demande == "accordé" || $etat_demande == "réalisé" || $etat_demande == "approuvé") {
@@ -669,6 +727,33 @@ class DemandeFinancementController extends Controller
                         $request->session()->flash('info', '2) Demande de remboursement GIAC initié');
                     }
                     
+             }
+             else{
+                if ( $etat_demande == "accordé" || $etat_demande == "réalisé" || $etat_demande == "approuvé") {
+                   
+                  
+                    
+
+                    $bdg_acc = $request->input('bdg_accord');
+                    $quote_part = $request->input('cote_part_entrp');
+
+                    $check_exist->montant_entrp_ht = $bdg_acc;
+                    $check_exist->montant_entrp_ttc = $quote_part;
+
+                    if ($request->input('prc_cote_part') == "20%") {
+                        $check_exist->montant_rb = $bdg_acc * .8;
+                        $check_exist->part_giac = "80%";
+                    }
+                    else if ($request->input('prc_cote_part') == "30%") {
+                        $check_exist->montant_rb = $bdg_acc * .7;
+                        $check_exist->part_giac = "70%";
+                    }
+                    $check_exist->save();
+                   
+                    // $request->session()->flash('added', '1) Demande financement ajouté avec succès');
+                    $request->session()->flash('info', '2) Demande de remboursement GIAC initié');
+                }
+                
              }
                 $request->session()->flash('updated', 'demande finanacement Modifié avec succès');
            

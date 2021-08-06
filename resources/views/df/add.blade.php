@@ -1241,11 +1241,12 @@
             <div class="form-group col-lg-3 col-md-6 col-12">
                 <label for="prc_cote_part">Poucentage quote part</label>
                 <select class="form-control {{ $errors->has('prc_cote_part') ? ' is-invalid' : '' }}" onchange="CalcQuotePart()" name="prc_cote_part" id="prc_cote_part">
-                    @php $percent = ["20%", "30%"]; @endphp
+                   
                     <option selected disabled><span class="text-danger">*</span></option>
-                    @foreach ($percent as $perc)
-                        <option value="{{$perc}}">{{$perc}}</option>
-                    @endforeach
+                  
+                        <option value="20%">20%</option>
+                        <option value="30%">30%</option>
+                    
                 </select>
                 @if ($errors->has('prc_cote_part'))
                     <span class="invalid-feedback" role="alert">
@@ -1493,11 +1494,11 @@ $(document).ready(function() {
       });
     });
 
-    setInterval(() => {
+    // setInterval(() => {
       checkEtat();
       CalcQuotePart();
       CalcBdgAccordTTC();
-    },500);
+    // },500);
 
 });
 

@@ -148,14 +148,14 @@
             $etatcontrats =['normal','tiers payant'];
             for ($i=0; $i < 2; $i++) { 
                 if($etatcontrats[$i] == $df->type_contrat){
-                    echo ' <option value="normal" selected>'.$etatcontrats[$i].'</option>';
+                    echo ' <option value="'.$etatcontrats[$i].'" selected>'.$etatcontrats[$i].'</option>';
                     $etatcontrats[$i] = 'n';
                 }
             }
             if($etatcontrats[0] == 'n')
-            {echo '<option value="tiers payant" >'.$etatcontrats[1].'</option>';}
+            {echo '<option value="'.$etatcontrats[1].'" >'.$etatcontrats[1].'</option>';}
             else {
-                {echo '<option value="tiers payant" >'.$etatcontrats[0].'</option>';}
+                {echo '<option value="'.$etatcontrats[0].'" >'.$etatcontrats[0].'</option>';}
             }
          
 
@@ -224,11 +224,11 @@
     <div class="form-group col-lg-3 col-md-6 col-sm-6 col-12">
       <label for="prc_cote_part_demande">Pourcentage quote part</label>
       <select class="form-control {{ $errors->has('prc_cote_part_demande') ? 'is-invalid' : '' }}" onchange="CalcQuotePart()"  name="prc_cote_part_demande" id="prc_cote_part_demande">
-        @php $percent = ["20%", "30%"]; @endphp
+        @php $percent = ["30%", "20%"]; @endphp
             <option selected disabled><span class="text-danger">*</span></option>
             @foreach ($percent as $perc)
           @if ($df->prc_cote_part_demande == $perc)
-            <option selected value="{{$perc}}">{{$perc}}</option>
+            <option  value="{{$perc}}">{{$perc}}</option>
           @else
             <option value="{{$perc}}">{{$perc}}</option>
           @endif

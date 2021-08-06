@@ -11,6 +11,7 @@ function isNumberKey(evt) {
 }
 
 function CalcQuotePart() {
+    console.log(document.getElementById("prc_cote_part").value);
     let prcQuote = document.getElementById("prc_cote_part");
     let quoteInput = document.getElementById("cote_part_entrp");
     let bdgInput = document.getElementById("bdg_accord");
