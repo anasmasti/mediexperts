@@ -150,7 +150,7 @@ class PersonnelController extends Controller
         redirect('/detail-pers/'.$cin)->with('success');
         }
         else {
-            $personnel = Personnel::all();
+            $personnel = Personnel::findOrFail($cin);
             $client = Client::all();
             return view('personnel.edit', ['personnel' => $personnel, 'client' => $client]);
         }
