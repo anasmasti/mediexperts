@@ -136,7 +136,7 @@
           @php $csp = ['E', 'O', 'C']; @endphp
           <select class="form-control {{ $errors->has('csp') ? 'is-invalid' : '' }}" name="csp" id="csp">
             @foreach ($csp as $cs)
-              @if ($pers->csp == $cs)
+              @if ($personnel->csp == $cs)
                 <option selected value="{{$cs}}">{{$cs}}</option>
               @else
                 <option value="{{$cs}}">{{$cs}}</option>
@@ -154,7 +154,7 @@
           @php $etat = ['disponible', 'non disponible']; @endphp
           <select class="form-control {{ $errors->has('dt_embch') ? 'is-invalid' : '' }}" name="etat" id="etat">
             @foreach ($etat as $et)
-              @if ($pers->etat == $et)
+              @if ($personnel->etat == $et)
                 <option selected value="{{$et}}">{{$et}}</option>
               @else
                 <option value="{{$et}}">{{$et}}</option>
