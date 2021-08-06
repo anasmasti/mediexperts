@@ -126,17 +126,25 @@
                 <label>Type Mission</label>
                 <select class="form-control {{ $errors->has('type_miss') ? ' is-invalid' : '' }}" name="type_miss" id="type_miss" onchange="checkEtat()">
                     <option disabled selected>*</option>
-                    <option value="normal">normal</option>
                     <option value="diagnostic stratégique">diagnostic stratégique</option>
                     <option value="Ingénierie de formation">Ingénierie de formation</option>
                     {{-- <option value="diagnostic stratégique et ingénierie de formation">diagnostic stratégique et ingénierie de formation</option> --}}
                     {{-- <option value="Plan de formation">Plan de formation</option> --}}
                 </select>
+          
                     @if ($errors->has('type_miss'))
                         <span class="invalid-feedback" role="alert">
                             {{ $errors->first('type_miss') }}
                         </span>
                     @endif
+            </div>
+            <div class="form-group col-lg-3 col-md-6 col-12">
+                <label>Type Contrat</label>
+                <select class="form-control"  name="type_contrat" id="type_contrat" >
+                    <option disabled selected>*</option>
+                    <option value="normal">normal</option>
+                    <option value="tiers payant">tiers payant</option>
+                </select>
             </div>
             <div class="form-group col-lg-3 col-md-6 col-12"><label>Année d'exercice</label>
                 <input class="form-control {{ $errors->has('annee_exerc') ? ' is-invalid' : '' }}" value="{{old('annee_exerc')}}" type="text" name="annee_exerc" id="annee_exerc" min="4" maxlength="4" onkeypress="return isNumberKey(event)" placeholder="Année">

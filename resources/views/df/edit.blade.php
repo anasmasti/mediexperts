@@ -141,6 +141,34 @@
             </span>
           @endif
     </div>
+    <div class="form-group col-lg-3 col-md-6 col-sm-6 col-12">
+        <label>Type Contrat</label>
+        <select class="form-control" name="type_contrat" id="type_contrat" >
+            @php
+            $etatcontrats =['normal','tiers payant'];
+            for ($i=0; $i < 2; $i++) { 
+                if($etatcontrats[$i] == $df->type_contrat){
+                    echo ' <option value="normal" selected>'.$etatcontrats[$i].'</option>';
+                    $etatcontrats[$i] = 'n';
+                }
+            }
+            if($etatcontrats[0] == 'n')
+            {echo '<option value="tiers payant" >'.$etatcontrats[1].'</option>';}
+            else {
+                {echo '<option value="tiers payant" >'.$etatcontrats[0].'</option>';}
+            }
+         
+
+             
+            @endphp
+           
+        </select>
+          @if ($errors->has('type_miss'))
+            <span class="invalid-feedback" role="alert">
+              {{ $errors->first('type_miss') }}
+            </span>
+          @endif
+    </div>
     <div class="form-group col-lg-3 col-md-6 col-sm-6 col-12"><label>Année d'exercice</label>
         <input class="form-control {{ $errors->has('annee_exerc') ? ' is-invalid' : '' }}" value="{{$df->annee_exerc}}" type="text" name="annee_exerc" id="annee_exerc" min="4" maxlength="4" onkeypress="return isNumberKey(event)" placeholder="Année">
         @if ($errors->has('annee_exerc'))

@@ -173,11 +173,11 @@
       </th>
     </tr>
     @php
-    if($drb['type_miss'] != "normal")
+    if($drb['type_contrat'] != "normal")
     {
       echo '
     <tr>
-      {{-- Prix total x Part GIAC --}}
+     
       <th colspan="3" style="padding: 1rem;">QUOTE PART GIAC TIERS PAYANT H.T.</th>
       <th>';
         if ($drb['part_giac'] == "70%")

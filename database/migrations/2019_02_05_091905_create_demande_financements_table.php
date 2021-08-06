@@ -25,7 +25,7 @@ class CreateDemandeFinancementsTable extends Migration
             $table->integer('jr_hm_demande')->nullable();
             $table->double('bdg_demande')->nullable();
             $table->string('prc_cote_part_demande', 10)->nullable();
-
+            $table->string('type_contrat', 50)->nullable();
             $table->string('d_bulltin_adhes', 100)->default("non préparé");
             $table->string('d_df_DS', 100)->default("non préparé");
             $table->string('d_df_IF', 100)->default("non préparé");
