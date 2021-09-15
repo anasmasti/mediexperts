@@ -246,11 +246,7 @@
           if (data.length) {
             $('#plans').append('<option selected disabled>--sélectionner une action</option>');
             $('#plans').append(fillDropdown);
-<<<<<<< HEAD
             $('#raisoci').val(data[0].raisoci);
-=======
-            $('#raisoci').val(data[0].raisoci)
->>>>>>> 0fba9bdc83c1d77d60ef74239db6be6e412b4e77
           }
           else {
             $('#plans').append('<option selected disabled>(vide) aucune action</option>');

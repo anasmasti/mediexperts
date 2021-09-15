@@ -707,10 +707,10 @@
     </footer> --}}
 
     <footer class="main-footer">
-      <strong class="">Mediexperts </strong>
+      <strong class="">&copy; Mediexperts</strong>
       <strong>{{ date('Y') }}</strong>
       <div class="float-right d-none d-sm-inline-block">
-      <b>Version</b> <strong>2.2.2</strong>
+      <b>Version</b> <strong>2.3</strong>
       </div>
     </footer>
 
