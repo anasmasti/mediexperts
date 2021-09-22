@@ -5,15 +5,16 @@
     </div>
     <!-- /.col --><br />
 
-    <div class="card card-dark" v-for="DRB_Ofppt in DRB_Ofppts"
-        :key="DRB_Ofppt.n_drf">
+    <div
+      class="card card-dark"
+      v-for="DRB_Ofppt in DRB_Ofppts"
+      :key="DRB_Ofppt.n_drf"
+    >
       <div class="card-header">
         <h3 class="card-title card-h3">
           Modif. DRB OFPPT
           {{ " > " }}
-          <a href="/list-drb">
-            List Demande remboursement OFPPT
-          </a>
+          <a href="/list-drb"> List Demande remboursement OFPPT </a>
           {{ " > " }}
           <a href="/detail-drb-ofppt">
             {{ DRB_Ofppt.raisoci }}
@@ -21,11 +22,9 @@
         </h3>
       </div>
 
-      <div
-        class="card-body"
-      >
+      <div class="card-body">
         <div class="row">
-          <div class="form-group col-lg-4 col-sm-12" style="margin : auto ;">
+          <div class="form-group col-lg-4 col-sm-12" style="margin: auto">
             <label>E/S</label>
             <input
               class="form-control"
@@ -38,7 +37,7 @@
             />
           </div>
 
-          <div class="form-group col-lg-4 col-sm-12" style="margin : auto ;">
+          <div class="form-group col-lg-4 col-sm-12" style="margin: auto">
             <label>RefPdf</label>
             <input
               class="form-control"
@@ -51,7 +50,7 @@
             />
           </div>
 
-          <div class="form-group col-lg-4 col-sm-12" style="margin : auto ;">
+          <div class="form-group col-lg-4 col-sm-12" style="margin: auto">
             <label>N Contrat PF</label>
             <input
               class="form-control"
@@ -69,30 +68,30 @@
           <div class="form-group col-12">
             <label>Réglement entreprise</label>
             <div class="table-responsive table_reg_entr">
-              <table class="table table-striped" style="width:100%;">
+              <table class="table table-striped" style="width: 100%">
                 <thead>
                   <tr>
-                    <th >N°Action</th>
-                    <th >Thème</th>
-                    <th >Total HT(DH)</th>
-                    <th >TVA (20%)</th>
-                    <th >Total TTC</th>
-                    <th >Quote-part Entreprise</th>
-                    <th >N° de Facture</th>
-                    <th >Date paiement entreprise</th>
-                    <th >Mode et référence de paiement</th>
+                    <th>N°Action</th>
+                    <th>Thème</th>
+                    <th>Total HT(DH)</th>
+                    <th>TVA (20%)</th>
+                    <th>Total TTC</th>
+                    <th>Quote-part Entreprise</th>
+                    <th>N° de Facture</th>
+                    <th>Date paiement entreprise</th>
+                    <th>Mode et référence de paiement</th>
                   </tr>
                 </thead>
                 <tbody v-for="(info, index) in reglEntreprise" :key="index">
                   <tr>
-                    <th >{{ info.n_action }}</th>
-                    <td >{{ info.nom_theme }}</td>
-                    <td >{{ info.bdg_total }}</td>
-                    <td >{{ info.bdg_total * 0.2 }}</td>
-                    <td >{{ info.bdg_total + info.bdg_total * 0.2 }}</td>
-                    <td >{{ info.bdg_total * 0.3 + info.bdg_total * 0.2 }}</td>
-                    <td >{{ info.n_facture }}</td>
-                    <td >
+                    <th>{{ info.n_action }}</th>
+                    <td>{{ info.nom_theme }}</td>
+                    <td>{{ info.bdg_total }}</td>
+                    <td>{{ info.bdg_total * 0.2 }}</td>
+                    <td>{{ info.bdg_total + info.bdg_total * 0.2 }}</td>
+                    <td>{{ info.bdg_total * 0.3 + info.bdg_total * 0.2 }}</td>
+                    <td>{{ info.n_facture }}</td>
+                    <td>
                       <input
                         :id="'DP:' + info.id_thm"
                         :name="'DP:' + info.id_thm"
@@ -102,7 +101,7 @@
                         @change="CalculTotalRegl('DP:' + info.id_thm)"
                       />
                     </td>
-                    <td >
+                    <td>
                       <input
                         :id="'MDP:' + info.id_thm"
                         :name="'MDP:' + info.id_thm"
@@ -113,27 +112,30 @@
                   </tr>
                 </tbody>
               </table>
-             <!-- <label for="">Value : {{prvDate}}</label> -->
-             
+              <!-- <label for="">Value : {{prvDate}}</label> -->
             </div>
-            
+
             <div
-                class="form-group col-lg-12 col-sm-12 custom-control custom-checkbox"
-              >
-                <div class="div_select_all">
-                  <input
-                    type="checkbox"
-                    name="select_all"
-                    id="select_all"
-                    class="custom-control-input"
-                     v-model="select_all_ch"
-                    @change="select_all()"
-                  />
-                  <label for="select_all" class="custom-control-label "
-                    >selectionner tout</label
-                  >
-                </div>
+              class="
+                form-group
+                col-lg-12 col-sm-12
+                custom-control custom-checkbox
+              "
+            >
+              <div class="div_select_all">
+                <input
+                  type="checkbox"
+                  name="select_all"
+                  id="select_all"
+                  class="custom-control-input"
+                  v-model="select_all_ch"
+                  @change="select_all()"
+                />
+                <label for="select_all" class="custom-control-label"
+                  >selectionner tout</label
+                >
               </div>
+            </div>
 
             <div class="total_reg">
               <label for="txt-total-reg">Total Réglement : </label>
@@ -267,60 +269,66 @@
                 </div>
               </div>
             </div>
-           <!-- <div class="form-group col-12"><hr /></div> -->
+            <!-- <div class="form-group col-12"><hr /></div> -->
 
-            <div class="container" style="margin-top:2em;">
+            <div class="container" style="margin-top: 2em">
               <div class="row">
                 <div class="col-md-6">
-                   <div
-                      class="form-group col-lg-12 col-sm-12 " 
-                      style="margin-top:auto;margin-bottum:auto;margin-left:0;"
-                    >
-                      <label>Date dépot demande de Remboursement</label>
-                      <input
-                        class="form-control"
-                        type="text"
-                        name="date_depot_dmd_rembrs"
-                        id="date_depot_dmd_rembrs"
-                        onmouseover="(this.type='date')"
-                        placeholder="Date réalisation"
-                        v-model="date_depot_dmd_rembrs"
-                        @change="DateValidation()"
-                      />
-                    </div>
+                  <div
+                    class="form-group col-lg-12 col-sm-12"
+                    style="
+                      margin-top: auto;
+                      margin-bottum: auto;
+                      margin-left: 0;
+                    "
+                  >
+                    <label>Date dépot demande de Remboursement</label>
+                    <input
+                      class="form-control"
+                      type="text"
+                      name="date_depot_dmd_rembrs"
+                      id="date_depot_dmd_rembrs"
+                      onmouseover="(this.type='date')"
+                      placeholder="Date réalisation"
+                      v-model="date_depot_dmd_rembrs"
+                      @change="DateValidation()"
+                    />
+                  </div>
                 </div>
                 <div class="col-md-6">
-                   <div
-                      class="form-group col-lg-6 col-sm-12 custom-control custom-checkbox"
-                      style="margin-top:20px;margin-bottum:20px;"
+                  <div
+                    class="
+                      form-group
+                      col-lg-6 col-sm-12
+                      custom-control custom-checkbox
+                    "
+                    style="margin-top: 20px; margin-bottum: 20px"
+                  >
+                    <input
+                      type="checkbox"
+                      name="accuse_model6"
+                      id="accuse_model6"
+                      class="custom-control-input"
+                      v-model="accuse_model6"
+                    />
+                    <label for="accuse_model6" class="custom-control-label"
+                      >Accusé Modéle 6</label
                     >
-                      <input
-                        type="checkbox"
-                        name="accuse_model6"
-                        id="accuse_model6"
-                        class="custom-control-input"
-                        v-model="accuse_model6"
-                      />
-                      <label for="accuse_model6" class="custom-control-label "
-                        >Accusé Modéle 6</label
-                      >
-                    </div>
+                  </div>
                 </div>
               </div>
             </div>
 
-
-          <div class="form-group col-12"><hr /></div>
+            <div class="form-group col-12"><hr /></div>
 
             <div
               class="form-group col-lg-12 col-sm-12 display_div"
-              style="display: flex ;flex-direction : 'row' ;"
+              style="display: flex; flex-direction: 'row'"
             >
               <div class="form-group col-lg-6 col-sm-12 display_div1">
-                
                 <div
                   class="form-group col-lg-12 col-sm-12"
-                  style="margin : 2em 2em 2em 0 ;"
+                  style="margin: 2em 2em 2em 0"
                 >
                   <label>Montant de Remboursement</label>
                   <input
@@ -332,13 +340,14 @@
                     v-model="montant_rembrs"
                   />
                 </div>
-                
               </div>
 
               <div class="form-group col-lg-6 col-sm-12 display_div_child">
-
-                <div class="form-group col-lg-12 col-sm-12" style="margin : 2em 2em 2em 0 ;">
-                  <label >Date Remboursement</label>
+                <div
+                  class="form-group col-lg-12 col-sm-12"
+                  style="margin: 2em 2em 2em 0"
+                >
+                  <label>Date Remboursement</label>
                   <input
                     class="form-control"
                     type="text"
@@ -350,21 +359,18 @@
                     @change="DateValidation()"
                   />
                 </div>
-
               </div>
             </div>
-
-            
 
             <div class="form-group col-12"><hr /></div>
 
             <div class="form-group col-12">
-              <label style="margin-top:1em;">Remboursement OFPPT</label>
-            <div class="form-group col-12" style="margin:0 auto;"><hr /></div>
+              <label style="margin-top: 1em">Remboursement OFPPT</label>
+              <div class="form-group col-12" style="margin: 0 auto"><hr /></div>
               <div class="table-responsive">
                 <table class="table table-striped table_remb_ofppt">
                   <thead>
-                    <tr  style="  border-top: hidden;">
+                    <tr style="border-top: hidden">
                       <th scope="col">N°Action</th>
                       <th scope="col">Thème</th>
                       <th scope="col">Total HT(DH)</th>
@@ -412,7 +418,7 @@
                         <textarea
                           :name="'justifEcart:' + info.id_thm"
                           :id="'justifEcart:' + info.id_thm"
-                           v-model="JustifsEcart[index]"
+                          v-model="JustifsEcart[index]"
                         />
                       </td>
                     </tr>
@@ -425,7 +431,7 @@
       </div>
     </div>
 
-    <div class="form-group col-12 text-center" style="margin-top: 2rem ;">
+    <div class="form-group col-12 text-center" style="margin-top: 2rem">
       <h4>État demande</h4>
       <label>{{ etat }}</label>
       <div class="btn-group btn-group-toggle btn-checked btn-Etat" role="group">
@@ -560,18 +566,19 @@ export default {
       mode_ref_peiement: [],
       comment: "",
       montant_rembrs: null,
-      date_depot_dmd_rembrs:null,
-      date_rembrs:null,
-      select_all_ch:null,
-      date_paiement:[],
-      ModeReferencePaiement:[],
-      JustifsEcart:[],
-      prvDate : null
+      date_depot_dmd_rembrs: null,
+      date_rembrs: null,
+      select_all_ch: null,
+      date_paiement: [],
+      ModeReferencePaiement: [],
+      JustifsEcart: [],
+      prvDate: null,
     };
   },
   mounted() {
     this.numero_remb = JSON.parse(localStorage.getItem("n_drf"));
     console.log(this.numero_remb);
+    this.clearLS();
     this.handleAction("DRB_Ofppt/getListOfDROfpptEdit", this.numero_remb);
     this.handleAction("DRB_Ofppt/ReglEntrpInfo", this.numero_remb);
 
@@ -583,27 +590,28 @@ export default {
     setTimeout(() => {
       this.model5 = this.DRB_Ofppts[0].model5 === "préparé";
       this.model6 = this.DRB_Ofppts[0].model6 === "préparé";
-      this.fiche_eval_sythetique = this.DRB_Ofppts[0].fiche_eval_sythetique === "préparé";
+      this.fiche_eval_sythetique =
+        this.DRB_Ofppts[0].fiche_eval_sythetique === "préparé";
       this.factures = this.DRB_Ofppts[0].factures === "préparé";
       this.compris_cheques = this.DRB_Ofppts[0].compris_cheques === "préparé";
       this.compris_remise = this.DRB_Ofppts[0].compris_remise === "préparé";
       this.relev_bq_societe = this.DRB_Ofppts[0].relev_bq_societe === "préparé";
       this.relev_bq_cabinet = this.DRB_Ofppts[0].relev_bq_cabinet === "préparé";
       this.accuse_model6 = this.DRB_Ofppts[0].accuse_model6 === "préparé";
-      this.montant_rembrs =  this.DRB_Ofppts[0].montant_rembrs;
-      this.date_depot_dmd_rembrs =  this.DRB_Ofppts[0].date_depot_dmd_rembrs;
-      this.date_rembrs =  this.DRB_Ofppts[0].date_rembrs;
-      this.select_all_ch= this.DRB_Ofppts[0].payerAllPF;
+      this.montant_rembrs = this.DRB_Ofppts[0].montant_rembrs;
+      this.date_depot_dmd_rembrs = this.DRB_Ofppts[0].date_depot_dmd_rembrs;
+      this.date_rembrs = this.DRB_Ofppts[0].date_rembrs;
+      this.select_all_ch = this.DRB_Ofppts[0].payerAllPF;
     }, 1000);
 
-      setTimeout(() => {
-       let data = this.reglEntreprise;
+    setTimeout(() => {
+      let data = this.reglEntreprise;
       let item = 0;
       for (item in data) {
         this.date_paiement.push(data[item].datePaiementEntreprise);
         this.ModeReferencePaiement.push(data[item].ModeReferencePaiement);
         this.rmb_ofppt.push(data[item].RemboursementOFPPT);
-         this.JustifsEcart.push(data[item].JustifsEcart);
+        this.JustifsEcart.push(data[item].JustifsEcart);
       }
     }, 1000);
     setTimeout(() => {
@@ -620,10 +628,7 @@ export default {
           let targetselected_etat = $(`#opt${i}`);
 
           let selected_etat =
-            $(`#opt${i}`)
-              .text()
-              .toLowerCase()
-              .trim() == this.etat;
+            $(`#opt${i}`).text().toLowerCase().trim() == this.etat;
 
           if (selected_etat) {
             $(`#opt${i}`).removeClass("btn-warning");
@@ -640,8 +645,6 @@ export default {
         }
       }
     }, 800);
-
-    
   },
   methods: {
     DateValidation() {
@@ -664,50 +667,39 @@ export default {
       let data = this.reglEntreprise;
       let first = this.reglEntreprise;
       let item = 0;
-      let QtRegl = null ;
+      let QtRegl = null;
       this.total_regl = null;
 
       if (checkId.checked) {
+        if (
+          document.getElementById("MDP:" + first[0].id_thm).value != "" &&
+          document.getElementById("DP:" + first[0].id_thm).value != ""
+        ) {
+          for (item in data) {
+            this.ModeReferencePaiement[item] = this.ModeReferencePaiement[0];
+            this.date_paiement[item] = this.date_paiement[0];
 
-          if (
-            document.getElementById("MDP:"+first[0].id_thm).value != "" &&
-            document.getElementById("DP:"+first[0].id_thm).value != ""
-          ) {
-            for (item in data) {
-               
-              this.ModeReferencePaiement[item] = this.ModeReferencePaiement[0];
-              this.date_paiement[item] =this.date_paiement[0];
-
-              
-              QtRegl = data[item].bdg_total * 0.3 + data[item].bdg_total * 0.2;
-              this.total_regl += QtRegl;
-              console.log("Total value : "+this.total_regl);
-            }
-
-          } else {
-
-              this.$toastr.e(
-                "Merci d'entrer les premier ' Date paiement entreprise ' et ' Mode et référence de paiement' !!"
-              );
-              // checkId.checked = false;
-              this.select_all_ch = false
-               checkId.checked = false ;
-
-
+            QtRegl = data[item].bdg_total * 0.3 + data[item].bdg_total * 0.2;
+            this.total_regl += QtRegl;
+            console.log("Total value : " + this.total_regl);
           }
+        } else {
+          this.$toastr.e(
+            "Merci d'entrer les premier ' Date paiement entreprise ' et ' Mode et référence de paiement' !!"
+          );
+          // checkId.checked = false;
+          this.select_all_ch = false;
+          checkId.checked = false;
+        }
       } else {
+        for (item in data) {
+          this.ModeReferencePaiement[item] = "";
+          this.date_paiement[item] = "";
+        }
 
-            for (item in data) {
-               this.ModeReferencePaiement[item] = "";
-              this.date_paiement[item] ="";
-            }
-            
-            this.total_regl = null ;
-
+        this.total_regl = null;
       }
-
     },
-
 
     handleAction(actionName, value) {
       this.$store.dispatch(actionName, value);
@@ -718,67 +710,54 @@ export default {
     CalculTotalRegl(id) {
       let data = this.reglEntreprise;
       let item = 0;
-      let QtRegl = null ;
-      let dtPaimentEntr = document.getElementById(id).value
-      let dbId = id.split(':');
-      let Pdate = this.prvDate
+      let QtRegl = null;
+      let dtPaimentEntr = document.getElementById(id).value;
+      let dbId = id.split(":");
+      let Pdate = this.prvDate;
 
       // setTimeout(() => {
 
-        for (item in data) {
-          
-           console.log("Valueeee :"+Pdate);
-           if (Pdate == "" && dtPaimentEntr != "") {
-                
-              if (data[item].id_thm == dbId[1]) {
+      for (item in data) {
+        console.log("Valueeee :" + Pdate);
+        if (Pdate == "" && dtPaimentEntr != "") {
+          if (data[item].id_thm == dbId[1]) {
+            QtRegl = data[item].bdg_total * 0.3 + data[item].bdg_total * 0.2;
+            this.total_regl += QtRegl;
 
-                QtRegl = data[item].bdg_total * 0.3 + data[item].bdg_total * 0.2;
-                this.total_regl += QtRegl;
-                
-                this.getPrvDate(id);
-
-              }
-              
-            }else if( dtPaimentEntr == "" && data[item].id_thm == dbId[1]){
-                QtRegl = data[item].bdg_total * 0.3 + data[item].bdg_total * 0.2;
-                this.total_regl = this.total_regl - QtRegl;
-                console.log("qte : "+this.total_reg);
-              }
+            this.getPrvDate(id);
           }
-          
+        } else if (dtPaimentEntr == "" && data[item].id_thm == dbId[1]) {
+          QtRegl = data[item].bdg_total * 0.3 + data[item].bdg_total * 0.2;
+          this.total_regl = this.total_regl - QtRegl;
+          console.log("qte : " + this.total_reg);
+        }
+      }
 
       // }, 1200);
       return this.total_regl;
     },
 
-    CalculTotalReglLoad(){
+    CalculTotalReglLoad() {
       let data = this.reglEntreprise;
       let item = 0;
-       let QtRegl = null ;
+      let QtRegl = null;
 
       setTimeout(() => {
-
         for (item in data) {
-          
-            if (data[item].	datePaiementEntreprise != null) {
-              QtRegl = data[item].bdg_total * 0.3 + data[item].bdg_total * 0.2;
-                this.total_regl += QtRegl;
-                this.getPrvDate('DP:' + data[item].id_thm);
-            }
-            
-              
-            }
-          
-
+          if (data[item].datePaiementEntreprise != null) {
+            QtRegl = data[item].bdg_total * 0.3 + data[item].bdg_total * 0.2;
+            this.total_regl += QtRegl;
+            this.getPrvDate("DP:" + data[item].id_thm);
+          }
+        }
       }, 1200);
     },
 
-    getPrvDate(id){
-       this.prvDate = document.getElementById(id).value;
+    getPrvDate(id) {
+      this.prvDate = document.getElementById(id).value;
     },
 
     async updateDRB() {
-     
       let etat = $("input:radio[name=etat]:checked").val();
 
       await this.getTheme();
@@ -798,14 +777,14 @@ export default {
           date_rembrs: this.date_rembrs,
           etat: etat,
           thems: this.themes,
-          commenter: this.comment, 
-          select_all_ch:this.select_all_ch
+          commenter: this.comment,
+          select_all_ch: this.select_all_ch,
         })
         .then(() => {
           this.$toastr.s("Modifié avec succès");
-           console.log('select all :: '+this.select_all_ch)
+          console.log("select all :: " + this.select_all_ch);
         })
-        .catch(e => {
+        .catch((e) => {
           this.$toastr.e("Echec de modification");
           throw e;
         });
@@ -831,26 +810,22 @@ export default {
           ).value,
           justif_ecart: document.getElementById(
             `justifEcart:${data[item].id_thm}`
-          ).value
+          ).value,
         });
       }
       console.log(JSON.parse(JSON.stringify(this.themes)));
-
     },
-    redir(){
+    redir() {
       const parsed = JSON.stringify("Edit");
       localStorage.setItem("LS_redirection", parsed);
-      window.location.href ='/detail-drb-ofppt';
+      window.location.href = "/detail-drb-ofppt";
     },
 
     checkEtat() {
       setTimeout(() => {
         for (let i = 1; i <= 5; i++) {
           let selected_etat =
-            $(`#opt${i}`)
-              .text()
-              .toLowerCase()
-              .trim() == this.etat;
+            $(`#opt${i}`).text().toLowerCase().trim() == this.etat;
 
           if (selected_etat) {
             $(this.active_radio).removeClass("btn-success active");
@@ -861,15 +836,15 @@ export default {
           }
         }
       }, 200);
-    }
+    },
   },
 
   computed: {
     ...mapState("DRB_Ofppt", {
-      DRB_Ofppts: state => state.DRB_OfpptEdit,
-      reglEntreprise: state => state.reglEntreprise
-    })
-  }
+      DRB_Ofppts: (state) => state.DRB_OfpptEdit,
+      reglEntreprise: (state) => state.reglEntreprise,
+    }),
+  },
 };
 </script>
 
@@ -918,28 +893,29 @@ th {
   font-weight: bold;
 }
 
-.div_dtdepo_accusemod6{
+.div_dtdepo_accusemod6 {
   display: flex;
   flex-direction: row;
   justify-content: center;
 }
 
-.table_reg_entr{
+.table_reg_entr {
   width: 100%;
-
 }
 
-.table-responsive{
+.table-responsive {
   overflow-x: hidden;
 }
 
 @media only screen and (max-width: 1000px) {
-.table-responsive{
-  overflow-x: scroll;
- }
+  .table-responsive {
+    overflow-x: scroll;
+  }
 }
 
-th , td{
-  font-size:14px;height:-10px;
+th,
+td {
+  font-size: 14px;
+  height: -10px;
 }
 </style>

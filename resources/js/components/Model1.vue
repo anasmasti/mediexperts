@@ -38,7 +38,6 @@ export default {
       await axios.get('/fill-clients')
         .then((res) => {
           this.clients = res.data;
-          // console.log("clients : ", this.clients)
         })
         .catch((err) => console.error("err FillClients", err));
     },
@@ -48,7 +47,6 @@ export default {
         .then((res) => {
           this.reference_plan = res.data;
           this.curr_client = res.data[0].raisoci;
-          console.log("reference_plan : ", this.reference_plan)
         })
         .catch((err) => console.log("err FillReferencesPlan", err));
     },

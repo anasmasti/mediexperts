@@ -747,32 +747,11 @@
 
 <!-- Delete confirmation Sweet Alert -->
 <script>
-//   function confirmDelete(id, link) {
-//     console.log("Sweet alert delete link : ", ("/del-"+link+id));
-//     swal({
-//       title: "Êtes-vous sûr?",
-//       text: "Une fois supprimé, vous ne pourrez plus récupérer cet enregistrement!",
-//       icon: "warning",
-//       buttons: true,
-//       dangerMode: true,
-//       className: { popup: 'animated' }
-//     })
-//     .then((willDelete) => {
-//     if (willDelete) {
-//       window.location.href = `/del-${link}${id}`;
-//       swal("Supprimé avec succès!", {icon: "success"});
-//     }
-//     // else {
-//     //     swal("Votre enregistrement est en sécurité!");
-//     // }
-//     });
-//   }
-
   function confirmDelete(id, link, parentId = null) {
     $("#deleteModal").modal('show');
     $("#modalDeleteTitle").html("Êtes-vous sur ?");
     $("#modalDeleteMessage").html("Une fois supprimé, vous ne pourrez plus récupérer cet enregistrement!");
-    console.log("Sweet alert delete link : ", ("/del-"+link+id));
+    
     if (parentId == null) {
       document.getElementById('deleteBtn').href = `/del-${link}${id}`;
     } else {
