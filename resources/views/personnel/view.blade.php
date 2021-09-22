@@ -129,7 +129,6 @@
         let counter = 0;
         checkboxes.forEach(elem => {
             elem.checked && counter++;
-            // console.log("counter checked " + counter);
         });
         $('#delMultiple_Btn').prop('disabled', (counter === 0));
       });

@@ -501,7 +501,6 @@ $(document).ready(function() {
       url: '{!! URL::to('/find-client-plan') !!}',
       data: {'idPlan': idPlan},
       success: function(data) {
-        console.log('success !!', data.nrc_entrp);
         nrc = data.nrc_entrp;
         $('#nrc').val(nrc);
 
@@ -511,9 +510,6 @@ $(document).ready(function() {
             url: '{!! URL::to('/finddomaindependvilleclient') !!}',
             data: {'nrc': nrc},
             success: function(data, client) {
-                console.log('success !!', data.data, data.client);
-                console.log();
-
                 var fillDropDown = '<option selected disabled>Sélectionner le domaine</option>';
                 for (var i = 0; i < data.data.length; i++) {
                 fillDropDown += '<option value="'+ data.data[i].id_domain + '">' + data.data[i].nom_domain + '</option>';
@@ -527,14 +523,13 @@ $(document).ready(function() {
                 $('#id_dom').append(fillDropDown);
             },
             error: function(msg) {
-                console.log('error getting data !!');
+               
             }
           });
         }, 1000);
 
       }, //success
       error: function(err) {
-        console.log('error getting data !!', err);
       }
     });
   });
@@ -553,7 +548,6 @@ $(document).ready(function() {
       url: '{!! URL::to('/findthemesdomain') !!}',
       data: {'idDomain': idDomain},
       success: function(data) {
-        console.log('success !!', data);
         var fillDropDown = '<option selected disabled>Sélectionner le thème</option>';
         for (var i = 0; i < data.length; i++) {
           fillDropDown += '<option value="'+ data[i].id_theme + '">' + data[i].nom_theme + '</option>';
@@ -563,7 +557,6 @@ $(document).ready(function() {
         $('#id_thm').append(fillDropDown);
       },
       error: function(msg) {
-        console.log('error getting data !!');
       }
     });
   });
@@ -576,9 +569,6 @@ $(document).ready(function() {
       url: '{!! URL::to('/findorganismeinterv') !!}',
       data: {'idInv': idInv},
       success: function(data) {
-        console.log('success !!');
-        console.log(data);
-
         var fillDropDown = '';
         // var fillDropDown = '<option selected disabled>Sélectionner l\'organisme</option>';
         for (var i = 0; i < data.length; i++) {
@@ -588,7 +578,6 @@ $(document).ready(function() {
         $('#organisme').append(fillDropDown);
       },
       error:function(msg) {
-        console.log('error getting data !!');
       }
     });
   });

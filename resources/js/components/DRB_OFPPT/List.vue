@@ -4,7 +4,7 @@
     <div class="card-header">
       <div class="d-flex h-100 div_header">
         <h3 class="card-title">Demandes&nbsp;remboursement&nbsp;OFPPT</h3>
-        <div class="container h-100 ">
+        <div class="container h-100">
           <form action="/searchofppt" method="GET">
             <div class="searchbar bu-sm">
               <input
@@ -77,12 +77,14 @@
                 {{ DRB_Ofppt.id_plan }}
               </td>
               <td>
-               {{ DRB_Ofppt.commenter}}
+                {{ DRB_Ofppt.commenter }}
               </td>
               <td>
-                <a href="/detail-drb-ofppt" class="btn btn-primary"
+                <a
+                  href="/detail-drb-ofppt"
+                  class="btn btn-primary"
                   @click="sendnrdf(DRB_Ofppt.n_drf)"
-                  ><i class="fa fa-eye" style="color: white ;"></i
+                  ><i class="fa fa-eye" style="color: white"></i
                 ></a>
                 <a
                   href="/edit-drb-ofppt"
@@ -90,53 +92,77 @@
                   class="btn btn-warning"
                   ><i class="fa fa-edit"></i
                 ></a>
-                <a data-toggle="modal" data-target="#deleteModal" @click="remplir(DRB_Ofppt.n_drf)" class="btn btn-danger">
-                  <i class="fa fa-trash-alt" style="color: white ;"></i>
+                <a
+                  data-toggle="modal"
+                  data-target="#deleteModal"
+                  @click="remplir(DRB_Ofppt.n_drf)"
+                  class="btn btn-danger"
+                >
+                  <i class="fa fa-trash-alt" style="color: white"></i>
                 </a>
-                  <div id="deleteModal" class="modal fade">
-                      <div class="modal-dialog modal-dialog-centered modal-confirm">
-                          <div class="modal-content">
-                              <div class="modal-header flex-column">
-                                  <div class="icon-box icon-box-danger">
-                                      <i class="material-icons">close</i>
-                                  </div>
-                                  <p class="modal-title h1 pt-3 w-100" id="modalDeleteTitle">
-                                    Êtes-vous sur ?
-                                  </p>
-                                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                              </div>
-                              <div class="modal-body">
-                                  <p id="modalDeleteMessage">
-                                      Une fois supprimé, vous ne pourrez plus récupérer cet enregistrement!
-                                  </p>
-                              </div>
-                              <div class="modal-footer justify-content-center">
-                                  <a  id="deleteBtn" @click="DeleteDrf(ndrf); redir()" style="color : white" class="btn btn-danger">
-                                      <i class="material-icons" >delete_forever</i>
-                                      Supprimer
-                                  </a>
-                                  <button type="button"  class="btn btn-secondary" data-dismiss="modal">
-                                      <i class="material-icons">cancel</i>
-                                      Annuler
-                                  </button>
-
-                                  
-                              </div>
-                          </div>
+                <div id="deleteModal" class="modal fade">
+                  <div class="modal-dialog modal-dialog-centered modal-confirm">
+                    <div class="modal-content">
+                      <div class="modal-header flex-column">
+                        <div class="icon-box icon-box-danger">
+                          <i class="material-icons">close</i>
+                        </div>
+                        <p
+                          class="modal-title h1 pt-3 w-100"
+                          id="modalDeleteTitle"
+                        >
+                          Êtes-vous sur ?
+                        </p>
+                        <button
+                          type="button"
+                          class="close"
+                          data-dismiss="modal"
+                          aria-hidden="true"
+                        >
+                          &times;
+                        </button>
                       </div>
+                      <div class="modal-body">
+                        <p id="modalDeleteMessage">
+                          Une fois supprimé, vous ne pourrez plus récupérer cet
+                          enregistrement!
+                        </p>
+                      </div>
+                      <div class="modal-footer justify-content-center">
+                        <a
+                          id="deleteBtn"
+                          @click="
+                            DeleteDrf(ndrf);
+                            redir();
+                          "
+                          style="color: white"
+                          class="btn btn-danger"
+                        >
+                          <i class="material-icons">delete_forever</i>
+                          Supprimer
+                        </a>
+                        <button
+                          type="button"
+                          class="btn btn-secondary"
+                          data-dismiss="modal"
+                        >
+                          <i class="material-icons">cancel</i>
+                          Annuler
+                        </button>
+                      </div>
+                    </div>
                   </div>
+                </div>
               </td>
             </tr>
           </tbody>
         </table>
       </div>
     </div>
-    
+
     <!-- ./card-body -->
 
-
     <!-- delete model -->
-  
   </div>
 </template>
 <script>
@@ -145,14 +171,13 @@ export default {
   name: "List",
   data() {
     return {
-      ndrf:null
+      ndrf: null,
     };
   },
 
   mounted() {
     this.getListOfDROfppt;
     console.log(this.getListOfDROfppt);
-    
   },
 
   methods: {
@@ -163,30 +188,29 @@ export default {
     handleAction(actionName, value) {
       this.$store.dispatch(actionName, value);
     },
-    search(){
-      let ndrf = document.getElementById('searchofppt').value;
+    search() {
+      let ndrf = document.getElementById("searchofppt").value;
       this.handleAction("DRB_Ofppt/rechercher", ndrf);
-      console.log('ndrf : '+ndrf);
-
+      console.log("ndrf : " + ndrf);
     },
     ...mapActions("DRB_Ofppt", ["DeleteDrf"]),
-    redir(ndrf){
+    redir(ndrf) {
       console.log(ndrf);
-      window.location.href ='/list-drb';
+      window.location.href = "/list-drb";
     },
-    remplir(ndrf){
+    remplir(ndrf) {
       this.ndrf = ndrf;
       console.log(this.ndrf);
-    }
+    },
   },
 
   computed: {
     ...mapState("DRB_Ofppt", {
-      DRB_Ofppts: state => state.DRB_Ofppts,
+      DRB_Ofppts: (state) => state.DRB_Ofppts,
     }),
 
-    ...mapActions("DRB_Ofppt", ["getListOfDROfppt"])
-  }
+    ...mapActions("DRB_Ofppt", ["getListOfDROfppt"]),
+  },
 };
 </script>
 <style scoped>

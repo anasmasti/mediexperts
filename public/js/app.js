@@ -4645,6 +4645,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Edit",
@@ -4685,6 +4691,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
     this.numero_remb = JSON.parse(localStorage.getItem("n_drf"));
     console.log(this.numero_remb);
+    this.clearLS();
     this.handleAction("DRB_Ofppt/getListOfDROfpptEdit", this.numero_remb);
     this.handleAction("DRB_Ofppt/ReglEntrpInfo", this.numero_remb);
     setTimeout(function () {
@@ -4804,7 +4811,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var item = 0;
       var QtRegl = null;
       var dtPaimentEntr = document.getElementById(id).value;
-      var dbId = id.split(':');
+      var dbId = id.split(":");
       var Pdate = this.prvDate; // setTimeout(() => {
 
       for (item in data) {
@@ -4838,7 +4845,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             QtRegl = data[item].bdg_total * 0.3 + data[item].bdg_total * 0.2;
             _this2.total_regl += QtRegl;
 
-            _this2.getPrvDate('DP:' + data[item].id_thm);
+            _this2.getPrvDate("DP:" + data[item].id_thm);
           }
         }
       }, 1200);
@@ -4880,7 +4887,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 }).then(function () {
                   _this3.$toastr.s("Modifié avec succès");
 
-                  console.log('select all :: ' + _this3.select_all_ch);
+                  console.log("select all :: " + _this3.select_all_ch);
                 })["catch"](function (e) {
                   _this3.$toastr.e("Echec de modification");
 
@@ -4918,7 +4925,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     redir: function redir() {
       var parsed = JSON.stringify("Edit");
       localStorage.setItem("LS_redirection", parsed);
-      window.location.href = '/detail-drb-ofppt';
+      window.location.href = "/detail-drb-ofppt";
     },
     checkEtat: function checkEtat() {
       var _this4 = this;
@@ -5107,6 +5114,32 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "List",
@@ -5128,14 +5161,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.$store.dispatch(actionName, value);
     },
     search: function search() {
-      var ndrf = document.getElementById('searchofppt').value;
+      var ndrf = document.getElementById("searchofppt").value;
       this.handleAction("DRB_Ofppt/rechercher", ndrf);
-      console.log('ndrf : ' + ndrf);
+      console.log("ndrf : " + ndrf);
     }
   }, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])("DRB_Ofppt", ["DeleteDrf"])), {}, {
     redir: function redir(ndrf) {
       console.log(ndrf);
-      window.location.href = '/list-drb';
+      window.location.href = "/list-drb";
     },
     remplir: function remplir(ndrf) {
       this.ndrf = ndrf;
@@ -5503,7 +5536,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 _context.next = 2;
                 return axios.get('/fill-clients').then(function (res) {
-                  _this.clients = res.data; // console.log("clients : ", this.clients)
+                  _this.clients = res.data;
                 })["catch"](function (err) {
                   return console.error("err FillClients", err);
                 });
@@ -5529,7 +5562,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return axios.get("/fill-reference-plan?nrcEntrp=".concat(_this2.nrc_entrp)).then(function (res) {
                   _this2.reference_plan = res.data;
                   _this2.curr_client = res.data[0].raisoci;
-                  console.log("reference_plan : ", _this2.reference_plan);
                 })["catch"](function (err) {
                   return console.log("err FillReferencesPlan", err);
                 });
@@ -11202,7 +11234,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\ntable[data-v-376179dc] {\r\n  margin: 10px auto;\n}\ntd[data-v-376179dc],\r\nth[data-v-376179dc] {\r\n  text-align: center;\n}\n.total_reg[data-v-376179dc] {\r\n  margin: 10px auto;\r\n  float: right;\n}\n.btn-Etat[data-v-376179dc] {\r\n  display: flex;\r\n  flex-direction: row;\r\n  flex-wrap: wrap;\n}\n.display_div[data-v-376179dc] {\r\n  display: flex;\r\n  flex-direction: row;\r\n  flex-wrap: wrap;\n}\n.display_div_child[data-v-376179dc] {\r\n  display: flex;\r\n  flex-direction: column;\n}\n.div_select_all[data-v-376179dc] {\r\n  float: right;\n}\n.EcartOFPPT[data-v-376179dc] {\r\n  align-items: center;\r\n  text-align: center;\r\n  -webkit-text-decoration: black;\r\n          text-decoration: black;\r\n  background-color: transparent;\r\n  border: none;\r\n  font-weight: bold;\n}\n.div_dtdepo_accusemod6[data-v-376179dc]{\r\n  display: flex;\r\n  flex-direction: row;\r\n  justify-content: center;\n}\n.table_reg_entr[data-v-376179dc]{\r\n  width: 100%;\n}\n.table-responsive[data-v-376179dc]{\r\n  overflow-x: hidden;\n}\n@media only screen and (max-width: 1000px) {\n.table-responsive[data-v-376179dc]{\r\n  overflow-x: scroll;\n}\n}\nth[data-v-376179dc], td[data-v-376179dc]{\r\n  font-size:14px;height:-10px;\n}\r\n", ""]);
+exports.push([module.i, "\ntable[data-v-376179dc] {\r\n  margin: 10px auto;\n}\ntd[data-v-376179dc],\r\nth[data-v-376179dc] {\r\n  text-align: center;\n}\n.total_reg[data-v-376179dc] {\r\n  margin: 10px auto;\r\n  float: right;\n}\n.btn-Etat[data-v-376179dc] {\r\n  display: flex;\r\n  flex-direction: row;\r\n  flex-wrap: wrap;\n}\n.display_div[data-v-376179dc] {\r\n  display: flex;\r\n  flex-direction: row;\r\n  flex-wrap: wrap;\n}\n.display_div_child[data-v-376179dc] {\r\n  display: flex;\r\n  flex-direction: column;\n}\n.div_select_all[data-v-376179dc] {\r\n  float: right;\n}\n.EcartOFPPT[data-v-376179dc] {\r\n  align-items: center;\r\n  text-align: center;\r\n  -webkit-text-decoration: black;\r\n          text-decoration: black;\r\n  background-color: transparent;\r\n  border: none;\r\n  font-weight: bold;\n}\n.div_dtdepo_accusemod6[data-v-376179dc] {\r\n  display: flex;\r\n  flex-direction: row;\r\n  justify-content: center;\n}\n.table_reg_entr[data-v-376179dc] {\r\n  width: 100%;\n}\n.table-responsive[data-v-376179dc] {\r\n  overflow-x: hidden;\n}\n@media only screen and (max-width: 1000px) {\n.table-responsive[data-v-376179dc] {\r\n    overflow-x: scroll;\n}\n}\nth[data-v-376179dc],\r\ntd[data-v-376179dc] {\r\n  font-size: 14px;\r\n  height: -10px;\n}\r\n", ""]);
 
 // exports
 
@@ -47187,9 +47219,7 @@ var render = function() {
                     "\n        "
                 ),
                 _c("a", { attrs: { href: "/list-drb" } }, [
-                  _vm._v(
-                    "\n          List Demande remboursement OFPPT\n        "
-                  )
+                  _vm._v(" List Demande remboursement OFPPT ")
                 ]),
                 _vm._v("\n        " + _vm._s(" > ") + "\n        "),
                 _c("a", { attrs: { href: "/detail-drb-ofppt" } }, [
@@ -47410,7 +47440,7 @@ var render = function() {
                     "div",
                     {
                       staticClass:
-                        "form-group col-lg-12 col-sm-12 custom-control custom-checkbox"
+                        "\n              form-group\n              col-lg-12 col-sm-12\n              custom-control custom-checkbox\n            "
                     },
                     [
                       _c("div", { staticClass: "div_select_all" }, [
@@ -47466,7 +47496,7 @@ var render = function() {
                         _c(
                           "label",
                           {
-                            staticClass: "custom-control-label ",
+                            staticClass: "custom-control-label",
                             attrs: { for: "select_all" }
                           },
                           [_vm._v("selectionner tout")]
@@ -48013,7 +48043,7 @@ var render = function() {
                           _c(
                             "div",
                             {
-                              staticClass: "form-group col-lg-12 col-sm-12 ",
+                              staticClass: "form-group col-lg-12 col-sm-12",
                               staticStyle: {
                                 "margin-top": "auto",
                                 "margin-bottum": "auto",
@@ -48065,7 +48095,7 @@ var render = function() {
                             "div",
                             {
                               staticClass:
-                                "form-group col-lg-6 col-sm-12 custom-control custom-checkbox",
+                                "\n                    form-group\n                    col-lg-6 col-sm-12\n                    custom-control custom-checkbox\n                  ",
                               staticStyle: {
                                 "margin-top": "20px",
                                 "margin-bottum": "20px"
@@ -48121,7 +48151,7 @@ var render = function() {
                               _c(
                                 "label",
                                 {
-                                  staticClass: "custom-control-label ",
+                                  staticClass: "custom-control-label",
                                   attrs: { for: "accuse_model6" }
                                 },
                                 [_vm._v("Accusé Modéle 6")]
@@ -48794,7 +48824,7 @@ var render = function() {
           _vm._v("Demandes remboursement OFPPT")
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "container h-100 " }, [
+        _c("div", { staticClass: "container h-100" }, [
           _c("form", { attrs: { action: "/searchofppt", method: "GET" } }, [
             _c("div", { staticClass: "searchbar bu-sm" }, [
               _c("input", {
@@ -48880,7 +48910,7 @@ var render = function() {
                 _vm._v(" "),
                 _c("td", [
                   _vm._v(
-                    "\n             " +
+                    "\n              " +
                       _vm._s(DRB_Ofppt.commenter) +
                       "\n            "
                   )
@@ -48983,7 +49013,7 @@ var render = function() {
                                       _vm._v("delete_forever")
                                     ]),
                                     _vm._v(
-                                      "\n                                    Supprimer\n                                "
+                                      "\n                        Supprimer\n                      "
                                     )
                                   ]
                                 ),
@@ -49042,7 +49072,7 @@ var staticRenderFns = [
         },
         [
           _vm._v(
-            "\n                                  Êtes-vous sur ?\n                                "
+            "\n                        Êtes-vous sur ?\n                      "
           )
         ]
       ),
@@ -49057,7 +49087,7 @@ var staticRenderFns = [
             "aria-hidden": "true"
           }
         },
-        [_vm._v("×")]
+        [_vm._v("\n                        ×\n                      ")]
       )
     ])
   },
@@ -49068,7 +49098,7 @@ var staticRenderFns = [
     return _c("div", { staticClass: "modal-body" }, [
       _c("p", { attrs: { id: "modalDeleteMessage" } }, [
         _vm._v(
-          "\n                                    Une fois supprimé, vous ne pourrez plus récupérer cet enregistrement!\n                                "
+          "\n                        Une fois supprimé, vous ne pourrez plus récupérer cet\n                        enregistrement!\n                      "
         )
       ])
     ])
@@ -49085,9 +49115,7 @@ var staticRenderFns = [
       },
       [
         _c("i", { staticClass: "material-icons" }, [_vm._v("cancel")]),
-        _vm._v(
-          "\n                                    Annuler\n                                "
-        )
+        _vm._v("\n                        Annuler\n                      ")
       ]
     )
   }

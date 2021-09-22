@@ -283,8 +283,6 @@ $(document).ready(function() {
       url: '{!! URL::to('/findnbjours') !!}',
       data: {'nForm': nForm},
       success: function(data) {
-        console.log('success nb_jour !!');
-        console.log(data);
         if (data[0].Has_Same_Dates == 1) {
           nbJour = data[0].Nombre_Dates / data[0].nb_grp
           return nbJour
@@ -294,7 +292,7 @@ $(document).ready(function() {
         }
 
       },
-      error: function(msg) { console.log('error getting nb_jour !!'); }
+      error: function(msg) {  }
     }); //ajax
     //chercher le nb de jours associé au "Plan de formation" choisi dans "Formations"
     $.ajax({
@@ -302,8 +300,6 @@ $(document).ready(function() {
         url: '{!! URL::to('/finddates') !!}',
         data: {'nForm': nForm},
         success: function(data) {
-          console.log('success dates !!');
-          console.log(data);
           var createDateInput = '';
           for (var i = 1; i <= nbJour; i++) {
             createDateInput +=
@@ -320,7 +316,7 @@ $(document).ready(function() {
         $('#datesInput').html(""); //clear input values
         $('#datesInput').append(createDateInput);
       },
-      error: function(msg) { console.log('error getting dates !!'); }
+      error: function(msg) { }
     }); //ajax
   }
 
@@ -338,7 +334,6 @@ $(document).ready(function() {
       url: '{!! URL::to('/findpersonnel') !!}',
       data: {'nForm': nForm},
       success: function(data) {
-        console.log('success personnel !!', data);
         var grabData = "";
         for (let i = 0; i < data.length; i++) {
           grabData +=
@@ -353,7 +348,7 @@ $(document).ready(function() {
         personnelsInput.append(titleSection);
         personnelsInput.append(grabData);
       },
-      error: function(error) { console.log('error getting personnels'); },
+      error: function(error) { },
     }); //ajax fun 2
   } //fun
 
@@ -365,7 +360,6 @@ $(document).ready(function() {
         url: '{!! URL::to('/findpersonnelformation') !!}',
         data: {'idForm': idForm},
         success: function(data) {
-            console.log("success form pers !!", data);
             for (let i = 0; i < data.length; i++) {
             let cin = data[i]['cin'];
             let targetCheckbox = document.getElementById(cin);
@@ -375,7 +369,7 @@ $(document).ready(function() {
             // }
             } //endfor
         },
-        error: function(error) { console.log("error : ", error); }
+        error: function(error) { }
         });
     }, 400);
   }
@@ -384,13 +378,12 @@ $(document).ready(function() {
     setTimeout(() => {
         var idForm = $('#id_form').val();
         var nForm = $('#n_form').val();
-        console.log(" idForm : " + idForm + ",nForm : " + nForm);
         $.ajax({
         type: 'GET',
         url: '{!! URL::to('/find-personnel-formation-deja') !!}',
         data: {'idForm': idForm, 'nForm': nForm},
         success: function(data) {
-            console.log("success personnel deja !!", data);
+            
             for (let i = 0; i < data.length; i++) {
                 let cin = data[i]['cin'];
                 let targetCheckbox = document.getElementById(cin);
