@@ -80,6 +80,18 @@
                   {{ $errors->first('n_contrat') }}
                   </span>
               @endif
+
+              <label for="type_contrat">Type Contrat</label>
+            <select name="type_contrat" {{ $errors->has('type_contrat') ? ' is-invalid' : 'type_contrat' }}" value="{{old('type_contrat')}}" class="form-control" id="type_contrat" >
+            <option disabled selected>*</option>
+            <option {{$plans->type_contrat == 'normal'? 'selected':''}} value="normal">normal</option>
+            <option {{$plans->type_contrat == 'tiers payant'? 'selected':''}} value="tiers payant">tiers payant</option>
+            </select>
+            @if ($errors->has('type_contrat'))
+            <span class="invalid-feedback" role="alert">
+            {{ $errors->first('type_contrat') }}
+            </span>
+             @endif
             </div>
 
 

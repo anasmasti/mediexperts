@@ -64,7 +64,7 @@ class PlanController extends Controller
                 'nrc_e' => 'required',
                 'annee' => 'required|min:4|starts_with:20',
                 'n_contrat' => 'nullable|max:15',
-
+                'type_contrat' => 'required',
                 //PF OFPPT
                 'dt_contrat_PFOPT' => 'nullable|date|before_or_equal:'.date('Y-m-d'),
                 'dt_accuse_PFOPT' => 'nullable|date|before_or_equal:'.date('Y-m-d'),
@@ -84,6 +84,7 @@ class PlanController extends Controller
             $plans->nrc_e = $request->input("nrc_e");
             $plans->annee = $request->input("annee");
             $plans->n_contrat = $request->input("n_contrat");
+            $plans->type_contrat = $request->input("type_contrat");
             //Génerer le Ref pdf
             $rais_abrev = Client::select('clients.rais_abrev')
                 ->where('clients.nrc_entrp', $request->input("nrc_e"))
@@ -186,7 +187,7 @@ class PlanController extends Controller
                 'nrc_e' => 'required|max:15',
                 'annee' => 'required|min:4|starts_with:20',
                 'n_contrat' => 'nullable|max:15',
-
+                'type_contrat'=> 'required',
                 'dt_contrat_PFOPT' => 'nullable|date|before_or_equal:'.date('Y-m-d'), //7
                 'dt_accuse_PFOPT' => 'nullable|date|before_or_equal:'.date('Y-m-d'), //7
                 'etat' => 'required|max:50',
@@ -202,7 +203,7 @@ class PlanController extends Controller
             $plans->nrc_e = $request->input("nrc_e");
             $plans->annee = $request->input("annee");
             $plans->n_contrat = $request->input("n_contrat");
-
+            $plans->type_contrat = $request->input("type_contrat");
             //Génerer le Ref pf
             $rais_abrev = Client::select('clients.rais_abrev')
                 ->where('clients.nrc_entrp', $plans->nrc_e)

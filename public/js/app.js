@@ -47326,14 +47326,16 @@ var render = function() {
                                   )
                                 ]),
                                 _vm._v(" "),
-                                _c("td", [
-                                  _vm._v(
-                                    _vm._s(
-                                      info.bdg_total * 0.3 +
-                                        info.bdg_total * 0.2
-                                    )
-                                  )
-                                ]),
+                                info.type_contrat == "tiers payant"
+                                  ? _c("td", [
+                                      _vm._v(
+                                        _vm._s(
+                                          info.bdg_total * 0.3 +
+                                            info.bdg_total * 0.2
+                                        )
+                                      )
+                                    ])
+                                  : _vm._e(),
                                 _vm._v(" "),
                                 _c("td", [_vm._v(_vm._s(info.n_facture))]),
                                 _vm._v(" "),
@@ -72323,6 +72325,7 @@ var actions = {
               return axios.get("/regEntrp-drb-ofppt/" + ndrb).then(function (_ref6) {
                 var data = _ref6.data;
                 commit("FETCH_REGL_ENTREPRISE_INFO", data);
+                console.log(data);
               })["catch"](function (err) {
                 return console.log("cant get reg entrp info", err);
               });
@@ -73045,8 +73048,8 @@ var state = {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\HP\Desktop\Projects\Work\Mediexperts_App\mediexperts_dev\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\HP\Desktop\Projects\Work\Mediexperts_App\mediexperts_dev\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\HP\Desktop\mediexperts\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\HP\Desktop\mediexperts\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

@@ -13,7 +13,7 @@ class PlanFormation extends Model
         'n_form',
         'n_action',
         'pause',
-
+        
         //docs
         'model5', //fiche pres
         'model3',

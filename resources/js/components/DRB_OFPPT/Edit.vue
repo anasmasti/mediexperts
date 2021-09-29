@@ -89,7 +89,7 @@
                     <td>{{ info.bdg_total }}</td>
                     <td>{{ info.bdg_total * 0.2 }}</td>
                     <td>{{ info.bdg_total + info.bdg_total * 0.2 }}</td>
-                    <td>{{ info.bdg_total * 0.3 + info.bdg_total * 0.2 }}</td>
+                    <td v-if="info.type_contrat == 'tiers payant'" >{{ info.bdg_total * 0.3 + info.bdg_total * 0.2 }}</td>
                     <td>{{ info.n_facture }}</td>
                     <td>
                       <input
