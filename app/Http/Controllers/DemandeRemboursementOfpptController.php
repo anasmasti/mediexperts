@@ -51,6 +51,7 @@ class DemandeRemboursementOfpptController extends Controller
         'plan_formations.payerAllPF',
         'clients.raisoci',
         'plans.id_plan',
+        'plans.type_contrat',
         'formations.n_form',
         'formations.n_facture',
         'themes.id_theme',

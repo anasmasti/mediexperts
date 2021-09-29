@@ -115,12 +115,6 @@
             </span>
         @endif
     </div>
-    {{-- @foreach ($client as $cl)
-        <input id="gc_entrp" value="{{$cl->giac_rattach}}" type="hidden" name="gc_entrp" readonly>
-    @endforeach --}}
-    {{-- HIDDEN INPIT FOR GIAC --}}
-
-
     <div class="form-group col-lg-3 col-md-6 col-sm-6 col-12">
         <label>Type Mission</label>
         <select class="form-control {{ $errors->has('type_miss') ? ' is-invalid' : '' }}" name="type_miss" id="type_miss" onchange="checkEtat()">
@@ -144,24 +138,9 @@
     <div class="form-group col-lg-3 col-md-6 col-sm-6 col-12">
         <label>Type Contrat</label>
         <select class="form-control" name="type_contrat" id="type_contrat" >
-            @php
-            $etatcontrats =['normal','tiers payant'];
-            for ($i=0; $i < 2; $i++) { 
-                if($etatcontrats[$i] == $df->type_contrat){
-                    echo ' <option value="'.$etatcontrats[$i].'" selected>'.$etatcontrats[$i].'</option>';
-                    $etatcontrats[$i] = 'n';
-                }
-            }
-            if($etatcontrats[0] == 'n')
-            {echo '<option value="'.$etatcontrats[1].'" >'.$etatcontrats[1].'</option>';}
-            else {
-                {echo '<option value="'.$etatcontrats[0].'" >'.$etatcontrats[0].'</option>';}
-            }
-         
-
-             
-            @endphp
-           
+            <option disabled selected>*</option>
+            <option {{$df->type_contrat == 'normal'? 'selected':''}} value="normal">normal</option>
+            <option {{$df->type_contrat == 'tiers payant'? 'selected':''}} value="tiers payant">tiers payant</option>
         </select>
           @if ($errors->has('type_miss'))
             <span class="invalid-feedback" role="alert">
@@ -1271,15 +1250,9 @@
     <div class="form-group col-lg-3 col-md-6 col-sm-6 col-12">
       <label for="prc_cote_part">Pourcentage quote part</label>
       <select class="form-control {{ $errors->has('prc_cote_part') ? 'is-invalid' : '' }}" onchange="CalcQuotePart()"  name="prc_cote_part" id="prc_cote_part">
-        @php $percent = ["20%", "30%"]; @endphp
-            <option selected disabled><span class="text-danger">*</span></option>
-            @foreach ($percent as $perc)
-          @if ($df->prc_cote_part == $perc)
-            <option selected value="{{$perc}}">{{$perc}}</option>
-          @else
-            <option value="{{$perc}}">{{$perc}}</option>
-          @endif
-        @endforeach
+        <option disabled>*</option>
+        <option {{$df->prc_cote_part =='20%'?'selected': ''}} value="20%">20%</option>
+       <option {{$df->prc_cote_part == '30%'? 'selected':''}} value="30%">30%</option>
       </select>
       @if ($errors->has('prc_cote_part'))
         <span class="invalid-feedback" role="alert">

@@ -91,7 +91,7 @@ class FormulaireController extends Controller
         ->join('formations', 'formations.n_form', 'plan_formations.n_form')
         ->where('formations.id_form', $idform)
         ->first();
-      $formation = Formation::select('clients.raisoci', 'clients.ice', 'themes.nom_theme','plan_formations.*', 'formations.*')
+      $formation = Formation::select('clients.raisoci', 'clients.ice','plans.type_contrat' , 'themes.nom_theme','plan_formations.*', 'formations.*')
           ->join('plan_formations', 'plan_formations.n_form', 'formations.n_form')
           ->join('plans', 'plans.id_plan', '=', 'plan_formations.id_plan')
           ->join('clients', 'clients.nrc_entrp', '=', 'plans.nrc_e')

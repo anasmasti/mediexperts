@@ -24,6 +24,7 @@ export const actions = {
       .get(`/regEntrp-drb-ofppt/` + ndrb)
       .then(({ data }) => {
         commit("FETCH_REGL_ENTREPRISE_INFO", data);
+        console.log(data);
       })
       .catch(err => console.log("cant get reg entrp info", err));
   },
