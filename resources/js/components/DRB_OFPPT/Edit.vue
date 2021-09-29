@@ -89,7 +89,10 @@
                     <td>{{ info.bdg_total }}</td>
                     <td>{{ info.bdg_total * 0.2 }}</td>
                     <td>{{ info.bdg_total + info.bdg_total * 0.2 }}</td>
-                    <td v-if="info.type_contrat == 'tiers payant'" >{{ info.bdg_total * 0.3 + info.bdg_total * 0.2 }}</td>
+                    <td v-if="info.type_contrat == 'tiers payant'">
+                      {{ info.bdg_total * 0.3 + info.bdg_total * 0.2 }}
+                    </td>
+                    <td v-if="info.type_contrat == 'normal' || ''"></td>
                     <td>{{ info.n_facture }}</td>
                     <td>
                       <input
@@ -385,7 +388,10 @@
                       <th>{{ info.n_action }}</th>
                       <td>{{ info.nom_theme }}</td>
                       <td>{{ info.bdg_total }}</td>
-                      <td>{{ (info.bdg_total * 0.7).toFixed(2) }}</td>
+                      <td v-if="info.type_contrat == 'tiers payant'">
+                        {{ (info.bdg_total * 0.7).toFixed(2) }}
+                      </td>
+                      <td v-if="info.type_contrat == 'normal' || ''"></td>
                       <td>
                         <input
                           type="text"
@@ -395,7 +401,7 @@
                         />
                       </td>
                       <!-- <td><label :id="`EcartOFPPT:${info.id_thm}`" :name="`EcartOFPPT:${info.id_thm}`" :v-model="test">{{((info.bdg_total * (70/100)) - rmb_ofppt[index]).toFixed(2)}}</label></td> -->
-                      <td>
+                      <td v-if="info.type_contrat == 'tiers payant'">
                         <input
                           class="EcartOFPPT"
                           :id="`EcartOFPPT:${info.id_thm}`"
@@ -410,6 +416,20 @@
                                   info.bdg_total * (70 / 100) -
                                   rmb_ofppt[index]
                                 ).toFixed(2)
+                          "
+                          disabled
+                        />
+                      </td>
+                      <td v-if="info.type_contrat == 'normal'">
+                        <input
+                          class="EcartOFPPT"
+                          :id="`EcartOFPPT:${info.id_thm}`"
+                          :name="`EcartOFPPT:${info.id_thm}`"
+                          :value="
+                            (info.bdg_total - rmb_ofppt[index]).toFixed(2) ==
+                            'NaN'
+                              ? '0'
+                              : (info.bdg_total - rmb_ofppt[index]).toFixed(2)
                           "
                           disabled
                         />
@@ -715,25 +735,31 @@ export default {
       let dbId = id.split(":");
       let Pdate = this.prvDate;
 
-      // setTimeout(() => {
-
       for (item in data) {
-        console.log("Valueeee :" + Pdate);
-        if (Pdate == "" && dtPaimentEntr != "") {
-          if (data[item].id_thm == dbId[1]) {
+        if (data[item].type_contrat == "tiers payant") {
+          if (Pdate == "" && dtPaimentEntr != "") {
+            if (data[item].id_thm == dbId[1]) {
+              QtRegl = data[item].bdg_total * 0.3 + data[item].bdg_total * 0.2;
+              this.total_regl += QtRegl;
+              this.getPrvDate(id);
+            }
+          } else if (dtPaimentEntr == "" && data[item].id_thm == dbId[1]) {
             QtRegl = data[item].bdg_total * 0.3 + data[item].bdg_total * 0.2;
-            this.total_regl += QtRegl;
-
-            this.getPrvDate(id);
+            this.total_regl = this.total_regl - QtRegl;
           }
-        } else if (dtPaimentEntr == "" && data[item].id_thm == dbId[1]) {
-          QtRegl = data[item].bdg_total * 0.3 + data[item].bdg_total * 0.2;
-          this.total_regl = this.total_regl - QtRegl;
-          console.log("qte : " + this.total_reg);
+        } else if(data[item].type_contrat == 'normal'){
+           if (Pdate == "" && dtPaimentEntr != "") {
+            if (data[item].id_thm == dbId[1]) {
+              QtRegl = data[item].bdg_total + (data[item].bdg_total * 0.2);
+              this.total_regl += QtRegl;
+              this.getPrvDate(id);
+            }
+          } else if (dtPaimentEntr == "" && data[item].id_thm == dbId[1]) {
+            QtRegl = data[item].bdg_total + (data[item].bdg_total * 0.2);
+            this.total_regl = this.total_regl - QtRegl;
+          }
         }
       }
-
-      // }, 1200);
       return this.total_regl;
     },
 
