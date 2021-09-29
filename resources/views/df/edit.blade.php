@@ -203,16 +203,9 @@
     <div class="form-group col-lg-3 col-md-6 col-sm-6 col-12">
       <label for="prc_cote_part_demande">Pourcentage quote part</label>
       <select class="form-control {{ $errors->has('prc_cote_part_demande') ? 'is-invalid' : '' }}" onchange="CalcQuotePart()"  name="prc_cote_part_demande" id="prc_cote_part_demande">
-        @php $percent = ["20%", "30%"]; @endphp
-            <option selected disabled><span class="text-danger">*</span></option>
-            @foreach ($percent as $perc)
-          @if ($df->prc_cote_part_demande == $perc)
-            <option selected value="{{$perc}}">{{$perc}}</option>
-          @else
-            <option value="{{$perc}}">{{$perc}}</option>
-          @endif
-        @endforeach
-      </select>
+        <option {{$df->prc_cote_part_demande == '20%'? 'selected': ''}} value="20%">20%</option>
+        <option {{$df->prc_cote_part_demande =='30%'?'selected': ''}} value="30%">30%</option>
+    </select>
       @if ($errors->has('prc_cote_part_demande'))
         <span class="invalid-feedback" role="alert">
           {{ $errors->first('prc_cote_part_demande') }}
