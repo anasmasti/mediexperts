@@ -720,7 +720,6 @@
         {{-- toasts --}}
     </div>
 
-
 </body>
 </html>
 
