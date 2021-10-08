@@ -452,6 +452,8 @@
       let nForm = $(this).val();
       let formation = $('#formation');
       let cin = $('#cin'); let nom = $('#nom'); let prenom = $('#prenom'); let nCnss = $('#nCnss');
+      let fillDate = "";
+      let last_nonull_date = "";
       $.ajax({
         type: 'GET',
         url : '{!! URL::to('/fill-form-f4') !!}',
@@ -462,10 +464,23 @@
           if (data.length > 0) {
             for (let i = 0; i < data.length; i++) {
               fillFormation += `<optgroup label=" groupe: ${data[i].groupe}"><option value="`+data[i].id_form+`"> ${data[i].nom_theme}  </option></optgroup>`;
-            }
+              
+              for (let j=0; j<30;j++){
+              let tmpIndex = "date"+(j+1);
+              //get last nonull date (dernière date de formation)
+              if (data[0][tmpIndex] != null && data[0][(tmpIndex+1)] == null) {
+                last_nonull_date = data[0][tmpIndex];
+                }
+              }
+            
+            fillDate = "De "+DateFormat(data[0]['date1'])+" à "+DateFormat(last_nonull_date);
             formation.html("");
             formation.append(fillFormation);
+            $('#dates').html("");
+            $('#dates').val(fillDate);
+            $('#dateF4').val((last_nonull_date));
             $('#ville').val(data[0].local_2)
+            }
           }
           else {
             fillFormation = '<option selected disabled>(vide) aucun formation</option>';
@@ -516,20 +531,21 @@
           if (data.length > 0) {
             for (let i = 0; i < data.length; i++) {
               fillPersonnel += `<option value="`+data[i].cin+`">`+data[i].cin+`</option>`;
-              let tmpIndex = "date"+(i+1);
-              //get last nonull date (dernière date de formation)
-              if (data[0][tmpIndex] != null && data[0][(tmpIndex+1)] == null) {
-                last_nonull_date = data[0][tmpIndex];
+              // let tmpIndex = "date"+(i+1);
+              // //get last nonull date (dernière date de formation)
+              // if (data[0][tmpIndex] != null && data[0][(tmpIndex+1)] == null) {
+              //   last_nonull_date = data[0][tmpIndex];
+              //   console.log('--***--', last_nonull_date);
               }
-            }
-            fillDate = "De "+DateFormat(data[0]['date1'])+" à "+DateFormat(last_nonull_date);
+            
+            // fillDate = "De "+DateFormat(data[0]['date1'])+" à "+DateFormat(last_nonull_date);
             $('#dates').html("");
-            $('#dates').val(fillDate);
-            $('#dateF4').val((last_nonull_date));
+            // $('#dates').val(fillDate);
+            // $('#dateF4').val((last_nonull_date));
             $('#groupe').val(data[0]['groupe']);
             cin.html("");
             cin.append(fillPersonnel);
-          }
+            }
           else {
             fillPersonnel = '<option selected disabled>(vide) créer une formation ou ajouter des personnels</option>';
             cin.html("");
