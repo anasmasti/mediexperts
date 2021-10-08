@@ -100,14 +100,14 @@
         <!-- <h2>Modèle 3</h2> -->
         <h4 class="uppercase">MODELE D’AVIS D’ANNULATION OU DE MODIFICATION</h4>
       </div>
-
+  <!-- <div>{{this.duplicated_Info}}</div> -->
       <!-- TABLE -->
       <table style="background-color: #eaeaea">
         <tr>
           <th style="width: 30%" rowspan="6">Avis</th>
-          <th style="width: 30%">Anulation</th>
+          <th style="width: 30%">Annulation</th>
           <th style="width: 30%" colspan="2">
-            <strong v-if="this.duplicated_Info.typeAction === 'annulation'"
+            <strong v-if="this.duplicated_Info.typeAction === 'annulé'"
               >X</strong
             >
           </th>
@@ -201,7 +201,7 @@
         </div>
         <div class="d-flex" style="margin-top: 10px">
           <strong>Nouvel Organisme de formation : </strong>
-          <input type="text" :value="duplicated_Info.newOrganisme" disabled />
+          <input type="text" :value="duplicated_Info.newOrganisme == duplicated_Info.initialOrganisme ? '--':duplicated_Info.newOrganisme" disabled />
         </div>
         <!-- END ORGANISME -->
 
@@ -214,7 +214,7 @@
         </div>
         <div class="d-flex" style="margin-top: 10px">
           <strong>Nouveau lieu : </strong>
-          <input type="text" style="width:400px" :value="duplicated_Info.newLieu" disabled />
+          <input type="text" style="width:400px" :value="duplicated_Info.newLieu == duplicated_Info.initialLieu? '--':duplicated_Info.newLieu " disabled />
         </div>
         <!-- END LIEU -->
 
@@ -222,7 +222,7 @@
         <div style="margin-top:10px" v-if="duplicated_Info.hasSameDates">
           <strong>Dates initiales de réalisation : </strong>
           <div>
-            <p
+            <p 
               style="display: flex !important;flex-wrap:nowrap !important;line-height: 1px;"
             >
               <span v-if="duplicated_Info.dates.date1"
@@ -437,7 +437,7 @@
           </div>
           <div class="d-flix">
             <p v-if="this.duplicated_Info.old_pause">
-              Avec pause déjeuner de : 1 heurs
+              Avec pause déjeuner de : 1 heure
             </p>
           </div>
         </div>
@@ -460,7 +460,7 @@
           </div>
           <div class="d-flix">
             <p v-if="this.duplicated_Info.pause">
-              Avec pause déjeuner de : 1 heurs
+              Avec pause déjeuner de : 1 heure
             </p>
           </div>
         </div>
