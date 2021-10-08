@@ -186,7 +186,6 @@
             disabled
           />
         </div>
-
         <!-- <h1>---------- {{mydata}}</h1> -->
 
         <!-- END EFFECTIF -->
@@ -209,11 +208,13 @@
         <!-- LIEU -->
         <div class="d-flex" style="margin-top: 10px">
           <strong>Lieu de formation initial : </strong>
-          <input type="text" :value="duplicated_Info.initialLieu" disabled />
+          <input type="text" style="width:400
+          
+          00px" :value="duplicated_Info.initialLieu" disabled />
         </div>
         <div class="d-flex" style="margin-top: 10px">
           <strong>Nouveau lieu : </strong>
-          <input type="text" :value="duplicated_Info.newLieu" disabled />
+          <input type="text" style="width:400px" :value="duplicated_Info.newLieu" disabled />
         </div>
         <!-- END LIEU -->
 
@@ -225,34 +226,34 @@
               style="display: flex !important;flex-wrap:nowrap !important;line-height: 1px;"
             >
               <span v-if="duplicated_Info.dates.date1"
-                >{{ duplicated_Info.dates.date1 | moment("calendar") }};</span
+                >{{ duplicated_Info.dates.date1 | moment("DD/MM/YYYY") }};</span
               >
               <span v-if="duplicated_Info.dates.date2"
-                >{{ duplicated_Info.dates.date2 | moment("calendar") }};</span
+                >{{ duplicated_Info.dates.date2 | moment("DD/MM/YYYY") }};</span
               >
               <span v-if="duplicated_Info.dates.date3"
-                >{{ duplicated_Info.dates.date3 | moment("calendar") }};</span
+                >{{ duplicated_Info.dates.date3 | moment("DD/MM/YYYY") }};</span
               >
               <span v-if="duplicated_Info.dates.date4"
-                >{{ duplicated_Info.dates.date4 | moment("calendar") }};</span
+                >{{ duplicated_Info.dates.date4 | moment("DD/MM/YYYY") }};</span
               >
               <span v-if="duplicated_Info.dates.date5"
-                >{{ duplicated_Info.dates.date5 | moment("calendar") }};</span
+                >{{ duplicated_Info.dates.date5 | moment("DD/MM/YYYY") }};</span
               >
               <span v-if="duplicated_Info.dates.date6"
-                >{{ duplicated_Info.dates.date6 | moment("calendar") }};</span
+                >{{ duplicated_Info.dates.date6 | moment("DD/MM/YYYY") }};</span
               >
               <span v-if="duplicated_Info.dates.date7"
-                >{{ duplicated_Info.dates.date7 | moment("calendar") }};</span
+                >{{ duplicated_Info.dates.date7 | moment("DD/MM/YYYY") }};</span
               >
               <span v-if="duplicated_Info.dates.date8"
-                >{{ duplicated_Info.dates.date8 | moment("calendar") }};</span
+                >{{ duplicated_Info.dates.date8 | moment("DD/MM/YYYY") }};</span
               >
               <span v-if="duplicated_Info.dates.date9"
-                >{{ duplicated_Info.dates.date9 | moment("calendar") }};</span
+                >{{ duplicated_Info.dates.date9 | moment("DD/MM/YYYY") }};</span
               >
               <span v-if="duplicated_Info.dates.date10"
-                >{{ duplicated_Info.dates.date10 | moment("calendar") }};</span
+                >{{ duplicated_Info.dates.date10 | moment("DD/MM/YYYY") }};</span
               >
             </p>
           </div>
@@ -264,64 +265,64 @@
               style="display: flex !important;flex-wrap: nowrap !important;line-height: 1px;"
             >
               <span v-if="initd.old_date1"
-                >{{ initd.old_date1 | moment("calendar") }};</span
+                >{{ initd.old_date1 | moment("DD/MM/YYYY") }};</span
               >
               <span v-if="initd.old_date2"
-                >{{ initd.old_date2 | moment("calendar") }};</span
+                >{{ initd.old_date2 | moment("DD/MM/YYYY") }};</span
               >
               <span v-if="initd.old_date3"
-                >{{ initd.old_date3 | moment("calendar") }};</span
+                >{{ initd.old_date3 | moment("DD/MM/YYYY") }};</span
               >
               <span v-if="initd.old_date4"
-                >{{ initd.old_date4 | moment("calendar") }};</span
+                >{{ initd.old_date4 | moment("DD/MM/YYYY") }};</span
               >
               <span v-if="initd.old_date5"
-                >{{ initd.old_date5 | moment("calendar") }};</span
+                >{{ initd.old_date5 | moment("DD/MM/YYYY") }};</span
               >
               <span v-if="initd.old_date6"
-                >{{ initd.old_date6 | moment("calendar") }};</span
+                >{{ initd.old_date6 | moment("DD/MM/YYYY") }};</span
               >
               <span v-if="initd.old_date7"
-                >{{ initd.old_date7 | moment("calendar") }};</span
+                >{{ initd.old_date7 | moment("DD/MM/YYYY") }};</span
               >
               <span v-if="initd.old_date8"
-                >{{ initd.old_date8 | moment("calendar") }};</span
+                >{{ initd.old_date8 | moment("DD/MM/YYYY") }};</span
               >
               <span v-if="initd.old_date9"
-                >{{ initd.old_date9 | moment("calendar") }};</span
+                >{{ initd.old_date9 | moment("DD/MM/YYYY") }};</span
               >
               <span v-if="initd.old_date10"
-                >{{ initd.old_date10 | moment("calendar") }};</span
+                >{{ initd.old_date10 | moment("DD/MM/YYYY") }};</span
               >
               <span v-if="initd.date1"
-                >{{ initd.date1 | moment("calendar") }};</span
+                >{{ initd.date1 | moment("DD/MM/YYYY") }};</span
               >
               <span v-if="initd.date2"
-                >{{ initd.date2 | moment("calendar") }};</span
+                >{{ initd.date2 | moment("DD/MM/YYYY") }};</span
               >
               <span v-if="initd.date3"
-                >{{ initd.date3 | moment("calendar") }};</span
+                >{{ initd.date3 | moment("DD/MM/YYYY") }};</span
               >
               <span v-if="initd.date4"
-                >{{ initd.date4 | moment("calendar") }};</span
+                >{{ initd.date4 | moment("DD/MM/YYYY") }};</span
               >
               <span v-if="initd.date5"
-                >{{ initd.date5 | moment("calendar") }};</span
+                >{{ initd.date5 | moment("DD/MM/YYYY") }};</span
               >
               <span v-if="initd.date6"
-                >{{ initd.date6 | moment("calendar") }};</span
+                >{{ initd.date6 | moment("DD/MM/YYYY") }};</span
               >
               <span v-if="initd.date7"
-                >{{ initd.date7 | moment("calendar") }};</span
+                >{{ initd.date7 | moment("DD/MM/YYYY") }};</span
               >
               <span v-if="initd.date8"
-                >{{ initd.date8 | moment("calendar") }};</span
+                >{{ initd.date8 | moment("DD/MM/YYYY") }};</span
               >
               <span v-if="initd.date9"
-                >{{ initd.date9 | moment("calendar") }};</span
+                >{{ initd.date9 | moment("DD/MM/YYYY") }};</span
               >
               <span v-if="initd.date10"
-                >{{ initd.date10 | moment("calendar") }};</span
+                >{{ initd.date10 | moment("DD/MM/YYYY") }};</span
               >
             </p>
           </div>
@@ -337,34 +338,34 @@
               style="display: flex !important;flex-wrap:nowrap !important;line-height: 1px;"
             >
               <span v-if="initinf.date1"
-                >{{ initinf.date1 | moment("calendar") }};</span
+                >{{ initinf.date1 | moment("DD/MM/YYYY") }};</span
               >
               <span v-if="initinf.date2"
-                >{{ initinf.date2 | moment("calendar") }};</span
+                >{{ initinf.date2 | moment("DD/MM/YYYY") }};</span
               >
               <span v-if="initinf.date3"
-                >{{ initinf.date3 | moment("calendar") }};</span
+                >{{ initinf.date3 | moment("DD/MM/YYYY") }};</span
               >
               <span v-if="initinf.date4"
-                >{{ initinf.date4 | moment("calendar") }};</span
+                >{{ initinf.date4 | moment("DD/MM/YYYY") }};</span
               >
               <span v-if="initinf.date5"
-                >{{ initinf.date5 | moment("calendar") }};</span
+                >{{ initinf.date5 | moment("DD/MM/YYYY") }};</span
               >
               <span v-if="initinf.date6"
-                >{{ initinf.date6 | moment("calendar") }};</span
+                >{{ initinf.date6 | moment("DD/MM/YYYY") }};</span
               >
               <span v-if="initinf.date7"
-                >{{ initinf.date7 | moment("calendar") }};</span
+                >{{ initinf.date7 | moment("DD/MM/YYYY") }};</span
               >
               <span v-if="initinf.date8"
-                >{{ initinf.date8 | moment("calendar") }};</span
+                >{{ initinf.date8 | moment("DD/MM/YYYY") }};</span
               >
               <span v-if="initinf.date9"
-                >{{ initinf.date9 | moment("calendar") }};</span
+                >{{ initinf.date9 | moment("DD/MM/YYYY") }};</span
               >
               <span v-if="initinf.date10"
-                >{{ initinf.date10 | moment("calendar") }};</span
+                >{{ initinf.date10 | moment("DD/MM/YYYY") }};</span
               >
             </p>
           </div>
@@ -376,34 +377,34 @@
               style="display: flex !important;flex-wrap:nowrap !important;line-height: 1px;"
             >
               <span v-if="duplicated_Info.dates.date1"
-                >{{ duplicated_Info.dates.date1 | moment("calendar") }};</span
+                >{{ duplicated_Info.dates.date1 | moment("DD/MM/YYYY") }};</span
               >
               <span v-if="duplicated_Info.dates.date2"
-                >{{ duplicated_Info.dates.date2 | moment("calendar") }};</span
+                >{{ duplicated_Info.dates.date2 | moment("DD/MM/YYYY") }};</span
               >
               <span v-if="duplicated_Info.dates.date3"
-                >{{ duplicated_Info.dates.date3 | moment("calendar") }};</span
+                >{{ duplicated_Info.dates.date3 | moment("DD/MM/YYYY") }};</span
               >
               <span v-if="duplicated_Info.dates.date4"
-                >{{ duplicated_Info.dates.date4 | moment("calendar") }};</span
+                >{{ duplicated_Info.dates.date4 | moment("DD/MM/YYYY") }};</span
               >
               <span v-if="duplicated_Info.dates.date5"
-                >{{ duplicated_Info.dates.date5 | moment("calendar") }};</span
+                >{{ duplicated_Info.dates.date5 | moment("DD/MM/YYYY") }};</span
               >
               <span v-if="duplicated_Info.dates.date6"
-                >{{ duplicated_Info.dates.date6 | moment("calendar") }};</span
+                >{{ duplicated_Info.dates.date6 | moment("DD/MM/YYYY") }};</span
               >
               <span v-if="duplicated_Info.dates.date7"
-                >{{ duplicated_Info.dates.date7 | moment("calendar") }};</span
+                >{{ duplicated_Info.dates.date7 | moment("DD/MM/YYYY") }};</span
               >
               <span v-if="duplicated_Info.dates.date8"
-                >{{ duplicated_Info.dates.date8 | moment("calendar") }};</span
+                >{{ duplicated_Info.dates.date8 | moment("DD/MM/YYYY") }};</span
               >
               <span v-if="duplicated_Info.dates.date9"
-                >{{ duplicated_Info.dates.date9 | moment("calendar") }};</span
+                >{{ duplicated_Info.dates.date9 | moment("DD/MM/YYYY") }};</span
               >
               <span v-if="duplicated_Info.dates.date10"
-                >{{ duplicated_Info.dates.date10 | moment("calendar") }};</span
+                >{{ duplicated_Info.dates.date10 | moment("DD/MM/YYYY") }};</span
               >
             </p>
           </div>
