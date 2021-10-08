@@ -92,7 +92,7 @@
               </li>
             @endif
           @else
-          <button class="uk-button uk-button-default" type="button">{{ Auth::user()->name }}</button>
+          <button class="uk-button uk-button-default" type="button">{{ Auth::user()->firstname }} {{ Auth::user()->name }}</button>
 <div uk-dropdown>
     <ul class="uk-nav uk-dropdown-nav">
         <li class=uk-dropdown="animation: uk-animation-slide-top-small; duration: 500">
