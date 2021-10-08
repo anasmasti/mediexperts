@@ -99,7 +99,6 @@
         <!-- <h2>Modèle 3</h2> -->
         <h4 class="uppercase">MODELE D’AVIS D’ANNULATION OU DE MODIFICATION</h4>
       </div>
-      <div>{{ this.duplicated_Info }}</div>
       <!-- TABLE -->
       <table style="background-color: #eaeaea">
         <tr>
@@ -217,7 +216,7 @@
           <strong>Lieu de formation initial : </strong>
           <input
             type="text"
-            style="width: 400 00px"
+            style="width: 550px"
             :value="duplicated_Info.initialLieu"
             disabled
           />
@@ -226,7 +225,7 @@
           <strong>Nouveau lieu : </strong>
           <input
             type="text"
-            style="width: 400px"
+            style="width: 550px"
             :value="
               duplicated_Info.newLieu == duplicated_Info.initialLieu
                 ? '--'
