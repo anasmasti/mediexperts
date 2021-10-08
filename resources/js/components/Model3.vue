@@ -92,7 +92,7 @@
         Remplir les informations
       </button>
     </div>
-
+ 
     <!-- PAPER -->
     <div class="paper">
       <div class="text-center">
@@ -239,8 +239,8 @@
         <!-- DATES -->
         <div style="margin-top: 10px" v-if="duplicated_Info.hasSameDates">
           <strong>Dates initiales de réalisation : </strong>
-          <div v-if="duplicated_Info.dateDeRealisation">--</div>
-          <div v-if="!duplicated_Info.dateDeRealisation">
+          <!-- <div v-if="duplicated_Info.dateDeRealisation">--</div> -->
+          <div>
             <p
               style="
                 display: flex !important;
@@ -285,8 +285,8 @@
         </div>
         <div style="margin-top: 10px" v-if="!duplicated_Info.hasSameDates">
           <strong>Dates initiales de réalisation : </strong>
-          <div v-if="duplicated_Info.dateDeRealisation">--</div>
-          <div v-if="!duplicated_Info.dateDeRealisation">
+          <!-- <div v-if="duplicated_Info.dateDeRealisation">--</div> -->
+          <div>
             <div v-for="(initd, index) in initDates" :key="index">
               <p
                 style="
