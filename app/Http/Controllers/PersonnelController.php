@@ -68,14 +68,14 @@ class PersonnelController extends Controller
 
             $request->validate([
                 'cin' => 'required|unique:personnels|max:15',
-                'matricule' => 'required|unique:personnels|max:15',
+                'matricule' => 'max:15',
                 'nrc_e' => 'required|max:50',
                 'nom' => 'required|max:50',
                 'prenom' => 'required|max:50',
                 'cnss' => 'required|unique:personnels|max:12',
-                'dt_naiss' => 'required|date|before:'.date('Y-m-d'),
-                'dt_embch' => 'required|date|before_or_equal:'.date('Y-m-d'),
-                'dt_demiss' => 'nullable|date|before_or_equal:'.date('Y-m-d'),
+                'dt_naiss' => 'nullable',
+                'dt_embch' => 'nullable',
+                'dt_demiss' => 'nullable',
                 'fonction' => 'required|max:50',
                 'csp' => 'required|max:10',
                 'etat' => 'required|max:10',
@@ -131,14 +131,14 @@ class PersonnelController extends Controller
             $personnel = Personnel::findOrFail($cin);
 
             $request->validate([
-              'matricule' => 'required|unique:personnels',
+              'matricule' => 'max:20',
               'nrc_e' => 'required|max:50',
               'nom' => 'required|max:50',
               'prenom' => 'required|max:50',
               'cnss' => 'required|unique:personnels|max:12',
-              'dt_naiss' => 'required|date|before:'.date('Y-m-d'),
-              'dt_embch' => 'required|date|before_or_equal:'.date('Y-m-d'),
-              'dt_demiss' => 'nullable|date|before_or_equal:'.date('Y-m-d'),
+              'dt_naiss' => 'nullable',
+              'dt_embch' => 'nullable',
+              'dt_demiss' => 'nullable',
               'fonction' => 'required|max:50',
               'csp' => 'required|max:10',
               'etat' => 'required|max:10',

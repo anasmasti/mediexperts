@@ -33,7 +33,7 @@
                 {{ csrf_field() }}
 
                 <div class="form-group col-12">
-                    <label for="nrc_e">Entreprise</label>
+                    <label for="nrc_e">Entreprise *</label>
                     <select class="form-control {{ $errors->has('nrc_e') ? 'is-invalid' : '' }}"  value="{{old('nrc_e') }}" name="nrc_e">
                         <option selected disabled>-entreprise</option>
                         @foreach ($client as $cl)
@@ -56,7 +56,7 @@
                     @endif
                 </div>
 
-                <div class="form-group col-lg-3 col-sm-12"><label>CIN</label>
+                <div class="form-group col-lg-3 col-sm-12"><label>CIN *</label>
                     <input class="form-control {{ $errors->has('cin') ? 'is-invalid' : '' }}" value="{{old('cin')}}" type="text" name="cin" min="0" maxlength="10" placeholder="cin">
                     @if ($errors->has('cin'))
                     <span class="invalid-feedback" role="alert">
@@ -65,7 +65,7 @@
                     @endif
                 </div>
 
-                <div class="form-group col-lg-3 col-sm-12"><label>Nom</label>
+                <div class="form-group col-lg-3 col-sm-12"><label>Nom *</label>
                     <input class="form-control {{ $errors->has('nom') ? 'is-invalid' : '' }}" value="{{old('nom')}}" type="text" name="nom" maxlength="50" placeholder="nom" >
                     @if ($errors->has('nom'))
                     <span class="invalid-feedback" role="alert">
@@ -74,7 +74,7 @@
                     @endif
                 </div>
 
-                <div class="form-group col-lg-3 col-sm-12"><label>Prénom</label>
+                <div class="form-group col-lg-3 col-sm-12"><label>Prénom *</label>
                     <input class="form-control {{ $errors->has('prenom') ? 'is-invalid' : '' }}" value="{{old('prenom')}}" type="text" name="prenom" maxlength="50" placeholder="prénom" >
                     @if ($errors->has('prenom'))
                     <span class="invalid-feedback" role="alert">
@@ -83,7 +83,7 @@
                     @endif
                 </div>
 
-                <div class="form-group col-lg-3 col-sm-12"><label>CNSS</label>
+                <div class="form-group col-lg-3 col-sm-12"><label>CNSS *</label>
                     <input class="form-control {{ $errors->has('cnss') ? 'is-invalid' : '' }}" value="{{old('cnss')}}" type="text" name="cnss" min="0" maxlength="12" onkeypress="return isNumberKey(event)" placeholder="numero" >
                     @if ($errors->has('cnss'))
                     <span class="invalid-feedback" role="alert">
@@ -119,7 +119,7 @@
                     @endif
                 </div>
 
-                <div class="form-group col-lg-3 col-sm-12"><label>Fonction</label>
+                <div class="form-group col-lg-3 col-sm-12"><label>Fonction *</label>
                     <input class="form-control {{ $errors->has('fonction') ? 'is-invalid' : '' }}" value="{{old('fonction')}}" type="text" name="fonction" maxlength="50" placeholder="fonction" >
                     @if ($errors->has('fonction'))
                         <span class="invalid-feedback" role="alert">
@@ -128,7 +128,7 @@
                     @endif
                 </div>
 
-                <div class="form-group col-lg-3 col-sm-12"><label>CSP</label>
+                <div class="form-group col-lg-3 col-sm-12"><label>CSP *</label>
                     @php $csp = ['E', 'O', 'C']; @endphp
                     <select class="form-control {{ $errors->has('csp') ? 'is-invalid' : '' }}" name="csp" id="csp">
                         <option selected disabled>*</option>
@@ -143,7 +143,7 @@
                     @endif
                 </div>
 
-                <div class="form-group col-lg-3 col-sm-12"><label>ÉTAT</label>
+                <div class="form-group col-lg-3 col-sm-12"><label>ÉTAT *</label>
                     @php $etat = ['disponible', 'non disponible']; @endphp
                     <select class="form-control {{ $errors->has('dt_embch') ? 'is-invalid' : '' }}" name="etat" id="etat">
                         <option selected disabled>*</option>
