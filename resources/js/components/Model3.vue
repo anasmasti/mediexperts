@@ -3,14 +3,14 @@
     <!-- BUTTON IMPRIMER/ANNULER -->
     <print-button :backLink="'/'"></print-button>
     <!-- LISTE DE CHOIX -->
-    <div style="width:100%;" class="hide-from-print">
+    <div style="width: 100%" class="hide-from-print">
       <!-- SELECT ENTREPRISE -->
       <label class="hide-from-print" for="client">Entreprise :</label>
       <select
         class="hide-from-print"
         name="client"
         id="client"
-        style="width:100%; padding: .5rem; border: 1px solid #000;"
+        style="width: 100%; padding: 0.5rem; border: 1px solid #000"
         @change="
           handleAction('model3/FetchReferencesPlan', selected_nrc_entrp);
           handleAction('model3/SetNrcEntrp', selected_nrc_entrp);
@@ -18,23 +18,20 @@
         v-model="selected_nrc_entrp"
       >
         <option selected disabled>--sélectionner l'Entreprise --</option>
-        <option
-          v-for="cl in clients"
-          :value="cl.nrc_entrp"
-          :key="cl.nrc_entrp"
-          >{{ cl.raisoci }}</option
-        >
+        <option v-for="cl in clients" :value="cl.nrc_entrp" :key="cl.nrc_entrp">
+          {{ cl.raisoci }}
+        </option>
       </select>
 
       <!-- SELECT REF PLAN -->
-      <div style="width:100%;" class="hide-from-print">
+      <div style="width: 100%" class="hide-from-print">
         <label for="plans">Réference plan de formation :</label>
         <select
           v-if="reference_plans && reference_plans.length"
           class="hide-from-print"
           name="plans"
           id="plans"
-          style="width:100%; padding: .5rem; border: 1px solid #000;"
+          style="width: 100%; padding: 0.5rem; border: 1px solid #000"
           @change="handleAction('model3/FetchActionByReference', id_plan)"
           v-model="id_plan"
         >
@@ -43,26 +40,27 @@
             v-for="pdf in reference_plans"
             :value="pdf.id_plan"
             :key="pdf.id_plan"
-            >{{ pdf.refpdf }}</option
           >
+            {{ pdf.refpdf }}
+          </option>
         </select>
         <!--  -->
         <select
           v-else
           name="plans"
           id="plans"
-          style="width:100%; padding: .5rem; border: 1px solid #000;"
+          style="width: 100%; padding: 0.5rem; border: 1px solid #000"
         >
           <option></option>
         </select>
       </div>
 
-      <div class="hide-from-print" style="width:100%;">
+      <div class="hide-from-print" style="width: 100%">
         <label for="plans">Selectionner Thème de l’action :</label>
         <select
           name="actions"
           id="actions"
-          style="width:100%; padding: .5rem; border: 1px solid #000;"
+          style="width: 100%; padding: 0.5rem; border: 1px solid #000"
           @change="
             handleAction('model3/FetchInitialInfoAvisModif', nForm);
             handleAction('model3/FetchOldAvisInfo', nForm);
@@ -74,14 +72,15 @@
             v-for="action in actions_by_plan"
             :value="action.n_form"
             :key="action.nForm"
-            >{{ action.nom_theme }}</option
           >
+            {{ action.nom_theme }}
+          </option>
         </select>
       </div>
 
       <button
         class="hide-from-print"
-        style="background-color:#eaeaea; padding: .5rem; margin-top: 10px"
+        style="background-color: #eaeaea; padding: 0.5rem; margin-top: 10px"
         type="button"
         @click="
           handleAction('model3/GetSelectedTheme', nForm),
@@ -100,7 +99,7 @@
         <!-- <h2>Modèle 3</h2> -->
         <h4 class="uppercase">MODELE D’AVIS D’ANNULATION OU DE MODIFICATION</h4>
       </div>
-  <!-- <div>{{this.duplicated_Info}}</div> -->
+      <div>{{ this.duplicated_Info }}</div>
       <!-- TABLE -->
       <table style="background-color: #eaeaea">
         <tr>
@@ -147,10 +146,10 @@
 
       <!-- CONTENT -->
       <div style="padding-left: 20px">
-        <div style="margin-top: 20px; display:inline-block; width:100vw">
+        <div style="margin-top: 20px; display: inline-block; width: 100vw">
           <strong>Thème de l’action : </strong>
           <div v-for="(theme, i) in nom_theme" :key="i">
-            <p id="selected_theme" style="width:calc(100vw - 25vw)">
+            <p id="selected_theme" style="width: calc(100vw - 25vw)">
               {{ !nom_theme ? "--" : theme.nom_theme }}
             </p>
           </div>
@@ -201,29 +200,54 @@
         </div>
         <div class="d-flex" style="margin-top: 10px">
           <strong>Nouvel Organisme de formation : </strong>
-          <input type="text" :value="duplicated_Info.newOrganisme == duplicated_Info.initialOrganisme ? '--':duplicated_Info.newOrganisme" disabled />
+          <input
+            type="text"
+            :value="
+              duplicated_Info.newOrganisme == duplicated_Info.initialOrganisme
+                ? '--'
+                : duplicated_Info.newOrganisme
+            "
+            disabled
+          />
         </div>
         <!-- END ORGANISME -->
 
         <!-- LIEU -->
         <div class="d-flex" style="margin-top: 10px">
           <strong>Lieu de formation initial : </strong>
-          <input type="text" style="width:400
-          
-          00px" :value="duplicated_Info.initialLieu" disabled />
+          <input
+            type="text"
+            style="width: 400 00px"
+            :value="duplicated_Info.initialLieu"
+            disabled
+          />
         </div>
         <div class="d-flex" style="margin-top: 10px">
           <strong>Nouveau lieu : </strong>
-          <input type="text" style="width:400px" :value="duplicated_Info.newLieu == duplicated_Info.initialLieu? '--':duplicated_Info.newLieu " disabled />
+          <input
+            type="text"
+            style="width: 400px"
+            :value="
+              duplicated_Info.newLieu == duplicated_Info.initialLieu
+                ? '--'
+                : duplicated_Info.newLieu
+            "
+            disabled
+          />
         </div>
         <!-- END LIEU -->
 
         <!-- DATES -->
-        <div style="margin-top:10px" v-if="duplicated_Info.hasSameDates">
+        <div style="margin-top: 10px" v-if="duplicated_Info.hasSameDates">
           <strong>Dates initiales de réalisation : </strong>
-          <div>
-            <p 
-              style="display: flex !important;flex-wrap:nowrap !important;line-height: 1px;"
+          <div v-if="duplicated_Info.dateDeRealisation">--</div>
+          <div v-if="!duplicated_Info.dateDeRealisation">
+            <p
+              style="
+                display: flex !important;
+                flex-wrap: nowrap !important;
+                line-height: 1px;
+              "
             >
               <span v-if="duplicated_Info.dates.date1"
                 >{{ duplicated_Info.dates.date1 | moment("DD/MM/YYYY") }};</span
@@ -253,89 +277,104 @@
                 >{{ duplicated_Info.dates.date9 | moment("DD/MM/YYYY") }};</span
               >
               <span v-if="duplicated_Info.dates.date10"
-                >{{ duplicated_Info.dates.date10 | moment("DD/MM/YYYY") }};</span
+                >{{
+                  duplicated_Info.dates.date10 | moment("DD/MM/YYYY")
+                }};</span
               >
             </p>
           </div>
         </div>
         <div style="margin-top: 10px" v-if="!duplicated_Info.hasSameDates">
           <strong>Dates initiales de réalisation : </strong>
-          <div v-for="(initd, index) in initDates" :key="index">
-            <p
-              style="display: flex !important;flex-wrap: nowrap !important;line-height: 1px;"
-            >
-              <span v-if="initd.old_date1"
-                >{{ initd.old_date1 | moment("DD/MM/YYYY") }};</span
+          <div v-if="duplicated_Info.dateDeRealisation">--</div>
+          <div v-if="!duplicated_Info.dateDeRealisation">
+            <div v-for="(initd, index) in initDates" :key="index">
+              <p
+                style="
+                  display: flex !important;
+                  flex-wrap: nowrap !important;
+                  line-height: 1px;
+                "
               >
-              <span v-if="initd.old_date2"
-                >{{ initd.old_date2 | moment("DD/MM/YYYY") }};</span
-              >
-              <span v-if="initd.old_date3"
-                >{{ initd.old_date3 | moment("DD/MM/YYYY") }};</span
-              >
-              <span v-if="initd.old_date4"
-                >{{ initd.old_date4 | moment("DD/MM/YYYY") }};</span
-              >
-              <span v-if="initd.old_date5"
-                >{{ initd.old_date5 | moment("DD/MM/YYYY") }};</span
-              >
-              <span v-if="initd.old_date6"
-                >{{ initd.old_date6 | moment("DD/MM/YYYY") }};</span
-              >
-              <span v-if="initd.old_date7"
-                >{{ initd.old_date7 | moment("DD/MM/YYYY") }};</span
-              >
-              <span v-if="initd.old_date8"
-                >{{ initd.old_date8 | moment("DD/MM/YYYY") }};</span
-              >
-              <span v-if="initd.old_date9"
-                >{{ initd.old_date9 | moment("DD/MM/YYYY") }};</span
-              >
-              <span v-if="initd.old_date10"
-                >{{ initd.old_date10 | moment("DD/MM/YYYY") }};</span
-              >
-              <span v-if="initd.date1"
-                >{{ initd.date1 | moment("DD/MM/YYYY") }};</span
-              >
-              <span v-if="initd.date2"
-                >{{ initd.date2 | moment("DD/MM/YYYY") }};</span
-              >
-              <span v-if="initd.date3"
-                >{{ initd.date3 | moment("DD/MM/YYYY") }};</span
-              >
-              <span v-if="initd.date4"
-                >{{ initd.date4 | moment("DD/MM/YYYY") }};</span
-              >
-              <span v-if="initd.date5"
-                >{{ initd.date5 | moment("DD/MM/YYYY") }};</span
-              >
-              <span v-if="initd.date6"
-                >{{ initd.date6 | moment("DD/MM/YYYY") }};</span
-              >
-              <span v-if="initd.date7"
-                >{{ initd.date7 | moment("DD/MM/YYYY") }};</span
-              >
-              <span v-if="initd.date8"
-                >{{ initd.date8 | moment("DD/MM/YYYY") }};</span
-              >
-              <span v-if="initd.date9"
-                >{{ initd.date9 | moment("DD/MM/YYYY") }};</span
-              >
-              <span v-if="initd.date10"
-                >{{ initd.date10 | moment("DD/MM/YYYY") }};</span
-              >
-            </p>
+                <span v-if="initd.old_date1"
+                  >{{ initd.old_date1 | moment("DD/MM/YYYY") }};</span
+                >
+                <span v-if="initd.old_date2"
+                  >{{ initd.old_date2 | moment("DD/MM/YYYY") }};</span
+                >
+                <span v-if="initd.old_date3"
+                  >{{ initd.old_date3 | moment("DD/MM/YYYY") }};</span
+                >
+                <span v-if="initd.old_date4"
+                  >{{ initd.old_date4 | moment("DD/MM/YYYY") }};</span
+                >
+                <span v-if="initd.old_date5"
+                  >{{ initd.old_date5 | moment("DD/MM/YYYY") }};</span
+                >
+                <span v-if="initd.old_date6"
+                  >{{ initd.old_date6 | moment("DD/MM/YYYY") }};</span
+                >
+                <span v-if="initd.old_date7"
+                  >{{ initd.old_date7 | moment("DD/MM/YYYY") }};</span
+                >
+                <span v-if="initd.old_date8"
+                  >{{ initd.old_date8 | moment("DD/MM/YYYY") }};</span
+                >
+                <span v-if="initd.old_date9"
+                  >{{ initd.old_date9 | moment("DD/MM/YYYY") }};</span
+                >
+                <span v-if="initd.old_date10"
+                  >{{ initd.old_date10 | moment("DD/MM/YYYY") }};</span
+                >
+                <span v-if="initd.date1"
+                  >{{ initd.date1 | moment("DD/MM/YYYY") }};</span
+                >
+                <span v-if="initd.date2"
+                  >{{ initd.date2 | moment("DD/MM/YYYY") }};</span
+                >
+                <span v-if="initd.date3"
+                  >{{ initd.date3 | moment("DD/MM/YYYY") }};</span
+                >
+                <span v-if="initd.date4"
+                  >{{ initd.date4 | moment("DD/MM/YYYY") }};</span
+                >
+                <span v-if="initd.date5"
+                  >{{ initd.date5 | moment("DD/MM/YYYY") }};</span
+                >
+                <span v-if="initd.date6"
+                  >{{ initd.date6 | moment("DD/MM/YYYY") }};</span
+                >
+                <span v-if="initd.date7"
+                  >{{ initd.date7 | moment("DD/MM/YYYY") }};</span
+                >
+                <span v-if="initd.date8"
+                  >{{ initd.date8 | moment("DD/MM/YYYY") }};</span
+                >
+                <span v-if="initd.date9"
+                  >{{ initd.date9 | moment("DD/MM/YYYY") }};</span
+                >
+                <span v-if="initd.date10"
+                  >{{ initd.date10 | moment("DD/MM/YYYY") }};</span
+                >
+              </p>
+            </div>
           </div>
         </div>
         <div style="margin-top: 10px" v-if="!duplicated_Info.hasSameDates">
           <strong>Nouvelles Dates exactes de réalisation : </strong>
+          <div v-if="!duplicated_Info.dateDeRealisation">--</div>
+          <div v-if="duplicated_Info.dateDeRealisation">
           <div
             class=""
             v-for="initinf in Info_AvisModif"
             :key="initinf.id_form"
           >
             <p
-              style="display: flex !important;flex-wrap:nowrap !important;line-height: 1px;"
+              style="
+                display: flex !important;
+                flex-wrap: nowrap !important;
+                line-height: 1px;
+              "
             >
               <span v-if="initinf.date1"
                 >{{ initinf.date1 | moment("DD/MM/YYYY") }};</span
@@ -369,12 +408,18 @@
               >
             </p>
           </div>
+          </div>
         </div>
         <div style="margin-top: 10px" v-if="duplicated_Info.hasSameDates">
           <strong>Nouvelles Dates exactes de réalisation : </strong>
-          <div>
+          <div v-if="!duplicated_Info.dateDeRealisation">--</div>
+          <div v-if="duplicated_Info.dateDeRealisation">
             <p
-              style="display: flex !important;flex-wrap:nowrap !important;line-height: 1px;"
+              style="
+                display: flex !important;
+                flex-wrap: nowrap !important;
+                line-height: 1px;
+              "
             >
               <span v-if="duplicated_Info.dates.date1"
                 >{{ duplicated_Info.dates.date1 | moment("DD/MM/YYYY") }};</span
@@ -404,7 +449,9 @@
                 >{{ duplicated_Info.dates.date9 | moment("DD/MM/YYYY") }};</span
               >
               <span v-if="duplicated_Info.dates.date10"
-                >{{ duplicated_Info.dates.date10 | moment("DD/MM/YYYY") }};</span
+                >{{
+                  duplicated_Info.dates.date10 | moment("DD/MM/YYYY")
+                }};</span
               >
             </p>
           </div>
@@ -476,7 +523,7 @@
         </div>
 
         <div class="d-flex" style="margin-top: 50px">
-          <strong style="margin-left: auto;"
+          <strong style="margin-left: auto"
             >Cachet de l’entreprise, Signature et qualité du responsable</strong
           >
         </div>
@@ -531,14 +578,14 @@ export default {
           date7: "",
           date8: "",
           date9: "",
-          date10: ""
+          date10: "",
         },
-        hasSameDates: true
+        hasSameDates: true,
       },
       title: {
         ref: "",
-        theme: ""
-      }
+        theme: "",
+      },
     };
   },
 
@@ -550,17 +597,17 @@ export default {
 
   computed: {
     ...mapState("model3", {
-      curr_nrc_entrp: state => state.curr_nrc_entrp,
-      clients: state => state.clients,
-      reference_plans: state => state.reference_plans,
-      actions_by_plan: state => state.actions_by_plan,
-      curr_annee_plan: state => state.curr_annee_plan,
-      cabinets: state => state.cabinets,
-      Info_AvisModif: state => state.Info_AvisModif,
-      Old_AvisModif: state => state.Old_AvisModif,
-      nom_responsable: state => state.nom_responsable,
-      nom_theme: state => state.nom_theme
-    })
+      curr_nrc_entrp: (state) => state.curr_nrc_entrp,
+      clients: (state) => state.clients,
+      reference_plans: (state) => state.reference_plans,
+      actions_by_plan: (state) => state.actions_by_plan,
+      curr_annee_plan: (state) => state.curr_annee_plan,
+      cabinets: (state) => state.cabinets,
+      Info_AvisModif: (state) => state.Info_AvisModif,
+      Old_AvisModif: (state) => state.Old_AvisModif,
+      nom_responsable: (state) => state.nom_responsable,
+      nom_theme: (state) => state.nom_theme,
+    }),
   },
   methods: {
     handleAction(actionName, value) {
@@ -600,13 +647,18 @@ export default {
         this.duplicated_Info.heurDebutNew = this.Info_AvisModif[0].hr_debut;
         this.duplicated_Info.heurFinNew = this.Info_AvisModif[0].hr_fin;
 
-        this.duplicated_Info.dateDeRealisation = this.Info_AvisModif[0].date_realisation;
-        this.duplicated_Info.organismeDeFormation = this.Info_AvisModif[0].organisme_formations;
-        this.duplicated_Info.lieuDeFormation = this.Info_AvisModif[0].lieu_formations;
-        this.duplicated_Info.organisationHoraire = this.Info_AvisModif[0].horaire_formations;
+        this.duplicated_Info.dateDeRealisation =
+          this.Info_AvisModif[0].date_realisation;
+        this.duplicated_Info.organismeDeFormation =
+          this.Info_AvisModif[0].organisme_formations;
+        this.duplicated_Info.lieuDeFormation =
+          this.Info_AvisModif[0].lieu_formations;
+        this.duplicated_Info.organisationHoraire =
+          this.Info_AvisModif[0].horaire_formations;
         this.duplicated_Info.typeAction = this.Info_AvisModif[0].type_action;
         this.duplicated_Info.pause = this.Info_AvisModif[0].pause;
-        this.duplicated_Info.hasSameDates = this.Info_AvisModif[0].Has_Same_Dates;
+        this.duplicated_Info.hasSameDates =
+          this.Info_AvisModif[0].Has_Same_Dates;
 
         (this.duplicated_Info.dates.date1 = this.Info_AvisModif[0].date1),
           (this.duplicated_Info.dates.date2 = this.Info_AvisModif[0].date2),
@@ -624,14 +676,11 @@ export default {
       this.title.ref = this.actions_by_plan[0].refpdf;
 
       setTimeout(() => {
-        this.title.theme = document.getElementById(
-          "selected_theme"
-        ).textContent;
+        this.title.theme =
+          document.getElementById("selected_theme").textContent;
         document.title = `Avis.Modif - ${this.title.ref} - ${this.title.theme}`;
       }, 500);
-    }
-
-
-  }
+    },
+  },
 };
 </script>
