@@ -50530,8 +50530,6 @@ var render = function() {
         ]
       ),
       _vm._v(" "),
-      _c("div", [_vm._v(_vm._s(this.duplicated_Info))]),
-      _vm._v(" "),
       _c("div", { staticClass: "paper" }, [
         _vm._m(0),
         _vm._v(" "),

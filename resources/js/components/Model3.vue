@@ -92,7 +92,7 @@
         Remplir les informations
       </button>
     </div>
-  <div>{{this.duplicated_Info}}</div>
+ 
     <!-- PAPER -->
     <div class="paper">
       <div class="text-center">
