@@ -50485,13 +50485,13 @@ var render = function() {
               [_vm._v("Avis")]
             ),
             _vm._v(" "),
-            _c("th", { staticStyle: { width: "30%" } }, [_vm._v("Anulation")]),
+            _c("th", { staticStyle: { width: "30%" } }, [_vm._v("Annulation")]),
             _vm._v(" "),
             _c(
               "th",
               { staticStyle: { width: "30%" }, attrs: { colspan: "2" } },
               [
-                this.duplicated_Info.typeAction === "annulation"
+                this.duplicated_Info.typeAction === "annulé"
                   ? _c("strong", [_vm._v("X")])
                   : _vm._e()
               ]
@@ -50621,7 +50621,13 @@ var render = function() {
               _vm._v(" "),
               _c("input", {
                 attrs: { type: "text", disabled: "" },
-                domProps: { value: _vm.duplicated_Info.newOrganisme }
+                domProps: {
+                  value:
+                    _vm.duplicated_Info.newOrganisme ==
+                    _vm.duplicated_Info.initialOrganisme
+                      ? "--"
+                      : _vm.duplicated_Info.newOrganisme
+                }
               })
             ]
           ),
@@ -50649,7 +50655,13 @@ var render = function() {
               _c("input", {
                 staticStyle: { width: "400px" },
                 attrs: { type: "text", disabled: "" },
-                domProps: { value: _vm.duplicated_Info.newLieu }
+                domProps: {
+                  value:
+                    _vm.duplicated_Info.newLieu ==
+                    _vm.duplicated_Info.initialLieu
+                      ? "--"
+                      : _vm.duplicated_Info.newLieu
+                }
               })
             ]
           ),
@@ -51399,7 +51411,7 @@ var render = function() {
               this.duplicated_Info.old_pause
                 ? _c("p", [
                     _vm._v(
-                      "\n            Avec pause déjeuner de : 1 heurs\n          "
+                      "\n            Avec pause déjeuner de : 1 heure\n          "
                     )
                   ])
                 : _vm._e()
@@ -51433,7 +51445,7 @@ var render = function() {
               this.duplicated_Info.pause
                 ? _c("p", [
                     _vm._v(
-                      "\n            Avec pause déjeuner de : 1 heurs\n          "
+                      "\n            Avec pause déjeuner de : 1 heure\n          "
                     )
                   ])
                 : _vm._e()
