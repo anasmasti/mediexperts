@@ -140,10 +140,9 @@
             </div>
             <div class="form-group col-lg-3 col-md-6 col-12">
                 <label>Type Contrat</label>
-                <select class="form-control"  name="type_contrat" id="type_contrat" >
-                    <option disabled selected>*</option>
+                <select class="form-control"  name="type_contrat" id="type_contrat">
                     <option value="normal">normal</option>
-                    <option value="tiers payant">tiers payant</option>
+                    <option value="tiers payant" selected>tiers payant</option>
                 </select>
             </div>
             <div class="form-group col-lg-3 col-md-6 col-12"><label>Année d'exercice</label>

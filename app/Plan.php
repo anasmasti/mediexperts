@@ -15,7 +15,8 @@ class Plan extends Model
         'nrc_e',
         'annee',
         'n_contrat',
-
+        'type_contrat',
+        
         //PF OFPPT
         'dt_recep_ct',
         'ct_PF',

@@ -85,19 +85,26 @@
 
 
 
-      <div class="form-group col-lg-3 col-sm-12"><label>N° Contrat</label>
+      <div class="form-group col-lg-3 col-sm-12">
+        <label>N° Contrat</label>
         <input class="form-control {{ $errors->has('n_contrat') ? ' is-invalid' : 'n_contrat' }}" value="{{old('n_contrat')}}" type="text" name="n_contrat" id="n_contrat" min="4" maxlength="15" placeholder="N° Contrat">
         @if ($errors->has('n_contrat'))
             <span class="invalid-feedback" role="alert">
             {{ $errors->first('n_contrat') }}
             </span>
         @endif
+          <label for="type_contrat">Type Contrat</label>
+          <select name="type_contrat" {{ $errors->has('type_contrat') ? ' is-invalid' : 'type_contrat' }}" value="{{old('type_contrat')}}" class="form-control" id="type_contrat" >
+            <option value="normal">normal</option>
+            <option value="tiers payant" selected>tiers payant</option>
+          </select>
+          @if ($errors->has('type_contrat'))
+          <span class="invalid-feedback" role="alert">
+          {{ $errors->first('type_contrat') }}
+          </span>
+      @endif
       </div>
-
-    {{-- <div class="form-group col-12" id="ofpptTitle">
-        <h3 class="text-secondary" style="line-height: .5;">OFPPT</h3>
-    </div> --}}
-
+      
         <div class="form-group col-lg-6 col-sm-12" id="divDf3">
             <label>{{----}}</label>
             <div class="form-group">

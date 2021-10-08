@@ -196,6 +196,9 @@
       <th colspan="3">TOTAL TTC</th>
       <th>{{ ($formation["bdg_total"] * .2 + $formation["bdg_total"]) }} DH</th>
     </tr>
+    @if ($formation['type_contrat'] == 'normal')
+        <div></div>
+    @else
     <tr>
       <th colspan="3">QUOTE PART OFFPT TIERS PAYANT H.T</th>
       {{-- <th></th> --}}
@@ -206,6 +209,8 @@
       {{-- <th rowspan="2"></th> --}}
       <th rowspan="2">{{ ($formation["bdg_total"] * .3 + $formation["bdg_total"] * .2) }} DH</th>
     </tr>
+    @endif
+  
   </table>
 
   <div style="width:100%; height:30px;"><!--space--></div>
@@ -234,7 +239,6 @@
   <div id="footer" class="container" style="position:fixed !important; bottom:0; width:100%; padding-bottom:100px;">
     <p style="margin: 20px; margin-left: 60%">RAID SOUFIANE, Gérant Associé </p>
   </div>
-
 </div>
 
 
@@ -266,6 +270,7 @@
           },
           contentType: "application/x-www-form-urlencoded",
           success: function(data) {
+            console.log(data);
             if (data[0].length == 0) { $('#saveBtn').html("Erreur"); }
             else {
               $('#saveBtn').html(data.msg);

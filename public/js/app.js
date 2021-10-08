@@ -4651,6 +4651,26 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Edit",
@@ -4812,24 +4832,33 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var QtRegl = null;
       var dtPaimentEntr = document.getElementById(id).value;
       var dbId = id.split(":");
-      var Pdate = this.prvDate; // setTimeout(() => {
+      var Pdate = this.prvDate;
 
       for (item in data) {
-        console.log("Valueeee :" + Pdate);
-
-        if (Pdate == "" && dtPaimentEntr != "") {
-          if (data[item].id_thm == dbId[1]) {
+        if (data[item].type_contrat == "tiers payant") {
+          if (Pdate == "" && dtPaimentEntr != "") {
+            if (data[item].id_thm == dbId[1]) {
+              QtRegl = data[item].bdg_total * 0.3 + data[item].bdg_total * 0.2;
+              this.total_regl += QtRegl;
+              this.getPrvDate(id);
+            }
+          } else if (dtPaimentEntr == "" && data[item].id_thm == dbId[1]) {
             QtRegl = data[item].bdg_total * 0.3 + data[item].bdg_total * 0.2;
-            this.total_regl += QtRegl;
-            this.getPrvDate(id);
+            this.total_regl = this.total_regl - QtRegl;
           }
-        } else if (dtPaimentEntr == "" && data[item].id_thm == dbId[1]) {
-          QtRegl = data[item].bdg_total * 0.3 + data[item].bdg_total * 0.2;
-          this.total_regl = this.total_regl - QtRegl;
-          console.log("qte : " + this.total_reg);
+        } else if (data[item].type_contrat == 'normal') {
+          if (Pdate == "" && dtPaimentEntr != "") {
+            if (data[item].id_thm == dbId[1]) {
+              QtRegl = data[item].bdg_total + data[item].bdg_total * 0.2;
+              this.total_regl += QtRegl;
+              this.getPrvDate(id);
+            }
+          } else if (dtPaimentEntr == "" && data[item].id_thm == dbId[1]) {
+            QtRegl = data[item].bdg_total + data[item].bdg_total * 0.2;
+            this.total_regl = this.total_regl - QtRegl;
+          }
         }
-      } // }, 1200);
-
+      }
 
       return this.total_regl;
     },
@@ -47340,14 +47369,22 @@ var render = function() {
                                   )
                                 ]),
                                 _vm._v(" "),
-                                _c("td", [
-                                  _vm._v(
-                                    _vm._s(
-                                      info.bdg_total * 0.3 +
-                                        info.bdg_total * 0.2
-                                    )
-                                  )
-                                ]),
+                                info.type_contrat == "tiers payant"
+                                  ? _c("td", [
+                                      _vm._v(
+                                        "\n                    " +
+                                          _vm._s(
+                                            info.bdg_total * 0.3 +
+                                              info.bdg_total * 0.2
+                                          ) +
+                                          "\n                  "
+                                      )
+                                    ])
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                info.type_contrat == "normal" || ""
+                                  ? _c("td")
+                                  : _vm._e(),
                                 _vm._v(" "),
                                 _c("td", [_vm._v(_vm._s(info.n_facture))]),
                                 _vm._v(" "),
@@ -48301,11 +48338,21 @@ var render = function() {
                                 _vm._v(" "),
                                 _c("td", [_vm._v(_vm._s(info.bdg_total))]),
                                 _vm._v(" "),
-                                _c("td", [
-                                  _vm._v(
-                                    _vm._s((info.bdg_total * 0.7).toFixed(2))
-                                  )
-                                ]),
+                                info.type_contrat == "tiers payant"
+                                  ? _c("td", [
+                                      _vm._v(
+                                        "\n                      " +
+                                          _vm._s(
+                                            (info.bdg_total * 0.7).toFixed(2)
+                                          ) +
+                                          "\n                    "
+                                      )
+                                    ])
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                info.type_contrat == "normal" || ""
+                                  ? _c("td")
+                                  : _vm._e(),
                                 _vm._v(" "),
                                 _c("td", [
                                   _c("input", {
@@ -48338,28 +48385,55 @@ var render = function() {
                                   })
                                 ]),
                                 _vm._v(" "),
-                                _c("td", [
-                                  _c("input", {
-                                    staticClass: "EcartOFPPT",
-                                    attrs: {
-                                      id: "EcartOFPPT:" + info.id_thm,
-                                      name: "EcartOFPPT:" + info.id_thm,
-                                      disabled: ""
-                                    },
-                                    domProps: {
-                                      value:
-                                        (
-                                          info.bdg_total * (70 / 100) -
-                                          _vm.rmb_ofppt[index]
-                                        ).toFixed(2) == "NaN"
-                                          ? "0"
-                                          : (
+                                info.type_contrat == "tiers payant"
+                                  ? _c("td", [
+                                      _c("input", {
+                                        staticClass: "EcartOFPPT",
+                                        attrs: {
+                                          id: "EcartOFPPT:" + info.id_thm,
+                                          name: "EcartOFPPT:" + info.id_thm,
+                                          disabled: ""
+                                        },
+                                        domProps: {
+                                          value:
+                                            (
                                               info.bdg_total * (70 / 100) -
                                               _vm.rmb_ofppt[index]
-                                            ).toFixed(2)
-                                    }
-                                  })
-                                ]),
+                                            ).toFixed(2) == "NaN"
+                                              ? "0"
+                                              : (
+                                                  info.bdg_total * (70 / 100) -
+                                                  _vm.rmb_ofppt[index]
+                                                ).toFixed(2)
+                                        }
+                                      })
+                                    ])
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                info.type_contrat == "normal"
+                                  ? _c("td", [
+                                      _c("input", {
+                                        staticClass: "EcartOFPPT",
+                                        attrs: {
+                                          id: "EcartOFPPT:" + info.id_thm,
+                                          name: "EcartOFPPT:" + info.id_thm,
+                                          disabled: ""
+                                        },
+                                        domProps: {
+                                          value:
+                                            (
+                                              info.bdg_total -
+                                              _vm.rmb_ofppt[index]
+                                            ).toFixed(2) == "NaN"
+                                              ? "0"
+                                              : (
+                                                  info.bdg_total -
+                                                  _vm.rmb_ofppt[index]
+                                                ).toFixed(2)
+                                        }
+                                      })
+                                    ])
+                                  : _vm._e(),
                                 _vm._v(" "),
                                 _c("td", [
                                   _c("textarea", {
@@ -72337,6 +72411,7 @@ var actions = {
               return axios.get("/regEntrp-drb-ofppt/" + ndrb).then(function (_ref6) {
                 var data = _ref6.data;
                 commit("FETCH_REGL_ENTREPRISE_INFO", data);
+                console.log(data);
               })["catch"](function (err) {
                 return console.log("cant get reg entrp info", err);
               });
