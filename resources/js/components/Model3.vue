@@ -96,7 +96,7 @@
     <!-- PAPER -->
     <div class="paper">
       <div class="text-center">
-        <!-- <h2>Modèle 3</h2> -->
+        <h2>Modèle 3</h2>
         <h4 class="uppercase">MODELE D’AVIS D’ANNULATION OU DE MODIFICATION</h4>
       </div>
       <!-- TABLE -->
