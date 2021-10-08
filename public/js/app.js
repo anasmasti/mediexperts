@@ -6255,7 +6255,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -50534,8 +50533,6 @@ var render = function() {
       _c("div", { staticClass: "paper" }, [
         _vm._m(0),
         _vm._v(" "),
-        _c("div", [_vm._v(_vm._s(this.duplicated_Info))]),
-        _vm._v(" "),
         _c("table", { staticStyle: { "background-color": "#eaeaea" } }, [
           _c("tr", [
             _c(
@@ -50698,7 +50695,7 @@ var render = function() {
               _c("strong", [_vm._v("Lieu de formation initial : ")]),
               _vm._v(" "),
               _c("input", {
-                staticStyle: { width: "400 00px" },
+                staticStyle: { width: "550px" },
                 attrs: { type: "text", disabled: "" },
                 domProps: { value: _vm.duplicated_Info.initialLieu }
               })
@@ -50712,7 +50709,7 @@ var render = function() {
               _c("strong", [_vm._v("Nouveau lieu : ")]),
               _vm._v(" "),
               _c("input", {
-                staticStyle: { width: "400px" },
+                staticStyle: { width: "550px" },
                 attrs: { type: "text", disabled: "" },
                 domProps: {
                   value:
