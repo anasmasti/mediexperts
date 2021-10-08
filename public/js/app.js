@@ -51548,6 +51548,8 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "text-center" }, [
+      _c("h2", [_vm._v("Modèle 3")]),
+      _vm._v(" "),
       _c("h4", { staticClass: "uppercase" }, [
         _vm._v("MODELE D’AVIS D’ANNULATION OU DE MODIFICATION")
       ])
