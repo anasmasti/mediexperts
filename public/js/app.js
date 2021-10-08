@@ -6208,6 +6208,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -50632,6 +50633,7 @@ var render = function() {
               _c("strong", [_vm._v("Lieu de formation initial : ")]),
               _vm._v(" "),
               _c("input", {
+                staticStyle: { width: "400" },
                 attrs: { type: "text", disabled: "" },
                 domProps: { value: _vm.duplicated_Info.initialLieu }
               })
@@ -50645,6 +50647,7 @@ var render = function() {
               _c("strong", [_vm._v("Nouveau lieu : ")]),
               _vm._v(" "),
               _c("input", {
+                staticStyle: { width: "400px" },
                 attrs: { type: "text", disabled: "" },
                 domProps: { value: _vm.duplicated_Info.newLieu }
               })
@@ -50672,7 +50675,7 @@ var render = function() {
                               _vm._s(
                                 _vm._f("moment")(
                                   _vm.duplicated_Info.dates.date1,
-                                  "calendar"
+                                  "DD/MM/YYYY"
                                 )
                               ) + ";"
                             )
@@ -50685,7 +50688,7 @@ var render = function() {
                               _vm._s(
                                 _vm._f("moment")(
                                   _vm.duplicated_Info.dates.date2,
-                                  "calendar"
+                                  "DD/MM/YYYY"
                                 )
                               ) + ";"
                             )
@@ -50698,7 +50701,7 @@ var render = function() {
                               _vm._s(
                                 _vm._f("moment")(
                                   _vm.duplicated_Info.dates.date3,
-                                  "calendar"
+                                  "DD/MM/YYYY"
                                 )
                               ) + ";"
                             )
@@ -50711,7 +50714,7 @@ var render = function() {
                               _vm._s(
                                 _vm._f("moment")(
                                   _vm.duplicated_Info.dates.date4,
-                                  "calendar"
+                                  "DD/MM/YYYY"
                                 )
                               ) + ";"
                             )
@@ -50724,7 +50727,7 @@ var render = function() {
                               _vm._s(
                                 _vm._f("moment")(
                                   _vm.duplicated_Info.dates.date5,
-                                  "calendar"
+                                  "DD/MM/YYYY"
                                 )
                               ) + ";"
                             )
@@ -50737,7 +50740,7 @@ var render = function() {
                               _vm._s(
                                 _vm._f("moment")(
                                   _vm.duplicated_Info.dates.date6,
-                                  "calendar"
+                                  "DD/MM/YYYY"
                                 )
                               ) + ";"
                             )
@@ -50750,7 +50753,7 @@ var render = function() {
                               _vm._s(
                                 _vm._f("moment")(
                                   _vm.duplicated_Info.dates.date7,
-                                  "calendar"
+                                  "DD/MM/YYYY"
                                 )
                               ) + ";"
                             )
@@ -50763,7 +50766,7 @@ var render = function() {
                               _vm._s(
                                 _vm._f("moment")(
                                   _vm.duplicated_Info.dates.date8,
-                                  "calendar"
+                                  "DD/MM/YYYY"
                                 )
                               ) + ";"
                             )
@@ -50776,7 +50779,7 @@ var render = function() {
                               _vm._s(
                                 _vm._f("moment")(
                                   _vm.duplicated_Info.dates.date9,
-                                  "calendar"
+                                  "DD/MM/YYYY"
                                 )
                               ) + ";"
                             )
@@ -50789,7 +50792,7 @@ var render = function() {
                               _vm._s(
                                 _vm._f("moment")(
                                   _vm.duplicated_Info.dates.date10,
-                                  "calendar"
+                                  "DD/MM/YYYY"
                                 )
                               ) + ";"
                             )
@@ -50826,7 +50829,7 @@ var render = function() {
                                   _vm._s(
                                     _vm._f("moment")(
                                       initd.old_date1,
-                                      "calendar"
+                                      "DD/MM/YYYY"
                                     )
                                   ) + ";"
                                 )
@@ -50839,7 +50842,7 @@ var render = function() {
                                   _vm._s(
                                     _vm._f("moment")(
                                       initd.old_date2,
-                                      "calendar"
+                                      "DD/MM/YYYY"
                                     )
                                   ) + ";"
                                 )
@@ -50852,7 +50855,7 @@ var render = function() {
                                   _vm._s(
                                     _vm._f("moment")(
                                       initd.old_date3,
-                                      "calendar"
+                                      "DD/MM/YYYY"
                                     )
                                   ) + ";"
                                 )
@@ -50865,7 +50868,7 @@ var render = function() {
                                   _vm._s(
                                     _vm._f("moment")(
                                       initd.old_date4,
-                                      "calendar"
+                                      "DD/MM/YYYY"
                                     )
                                   ) + ";"
                                 )
@@ -50878,7 +50881,7 @@ var render = function() {
                                   _vm._s(
                                     _vm._f("moment")(
                                       initd.old_date5,
-                                      "calendar"
+                                      "DD/MM/YYYY"
                                     )
                                   ) + ";"
                                 )
@@ -50891,7 +50894,7 @@ var render = function() {
                                   _vm._s(
                                     _vm._f("moment")(
                                       initd.old_date6,
-                                      "calendar"
+                                      "DD/MM/YYYY"
                                     )
                                   ) + ";"
                                 )
@@ -50904,7 +50907,7 @@ var render = function() {
                                   _vm._s(
                                     _vm._f("moment")(
                                       initd.old_date7,
-                                      "calendar"
+                                      "DD/MM/YYYY"
                                     )
                                   ) + ";"
                                 )
@@ -50917,7 +50920,7 @@ var render = function() {
                                   _vm._s(
                                     _vm._f("moment")(
                                       initd.old_date8,
-                                      "calendar"
+                                      "DD/MM/YYYY"
                                     )
                                   ) + ";"
                                 )
@@ -50930,7 +50933,7 @@ var render = function() {
                                   _vm._s(
                                     _vm._f("moment")(
                                       initd.old_date9,
-                                      "calendar"
+                                      "DD/MM/YYYY"
                                     )
                                   ) + ";"
                                 )
@@ -50943,7 +50946,7 @@ var render = function() {
                                   _vm._s(
                                     _vm._f("moment")(
                                       initd.old_date10,
-                                      "calendar"
+                                      "DD/MM/YYYY"
                                     )
                                   ) + ";"
                                 )
@@ -50954,7 +50957,7 @@ var render = function() {
                             ? _c("span", [
                                 _vm._v(
                                   _vm._s(
-                                    _vm._f("moment")(initd.date1, "calendar")
+                                    _vm._f("moment")(initd.date1, "DD/MM/YYYY")
                                   ) + ";"
                                 )
                               ])
@@ -50964,7 +50967,7 @@ var render = function() {
                             ? _c("span", [
                                 _vm._v(
                                   _vm._s(
-                                    _vm._f("moment")(initd.date2, "calendar")
+                                    _vm._f("moment")(initd.date2, "DD/MM/YYYY")
                                   ) + ";"
                                 )
                               ])
@@ -50974,7 +50977,7 @@ var render = function() {
                             ? _c("span", [
                                 _vm._v(
                                   _vm._s(
-                                    _vm._f("moment")(initd.date3, "calendar")
+                                    _vm._f("moment")(initd.date3, "DD/MM/YYYY")
                                   ) + ";"
                                 )
                               ])
@@ -50984,7 +50987,7 @@ var render = function() {
                             ? _c("span", [
                                 _vm._v(
                                   _vm._s(
-                                    _vm._f("moment")(initd.date4, "calendar")
+                                    _vm._f("moment")(initd.date4, "DD/MM/YYYY")
                                   ) + ";"
                                 )
                               ])
@@ -50994,7 +50997,7 @@ var render = function() {
                             ? _c("span", [
                                 _vm._v(
                                   _vm._s(
-                                    _vm._f("moment")(initd.date5, "calendar")
+                                    _vm._f("moment")(initd.date5, "DD/MM/YYYY")
                                   ) + ";"
                                 )
                               ])
@@ -51004,7 +51007,7 @@ var render = function() {
                             ? _c("span", [
                                 _vm._v(
                                   _vm._s(
-                                    _vm._f("moment")(initd.date6, "calendar")
+                                    _vm._f("moment")(initd.date6, "DD/MM/YYYY")
                                   ) + ";"
                                 )
                               ])
@@ -51014,7 +51017,7 @@ var render = function() {
                             ? _c("span", [
                                 _vm._v(
                                   _vm._s(
-                                    _vm._f("moment")(initd.date7, "calendar")
+                                    _vm._f("moment")(initd.date7, "DD/MM/YYYY")
                                   ) + ";"
                                 )
                               ])
@@ -51024,7 +51027,7 @@ var render = function() {
                             ? _c("span", [
                                 _vm._v(
                                   _vm._s(
-                                    _vm._f("moment")(initd.date8, "calendar")
+                                    _vm._f("moment")(initd.date8, "DD/MM/YYYY")
                                   ) + ";"
                                 )
                               ])
@@ -51034,7 +51037,7 @@ var render = function() {
                             ? _c("span", [
                                 _vm._v(
                                   _vm._s(
-                                    _vm._f("moment")(initd.date9, "calendar")
+                                    _vm._f("moment")(initd.date9, "DD/MM/YYYY")
                                   ) + ";"
                                 )
                               ])
@@ -51044,7 +51047,7 @@ var render = function() {
                             ? _c("span", [
                                 _vm._v(
                                   _vm._s(
-                                    _vm._f("moment")(initd.date10, "calendar")
+                                    _vm._f("moment")(initd.date10, "DD/MM/YYYY")
                                   ) + ";"
                                 )
                               ])
@@ -51083,7 +51086,10 @@ var render = function() {
                             ? _c("span", [
                                 _vm._v(
                                   _vm._s(
-                                    _vm._f("moment")(initinf.date1, "calendar")
+                                    _vm._f("moment")(
+                                      initinf.date1,
+                                      "DD/MM/YYYY"
+                                    )
                                   ) + ";"
                                 )
                               ])
@@ -51093,7 +51099,10 @@ var render = function() {
                             ? _c("span", [
                                 _vm._v(
                                   _vm._s(
-                                    _vm._f("moment")(initinf.date2, "calendar")
+                                    _vm._f("moment")(
+                                      initinf.date2,
+                                      "DD/MM/YYYY"
+                                    )
                                   ) + ";"
                                 )
                               ])
@@ -51103,7 +51112,10 @@ var render = function() {
                             ? _c("span", [
                                 _vm._v(
                                   _vm._s(
-                                    _vm._f("moment")(initinf.date3, "calendar")
+                                    _vm._f("moment")(
+                                      initinf.date3,
+                                      "DD/MM/YYYY"
+                                    )
                                   ) + ";"
                                 )
                               ])
@@ -51113,7 +51125,10 @@ var render = function() {
                             ? _c("span", [
                                 _vm._v(
                                   _vm._s(
-                                    _vm._f("moment")(initinf.date4, "calendar")
+                                    _vm._f("moment")(
+                                      initinf.date4,
+                                      "DD/MM/YYYY"
+                                    )
                                   ) + ";"
                                 )
                               ])
@@ -51123,7 +51138,10 @@ var render = function() {
                             ? _c("span", [
                                 _vm._v(
                                   _vm._s(
-                                    _vm._f("moment")(initinf.date5, "calendar")
+                                    _vm._f("moment")(
+                                      initinf.date5,
+                                      "DD/MM/YYYY"
+                                    )
                                   ) + ";"
                                 )
                               ])
@@ -51133,7 +51151,10 @@ var render = function() {
                             ? _c("span", [
                                 _vm._v(
                                   _vm._s(
-                                    _vm._f("moment")(initinf.date6, "calendar")
+                                    _vm._f("moment")(
+                                      initinf.date6,
+                                      "DD/MM/YYYY"
+                                    )
                                   ) + ";"
                                 )
                               ])
@@ -51143,7 +51164,10 @@ var render = function() {
                             ? _c("span", [
                                 _vm._v(
                                   _vm._s(
-                                    _vm._f("moment")(initinf.date7, "calendar")
+                                    _vm._f("moment")(
+                                      initinf.date7,
+                                      "DD/MM/YYYY"
+                                    )
                                   ) + ";"
                                 )
                               ])
@@ -51153,7 +51177,10 @@ var render = function() {
                             ? _c("span", [
                                 _vm._v(
                                   _vm._s(
-                                    _vm._f("moment")(initinf.date8, "calendar")
+                                    _vm._f("moment")(
+                                      initinf.date8,
+                                      "DD/MM/YYYY"
+                                    )
                                   ) + ";"
                                 )
                               ])
@@ -51163,7 +51190,10 @@ var render = function() {
                             ? _c("span", [
                                 _vm._v(
                                   _vm._s(
-                                    _vm._f("moment")(initinf.date9, "calendar")
+                                    _vm._f("moment")(
+                                      initinf.date9,
+                                      "DD/MM/YYYY"
+                                    )
                                   ) + ";"
                                 )
                               ])
@@ -51173,7 +51203,10 @@ var render = function() {
                             ? _c("span", [
                                 _vm._v(
                                   _vm._s(
-                                    _vm._f("moment")(initinf.date10, "calendar")
+                                    _vm._f("moment")(
+                                      initinf.date10,
+                                      "DD/MM/YYYY"
+                                    )
                                   ) + ";"
                                 )
                               ])
@@ -51210,7 +51243,7 @@ var render = function() {
                               _vm._s(
                                 _vm._f("moment")(
                                   _vm.duplicated_Info.dates.date1,
-                                  "calendar"
+                                  "DD/MM/YYYY"
                                 )
                               ) + ";"
                             )
@@ -51223,7 +51256,7 @@ var render = function() {
                               _vm._s(
                                 _vm._f("moment")(
                                   _vm.duplicated_Info.dates.date2,
-                                  "calendar"
+                                  "DD/MM/YYYY"
                                 )
                               ) + ";"
                             )
@@ -51236,7 +51269,7 @@ var render = function() {
                               _vm._s(
                                 _vm._f("moment")(
                                   _vm.duplicated_Info.dates.date3,
-                                  "calendar"
+                                  "DD/MM/YYYY"
                                 )
                               ) + ";"
                             )
@@ -51249,7 +51282,7 @@ var render = function() {
                               _vm._s(
                                 _vm._f("moment")(
                                   _vm.duplicated_Info.dates.date4,
-                                  "calendar"
+                                  "DD/MM/YYYY"
                                 )
                               ) + ";"
                             )
@@ -51262,7 +51295,7 @@ var render = function() {
                               _vm._s(
                                 _vm._f("moment")(
                                   _vm.duplicated_Info.dates.date5,
-                                  "calendar"
+                                  "DD/MM/YYYY"
                                 )
                               ) + ";"
                             )
@@ -51275,7 +51308,7 @@ var render = function() {
                               _vm._s(
                                 _vm._f("moment")(
                                   _vm.duplicated_Info.dates.date6,
-                                  "calendar"
+                                  "DD/MM/YYYY"
                                 )
                               ) + ";"
                             )
@@ -51288,7 +51321,7 @@ var render = function() {
                               _vm._s(
                                 _vm._f("moment")(
                                   _vm.duplicated_Info.dates.date7,
-                                  "calendar"
+                                  "DD/MM/YYYY"
                                 )
                               ) + ";"
                             )
@@ -51301,7 +51334,7 @@ var render = function() {
                               _vm._s(
                                 _vm._f("moment")(
                                   _vm.duplicated_Info.dates.date8,
-                                  "calendar"
+                                  "DD/MM/YYYY"
                                 )
                               ) + ";"
                             )
@@ -51314,7 +51347,7 @@ var render = function() {
                               _vm._s(
                                 _vm._f("moment")(
                                   _vm.duplicated_Info.dates.date9,
-                                  "calendar"
+                                  "DD/MM/YYYY"
                                 )
                               ) + ";"
                             )
@@ -51327,7 +51360,7 @@ var render = function() {
                               _vm._s(
                                 _vm._f("moment")(
                                   _vm.duplicated_Info.dates.date10,
-                                  "calendar"
+                                  "DD/MM/YYYY"
                                 )
                               ) + ";"
                             )
