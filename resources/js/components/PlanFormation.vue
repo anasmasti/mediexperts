@@ -23,7 +23,6 @@
             :key="cl.nrc_entrp"
           >
             {{ cl.raisoci }}
-
           </option>
         </select>
       </div>
@@ -87,7 +86,6 @@
       <div class="hide-from-print" style="width: 100%; height: 10px">
         <!--space-->
       </div>
-
       <table>
         <thead>
           <tr>
@@ -112,10 +110,10 @@
         <tbody id="tableActions" class="center" v-if="actions_by_ref">
           <!-- {{-- auto filled --}} -->
           <tr v-for="(action, idx) in actions_by_ref" :key="`plan${idx}`">
-            <td>{{ action.n_action }}</td>
-            <td>{{ action.nom_domain }}</td>
-            <td>{{ action.nom_theme }}</td>
-            <td :id="action.n_form">
+            <td v-if="action.type_action != 'annulé'">{{ action.n_action }}</td>
+            <td v-if="action.type_action != 'annulé'">{{ action.nom_domain }}</td>
+            <td v-if="action.type_action != 'annulé'">{{ action.nom_theme }}</td>
+            <td v-if="action.type_action != 'annulé'" :id="action.n_form">
               {{ (action.dates && DateFormat(action.dates.date1)) || "" }}
               {{ (action.dates && DateFormat(action.dates.date2)) || "" }}
               {{ (action.dates && DateFormat(action.dates.date3)) || "" }}
@@ -147,17 +145,17 @@
               {{ (action.dates && DateFormat(action.dates.date29)) || "" }}
               {{ (action.dates && DateFormat(action.dates.date30)) || "" }}
             </td>
-            <td>{{ action.organisme }}</td>
-            <td>{{ action.ncnss_cab }}</td>
-            <td>{{ action.nb_partcp_total }}</td>
-            <td>{{ action.nb_cadre }}</td>
-            <td>{{ action.nb_employe }}</td>
-            <td>{{ action.nb_ouvrier }}</td>
-            <td>{{ action.nb_jour }}</td>
-            <td>{{ action.lieu }}</td>
-            <td>{{ action.nb_grp }}</td>
-            <td>{{ action.bdg_jour }}</td>
-            <td>{{ action.bdg_total * action.nb_grp }}</td>
+            <td v-if="action.type_action != 'annulé'">{{ action.organisme }}</td>
+            <td v-if="action.type_action != 'annulé'">{{ action.ncnss_cab }}</td>
+            <td v-if="action.type_action != 'annulé'">{{ action.nb_partcp_total }}</td>
+            <td v-if="action.type_action != 'annulé'">{{ action.nb_cadre }}</td>
+            <td v-if="action.type_action != 'annulé'">{{ action.nb_employe }}</td>
+            <td v-if="action.type_action != 'annulé'">{{ action.nb_ouvrier }}</td>
+            <td v-if="action.type_action != 'annulé'">{{ action.nb_jour }}</td>
+            <td v-if="action.type_action != 'annulé'">{{ action.lieu }}</td>
+            <td v-if="action.type_action != 'annulé'">{{ action.nb_grp }}</td>
+            <td v-if="action.type_action != 'annulé'">{{ action.bdg_jour }}</td>
+            <td v-if="action.type_action != 'annulé'">{{ action.bdg_total * action.nb_grp }}</td>
           </tr>
           <tr>
             <td></td>
@@ -212,7 +210,7 @@ export default {
 
       //title of page
       title: {
-        ref_plan: '',
+        ref_plan: "",
       },
     };
   },
@@ -223,8 +221,8 @@ export default {
   },
 
   updated() {
-     document.title = `AR - ${this.title.ref_plan}`
-  },   
+    document.title = `AR - ${this.title.ref_plan}`;
+  },
 
   computed: {},
   methods: {
@@ -272,14 +270,16 @@ export default {
           this.actions_by_ref = res.data;
           this.curr_annee = res.data[0].annee;
           console.log("actions_by_ref : ", this.actions_by_ref);
-          this.title.ref_plan = this.actions_by_ref[0].refpdf
+          this.title.ref_plan = this.actions_by_ref[0].refpdf;
         })
         .then(() => {
           // fill dates action
           this.actions_by_ref.forEach((action) => {
             // calculer le cout estimatif
-            this.coutTotalPlan += action.bdg_total * action.nb_grp;
-            this.FillDates(action.n_form);
+            if (action.type_action != "annulé") {
+              this.coutTotalPlan += action.bdg_total * action.nb_grp;
+              this.FillDates(action.n_form);
+            }
           });
         })
         .catch((err) => console.error("err FillPlanByReference", err));
