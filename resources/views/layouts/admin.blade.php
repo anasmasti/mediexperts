@@ -710,7 +710,7 @@
       <strong class="">&copy; Mediexperts</strong>
       <strong>{{ date('Y') }}</strong>
       <div class="float-right d-none d-sm-inline-block">
-      <b>Version</b> <strong>2.4</strong>
+      <b>Version</b> <strong>2.4.1</strong>
       </div>
     </footer>
 
