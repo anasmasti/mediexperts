@@ -6595,8 +6595,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = (_defineProperty({
   components: {
@@ -6620,7 +6618,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       isAllLoaded: false,
       //title of page
       title: {
-        ref_plan: ''
+        ref_plan: ""
       }
     };
   },
@@ -6712,9 +6710,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   // fill dates action
                   _this3.actions_by_ref.forEach(function (action) {
                     // calculer le cout estimatif
-                    _this3.coutTotalPlan += action.bdg_total * action.nb_grp;
+                    if (action.type_action != "annulé") {
+                      _this3.coutTotalPlan += action.bdg_total * action.nb_grp;
 
-                    _this3.FillDates(action.n_form);
+                      _this3.FillDates(action.n_form);
+                    }
                   });
                 })["catch"](function (err) {
                   return console.error("err FillPlanByReference", err);
@@ -51548,6 +51548,8 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "text-center" }, [
+      _c("h2", [_vm._v("Modèle 3")]),
+      _vm._v(" "),
       _c("h4", { staticClass: "uppercase" }, [
         _vm._v("MODELE D’AVIS D’ANNULATION OU DE MODIFICATION")
       ])
@@ -51684,7 +51686,7 @@ var render = function() {
                 return _c(
                   "option",
                   { key: cl.nrc_entrp, domProps: { value: cl.nrc_entrp } },
-                  [_vm._v("\n          " + _vm._s(cl.raisoci) + "\n\n        ")]
+                  [_vm._v("\n          " + _vm._s(cl.raisoci) + "\n        ")]
                 )
               })
             ],
@@ -51822,221 +51824,251 @@ var render = function() {
                 [
                   _vm._l(_vm.actions_by_ref, function(action, idx) {
                     return _c("tr", { key: "plan" + idx }, [
-                      _c("td", [_vm._v(_vm._s(action.n_action))]),
+                      action.type_action != "annulé"
+                        ? _c("td", [_vm._v(_vm._s(action.n_action))])
+                        : _vm._e(),
                       _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(action.nom_domain))]),
+                      action.type_action != "annulé"
+                        ? _c("td", [_vm._v(_vm._s(action.nom_domain))])
+                        : _vm._e(),
                       _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(action.nom_theme))]),
+                      action.type_action != "annulé"
+                        ? _c("td", [_vm._v(_vm._s(action.nom_theme))])
+                        : _vm._e(),
                       _vm._v(" "),
-                      _c("td", { attrs: { id: action.n_form } }, [
-                        _vm._v(
-                          "\n            " +
-                            _vm._s(
-                              (action.dates &&
-                                _vm.DateFormat(action.dates.date1)) ||
-                                ""
-                            ) +
-                            "\n            " +
-                            _vm._s(
-                              (action.dates &&
-                                _vm.DateFormat(action.dates.date2)) ||
-                                ""
-                            ) +
-                            "\n            " +
-                            _vm._s(
-                              (action.dates &&
-                                _vm.DateFormat(action.dates.date3)) ||
-                                ""
-                            ) +
-                            "\n            " +
-                            _vm._s(
-                              (action.dates &&
-                                _vm.DateFormat(action.dates.date4)) ||
-                                ""
-                            ) +
-                            "\n            " +
-                            _vm._s(
-                              (action.dates &&
-                                _vm.DateFormat(action.dates.date5)) ||
-                                ""
-                            ) +
-                            "\n            " +
-                            _vm._s(
-                              (action.dates &&
-                                _vm.DateFormat(action.dates.date6)) ||
-                                ""
-                            ) +
-                            "\n            " +
-                            _vm._s(
-                              (action.dates &&
-                                _vm.DateFormat(action.dates.date7)) ||
-                                ""
-                            ) +
-                            "\n            " +
-                            _vm._s(
-                              (action.dates &&
-                                _vm.DateFormat(action.dates.date8)) ||
-                                ""
-                            ) +
-                            "\n            " +
-                            _vm._s(
-                              (action.dates &&
-                                _vm.DateFormat(action.dates.date9)) ||
-                                ""
-                            ) +
-                            "\n            " +
-                            _vm._s(
-                              (action.dates &&
-                                _vm.DateFormat(action.dates.date10)) ||
-                                ""
-                            ) +
-                            "\n            " +
-                            _vm._s(
-                              (action.dates &&
-                                _vm.DateFormat(action.dates.date11)) ||
-                                ""
-                            ) +
-                            "\n            " +
-                            _vm._s(
-                              (action.dates &&
-                                _vm.DateFormat(action.dates.date12)) ||
-                                ""
-                            ) +
-                            "\n            " +
-                            _vm._s(
-                              (action.dates &&
-                                _vm.DateFormat(action.dates.date13)) ||
-                                ""
-                            ) +
-                            "\n            " +
-                            _vm._s(
-                              (action.dates &&
-                                _vm.DateFormat(action.dates.date14)) ||
-                                ""
-                            ) +
-                            "\n            " +
-                            _vm._s(
-                              (action.dates &&
-                                _vm.DateFormat(action.dates.date15)) ||
-                                ""
-                            ) +
-                            "\n            " +
-                            _vm._s(
-                              (action.dates &&
-                                _vm.DateFormat(action.dates.date16)) ||
-                                ""
-                            ) +
-                            "\n            " +
-                            _vm._s(
-                              (action.dates &&
-                                _vm.DateFormat(action.dates.date17)) ||
-                                ""
-                            ) +
-                            "\n            " +
-                            _vm._s(
-                              (action.dates &&
-                                _vm.DateFormat(action.dates.date18)) ||
-                                ""
-                            ) +
-                            "\n            " +
-                            _vm._s(
-                              (action.dates &&
-                                _vm.DateFormat(action.dates.date19)) ||
-                                ""
-                            ) +
-                            "\n            " +
-                            _vm._s(
-                              (action.dates &&
-                                _vm.DateFormat(action.dates.date20)) ||
-                                ""
-                            ) +
-                            "\n            " +
-                            _vm._s(
-                              (action.dates &&
-                                _vm.DateFormat(action.dates.date21)) ||
-                                ""
-                            ) +
-                            "\n            " +
-                            _vm._s(
-                              (action.dates &&
-                                _vm.DateFormat(action.dates.date22)) ||
-                                ""
-                            ) +
-                            "\n            " +
-                            _vm._s(
-                              (action.dates &&
-                                _vm.DateFormat(action.dates.date23)) ||
-                                ""
-                            ) +
-                            "\n            " +
-                            _vm._s(
-                              (action.dates &&
-                                _vm.DateFormat(action.dates.date24)) ||
-                                ""
-                            ) +
-                            "\n            " +
-                            _vm._s(
-                              (action.dates &&
-                                _vm.DateFormat(action.dates.date25)) ||
-                                ""
-                            ) +
-                            "\n            " +
-                            _vm._s(
-                              (action.dates &&
-                                _vm.DateFormat(action.dates.date26)) ||
-                                ""
-                            ) +
-                            "\n            " +
-                            _vm._s(
-                              (action.dates &&
-                                _vm.DateFormat(action.dates.date27)) ||
-                                ""
-                            ) +
-                            "\n            " +
-                            _vm._s(
-                              (action.dates &&
-                                _vm.DateFormat(action.dates.date28)) ||
-                                ""
-                            ) +
-                            "\n            " +
-                            _vm._s(
-                              (action.dates &&
-                                _vm.DateFormat(action.dates.date29)) ||
-                                ""
-                            ) +
-                            "\n            " +
-                            _vm._s(
-                              (action.dates &&
-                                _vm.DateFormat(action.dates.date30)) ||
-                                ""
-                            ) +
-                            "\n          "
-                        )
-                      ]),
+                      action.type_action != "annulé"
+                        ? _c("td", { attrs: { id: action.n_form } }, [
+                            _vm._v(
+                              "\n            " +
+                                _vm._s(
+                                  (action.dates &&
+                                    _vm.DateFormat(action.dates.date1)) ||
+                                    ""
+                                ) +
+                                "\n            " +
+                                _vm._s(
+                                  (action.dates &&
+                                    _vm.DateFormat(action.dates.date2)) ||
+                                    ""
+                                ) +
+                                "\n            " +
+                                _vm._s(
+                                  (action.dates &&
+                                    _vm.DateFormat(action.dates.date3)) ||
+                                    ""
+                                ) +
+                                "\n            " +
+                                _vm._s(
+                                  (action.dates &&
+                                    _vm.DateFormat(action.dates.date4)) ||
+                                    ""
+                                ) +
+                                "\n            " +
+                                _vm._s(
+                                  (action.dates &&
+                                    _vm.DateFormat(action.dates.date5)) ||
+                                    ""
+                                ) +
+                                "\n            " +
+                                _vm._s(
+                                  (action.dates &&
+                                    _vm.DateFormat(action.dates.date6)) ||
+                                    ""
+                                ) +
+                                "\n            " +
+                                _vm._s(
+                                  (action.dates &&
+                                    _vm.DateFormat(action.dates.date7)) ||
+                                    ""
+                                ) +
+                                "\n            " +
+                                _vm._s(
+                                  (action.dates &&
+                                    _vm.DateFormat(action.dates.date8)) ||
+                                    ""
+                                ) +
+                                "\n            " +
+                                _vm._s(
+                                  (action.dates &&
+                                    _vm.DateFormat(action.dates.date9)) ||
+                                    ""
+                                ) +
+                                "\n            " +
+                                _vm._s(
+                                  (action.dates &&
+                                    _vm.DateFormat(action.dates.date10)) ||
+                                    ""
+                                ) +
+                                "\n            " +
+                                _vm._s(
+                                  (action.dates &&
+                                    _vm.DateFormat(action.dates.date11)) ||
+                                    ""
+                                ) +
+                                "\n            " +
+                                _vm._s(
+                                  (action.dates &&
+                                    _vm.DateFormat(action.dates.date12)) ||
+                                    ""
+                                ) +
+                                "\n            " +
+                                _vm._s(
+                                  (action.dates &&
+                                    _vm.DateFormat(action.dates.date13)) ||
+                                    ""
+                                ) +
+                                "\n            " +
+                                _vm._s(
+                                  (action.dates &&
+                                    _vm.DateFormat(action.dates.date14)) ||
+                                    ""
+                                ) +
+                                "\n            " +
+                                _vm._s(
+                                  (action.dates &&
+                                    _vm.DateFormat(action.dates.date15)) ||
+                                    ""
+                                ) +
+                                "\n            " +
+                                _vm._s(
+                                  (action.dates &&
+                                    _vm.DateFormat(action.dates.date16)) ||
+                                    ""
+                                ) +
+                                "\n            " +
+                                _vm._s(
+                                  (action.dates &&
+                                    _vm.DateFormat(action.dates.date17)) ||
+                                    ""
+                                ) +
+                                "\n            " +
+                                _vm._s(
+                                  (action.dates &&
+                                    _vm.DateFormat(action.dates.date18)) ||
+                                    ""
+                                ) +
+                                "\n            " +
+                                _vm._s(
+                                  (action.dates &&
+                                    _vm.DateFormat(action.dates.date19)) ||
+                                    ""
+                                ) +
+                                "\n            " +
+                                _vm._s(
+                                  (action.dates &&
+                                    _vm.DateFormat(action.dates.date20)) ||
+                                    ""
+                                ) +
+                                "\n            " +
+                                _vm._s(
+                                  (action.dates &&
+                                    _vm.DateFormat(action.dates.date21)) ||
+                                    ""
+                                ) +
+                                "\n            " +
+                                _vm._s(
+                                  (action.dates &&
+                                    _vm.DateFormat(action.dates.date22)) ||
+                                    ""
+                                ) +
+                                "\n            " +
+                                _vm._s(
+                                  (action.dates &&
+                                    _vm.DateFormat(action.dates.date23)) ||
+                                    ""
+                                ) +
+                                "\n            " +
+                                _vm._s(
+                                  (action.dates &&
+                                    _vm.DateFormat(action.dates.date24)) ||
+                                    ""
+                                ) +
+                                "\n            " +
+                                _vm._s(
+                                  (action.dates &&
+                                    _vm.DateFormat(action.dates.date25)) ||
+                                    ""
+                                ) +
+                                "\n            " +
+                                _vm._s(
+                                  (action.dates &&
+                                    _vm.DateFormat(action.dates.date26)) ||
+                                    ""
+                                ) +
+                                "\n            " +
+                                _vm._s(
+                                  (action.dates &&
+                                    _vm.DateFormat(action.dates.date27)) ||
+                                    ""
+                                ) +
+                                "\n            " +
+                                _vm._s(
+                                  (action.dates &&
+                                    _vm.DateFormat(action.dates.date28)) ||
+                                    ""
+                                ) +
+                                "\n            " +
+                                _vm._s(
+                                  (action.dates &&
+                                    _vm.DateFormat(action.dates.date29)) ||
+                                    ""
+                                ) +
+                                "\n            " +
+                                _vm._s(
+                                  (action.dates &&
+                                    _vm.DateFormat(action.dates.date30)) ||
+                                    ""
+                                ) +
+                                "\n          "
+                            )
+                          ])
+                        : _vm._e(),
                       _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(action.organisme))]),
+                      action.type_action != "annulé"
+                        ? _c("td", [_vm._v(_vm._s(action.organisme))])
+                        : _vm._e(),
                       _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(action.ncnss_cab))]),
+                      action.type_action != "annulé"
+                        ? _c("td", [_vm._v(_vm._s(action.ncnss_cab))])
+                        : _vm._e(),
                       _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(action.nb_partcp_total))]),
+                      action.type_action != "annulé"
+                        ? _c("td", [_vm._v(_vm._s(action.nb_partcp_total))])
+                        : _vm._e(),
                       _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(action.nb_cadre))]),
+                      action.type_action != "annulé"
+                        ? _c("td", [_vm._v(_vm._s(action.nb_cadre))])
+                        : _vm._e(),
                       _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(action.nb_employe))]),
+                      action.type_action != "annulé"
+                        ? _c("td", [_vm._v(_vm._s(action.nb_employe))])
+                        : _vm._e(),
                       _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(action.nb_ouvrier))]),
+                      action.type_action != "annulé"
+                        ? _c("td", [_vm._v(_vm._s(action.nb_ouvrier))])
+                        : _vm._e(),
                       _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(action.nb_jour))]),
+                      action.type_action != "annulé"
+                        ? _c("td", [_vm._v(_vm._s(action.nb_jour))])
+                        : _vm._e(),
                       _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(action.lieu))]),
+                      action.type_action != "annulé"
+                        ? _c("td", [_vm._v(_vm._s(action.lieu))])
+                        : _vm._e(),
                       _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(action.nb_grp))]),
+                      action.type_action != "annulé"
+                        ? _c("td", [_vm._v(_vm._s(action.nb_grp))])
+                        : _vm._e(),
                       _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(action.bdg_jour))]),
+                      action.type_action != "annulé"
+                        ? _c("td", [_vm._v(_vm._s(action.bdg_jour))])
+                        : _vm._e(),
                       _vm._v(" "),
-                      _c("td", [
-                        _vm._v(_vm._s(action.bdg_total * action.nb_grp))
-                      ])
+                      action.type_action != "annulé"
+                        ? _c("td", [
+                            _vm._v(_vm._s(action.bdg_total * action.nb_grp))
+                          ])
+                        : _vm._e()
                     ])
                   }),
                   _vm._v(" "),
