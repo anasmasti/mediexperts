@@ -73058,18 +73058,12 @@ var getters = {
       if (oldInfo.length != 0) {
         for (var j = 0; j < oldInfo.length; j++) {
           result = initInfo[i].id_form == oldInfo[j].id_form;
-
-          if (result) {
-            dates = oldInfo;
-          }
-
-          if (!result) {
-            dates = [initInfo[i], oldInfo[j]];
-          }
+          if (result) dates = oldInfo;
+          if (!result) dates = [initInfo[i], oldInfo[j]];
         }
-      } else if (oldInfo.length == 0) {
-        dates = initInfo;
       }
+
+      if (oldInfo.length == 0) dates = initInfo;
     }
 
     return dates;
