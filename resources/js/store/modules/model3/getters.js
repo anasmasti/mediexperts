@@ -2,7 +2,9 @@ export const getters = {
 
   initialDates: state => {
 
-    let initInfo = [], oldInfo = [], dates = [], result
+    let initInfo, oldInfo, dates, result
+    
+    initInfo = oldInfo = dates = []
 
     initInfo = state.Info_AvisModif
     oldInfo = state.Old_AvisModif
@@ -27,7 +29,6 @@ export const getters = {
 
     for (item in initialInfo) {
       sum += parseFloat(initialInfo[item].nb_benif);
-
     }
 
     return sum;

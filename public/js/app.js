@@ -73047,10 +73047,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getters", function() { return getters; });
 var getters = {
   initialDates: function initialDates(state) {
-    var initInfo = [],
-        oldInfo = [],
-        dates = [],
-        result;
+    var initInfo, oldInfo, dates, result;
+    initInfo = oldInfo = dates = [];
     initInfo = state.Info_AvisModif;
     oldInfo = state.Old_AvisModif;
 
