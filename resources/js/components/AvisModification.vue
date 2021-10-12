@@ -61,9 +61,8 @@
                 getDisabled();
               "
             >
-              <option selected disabled>---selectionner l'état---</option>
+              <option selected value="modifié">Modification</option>
               <option value="annulé">Annulation</option>
-              <option value="modifié">Modification</option>
             </select>
           </div>
 

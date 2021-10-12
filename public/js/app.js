@@ -3605,7 +3605,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   runtimeCompiler: true,
@@ -45424,16 +45423,12 @@ var render = function() {
                   }
                 },
                 [
-                  _c("option", { attrs: { selected: "", disabled: "" } }, [
-                    _vm._v("---selectionner l'état---")
+                  _c("option", { attrs: { selected: "", value: "modifié" } }, [
+                    _vm._v("Modification")
                   ]),
                   _vm._v(" "),
                   _c("option", { attrs: { value: "annulé" } }, [
                     _vm._v("Annulation")
-                  ]),
-                  _vm._v(" "),
-                  _c("option", { attrs: { value: "modifié" } }, [
-                    _vm._v("Modification")
                   ])
                 ]
               )

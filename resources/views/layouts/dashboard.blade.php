@@ -54,7 +54,7 @@
 
             </div>
             <a href="/client" class="small-box-footer">
-              Aller à <i class="fa fa-arrow-circle-right"></i>
+              Voir plus <i class="fa fa-arrow-circle-right"></i>
             </a>
           </div>
         </div>
@@ -70,7 +70,7 @@
                 <i class="fa fa-sitemap"></i>
               </div>
               <a href="/actionnaire" class="small-box-footer">
-                Aller à <i class="fa fa-arrow-circle-right"></i>
+              Voir plus <i class="fa fa-arrow-circle-right"></i>
               </a>
             </div>
         </div>
@@ -86,7 +86,7 @@
                 <i class="fa fa-briefcase"></i>
             </div>
             <a href="/cabinet" class="small-box-footer">
-              Aller à <i class="fa fa-arrow-circle-right"></i>
+            Voir plus <i class="fa fa-arrow-circle-right"></i>
             </a>
           </div>
         </div>
@@ -102,7 +102,7 @@
               <i class="fa fa-hand-holding-usd"></i>
           </div>
           <a href="/giac" class="small-box-footer">
-            Aller à <i class="fa fa-arrow-circle-right"></i>
+          Voir plus <i class="fa fa-arrow-circle-right"></i>
           </a>
         </div>
     </div>
@@ -119,7 +119,7 @@
             <i class="fas fa-chalkboard-teacher"></i>
           </div>
           <a href="/intervenant" class="small-box-footer">
-            Aller à <i class="fa fa-arrow-circle-right"></i>
+          Voir plus <i class="fa fa-arrow-circle-right"></i>
           </a>
         </div>
     </div>
@@ -137,7 +137,7 @@
             <i class="fas fa-calendar-alt"></i>
           </div>
           <a href="/PlanFormation" class="small-box-footer">
-            Aller à <i class="fa fa-arrow-circle-right"></i>
+          Voir plus <i class="fa fa-arrow-circle-right"></i>
           </a>
         </div>
     </div>
@@ -155,7 +155,7 @@
             <i class="fas fa-chalkboard"></i>
           </div>
           <a href="/formation" class="small-box-footer">
-            Aller à <i class="fa fa-arrow-circle-right"></i>
+          Voir plus <i class="fa fa-arrow-circle-right"></i>
           </a>
         </div>
     </div>
@@ -172,7 +172,7 @@
             <i class="fas fa-dollar-sign"></i>
           </div>
           <a href="/df" class="small-box-footer">
-            Aller à <i class="fa fa-arrow-circle-right"></i>
+          Voir plus <i class="fa fa-arrow-circle-right"></i>
           </a>
         </div>
     </div>
@@ -188,7 +188,7 @@
             <i class="fas fa-file-invoice-dollar"></i>
           </div>
           <a href="/drb-gc" class="small-box-footer">
-            Aller à <i class="fa fa-arrow-circle-right"></i>
+          Voir plus <i class="fa fa-arrow-circle-right"></i>
           </a>
         </div>
     </div>
@@ -204,7 +204,7 @@
           <i class="fas fa-file-invoice-dollar"></i>
         </div>
         <a href="/drb-of" class="small-box-footer">
-          Aller à <i class="fa fa-arrow-circle-right"></i>
+        Voir plus <i class="fa fa-arrow-circle-right"></i>
         </a>
       </div>
     </div>
@@ -219,7 +219,7 @@
               <i class="fas fa-table"></i>
           </div>
           <a href="/df" class="small-box-footer">
-              Aller à <i class="fa fa-arrow-circle-right"></i>
+          Voir plus <i class="fa fa-arrow-circle-right"></i>
           </a>
       </div>
     </div>
@@ -383,7 +383,10 @@
               <div class="info-box-content">
                 <span class="info-box-text">Modèles 3</span>
                 <div class="d-flex">
-                <span class="info-box-number"><a href="/print-m3">Imprimer - </a></span>
+                <span class="info-box-number"><a href="/print-m3">Imprimer</a></span>
+                <span class="mx-2">
+                -
+                </span>
                 <span class="info-box-number"><a href="/avis-modif"> Modifier</a></span>
                 </div>
               </div>
