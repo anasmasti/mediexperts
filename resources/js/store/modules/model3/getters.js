@@ -1,10 +1,8 @@
-import { reduce } from "lodash";
-
 export const getters = {
 
   initialDates: state => {
 
-  let initInfo = [], oldInfo = [], result, dates = []
+  let initInfo = [], oldInfo = [], dates = [], result
 
   initInfo = state.Info_AvisModif
   oldInfo = state.Old_AvisModif
@@ -12,12 +10,11 @@ export const getters = {
   for (let i = 0; i < initInfo.length; i++) {
       if ( oldInfo.length != 0 ) {
           for (let j = 0; j < oldInfo.length; j++) {
-              result = initInfo[i].id_form != oldInfo[j].id_form;
-              console.log("result" , result);
-              if (!result) {
+              result = initInfo[i].id_form == oldInfo[j].id_form;
+              if (result) {
                 dates = oldInfo
               }
-              else if (result) {
+              if (!result) {
                 dates = [initInfo[i], oldInfo[j]]
               }
           }
@@ -25,7 +22,6 @@ export const getters = {
         dates = initInfo;
       }
     }
-    console.log("dates initial", dates);
     return dates
   },
 

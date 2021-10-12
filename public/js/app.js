@@ -73045,27 +73045,25 @@ var actions = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getters", function() { return getters; });
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);
-
 var getters = {
   initialDates: function initialDates(state) {
     var initInfo = [],
         oldInfo = [],
-        result,
-        dates = [];
+        dates = [],
+        result;
     initInfo = state.Info_AvisModif;
     oldInfo = state.Old_AvisModif;
 
     for (var i = 0; i < initInfo.length; i++) {
       if (oldInfo.length != 0) {
         for (var j = 0; j < oldInfo.length; j++) {
-          result = initInfo[i].id_form != oldInfo[j].id_form;
-          console.log("result", result);
+          result = initInfo[i].id_form == oldInfo[j].id_form;
+
+          if (result) {
+            dates = oldInfo;
+          }
 
           if (!result) {
-            dates = oldInfo;
-          } else if (result) {
             dates = [initInfo[i], oldInfo[j]];
           }
         }
@@ -73074,7 +73072,6 @@ var getters = {
       }
     }
 
-    console.log("dates initial", dates);
     return dates;
   },
   GetNbTotalBenif: function GetNbTotalBenif(state) {
