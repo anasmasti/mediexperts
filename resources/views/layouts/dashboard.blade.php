@@ -36,7 +36,7 @@
               <i class="fas fa-users"></i>
             </div>
             <a href="/users" class="small-box-footer">
-                Aller à <i class="fa fa-arrow-circle-right"></i>
+            Voir plus <i class="fa fa-arrow-circle-right"></i>
             </a>
           </div>
         </div>
