@@ -35,7 +35,7 @@ class PersonnelsImport implements ToModel, WithValidation, WithHeadingRow
     public function rules(): array {
         return [
             'cin' => 'required|max:50',
-            'matricule' => 'required|max:50',
+            'matricule' => 'max:50',
             'nom' => 'required|max:50',
             'prenom'  => 'required|max:50',
             'cnss' => 'required|max:50',
