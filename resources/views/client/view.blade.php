@@ -97,7 +97,9 @@ $(document).on('ready' , function() {
                       <div class="btn-group btn-group-sm">
                         <a href="/detail-cl/{{ $cl->nrc_entrp }}" class="btn btn-primary"><i class="fas fa-eye"></i></a>
                         <a href="/edit-cl/{{ $cl->nrc_entrp }}" class="btn btn-warning"><i class="fas fa-edit"></i></a>
+                        @if (Auth::user()->type_user == "user" || Auth::user()->type_user == "admin")
                         <a href="#" class="btn btn-danger" onclick="confirmDelete({{$cl->nrc_entrp}}, 'cl/')"><i class="fas fa-trash-alt"></i></a>
+                        @endif
                         <a href="/print-f1/{{ $cl->nrc_entrp }}" class="btn btn-info"><i class="fa fa-print"></i></a>
                       </div>
                     </td>
@@ -105,10 +107,12 @@ $(document).on('ready' , function() {
                     {{-- <td class="action">
                         <a class="btn btn-sm bu-icon" href="/detail-cl/{{ $cl->nrc_entrp }}"><i class="fa fa-eye"></i></a>
                         <a class="btn btn-sm bu-icon" href="/edit-cl/{{ $cl->nrc_entrp }}"><i class="fa fa-edit"></i></a>
-                        @if ($hasAction==true | $hasDf==true | $hasDrb==true | $hasPf==true)
-                            <a class="btn btn-sm bu-icon" onclick="IsChild()"><i class="fa fa-trash-alt"></i></a>
-                        @elseif ($hasAction==false && $hasDf==false && $hasDrb==false && $hasPf==false)
-                            <a class="btn btn-sm bu-icon" onclick="confirmDelete({{$cl->nrc_entrp}}, 'cl/')"><i class="fa fa-trash-alt"></i></a>
+                        @if (Auth::user()->type_user == "user" || Auth::user()->type_user == "admin")
+                            @if ($hasAction==true | $hasDf==true | $hasDrb==true | $hasPf==true)
+                                <a class="btn btn-sm bu-icon" onclick="IsChild()"><i class="fa fa-trash-alt"></i></a>
+                            @elseif ($hasAction==false && $hasDf==false && $hasDrb==false && $hasPf==false)
+                                <a class="btn btn-sm bu-icon" onclick="confirmDelete({{$cl->nrc_entrp}}, 'cl/')"><i class="fa fa-trash-alt"></i></a>
+                            @endif
                         @endif
                         <a class="btn btn-sm bu-icon info" href="/print-f1/{{ $cl->nrc_entrp }}"><i class="fa fa-print"></i></a>
                     </td> --}}

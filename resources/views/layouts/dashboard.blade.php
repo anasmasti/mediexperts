@@ -23,7 +23,7 @@
 <div class="container-fluid">
 <div class="row">
 
-      @if (Auth::user()->type_user == "admin" || Auth::user()->type_user != "comptable")
+      @if (Auth::user()->type_user == "admin" || Auth::user()->type_user == "user")
       @if (Auth::user()->type_user == "admin")
         <div class="col-lg-3 col-6">
           <!-- small card -->
@@ -315,7 +315,7 @@
     <div class="container-fluid">
         <div class="row">
 
-        @if (Auth::user()->type_user != "comptable")
+        
 
         <div class="{{(Auth::user()->type_user != "comptable") ? 'col-lg-4 col-sm-12 col-md-4' : 'col-12'}}">
           <div class="info-box mb-3 bg-light">
@@ -375,7 +375,7 @@
               <!-- /.info-box-content -->
             </div>
           </div>
-
+          @if (Auth::user()->type_user == "admin" || Auth::user()->type_user == "user")
           <div class="col-lg-4 col-sm-12 col-md-4">
             <div class="info-box mb-3 bg-light">
               <span class="info-box-icon"><i class="fas fa-print"></i></span>
@@ -392,8 +392,9 @@
               </div>
               <!-- /.info-box-content -->
             </div>
+            @endif
           </div>
-          @endif
+          
 
           <div class="col-lg-4 col-sm-12 col-md-4">
             <div class="info-box mb-3 bg-light">
@@ -407,7 +408,7 @@
             </div>
           </div>
 
-          @if (Auth::user()->type_user != "comptable")
+          @if (Auth::user()->type_user == "admin" || Auth::user()->type_user == "user")
           <div class="col-lg-4 col-sm-12 col-md-4">
             <div class="info-box mb-3 bg-light">
               <span class="info-box-icon"><i class="fas fa-print"></i></span>
@@ -486,7 +487,7 @@
 
         </div>
     </div><!-- /.container-fluid -->
-
+    @if (Auth::user()->type_user == "admin" || Auth::user()->type_user == "user")
     <div class="content-header">
       <h1 class="m-0 text-dark">Documents GIAC</h1>
     </div>
@@ -555,9 +556,10 @@
 
       </div>
     </div>
+    @endif
     {{-- --------------------------------------------------------------------------------- --}}
 
-  @if (Auth::user()->type_user == "admin" || Auth::user()->type_user != "comptable")
+  @if (Auth::user()->type_user == "admin" || Auth::user()->type_user == "user")
     <div class="content-header">
       <div class="row mb-2">
           <div class="col-sm-6">

@@ -49,6 +49,7 @@
                   <option value="admin">Administrateur</option>
                   <option value="utilisateur">Utilisateur</option>
                   <option value="comptable">Comptable</option>
+                  <option value="cc">Utilisateur Creation Clients</option>
                 </select>
 
                 @if ($errors->has('type_user'))

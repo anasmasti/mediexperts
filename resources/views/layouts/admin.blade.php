@@ -150,13 +150,16 @@
           </div>
           <div class="info">
           @if (Auth::user()->type_user == "user")
-            <h6 class="d-block text-light">{{ Auth::user()->firstname }} {{ Auth::user()->name }}</h6>
+            <h6 class="d-block text-light text-capitalize">{{ Auth::user()->firstname }} {{ Auth::user()->name }}</h6>
             <span class="right badge badge-warning">Utilisateur</span>
           @elseif (Auth::user()->type_user == "admin")
-            <h6 class="d-block text-light">{{ Auth::user()->firstname }} {{ Auth::user()->name }}</h6>
+            <h6 class="d-block text-light text-capitalize">{{ Auth::user()->firstname }} {{ Auth::user()->name }}</h6>
             <span class="right badge badge-danger">Administrateur</span>
+          @elseif (Auth::user()->type_user == "cc")
+          <h6 class="d-block text-light text-capitalize">{{ Auth::user()->firstname }} {{ Auth::user()->name }}</h6>
+            <span class="right badge badge-info">Utilisateur Creation Clients</span>
           @else
-            <h6 class="d-block text-light">{{ Auth::user()->firstname }} {{ Auth::user()->name }}</h6>
+            <h6 class="d-block text-light text-capitalize">{{ Auth::user()->firstname }} {{ Auth::user()->name }}</h6>
             <span class="right badge badge-info">{{ ucfirst(Auth::user()->type_user) }}</span>
           @endif
           </div>
@@ -164,20 +167,21 @@
       <!-- Sidebar user panel (optional) -->
       </div>
 
-      @if (Auth::user()->type_user == "user" || Auth::user()->type_user == "admin")
+      
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column nav-compact" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
              with font-awesome or any other icon font library -->
-          {{-- dashboard --}}
+          @if (Auth::user()->type_user == "user" || Auth::user()->type_user == "admin")
+             {{-- dashboard --}}
           <li class="nav-item">
           <a href="/" class="nav-link nav-dashboard">
             <i class="nav-icon fa fa-tachometer-alt"></i>
             <p>Tableau de bord</p>
           </a>
           </li>
-
+         @endif
           @if (Auth::user()->type_user == "admin")
           {{-- users --}}
           <li class="nav-item">
@@ -192,7 +196,7 @@
           {{-- <ul class="nav nav-treeview"> --}}
 
           <li class="nav-item has-treeview menu-open">
-
+          @if (Auth::user()->type_user == "user" || Auth::user()->type_user == "admin")
             <!-- ANY TABLE SUB MENU -->
             <ul class="nav nav-treeview ">
               <li class="nav-item has-treeview">
@@ -267,8 +271,8 @@
                 </ul><!-- * ITEMS SUB MENU -->
               </li>
             </ul><!-- /.ANY TABLE SUB MENU -->
-
-
+            @endif
+            
             <!-- ANY TABLE SUB MENU -->
             <ul class="nav nav-treeview">
             <li class="nav-item has-treeview">
@@ -297,7 +301,7 @@
                     </a>
                   </li>
                 </ul><!-- * ITEMS SUB MENU -->
-
+                @if (Auth::user()->type_user == "admin" || Auth::user()->type_user == "user")
               {{-- ACTIONNAIRE --}}
                 <!-- ANY TABLE SUB MENU -->
                 <ul class="nav nav-treeview">
@@ -324,9 +328,9 @@
               </li>
                 </ul><!-- /.ANY TABLE SUB MENU -->
               {{-- ACTIONNAIRE --}}
-
+            @endif
             </ul><!-- /.ANY TABLE SUB MENU -->
-
+            @if (Auth::user()->type_user == "user" || Auth::user()->type_user == "admin")
             <ul class="nav nav-treeview ">
               <li class="nav-item has-treeview">
                 <a href="#" class="nav-link">
@@ -568,10 +572,11 @@
             </ul><!-- /.ANY TABLE SUB MENU -->
 
           </li>
+          @endif
           <!-- /.PAGES MENU -->
         </ul>
         </nav><!-- /.sidebar-menu -->
-        @endif
+       
       </div><!-- /.sidebar -->
     </aside>
 
