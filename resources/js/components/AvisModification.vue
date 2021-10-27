@@ -227,6 +227,7 @@
             v-for="info in groupe_info"
             :key="info.id_form"
           >
+          <div>{{info}}</div>
             <input type="hidden" :value="info.pse_debut" id="pause_debut" />
             <input type="hidden" :value="info.pse_fin" id="pause_fin" />
             <h2>
@@ -992,7 +993,7 @@ export default {
       console.log("-*-*-*-*-*-*-*-*-", infoavismodif);
       await axios({
         method: "POST",
-        url: " http://192.168.11.113:9000/api/store-avis-modif",
+        url: "api/store-avis-modif",
         data: JSON.parse(
           JSON.stringify(infoavismodif, function (key, value) {
             return value === "" ? null : value;

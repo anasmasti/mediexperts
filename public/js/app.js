@@ -3603,6 +3603,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   runtimeCompiler: true,
@@ -3857,7 +3858,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 _context.next = 29;
                 return axios({
                   method: "POST",
-                  url: " http://192.168.11.113:9000/api/store-avis-modif",
+                  url: "api/store-avis-modif",
                   data: JSON.parse(JSON.stringify(infoavismodif, function (key, value) {
                     return value === "" ? null : value;
                   }))
@@ -45885,6 +45886,8 @@ var render = function() {
                   attrs: { id: "content" }
                 },
                 [
+                  _c("div", [_vm._v(_vm._s(info))]),
+                  _vm._v(" "),
                   _c("input", {
                     attrs: { type: "hidden", id: "pause_debut" },
                     domProps: { value: info.pse_debut }
@@ -73231,8 +73234,8 @@ var state = {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\HP\Desktop\Projects\Work\Mediexperts_App\mediexperts_dev\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\HP\Desktop\Projects\Work\Mediexperts_App\mediexperts_dev\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\HP\Desktop\mediexperts\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\HP\Desktop\mediexperts\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
