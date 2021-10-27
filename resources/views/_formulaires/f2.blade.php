@@ -363,7 +363,7 @@
         url: '{!! URL::to('/fill-form-f2') !!}',
         data: {'nForm': nForm},
         success: function(data) {
-          console.log("success formations !!", data);
+          console.log("success formations test !!", data);
           let fillEffectif = "";
           let fillForm = "";
           let fillDates = "";
