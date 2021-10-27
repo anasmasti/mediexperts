@@ -320,30 +320,30 @@
           let fillPersonnel = "";
           let targetCSP = "";
           let fillDates = '<option selected disabled>--veuillez sélectionner la date</option>';
-          if (data.length > 0) {
-            for (let i = 0; i < data.length; i++) {
-              if (data[i].csp.toLowerCase() == "c") {
+          if (data[0].length > 0) {
+            for (let i = 0; i < data[0].length; i++) {
+              if (data[0][i].csp.toLowerCase() == "c") {
               targetCSP = `<td id="selectedCSP">X</td>`+
               `<td></td>`+
               `<td></td>`;
               }
-              else if (data[i].csp.toLowerCase() == "e") {
+              else if (data[0][i].csp.toLowerCase() == "e") {
                 targetCSP = `<td></td>`+
                 `<td id="selectedCSP">X</td>`+
                 `<td></td>`;
               }
-              else if (data[i].csp.toLowerCase() == "o") {
+              else if (data[0][i].csp.toLowerCase() == "o") {
                 targetCSP = `<td></td>`+
                 `<td></td>`+
                 `<td id="selectedCSP">X</td>`;
               }
-              groupe = data[i]['groupe'];
+              groupe = data[0][i]['groupe'];
               fillPersonnel +=
               `<tr style="height:30px;">`+
-                `<td>`+data[i].nom+`</td>`+
-                `<td>`+data[i].prenom+`</td>`+
-                `<td>`+data[i].cin+`</td>`+
-                `<td>`+data[i].cnss+`</td>`+
+                `<td>`+data[0][i].nom+`</td>`+
+                `<td>`+data[0][i].prenom+`</td>`+
+                `<td>`+data[0][i].cin+`</td>`+
+                `<td>`+data[0][i].cnss+`</td>`+
                 targetCSP +
                 `<td></td>`+
               `</tr>`;
@@ -354,15 +354,16 @@
             //les dates
             for (let i = 0; i <= data.length; i++) {
               let date = (`date`+(i+1)+``);
-              if (data[0][date] != null) {
-                var customDate = DateFormat(data[0][date]);
+              if (data[0][0][date] != null) {
+                var customDate = DateFormat(data[0][0][date]);
                 fillDates += `<option value="`+customDate+`">`+customDate+`</option>`;
               }
             } //endfor
             $('#dates').html("");
             ((fillDates != null) && $('#dates').append(fillDates))
             || $('#dates').append('<option selected disabled>--veuillez sélectionner la date</option>');
-          } //endif
+          } 
+          //endif
           else {
             fillPersonnel = '<tr><td rowspan="12">(vide) créer une formation ou affecter des personnels</td></tr>';
             $('#listPersonnel').append(fillPersonnel);

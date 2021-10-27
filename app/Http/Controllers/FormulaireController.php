@@ -136,7 +136,10 @@ class FormulaireController extends Controller
         ->join('personnels', 'formation_personnels.cin', 'personnels.cin')
         ->where('formations.id_form', $request->idForm)
         ->get();
-      return response()->json($data);
+      $avis_modifications = AvisModification::select('avis_modifications.*')
+        ->where('avis_modifications.id_form', $request->idForm)
+        ->get();
+      return response()->json([$data, $avis_modifications]);
     }
     public function FillPersonInfoF4(Request $request) {
       $data = Personnel::select('personnels.*')
