@@ -3603,8 +3603,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   runtimeCompiler: true,
@@ -3626,8 +3624,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       selected_nature_action: true,
       pause: false,
       selected_pause: false,
-      old_pause: false,
-      old_SameDate: false,
+      // old_pause: false,
+      // old_SameDate: false,
       selected_sameDate: false,
       sameDate: false
     };
@@ -3667,46 +3665,40 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     handleAction: function handleAction(actionName, value) {
       this.$store.dispatch(actionName, value);
     },
-    getSameDates: function getSameDates() {
-      var _this = this;
-
-      setTimeout(function () {
-        if (_this.Info_AvisModif) {
-          _this.sameDate = _this.Info_AvisModif[0].Has_Same_Dates;
-
-          if (_this.sameDate == 0) {
-            _this.sameDate = false;
-            _this.selected_sameDate = _this.sameDate;
-            _this.old_SameDate = _this.sameDate;
-          } else if (_this.sameDate == 1) {
-            _this.sameDate = true;
-            _this.selected_sameDate = _this.sameDate;
-            _this.old_SameDate = _this.sameDate;
-          }
-        }
-      }, 500);
-      return this.selected_sameDate, this.old_SameDate;
-    },
-    getPause: function getPause() {
-      var _this2 = this;
-
-      setTimeout(function () {
-        if (_this2.Info_AvisModif) {
-          _this2.pause = _this2.Info_AvisModif[0].pause;
-
-          if (_this2.pause == 0) {
-            _this2.pause = false;
-            _this2.old_pause = _this2.pause;
-            _this2.selected_pause = _this2.pause;
-          } else if (_this2.pause == 1) {
-            _this2.pause = true;
-            _this2.old_pause = _this2.pause;
-            _this2.selected_pause = _this2.pause;
-          }
-        }
-      }, 500);
-      return this.selected_pause, this.old_pause;
-    },
+    // getSameDates() {
+    //   setTimeout(() => {
+    //     if (this.Info_AvisModif) {
+    //       this.sameDate = this.Info_AvisModif[0].Has_Same_Dates;
+    //       if (this.sameDate == 0) {
+    //         this.sameDate = false;
+    //         this.selected_sameDate = this.sameDate;
+    //         this.old_SameDate = this.sameDate;
+    //       } else if (this.sameDate == 1) {
+    //         this.sameDate = true;
+    //         this.selected_sameDate = this.sameDate;
+    //         this.old_SameDate = this.sameDate;
+    //       }
+    //     }
+    //   }, 500);
+    //   return this.selected_sameDate, this.old_SameDate;
+    // },
+    // getPause() {
+    //   setTimeout(() => {
+    //     if (this.Info_AvisModif) {
+    //       this.pause = this.Info_AvisModif[0].pause;
+    //       if (this.pause == 0) {
+    //         this.pause = false;
+    //         this.old_pause = this.pause;
+    //         this.selected_pause = this.pause;
+    //       } else if (this.pause == 1) {
+    //         this.pause = true;
+    //         this.old_pause = this.pause;
+    //         this.selected_pause = this.pause;
+    //       }
+    //     }
+    //   }, 500);
+    //   return this.selected_pause, this.old_pause;
+    // },
     // fonction pour l'état d'avis annulation
     getSelected: function getSelected() {
       var annul = document.getElementById("etat");
@@ -3748,34 +3740,34 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     // update the Model 3 and save archive data
     storeUpdateModel3: function storeUpdateModel3() {
-      var _this3 = this;
+      var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var date1, date2, date3, date4, date5, date6, date7, date8, date9, date10, newdate1, newdate2, newdate3, newdate4, newdate5, newdate6, newdate7, newdate8, newdate9, newdate10, planifie, initial_organisme, initial_lieu, nouvel_organisme, nouvel_lieu, initial_hr_debut, initial_hr_fin, new_hr_debut, new_hr_fin, entreprise, ref_plan, theme, etat_avis, groupe, pause_debut, pause_fin, infoavismodif;
+        var date1, date2, date3, date4, date5, date6, date7, date8, date9, date10, planifie, initial_organisme, initial_lieu, nouvel_organisme, nouvel_lieu, initial_hr_debut, initial_hr_fin, new_hr_debut, new_hr_fin, entreprise, ref_plan, theme, etat_avis, pause_debut, pause_fin, infoavismodif;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                date1 = document.getElementById("date1");
-                date2 = document.getElementById("date2");
-                date3 = document.getElementById("date3");
-                date4 = document.getElementById("date4");
-                date5 = document.getElementById("date5");
-                date6 = document.getElementById("date6");
-                date7 = document.getElementById("date7");
-                date8 = document.getElementById("date8");
-                date9 = document.getElementById("date9");
-                date10 = document.getElementById("date10");
-                newdate1 = document.getElementById("newdate1");
-                newdate2 = document.getElementById("newdate2");
-                newdate3 = document.getElementById("newdate3");
-                newdate4 = document.getElementById("newdate4");
-                newdate5 = document.getElementById("newdate5");
-                newdate6 = document.getElementById("newdate6");
-                newdate7 = document.getElementById("newdate7");
-                newdate8 = document.getElementById("newdate8");
-                newdate9 = document.getElementById("newdate9");
-                newdate10 = document.getElementById("newdate10");
+                // let date1 = document.getElementById("date1");
+                // let date2 = document.getElementById("date2");
+                // let date3 = document.getElementById("date3");
+                // let date4 = document.getElementById("date4");
+                // let date5 = document.getElementById("date5");
+                // let date6 = document.getElementById("date6");
+                // let date7 = document.getElementById("date7");
+                // let date8 = document.getElementById("date8");
+                // let date9 = document.getElementById("date9");
+                // let date10 = document.getElementById("date10");
+                date1 = document.getElementById("newdate1");
+                date2 = document.getElementById("newdate2");
+                date3 = document.getElementById("newdate3");
+                date4 = document.getElementById("newdate4");
+                date5 = document.getElementById("newdate5");
+                date6 = document.getElementById("newdate6");
+                date7 = document.getElementById("newdate7");
+                date8 = document.getElementById("newdate8");
+                date9 = document.getElementById("newdate9");
+                date10 = document.getElementById("newdate10");
                 planifie = document.getElementById("planifie");
                 initial_organisme = document.getElementById("initial_organisme");
                 initial_lieu = document.getElementById("initial_lieu");
@@ -3788,76 +3780,96 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 entreprise = document.getElementById("client");
                 ref_plan = document.getElementById("plans");
                 theme = document.getElementById("theme");
-                etat_avis = document.getElementById("etat");
-                groupe = document.getElementById("groupe");
+                etat_avis = document.getElementById("etat"); // let groupe = document.getElementById("groupe");
+
                 pause_debut = $("#pause_debut");
                 pause_fin = $("#pause_fin");
                 infoavismodif = {
-                  date1: date1 != null ? date1.value : null,
-                  date2: date2 != null ? date2.value : null,
-                  date3: date3 != null ? date3.value : null,
-                  date4: date4 != null ? date4.value : null,
-                  date5: date5 != null ? date5.value : null,
-                  date6: date6 != null ? date6.value : null,
-                  date7: date7 != null ? date7.value : null,
-                  date8: date8 != null ? date8.value : null,
-                  date9: date9 != null ? date9.value : null,
-                  date10: date10 != null ? date10.value : null,
-                  newdate1: newdate1 != null ? newdate1.value : null,
-                  newdate2: newdate2 != null ? newdate2.value : null,
-                  newdate3: newdate3 != null ? newdate3.value : null,
-                  newdate4: newdate4 != null ? newdate4.value : null,
-                  newdate5: newdate5 != null ? newdate5.value : null,
-                  newdate6: newdate6 != null ? newdate6.value : null,
-                  newdate7: newdate7 != null ? newdate7.value : null,
-                  newdate8: newdate8 != null ? newdate8.value : null,
-                  newdate9: newdate9 != null ? newdate9.value : null,
-                  newdate10: newdate10 != null ? newdate10.value : null,
-                  entreprise: entreprise.value,
-                  refPlan: ref_plan.value,
-                  NomTheme: theme.value,
-                  typeAction: etat_avis.value,
-                  annuler: _this3.selected_annuler,
-                  modificationDate: _this3.selected_modifdate,
-                  modificationOrganisme: _this3.selected_modiforganisme,
-                  modificationLieu: _this3.selected_modiflieu,
-                  modificationHoraire: _this3.selected_modifhoraire,
-                  natureAction: planifie.value,
-                  organisme: initial_organisme.value,
-                  lieu: initial_lieu.value,
-                  heurDebut: initial_hr_debut.value,
-                  heurFin: initial_hr_fin.value,
-                  newOrganisme: nouvel_organisme.value == false ? initial_organisme.value : nouvel_organisme.value,
-                  newLieu: nouvel_lieu.value == "---selectionner le lieu---" ? initial_lieu.value : nouvel_lieu.value,
-                  newHeurDebut: new_hr_debut.value == false ? initial_hr_debut.value : new_hr_debut.value,
-                  newHeurFin: new_hr_fin.value == false ? initial_hr_fin.value : new_hr_fin.value,
-                  nForm: _this3.selected_nForm,
-                  idForm: _this3.selected_idForm,
-                  groupe: groupe.textContent,
-                  pause: _this3.selected_pause,
-                  old_pause: _this3.old_pause,
-                  pause_debut: pause_debut != null ? pause_debut.val() : null,
-                  pause_fin: pause_fin != null ? pause_fin.val() : null,
-                  sameDates: _this3.selected_sameDate,
-                  old_sameDates: _this3.old_SameDate
-                }; //  return console.log("-*-*-*-*-*-*-*-*-", infoavismodif);
+                  n_form: _this.selected_nForm,
+                  id_form: _this.selected_idForm,
+                  new_has_same_dates: _this.selected_sameDate,
+                  new_entreprise: entreprise.value,
+                  new_ref_plan: ref_plan.value,
+                  new_theme_action: theme.value,
+                  new_nature_action: planifie.value,
+                  new_hr_debut: new_hr_debut.value == false ? initial_hr_debut.value : new_hr_debut.value,
+                  new_hr_fin: new_hr_fin.value == false ? initial_hr_fin.value : new_hr_fin.value,
+                  new_pse_debut: pause_debut != null ? pause_debut.val() : null,
+                  new_pse_fin: pause_fin != null ? pause_fin.val() : null,
+                  new_type_action: etat_avis.value,
+                  new_pause: _this.selected_pause,
+                  new_date1: date1 != null ? date1.value : null,
+                  new_date2: date2 != null ? date1.value : null,
+                  new_date3: date3 != null ? date1.value : null,
+                  new_date4: date4 != null ? date1.value : null,
+                  new_date5: date5 != null ? date1.value : null,
+                  new_date6: date6 != null ? date1.value : null,
+                  new_date7: date7 != null ? date1.value : null,
+                  new_date8: date8 != null ? date8.value : null,
+                  new_date9: date9 != null ? date9.value : null,
+                  new_date10: date10 != null ? date10.value : null,
+                  new_organisme: initial_organisme.value,
+                  new_lieu: nouvel_lieu.value == "---selectionner le lieu---" ? initial_lieu.value : nouvel_lieu.value,
+                  new_anulation: _this.selected_annuler,
+                  new_lieu_formations: _this.selected_modiflieu,
+                  new_horaire_formations: _this.selected_modifhoraire,
+                  new_organisme_formations: _this.selected_modiforganisme,
+                  new_date_realisation: _this.selected_modifdate // entreprise: entreprise.value,
+                  // refPlan: ref_plan.value,
+                  // NomTheme: theme.value,
+                  // typeAction: etat_avis.value,
+                  // annuler: this.selected_annuler,
+                  // modificationDate: this.selected_modifdate,
+                  // modificationOrganisme: this.selected_modiforganisme,
+                  // modificationLieu: this.selected_modiflieu,
+                  // modificationHoraire: this.selected_modifhoraire,
+                  // natureAction: planifie.value,
+                  // organisme: initial_organisme.value,
+                  // lieu: initial_lieu.value,
+                  // heurDebut: initial_hr_debut.value,
+                  // heurFin: initial_hr_fin.value,
+                  // newOrganisme:
+                  //   nouvel_organisme.value == false
+                  //     ? initial_organisme.value
+                  //     : nouvel_organisme.value,
+                  // newLieu:
+                  //   nouvel_lieu.value == "---selectionner le lieu---"
+                  //     ? initial_lieu.value
+                  //     : nouvel_lieu.value,
+                  // newHeurDebut:
+                  //   new_hr_debut.value == false
+                  //     ? initial_hr_debut.value
+                  //     : new_hr_debut.value,
+                  // newHeurFin:
+                  //   new_hr_fin.value == false ? initial_hr_fin.value : new_hr_fin.value,
+                  // nForm: this.selected_nForm,
+                  // idForm: this.selected_idForm,
+                  // groupe: groupe.textContent,
+                  // pause: this.selected_pause,
+                  // old_pause: this.old_pause,
+                  // pause_debut: pause_debut != null ? pause_debut.val() : null,
+                  // pause_fin: pause_fin != null ? pause_fin.val() : null,
+                  // sameDates: this.selected_sameDate,
+                  // old_sameDates: this.old_SameDate
 
-                _context.next = 39;
+                };
+                console.log("-*-*-*-*-*-*-*-*-", infoavismodif);
+                _context.next = 29;
                 return axios({
                   method: "POST",
-                  url: "api/store-avis-modif",
+                  url: " http://192.168.11.113:9000/api/store-avis-modif",
                   data: JSON.parse(JSON.stringify(infoavismodif, function (key, value) {
                     return value === "" ? null : value;
                   }))
                 }).then(function () {
-                  _this3.$toastr.s('Modifié avec succès');
+                  _this.$toastr.s("Modifié avec succès");
                 })["catch"](function (e) {
-                  _this3.$toastr.e("Echec de modification");
+                  _this.$toastr.e("Echec de modification");
 
                   throw e;
                 });
 
-              case 39:
+              case 29:
               case "end":
                 return _context.stop();
             }
@@ -45829,21 +45841,17 @@ var render = function() {
                           : $$selectedVal[0]
                       },
                       function($event) {
-                        _vm.handleAction(
+                        return _vm.handleAction(
                           "model3/FetchInfoGroupe",
                           _vm.selected_idForm
                         )
-                        _vm.getPause()
-                        _vm.getSameDates()
                       }
                     ]
                   }
                 },
                 [
                   _c("option", { attrs: { selected: "", disabled: "" } }, [
-                    _vm._v(
-                      "\n              ---selectionner Groupe---\n            "
-                    )
+                    _vm._v("---selectionner Groupe---")
                   ]),
                   _vm._v(" "),
                   _vm._l(_vm.Info_AvisModif, function(infogp) {
@@ -46038,7 +46046,11 @@ var render = function() {
                                 _c(
                                   "option",
                                   { attrs: { selected: "", disabled: "" } },
-                                  [_vm._v("---selectionner le lieu---")]
+                                  [
+                                    _vm._v(
+                                      "\n                    ---selectionner le lieu---\n                  "
+                                    )
+                                  ]
                                 ),
                                 _vm._v(" "),
                                 _vm._l(_vm.clients, function(cl) {
@@ -46149,27 +46161,6 @@ var render = function() {
                           ]
                         )
                       ]),
-                      _vm._v(" "),
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.old_SameDate,
-                            expression: "old_SameDate"
-                          }
-                        ],
-                        attrs: { type: "hidden", id: "same_date" },
-                        domProps: { value: _vm.old_SameDate },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.old_SameDate = $event.target.value
-                          }
-                        }
-                      }),
                       _vm._v(" "),
                       _c("div", { staticClass: "row mt-3" }, [
                         _vm._m(3, true),
@@ -46682,27 +46673,6 @@ var render = function() {
                               on: {
                                 change: function($event) {
                                   _vm.selected_pause = "false"
-                                }
-                              }
-                            }),
-                            _vm._v(" "),
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.old_pause,
-                                  expression: "old_pause"
-                                }
-                              ],
-                              attrs: { type: "hidden", id: "old_pause" },
-                              domProps: { value: _vm.old_pause },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.old_pause = $event.target.value
                                 }
                               }
                             })
@@ -73261,8 +73231,8 @@ var state = {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\HP\Desktop\mediexperts\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\HP\Desktop\mediexperts\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\HP\Desktop\Projects\Work\Mediexperts_App\mediexperts_dev\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\HP\Desktop\Projects\Work\Mediexperts_App\mediexperts_dev\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
