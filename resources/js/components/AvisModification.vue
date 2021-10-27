@@ -228,6 +228,7 @@
             v-for="info in groupe_info"
             :key="info.id_form"
           >
+            <div>{{ info }}</div>
             <input type="hidden" :value="info.pse_debut" id="pause_debut" />
             <input type="hidden" :value="info.pse_fin" id="pause_fin" />
             <h2>
@@ -474,93 +475,43 @@
                 </div>
 
                 <div class="form-group col-lg-3 col-md-6 col-12">
-                  <input
-                    class="form-control"
-                    type="date"
-                    id="newdate1"
-                    :value="info.date1"
-                  />
+                  <input class="form-control" type="date" id="newdate1" />
                 </div>
 
                 <div class="form-group col-lg-3 col-md-6 col-12">
-                  <input
-                    class="form-control"
-                    type="date"
-                    id="newdate2"
-                    :value="info.date2"
-                  />
+                  <input class="form-control" type="date" id="newdate2" />
                 </div>
 
                 <div class="form-group col-lg-3 col-md-6 col-12">
-                  <input
-                    class="form-control"
-                    type="date"
-                    id="newdate3"
-                    :value="info.date3"
-                  />
+                  <input class="form-control" type="date" id="newdate3" />
                 </div>
 
                 <div class="form-group col-lg-3 col-md-6 col-12">
-                  <input
-                    class="form-control"
-                    type="date"
-                    id="newdate4"
-                    :value="info.date4"
-                  />
+                  <input class="form-control" type="date" id="newdate4" />
                 </div>
 
                 <div class="form-group col-lg-3 col-md-6 col-12">
-                  <input
-                    class="form-control"
-                    type="date"
-                    id="newdate5"
-                    :value="info.date5"
-                  />
+                  <input class="form-control" type="date" id="newdate5" />
                 </div>
 
                 <div class="form-group col-lg-3 col-md-6 col-12">
-                  <input
-                    class="form-control"
-                    type="date"
-                    id="newdate6"
-                    :value="info.date6"
-                  />
+                  <input class="form-control" type="date" id="newdate6" />
                 </div>
 
                 <div class="form-group col-lg-3 col-md-6 col-12">
-                  <input
-                    class="form-control"
-                    type="date"
-                    id="newdate7"
-                    :value="info.date7"
-                  />
+                  <input class="form-control" type="date" id="newdate7" />
                 </div>
 
                 <div class="form-group col-lg-3 col-md-6 col-12">
-                  <input
-                    class="form-control"
-                    type="date"
-                    id="newdate8"
-                    :value="info.date8"
-                  />
+                  <input class="form-control" type="date" id="newdate8" />
                 </div>
 
                 <div class="form-group col-lg-3 col-md-6 col-12">
-                  <input
-                    class="form-control"
-                    type="date"
-                    id="newdate9"
-                    :value="info.date9"
-                  />
+                  <input class="form-control" type="date" id="newdate9" />
                 </div>
 
                 <div class="form-group col-lg-3 col-md-6 col-12">
-                  <input
-                    class="form-control"
-                    type="date"
-                    id="newdate10"
-                    :value="info.date10"
-                  />
+                  <input class="form-control" type="date" id="newdate10" />
                 </div>
               </div>
             </h5>
@@ -692,7 +643,7 @@
                   Oui
                   <input
                     type="radio"
-                    value="true"
+                    :value="true"
                     id="pause_oui"
                     name="pause"
                     v-model="selected_pause"
@@ -700,7 +651,7 @@
                   - Non
                   <input
                     type="radio"
-                    value="false"
+                    :value="false"
                     id="pause_non"
                     name="pause"
                     v-model="selected_pause"
@@ -990,10 +941,10 @@ export default {
         // old_sameDates: this.old_SameDate
       };
 
-     return console.log("-*-*-*-*-*-*-*-*-", infoavismodif);
+      console.log("-*-*-*-*-*-*-*-*-", infoavismodif);
       await axios({
         method: "POST",
-        url: " http://192.168.11.113:9000/api/store-avis-modif",
+        url: "api/store-avis-modif",
         data: JSON.parse(
           JSON.stringify(infoavismodif, function (key, value) {
             return value === "" ? null : value;

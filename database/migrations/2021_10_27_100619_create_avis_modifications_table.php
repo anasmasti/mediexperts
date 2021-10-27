@@ -31,7 +31,6 @@ class CreateAvisModificationsTable extends Migration
             $table->string('new_type_action')->default(null);
             $table->string('new_organisme', 250);
             $table->string('new_lieu', 250);
-            $table->string('new_groupe', 50);
             $table->boolean('new_has_same_dates')->default(false);
             $table->date('new_date1');
             $table->date('new_date2')->nullable();
