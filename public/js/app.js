@@ -3750,7 +3750,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this3 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var date1, date2, date3, date4, date5, date6, date7, date8, date9, date10, planifie, initial_organisme, initial_lieu, nouvel_lieu, initial_hr_debut, initial_hr_fin, new_hr_debut, new_hr_fin, entreprise, ref_plan, theme, etat_avis, pause_debut, pause_fin, infoavismodif;
+        var date1, date2, date3, date4, date5, date6, date7, date8, date9, date10, planifie, initial_organisme, initial_lieu, nouvel_organisme, nouvel_lieu, initial_hr_debut, initial_hr_fin, new_hr_debut, new_hr_fin, entreprise, ref_plan, theme, etat_avis, pause_debut, pause_fin, infoavismodif;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -3777,8 +3777,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 date10 = document.getElementById("newdate10");
                 planifie = document.getElementById("planifie");
                 initial_organisme = document.getElementById("initial_organisme");
-                initial_lieu = document.getElementById("initial_lieu"); // let nouvel_organisme = document.getElementById("nouvel_organisme");
-
+                initial_lieu = document.getElementById("initial_lieu");
+                nouvel_organisme = document.getElementById("nouvel_organisme");
                 nouvel_lieu = document.getElementById("nouvel_lieu");
                 initial_hr_debut = document.getElementById("initial_hr_debut");
                 initial_hr_fin = document.getElementById("initial_hr_fin");
@@ -3862,7 +3862,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 };
                 return _context.abrupt("return", console.log("-*-*-*-*-*-*-*-*-", infoavismodif));
 
-              case 28:
+              case 29:
               case "end":
                 return _context.stop();
             }

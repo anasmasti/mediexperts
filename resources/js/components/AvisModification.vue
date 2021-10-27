@@ -898,7 +898,7 @@ export default {
       let planifie = document.getElementById("planifie");
       let initial_organisme = document.getElementById("initial_organisme");
       let initial_lieu = document.getElementById("initial_lieu");
-      // let nouvel_organisme = document.getElementById("nouvel_organisme");
+      let nouvel_organisme = document.getElementById("nouvel_organisme");
       let nouvel_lieu = document.getElementById("nouvel_lieu");
       let initial_hr_debut = document.getElementById("initial_hr_debut");
       let initial_hr_fin = document.getElementById("initial_hr_fin");
