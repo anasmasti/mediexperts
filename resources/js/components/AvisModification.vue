@@ -206,14 +206,11 @@
               id="groups"
               @change="
                 handleAction('model3/FetchInfoGroupe', selected_idForm);
-                getPause();
-                getSameDates();
+              
               "
               v-model="selected_idForm"
             >
-              <option selected disabled>
-                ---selectionner Groupe---
-              </option>
+              <option selected disabled>---selectionner Groupe---</option>
               <option
                 v-for="infogp in Info_AvisModif"
                 :value="infogp.id_form"
@@ -242,7 +239,7 @@
             </h5>
             <h5
               :class="[
-                checkIndexOfGroup(info.groupe) ? 'desabled-checkbox' : ''
+                checkIndexOfGroup(info.groupe) ? 'desabled-checkbox' : '',
               ]"
             >
               <div class="row my-3">
@@ -290,9 +287,9 @@
                 <div class="form-group col-lg-6 col-sm-12">
                   <label>Nouveau lieu</label>
                   <select class="form-control" name="lieu" id="nouvel_lieu">
-                    <option selected disabled
-                      >---selectionner le lieu---</option
-                    >
+                    <option selected disabled>
+                      ---selectionner le lieu---
+                    </option>
                     <option v-for="cl in clients" :key="cl.nrc_entrp">
                       {{ cl.raisoci }}
                     </option>
@@ -312,7 +309,7 @@
               :class="[
                 checkIndexOfGroup(info.groupe) && info.Has_Same_Dates == true
                   ? 'desabled-checkbox'
-                  : ''
+                  : '',
               ]"
             >
               <div class="row">
@@ -339,7 +336,7 @@
                 </div>
               </div>
 
-              <input type="hidden" id="same_date" v-model="old_SameDate" />
+              <!-- <input type="hidden" id="same_date" v-model="old_SameDate" /> -->
 
               <div class="row mt-3">
                 <!-- {{-- LES DATES INITIALES --}} -->
@@ -573,7 +570,7 @@
             </h5>
             <h5
               :class="[
-                checkIndexOfGroup(info.groupe) ? 'desabled-checkbox' : ''
+                checkIndexOfGroup(info.groupe) ? 'desabled-checkbox' : '',
               ]"
             >
               <div class="row mt-3">
@@ -630,7 +627,7 @@
             </h5>
             <h5
               :class="[
-                checkIndexOfGroup(info.groupe) ? 'desabled-checkbox' : ''
+                checkIndexOfGroup(info.groupe) ? 'desabled-checkbox' : '',
               ]"
             >
               <div class="row">
@@ -687,7 +684,7 @@
                 </h5>
                 <h5
                   :class="[
-                    checkIndexOfGroup(info.groupe) ? 'desabled-checkbox' : ''
+                    checkIndexOfGroup(info.groupe) ? 'desabled-checkbox' : '',
                   ]"
                 >
                   <label for="pause" class="mr-3"> Il y a une pause :</label>
@@ -707,7 +704,7 @@
                     name="pause"
                     v-model="selected_pause"
                   />
-                  <input type="hidden" id="old_pause" v-model="old_pause" />
+                  <!-- <input type="hidden" id="old_pause" v-model="old_pause" /> -->
                 </h5>
                 <!-- <h1> {{selected_pause}} </h1> -->
               </div>
@@ -723,14 +720,15 @@
           href="#"
           class="btn btn-warning p-2 mx-3"
           @click="storeUpdateModel3()"
-          ><i class="fa fa-edit"> </i>&nbsp;Modifier</a>
+          ><i class="fa fa-edit"> </i>&nbsp;Modifier</a
+        >
         <!-- <a href="#" class="btn btn-warning"><i class="fa fa-pencil" aria-hidden="true"></i>&nbsp;Modifier</a> -->
         <a href="/print-m3" class="btn btn-info p-2 text-light"
-          ><i class="fa fa-print"></i>&nbsp;Imprimer</a>
+          ><i class="fa fa-print"></i>&nbsp;Imprimer</a
+        >
       </div>
     </form>
   </div>
-
 </template>
 
 <style scoped>
@@ -765,73 +763,72 @@ export default {
       selected_nature_action: true,
       pause: false,
       selected_pause: false,
-      old_pause: false,
-      old_SameDate: false,
+      // old_pause: false,
+      // old_SameDate: false,
       selected_sameDate: false,
-      sameDate: false
+      sameDate: false,
     };
   },
 
   mounted() {
     this.$store.dispatch("model3/FetchClients");
     this.$store.dispatch("model3/FetchAllCabinets");
-
   },
 
   updated() {},
 
   computed: {
     ...mapState("model3", {
-      curr_nrc_entrp: state => state.curr_nrc_entrp,
-      clients: state => state.clients,
-      reference_plans: state => state.reference_plans,
-      actions_by_plan: state => state.actions_by_plan,
-      curr_annee_plan: state => state.curr_annee_plan,
-      cabinets: state => state.cabinets,
-      Info_AvisModif: state => state.Info_AvisModif,
-      groupe_info: state => state.groupe_info
-    })
+      curr_nrc_entrp: (state) => state.curr_nrc_entrp,
+      clients: (state) => state.clients,
+      reference_plans: (state) => state.reference_plans,
+      actions_by_plan: (state) => state.actions_by_plan,
+      curr_annee_plan: (state) => state.curr_annee_plan,
+      cabinets: (state) => state.cabinets,
+      Info_AvisModif: (state) => state.Info_AvisModif,
+      groupe_info: (state) => state.groupe_info,
+    }),
   },
 
   methods: {
     handleAction(actionName, value) {
       this.$store.dispatch(actionName, value);
     },
-    getSameDates() {
-      setTimeout(() => {
-        if (this.Info_AvisModif) {
-          this.sameDate = this.Info_AvisModif[0].Has_Same_Dates;
-          if (this.sameDate == 0) {
-            this.sameDate = false;
-            this.selected_sameDate = this.sameDate;
-            this.old_SameDate = this.sameDate;
-          } else if (this.sameDate == 1) {
-            this.sameDate = true;
-            this.selected_sameDate = this.sameDate;
-            this.old_SameDate = this.sameDate;
-          }
-        }
-      }, 500);
-      return this.selected_sameDate, this.old_SameDate;
-    },
+    // getSameDates() {
+    //   setTimeout(() => {
+    //     if (this.Info_AvisModif) {
+    //       this.sameDate = this.Info_AvisModif[0].Has_Same_Dates;
+    //       if (this.sameDate == 0) {
+    //         this.sameDate = false;
+    //         this.selected_sameDate = this.sameDate;
+    //         this.old_SameDate = this.sameDate;
+    //       } else if (this.sameDate == 1) {
+    //         this.sameDate = true;
+    //         this.selected_sameDate = this.sameDate;
+    //         this.old_SameDate = this.sameDate;
+    //       }
+    //     }
+    //   }, 500);
+    //   return this.selected_sameDate, this.old_SameDate;
+    // },
 
-    getPause() {
-      setTimeout(() => {
-        if (this.Info_AvisModif) {
-          this.pause = this.Info_AvisModif[0].pause;
-          if (this.pause == 0) {
-            this.pause = false;
-            this.old_pause = this.pause;
-            this.selected_pause = this.pause;
-          } else if (this.pause == 1) {
-            this.pause = true;
-            this.old_pause = this.pause;
-            this.selected_pause = this.pause;
-          }
-        }
-      }, 500);
-      return this.selected_pause, this.old_pause;
-    },
+    // getPause() {
+    //   setTimeout(() => {
+    //     if (this.Info_AvisModif) {
+    //       this.pause = this.Info_AvisModif[0].pause;
+    //       if (this.pause == 0) {
+    //         this.pause = false;
+    //         this.old_pause = this.pause;
+    //         this.selected_pause = this.pause;
+    //       } else if (this.pause == 1) {
+    //         this.pause = true;
+    //         this.old_pause = this.pause;
+    //         this.selected_pause = this.pause;
+    //       }
+    //     }
+    //   }, 500);
+    //   return this.selected_pause, this.old_pause;
+    // },
     // fonction pour l'état d'avis annulation
     getSelected() {
       let annul = document.getElementById("etat");
@@ -877,26 +874,26 @@ export default {
     },
     // update the Model 3 and save archive data
     async storeUpdateModel3() {
-      let date1 = document.getElementById("date1");
-      let date2 = document.getElementById("date2");
-      let date3 = document.getElementById("date3");
-      let date4 = document.getElementById("date4");
-      let date5 = document.getElementById("date5");
-      let date6 = document.getElementById("date6");
-      let date7 = document.getElementById("date7");
-      let date8 = document.getElementById("date8");
-      let date9 = document.getElementById("date9");
-      let date10 = document.getElementById("date10");
-      let newdate1 = document.getElementById("newdate1");
-      let newdate2 = document.getElementById("newdate2");
-      let newdate3 = document.getElementById("newdate3");
-      let newdate4 = document.getElementById("newdate4");
-      let newdate5 = document.getElementById("newdate5");
-      let newdate6 = document.getElementById("newdate6");
-      let newdate7 = document.getElementById("newdate7");
-      let newdate8 = document.getElementById("newdate8");
-      let newdate9 = document.getElementById("newdate9");
-      let newdate10 = document.getElementById("newdate10");
+      // let date1 = document.getElementById("date1");
+      // let date2 = document.getElementById("date2");
+      // let date3 = document.getElementById("date3");
+      // let date4 = document.getElementById("date4");
+      // let date5 = document.getElementById("date5");
+      // let date6 = document.getElementById("date6");
+      // let date7 = document.getElementById("date7");
+      // let date8 = document.getElementById("date8");
+      // let date9 = document.getElementById("date9");
+      // let date10 = document.getElementById("date10");
+      let date1 = document.getElementById("newdate1");
+      let date2 = document.getElementById("newdate2");
+      let date3 = document.getElementById("newdate3");
+      let date4 = document.getElementById("newdate4");
+      let date5 = document.getElementById("newdate5");
+      let date6 = document.getElementById("newdate6");
+      let date7 = document.getElementById("newdate7");
+      let date8 = document.getElementById("newdate8");
+      let date9 = document.getElementById("newdate9");
+      let date10 = document.getElementById("newdate10");
       let planifie = document.getElementById("planifie");
       let initial_organisme = document.getElementById("initial_organisme");
       let initial_lieu = document.getElementById("initial_lieu");
@@ -910,86 +907,104 @@ export default {
       let ref_plan = document.getElementById("plans");
       let theme = document.getElementById("theme");
       let etat_avis = document.getElementById("etat");
-      let groupe = document.getElementById("groupe");
+      // let groupe = document.getElementById("groupe");
       let pause_debut = $("#pause_debut");
       let pause_fin = $("#pause_fin");
 
       let infoavismodif = {
-        date1: date1 != null ? date1.value : null,
-        date2: date2 != null ? date2.value : null,
-        date3: date3 != null ? date3.value : null,
-        date4: date4 != null ? date4.value : null,
-        date5: date5 != null ? date5.value : null,
-        date6: date6 != null ? date6.value : null,
-        date7: date7 != null ? date7.value : null,
-        date8: date8 != null ? date8.value : null,
-        date9: date9 != null ? date9.value : null,
-        date10: date10 != null ? date10.value : null,
-        newdate1: newdate1 != null ? newdate1.value : null,
-        newdate2: newdate2 != null ? newdate2.value : null,
-        newdate3: newdate3 != null ? newdate3.value : null,
-        newdate4: newdate4 != null ? newdate4.value : null,
-        newdate5: newdate5 != null ? newdate5.value : null,
-        newdate6: newdate6 != null ? newdate6.value : null,
-        newdate7: newdate7 != null ? newdate7.value : null,
-        newdate8: newdate8 != null ? newdate8.value : null,
-        newdate9: newdate9 != null ? newdate9.value : null,
-        newdate10: newdate10 != null ? newdate10.value : null,
-        entreprise: entreprise.value,
-        refPlan: ref_plan.value,
-        NomTheme: theme.value,
-        typeAction: etat_avis.value,
-        annuler: this.selected_annuler,
-        modificationDate: this.selected_modifdate,
-        modificationOrganisme: this.selected_modiforganisme,
-        modificationLieu: this.selected_modiflieu,
-        modificationHoraire: this.selected_modifhoraire,
-        natureAction: planifie.value,
-        organisme: initial_organisme.value,
-        lieu: initial_lieu.value,
-        heurDebut: initial_hr_debut.value,
-        heurFin: initial_hr_fin.value,
-        newOrganisme:
-          nouvel_organisme.value == false
-            ? initial_organisme.value
-            : nouvel_organisme.value,
-        newLieu:
-          nouvel_lieu.value == "---selectionner le lieu---"
-            ? initial_lieu.value
-            : nouvel_lieu.value,
-        newHeurDebut:
+        n_form: this.selected_nForm,
+        id_form: this.selected_idForm,
+        new_has_same_dates: this.selected_sameDate,
+        new_entreprise: entreprise.value,
+        new_ref_plan: ref_plan.value,
+        new_theme_action: theme.value,
+        new_nature_action: planifie.value,
+        new_hr_debut:
           new_hr_debut.value == false
             ? initial_hr_debut.value
             : new_hr_debut.value,
-        newHeurFin:
+        new_hr_fin:
           new_hr_fin.value == false ? initial_hr_fin.value : new_hr_fin.value,
-        nForm: this.selected_nForm,
-        idForm: this.selected_idForm,
-        groupe: groupe.textContent,
-        pause: this.selected_pause,
-        old_pause: this.old_pause,
-        pause_debut: pause_debut != null ? pause_debut.val() : null,
-        pause_fin: pause_fin != null ? pause_fin.val() : null,
-        sameDates: this.selected_sameDate,
-        old_sameDates: this.old_SameDate
+        new_pse_debut: pause_debut != null ? pause_debut.val() : null,
+        new_pse_fin: pause_fin != null ? pause_fin.val() : null,
+        new_type_action: etat_avis.value,
+        new_pause: this.selected_pause,
+        new_date1: date1 != null ? date1.value : null,
+        new_date2: date2 != null ? date1.value : null,
+        new_date3: date3 != null ? date1.value : null,
+        new_date4: date4 != null ? date1.value : null,
+        new_date5: date5 != null ? date1.value : null,
+        new_date6: date6 != null ? date1.value : null,
+        new_date7: date7 != null ? date1.value : null,
+        new_date8: date8 != null ? date8.value : null,
+        new_date9: date9 != null ? date9.value : null,
+        new_date10: date10 != null ? date10.value : null,
+        new_organisme: initial_organisme.value,
+        new_lieu:
+          nouvel_lieu.value == "---selectionner le lieu---"
+            ? initial_lieu.value
+            : nouvel_lieu.value,
+        new_anulation: this.selected_annuler,
+        new_lieu_formations: this.selected_modiflieu,
+        new_horaire_formations: this.selected_modifhoraire,
+        new_organisme_formations: this.selected_modiforganisme,
+        new_date_realisation: this.selected_modifdate,
+
+        // entreprise: entreprise.value,
+        // refPlan: ref_plan.value,
+        // NomTheme: theme.value,
+        // typeAction: etat_avis.value,
+        // annuler: this.selected_annuler,
+        // modificationDate: this.selected_modifdate,
+        // modificationOrganisme: this.selected_modiforganisme,
+        // modificationLieu: this.selected_modiflieu,
+        // modificationHoraire: this.selected_modifhoraire,
+        // natureAction: planifie.value,
+        // organisme: initial_organisme.value,
+        // lieu: initial_lieu.value,
+        // heurDebut: initial_hr_debut.value,
+        // heurFin: initial_hr_fin.value,
+        // newOrganisme:
+        //   nouvel_organisme.value == false
+        //     ? initial_organisme.value
+        //     : nouvel_organisme.value,
+        // newLieu:
+        //   nouvel_lieu.value == "---selectionner le lieu---"
+        //     ? initial_lieu.value
+        //     : nouvel_lieu.value,
+        // newHeurDebut:
+        //   new_hr_debut.value == false
+        //     ? initial_hr_debut.value
+        //     : new_hr_debut.value,
+        // newHeurFin:
+        //   new_hr_fin.value == false ? initial_hr_fin.value : new_hr_fin.value,
+        // nForm: this.selected_nForm,
+        // idForm: this.selected_idForm,
+        // groupe: groupe.textContent,
+        // pause: this.selected_pause,
+        // old_pause: this.old_pause,
+        // pause_debut: pause_debut != null ? pause_debut.val() : null,
+        // pause_fin: pause_fin != null ? pause_fin.val() : null,
+        // sameDates: this.selected_sameDate,
+        // old_sameDates: this.old_SameDate
       };
 
-      //  return console.log("-*-*-*-*-*-*-*-*-", infoavismodif);
+      console.log("-*-*-*-*-*-*-*-*-", infoavismodif);
       await axios({
         method: "POST",
-        url: "api/store-avis-modif",
+        url: " http://192.168.11.113:9000/api/store-avis-modif",
         data: JSON.parse(
-          JSON.stringify(infoavismodif, function(key, value) {
+          JSON.stringify(infoavismodif, function (key, value) {
             return value === "" ? null : value;
           })
-        )
+        ),
       })
         .then(() => {
-          this.$toastr.s('Modifié avec succès')
+          this.$toastr.s("Modifié avec succès");
         })
-        .catch( (e) => {
-          this.$toastr.e("Echec de modification")
-          throw e
+        .catch((e) => {
+          this.$toastr.e("Echec de modification");
+          throw e;
         });
     },
 
@@ -998,8 +1013,8 @@ export default {
       let isCorrect = index !== 1;
 
       return isCorrect;
-    }
-  }
+    },
+  },
 };
 </script>
 
