@@ -254,6 +254,7 @@
         }) //done
         .catch(err => console.log("error getting actions !!", error));
     });
+    
 
     $('#plans').on('change', function() {
       let idPlan = $('#plans').val();
@@ -308,6 +309,7 @@
     // Trouver les personnels
     $('#formation').on('change', function() {
       let idForm = $(this).val();
+      console.log(idForm);
       $.ajax({
         type: 'GET',
         url : '{!! URL::to('/fill-personnel-f4') !!}',
@@ -351,7 +353,7 @@
             $('#listPersonnel').append(fillPersonnel);
             //les dates
             for (let i = 0; i <= data.length; i++) {
-              let date = (`old_date`+(i+1)+``);
+              let date = (`date`+(i+1)+``);
               if (data[0][date] != null) {
                 var customDate = DateFormat(data[0][date]);
                 fillDates += `<option value="`+customDate+`">`+customDate+`</option>`;
