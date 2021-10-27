@@ -1,91 +1,72 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
-use App\{AvisModification,PlanFormation,Formation};
+use App\{AvisModification, PlanFormation};
 
 
 class AvisModificationController extends Controller
 {
 
-public function StoreUpdateAvisModif(Request $request) {
-
-        if ($request -> isMethod('POST')) {
-
-          $request = json_decode($request->getContent());
-
-          $AvisModif = new AvisModification();
-
-          $AvisModif->n_form = $request->nForm;
-          $AvisModif->id_form = $request->idForm;
-          $AvisModif->old_entreprise = $request->entreprise;
-          $AvisModif->old_ref_plan = $request->refPlan;
-          $AvisModif->old_type_action = $request->typeAction;
-          $AvisModif->old_anulation = $request->annuler;
-          $AvisModif->old_date_realisation = $request->modificationDate;
-          $AvisModif->old_organisme_formations= $request->modificationOrganisme;
-          $AvisModif->old_lieu_formations = $request->modificationLieu;
-          $AvisModif->old_horaire_formations = $request->modificationHoraire;
-          $AvisModif->old_theme_action = $request->NomTheme;
-          $AvisModif->old_nature_action = $request->natureAction;
-          $AvisModif->old_groupe = $request->groupe;
-          $AvisModif->old_organisme = $request->organisme;
-          $AvisModif->old_lieu= $request->lieu;
-          $AvisModif->old_hr_debut= $request->heurDebut ;
-          $AvisModif->old_hr_fin = $request->heurFin ;
-          $AvisModif->old_pse_debut = $request->pause_debut;
-          $AvisModif->old_pse_fin = $request->pause_fin;
-          $AvisModif->old_date1 = $request->date1;
-          $AvisModif->old_date2 = $request->date2;
-          $AvisModif->old_date3 = $request->date3;
-          $AvisModif->old_date4 = $request->date4 ;
-          $AvisModif->old_date5 = $request->date5;
-          $AvisModif->old_date6 = $request->date6;
-          $AvisModif->old_date7 = $request->date7;
-          $AvisModif->old_date8 = $request->date8;
-          $AvisModif->old_date9 = $request->date9;
-          $AvisModif->old_date10 = $request->date10;
-          $AvisModif->old_pause = $request->old_pause;
-          $AvisModif->has_same_dates = $request->old_sameDates;
-          $nFrom = $AvisModif->n_form;
-          $idForm = $AvisModif->id_form;
-          $AvisModif->save();
+    public function StoreUpdateAvisModif(Request $request)
+    {
 
 
-          $planformation = PlanFormation::findOrFail($nFrom);
+        if ($request->isMethod('POST')) {
 
-          $planformation->lieu = $request->newLieu;
-          $planformation->organisme = $request->newOrganisme ;
-          $planformation->type_action = $request->typeAction;
-          $planformation->date_realisation = $request->modificationDate;
-          $planformation->organisme_formations = $request->modificationOrganisme;
-          $planformation->lieu_formations = $request->modificationLieu;
-          $planformation->horaire_formations = $request->modificationHoraire;
-          $planformation->pause = $request->pause;
-          $planformation->etat = $request->typeAction;
-          $planformation->Has_Same_Dates = $request->sameDates;
-          $planformation->save();
+            // $request = json_decode($request->getContent());
+           
+            // return response($request, 200);
 
-          $formation = Formation::findOrfail($idForm);
+            $AvisModif = new AvisModification();
 
-          $formation->hr_debut = $request-> newHeurDebut;
-          $formation->hr_fin = $request-> newHeurFin;
-          $formation->date1 =  $request->newdate1 ;
-          $formation->date2 =  $request->newdate2;
-          $formation->date3 =  $request->newdate3;
-          $formation->date4 =  $request->newdate4;
-          $formation->date5 =  $request->newdate5;
-          $formation->date6 =  $request->newdate6;
-          $formation->date7 =  $request->newdate7;
-          $formation->date8 =  $request->newdate8;
-          $formation->date9 =  $request->newdate9;
-          $formation->date10 = $request->newdate10;
-          $formation->save();
+            $AvisModif->n_form = $request->n_form;
+            $AvisModif->id_form = $request->id_form;
+            $AvisModif->new_entreprise = $request->new_entreprise;
+            $AvisModif->new_ref_plan = $request->new_ref_plan;
+            $AvisModif->new_type_action = $request->new_type_action;
+            $AvisModif->new_anulation = $request->new_anulation;
+            $AvisModif->new_date_realisation = $request->new_date_realisation;
+            $AvisModif->new_organisme_formations = $request->new_organisme_formations;
+            $AvisModif->new_lieu_formations = $request->new_lieu_formations;
+            $AvisModif->new_horaire_formations = $request->new_horaire_formations;
+            $AvisModif->new_theme_action = $request->new_theme_action;
+            $AvisModif->new_nature_action = $request->new_nature_action;
+            //   $AvisModif->new_groupe = $request->new_groupe;
+            $AvisModif->new_organisme = $request->new_organisme;
+            $AvisModif->new_lieu = $request->new_lieu;
+            $AvisModif->new_hr_debut = $request->new_hr_debut;
+            $AvisModif->new_hr_fin = $request->new_hr_fin;
+            $AvisModif->new_pse_debut = $request->new_pse_debut;
+            $AvisModif->new_pse_fin = $request->new_pse_fin;
+            $AvisModif->new_date1 = $request->new_date1;
+            $AvisModif->new_date2 = $request->new_date2;
+            $AvisModif->new_date3 = $request->new_date3;
+            $AvisModif->new_date4 = $request->new_date4;
+            $AvisModif->new_date5 = $request->new_date5;
+            $AvisModif->new_date6 = $request->new_date6;
+            $AvisModif->new_date7 = $request->new_date7;
+            $AvisModif->new_date8 = $request->new_date8;
+            $AvisModif->new_date9 = $request->new_date9;
+            $AvisModif->new_date10 = $request->new_date10;
+            $AvisModif->new_pause = $request->new_pause;
+            $AvisModif->new_has_same_dates = $request->new_has_same_dates;
+            $nFrom = $AvisModif->n_form;
+            //  $idForm = $AvisModif->id_form;
+            $AvisModif->save();
 
-          // $formation->pse_debut = $request->pse_debut;
-          // $formation->pse_fin = $request-> pse_fin;
+
+            $planformation = PlanFormation::findOrFail($nFrom);
+            $planformation->date_realisation = $request->new_date_realisation;
+            $planformation->organisme_formations = $request->new_organisme_formations;
+            $planformation->lieu_formations = $request->new_lieu_formations;
+            $planformation->horaire_formations = $request->new_horaire_formations;
+            $planformation->type_action = $request->new_type_action;
+            $planformation->etat = $request->new_type_action;
+            $planformation->save();
         }
-}
+    }
     /**
      * Display a listing of the resource.
      *

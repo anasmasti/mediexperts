@@ -459,27 +459,48 @@
         url : '{!! URL::to('/fill-form-f4') !!}',
         data: {'nForm': nForm},
         success: function(data) {
+          // the position 0 of table data represents the 'Formation' Data 
+          // the position 1 represents 'Avis de modification' data if it does exist
+          let fitchedData;
+          let groupe;
+          // database date syntaxe
+          let dateSyntaxe;
+
+          if(data[1].length > 0){
+            //  fetch ' avi modification ' data
+             fitchedData = data[1],
+             dateSyntaxe = 'new_date'
+             groupe = data[1][0].new_groupe
+             console.log('Test' , data[1][0].new_groupe);
+          }
+          else{
+            //  fetch ' Formation ' data
+            fitchedData = data[0]
+            dateSyntaxe = 'date'
+            groupe = data[0][0].groupe
+          }
+
           let fillFormation = '<option selected disabled>--veuillez sélectionner le thème </option>';
-          console.log('success formations !!', data);
-          if (data.length > 0) {
-            for (let i = 0; i < data.length; i++) {
-              fillFormation += `<optgroup label=" groupe: ${data[i].groupe}"><option value="`+data[i].id_form+`"> ${data[i].nom_theme}  </option></optgroup>`;
+          console.log('success formations test !!', fitchedData);
+          if (fitchedData.length > 0) {
+            for (let i = 0; i < fitchedData.length; i++) {
+              fillFormation += `<optgroup label=" groupe: ${groupe}"><option value="`+fitchedData[i].id_form+`"> ${fitchedData[i].nom_theme}  </option></optgroup>`;
               
               for (let j=0; j<30;j++){
-              let tmpIndex = "date"+(j+1);
+              let tmpIndex = dateSyntaxe+(j+1);
               //get last nonull date (dernière date de formation)
-              if (data[0][tmpIndex] != null && data[0][(tmpIndex+1)] == null) {
-                last_nonull_date = data[0][tmpIndex];
+              if (fitchedData[0][tmpIndex] != null && fitchedData[0][(tmpIndex+1)] == null) {
+                last_nonull_date = fitchedData[0][tmpIndex];
                 }
               }
             
-            fillDate = "De "+DateFormat(data[0]['date1'])+" à "+DateFormat(last_nonull_date);
+            fillDate = "De "+DateFormat(fitchedData[0][dateSyntaxe + '1'])+" à "+DateFormat(last_nonull_date);
             formation.html("");
             formation.append(fillFormation);
             $('#dates').html("");
             $('#dates').val(fillDate);
             $('#dateF4').val((last_nonull_date));
-            $('#ville').val(data[0].local_2)
+            $('#ville').val(fitchedData[0].local_2)
             }
           }
           else {
@@ -494,7 +515,6 @@
         }
       }); //ajax
     }); //onChange
-
     $('#plan').on('change',function() {
       let idPlan = $(this).val();
       $.ajax({
@@ -525,6 +545,7 @@
         data: {'idForm': idForm},
         success: function(data) {
           console.log('success personnel !!', data);
+          console.log('Test' , data[0]['groupe']);
           let fillPersonnel = '<option selected disabled>--veuillez sélectionner le personnel</option>';
           let last_nonull_date = "";
           let fillDate = "";

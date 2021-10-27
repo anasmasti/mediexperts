@@ -351,7 +351,7 @@
             $('#listPersonnel').append(fillPersonnel);
             //les dates
             for (let i = 0; i <= data.length; i++) {
-              let date = (`date`+(i+1)+``);
+              let date = (`old_date`+(i+1)+``);
               if (data[0][date] != null) {
                 var customDate = DateFormat(data[0][date]);
                 fillDates += `<option value="`+customDate+`">`+customDate+`</option>`;

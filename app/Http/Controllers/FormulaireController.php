@@ -117,8 +117,18 @@ class FormulaireController extends Controller
         ->join('Clients', 'clients.nrc_entrp', '=', 'plans.nrc_e')
         ->join('themes', 'plan_formations.id_thm', 'themes.id_theme')
         ->where('plan_formations.n_form', $request->nForm)
+        ->where('plan_formations.n_form', $request->nForm)
         ->get();
-      return response()->json($data);
+      $avis_modifications = Formation::select('avis_modifications.*', 'themes.nom_theme', 'clients.raisoci', 'clients.ville', 'clients.local_2')
+          ->join('avis_modifications', 'formations.id_form', '=', 'avis_modifications.id_form')
+          ->join('plan_formations', 'formations.n_form', 'plan_formations.n_form')
+          ->join('plans', 'plans.id_plan', '=', 'plan_formations.id_plan')
+          ->join('Clients', 'clients.nrc_entrp', '=', 'plans.nrc_e')
+          ->join('themes', 'plan_formations.id_thm', 'themes.id_theme')
+          ->where('plan_formations.n_form', $request->nForm)
+          ->where('plan_formations.type_action', '!=' , 'annulé')
+        ->get();
+      return response()->json([$data , $avis_modifications]);
     }
     public function FillPersonnelF4(Request $request) {
       $data = Formation::select('personnels.*', 'formations.*')
