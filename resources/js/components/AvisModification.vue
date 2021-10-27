@@ -206,7 +206,8 @@
               id="groups"
               @change="
                 handleAction('model3/FetchInfoGroupe', selected_idForm);
-              
+                getPause();
+                getSameDates();
               "
               v-model="selected_idForm"
             >
@@ -227,7 +228,7 @@
             v-for="info in groupe_info"
             :key="info.id_form"
           >
-          <div>{{info}}</div>
+            <div>{{ info }}</div>
             <input type="hidden" :value="info.pse_debut" id="pause_debut" />
             <input type="hidden" :value="info.pse_fin" id="pause_fin" />
             <h2>
@@ -474,93 +475,43 @@
                 </div>
 
                 <div class="form-group col-lg-3 col-md-6 col-12">
-                  <input
-                    class="form-control"
-                    type="date"
-                    id="newdate1"
-                    :value="info.date1"
-                  />
+                  <input class="form-control" type="date" id="newdate1" />
                 </div>
 
                 <div class="form-group col-lg-3 col-md-6 col-12">
-                  <input
-                    class="form-control"
-                    type="date"
-                    id="newdate2"
-                    :value="info.date2"
-                  />
+                  <input class="form-control" type="date" id="newdate2" />
                 </div>
 
                 <div class="form-group col-lg-3 col-md-6 col-12">
-                  <input
-                    class="form-control"
-                    type="date"
-                    id="newdate3"
-                    :value="info.date3"
-                  />
+                  <input class="form-control" type="date" id="newdate3" />
                 </div>
 
                 <div class="form-group col-lg-3 col-md-6 col-12">
-                  <input
-                    class="form-control"
-                    type="date"
-                    id="newdate4"
-                    :value="info.date4"
-                  />
+                  <input class="form-control" type="date" id="newdate4" />
                 </div>
 
                 <div class="form-group col-lg-3 col-md-6 col-12">
-                  <input
-                    class="form-control"
-                    type="date"
-                    id="newdate5"
-                    :value="info.date5"
-                  />
+                  <input class="form-control" type="date" id="newdate5" />
                 </div>
 
                 <div class="form-group col-lg-3 col-md-6 col-12">
-                  <input
-                    class="form-control"
-                    type="date"
-                    id="newdate6"
-                    :value="info.date6"
-                  />
+                  <input class="form-control" type="date" id="newdate6" />
                 </div>
 
                 <div class="form-group col-lg-3 col-md-6 col-12">
-                  <input
-                    class="form-control"
-                    type="date"
-                    id="newdate7"
-                    :value="info.date7"
-                  />
+                  <input class="form-control" type="date" id="newdate7" />
                 </div>
 
                 <div class="form-group col-lg-3 col-md-6 col-12">
-                  <input
-                    class="form-control"
-                    type="date"
-                    id="newdate8"
-                    :value="info.date8"
-                  />
+                  <input class="form-control" type="date" id="newdate8" />
                 </div>
 
                 <div class="form-group col-lg-3 col-md-6 col-12">
-                  <input
-                    class="form-control"
-                    type="date"
-                    id="newdate9"
-                    :value="info.date9"
-                  />
+                  <input class="form-control" type="date" id="newdate9" />
                 </div>
 
                 <div class="form-group col-lg-3 col-md-6 col-12">
-                  <input
-                    class="form-control"
-                    type="date"
-                    id="newdate10"
-                    :value="info.date10"
-                  />
+                  <input class="form-control" type="date" id="newdate10" />
                 </div>
               </div>
             </h5>
@@ -692,7 +643,7 @@
                   Oui
                   <input
                     type="radio"
-                    value="true"
+                    :value="true"
                     id="pause_oui"
                     name="pause"
                     v-model="selected_pause"
@@ -700,7 +651,7 @@
                   - Non
                   <input
                     type="radio"
-                    value="false"
+                    :value="false"
                     id="pause_non"
                     name="pause"
                     v-model="selected_pause"
@@ -764,8 +715,8 @@ export default {
       selected_nature_action: true,
       pause: false,
       selected_pause: false,
-      // old_pause: false,
-      // old_SameDate: false,
+      old_pause: false,
+      old_SameDate: false,
       selected_sameDate: false,
       sameDate: false,
     };
@@ -795,41 +746,41 @@ export default {
     handleAction(actionName, value) {
       this.$store.dispatch(actionName, value);
     },
-    // getSameDates() {
-    //   setTimeout(() => {
-    //     if (this.Info_AvisModif) {
-    //       this.sameDate = this.Info_AvisModif[0].Has_Same_Dates;
-    //       if (this.sameDate == 0) {
-    //         this.sameDate = false;
-    //         this.selected_sameDate = this.sameDate;
-    //         this.old_SameDate = this.sameDate;
-    //       } else if (this.sameDate == 1) {
-    //         this.sameDate = true;
-    //         this.selected_sameDate = this.sameDate;
-    //         this.old_SameDate = this.sameDate;
-    //       }
-    //     }
-    //   }, 500);
-    //   return this.selected_sameDate, this.old_SameDate;
-    // },
+    getSameDates() {
+      setTimeout(() => {
+        if (this.Info_AvisModif) {
+          this.sameDate = this.Info_AvisModif[0].Has_Same_Dates;
+          if (this.sameDate == 0) {
+            this.sameDate = false;
+            this.selected_sameDate = this.sameDate;
+            this.old_SameDate = this.sameDate;
+          } else if (this.sameDate == 1) {
+            this.sameDate = true;
+            this.selected_sameDate = this.sameDate;
+            this.old_SameDate = this.sameDate;
+          }
+        }
+      }, 500);
+      return this.selected_sameDate, this.old_SameDate;
+    },
 
-    // getPause() {
-    //   setTimeout(() => {
-    //     if (this.Info_AvisModif) {
-    //       this.pause = this.Info_AvisModif[0].pause;
-    //       if (this.pause == 0) {
-    //         this.pause = false;
-    //         this.old_pause = this.pause;
-    //         this.selected_pause = this.pause;
-    //       } else if (this.pause == 1) {
-    //         this.pause = true;
-    //         this.old_pause = this.pause;
-    //         this.selected_pause = this.pause;
-    //       }
-    //     }
-    //   }, 500);
-    //   return this.selected_pause, this.old_pause;
-    // },
+    getPause() {
+      setTimeout(() => {
+        if (this.Info_AvisModif) {
+          this.pause = this.Info_AvisModif[0].pause;
+          if (this.pause == 0) {
+            this.pause = false;
+            this.old_pause = this.pause;
+            this.selected_pause = this.pause;
+          } else if (this.pause == 1) {
+            this.pause = true;
+            this.old_pause = this.pause;
+            this.selected_pause = this.pause;
+          }
+        }
+      }, 500);
+      return this.selected_pause, this.old_pause;
+    },
     // fonction pour l'état d'avis annulation
     getSelected() {
       let annul = document.getElementById("etat");
@@ -898,7 +849,7 @@ export default {
       let planifie = document.getElementById("planifie");
       let initial_organisme = document.getElementById("initial_organisme");
       let initial_lieu = document.getElementById("initial_lieu");
-      let nouvel_organisme = document.getElementById("nouvel_organisme");
+      // let nouvel_organisme = document.getElementById("nouvel_organisme");
       let nouvel_lieu = document.getElementById("nouvel_lieu");
       let initial_hr_debut = document.getElementById("initial_hr_debut");
       let initial_hr_fin = document.getElementById("initial_hr_fin");
@@ -931,12 +882,12 @@ export default {
         new_type_action: etat_avis.value,
         new_pause: this.selected_pause,
         new_date1: date1 != null ? date1.value : null,
-        new_date2: date2 != null ? date1.value : null,
-        new_date3: date3 != null ? date1.value : null,
-        new_date4: date4 != null ? date1.value : null,
-        new_date5: date5 != null ? date1.value : null,
-        new_date6: date6 != null ? date1.value : null,
-        new_date7: date7 != null ? date1.value : null,
+        new_date2: date2 != null ? date2.value : null,
+        new_date3: date3 != null ? date3.value : null,
+        new_date4: date4 != null ? date4.value : null,
+        new_date5: date5 != null ? date5.value : null,
+        new_date6: date6 != null ? date6.value : null,
+        new_date7: date7 != null ? date7.value : null,
         new_date8: date8 != null ? date8.value : null,
         new_date9: date9 != null ? date9.value : null,
         new_date10: date10 != null ? date10.value : null,

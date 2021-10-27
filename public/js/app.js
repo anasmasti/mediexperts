@@ -3555,55 +3555,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   runtimeCompiler: true,
@@ -3625,8 +3576,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       selected_nature_action: true,
       pause: false,
       selected_pause: false,
-      // old_pause: false,
-      // old_SameDate: false,
+      old_pause: false,
+      old_SameDate: false,
       selected_sameDate: false,
       sameDate: false
     };
@@ -3666,40 +3617,46 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     handleAction: function handleAction(actionName, value) {
       this.$store.dispatch(actionName, value);
     },
-    // getSameDates() {
-    //   setTimeout(() => {
-    //     if (this.Info_AvisModif) {
-    //       this.sameDate = this.Info_AvisModif[0].Has_Same_Dates;
-    //       if (this.sameDate == 0) {
-    //         this.sameDate = false;
-    //         this.selected_sameDate = this.sameDate;
-    //         this.old_SameDate = this.sameDate;
-    //       } else if (this.sameDate == 1) {
-    //         this.sameDate = true;
-    //         this.selected_sameDate = this.sameDate;
-    //         this.old_SameDate = this.sameDate;
-    //       }
-    //     }
-    //   }, 500);
-    //   return this.selected_sameDate, this.old_SameDate;
-    // },
-    // getPause() {
-    //   setTimeout(() => {
-    //     if (this.Info_AvisModif) {
-    //       this.pause = this.Info_AvisModif[0].pause;
-    //       if (this.pause == 0) {
-    //         this.pause = false;
-    //         this.old_pause = this.pause;
-    //         this.selected_pause = this.pause;
-    //       } else if (this.pause == 1) {
-    //         this.pause = true;
-    //         this.old_pause = this.pause;
-    //         this.selected_pause = this.pause;
-    //       }
-    //     }
-    //   }, 500);
-    //   return this.selected_pause, this.old_pause;
-    // },
+    getSameDates: function getSameDates() {
+      var _this = this;
+
+      setTimeout(function () {
+        if (_this.Info_AvisModif) {
+          _this.sameDate = _this.Info_AvisModif[0].Has_Same_Dates;
+
+          if (_this.sameDate == 0) {
+            _this.sameDate = false;
+            _this.selected_sameDate = _this.sameDate;
+            _this.old_SameDate = _this.sameDate;
+          } else if (_this.sameDate == 1) {
+            _this.sameDate = true;
+            _this.selected_sameDate = _this.sameDate;
+            _this.old_SameDate = _this.sameDate;
+          }
+        }
+      }, 500);
+      return this.selected_sameDate, this.old_SameDate;
+    },
+    getPause: function getPause() {
+      var _this2 = this;
+
+      setTimeout(function () {
+        if (_this2.Info_AvisModif) {
+          _this2.pause = _this2.Info_AvisModif[0].pause;
+
+          if (_this2.pause == 0) {
+            _this2.pause = false;
+            _this2.old_pause = _this2.pause;
+            _this2.selected_pause = _this2.pause;
+          } else if (_this2.pause == 1) {
+            _this2.pause = true;
+            _this2.old_pause = _this2.pause;
+            _this2.selected_pause = _this2.pause;
+          }
+        }
+      }, 500);
+      return this.selected_pause, this.old_pause;
+    },
     // fonction pour l'état d'avis annulation
     getSelected: function getSelected() {
       var annul = document.getElementById("etat");
@@ -3741,10 +3698,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     // update the Model 3 and save archive data
     storeUpdateModel3: function storeUpdateModel3() {
-      var _this = this;
+      var _this3 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var date1, date2, date3, date4, date5, date6, date7, date8, date9, date10, planifie, initial_organisme, initial_lieu, nouvel_organisme, nouvel_lieu, initial_hr_debut, initial_hr_fin, new_hr_debut, new_hr_fin, entreprise, ref_plan, theme, etat_avis, pause_debut, pause_fin, infoavismodif;
+        var date1, date2, date3, date4, date5, date6, date7, date8, date9, date10, planifie, initial_organisme, initial_lieu, nouvel_lieu, initial_hr_debut, initial_hr_fin, new_hr_debut, new_hr_fin, entreprise, ref_plan, theme, etat_avis, pause_debut, pause_fin, infoavismodif;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -3771,8 +3728,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 date10 = document.getElementById("newdate10");
                 planifie = document.getElementById("planifie");
                 initial_organisme = document.getElementById("initial_organisme");
-                initial_lieu = document.getElementById("initial_lieu");
-                nouvel_organisme = document.getElementById("nouvel_organisme");
+                initial_lieu = document.getElementById("initial_lieu"); // let nouvel_organisme = document.getElementById("nouvel_organisme");
+
                 nouvel_lieu = document.getElementById("nouvel_lieu");
                 initial_hr_debut = document.getElementById("initial_hr_debut");
                 initial_hr_fin = document.getElementById("initial_hr_fin");
@@ -3786,9 +3743,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 pause_debut = $("#pause_debut");
                 pause_fin = $("#pause_fin");
                 infoavismodif = {
-                  n_form: _this.selected_nForm,
-                  id_form: _this.selected_idForm,
-                  new_has_same_dates: _this.selected_sameDate,
+                  n_form: _this3.selected_nForm,
+                  id_form: _this3.selected_idForm,
+                  new_has_same_dates: _this3.selected_sameDate,
                   new_entreprise: entreprise.value,
                   new_ref_plan: ref_plan.value,
                   new_theme_action: theme.value,
@@ -3798,24 +3755,24 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                   new_pse_debut: pause_debut != null ? pause_debut.val() : null,
                   new_pse_fin: pause_fin != null ? pause_fin.val() : null,
                   new_type_action: etat_avis.value,
-                  new_pause: _this.selected_pause,
+                  new_pause: _this3.selected_pause,
                   new_date1: date1 != null ? date1.value : null,
-                  new_date2: date2 != null ? date1.value : null,
-                  new_date3: date3 != null ? date1.value : null,
-                  new_date4: date4 != null ? date1.value : null,
-                  new_date5: date5 != null ? date1.value : null,
-                  new_date6: date6 != null ? date1.value : null,
-                  new_date7: date7 != null ? date1.value : null,
+                  new_date2: date2 != null ? date2.value : null,
+                  new_date3: date3 != null ? date3.value : null,
+                  new_date4: date4 != null ? date4.value : null,
+                  new_date5: date5 != null ? date5.value : null,
+                  new_date6: date6 != null ? date6.value : null,
+                  new_date7: date7 != null ? date7.value : null,
                   new_date8: date8 != null ? date8.value : null,
                   new_date9: date9 != null ? date9.value : null,
                   new_date10: date10 != null ? date10.value : null,
                   new_organisme: initial_organisme.value,
                   new_lieu: nouvel_lieu.value == "---selectionner le lieu---" ? initial_lieu.value : nouvel_lieu.value,
-                  new_anulation: _this.selected_annuler,
-                  new_lieu_formations: _this.selected_modiflieu,
-                  new_horaire_formations: _this.selected_modifhoraire,
-                  new_organisme_formations: _this.selected_modiforganisme,
-                  new_date_realisation: _this.selected_modifdate // entreprise: entreprise.value,
+                  new_anulation: _this3.selected_annuler,
+                  new_lieu_formations: _this3.selected_modiflieu,
+                  new_horaire_formations: _this3.selected_modifhoraire,
+                  new_organisme_formations: _this3.selected_modiforganisme,
+                  new_date_realisation: _this3.selected_modifdate // entreprise: entreprise.value,
                   // refPlan: ref_plan.value,
                   // NomTheme: theme.value,
                   // typeAction: etat_avis.value,
@@ -3855,7 +3812,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
                 };
                 console.log("-*-*-*-*-*-*-*-*-", infoavismodif);
-                _context.next = 29;
+                _context.next = 28;
                 return axios({
                   method: "POST",
                   url: "api/store-avis-modif",
@@ -3863,14 +3820,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                     return value === "" ? null : value;
                   }))
                 }).then(function () {
-                  _this.$toastr.s("Modifié avec succès");
+                  _this3.$toastr.s("Modifié avec succès");
                 })["catch"](function (e) {
-                  _this.$toastr.e("Echec de modification");
+                  _this3.$toastr.e("Echec de modification");
 
                   throw e;
                 });
 
-              case 29:
+              case 28:
               case "end":
                 return _context.stop();
             }
@@ -45842,10 +45799,12 @@ var render = function() {
                           : $$selectedVal[0]
                       },
                       function($event) {
-                        return _vm.handleAction(
+                        _vm.handleAction(
                           "model3/FetchInfoGroupe",
                           _vm.selected_idForm
                         )
+                        _vm.getPause()
+                        _vm.getSameDates()
                       }
                     ]
                   }
@@ -46340,145 +46299,25 @@ var render = function() {
                         _vm._v(" "),
                         _vm._m(4, true),
                         _vm._v(" "),
-                        _c(
-                          "div",
-                          {
-                            staticClass: "form-group col-lg-3 col-md-6 col-12"
-                          },
-                          [
-                            _c("input", {
-                              staticClass: "form-control",
-                              attrs: { type: "date", id: "newdate1" },
-                              domProps: { value: info.date1 }
-                            })
-                          ]
-                        ),
+                        _vm._m(5, true),
                         _vm._v(" "),
-                        _c(
-                          "div",
-                          {
-                            staticClass: "form-group col-lg-3 col-md-6 col-12"
-                          },
-                          [
-                            _c("input", {
-                              staticClass: "form-control",
-                              attrs: { type: "date", id: "newdate2" },
-                              domProps: { value: info.date2 }
-                            })
-                          ]
-                        ),
+                        _vm._m(6, true),
                         _vm._v(" "),
-                        _c(
-                          "div",
-                          {
-                            staticClass: "form-group col-lg-3 col-md-6 col-12"
-                          },
-                          [
-                            _c("input", {
-                              staticClass: "form-control",
-                              attrs: { type: "date", id: "newdate3" },
-                              domProps: { value: info.date3 }
-                            })
-                          ]
-                        ),
+                        _vm._m(7, true),
                         _vm._v(" "),
-                        _c(
-                          "div",
-                          {
-                            staticClass: "form-group col-lg-3 col-md-6 col-12"
-                          },
-                          [
-                            _c("input", {
-                              staticClass: "form-control",
-                              attrs: { type: "date", id: "newdate4" },
-                              domProps: { value: info.date4 }
-                            })
-                          ]
-                        ),
+                        _vm._m(8, true),
                         _vm._v(" "),
-                        _c(
-                          "div",
-                          {
-                            staticClass: "form-group col-lg-3 col-md-6 col-12"
-                          },
-                          [
-                            _c("input", {
-                              staticClass: "form-control",
-                              attrs: { type: "date", id: "newdate5" },
-                              domProps: { value: info.date5 }
-                            })
-                          ]
-                        ),
+                        _vm._m(9, true),
                         _vm._v(" "),
-                        _c(
-                          "div",
-                          {
-                            staticClass: "form-group col-lg-3 col-md-6 col-12"
-                          },
-                          [
-                            _c("input", {
-                              staticClass: "form-control",
-                              attrs: { type: "date", id: "newdate6" },
-                              domProps: { value: info.date6 }
-                            })
-                          ]
-                        ),
+                        _vm._m(10, true),
                         _vm._v(" "),
-                        _c(
-                          "div",
-                          {
-                            staticClass: "form-group col-lg-3 col-md-6 col-12"
-                          },
-                          [
-                            _c("input", {
-                              staticClass: "form-control",
-                              attrs: { type: "date", id: "newdate7" },
-                              domProps: { value: info.date7 }
-                            })
-                          ]
-                        ),
+                        _vm._m(11, true),
                         _vm._v(" "),
-                        _c(
-                          "div",
-                          {
-                            staticClass: "form-group col-lg-3 col-md-6 col-12"
-                          },
-                          [
-                            _c("input", {
-                              staticClass: "form-control",
-                              attrs: { type: "date", id: "newdate8" },
-                              domProps: { value: info.date8 }
-                            })
-                          ]
-                        ),
+                        _vm._m(12, true),
                         _vm._v(" "),
-                        _c(
-                          "div",
-                          {
-                            staticClass: "form-group col-lg-3 col-md-6 col-12"
-                          },
-                          [
-                            _c("input", {
-                              staticClass: "form-control",
-                              attrs: { type: "date", id: "newdate9" },
-                              domProps: { value: info.date9 }
-                            })
-                          ]
-                        ),
+                        _vm._m(13, true),
                         _vm._v(" "),
-                        _c(
-                          "div",
-                          {
-                            staticClass: "form-group col-lg-3 col-md-6 col-12"
-                          },
-                          [
-                            _c("input", {
-                              staticClass: "form-control",
-                              attrs: { type: "date", id: "newdate10" },
-                              domProps: { value: info.date10 }
-                            })
-                          ]
-                        )
+                        _vm._m(14, true)
                       ])
                     ]
                   ),
@@ -46502,7 +46341,7 @@ var render = function() {
                     },
                     [
                       _c("div", { staticClass: "row mt-3" }, [
-                        _vm._m(5, true),
+                        _vm._m(15, true),
                         _vm._v(" "),
                         _c(
                           "div",
@@ -46535,7 +46374,7 @@ var render = function() {
                                   }
                                 }),
                                 _vm._v(" "),
-                                _vm._m(6, true)
+                                _vm._m(16, true)
                               ]
                             )
                           ]
@@ -46572,7 +46411,7 @@ var render = function() {
                                   }
                                 }),
                                 _vm._v(" "),
-                                _vm._m(7, true)
+                                _vm._m(17, true)
                               ]
                             )
                           ]
@@ -46598,7 +46437,7 @@ var render = function() {
                           : ""
                       ]
                     },
-                    [_vm._m(8, true)]
+                    [_vm._m(18, true)]
                   ),
                   _vm._v(" "),
                   _c("div", { staticClass: "row" }, [
@@ -46641,16 +46480,16 @@ var render = function() {
                               ],
                               attrs: {
                                 type: "radio",
-                                value: "true",
                                 id: "pause_oui",
                                 name: "pause"
                               },
                               domProps: {
-                                checked: _vm._q(_vm.selected_pause, "true")
+                                value: true,
+                                checked: _vm._q(_vm.selected_pause, true)
                               },
                               on: {
                                 change: function($event) {
-                                  _vm.selected_pause = "true"
+                                  _vm.selected_pause = true
                                 }
                               }
                             }),
@@ -46666,16 +46505,16 @@ var render = function() {
                               ],
                               attrs: {
                                 type: "radio",
-                                value: "false",
                                 id: "pause_non",
                                 name: "pause"
                               },
                               domProps: {
-                                checked: _vm._q(_vm.selected_pause, "false")
+                                value: false,
+                                checked: _vm._q(_vm.selected_pause, false)
                               },
                               on: {
                                 change: function($event) {
-                                  _vm.selected_pause = "false"
+                                  _vm.selected_pause = false
                                 }
                               }
                             })
@@ -46707,7 +46546,7 @@ var render = function() {
           [_c("i", { staticClass: "fa fa-edit" }), _vm._v(" Modifier")]
         ),
         _vm._v(" "),
-        _vm._m(9)
+        _vm._m(19)
       ])
     ])
   ])
@@ -46805,6 +46644,116 @@ var staticRenderFns = [
       _c("h5", [
         _c("label", [_vm._v("Nouvelles Dates exactes de réalisation ")])
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group col-lg-3 col-md-6 col-12" }, [
+      _c("input", {
+        staticClass: "form-control",
+        attrs: { type: "date", id: "newdate1" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group col-lg-3 col-md-6 col-12" }, [
+      _c("input", {
+        staticClass: "form-control",
+        attrs: { type: "date", id: "newdate2" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group col-lg-3 col-md-6 col-12" }, [
+      _c("input", {
+        staticClass: "form-control",
+        attrs: { type: "date", id: "newdate3" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group col-lg-3 col-md-6 col-12" }, [
+      _c("input", {
+        staticClass: "form-control",
+        attrs: { type: "date", id: "newdate4" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group col-lg-3 col-md-6 col-12" }, [
+      _c("input", {
+        staticClass: "form-control",
+        attrs: { type: "date", id: "newdate5" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group col-lg-3 col-md-6 col-12" }, [
+      _c("input", {
+        staticClass: "form-control",
+        attrs: { type: "date", id: "newdate6" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group col-lg-3 col-md-6 col-12" }, [
+      _c("input", {
+        staticClass: "form-control",
+        attrs: { type: "date", id: "newdate7" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group col-lg-3 col-md-6 col-12" }, [
+      _c("input", {
+        staticClass: "form-control",
+        attrs: { type: "date", id: "newdate8" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group col-lg-3 col-md-6 col-12" }, [
+      _c("input", {
+        staticClass: "form-control",
+        attrs: { type: "date", id: "newdate9" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group col-lg-3 col-md-6 col-12" }, [
+      _c("input", {
+        staticClass: "form-control",
+        attrs: { type: "date", id: "newdate10" }
+      })
     ])
   },
   function() {
