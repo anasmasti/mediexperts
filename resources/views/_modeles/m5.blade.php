@@ -288,10 +288,10 @@
         data: {'nForm': nForm},
         success: function(data) {
           let fillFormation = '<option selected disabled>--veuillez sélectionner la formation</option>';
-          console.log('success formations !!', data);
-          if (data.length > 0) {
-            for (let i = 0; i < data.length; i++) {
-              fillFormation += `<option value="`+data[i].id_form+`">`+data[i].nom_theme+`</option>`;
+          console.log('success formations !!', data[0]);
+          if (data[0].length > 0) {
+            for (let i = 0; i < data[0].length; i++) {
+              fillFormation += `<option value="`+data[0][i].id_form+`">`+data[0][i].nom_theme+`</option>`;
             }
             $('#formation').html("");
             $('#formation').append(fillFormation);
