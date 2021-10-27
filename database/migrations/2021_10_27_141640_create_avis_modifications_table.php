@@ -19,8 +19,8 @@ class CreateAvisModificationsTable extends Migration
             $table->string('new_ref_plan', 50);
             $table->string('new_theme_action', 250);
             $table->string('new_nature_action', 100);
-            $table->string('new_hr_debut', 50);
-            $table->string('new_hr_fin', 50);
+            $table->string('new_hr_debut', 50)->nullable();
+            $table->string('new_hr_fin', 50)->nullable();
             $table->string('new_pse_debut', 50)->nullable();
             $table->string('new_pse_fin', 50)->nullable();
             $table->boolean('new_anulation')->default(false);
@@ -29,10 +29,10 @@ class CreateAvisModificationsTable extends Migration
             $table->boolean('new_lieu_formations')->default(false);
             $table->boolean('new_horaire_formations')->default(false);
             $table->string('new_type_action')->default(null);
-            $table->string('new_organisme', 250);
-            $table->string('new_lieu', 250);
+            $table->string('new_organisme', 250)->nullable();
+            $table->string('new_lieu', 250)->nullable();
             $table->boolean('new_has_same_dates')->default(false);
-            $table->date('new_date1');
+            $table->date('new_date1')->nullable();
             $table->date('new_date2')->nullable();
             $table->date('new_date3')->nullable();
             $table->date('new_date4')->nullable();

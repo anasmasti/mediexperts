@@ -228,7 +228,6 @@
             v-for="info in groupe_info"
             :key="info.id_form"
           >
-            <div>{{ info }}</div>
             <input type="hidden" :value="info.pse_debut" id="pause_debut" />
             <input type="hidden" :value="info.pse_fin" id="pause_fin" />
             <h2>
@@ -873,10 +872,10 @@ export default {
         new_nature_action: planifie.value,
         new_hr_debut:
           new_hr_debut.value == false
-            ? initial_hr_debut.value
+            ? null
             : new_hr_debut.value,
         new_hr_fin:
-          new_hr_fin.value == false ? initial_hr_fin.value : new_hr_fin.value,
+          new_hr_fin.value == false ? null : new_hr_fin.value,
         new_pse_debut: pause_debut != null ? pause_debut.val() : null,
         new_pse_fin: pause_fin != null ? pause_fin.val() : null,
         new_type_action: etat_avis.value,
@@ -891,10 +890,10 @@ export default {
         new_date8: date8 != null ? date8.value : null,
         new_date9: date9 != null ? date9.value : null,
         new_date10: date10 != null ? date10.value : null,
-        new_organisme: initial_organisme.value,
+        new_organisme: null,
         new_lieu:
           nouvel_lieu.value == "---selectionner le lieu---"
-            ? initial_lieu.value
+            ? null
             : nouvel_lieu.value,
         new_anulation: this.selected_annuler,
         new_lieu_formations: this.selected_modiflieu,
