@@ -460,7 +460,7 @@
         data: {'nForm': nForm},
         success: function(data) {
           let fillFormation = '<option selected disabled>--veuillez sélectionner le thème </option>';
-          console.log('success formations !!', data);
+          console.log('success formations test !!', data);
           if (data.length > 0) {
             for (let i = 0; i < data.length; i++) {
               fillFormation += `<optgroup label=" groupe: ${data[i].groupe}"><option value="`+data[i].id_form+`"> ${data[i].nom_theme}  </option></optgroup>`;
@@ -494,7 +494,6 @@
         }
       }); //ajax
     }); //onChange
-
     $('#plan').on('change',function() {
       let idPlan = $(this).val();
       $.ajax({

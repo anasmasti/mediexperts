@@ -111,7 +111,8 @@ class FormulaireController extends Controller
     }
 
     public function FillFormationF4(Request $request) {
-      $data = Formation::select('formations.*', 'themes.nom_theme', 'clients.raisoci', 'clients.ville', 'clients.local_2')
+      $data = Formation::select('formations.*', 'avis_modifications.*' , 'themes.nom_theme', 'clients.raisoci', 'clients.ville', 'clients.local_2')
+        ->join('avis_modifications', 'formations.id_form', '=', 'avis_modifications.id_form')
         ->join('plan_formations', 'formations.n_form', 'plan_formations.n_form')
         ->join('plans', 'plans.id_plan', '=', 'plan_formations.id_plan')
         ->join('Clients', 'clients.nrc_entrp', '=', 'plans.nrc_e')
