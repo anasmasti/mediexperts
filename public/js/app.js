@@ -3554,7 +3554,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   runtimeCompiler: true,
@@ -3749,8 +3748,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                   new_ref_plan: ref_plan.value,
                   new_theme_action: theme.value,
                   new_nature_action: planifie.value,
-                  new_hr_debut: new_hr_debut.value == false ? initial_hr_debut.value : new_hr_debut.value,
-                  new_hr_fin: new_hr_fin.value == false ? initial_hr_fin.value : new_hr_fin.value,
+                  new_hr_debut: new_hr_debut.value == false ? null : new_hr_debut.value,
+                  new_hr_fin: new_hr_fin.value == false ? null : new_hr_fin.value,
                   new_pse_debut: pause_debut != null ? pause_debut.val() : null,
                   new_pse_fin: pause_fin != null ? pause_fin.val() : null,
                   new_type_action: etat_avis.value,
@@ -3765,8 +3764,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                   new_date8: date8 != null ? date8.value : null,
                   new_date9: date9 != null ? date9.value : null,
                   new_date10: date10 != null ? date10.value : null,
-                  new_organisme: initial_organisme.value,
-                  new_lieu: nouvel_lieu.value == "---selectionner le lieu---" ? initial_lieu.value : nouvel_lieu.value,
+                  new_organisme: null,
+                  new_lieu: nouvel_lieu.value == "---selectionner le lieu---" ? null : nouvel_lieu.value,
                   new_anulation: _this3.selected_annuler,
                   new_lieu_formations: _this3.selected_modiflieu,
                   new_horaire_formations: _this3.selected_modifhoraire,
@@ -6243,7 +6242,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         initialOrganisme: "",
         newOrganisme: "",
         initialLieu: "",
-        hewLieu: "",
+        newLieu: "",
         heurPauseDebutInitial: "",
         heurPauseFinInitial: "",
         heurPauseDebutNew: "",
@@ -45844,8 +45843,6 @@ var render = function() {
                   attrs: { id: "content" }
                 },
                 [
-                  _c("div", [_vm._v(_vm._s(info))]),
-                  _vm._v(" "),
                   _c("input", {
                     attrs: { type: "hidden", id: "pause_debut" },
                     domProps: { value: info.pse_debut }
@@ -50447,7 +50444,15 @@ var render = function() {
       ),
       _vm._v(" "),
       _c("div", { staticClass: "paper" }, [
-        _vm._m(0),
+        _c("div", { staticClass: "text-center" }, [
+          _c("h2", [_vm._v("Modèle 3")]),
+          _vm._v(" "),
+          _c("div", [_vm._v(_vm._s(_vm.duplicated_Info) + "}")]),
+          _vm._v(" "),
+          _c("h4", { staticClass: "uppercase" }, [
+            _vm._v("MODELE D’AVIS D’ANNULATION OU DE MODIFICATION")
+          ])
+        ]),
         _vm._v(" "),
         _c("table", { staticStyle: { "background-color": "#eaeaea" } }, [
           _c("tr", [
@@ -50470,7 +50475,7 @@ var render = function() {
             )
           ]),
           _vm._v(" "),
-          _vm._m(1),
+          _vm._m(0),
           _vm._v(" "),
           _c("tr", [
             _c("th", { staticStyle: { width: "15%" } }, [
@@ -50556,7 +50561,7 @@ var render = function() {
             2
           ),
           _vm._v(" "),
-          _vm._m(2),
+          _vm._m(1),
           _vm._v(" "),
           _c("div", { staticStyle: { "margin-top": "20px" } }, [
             _c("strong", [_vm._v("Effectif des participants :")]),
@@ -50811,7 +50816,7 @@ var render = function() {
                                 _vm._v(
                                   _vm._s(
                                     _vm._f("moment")(
-                                      initd.old_date1,
+                                      initd.new_date1,
                                       "DD/MM/YYYY"
                                     )
                                   ) + ";"
@@ -50824,7 +50829,7 @@ var render = function() {
                                 _vm._v(
                                   _vm._s(
                                     _vm._f("moment")(
-                                      initd.old_date2,
+                                      initd.new_date2,
                                       "DD/MM/YYYY"
                                     )
                                   ) + ";"
@@ -50837,7 +50842,7 @@ var render = function() {
                                 _vm._v(
                                   _vm._s(
                                     _vm._f("moment")(
-                                      initd.old_date3,
+                                      initd.new_date3,
                                       "DD/MM/YYYY"
                                     )
                                   ) + ";"
@@ -50850,7 +50855,7 @@ var render = function() {
                                 _vm._v(
                                   _vm._s(
                                     _vm._f("moment")(
-                                      initd.old_date4,
+                                      initd.new_date4,
                                       "DD/MM/YYYY"
                                     )
                                   ) + ";"
@@ -50863,7 +50868,7 @@ var render = function() {
                                 _vm._v(
                                   _vm._s(
                                     _vm._f("moment")(
-                                      initd.old_date5,
+                                      initd.new_date5,
                                       "DD/MM/YYYY"
                                     )
                                   ) + ";"
@@ -50876,7 +50881,7 @@ var render = function() {
                                 _vm._v(
                                   _vm._s(
                                     _vm._f("moment")(
-                                      initd.old_date6,
+                                      initd.new_date6,
                                       "DD/MM/YYYY"
                                     )
                                   ) + ";"
@@ -50889,7 +50894,7 @@ var render = function() {
                                 _vm._v(
                                   _vm._s(
                                     _vm._f("moment")(
-                                      initd.old_date7,
+                                      initd.new_date7,
                                       "DD/MM/YYYY"
                                     )
                                   ) + ";"
@@ -51451,7 +51456,7 @@ var render = function() {
             )
           ]),
           _vm._v(" "),
-          _vm._m(3)
+          _vm._m(2)
         ])
       ])
     ],
@@ -51459,18 +51464,6 @@ var render = function() {
   )
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "text-center" }, [
-      _c("h2", [_vm._v("Modèle 3")]),
-      _vm._v(" "),
-      _c("h4", { staticClass: "uppercase" }, [
-        _vm._v("MODELE D’AVIS D’ANNULATION OU DE MODIFICATION")
-      ])
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -73116,17 +73109,7 @@ var mutations = {
   },
   SET_NOM_THEME: function SET_NOM_THEME(state, data) {
     state.nom_theme = data;
-  } // SET_DATES_ACTION(state) {
-  //   state.actions_by_plan.forEach((action) => {
-  //     this.FillDates(action.n_form);
-  //   });
-  // },
-  // SET_CLIENTS(state, data) { state.clients = data; },
-  // SET_CLIENTS(state, data) { state.clients = data; },
-  // SET_CLIENTS(state, data) { state.clients = data; },
-  // SET_CLIENTS(state, data) { state.clients = data; },
-  // SET_CLIENTS(state, data) { state.clients = data; }
-
+  }
 };
 
 /***/ }),

@@ -17,14 +17,5 @@ export const mutations = {
   SET_NEW_AVIS_MODFI_INFO(state , data) {state.NewAvisModif = data},
   SET_NOM_RESPONSABLE(state, data) {state.nom_responsable = data},
   SET_NOM_THEME(state , data) {state.nom_theme = data}
-  // SET_DATES_ACTION(state) {
-  //   state.actions_by_plan.forEach((action) => {
-  //     this.FillDates(action.n_form);
-  //   });
-  // },
-  // SET_CLIENTS(state, data) { state.clients = data; },
-  // SET_CLIENTS(state, data) { state.clients = data; },
-  // SET_CLIENTS(state, data) { state.clients = data; },
-  // SET_CLIENTS(state, data) { state.clients = data; },
-  // SET_CLIENTS(state, data) { state.clients = data; }
+  
 }

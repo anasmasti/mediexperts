@@ -447,20 +447,76 @@
         .catch(err => console.log("error getting actions !!", error));
     }); //onChange "plans"
 
+    // Generate Date 
+    function FetchDate() {
+      let nForm = $('#action').val();
+      // let cin = $('#cin'); let nom = $('#nom'); let prenom = $('#prenom'); let nCnss = $('#nCnss');
+      let fillDate = "";
+      let last_nonull_date = "";
+      let selectedGroup = $('#formation').val();
+      $.ajax({
+        type: 'GET',
+        url : '{!! URL::to('/fill-form-f4') !!}',
+        data: {'nForm': nForm , 'group': selectedGroup },
+        success: function(data) {
+          // the position 0 of table data represents the 'Formation' Data 
+          // the position 1 represents 'Avis de modification' data if it does exist
+          console.log('Teeeeeeeeeeeesr' , data);
+          let fitchedData;
+          let groupe;
+          // database date syntaxe
+          let dateSyntaxe;
+
+          if(data[1].length > 0){
+            //  fetch ' avi modification ' data
+             fitchedData = data[1],
+             dateSyntaxe = 'new_date'
+             groupe = data[1][0].new_groupe
+             console.log('Test' , data[1][0].new_groupe);
+          }
+          else{
+            //  fetch ' Formation ' data
+            fitchedData = data[0]
+            dateSyntaxe = 'date'
+            groupe = data[0][0].groupe
+          }
+
+          let fillFormation = '<option selected disabled>--veuillez sélectionner le thème </option>';
+          console.log('success formations test !!', fitchedData);
+          if (fitchedData.length > 0) {
+            for (let i = 0; i < fitchedData.length; i++) {
+              
+              for (let j=0; j<30;j++){
+              let tmpIndex = dateSyntaxe+(j+1);
+              //get last nonull date (dernière date de formation)
+              if (fitchedData[0][tmpIndex] != null && fitchedData[0][(tmpIndex+1)] == null) {
+                last_nonull_date = fitchedData[0][tmpIndex];
+                }
+              }
+            fillDate = "De "+DateFormat(fitchedData[0][dateSyntaxe + '1'])+" à "+DateFormat(last_nonull_date);
+            $('#dates').html("");
+            $('#dates').val(fillDate);
+            $('#dateF4').val((last_nonull_date));
+            $('#ville').val(fitchedData[0].local_2)
+            }
+          }
+        },
+        error: function() {
+          console.log("error getting formations !!");
+        }
+      }); //ajax
+    }
+
     // FORMATION
     $('#action').on('change', function() {
       let nForm = $(this).val();
       let formation = $('#formation');
       let cin = $('#cin'); let nom = $('#nom'); let prenom = $('#prenom'); let nCnss = $('#nCnss');
-      let fillDate = "";
-      let last_nonull_date = "";
       $.ajax({
         type: 'GET',
         url : '{!! URL::to('/fill-form-f4') !!}',
         data: {'nForm': nForm},
         success: function(data) {
-          // the position 0 of table data represents the 'Formation' Data 
-          // the position 1 represents 'Avis de modification' data if it does exist
           let fitchedData;
           let groupe;
           // database date syntaxe
@@ -485,22 +541,9 @@
           if (fitchedData.length > 0) {
             for (let i = 0; i < fitchedData.length; i++) {
               fillFormation += `<optgroup label=" groupe: ${groupe}"><option value="`+fitchedData[i].id_form+`"> ${fitchedData[i].nom_theme}  </option></optgroup>`;
-              
-              for (let j=0; j<30;j++){
-              let tmpIndex = dateSyntaxe+(j+1);
-              //get last nonull date (dernière date de formation)
-              if (fitchedData[0][tmpIndex] != null && fitchedData[0][(tmpIndex+1)] == null) {
-                last_nonull_date = fitchedData[0][tmpIndex];
-                }
-              }
             
-            fillDate = "De "+DateFormat(fitchedData[0][dateSyntaxe + '1'])+" à "+DateFormat(last_nonull_date);
             formation.html("");
             formation.append(fillFormation);
-            $('#dates').html("");
-            $('#dates').val(fillDate);
-            $('#dateF4').val((last_nonull_date));
-            $('#ville').val(fitchedData[0].local_2)
             }
           }
           else {
@@ -515,6 +558,7 @@
         }
       }); //ajax
     }); //onChange
+
     $('#plan').on('change',function() {
       let idPlan = $(this).val();
       $.ajax({
@@ -577,6 +621,7 @@
           console.log("error getting personnels !!");
         }
       }); //ajax
+      FetchDate();
     }); //onChange
 
     // Trouver les informations du personnel choisi

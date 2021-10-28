@@ -33,7 +33,6 @@ class AvisModification extends Model
       'new_type_action',
       'new_organisme',
       'new_lieu',
-      'new_groupe',
       'new_pause',
       'new_date1',
       'new_date2',

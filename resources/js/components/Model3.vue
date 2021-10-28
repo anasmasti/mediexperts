@@ -92,11 +92,12 @@
         Remplir les informations
       </button>
     </div>
- 
+
     <!-- PAPER -->
     <div class="paper">
       <div class="text-center">
         <h2>Modèle 3</h2>
+        <div>{{duplicated_Info}}}</div>
         <h4 class="uppercase">MODELE D’AVIS D’ANNULATION OU DE MODIFICATION</h4>
       </div>
       <!-- TABLE -->
@@ -204,8 +205,7 @@
             :value="
               duplicated_Info.newOrganisme == duplicated_Info.initialOrganisme
                 ? '--'
-                : duplicated_Info.newOrganisme
-            "
+                : duplicated_Info.newOrganisme"
             disabled
           />
         </div>
@@ -296,25 +296,25 @@
                 "
               >
                 <span v-if="initd.old_date1"
-                  >{{ initd.old_date1 | moment("DD/MM/YYYY") }};</span
+                  >{{ initd.new_date1 | moment("DD/MM/YYYY") }};</span
                 >
                 <span v-if="initd.old_date2"
-                  >{{ initd.old_date2 | moment("DD/MM/YYYY") }};</span
+                  >{{ initd.new_date2 | moment("DD/MM/YYYY") }};</span
                 >
                 <span v-if="initd.old_date3"
-                  >{{ initd.old_date3 | moment("DD/MM/YYYY") }};</span
+                  >{{ initd.new_date3 | moment("DD/MM/YYYY") }};</span
                 >
                 <span v-if="initd.old_date4"
-                  >{{ initd.old_date4 | moment("DD/MM/YYYY") }};</span
+                  >{{ initd.new_date4 | moment("DD/MM/YYYY") }};</span
                 >
                 <span v-if="initd.old_date5"
-                  >{{ initd.old_date5 | moment("DD/MM/YYYY") }};</span
+                  >{{ initd.new_date5 | moment("DD/MM/YYYY") }};</span
                 >
                 <span v-if="initd.old_date6"
-                  >{{ initd.old_date6 | moment("DD/MM/YYYY") }};</span
+                  >{{ initd.new_date6 | moment("DD/MM/YYYY") }};</span
                 >
                 <span v-if="initd.old_date7"
-                  >{{ initd.old_date7 | moment("DD/MM/YYYY") }};</span
+                  >{{ initd.new_date7 | moment("DD/MM/YYYY") }};</span
                 >
                 <span v-if="initd.old_date8"
                   >{{ initd.old_date8 | moment("DD/MM/YYYY") }};</span
@@ -363,50 +363,50 @@
           <strong>Nouvelles Dates exactes de réalisation : </strong>
           <div v-if="!duplicated_Info.dateDeRealisation">--</div>
           <div v-if="duplicated_Info.dateDeRealisation">
-          <div
-            class=""
-            v-for="initinf in Info_AvisModif"
-            :key="initinf.id_form"
-          >
-            <p
-              style="
-                display: flex !important;
-                flex-wrap: nowrap !important;
-                line-height: 1px;
-              "
+            <div
+              class=""
+              v-for="initinf in Info_AvisModif"
+              :key="initinf.id_form"
             >
-              <span v-if="initinf.date1"
-                >{{ initinf.date1 | moment("DD/MM/YYYY") }};</span
+              <p
+                style="
+                  display: flex !important;
+                  flex-wrap: nowrap !important;
+                  line-height: 1px;
+                "
               >
-              <span v-if="initinf.date2"
-                >{{ initinf.date2 | moment("DD/MM/YYYY") }};</span
-              >
-              <span v-if="initinf.date3"
-                >{{ initinf.date3 | moment("DD/MM/YYYY") }};</span
-              >
-              <span v-if="initinf.date4"
-                >{{ initinf.date4 | moment("DD/MM/YYYY") }};</span
-              >
-              <span v-if="initinf.date5"
-                >{{ initinf.date5 | moment("DD/MM/YYYY") }};</span
-              >
-              <span v-if="initinf.date6"
-                >{{ initinf.date6 | moment("DD/MM/YYYY") }};</span
-              >
-              <span v-if="initinf.date7"
-                >{{ initinf.date7 | moment("DD/MM/YYYY") }};</span
-              >
-              <span v-if="initinf.date8"
-                >{{ initinf.date8 | moment("DD/MM/YYYY") }};</span
-              >
-              <span v-if="initinf.date9"
-                >{{ initinf.date9 | moment("DD/MM/YYYY") }};</span
-              >
-              <span v-if="initinf.date10"
-                >{{ initinf.date10 | moment("DD/MM/YYYY") }};</span
-              >
-            </p>
-          </div>
+                <span v-if="initinf.date1"
+                  >{{ initinf.date1 | moment("DD/MM/YYYY") }};</span
+                >
+                <span v-if="initinf.date2"
+                  >{{ initinf.date2 | moment("DD/MM/YYYY") }};</span
+                >
+                <span v-if="initinf.date3"
+                  >{{ initinf.date3 | moment("DD/MM/YYYY") }};</span
+                >
+                <span v-if="initinf.date4"
+                  >{{ initinf.date4 | moment("DD/MM/YYYY") }};</span
+                >
+                <span v-if="initinf.date5"
+                  >{{ initinf.date5 | moment("DD/MM/YYYY") }};</span
+                >
+                <span v-if="initinf.date6"
+                  >{{ initinf.date6 | moment("DD/MM/YYYY") }};</span
+                >
+                <span v-if="initinf.date7"
+                  >{{ initinf.date7 | moment("DD/MM/YYYY") }};</span
+                >
+                <span v-if="initinf.date8"
+                  >{{ initinf.date8 | moment("DD/MM/YYYY") }};</span
+                >
+                <span v-if="initinf.date9"
+                  >{{ initinf.date9 | moment("DD/MM/YYYY") }};</span
+                >
+                <span v-if="initinf.date10"
+                  >{{ initinf.date10 | moment("DD/MM/YYYY") }};</span
+                >
+              </p>
+            </div>
           </div>
         </div>
         <div style="margin-top: 10px" v-if="duplicated_Info.hasSameDates">
@@ -555,7 +555,7 @@ export default {
         initialOrganisme: "",
         newOrganisme: "",
         initialLieu: "",
-        hewLieu: "",
+        newLieu: "",
         heurPauseDebutInitial: "",
         heurPauseFinInitial: "",
         heurPauseDebutNew: "",
