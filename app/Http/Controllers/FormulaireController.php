@@ -71,8 +71,11 @@ class FormulaireController extends Controller
       'formations.date11','formations.date12','formations.date13','formations.date14','formations.date15',
       'formations.date16','formations.date17','formations.date18','formations.date19','formations.date20',
       'formations.date21','formations.date22','formations.date23','formations.date24','formations.date25',
-      'formations.date26','formations.date27','formations.date28','formations.date29','formations.date30', 'plan_formations.nb_partcp_total' , 'plan_formations.organisme')
+      'formations.date26','formations.date27','formations.date28','formations.date29','formations.date30',
+      'plan_formations.nb_partcp_total' , 'plan_formations.organisme', 'avis_modifications.*')
         ->join('formations', 'plan_formations.n_form', 'formations.n_form')
+        // 
+        ->join('avis_modifications', 'formations.id_form', '=', 'avis_modifications.id_form')
         ->where('formations.n_form', $request->nForm)
         ->orderBy('plan_formations.dt_debut', 'asc')
         ->orderBy('plan_formations.created_at', 'asc')
@@ -136,10 +139,7 @@ class FormulaireController extends Controller
         ->join('personnels', 'formation_personnels.cin', 'personnels.cin')
         ->where('formations.id_form', $request->idForm)
         ->get();
-      $avis_modifications = AvisModification::select('avis_modifications.*')
-        ->where('avis_modifications.id_form', $request->idForm)
-        ->get();
-      return response()->json([$data, $avis_modifications]);
+      return response()->json($data);
     }
     public function FillPersonInfoF4(Request $request) {
       $data = Personnel::select('personnels.*')
@@ -233,7 +233,8 @@ class FormulaireController extends Controller
         ->join('domaines', 'themes.id_dom', 'domaines.id_domain')
         ->join('intervenants', 'plan_formations.id_inv', 'intervenants.id_interv')
         ->join('cabinets', 'intervenants.nrc_c', 'cabinets.nrc_cab')
-        ->where('plans.id_plan', $request->idPlan)
+        // ->where('plans.id_plan', $request->idPlan)
+        ->where([['plan_formations.id_plan', $request->idPlan], ['plan_formations.etat', '!=', "annulé"]])
         // ->orderBy('plan_formations.dt_debut')
         ->orderBy('plan_formations.n_form', 'asc')
         ->get();
@@ -324,7 +325,6 @@ class FormulaireController extends Controller
         ->join('intervenants', 'plan_formations.id_inv', 'intervenants.id_interv')
         ->join('cabinets', 'intervenants.nrc_c', 'cabinets.nrc_cab')
         ->join('themes', 'plan_formations.id_thm', 'themes.id_theme')
-        ->where('plan_formations.n_form', $request->nForm)
         ->get();
     return response()->json($data);
     }

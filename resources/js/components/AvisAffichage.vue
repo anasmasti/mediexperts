@@ -83,13 +83,14 @@ export default {
     },
     async FillDates(nform) {
       await axios.get(`/fill-dates-plan?nForm=${nform}`)
-        .then((res) => {
+        .then((res) => { 
           this.dates_actions = res.data;
         })
         .then(() => {
           this.AssignDates(nform);
         })
         .catch((err) => console.error("err FillDates", err));
+         
     },
     async AssignDates(nform) {
       await this.actions_by_ref.forEach(action => {
