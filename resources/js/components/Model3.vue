@@ -377,7 +377,7 @@
           </div>
         </div> -->
 
-        <div style="margin-top: 10px" >
+        <div style="margin-top: 10px">
           <strong>Nouvelles Dates exactes de réalisation : </strong>
           <div v-if="!duplicated_Info.newDateDeRealisation">--</div>
           <div>
@@ -419,7 +419,6 @@
                 <span v-if="newDates.new_date10"
                   >{{ newDates.new_date10 | moment("DD/MM/YYYY") }};</span
                 >
-               
               </p>
             </div>
           </div>
@@ -608,19 +607,28 @@ export default {
           this.NewAvisModif.length != 0
             ? this.NewAvisModif[0].new_organisme
             : null;
-        this.duplicated_Info.newLieu = this.NewAvisModif
-          ? this.NewAvisModif[0].new_lieu
-          : null;
+        this.duplicated_Info.newLieu =
+          this.NewAvisModif.length != 0 ? this.NewAvisModif[0].new_lieu : null;
         this.duplicated_Info.newHeurDebut =
-          this.NewAvisModif != 0 ? this.NewAvisModif[0].new_hr_debut : null;
+          this.NewAvisModif.length != 0
+            ? this.NewAvisModif[0].new_hr_debut
+            : null;
         this.duplicated_Info.newHeurFin =
-          this.NewAvisModif != 0 ? this.NewAvisModif[0].new_hr_fin : null;
+          this.NewAvisModif.length != 0
+            ? this.NewAvisModif[0].new_hr_fin
+            : null;
         this.duplicated_Info.new_pause =
-          this.NewAvisModif != 0 ? this.NewAvisModif[0].new_pause : false;
+          this.NewAvisModif.length != 0
+            ? this.NewAvisModif[0].new_pause
+            : false;
         this.duplicated_Info.newDateDeRealisation =
-          this.NewAvisModif != 0
+          this.NewAvisModif.length != 0
             ? this.NewAvisModif[0].new_date_realisation
             : false;
+        this.duplicated_Info.newHasSameDates =
+          this.NewAvisModif.length != 0
+            ? this.NewAvisModif[0].new_has_same_dates
+            : true;
 
         this.duplicated_Info.initialOrganisme =
           this.Info_AvisModif[0].organisme;
@@ -640,8 +648,6 @@ export default {
         this.duplicated_Info.pause = this.Info_AvisModif[0].pause;
         this.duplicated_Info.hasSameDates =
           this.Info_AvisModif[0].Has_Same_Dates;
-        this.duplicated_Info.newHasSameDates =
-          this.NewAvisModif[0].new_has_same_dates;
 
         (this.duplicated_Info.dates.date1 = this.Info_AvisModif[0].date1),
           (this.duplicated_Info.dates.date2 = this.Info_AvisModif[0].date2),

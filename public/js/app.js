@@ -6198,7 +6198,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -6305,11 +6304,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       if (this.Info_AvisModif) {
         // Inserting duplicated Information in duplicated_Info object
         this.duplicated_Info.newOrganisme = this.NewAvisModif.length != 0 ? this.NewAvisModif[0].new_organisme : null;
-        this.duplicated_Info.newLieu = this.NewAvisModif ? this.NewAvisModif[0].new_lieu : null;
-        this.duplicated_Info.newHeurDebut = this.NewAvisModif != 0 ? this.NewAvisModif[0].new_hr_debut : null;
-        this.duplicated_Info.newHeurFin = this.NewAvisModif != 0 ? this.NewAvisModif[0].new_hr_fin : null;
-        this.duplicated_Info.new_pause = this.NewAvisModif != 0 ? this.NewAvisModif[0].new_pause : false;
-        this.duplicated_Info.newDateDeRealisation = this.NewAvisModif != 0 ? this.NewAvisModif[0].new_date_realisation : false;
+        this.duplicated_Info.newLieu = this.NewAvisModif.length != 0 ? this.NewAvisModif[0].new_lieu : null;
+        this.duplicated_Info.newHeurDebut = this.NewAvisModif.length != 0 ? this.NewAvisModif[0].new_hr_debut : null;
+        this.duplicated_Info.newHeurFin = this.NewAvisModif.length != 0 ? this.NewAvisModif[0].new_hr_fin : null;
+        this.duplicated_Info.new_pause = this.NewAvisModif.length != 0 ? this.NewAvisModif[0].new_pause : false;
+        this.duplicated_Info.newDateDeRealisation = this.NewAvisModif.length != 0 ? this.NewAvisModif[0].new_date_realisation : false;
+        this.duplicated_Info.newHasSameDates = this.NewAvisModif.length != 0 ? this.NewAvisModif[0].new_has_same_dates : true;
         this.duplicated_Info.initialOrganisme = this.Info_AvisModif[0].organisme;
         this.duplicated_Info.initialLieu = this.Info_AvisModif[0].lieu;
         this.duplicated_Info.heurDebutInitial = this.Info_AvisModif[0].hr_debut;
@@ -6321,7 +6321,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.duplicated_Info.typeAction = this.Info_AvisModif[0].type_action;
         this.duplicated_Info.pause = this.Info_AvisModif[0].pause;
         this.duplicated_Info.hasSameDates = this.Info_AvisModif[0].Has_Same_Dates;
-        this.duplicated_Info.newHasSameDates = this.NewAvisModif[0].new_has_same_dates;
         this.duplicated_Info.dates.date1 = this.Info_AvisModif[0].date1, this.duplicated_Info.dates.date2 = this.Info_AvisModif[0].date2, this.duplicated_Info.dates.date3 = this.Info_AvisModif[0].date3, this.duplicated_Info.dates.date4 = this.Info_AvisModif[0].date4, this.duplicated_Info.dates.date5 = this.Info_AvisModif[0].date5, this.duplicated_Info.dates.date6 = this.Info_AvisModif[0].date6, this.duplicated_Info.dates.date7 = this.Info_AvisModif[0].date7, this.duplicated_Info.dates.date8 = this.Info_AvisModif[0].date8, this.duplicated_Info.dates.date9 = this.Info_AvisModif[0].date9, this.duplicated_Info.dates.date10 = this.Info_AvisModif[0].date10;
       } //set title of model 3
 
