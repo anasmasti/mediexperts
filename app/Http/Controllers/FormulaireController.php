@@ -127,7 +127,7 @@ class FormulaireController extends Controller
           ->join('themes', 'plan_formations.id_thm', 'themes.id_theme')
           ->where('plan_formations.n_form', $request->nForm)
           ->where('plan_formations.type_action', '!=' , 'annulé')
-          ->orderBy('avis_modifications.id' , 'desc')
+          // ->orderBy('avis_modifications.id' , 'desc')
           ->get();
       return response()->json([$data , $avis_modifications]);
     }
