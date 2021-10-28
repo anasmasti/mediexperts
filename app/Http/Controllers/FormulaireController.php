@@ -75,8 +75,10 @@ class FormulaireController extends Controller
         ->get();
         $avis_modifications = AvisModification::select('avis_modifications.*')
         ->where('avis_modifications.n_form', $request->nForm)
+        ->orderBy('avis_modifications.created_at' , 'asc')
         ->orderBy('avis_modifications.id' , 'desc')
         ->get();
+        
       return response()->json([$data, $avis_modifications]);
 
       // $avis_modifications = AvisModification::select('avis_modifications.*')
