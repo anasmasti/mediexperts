@@ -2,28 +2,37 @@ export const getters = {
 
   newDates: state => {
     let initInfo, newInfo, dates, result
-    
+
     initInfo = newInfo = dates = []
 
-    initInfo = state.Info_AvisModif
+    // initInfo = state.Info_AvisModif
     newInfo = state.NewAvisModif
 
-    for (let i = 0; i < initInfo.length; i++) {
-      if (newInfo.length != 0) {
-        for (let j = 0; j < newInfo.length; j++) {
-          result = initInfo[i].id_form == newInfo[j].id_form;
-          if (result) dates = newInfo
-          if (!result) dates = [initInfo[i], newInfo[j]]
-        }
-      }
-      if (newInfo.length == 0) dates = initInfo;
+    // for (let i = 0; i < initInfo.length; i++) {
+    //   if (newInfo.length != 0) {
+    //     for (let j = 0; j < newInfo.length; j++) {
+          //   result = initInfo[i].id_form == newInfo[j].id_form;
+          //   if (result) dates = newInfo
+          //   if (!result) dates = [initInfo[i], newInfo[j]]
+      //     dates = newInfo
+      //   }
+      // }
+      // if (newInfo.length == 0) dates = initInfo;
+    // }
+
+    for (let j = 0; j < newInfo.length; j++) {
+      //   result = initInfo[i].id_form == newInfo[j].id_form;
+      //   if (result) dates = newInfo
+      //   if (!result) dates = [initInfo[i], newInfo[j]]
+      dates = newInfo
     }
+
     return dates[0]
   },
 
   // newDates: state => {
   //   let initInfo, newInfo, dates, result
-    
+
   //   initInfo = newInfo = dates = []
 
   //   initInfo = state.Info_AvisModif

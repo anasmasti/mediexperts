@@ -381,46 +381,44 @@
           <strong>Nouvelles Dates exactes de réalisation : </strong>
           <div v-if="!duplicated_Info.newDateDeRealisation">--</div>
           <div>
-            <div>
-              <p
-                style="
-                  display: flex !important;
-                  flex-wrap: nowrap !important;
-                  line-height: 1px;
-                "
+            <p
+              style="
+                display: flex !important;
+                flex-wrap: nowrap !important;
+                line-height: 1px;
+              "
+            >
+              <span v-if="newDates.new_date1"
+                >{{ newDates.new_date1 | moment("DD/MM/YYYY") }};</span
               >
-                <span v-if="newDates.new_date1"
-                  >{{ newDates.new_date1 | moment("DD/MM/YYYY") }};</span
-                >
-                <span v-if="newDates.new_date2"
-                  >{{ newDates.new_date2 | moment("DD/MM/YYYY") }};</span
-                >
-                <span v-if="newDates.new_date3"
-                  >{{ newDates.new_date3 | moment("DD/MM/YYYY") }};</span
-                >
-                <span v-if="newDates.new_date4"
-                  >{{ newDates.new_date4 | moment("DD/MM/YYYY") }};</span
-                >
-                <span v-if="newDates.new_date5"
-                  >{{ newDates.new_date5 | moment("DD/MM/YYYY") }};</span
-                >
-                <span v-if="newDates.new_date6"
-                  >{{ newDates.new_date6 | moment("DD/MM/YYYY") }};</span
-                >
-                <span v-if="newDates.new_date7"
-                  >{{ newDates.new_date7 | moment("DD/MM/YYYY") }};</span
-                >
-                <span v-if="newDates.new_date8"
-                  >{{ newDates.new_date8 | moment("DD/MM/YYYY") }};</span
-                >
-                <span v-if="newDates.new_date9"
-                  >{{ newDates.new_date9 | moment("DD/MM/YYYY") }};</span
-                >
-                <span v-if="newDates.new_date10"
-                  >{{ newDates.new_date10 | moment("DD/MM/YYYY") }};</span
-                >
-              </p>
-            </div>
+              <span v-if="newDates.new_date2"
+                >{{ newDates.new_date2 | moment("DD/MM/YYYY") }};</span
+              >
+              <span v-if="newDates.new_date3"
+                >{{ newDates.new_date3 | moment("DD/MM/YYYY") }};</span
+              >
+              <span v-if="newDates.new_date4"
+                >{{ newDates.new_date4 | moment("DD/MM/YYYY") }};</span
+              >
+              <span v-if="newDates.new_date5"
+                >{{ newDates.new_date5 | moment("DD/MM/YYYY") }};</span
+              >
+              <span v-if="newDates.new_date6"
+                >{{ newDates.new_date6 | moment("DD/MM/YYYY") }};</span
+              >
+              <span v-if="newDates.new_date7"
+                >{{ newDates.new_date7 | moment("DD/MM/YYYY") }};</span
+              >
+              <span v-if="newDates.new_date8"
+                >{{ newDates.new_date8 | moment("DD/MM/YYYY") }};</span
+              >
+              <span v-if="newDates.new_date9"
+                >{{ newDates.new_date9 | moment("DD/MM/YYYY") }};</span
+              >
+              <span v-if="newDates.new_date10"
+                >{{ newDates.new_date10 | moment("DD/MM/YYYY") }};</span
+              >
+            </p>
           </div>
         </div>
 
@@ -504,9 +502,6 @@
         </div>
       </div>
       <!-- END CONTENT -->
-    </div>
-    <div>
-      {{this.NewAvisModif}}
     </div>
     <!-- END PAPER -->
   </div>

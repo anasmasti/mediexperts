@@ -6200,11 +6200,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -50959,149 +50954,147 @@ var render = function() {
               : _vm._e(),
             _vm._v(" "),
             _c("div", [
-              _c("div", [
-                _c(
-                  "p",
-                  {
-                    staticStyle: {
-                      display: "flex !important",
-                      "flex-wrap": "nowrap !important",
-                      "line-height": "1px"
-                    }
-                  },
-                  [
-                    _vm.newDates.new_date1
-                      ? _c("span", [
-                          _vm._v(
-                            _vm._s(
-                              _vm._f("moment")(
-                                _vm.newDates.new_date1,
-                                "DD/MM/YYYY"
-                              )
-                            ) + ";"
-                          )
-                        ])
-                      : _vm._e(),
-                    _vm._v(" "),
-                    _vm.newDates.new_date2
-                      ? _c("span", [
-                          _vm._v(
-                            _vm._s(
-                              _vm._f("moment")(
-                                _vm.newDates.new_date2,
-                                "DD/MM/YYYY"
-                              )
-                            ) + ";"
-                          )
-                        ])
-                      : _vm._e(),
-                    _vm._v(" "),
-                    _vm.newDates.new_date3
-                      ? _c("span", [
-                          _vm._v(
-                            _vm._s(
-                              _vm._f("moment")(
-                                _vm.newDates.new_date3,
-                                "DD/MM/YYYY"
-                              )
-                            ) + ";"
-                          )
-                        ])
-                      : _vm._e(),
-                    _vm._v(" "),
-                    _vm.newDates.new_date4
-                      ? _c("span", [
-                          _vm._v(
-                            _vm._s(
-                              _vm._f("moment")(
-                                _vm.newDates.new_date4,
-                                "DD/MM/YYYY"
-                              )
-                            ) + ";"
-                          )
-                        ])
-                      : _vm._e(),
-                    _vm._v(" "),
-                    _vm.newDates.new_date5
-                      ? _c("span", [
-                          _vm._v(
-                            _vm._s(
-                              _vm._f("moment")(
-                                _vm.newDates.new_date5,
-                                "DD/MM/YYYY"
-                              )
-                            ) + ";"
-                          )
-                        ])
-                      : _vm._e(),
-                    _vm._v(" "),
-                    _vm.newDates.new_date6
-                      ? _c("span", [
-                          _vm._v(
-                            _vm._s(
-                              _vm._f("moment")(
-                                _vm.newDates.new_date6,
-                                "DD/MM/YYYY"
-                              )
-                            ) + ";"
-                          )
-                        ])
-                      : _vm._e(),
-                    _vm._v(" "),
-                    _vm.newDates.new_date7
-                      ? _c("span", [
-                          _vm._v(
-                            _vm._s(
-                              _vm._f("moment")(
-                                _vm.newDates.new_date7,
-                                "DD/MM/YYYY"
-                              )
-                            ) + ";"
-                          )
-                        ])
-                      : _vm._e(),
-                    _vm._v(" "),
-                    _vm.newDates.new_date8
-                      ? _c("span", [
-                          _vm._v(
-                            _vm._s(
-                              _vm._f("moment")(
-                                _vm.newDates.new_date8,
-                                "DD/MM/YYYY"
-                              )
-                            ) + ";"
-                          )
-                        ])
-                      : _vm._e(),
-                    _vm._v(" "),
-                    _vm.newDates.new_date9
-                      ? _c("span", [
-                          _vm._v(
-                            _vm._s(
-                              _vm._f("moment")(
-                                _vm.newDates.new_date9,
-                                "DD/MM/YYYY"
-                              )
-                            ) + ";"
-                          )
-                        ])
-                      : _vm._e(),
-                    _vm._v(" "),
-                    _vm.newDates.new_date10
-                      ? _c("span", [
-                          _vm._v(
-                            _vm._s(
-                              _vm._f("moment")(
-                                _vm.newDates.new_date10,
-                                "DD/MM/YYYY"
-                              )
-                            ) + ";"
-                          )
-                        ])
-                      : _vm._e()
-                  ]
-                )
-              ])
+              _c(
+                "p",
+                {
+                  staticStyle: {
+                    display: "flex !important",
+                    "flex-wrap": "nowrap !important",
+                    "line-height": "1px"
+                  }
+                },
+                [
+                  _vm.newDates.new_date1
+                    ? _c("span", [
+                        _vm._v(
+                          _vm._s(
+                            _vm._f("moment")(
+                              _vm.newDates.new_date1,
+                              "DD/MM/YYYY"
+                            )
+                          ) + ";"
+                        )
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.newDates.new_date2
+                    ? _c("span", [
+                        _vm._v(
+                          _vm._s(
+                            _vm._f("moment")(
+                              _vm.newDates.new_date2,
+                              "DD/MM/YYYY"
+                            )
+                          ) + ";"
+                        )
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.newDates.new_date3
+                    ? _c("span", [
+                        _vm._v(
+                          _vm._s(
+                            _vm._f("moment")(
+                              _vm.newDates.new_date3,
+                              "DD/MM/YYYY"
+                            )
+                          ) + ";"
+                        )
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.newDates.new_date4
+                    ? _c("span", [
+                        _vm._v(
+                          _vm._s(
+                            _vm._f("moment")(
+                              _vm.newDates.new_date4,
+                              "DD/MM/YYYY"
+                            )
+                          ) + ";"
+                        )
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.newDates.new_date5
+                    ? _c("span", [
+                        _vm._v(
+                          _vm._s(
+                            _vm._f("moment")(
+                              _vm.newDates.new_date5,
+                              "DD/MM/YYYY"
+                            )
+                          ) + ";"
+                        )
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.newDates.new_date6
+                    ? _c("span", [
+                        _vm._v(
+                          _vm._s(
+                            _vm._f("moment")(
+                              _vm.newDates.new_date6,
+                              "DD/MM/YYYY"
+                            )
+                          ) + ";"
+                        )
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.newDates.new_date7
+                    ? _c("span", [
+                        _vm._v(
+                          _vm._s(
+                            _vm._f("moment")(
+                              _vm.newDates.new_date7,
+                              "DD/MM/YYYY"
+                            )
+                          ) + ";"
+                        )
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.newDates.new_date8
+                    ? _c("span", [
+                        _vm._v(
+                          _vm._s(
+                            _vm._f("moment")(
+                              _vm.newDates.new_date8,
+                              "DD/MM/YYYY"
+                            )
+                          ) + ";"
+                        )
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.newDates.new_date9
+                    ? _c("span", [
+                        _vm._v(
+                          _vm._s(
+                            _vm._f("moment")(
+                              _vm.newDates.new_date9,
+                              "DD/MM/YYYY"
+                            )
+                          ) + ";"
+                        )
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.newDates.new_date10
+                    ? _c("span", [
+                        _vm._v(
+                          _vm._s(
+                            _vm._f("moment")(
+                              _vm.newDates.new_date10,
+                              "DD/MM/YYYY"
+                            )
+                          ) + ";"
+                        )
+                      ])
+                    : _vm._e()
+                ]
+              )
             ])
           ]),
           _vm._v(" "),
@@ -51200,9 +51193,7 @@ var render = function() {
           _vm._v(" "),
           _vm._m(3)
         ])
-      ]),
-      _vm._v(" "),
-      _c("div", [_vm._v("\n    " + _vm._s(this.NewAvisModif) + "\n  ")])
+      ])
     ],
     1
   )
@@ -72712,20 +72703,25 @@ __webpack_require__.r(__webpack_exports__);
 var getters = {
   newDates: function newDates(state) {
     var initInfo, newInfo, dates, result;
-    initInfo = newInfo = dates = [];
-    initInfo = state.Info_AvisModif;
-    newInfo = state.NewAvisModif;
+    initInfo = newInfo = dates = []; // initInfo = state.Info_AvisModif
 
-    for (var i = 0; i < initInfo.length; i++) {
-      if (newInfo.length != 0) {
-        for (var j = 0; j < newInfo.length; j++) {
-          result = initInfo[i].id_form == newInfo[j].id_form;
-          if (result) dates = newInfo;
-          if (!result) dates = [initInfo[i], newInfo[j]];
-        }
-      }
+    newInfo = state.NewAvisModif; // for (let i = 0; i < initInfo.length; i++) {
+    //   if (newInfo.length != 0) {
+    //     for (let j = 0; j < newInfo.length; j++) {
+    //   result = initInfo[i].id_form == newInfo[j].id_form;
+    //   if (result) dates = newInfo
+    //   if (!result) dates = [initInfo[i], newInfo[j]]
+    //     dates = newInfo
+    //   }
+    // }
+    // if (newInfo.length == 0) dates = initInfo;
+    // }
 
-      if (newInfo.length == 0) dates = initInfo;
+    for (var j = 0; j < newInfo.length; j++) {
+      //   result = initInfo[i].id_form == newInfo[j].id_form;
+      //   if (result) dates = newInfo
+      //   if (!result) dates = [initInfo[i], newInfo[j]]
+      dates = newInfo;
     }
 
     return dates[0];
@@ -72933,8 +72929,8 @@ var state = {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\HP\Desktop\mediexperts\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\HP\Desktop\mediexperts\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\HP\Desktop\Projects\Work\Mediexperts_App\mediexperts_dev\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\HP\Desktop\Projects\Work\Mediexperts_App\mediexperts_dev\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
