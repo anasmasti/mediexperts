@@ -385,7 +385,7 @@ Route::get('/fill-plan-by-client', 'FormulaireController@FillPlansByClient')->na
 Route::get('/fill-all-organisme' , 'FormulaireController@FillAllCabinets')->name('FillOrganisme');
 Route::get('/fill-avis-modif' , 'FormulaireController@FillavisModif')->name('FillAvisModif');
 Route::get('/fill-avis-modif-by-groupe' , 'FormulaireController@GetInfoAvisModifByGroupe');
-Route::get('/old-avis-modif-by-theme', 'FormulaireController@GetOldInfoAvisModif');
+Route::get('/new-avis-modif-by-theme', 'FormulaireController@GetOldInfoAvisModif');
 Route::get('/get-nom-responsable-m3', 'FormulaireController@GetNomResponsableModel3');
 Route::get('/get-nom-theme' , 'FormulaireController@GetNomTheme');
 /********************************************************************/
