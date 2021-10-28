@@ -6226,6 +6226,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -51358,11 +51359,13 @@ var render = function() {
             _c(
               "strong",
               [
-                _vm._v("Nom du responsable :\n          "),
+                _vm._v("\n          Nom du responsable :\n          "),
+                !_vm.nom_responsable ? _c("div", [_vm._v("--")]) : _vm._e(),
+                _vm._v(" "),
                 _vm._l(_vm.nom_responsable, function(resp, index) {
                   return _c("span", { key: index }, [
                     _vm._v(
-                      _vm._s(_vm.nom_responsable == null ? "--" : resp.nom_resp)
+                      "\n            " + _vm._s(resp.nom_resp) + "\n          "
                     )
                   ])
                 })
@@ -51438,7 +51441,9 @@ var staticRenderFns = [
       { staticClass: "d-flex", staticStyle: { "margin-top": "50px" } },
       [
         _c("strong", { staticStyle: { "margin-left": "auto" } }, [
-          _vm._v("Cachet de l’entreprise, Signature et qualité du responsable")
+          _vm._v(
+            "\n          Cachet de l’entreprise, Signature et qualité du responsable\n        "
+          )
         ])
       ]
     )

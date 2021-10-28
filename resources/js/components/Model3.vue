@@ -517,18 +517,19 @@
         <!-- END HORAIRE -->
 
         <div style="margin-top: 50px">
-          <strong
-            >Nom du responsable :
-            <span v-for="(resp, index) in nom_responsable" :key="index">{{
-              nom_responsable == null ? "--" : resp.nom_resp
-            }}</span></strong
-          >
+          <strong>
+            Nom du responsable :
+            <div v-if="!nom_responsable">--</div>
+            <span v-for="(resp, index) in nom_responsable" :key="index">
+              {{ resp.nom_resp }}
+            </span>
+          </strong>
         </div>
 
         <div class="d-flex" style="margin-top: 50px">
-          <strong style="margin-left: auto"
-            >Cachet de l’entreprise, Signature et qualité du responsable</strong
-          >
+          <strong style="margin-left: auto">
+            Cachet de l’entreprise, Signature et qualité du responsable
+          </strong>
         </div>
       </div>
       <!-- END CONTENT -->
