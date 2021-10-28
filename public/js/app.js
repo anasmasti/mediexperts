@@ -6227,6 +6227,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -6332,7 +6335,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       if (this.Info_AvisModif) {
         // Inserting duplicated Information in duplicated_Info object
-        this.duplicated_Info.newOrganisme = this.NewAvisModif.length != 0 ? this.NewAvisModif[0].old_organisme : null;
+        this.duplicated_Info.newOrganisme = this.NewAvisModif.length != 0 ? this.NewAvisModif[0].new_organisme : null;
         this.duplicated_Info.newLieu = this.NewAvisModif ? this.NewAvisModif[0].new_lieu : null;
         this.duplicated_Info.newHeurDebut = this.NewAvisModif != 0 ? this.NewAvisModif[0].new_hr_debut : null;
         this.duplicated_Info.newHeurFin = this.NewAvisModif != 0 ? this.NewAvisModif[0].new_hr_fin : null;
@@ -51389,7 +51392,9 @@ var render = function() {
           _vm._v(" "),
           _vm._m(3)
         ])
-      ])
+      ]),
+      _vm._v(" "),
+      _c("div", [_vm._v("\n    " + _vm._s(this.NewAvisModif) + "\n  ")])
     ],
     1
   )
@@ -72862,13 +72867,14 @@ var actions = {
             case 0:
               commit = _ref18.commit;
               _context10.next = 3;
-              return axios.get("/old-avis-modif-by-theme", {
+              return axios.get("/new-avis-modif-by-theme", {
                 params: {
                   nForm: nForm
                 }
               }).then(function (_ref19) {
                 var data = _ref19.data;
-                commit("SET_NEW_AVIS_MODFI_INFO", data); // console.log("New avis modif" , data);
+                commit("SET_NEW_AVIS_MODFI_INFO", data);
+                console.log("New avis modif", data);
               })["catch"](function (err) {
                 console.log("err feetching old avis modif", err);
               });
@@ -72914,7 +72920,7 @@ var getters = {
       if (newInfo.length == 0) dates = initInfo;
     }
 
-    console.log('---', dates);
+    console.log('---', dates[0]);
     return dates;
   },
   GetNbTotalBenif: function GetNbTotalBenif(state) {
@@ -73102,8 +73108,8 @@ var state = {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\HP\Desktop\Projects\Work\Mediexperts_App\mediexperts_dev\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\HP\Desktop\Projects\Work\Mediexperts_App\mediexperts_dev\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\HP\Desktop\mediexperts\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\HP\Desktop\mediexperts\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

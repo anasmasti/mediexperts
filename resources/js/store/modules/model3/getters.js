@@ -18,7 +18,8 @@ export const getters = {
       }
       if (newInfo.length == 0) dates = initInfo;
     }
-    console.log('---', dates);
+   
+    console.log('---', dates[0]);
     return dates
   },
 

@@ -261,9 +261,8 @@ class FormulaireController extends Controller
     public function GetOldInfoAvisModif(Request $request) {
       $data = AvisModification::select('avis_modifications.*')
       ->where('avis_modifications.n_form' , $request->nForm)
-      // ->orderby('groupe' , 'ASC')
+      ->orderby('created_at' , 'DESC')
       ->get();
-
       return response()->json($data);
     }
 

@@ -534,6 +534,9 @@
       </div>
       <!-- END CONTENT -->
     </div>
+    <div>
+      {{this.NewAvisModif}}
+    </div>
     <!-- END PAPER -->
   </div>
 </template>
@@ -634,7 +637,7 @@ export default {
         // Inserting duplicated Information in duplicated_Info object
         this.duplicated_Info.newOrganisme =
           this.NewAvisModif.length != 0
-            ? this.NewAvisModif[0].old_organisme
+            ? this.NewAvisModif[0].new_organisme
             : null;
         this.duplicated_Info.newLieu = this.NewAvisModif
           ? this.NewAvisModif[0].new_lieu
