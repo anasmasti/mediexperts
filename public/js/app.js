@@ -2777,16 +2777,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context5.prev = _context5.next) {
               case 0:
-                _context5.next = 2;
+                console.log('test');
+                _context5.next = 3;
                 return axios.get("/fill-dates-plan?nForm=".concat(nform)).then(function (res) {
+                  // if (condition) {
+                  // }
                   _this5.dates_actions = res.data;
+                  console.log('Teeeeest ', res.data[1]);
                 }).then(function () {
                   _this5.AssignDates(nform);
                 })["catch"](function (err) {
                   return console.error("err FillDates", err);
                 });
 
-              case 2:
+              case 3:
               case "end":
                 return _context5.stop();
             }
@@ -73103,13 +73107,8 @@ var state = {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-<<<<<<< HEAD
 __webpack_require__(/*! C:\Users\HP\Desktop\Project\Mediexperts-App\mediexperts\resources\js\app.js */"./resources/js/app.js");
 module.exports = __webpack_require__(/*! C:\Users\HP\Desktop\Project\Mediexperts-App\mediexperts\resources\sass\app.scss */"./resources/sass/app.scss");
-=======
-__webpack_require__(/*! C:\Users\HP\Desktop\Projects\Work\Mediexperts_App\mediexperts_dev\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\HP\Desktop\Projects\Work\Mediexperts_App\mediexperts_dev\resources\sass\app.scss */"./resources/sass/app.scss");
->>>>>>> ab51f92286a64629e4c581b9000cffa755dcc49a
 
 
 /***/ })

@@ -82,9 +82,14 @@ export default {
       console.log("isallloaded", this.isAllLoaded);
     },
     async FillDates(nform) {
+      console.log('test');
       await axios.get(`/fill-dates-plan?nForm=${nform}`)
-        .then((res) => { 
+        .then((res) => {
+          // if (condition) {
+            
+          // }
           this.dates_actions = res.data;
+          console.log('Teeeeest ' , res.data[1]);
         })
         .then(() => {
           this.AssignDates(nform);
