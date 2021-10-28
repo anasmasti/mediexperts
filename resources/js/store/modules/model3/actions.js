@@ -104,10 +104,10 @@ export const actions = {
 
   async FetchNewAvisInfo ({commit} , nForm) {
     await axios
-      .get(`/old-avis-modif-by-theme` , { params: {nForm : nForm}})
+      .get(`/new-avis-modif-by-theme` , { params: {nForm : nForm}})
       .then(({data})=>{
         commit("SET_NEW_AVIS_MODFI_INFO" , data);
-        // console.log("New avis modif" , data);
+        console.log("New avis modif" , data);
       })
       .catch(err => {
         console.log("err feetching old avis modif", err);

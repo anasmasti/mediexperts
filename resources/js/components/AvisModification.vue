@@ -320,7 +320,7 @@
                     Oui
                     <input
                       type="radio"
-                      value="true"
+                      :value="true"
                       id="sameDate_oui"
                       name="sameDate"
                       v-model="selected_sameDate"
@@ -328,7 +328,7 @@
                     - Non
                     <input
                       type="radio"
-                      value="false"
+                      :value="false"
                       id="sameDate_non"
                       name="sameDate"
                       v-model="selected_sameDate"

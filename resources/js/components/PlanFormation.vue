@@ -253,7 +253,6 @@ export default {
         .catch((err) => console.error("err FillClients", err));
     },
     async FillReferencesPlan() {
-      console.log("nrc_entrp", this.nrc_entrp);
       await axios
         .get(`/fill-reference-plan?nrcEntrp=${this.nrc_entrp}`)
         .then((res) => {

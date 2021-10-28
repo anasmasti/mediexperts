@@ -330,7 +330,7 @@
           </div>
         </div>
 
-        <div style="margin-top: 10px" v-if="duplicated_Info.newHasSameDates">
+        <!-- <div style="margin-top: 10px" v-if="duplicated_Info.newHasSameDates">
           <strong>Nouvelles Dates exactes de réalisation :</strong>
           <div v-if="!duplicated_Info.newDateDeRealisation">--</div>
           <div>
@@ -375,81 +375,50 @@
               >
             </p>
           </div>
-        </div>
-        <div style="margin-top: 10px" v-if="!duplicated_Info.newHasSameDates">
+        </div> -->
+
+        <div style="margin-top: 10px">
           <strong>Nouvelles Dates exactes de réalisation : </strong>
           <div v-if="!duplicated_Info.newDateDeRealisation">--</div>
           <div>
-            <div v-for="(initd, index) in initDates" :key="index">
-              <p
-                style="
-                  display: flex !important;
-                  flex-wrap: nowrap !important;
-                  line-height: 1px;
-                "
+            <p
+              style="
+                display: flex !important;
+                flex-wrap: nowrap !important;
+                line-height: 1px;
+              "
+            >
+              <span v-if="newDates.new_date1"
+                >{{ newDates.new_date1 | moment("DD/MM/YYYY") }};</span
               >
-                <span v-if="initd.new_date1"
-                  >{{ initd.new_date1 | moment("DD/MM/YYYY") }};</span
-                >
-                <span v-if="initd.new_date2"
-                  >{{ initd.new_date2 | moment("DD/MM/YYYY") }};</span
-                >
-                <span v-if="initd.new_date3"
-                  >{{ initd.new_date3 | moment("DD/MM/YYYY") }};</span
-                >
-                <span v-if="initd.new_date4"
-                  >{{ initd.new_date4 | moment("DD/MM/YYYY") }};</span
-                >
-                <span v-if="initd.new_date5"
-                  >{{ initd.new_date5 | moment("DD/MM/YYYY") }};</span
-                >
-                <span v-if="initd.new_date6"
-                  >{{ initd.new_date6 | moment("DD/MM/YYYY") }};</span
-                >
-                <span v-if="initd.new_date7"
-                  >{{ initd.new_date7 | moment("DD/MM/YYYY") }};</span
-                >
-                <span v-if="initd.new_date8"
-                  >{{ initd.new_date8 | moment("DD/MM/YYYY") }};</span
-                >
-                <span v-if="initd.new_date9"
-                  >{{ initd.new_date9 | moment("DD/MM/YYYY") }};</span
-                >
-                <span v-if="initd.new_date10"
-                  >{{ initd.new_date10 | moment("DD/MM/YYYY") }};</span
-                >
-                <!-- <span v-if="initd.date1"
-                  >{{ initd.date1 | moment("DD/MM/YYYY") }};</span
-                >
-                <span v-if="initd.date2"
-                  >{{ initd.date2 | moment("DD/MM/YYYY") }};</span
-                >
-                <span v-if="initd.date3"
-                  >{{ initd.date3 | moment("DD/MM/YYYY") }};</span
-                >
-                <span v-if="initd.date4"
-                  >{{ initd.date4 | moment("DD/MM/YYYY") }};</span
-                >
-                <span v-if="initd.date5"
-                  >{{ initd.date5 | moment("DD/MM/YYYY") }};</span
-                >
-                <span v-if="initd.date6"
-                  >{{ initd.date6 | moment("DD/MM/YYYY") }};</span
-                >
-                <span v-if="initd.date7"
-                  >{{ initd.date7 | moment("DD/MM/YYYY") }};</span
-                >
-                <span v-if="initd.date8"
-                  >{{ initd.date8 | moment("DD/MM/YYYY") }};</span
-                >
-                <span v-if="initd.date9"
-                  >{{ initd.date9 | moment("DD/MM/YYYY") }};</span
-                >
-                <span v-if="initd.date10"
-                  >{{ initd.date10 | moment("DD/MM/YYYY") }};</span
-                > -->
-              </p>
-            </div>
+              <span v-if="newDates.new_date2"
+                >{{ newDates.new_date2 | moment("DD/MM/YYYY") }};</span
+              >
+              <span v-if="newDates.new_date3"
+                >{{ newDates.new_date3 | moment("DD/MM/YYYY") }};</span
+              >
+              <span v-if="newDates.new_date4"
+                >{{ newDates.new_date4 | moment("DD/MM/YYYY") }};</span
+              >
+              <span v-if="newDates.new_date5"
+                >{{ newDates.new_date5 | moment("DD/MM/YYYY") }};</span
+              >
+              <span v-if="newDates.new_date6"
+                >{{ newDates.new_date6 | moment("DD/MM/YYYY") }};</span
+              >
+              <span v-if="newDates.new_date7"
+                >{{ newDates.new_date7 | moment("DD/MM/YYYY") }};</span
+              >
+              <span v-if="newDates.new_date8"
+                >{{ newDates.new_date8 | moment("DD/MM/YYYY") }};</span
+              >
+              <span v-if="newDates.new_date9"
+                >{{ newDates.new_date9 | moment("DD/MM/YYYY") }};</span
+              >
+              <span v-if="newDates.new_date10"
+                >{{ newDates.new_date10 | moment("DD/MM/YYYY") }};</span
+              >
+            </p>
           </div>
         </div>
 
@@ -553,7 +522,7 @@ export default {
       id_plan: null,
       selected_nrc_entrp: null,
       total_benif: null,
-      initDates: "",
+      newDates: "",
 
       //Initial and new Info that Duplicated
       duplicated_Info: {
@@ -624,7 +593,7 @@ export default {
     },
 
     initialDates() {
-      this.initDates = this.$store.getters["model3/initialDates"];
+      this.newDates = this.$store.getters["model3/newDates"];
     },
 
     CalculNbTotalBenif() {
@@ -634,21 +603,30 @@ export default {
         // Inserting duplicated Information in duplicated_Info object
         this.duplicated_Info.newOrganisme =
           this.NewAvisModif.length != 0
-            ? this.NewAvisModif[0].old_organisme
+            ? this.NewAvisModif[0].new_organisme
             : null;
-        this.duplicated_Info.newLieu = this.NewAvisModif
-          ? this.NewAvisModif[0].new_lieu
-          : null;
+        this.duplicated_Info.newLieu =
+          this.NewAvisModif.length != 0 ? this.NewAvisModif[0].new_lieu : null;
         this.duplicated_Info.newHeurDebut =
-          this.NewAvisModif != 0 ? this.NewAvisModif[0].new_hr_debut : null;
+          this.NewAvisModif.length != 0
+            ? this.NewAvisModif[0].new_hr_debut
+            : null;
         this.duplicated_Info.newHeurFin =
-          this.NewAvisModif != 0 ? this.NewAvisModif[0].new_hr_fin : null;
+          this.NewAvisModif.length != 0
+            ? this.NewAvisModif[0].new_hr_fin
+            : null;
         this.duplicated_Info.new_pause =
-          this.NewAvisModif != 0 ? this.NewAvisModif[0].new_pause : false;
+          this.NewAvisModif.length != 0
+            ? this.NewAvisModif[0].new_pause
+            : false;
         this.duplicated_Info.newDateDeRealisation =
-          this.NewAvisModif != 0
+          this.NewAvisModif.length != 0
             ? this.NewAvisModif[0].new_date_realisation
             : false;
+        this.duplicated_Info.newHasSameDates =
+          this.NewAvisModif.length != 0
+            ? this.NewAvisModif[0].new_has_same_dates
+            : true;
 
         this.duplicated_Info.initialOrganisme =
           this.Info_AvisModif[0].organisme;
@@ -668,8 +646,6 @@ export default {
         this.duplicated_Info.pause = this.Info_AvisModif[0].pause;
         this.duplicated_Info.hasSameDates =
           this.Info_AvisModif[0].Has_Same_Dates;
-        this.duplicated_Info.newHasSameDates =
-          this.NewAvisModif[0].new_has_same_dates;
 
         (this.duplicated_Info.dates.date1 = this.Info_AvisModif[0].date1),
           (this.duplicated_Info.dates.date2 = this.Info_AvisModif[0].date2),
