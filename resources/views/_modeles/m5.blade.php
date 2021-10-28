@@ -315,35 +315,51 @@
         url : '{!! URL::to('/fill-personnel-f4') !!}',
         data: {'idForm': idForm},
         success: function(data) {
-          console.log('success personnel & dates !!', data);
+          let FetchedDATA = data[0]
+          let Dates;
+          // Database date syntaxe
+          let DateSynx;
+
+          if (data[1].length > 0){
+            Dates = data[1];
+            DateSynx = 'new_date'
+            console.log('Test ' , Dates);
+          } 
+          else {
+            Dates = data[0];
+            DateSynx = 'date'
+            console.log('old');
+          }
+
+          console.log('success personnel & dates Teeeest !!', data);
           let groupe = ""
           let fillPersonnel = "";
           let targetCSP = "";
           let fillDates = '<option selected disabled>--veuillez sélectionner la date</option>';
-          if (data[0].length > 0) {
-            for (let i = 0; i < data[0].length; i++) {
-              if (data[0][i].csp.toLowerCase() == "c") {
+          if (FetchedDATA.length > 0) {
+            for (let i = 0; i < FetchedDATA.length; i++) {
+              if (FetchedDATA[i].csp.toLowerCase() == "c") {
               targetCSP = `<td id="selectedCSP">X</td>`+
               `<td></td>`+
               `<td></td>`;
               }
-              else if (data[0][i].csp.toLowerCase() == "e") {
+              else if (FetchedDATA[i].csp.toLowerCase() == "e") {
                 targetCSP = `<td></td>`+
                 `<td id="selectedCSP">X</td>`+
                 `<td></td>`;
               }
-              else if (data[0][i].csp.toLowerCase() == "o") {
+              else if (FetchedDATA[i].csp.toLowerCase() == "o") {
                 targetCSP = `<td></td>`+
                 `<td></td>`+
                 `<td id="selectedCSP">X</td>`;
               }
-              groupe = data[0][i]['groupe'];
+              groupe = FetchedDATA[i]['groupe'];
               fillPersonnel +=
               `<tr style="height:30px;">`+
-                `<td>`+data[0][i].nom+`</td>`+
-                `<td>`+data[0][i].prenom+`</td>`+
-                `<td>`+data[0][i].cin+`</td>`+
-                `<td>`+data[0][i].cnss+`</td>`+
+                `<td>`+FetchedDATA[i].nom+`</td>`+
+                `<td>`+FetchedDATA[i].prenom+`</td>`+
+                `<td>`+FetchedDATA[i].cin+`</td>`+
+                `<td>`+FetchedDATA[i].cnss+`</td>`+
                 targetCSP +
                 `<td></td>`+
               `</tr>`;
@@ -351,14 +367,16 @@
             $('#groupe').val(groupe);
             $('#listPersonnel').html("");
             $('#listPersonnel').append(fillPersonnel);
-            //les dates
+
+            //Fetch date list
             for (let i = 0; i <= data.length; i++) {
-              let date = (`date`+(i+1)+``);
-              if (data[0][0][date] != null) {
-                var customDate = DateFormat(data[0][0][date]);
+              let date = ( DateSynx +(i+1)+ `` );
+              if (Dates[0][date] != null) {
+                var customDate = DateFormat(Dates[0][date]);
                 fillDates += `<option value="`+customDate+`">`+customDate+`</option>`;
               }
             } //endfor
+
             $('#dates').html("");
             ((fillDates != null) && $('#dates').append(fillDates))
             || $('#dates').append('<option selected disabled>--veuillez sélectionner la date</option>');
