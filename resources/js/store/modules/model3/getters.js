@@ -7,7 +7,7 @@ export const getters = {
     initInfo = oldInfo = dates = []
 
     initInfo = state.Info_AvisModif
-    oldInfo = state.Old_AvisModif
+    oldInfo = state.NewAvisModif
 
     for (let i = 0; i < initInfo.length; i++) {
       if (oldInfo.length != 0) {
@@ -38,7 +38,7 @@ export const getters = {
   //   let initInfo = [], oldInfo = [],  myDates = [], result
 
   //   initInfo = state.Info_AvisModif
-  //   oldInfo = state.Old_AvisModif
+  //   oldInfo = state.NewAvisModif
 
   //   for (let i = 0; i < initInfo.length; i++) {
 

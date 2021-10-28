@@ -3586,7 +3586,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     this.$store.dispatch("model3/FetchClients");
     this.$store.dispatch("model3/FetchAllCabinets");
   },
-  updated: function updated() {},
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])("model3", {
     curr_nrc_entrp: function curr_nrc_entrp(state) {
       return state.curr_nrc_entrp;
@@ -3812,7 +3811,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
                 };
                 console.log("-*-*-*-*-*-*-*-*-", infoavismodif);
-                _context.next = 28;
+                _context.next = 29;
                 return axios({
                   method: "POST",
                   url: "api/store-avis-modif",
@@ -6302,8 +6301,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     Info_AvisModif: function Info_AvisModif(state) {
       return state.Info_AvisModif;
     },
-    Old_AvisModif: function Old_AvisModif(state) {
-      return state.Old_AvisModif;
+    NewAvisModif: function NewAvisModif(state) {
+      return state.NewAvisModif;
     },
     nom_responsable: function nom_responsable(state) {
       return state.nom_responsable;
@@ -6326,11 +6325,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       if (this.Info_AvisModif) {
         // Inserting duplicated Information in duplicated_Info object
-        this.duplicated_Info.initialOrganisme = this.Old_AvisModif.length != 0 ? this.Old_AvisModif[0].old_organisme : this.Info_AvisModif[0].organisme;
-        this.duplicated_Info.initialLieu = this.Old_AvisModif != 0 ? this.Old_AvisModif[0].old_lieu : this.Info_AvisModif[0].lieu;
-        this.duplicated_Info.heurDebutInitial = this.Old_AvisModif != 0 ? this.Old_AvisModif[0].old_hr_debut : this.Info_AvisModif[0].hr_debut;
-        this.duplicated_Info.heurFinInitial = this.Old_AvisModif != 0 ? this.Old_AvisModif[0].old_hr_fin : this.Info_AvisModif[0].hr_fin;
-        this.duplicated_Info.old_pause = this.Old_AvisModif != 0 ? this.Old_AvisModif[0].old_pause : false;
+        this.duplicated_Info.initialOrganisme = this.NewAvisModif.length != 0 ? this.NewAvisModif[0].old_organisme : this.Info_AvisModif[0].organisme;
+        this.duplicated_Info.initialLieu = this.NewAvisModif != 0 ? this.NewAvisModif[0].old_lieu : this.Info_AvisModif[0].lieu;
+        this.duplicated_Info.heurDebutInitial = this.NewAvisModif != 0 ? this.NewAvisModif[0].old_hr_debut : this.Info_AvisModif[0].hr_debut;
+        this.duplicated_Info.heurFinInitial = this.NewAvisModif != 0 ? this.NewAvisModif[0].old_hr_fin : this.Info_AvisModif[0].hr_fin;
+        this.duplicated_Info.old_pause = this.NewAvisModif != 0 ? this.NewAvisModif[0].old_pause : false;
         this.duplicated_Info.newOrganisme = this.Info_AvisModif[0].organisme;
         this.duplicated_Info.newLieu = this.Info_AvisModif[0].lieu;
         this.duplicated_Info.heurDebutNew = this.Info_AvisModif[0].hr_debut;
@@ -50391,7 +50390,7 @@ var render = function() {
                           "model3/FetchInitialInfoAvisModif",
                           _vm.nForm
                         )
-                        _vm.handleAction("model3/FetchOldAvisInfo", _vm.nForm)
+                        _vm.handleAction("model3/FetchNewAvisInfo", _vm.nForm)
                       }
                     ]
                   }
@@ -72924,7 +72923,7 @@ var actions = {
       }, _callee9);
     }))();
   },
-  FetchOldAvisInfo: function FetchOldAvisInfo(_ref18, nForm) {
+  FetchNewAvisInfo: function FetchNewAvisInfo(_ref18, nForm) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee10() {
       var commit;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee10$(_context10) {
@@ -72939,8 +72938,9 @@ var actions = {
                 }
               }).then(function (_ref19) {
                 var data = _ref19.data;
-                commit("SET_OLD_AVIS_MODFI_INFO", data);
-                console.log("old avis modif", data);
+                commit("SET_NEW_AVIS_MODFI_INFO", data);
+                console.log("New avis modif", data);
+                console.log("-----------", nForm);
               })["catch"](function (err) {
                 console.log("err feetching old avis modif", err);
               });
@@ -72972,7 +72972,7 @@ var getters = {
     var initInfo, oldInfo, dates, result;
     initInfo = oldInfo = dates = [];
     initInfo = state.Info_AvisModif;
-    oldInfo = state.Old_AvisModif;
+    oldInfo = state.NewAvisModif;
 
     for (var i = 0; i < initInfo.length; i++) {
       if (oldInfo.length != 0) {
@@ -73002,7 +73002,7 @@ var getters = {
   } // getOnlyDates: state => {
   //   let initInfo = [], oldInfo = [],  myDates = [], result
   //   initInfo = state.Info_AvisModif
-  //   oldInfo = state.Old_AvisModif
+  //   oldInfo = state.NewAvisModif
   //   for (let i = 0; i < initInfo.length; i++) {
   //     initInfo[i] = [
   //        initInfo[i].date1,
@@ -73108,8 +73108,8 @@ var mutations = {
   SET_INFO_GROUPE: function SET_INFO_GROUPE(state, data) {
     state.groupe_info = data;
   },
-  SET_OLD_AVIS_MODFI_INFO: function SET_OLD_AVIS_MODFI_INFO(state, data) {
-    state.Old_AvisModif = data;
+  SET_NEW_AVIS_MODFI_INFO: function SET_NEW_AVIS_MODFI_INFO(state, data) {
+    state.NewAvisModif = data;
   },
   SET_NOM_RESPONSABLE: function SET_NOM_RESPONSABLE(state, data) {
     state.nom_responsable = data;
@@ -73158,7 +73158,7 @@ var state = {
   cabinets: [],
   Info_AvisModif: [],
   groupe_info: [],
-  Old_AvisModif: [],
+  NewAvisModif: [],
   nom_responsable: [],
   nom_theme: []
 };
@@ -73183,8 +73183,8 @@ var state = {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\HP\Desktop\mediexperts\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\HP\Desktop\mediexperts\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\HP\Desktop\Projects\Work\Mediexperts_App\mediexperts_dev\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\HP\Desktop\Projects\Work\Mediexperts_App\mediexperts_dev\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

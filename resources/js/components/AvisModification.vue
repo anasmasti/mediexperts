@@ -727,8 +727,6 @@ export default {
     this.$store.dispatch("model3/FetchAllCabinets");
   },
 
-  updated() {},
-
   computed: {
     ...mapState("model3", {
       curr_nrc_entrp: (state) => state.curr_nrc_entrp,
@@ -746,6 +744,7 @@ export default {
     handleAction(actionName, value) {
       this.$store.dispatch(actionName, value);
     },
+
     getSameDates() {
       setTimeout(() => {
         if (this.Info_AvisModif) {
@@ -781,6 +780,7 @@ export default {
       }, 500);
       return this.selected_pause, this.old_pause;
     },
+
     // fonction pour l'état d'avis annulation
     getSelected() {
       let annul = document.getElementById("etat");
@@ -824,6 +824,7 @@ export default {
         chk_horaire.disabled = false;
       }
     },
+
     // update the Model 3 and save archive data
     async storeUpdateModel3() {
       // let date1 = document.getElementById("date1");

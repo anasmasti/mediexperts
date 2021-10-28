@@ -20,6 +20,7 @@ export const actions = {
   async SetNrcEntrp({ commit, nrc }) {
     commit("SET_NRC_ENTRP", nrc);
   },
+  
   //récupérer les réferences plan à partir du client sélectionné
   async FetchReferencesPlan({ commit }, nrcEntrp) {
     await axios
@@ -30,6 +31,7 @@ export const actions = {
       })
       .catch(err => console.log("err FillReferencesPlan", err));
   },
+
   // Fetch All Cabinets
   async FetchAllCabinets({ commit }) {
     await axios.get(`/fill-all-organisme`).then(({ data }) => {
@@ -37,6 +39,7 @@ export const actions = {
       console.log("Cabinets :", data);
     });
   },
+
   //récupérer les actions à partir du REF sélectionné
   async FetchActionByReference({ commit }, idPlan) {
     await axios
@@ -51,6 +54,7 @@ export const actions = {
       })
       .catch(err => console.error("err FillPlanByReference", err));
   },
+
   // get-nom-theme
   async GetSelectedTheme ({commit} , nForm) {
     await axios
@@ -61,6 +65,7 @@ export const actions = {
       })
       .catch(err => console.error("can't get theme", err));
   },
+
   //get NomResponsable For Model 3
   async GetNomResponsable({ commit },nrcEntrp) {
   await axios
@@ -97,12 +102,13 @@ export const actions = {
       });
   },
 
-  async FetchOldAvisInfo ({commit} , nForm) {
+  async FetchNewAvisInfo ({commit} , nForm) {
     await axios
       .get(`/old-avis-modif-by-theme` , { params: {nForm : nForm}})
       .then(({data})=>{
-        commit("SET_OLD_AVIS_MODFI_INFO" , data);
-        console.log("old avis modif" , data);
+        commit("SET_NEW_AVIS_MODFI_INFO" , data);
+        console.log("New avis modif" , data);
+        console.log("-----------" ,nForm);
       })
       .catch(err => {
         console.log("err feetching old avis modif", err);

@@ -63,7 +63,7 @@
           style="width: 100%; padding: 0.5rem; border: 1px solid #000"
           @change="
             handleAction('model3/FetchInitialInfoAvisModif', nForm);
-            handleAction('model3/FetchOldAvisInfo', nForm);
+            handleAction('model3/FetchNewAvisInfo', nForm);
           "
           v-model="nForm"
         >
@@ -603,7 +603,7 @@ export default {
       curr_annee_plan: (state) => state.curr_annee_plan,
       cabinets: (state) => state.cabinets,
       Info_AvisModif: (state) => state.Info_AvisModif,
-      Old_AvisModif: (state) => state.Old_AvisModif,
+      NewAvisModif: (state) => state.NewAvisModif,
       nom_responsable: (state) => state.nom_responsable,
       nom_theme: (state) => state.nom_theme,
     }),
@@ -623,23 +623,23 @@ export default {
       if (this.Info_AvisModif) {
         // Inserting duplicated Information in duplicated_Info object
         this.duplicated_Info.initialOrganisme =
-          this.Old_AvisModif.length != 0
-            ? this.Old_AvisModif[0].old_organisme
+          this.NewAvisModif.length != 0
+            ? this.NewAvisModif[0].old_organisme
             : this.Info_AvisModif[0].organisme;
         this.duplicated_Info.initialLieu =
-          this.Old_AvisModif != 0
-            ? this.Old_AvisModif[0].old_lieu
+          this.NewAvisModif != 0
+            ? this.NewAvisModif[0].old_lieu
             : this.Info_AvisModif[0].lieu;
         this.duplicated_Info.heurDebutInitial =
-          this.Old_AvisModif != 0
-            ? this.Old_AvisModif[0].old_hr_debut
+          this.NewAvisModif != 0
+            ? this.NewAvisModif[0].old_hr_debut
             : this.Info_AvisModif[0].hr_debut;
         this.duplicated_Info.heurFinInitial =
-          this.Old_AvisModif != 0
-            ? this.Old_AvisModif[0].old_hr_fin
+          this.NewAvisModif != 0
+            ? this.NewAvisModif[0].old_hr_fin
             : this.Info_AvisModif[0].hr_fin;
         this.duplicated_Info.old_pause =
-          this.Old_AvisModif != 0 ? this.Old_AvisModif[0].old_pause : false;
+          this.NewAvisModif != 0 ? this.NewAvisModif[0].old_pause : false;
 
         this.duplicated_Info.newOrganisme = this.Info_AvisModif[0].organisme;
         this.duplicated_Info.newLieu = this.Info_AvisModif[0].lieu;
