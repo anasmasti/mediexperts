@@ -11,7 +11,7 @@ export const state = {
   cabinets : [],
   Info_AvisModif: [],
   groupe_info: [],
-  Old_AvisModif: [],
+  NewAvisModif: [],
   nom_responsable: [],
   nom_theme:[]
 }
