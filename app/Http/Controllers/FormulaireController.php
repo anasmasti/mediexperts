@@ -73,28 +73,16 @@ class FormulaireController extends Controller
         ->orderBy('plan_formations.dt_debut', 'asc')
         ->orderBy('plan_formations.created_at', 'asc')
         ->get();
-
-      $avis_modification = AvisModification::select('avis_modifications.n_form', 'avis_modifications.new_date1','avis_modifications.new_date2','avis_modifications.new_date3','avis_modifications.new_date4','avis_modifications.new_date5',
-        'avis_modifications.new_date6','avis_modifications.new_date7','avis_modifications.new_date8','avis_modifications.new_date9','avis_modifications.new_date10',
-        'avis_modifications.new_date11','avis_modifications.new_date12','avis_modifications.new_date13','avis_modifications.new_date14','avis_modifications.new_date15',
-        'avis_modifications.new_date16','avis_modifications.new_date17','avis_modifications.new_date18','avis_modifications.new_date19','avis_modifications.new_date20',
-        'avis_modifications.new_date21','avis_modifications.new_date22','avis_modifications.new_date23','avis_modifications.new_date24','avis_modifications.new_date25',
-        'avis_modifications.new_date26','avis_modifications.new_date27','avis_modifications.new_date28','avis_modifications.new_date29','avis_modifications.new_date30', 'plan_formations.nb_partcp_total' , 'plan_formations.organisme')
-        ->join('plan_formations', 'plan_formations.n_form', 'avis_modifications.n_form')
+        $avis_modifications = AvisModification::select('avis_modifications.*')
         ->where('avis_modifications.n_form', $request->nForm)
-        ->orderBy('plan_formations.dt_debut', 'asc')
-        ->orderBy('plan_formations.created_at', 'asc')
+        ->orderBy('avis_modifications.id' , 'desc')
         ->get();
+      return response()->json([$data, $avis_modifications]);
 
-      
-      
-
-      if ($avis_modification.length > 0) 
-        return response()->json($avis_modification);
-      else 
-        return response()->json($data);
-      
-       
+      // $avis_modifications = AvisModification::select('avis_modifications.*')
+      // ->where('avis_modifications.n_form', $request->nForm)
+      // ->get();
+      // return response()->json($data);
     }
 
     public function FillDatesForm(Request $request) {
@@ -116,15 +104,9 @@ class FormulaireController extends Controller
           ->join('themes', 'themes.id_theme', 'plan_formations.id_thm')
           ->where([['formations.id_form', $idform], ['themes.id_theme', $id_theme["id_theme"]]])
           ->first();
-          
       // $bdg_letter = \App\Helper\Helper::NumberToLetter(($formation["bdg_total"] * .2 + $formation["bdg_total"]));
 
-      $avis_modifications = AvisModification::select('avis_modifications.*')
-        ->where('avis_modifications.id_form', $idform)
-        ->orderBy('created_at', 'DESC')
-        ->first();
-
-      return view('_modeles.m4', ['formation' => $formation, 'avis_modifications' => $avis_modifications ]);
+      return view('_modeles.m4', ['formation' => $formation/*, 'bdg_letter' => $bdg_letter*/]);
     }
 
     //FORMULAIRE 4
@@ -264,7 +246,6 @@ class FormulaireController extends Controller
         // ->orderBy('plan_formations.dt_debut')
         ->orderBy('plan_formations.n_form', 'asc')
         ->get();
-     
       return response()->json($data);
     }
 
