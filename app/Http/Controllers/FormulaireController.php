@@ -121,7 +121,8 @@ class FormulaireController extends Controller
 
       $avis_modifications = AvisModification::select('avis_modifications.*')
         ->where('avis_modifications.id_form', $idform)
-        ->get();
+        ->orderBy('created_at', 'DESC')
+        ->first();
 
       return view('_modeles.m4', ['formation' => $formation, 'avis_modifications' => $avis_modifications ]);
     }
