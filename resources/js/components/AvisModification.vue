@@ -354,6 +354,7 @@
                     type="date"
                     id="date1"
                     :value="info.date1"
+                    readonly
                   />
                 </div>
 
@@ -366,6 +367,7 @@
                     type="date"
                     id="date2"
                     :value="info.date2"
+                    readonly
                   />
                 </div>
 
@@ -378,6 +380,7 @@
                     type="date"
                     id="date3"
                     :value="info.date3"
+                    readonly
                   />
                 </div>
 
@@ -390,6 +393,7 @@
                     type="date"
                     id="date4"
                     :value="info.date4"
+                    readonly
                   />
                 </div>
 
@@ -402,6 +406,7 @@
                     type="date"
                     id="date5"
                     :value="info.date5"
+                    readonly
                   />
                 </div>
 
@@ -414,6 +419,7 @@
                     type="date"
                     id="date6"
                     :value="info.date6"
+                    readonly
                   />
                 </div>
 
@@ -426,6 +432,7 @@
                     type="date"
                     id="date7"
                     :value="info.date7"
+                    readonly
                   />
                 </div>
 
@@ -438,6 +445,7 @@
                     type="date"
                     id="date8"
                     :value="info.date8"
+                    readonly
                   />
                 </div>
 
@@ -450,6 +458,7 @@
                     type="date"
                     id="date9"
                     :value="info.date9"
+                    readonly
                   />
                 </div>
 
@@ -462,6 +471,7 @@
                     type="date"
                     id="date10"
                     :value="info.date10"
+                    readonly
                   />
                 </div>
 
@@ -538,15 +548,13 @@
                       id="initial_hr_debut"
                       name="hr_debut"
                       :value="info.hr_debut"
+                      readonly
                     />
                     <div
                       class="input-group-append"
                       data-target="#timepicker"
                       data-toggle="datetimepicker"
                     ></div>
-                    <div class="input-group-text">
-                      <i class="far fa-clock"></i>
-                    </div>
                   </div>
                 </div>
 
@@ -559,15 +567,13 @@
                       id="initial_hr_fin"
                       name="hr_fin"
                       :value="info.hr_fin"
+                      readonly
                     />
                     <div
                       class="input-group-append"
                       data-target="#timepicker"
                       data-toggle="datetimepicker"
                     ></div>
-                    <div class="input-group-text">
-                      <i class="far fa-clock"></i>
-                    </div>
                   </div>
                 </div>
               </div>
@@ -599,9 +605,6 @@
                       data-target="#timepicker"
                       data-toggle="datetimepicker"
                     ></div>
-                    <div class="input-group-text">
-                      <i class="far fa-clock"></i>
-                    </div>
                   </div>
                 </div>
                 <!-- {{--  --}} -->
@@ -620,9 +623,6 @@
                       data-target="#timepicker"
                       data-toggle="datetimepicker"
                     ></div>
-                    <div class="input-group-text">
-                      <i class="far fa-clock"></i>
-                    </div>
                   </div>
                 </div>
               </div>
