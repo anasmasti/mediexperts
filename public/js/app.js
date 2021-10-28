@@ -46059,16 +46059,16 @@ var render = function() {
                                 ],
                                 attrs: {
                                   type: "radio",
-                                  value: "true",
                                   id: "sameDate_oui",
                                   name: "sameDate"
                                 },
                                 domProps: {
-                                  checked: _vm._q(_vm.selected_sameDate, "true")
+                                  value: true,
+                                  checked: _vm._q(_vm.selected_sameDate, true)
                                 },
                                 on: {
                                   change: function($event) {
-                                    _vm.selected_sameDate = "true"
+                                    _vm.selected_sameDate = true
                                   }
                                 }
                               }),
@@ -46086,19 +46086,16 @@ var render = function() {
                                 ],
                                 attrs: {
                                   type: "radio",
-                                  value: "false",
                                   id: "sameDate_non",
                                   name: "sameDate"
                                 },
                                 domProps: {
-                                  checked: _vm._q(
-                                    _vm.selected_sameDate,
-                                    "false"
-                                  )
+                                  value: false,
+                                  checked: _vm._q(_vm.selected_sameDate, false)
                                 },
                                 on: {
                                   change: function($event) {
-                                    _vm.selected_sameDate = "false"
+                                    _vm.selected_sameDate = false
                                   }
                                 }
                               })
