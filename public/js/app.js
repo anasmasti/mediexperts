@@ -6642,8 +6642,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                console.log("nrc_entrp", _this2.nrc_entrp);
-                _context2.next = 3;
+                _context2.next = 2;
                 return axios.get("/fill-reference-plan?nrcEntrp=".concat(_this2.nrc_entrp)).then(function (res) {
                   _this2.reference_plan = res.data;
                   _this2.curr_client = res.data[0].raisoci;
@@ -6652,7 +6651,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   return console.log("err FillReferencesPlan", err);
                 });
 
-              case 3:
+              case 2:
               case "end":
                 return _context2.stop();
             }
