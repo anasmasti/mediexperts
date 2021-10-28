@@ -30,7 +30,8 @@ export default {
       let data = await this.actions_by_ref
       this.lieu = data[0].lieu
       this.annee = data[0].annee
-      console.log('----L A---',this.lieu,this.annee);
+      // console.log('Teeeeeest'  , data);
+      // console.log('----L A---',this.lieu,this.annee);
     },
     DateFormat(date) {
       if (date) {
@@ -53,16 +54,17 @@ export default {
         .catch((err) => console.error("err FillClients", err));
     },
     async FillReferencesPlan() {
-      console.log('nrc_entrp', this.nrc_entrp);
+      // console.log('nrc_entrp', this.nrc_entrp);
       await axios.get(`/fill-reference-plan?nrcEntrp=${this.nrc_entrp}`)
         .then((res) => {
           this.reference_plan = res.data;
           this.curr_client = res.data[0].raisoci;
-          console.log("reference_plan : ", this.reference_plan)
+          // console.log("reference_plan : ", this.reference_plan)
         })
         .catch((err) => console.log("err FillReferencesPlan", err));
     },
     async FillPlanByReference() {
+      console.log("actions_by_ref : ", this.actions_by_ref)
       await axios.get(`/fill-plans-by-reference?idPlan=${this.id_plan}`)
         .then((res) => {
           this.actions_by_ref = res.data;
@@ -79,12 +81,13 @@ export default {
         })
         .catch((err) => console.error("err FillPlanByReference", err));
       this.isAllLoaded = true;
-      console.log("isallloaded", this.isAllLoaded);
+      // console.log("isallloaded", this.isAllLoaded);
     },
     async FillDates(nform) {
       await axios.get(`/fill-dates-plan?nForm=${nform}`)
         .then((res) => {
           this.dates_actions = res.data;
+          console.log(this.dates_actions);
         })
         .then(() => {
           this.AssignDates(nform);
@@ -102,7 +105,7 @@ export default {
                 Object.assign(action.dates, {[`date${i}`]: forma[`date${i}`]});
               }
             }
-            console.log("assign dates action: ", action);
+            // console.log("assign dates action: ", action);
           });
         }
       });
