@@ -253,7 +253,6 @@ export default {
         .catch((err) => console.error("err FillClients", err));
     },
     async FillReferencesPlan() {
-      console.log("nrc_entrp", this.nrc_entrp);
       await axios
         .get(`/fill-reference-plan?nrcEntrp=${this.nrc_entrp}`)
         .then((res) => {
@@ -290,7 +289,7 @@ export default {
       await axios
         .get(`/fill-dates-plan?nForm=${nform}`)
         .then((res) => {
-          this.dates_actions = res.data;
+          this.dates_actions = res.data[0];
         })
         .then(() => {
           this.AssignDates(nform);

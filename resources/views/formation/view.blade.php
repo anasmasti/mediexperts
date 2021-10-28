@@ -51,33 +51,25 @@
         </tr>
       </thead>
 
+      @php
+        $data = App\Plan::select('themes.nom_theme', 'plan_formations.*' , 'plans.refpdf' , 'formations.*')
+        ->join('plan_formations','plan_formations.id_plan' , 'plans.id_plan' )
+        ->join('themes', 'plan_formations.id_thm', 'themes.id_theme')
+        ->join('formations', 'plan_formations.n_form', 'formations.n_form')
+        ->where('plan_formations.type_action' , '!=' , 'annulé')
+        ->get();
+      @endphp
       <tbody>
-        @foreach ($formation as $fm)
+        @foreach ($data as $fm)
         <tr>
-
-          @php
-            $pdf = App\PlanFormation::select('themes.nom_theme', 'plan_formations.n_action')
-            ->join('themes', 'plan_formations.id_thm', 'themes.id_theme')
-            ->join('formations', 'plan_formations.n_form', 'formations.n_form')
-            ->where('formations.id_form', $fm->id_form)
-            ->first();
-            $reference = App\Plan::select('plans.refpdf')
-            ->join('plan_formations', 'plans.id_plan', 'plan_formations.id_plan')
-            ->join('formations', 'plan_formations.n_form', 'formations.n_form')
-            ->where('formations.id_form', $fm->id_form)
-            ->first();
-          @endphp
-
-          <td class="text-bold">{{ $reference['refpdf'] }}</td>
-          <td class="">{{ $pdf['n_action'] }}</td>
-          <td class="">{{ $pdf['nom_theme'] }}</td>
+          <td class="text-bold">{{ $fm['refpdf'] }}</td>
+          <td class="">{{ $fm['n_action'] }}</td>
+          <td class="">{{ $fm['nom_theme'] }}</td>
           <td class="">{{ $fm->groupe }}</td>
           <td class="">{{ $fm->nb_benif }}</td>
           <td class="th-last d-inline-block text-truncate">{{ $fm->commentaire }}</td>
-
           <td class="action py-0 align-middle">
             <div class="btn-group btn-group-sm">
-
               @if (Auth::user()->type_user != "comptable")
               <a href="/detail-form/{{ $fm->id_form }}" class="btn btn-primary"><i class="fas fa-eye"></i></a>
               <a href="/edit-form/{{ $fm->id_form }}" class="btn btn-warning"><i class="fas fa-edit"></i></a>

@@ -210,6 +210,7 @@
         success: function(data) {
           console.log("success themes !!", data);
           if (data) {
+            
             for (let i = 0; i < data.length; i++) {
               fillThemes += `<span class="container">- `+data[i]['nom_theme']+`</span><br>`;
             } //endfor

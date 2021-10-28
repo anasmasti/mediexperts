@@ -2661,10 +2661,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 2:
                 data = _context.sent;
                 _this.lieu = data[0].lieu;
-                _this.annee = data[0].annee;
-                console.log('----L A---', _this.lieu, _this.annee);
+                _this.annee = data[0].annee; // console.log('Teeeeeest'  , data);
+                // console.log('----L A---',this.lieu,this.annee);
 
-              case 6:
+              case 5:
               case "end":
                 return _context.stop();
             }
@@ -2714,17 +2714,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                console.log('nrc_entrp', _this3.nrc_entrp);
-                _context3.next = 3;
+                _context3.next = 2;
                 return axios.get("/fill-reference-plan?nrcEntrp=".concat(_this3.nrc_entrp)).then(function (res) {
                   _this3.reference_plan = res.data;
-                  _this3.curr_client = res.data[0].raisoci;
-                  console.log("reference_plan : ", _this3.reference_plan);
+                  _this3.curr_client = res.data[0].raisoci; // console.log("reference_plan : ", this.reference_plan)
                 })["catch"](function (err) {
                   return console.log("err FillReferencesPlan", err);
                 });
 
-              case 3:
+              case 2:
               case "end":
                 return _context3.stop();
             }
@@ -2740,7 +2738,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context4.prev = _context4.next) {
               case 0:
-                _context4.next = 2;
+                console.log("actions_by_ref : ", _this4.actions_by_ref);
+                _context4.next = 3;
                 return axios.get("/fill-plans-by-reference?idPlan=".concat(_this4.id_plan)).then(function (res) {
                   _this4.actions_by_ref = res.data;
                   _this4.curr_annee = res.data[0].annee;
@@ -2757,9 +2756,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   return console.error("err FillPlanByReference", err);
                 });
 
-              case 2:
-                _this4.isAllLoaded = true;
-                console.log("isallloaded", _this4.isAllLoaded);
+              case 3:
+                _this4.isAllLoaded = true; // console.log("isallloaded", this.isAllLoaded);
 
               case 4:
               case "end":
@@ -2777,16 +2775,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context5.prev = _context5.next) {
               case 0:
-                _context5.next = 2;
+                console.log('test');
+                _context5.next = 3;
                 return axios.get("/fill-dates-plan?nForm=".concat(nform)).then(function (res) {
+                  // if (condition) {
+                  // }
                   _this5.dates_actions = res.data;
+                  console.log(_this5.dates_actions);
                 }).then(function () {
                   _this5.AssignDates(nform);
                 })["catch"](function (err) {
                   return console.error("err FillDates", err);
                 });
 
-              case 2:
+              case 3:
               case "end":
                 return _context5.stop();
             }
@@ -2815,9 +2817,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                           //************************ vvv [dynamic key assignement] vvv */
                           Object.assign(action.dates, _defineProperty({}, "date".concat(i), forma["date".concat(i)]));
                         }
-                      }
+                      } // console.log("assign dates action: ", action);
 
-                      console.log("assign dates action: ", action);
                     });
                   }
                 });
@@ -3554,57 +3555,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   runtimeCompiler: true,
@@ -3636,7 +3586,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     this.$store.dispatch("model3/FetchClients");
     this.$store.dispatch("model3/FetchAllCabinets");
   },
-  updated: function updated() {},
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])("model3", {
     curr_nrc_entrp: function curr_nrc_entrp(state) {
       return state.curr_nrc_entrp;
@@ -3751,31 +3700,31 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this3 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var date1, date2, date3, date4, date5, date6, date7, date8, date9, date10, newdate1, newdate2, newdate3, newdate4, newdate5, newdate6, newdate7, newdate8, newdate9, newdate10, planifie, initial_organisme, initial_lieu, nouvel_organisme, nouvel_lieu, initial_hr_debut, initial_hr_fin, new_hr_debut, new_hr_fin, entreprise, ref_plan, theme, etat_avis, groupe, pause_debut, pause_fin, infoavismodif;
+        var date1, date2, date3, date4, date5, date6, date7, date8, date9, date10, planifie, initial_organisme, initial_lieu, nouvel_organisme, nouvel_lieu, initial_hr_debut, initial_hr_fin, new_hr_debut, new_hr_fin, entreprise, ref_plan, theme, etat_avis, pause_debut, pause_fin, infoavismodif;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                date1 = document.getElementById("date1");
-                date2 = document.getElementById("date2");
-                date3 = document.getElementById("date3");
-                date4 = document.getElementById("date4");
-                date5 = document.getElementById("date5");
-                date6 = document.getElementById("date6");
-                date7 = document.getElementById("date7");
-                date8 = document.getElementById("date8");
-                date9 = document.getElementById("date9");
-                date10 = document.getElementById("date10");
-                newdate1 = document.getElementById("newdate1");
-                newdate2 = document.getElementById("newdate2");
-                newdate3 = document.getElementById("newdate3");
-                newdate4 = document.getElementById("newdate4");
-                newdate5 = document.getElementById("newdate5");
-                newdate6 = document.getElementById("newdate6");
-                newdate7 = document.getElementById("newdate7");
-                newdate8 = document.getElementById("newdate8");
-                newdate9 = document.getElementById("newdate9");
-                newdate10 = document.getElementById("newdate10");
+                // let date1 = document.getElementById("date1");
+                // let date2 = document.getElementById("date2");
+                // let date3 = document.getElementById("date3");
+                // let date4 = document.getElementById("date4");
+                // let date5 = document.getElementById("date5");
+                // let date6 = document.getElementById("date6");
+                // let date7 = document.getElementById("date7");
+                // let date8 = document.getElementById("date8");
+                // let date9 = document.getElementById("date9");
+                // let date10 = document.getElementById("date10");
+                date1 = document.getElementById("newdate1");
+                date2 = document.getElementById("newdate2");
+                date3 = document.getElementById("newdate3");
+                date4 = document.getElementById("newdate4");
+                date5 = document.getElementById("newdate5");
+                date6 = document.getElementById("newdate6");
+                date7 = document.getElementById("newdate7");
+                date8 = document.getElementById("newdate8");
+                date9 = document.getElementById("newdate9");
+                date10 = document.getElementById("newdate10");
                 planifie = document.getElementById("planifie");
                 initial_organisme = document.getElementById("initial_organisme");
                 initial_lieu = document.getElementById("initial_lieu");
@@ -3788,61 +3737,81 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 entreprise = document.getElementById("client");
                 ref_plan = document.getElementById("plans");
                 theme = document.getElementById("theme");
-                etat_avis = document.getElementById("etat");
-                groupe = document.getElementById("groupe");
+                etat_avis = document.getElementById("etat"); // let groupe = document.getElementById("groupe");
+
                 pause_debut = $("#pause_debut");
                 pause_fin = $("#pause_fin");
                 infoavismodif = {
-                  date1: date1 != null ? date1.value : null,
-                  date2: date2 != null ? date2.value : null,
-                  date3: date3 != null ? date3.value : null,
-                  date4: date4 != null ? date4.value : null,
-                  date5: date5 != null ? date5.value : null,
-                  date6: date6 != null ? date6.value : null,
-                  date7: date7 != null ? date7.value : null,
-                  date8: date8 != null ? date8.value : null,
-                  date9: date9 != null ? date9.value : null,
-                  date10: date10 != null ? date10.value : null,
-                  newdate1: newdate1 != null ? newdate1.value : null,
-                  newdate2: newdate2 != null ? newdate2.value : null,
-                  newdate3: newdate3 != null ? newdate3.value : null,
-                  newdate4: newdate4 != null ? newdate4.value : null,
-                  newdate5: newdate5 != null ? newdate5.value : null,
-                  newdate6: newdate6 != null ? newdate6.value : null,
-                  newdate7: newdate7 != null ? newdate7.value : null,
-                  newdate8: newdate8 != null ? newdate8.value : null,
-                  newdate9: newdate9 != null ? newdate9.value : null,
-                  newdate10: newdate10 != null ? newdate10.value : null,
-                  entreprise: entreprise.value,
-                  refPlan: ref_plan.value,
-                  NomTheme: theme.value,
-                  typeAction: etat_avis.value,
-                  annuler: _this3.selected_annuler,
-                  modificationDate: _this3.selected_modifdate,
-                  modificationOrganisme: _this3.selected_modiforganisme,
-                  modificationLieu: _this3.selected_modiflieu,
-                  modificationHoraire: _this3.selected_modifhoraire,
-                  natureAction: planifie.value,
-                  organisme: initial_organisme.value,
-                  lieu: initial_lieu.value,
-                  heurDebut: initial_hr_debut.value,
-                  heurFin: initial_hr_fin.value,
-                  newOrganisme: nouvel_organisme.value == false ? initial_organisme.value : nouvel_organisme.value,
-                  newLieu: nouvel_lieu.value == "---selectionner le lieu---" ? initial_lieu.value : nouvel_lieu.value,
-                  newHeurDebut: new_hr_debut.value == false ? initial_hr_debut.value : new_hr_debut.value,
-                  newHeurFin: new_hr_fin.value == false ? initial_hr_fin.value : new_hr_fin.value,
-                  nForm: _this3.selected_nForm,
-                  idForm: _this3.selected_idForm,
-                  groupe: groupe.textContent,
-                  pause: _this3.selected_pause,
-                  old_pause: _this3.old_pause,
-                  pause_debut: pause_debut != null ? pause_debut.val() : null,
-                  pause_fin: pause_fin != null ? pause_fin.val() : null,
-                  sameDates: _this3.selected_sameDate,
-                  old_sameDates: _this3.old_SameDate
-                }; //  return console.log("-*-*-*-*-*-*-*-*-", infoavismodif);
+                  n_form: _this3.selected_nForm,
+                  id_form: _this3.selected_idForm,
+                  new_has_same_dates: _this3.selected_sameDate,
+                  new_entreprise: entreprise.value,
+                  new_ref_plan: ref_plan.value,
+                  new_theme_action: theme.value,
+                  new_nature_action: planifie.value,
+                  new_hr_debut: new_hr_debut.value == false ? null : new_hr_debut.value,
+                  new_hr_fin: new_hr_fin.value == false ? null : new_hr_fin.value,
+                  new_pse_debut: pause_debut != null ? pause_debut.val() : null,
+                  new_pse_fin: pause_fin != null ? pause_fin.val() : null,
+                  new_type_action: etat_avis.value,
+                  new_pause: _this3.selected_pause,
+                  new_date1: date1 != null ? date1.value : null,
+                  new_date2: date2 != null ? date2.value : null,
+                  new_date3: date3 != null ? date3.value : null,
+                  new_date4: date4 != null ? date4.value : null,
+                  new_date5: date5 != null ? date5.value : null,
+                  new_date6: date6 != null ? date6.value : null,
+                  new_date7: date7 != null ? date7.value : null,
+                  new_date8: date8 != null ? date8.value : null,
+                  new_date9: date9 != null ? date9.value : null,
+                  new_date10: date10 != null ? date10.value : null,
+                  new_organisme: null,
+                  new_lieu: nouvel_lieu.value == "---selectionner le lieu---" ? null : nouvel_lieu.value,
+                  new_anulation: _this3.selected_annuler,
+                  new_lieu_formations: _this3.selected_modiflieu,
+                  new_horaire_formations: _this3.selected_modifhoraire,
+                  new_organisme_formations: _this3.selected_modiforganisme,
+                  new_date_realisation: _this3.selected_modifdate // entreprise: entreprise.value,
+                  // refPlan: ref_plan.value,
+                  // NomTheme: theme.value,
+                  // typeAction: etat_avis.value,
+                  // annuler: this.selected_annuler,
+                  // modificationDate: this.selected_modifdate,
+                  // modificationOrganisme: this.selected_modiforganisme,
+                  // modificationLieu: this.selected_modiflieu,
+                  // modificationHoraire: this.selected_modifhoraire,
+                  // natureAction: planifie.value,
+                  // organisme: initial_organisme.value,
+                  // lieu: initial_lieu.value,
+                  // heurDebut: initial_hr_debut.value,
+                  // heurFin: initial_hr_fin.value,
+                  // newOrganisme:
+                  //   nouvel_organisme.value == false
+                  //     ? initial_organisme.value
+                  //     : nouvel_organisme.value,
+                  // newLieu:
+                  //   nouvel_lieu.value == "---selectionner le lieu---"
+                  //     ? initial_lieu.value
+                  //     : nouvel_lieu.value,
+                  // newHeurDebut:
+                  //   new_hr_debut.value == false
+                  //     ? initial_hr_debut.value
+                  //     : new_hr_debut.value,
+                  // newHeurFin:
+                  //   new_hr_fin.value == false ? initial_hr_fin.value : new_hr_fin.value,
+                  // nForm: this.selected_nForm,
+                  // idForm: this.selected_idForm,
+                  // groupe: groupe.textContent,
+                  // pause: this.selected_pause,
+                  // old_pause: this.old_pause,
+                  // pause_debut: pause_debut != null ? pause_debut.val() : null,
+                  // pause_fin: pause_fin != null ? pause_fin.val() : null,
+                  // sameDates: this.selected_sameDate,
+                  // old_sameDates: this.old_SameDate
 
-                _context.next = 39;
+                };
+                console.log("-*-*-*-*-*-*-*-*-", infoavismodif);
+                _context.next = 29;
                 return axios({
                   method: "POST",
                   url: "api/store-avis-modif",
@@ -3850,14 +3819,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                     return value === "" ? null : value;
                   }))
                 }).then(function () {
-                  _this3.$toastr.s('Modifié avec succès');
+                  _this3.$toastr.s("Modifié avec succès");
                 })["catch"](function (e) {
                   _this3.$toastr.e("Echec de modification");
 
                   throw e;
                 });
 
-              case 39:
+              case 29:
               case "end":
                 return _context.stop();
             }
@@ -6228,32 +6197,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -6268,24 +6211,26 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       id_plan: null,
       selected_nrc_entrp: null,
       total_benif: null,
-      initDates: "",
+      newDates: "",
       //Initial and new Info that Duplicated
       duplicated_Info: {
         initialOrganisme: "",
         newOrganisme: "",
         initialLieu: "",
-        hewLieu: "",
+        newLieu: "",
         heurPauseDebutInitial: "",
         heurPauseFinInitial: "",
         heurPauseDebutNew: "",
-        heurFinNew: "",
+        newHeurFin: "",
+        newHeurDebut: "",
         dateDeRealisation: false,
+        newDateDeRealisation: false,
         organismeDeFormation: false,
         lieuDeFormation: false,
         organisationHoraire: false,
         typeAction: "",
         pause: false,
-        old_pause: false,
+        new_pause: false,
         dates: {
           date1: "",
           date2: "",
@@ -6298,7 +6243,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           date9: "",
           date10: ""
         },
-        hasSameDates: true
+        hasSameDates: true,
+        newHasSameDates: true
       },
       title: {
         ref: "",
@@ -6332,8 +6278,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     Info_AvisModif: function Info_AvisModif(state) {
       return state.Info_AvisModif;
     },
-    Old_AvisModif: function Old_AvisModif(state) {
-      return state.Old_AvisModif;
+    NewAvisModif: function NewAvisModif(state) {
+      return state.NewAvisModif;
     },
     nom_responsable: function nom_responsable(state) {
       return state.nom_responsable;
@@ -6347,7 +6293,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.$store.dispatch(actionName, value);
     },
     initialDates: function initialDates() {
-      this.initDates = this.$store.getters["model3/initialDates"];
+      this.newDates = this.$store.getters["model3/newDates"];
     },
     CalculNbTotalBenif: function CalculNbTotalBenif() {
       var _this = this;
@@ -6356,15 +6302,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       if (this.Info_AvisModif) {
         // Inserting duplicated Information in duplicated_Info object
-        this.duplicated_Info.initialOrganisme = this.Old_AvisModif.length != 0 ? this.Old_AvisModif[0].old_organisme : this.Info_AvisModif[0].organisme;
-        this.duplicated_Info.initialLieu = this.Old_AvisModif != 0 ? this.Old_AvisModif[0].old_lieu : this.Info_AvisModif[0].lieu;
-        this.duplicated_Info.heurDebutInitial = this.Old_AvisModif != 0 ? this.Old_AvisModif[0].old_hr_debut : this.Info_AvisModif[0].hr_debut;
-        this.duplicated_Info.heurFinInitial = this.Old_AvisModif != 0 ? this.Old_AvisModif[0].old_hr_fin : this.Info_AvisModif[0].hr_fin;
-        this.duplicated_Info.old_pause = this.Old_AvisModif != 0 ? this.Old_AvisModif[0].old_pause : false;
-        this.duplicated_Info.newOrganisme = this.Info_AvisModif[0].organisme;
-        this.duplicated_Info.newLieu = this.Info_AvisModif[0].lieu;
-        this.duplicated_Info.heurDebutNew = this.Info_AvisModif[0].hr_debut;
-        this.duplicated_Info.heurFinNew = this.Info_AvisModif[0].hr_fin;
+        this.duplicated_Info.newOrganisme = this.NewAvisModif.length != 0 ? this.NewAvisModif[0].new_organisme : null;
+        this.duplicated_Info.newLieu = this.NewAvisModif.length != 0 ? this.NewAvisModif[0].new_lieu : null;
+        this.duplicated_Info.newHeurDebut = this.NewAvisModif.length != 0 ? this.NewAvisModif[0].new_hr_debut : null;
+        this.duplicated_Info.newHeurFin = this.NewAvisModif.length != 0 ? this.NewAvisModif[0].new_hr_fin : null;
+        this.duplicated_Info.new_pause = this.NewAvisModif.length != 0 ? this.NewAvisModif[0].new_pause : false;
+        this.duplicated_Info.newDateDeRealisation = this.NewAvisModif.length != 0 ? this.NewAvisModif[0].new_date_realisation : false;
+        this.duplicated_Info.newHasSameDates = this.NewAvisModif.length != 0 ? this.NewAvisModif[0].new_has_same_dates : true;
+        this.duplicated_Info.initialOrganisme = this.Info_AvisModif[0].organisme;
+        this.duplicated_Info.initialLieu = this.Info_AvisModif[0].lieu;
+        this.duplicated_Info.heurDebutInitial = this.Info_AvisModif[0].hr_debut;
+        this.duplicated_Info.heurFinInitial = this.Info_AvisModif[0].hr_fin;
         this.duplicated_Info.dateDeRealisation = this.Info_AvisModif[0].date_realisation;
         this.duplicated_Info.organismeDeFormation = this.Info_AvisModif[0].organisme_formations;
         this.duplicated_Info.lieuDeFormation = this.Info_AvisModif[0].lieu_formations;
@@ -6673,8 +6621,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                console.log("nrc_entrp", _this2.nrc_entrp);
-                _context2.next = 3;
+                _context2.next = 2;
                 return axios.get("/fill-reference-plan?nrcEntrp=".concat(_this2.nrc_entrp)).then(function (res) {
                   _this2.reference_plan = res.data;
                   _this2.curr_client = res.data[0].raisoci;
@@ -6683,7 +6630,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   return console.log("err FillReferencesPlan", err);
                 });
 
-              case 3:
+              case 2:
               case "end":
                 return _context2.stop();
             }
@@ -6741,7 +6688,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 _context4.next = 2;
                 return axios.get("/fill-dates-plan?nForm=".concat(nform)).then(function (res) {
-                  _this4.dates_actions = res.data;
+                  _this4.dates_actions = res.data[0];
                 }).then(function () {
                   _this4.AssignDates(nform);
                 })["catch"](function (err) {
@@ -45841,9 +45788,7 @@ var render = function() {
                 },
                 [
                   _c("option", { attrs: { selected: "", disabled: "" } }, [
-                    _vm._v(
-                      "\n              ---selectionner Groupe---\n            "
-                    )
+                    _vm._v("---selectionner Groupe---")
                   ]),
                   _vm._v(" "),
                   _vm._l(_vm.Info_AvisModif, function(infogp) {
@@ -46038,7 +45983,11 @@ var render = function() {
                                 _c(
                                   "option",
                                   { attrs: { selected: "", disabled: "" } },
-                                  [_vm._v("---selectionner le lieu---")]
+                                  [
+                                    _vm._v(
+                                      "\n                    ---selectionner le lieu---\n                  "
+                                    )
+                                  ]
                                 ),
                                 _vm._v(" "),
                                 _vm._l(_vm.clients, function(cl) {
@@ -46102,16 +46051,16 @@ var render = function() {
                                 ],
                                 attrs: {
                                   type: "radio",
-                                  value: "true",
                                   id: "sameDate_oui",
                                   name: "sameDate"
                                 },
                                 domProps: {
-                                  checked: _vm._q(_vm.selected_sameDate, "true")
+                                  value: true,
+                                  checked: _vm._q(_vm.selected_sameDate, true)
                                 },
                                 on: {
                                   change: function($event) {
-                                    _vm.selected_sameDate = "true"
+                                    _vm.selected_sameDate = true
                                   }
                                 }
                               }),
@@ -46129,19 +46078,16 @@ var render = function() {
                                 ],
                                 attrs: {
                                   type: "radio",
-                                  value: "false",
                                   id: "sameDate_non",
                                   name: "sameDate"
                                 },
                                 domProps: {
-                                  checked: _vm._q(
-                                    _vm.selected_sameDate,
-                                    "false"
-                                  )
+                                  value: false,
+                                  checked: _vm._q(_vm.selected_sameDate, false)
                                 },
                                 on: {
                                   change: function($event) {
-                                    _vm.selected_sameDate = "false"
+                                    _vm.selected_sameDate = false
                                   }
                                 }
                               })
@@ -46149,27 +46095,6 @@ var render = function() {
                           ]
                         )
                       ]),
-                      _vm._v(" "),
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.old_SameDate,
-                            expression: "old_SameDate"
-                          }
-                        ],
-                        attrs: { type: "hidden", id: "same_date" },
-                        domProps: { value: _vm.old_SameDate },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.old_SameDate = $event.target.value
-                          }
-                        }
-                      }),
                       _vm._v(" "),
                       _c("div", { staticClass: "row mt-3" }, [
                         _vm._m(3, true),
@@ -46184,7 +46109,11 @@ var render = function() {
                               [
                                 _c("input", {
                                   staticClass: "form-control",
-                                  attrs: { type: "date", id: "date1" },
+                                  attrs: {
+                                    type: "date",
+                                    id: "date1",
+                                    readonly: ""
+                                  },
                                   domProps: { value: info.date1 }
                                 })
                               ]
@@ -46201,7 +46130,11 @@ var render = function() {
                               [
                                 _c("input", {
                                   staticClass: "form-control",
-                                  attrs: { type: "date", id: "date2" },
+                                  attrs: {
+                                    type: "date",
+                                    id: "date2",
+                                    readonly: ""
+                                  },
                                   domProps: { value: info.date2 }
                                 })
                               ]
@@ -46218,7 +46151,11 @@ var render = function() {
                               [
                                 _c("input", {
                                   staticClass: "form-control",
-                                  attrs: { type: "date", id: "date3" },
+                                  attrs: {
+                                    type: "date",
+                                    id: "date3",
+                                    readonly: ""
+                                  },
                                   domProps: { value: info.date3 }
                                 })
                               ]
@@ -46235,7 +46172,11 @@ var render = function() {
                               [
                                 _c("input", {
                                   staticClass: "form-control",
-                                  attrs: { type: "date", id: "date4" },
+                                  attrs: {
+                                    type: "date",
+                                    id: "date4",
+                                    readonly: ""
+                                  },
                                   domProps: { value: info.date4 }
                                 })
                               ]
@@ -46252,7 +46193,11 @@ var render = function() {
                               [
                                 _c("input", {
                                   staticClass: "form-control",
-                                  attrs: { type: "date", id: "date5" },
+                                  attrs: {
+                                    type: "date",
+                                    id: "date5",
+                                    readonly: ""
+                                  },
                                   domProps: { value: info.date5 }
                                 })
                               ]
@@ -46269,7 +46214,11 @@ var render = function() {
                               [
                                 _c("input", {
                                   staticClass: "form-control",
-                                  attrs: { type: "date", id: "date6" },
+                                  attrs: {
+                                    type: "date",
+                                    id: "date6",
+                                    readonly: ""
+                                  },
                                   domProps: { value: info.date6 }
                                 })
                               ]
@@ -46286,7 +46235,11 @@ var render = function() {
                               [
                                 _c("input", {
                                   staticClass: "form-control",
-                                  attrs: { type: "date", id: "date7" },
+                                  attrs: {
+                                    type: "date",
+                                    id: "date7",
+                                    readonly: ""
+                                  },
                                   domProps: { value: info.date7 }
                                 })
                               ]
@@ -46303,7 +46256,11 @@ var render = function() {
                               [
                                 _c("input", {
                                   staticClass: "form-control",
-                                  attrs: { type: "date", id: "date8" },
+                                  attrs: {
+                                    type: "date",
+                                    id: "date8",
+                                    readonly: ""
+                                  },
                                   domProps: { value: info.date8 }
                                 })
                               ]
@@ -46320,7 +46277,11 @@ var render = function() {
                               [
                                 _c("input", {
                                   staticClass: "form-control",
-                                  attrs: { type: "date", id: "date9" },
+                                  attrs: {
+                                    type: "date",
+                                    id: "date9",
+                                    readonly: ""
+                                  },
                                   domProps: { value: info.date9 }
                                 })
                               ]
@@ -46337,7 +46298,11 @@ var render = function() {
                               [
                                 _c("input", {
                                   staticClass: "form-control",
-                                  attrs: { type: "date", id: "date10" },
+                                  attrs: {
+                                    type: "date",
+                                    id: "date10",
+                                    readonly: ""
+                                  },
                                   domProps: { value: info.date10 }
                                 })
                               ]
@@ -46346,145 +46311,25 @@ var render = function() {
                         _vm._v(" "),
                         _vm._m(4, true),
                         _vm._v(" "),
-                        _c(
-                          "div",
-                          {
-                            staticClass: "form-group col-lg-3 col-md-6 col-12"
-                          },
-                          [
-                            _c("input", {
-                              staticClass: "form-control",
-                              attrs: { type: "date", id: "newdate1" },
-                              domProps: { value: info.date1 }
-                            })
-                          ]
-                        ),
+                        _vm._m(5, true),
                         _vm._v(" "),
-                        _c(
-                          "div",
-                          {
-                            staticClass: "form-group col-lg-3 col-md-6 col-12"
-                          },
-                          [
-                            _c("input", {
-                              staticClass: "form-control",
-                              attrs: { type: "date", id: "newdate2" },
-                              domProps: { value: info.date2 }
-                            })
-                          ]
-                        ),
+                        _vm._m(6, true),
                         _vm._v(" "),
-                        _c(
-                          "div",
-                          {
-                            staticClass: "form-group col-lg-3 col-md-6 col-12"
-                          },
-                          [
-                            _c("input", {
-                              staticClass: "form-control",
-                              attrs: { type: "date", id: "newdate3" },
-                              domProps: { value: info.date3 }
-                            })
-                          ]
-                        ),
+                        _vm._m(7, true),
                         _vm._v(" "),
-                        _c(
-                          "div",
-                          {
-                            staticClass: "form-group col-lg-3 col-md-6 col-12"
-                          },
-                          [
-                            _c("input", {
-                              staticClass: "form-control",
-                              attrs: { type: "date", id: "newdate4" },
-                              domProps: { value: info.date4 }
-                            })
-                          ]
-                        ),
+                        _vm._m(8, true),
                         _vm._v(" "),
-                        _c(
-                          "div",
-                          {
-                            staticClass: "form-group col-lg-3 col-md-6 col-12"
-                          },
-                          [
-                            _c("input", {
-                              staticClass: "form-control",
-                              attrs: { type: "date", id: "newdate5" },
-                              domProps: { value: info.date5 }
-                            })
-                          ]
-                        ),
+                        _vm._m(9, true),
                         _vm._v(" "),
-                        _c(
-                          "div",
-                          {
-                            staticClass: "form-group col-lg-3 col-md-6 col-12"
-                          },
-                          [
-                            _c("input", {
-                              staticClass: "form-control",
-                              attrs: { type: "date", id: "newdate6" },
-                              domProps: { value: info.date6 }
-                            })
-                          ]
-                        ),
+                        _vm._m(10, true),
                         _vm._v(" "),
-                        _c(
-                          "div",
-                          {
-                            staticClass: "form-group col-lg-3 col-md-6 col-12"
-                          },
-                          [
-                            _c("input", {
-                              staticClass: "form-control",
-                              attrs: { type: "date", id: "newdate7" },
-                              domProps: { value: info.date7 }
-                            })
-                          ]
-                        ),
+                        _vm._m(11, true),
                         _vm._v(" "),
-                        _c(
-                          "div",
-                          {
-                            staticClass: "form-group col-lg-3 col-md-6 col-12"
-                          },
-                          [
-                            _c("input", {
-                              staticClass: "form-control",
-                              attrs: { type: "date", id: "newdate8" },
-                              domProps: { value: info.date8 }
-                            })
-                          ]
-                        ),
+                        _vm._m(12, true),
                         _vm._v(" "),
-                        _c(
-                          "div",
-                          {
-                            staticClass: "form-group col-lg-3 col-md-6 col-12"
-                          },
-                          [
-                            _c("input", {
-                              staticClass: "form-control",
-                              attrs: { type: "date", id: "newdate9" },
-                              domProps: { value: info.date9 }
-                            })
-                          ]
-                        ),
+                        _vm._m(13, true),
                         _vm._v(" "),
-                        _c(
-                          "div",
-                          {
-                            staticClass: "form-group col-lg-3 col-md-6 col-12"
-                          },
-                          [
-                            _c("input", {
-                              staticClass: "form-control",
-                              attrs: { type: "date", id: "newdate10" },
-                              domProps: { value: info.date10 }
-                            })
-                          ]
-                        )
+                        _vm._m(14, true)
                       ])
                     ]
                   ),
@@ -46508,7 +46353,7 @@ var render = function() {
                     },
                     [
                       _c("div", { staticClass: "row mt-3" }, [
-                        _vm._m(5, true),
+                        _vm._m(15, true),
                         _vm._v(" "),
                         _c(
                           "div",
@@ -46528,7 +46373,8 @@ var render = function() {
                                   attrs: {
                                     type: "time",
                                     id: "initial_hr_debut",
-                                    name: "hr_debut"
+                                    name: "hr_debut",
+                                    readonly: ""
                                   },
                                   domProps: { value: info.hr_debut }
                                 }),
@@ -46539,9 +46385,7 @@ var render = function() {
                                     "data-target": "#timepicker",
                                     "data-toggle": "datetimepicker"
                                   }
-                                }),
-                                _vm._v(" "),
-                                _vm._m(6, true)
+                                })
                               ]
                             )
                           ]
@@ -46565,7 +46409,8 @@ var render = function() {
                                   attrs: {
                                     type: "time",
                                     id: "initial_hr_fin",
-                                    name: "hr_fin"
+                                    name: "hr_fin",
+                                    readonly: ""
                                   },
                                   domProps: { value: info.hr_fin }
                                 }),
@@ -46576,9 +46421,7 @@ var render = function() {
                                     "data-target": "#timepicker",
                                     "data-toggle": "datetimepicker"
                                   }
-                                }),
-                                _vm._v(" "),
-                                _vm._m(7, true)
+                                })
                               ]
                             )
                           ]
@@ -46604,7 +46447,7 @@ var render = function() {
                           : ""
                       ]
                     },
-                    [_vm._m(8, true)]
+                    [_vm._m(16, true)]
                   ),
                   _vm._v(" "),
                   _c("div", { staticClass: "row" }, [
@@ -46647,16 +46490,16 @@ var render = function() {
                               ],
                               attrs: {
                                 type: "radio",
-                                value: "true",
                                 id: "pause_oui",
                                 name: "pause"
                               },
                               domProps: {
-                                checked: _vm._q(_vm.selected_pause, "true")
+                                value: true,
+                                checked: _vm._q(_vm.selected_pause, true)
                               },
                               on: {
                                 change: function($event) {
-                                  _vm.selected_pause = "true"
+                                  _vm.selected_pause = true
                                 }
                               }
                             }),
@@ -46672,37 +46515,16 @@ var render = function() {
                               ],
                               attrs: {
                                 type: "radio",
-                                value: "false",
                                 id: "pause_non",
                                 name: "pause"
                               },
                               domProps: {
-                                checked: _vm._q(_vm.selected_pause, "false")
+                                value: false,
+                                checked: _vm._q(_vm.selected_pause, false)
                               },
                               on: {
                                 change: function($event) {
-                                  _vm.selected_pause = "false"
-                                }
-                              }
-                            }),
-                            _vm._v(" "),
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.old_pause,
-                                  expression: "old_pause"
-                                }
-                              ],
-                              attrs: { type: "hidden", id: "old_pause" },
-                              domProps: { value: _vm.old_pause },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.old_pause = $event.target.value
+                                  _vm.selected_pause = false
                                 }
                               }
                             })
@@ -46734,7 +46556,7 @@ var render = function() {
           [_c("i", { staticClass: "fa fa-edit" }), _vm._v(" Modifier")]
         ),
         _vm._v(" "),
-        _vm._m(9)
+        _vm._m(17)
       ])
     ])
   ])
@@ -46838,24 +46660,118 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group col-lg-3 col-md-6 col-12" }, [
+      _c("input", {
+        staticClass: "form-control",
+        attrs: { type: "date", id: "newdate1" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group col-lg-3 col-md-6 col-12" }, [
+      _c("input", {
+        staticClass: "form-control",
+        attrs: { type: "date", id: "newdate2" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group col-lg-3 col-md-6 col-12" }, [
+      _c("input", {
+        staticClass: "form-control",
+        attrs: { type: "date", id: "newdate3" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group col-lg-3 col-md-6 col-12" }, [
+      _c("input", {
+        staticClass: "form-control",
+        attrs: { type: "date", id: "newdate4" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group col-lg-3 col-md-6 col-12" }, [
+      _c("input", {
+        staticClass: "form-control",
+        attrs: { type: "date", id: "newdate5" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group col-lg-3 col-md-6 col-12" }, [
+      _c("input", {
+        staticClass: "form-control",
+        attrs: { type: "date", id: "newdate6" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group col-lg-3 col-md-6 col-12" }, [
+      _c("input", {
+        staticClass: "form-control",
+        attrs: { type: "date", id: "newdate7" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group col-lg-3 col-md-6 col-12" }, [
+      _c("input", {
+        staticClass: "form-control",
+        attrs: { type: "date", id: "newdate8" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group col-lg-3 col-md-6 col-12" }, [
+      _c("input", {
+        staticClass: "form-control",
+        attrs: { type: "date", id: "newdate9" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group col-lg-3 col-md-6 col-12" }, [
+      _c("input", {
+        staticClass: "form-control",
+        attrs: { type: "date", id: "newdate10" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
     return _c("div", { staticClass: "form-group col-lg-12 col-sm-12 mb-0" }, [
       _c("label", [_vm._v("Organisation horaire initiale ")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "input-group-text" }, [
-      _c("i", { staticClass: "far fa-clock" })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "input-group-text" }, [
-      _c("i", { staticClass: "far fa-clock" })
     ])
   },
   function() {
@@ -46885,11 +46801,7 @@ var staticRenderFns = [
                 "data-target": "#timepicker",
                 "data-toggle": "datetimepicker"
               }
-            }),
-            _vm._v(" "),
-            _c("div", { staticClass: "input-group-text" }, [
-              _c("i", { staticClass: "far fa-clock" })
-            ])
+            })
           ]
         )
       ]),
@@ -46912,11 +46824,7 @@ var staticRenderFns = [
                 "data-target": "#timepicker",
                 "data-toggle": "datetimepicker"
               }
-            }),
-            _vm._v(" "),
-            _c("div", { staticClass: "input-group-text" }, [
-              _c("i", { staticClass: "far fa-clock" })
-            ])
+            })
           ]
         )
       ])
@@ -50469,7 +50377,7 @@ var render = function() {
                           "model3/FetchInitialInfoAvisModif",
                           _vm.nForm
                         )
-                        _vm.handleAction("model3/FetchOldAvisInfo", _vm.nForm)
+                        _vm.handleAction("model3/FetchNewAvisInfo", _vm.nForm)
                       }
                     ]
                   }
@@ -50670,16 +50578,16 @@ var render = function() {
             [
               _c("strong", [_vm._v("Nouvel Organisme de formation : ")]),
               _vm._v(" "),
-              _c("input", {
-                attrs: { type: "text", disabled: "" },
-                domProps: {
-                  value:
-                    _vm.duplicated_Info.newOrganisme ==
-                    _vm.duplicated_Info.initialOrganisme
-                      ? "--"
-                      : _vm.duplicated_Info.newOrganisme
-                }
-              })
+              !_vm.duplicated_Info.newOrganisme
+                ? _c("div", [_vm._v("--")])
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.duplicated_Info.newOrganisme
+                ? _c("input", {
+                    attrs: { type: "text", disabled: "" },
+                    domProps: { value: _vm.duplicated_Info.newOrganisme }
+                  })
+                : _vm._e()
             ]
           ),
           _vm._v(" "),
@@ -50703,431 +50611,23 @@ var render = function() {
             [
               _c("strong", [_vm._v("Nouveau lieu : ")]),
               _vm._v(" "),
-              _c("input", {
-                staticStyle: { width: "550px" },
-                attrs: { type: "text", disabled: "" },
-                domProps: {
-                  value:
-                    _vm.duplicated_Info.newLieu ==
-                    _vm.duplicated_Info.initialLieu
-                      ? "--"
-                      : _vm.duplicated_Info.newLieu
-                }
-              })
+              !_vm.duplicated_Info.newLieu
+                ? _c("div", [_vm._v("--")])
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.duplicated_Info.newLieu
+                ? _c("input", {
+                    staticStyle: { width: "550px" },
+                    attrs: { type: "text", disabled: "" },
+                    domProps: { value: _vm.duplicated_Info.newLieu }
+                  })
+                : _vm._e()
             ]
           ),
           _vm._v(" "),
-          _vm.duplicated_Info.hasSameDates
-            ? _c("div", { staticStyle: { "margin-top": "10px" } }, [
-                _c("strong", [_vm._v("Dates initiales de réalisation : ")]),
-                _vm._v(" "),
-                _c("div", [
-                  _c(
-                    "p",
-                    {
-                      staticStyle: {
-                        display: "flex !important",
-                        "flex-wrap": "nowrap !important",
-                        "line-height": "1px"
-                      }
-                    },
-                    [
-                      _vm.duplicated_Info.dates.date1
-                        ? _c("span", [
-                            _vm._v(
-                              _vm._s(
-                                _vm._f("moment")(
-                                  _vm.duplicated_Info.dates.date1,
-                                  "DD/MM/YYYY"
-                                )
-                              ) + ";"
-                            )
-                          ])
-                        : _vm._e(),
-                      _vm._v(" "),
-                      _vm.duplicated_Info.dates.date2
-                        ? _c("span", [
-                            _vm._v(
-                              _vm._s(
-                                _vm._f("moment")(
-                                  _vm.duplicated_Info.dates.date2,
-                                  "DD/MM/YYYY"
-                                )
-                              ) + ";"
-                            )
-                          ])
-                        : _vm._e(),
-                      _vm._v(" "),
-                      _vm.duplicated_Info.dates.date3
-                        ? _c("span", [
-                            _vm._v(
-                              _vm._s(
-                                _vm._f("moment")(
-                                  _vm.duplicated_Info.dates.date3,
-                                  "DD/MM/YYYY"
-                                )
-                              ) + ";"
-                            )
-                          ])
-                        : _vm._e(),
-                      _vm._v(" "),
-                      _vm.duplicated_Info.dates.date4
-                        ? _c("span", [
-                            _vm._v(
-                              _vm._s(
-                                _vm._f("moment")(
-                                  _vm.duplicated_Info.dates.date4,
-                                  "DD/MM/YYYY"
-                                )
-                              ) + ";"
-                            )
-                          ])
-                        : _vm._e(),
-                      _vm._v(" "),
-                      _vm.duplicated_Info.dates.date5
-                        ? _c("span", [
-                            _vm._v(
-                              _vm._s(
-                                _vm._f("moment")(
-                                  _vm.duplicated_Info.dates.date5,
-                                  "DD/MM/YYYY"
-                                )
-                              ) + ";"
-                            )
-                          ])
-                        : _vm._e(),
-                      _vm._v(" "),
-                      _vm.duplicated_Info.dates.date6
-                        ? _c("span", [
-                            _vm._v(
-                              _vm._s(
-                                _vm._f("moment")(
-                                  _vm.duplicated_Info.dates.date6,
-                                  "DD/MM/YYYY"
-                                )
-                              ) + ";"
-                            )
-                          ])
-                        : _vm._e(),
-                      _vm._v(" "),
-                      _vm.duplicated_Info.dates.date7
-                        ? _c("span", [
-                            _vm._v(
-                              _vm._s(
-                                _vm._f("moment")(
-                                  _vm.duplicated_Info.dates.date7,
-                                  "DD/MM/YYYY"
-                                )
-                              ) + ";"
-                            )
-                          ])
-                        : _vm._e(),
-                      _vm._v(" "),
-                      _vm.duplicated_Info.dates.date8
-                        ? _c("span", [
-                            _vm._v(
-                              _vm._s(
-                                _vm._f("moment")(
-                                  _vm.duplicated_Info.dates.date8,
-                                  "DD/MM/YYYY"
-                                )
-                              ) + ";"
-                            )
-                          ])
-                        : _vm._e(),
-                      _vm._v(" "),
-                      _vm.duplicated_Info.dates.date9
-                        ? _c("span", [
-                            _vm._v(
-                              _vm._s(
-                                _vm._f("moment")(
-                                  _vm.duplicated_Info.dates.date9,
-                                  "DD/MM/YYYY"
-                                )
-                              ) + ";"
-                            )
-                          ])
-                        : _vm._e(),
-                      _vm._v(" "),
-                      _vm.duplicated_Info.dates.date10
-                        ? _c("span", [
-                            _vm._v(
-                              _vm._s(
-                                _vm._f("moment")(
-                                  _vm.duplicated_Info.dates.date10,
-                                  "DD/MM/YYYY"
-                                )
-                              ) + ";"
-                            )
-                          ])
-                        : _vm._e()
-                    ]
-                  )
-                ])
-              ])
-            : _vm._e(),
-          _vm._v(" "),
           !_vm.duplicated_Info.hasSameDates
             ? _c("div", { staticStyle: { "margin-top": "10px" } }, [
-                _c("strong", [_vm._v("Dates initiales de réalisation : ")]),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  _vm._l(_vm.initDates, function(initd, index) {
-                    return _c("div", { key: index }, [
-                      _c(
-                        "p",
-                        {
-                          staticStyle: {
-                            display: "flex !important",
-                            "flex-wrap": "nowrap !important",
-                            "line-height": "1px"
-                          }
-                        },
-                        [
-                          initd.old_date1
-                            ? _c("span", [
-                                _vm._v(
-                                  _vm._s(
-                                    _vm._f("moment")(
-                                      initd.old_date1,
-                                      "DD/MM/YYYY"
-                                    )
-                                  ) + ";"
-                                )
-                              ])
-                            : _vm._e(),
-                          _vm._v(" "),
-                          initd.old_date2
-                            ? _c("span", [
-                                _vm._v(
-                                  _vm._s(
-                                    _vm._f("moment")(
-                                      initd.old_date2,
-                                      "DD/MM/YYYY"
-                                    )
-                                  ) + ";"
-                                )
-                              ])
-                            : _vm._e(),
-                          _vm._v(" "),
-                          initd.old_date3
-                            ? _c("span", [
-                                _vm._v(
-                                  _vm._s(
-                                    _vm._f("moment")(
-                                      initd.old_date3,
-                                      "DD/MM/YYYY"
-                                    )
-                                  ) + ";"
-                                )
-                              ])
-                            : _vm._e(),
-                          _vm._v(" "),
-                          initd.old_date4
-                            ? _c("span", [
-                                _vm._v(
-                                  _vm._s(
-                                    _vm._f("moment")(
-                                      initd.old_date4,
-                                      "DD/MM/YYYY"
-                                    )
-                                  ) + ";"
-                                )
-                              ])
-                            : _vm._e(),
-                          _vm._v(" "),
-                          initd.old_date5
-                            ? _c("span", [
-                                _vm._v(
-                                  _vm._s(
-                                    _vm._f("moment")(
-                                      initd.old_date5,
-                                      "DD/MM/YYYY"
-                                    )
-                                  ) + ";"
-                                )
-                              ])
-                            : _vm._e(),
-                          _vm._v(" "),
-                          initd.old_date6
-                            ? _c("span", [
-                                _vm._v(
-                                  _vm._s(
-                                    _vm._f("moment")(
-                                      initd.old_date6,
-                                      "DD/MM/YYYY"
-                                    )
-                                  ) + ";"
-                                )
-                              ])
-                            : _vm._e(),
-                          _vm._v(" "),
-                          initd.old_date7
-                            ? _c("span", [
-                                _vm._v(
-                                  _vm._s(
-                                    _vm._f("moment")(
-                                      initd.old_date7,
-                                      "DD/MM/YYYY"
-                                    )
-                                  ) + ";"
-                                )
-                              ])
-                            : _vm._e(),
-                          _vm._v(" "),
-                          initd.old_date8
-                            ? _c("span", [
-                                _vm._v(
-                                  _vm._s(
-                                    _vm._f("moment")(
-                                      initd.old_date8,
-                                      "DD/MM/YYYY"
-                                    )
-                                  ) + ";"
-                                )
-                              ])
-                            : _vm._e(),
-                          _vm._v(" "),
-                          initd.old_date9
-                            ? _c("span", [
-                                _vm._v(
-                                  _vm._s(
-                                    _vm._f("moment")(
-                                      initd.old_date9,
-                                      "DD/MM/YYYY"
-                                    )
-                                  ) + ";"
-                                )
-                              ])
-                            : _vm._e(),
-                          _vm._v(" "),
-                          initd.old_date10
-                            ? _c("span", [
-                                _vm._v(
-                                  _vm._s(
-                                    _vm._f("moment")(
-                                      initd.old_date10,
-                                      "DD/MM/YYYY"
-                                    )
-                                  ) + ";"
-                                )
-                              ])
-                            : _vm._e(),
-                          _vm._v(" "),
-                          initd.date1
-                            ? _c("span", [
-                                _vm._v(
-                                  _vm._s(
-                                    _vm._f("moment")(initd.date1, "DD/MM/YYYY")
-                                  ) + ";"
-                                )
-                              ])
-                            : _vm._e(),
-                          _vm._v(" "),
-                          initd.date2
-                            ? _c("span", [
-                                _vm._v(
-                                  _vm._s(
-                                    _vm._f("moment")(initd.date2, "DD/MM/YYYY")
-                                  ) + ";"
-                                )
-                              ])
-                            : _vm._e(),
-                          _vm._v(" "),
-                          initd.date3
-                            ? _c("span", [
-                                _vm._v(
-                                  _vm._s(
-                                    _vm._f("moment")(initd.date3, "DD/MM/YYYY")
-                                  ) + ";"
-                                )
-                              ])
-                            : _vm._e(),
-                          _vm._v(" "),
-                          initd.date4
-                            ? _c("span", [
-                                _vm._v(
-                                  _vm._s(
-                                    _vm._f("moment")(initd.date4, "DD/MM/YYYY")
-                                  ) + ";"
-                                )
-                              ])
-                            : _vm._e(),
-                          _vm._v(" "),
-                          initd.date5
-                            ? _c("span", [
-                                _vm._v(
-                                  _vm._s(
-                                    _vm._f("moment")(initd.date5, "DD/MM/YYYY")
-                                  ) + ";"
-                                )
-                              ])
-                            : _vm._e(),
-                          _vm._v(" "),
-                          initd.date6
-                            ? _c("span", [
-                                _vm._v(
-                                  _vm._s(
-                                    _vm._f("moment")(initd.date6, "DD/MM/YYYY")
-                                  ) + ";"
-                                )
-                              ])
-                            : _vm._e(),
-                          _vm._v(" "),
-                          initd.date7
-                            ? _c("span", [
-                                _vm._v(
-                                  _vm._s(
-                                    _vm._f("moment")(initd.date7, "DD/MM/YYYY")
-                                  ) + ";"
-                                )
-                              ])
-                            : _vm._e(),
-                          _vm._v(" "),
-                          initd.date8
-                            ? _c("span", [
-                                _vm._v(
-                                  _vm._s(
-                                    _vm._f("moment")(initd.date8, "DD/MM/YYYY")
-                                  ) + ";"
-                                )
-                              ])
-                            : _vm._e(),
-                          _vm._v(" "),
-                          initd.date9
-                            ? _c("span", [
-                                _vm._v(
-                                  _vm._s(
-                                    _vm._f("moment")(initd.date9, "DD/MM/YYYY")
-                                  ) + ";"
-                                )
-                              ])
-                            : _vm._e(),
-                          _vm._v(" "),
-                          initd.date10
-                            ? _c("span", [
-                                _vm._v(
-                                  _vm._s(
-                                    _vm._f("moment")(initd.date10, "DD/MM/YYYY")
-                                  ) + ";"
-                                )
-                              ])
-                            : _vm._e()
-                        ]
-                      )
-                    ])
-                  }),
-                  0
-                )
-              ])
-            : _vm._e(),
-          _vm._v(" "),
-          !_vm.duplicated_Info.hasSameDates
-            ? _c("div", { staticStyle: { "margin-top": "10px" } }, [
-                _c("strong", [
-                  _vm._v("Nouvelles Dates exactes de réalisation : ")
-                ]),
+                _c("strong", [_vm._v("Dates initiales de réalisation :")]),
                 _vm._v(" "),
                 !_vm.duplicated_Info.dateDeRealisation
                   ? _c("div", [_vm._v("--")])
@@ -51289,9 +50789,7 @@ var render = function() {
           _vm._v(" "),
           _vm.duplicated_Info.hasSameDates
             ? _c("div", { staticStyle: { "margin-top": "10px" } }, [
-                _c("strong", [
-                  _vm._v("Nouvelles Dates exactes de réalisation : ")
-                ]),
+                _c("strong", [_vm._v("Dates initiales de réalisation :")]),
                 _vm._v(" "),
                 !_vm.duplicated_Info.dateDeRealisation
                   ? _c("div", [_vm._v("--")])
@@ -51446,6 +50944,158 @@ var render = function() {
             : _vm._e(),
           _vm._v(" "),
           _c("div", { staticStyle: { "margin-top": "10px" } }, [
+            _c("strong", [_vm._v("Nouvelles Dates exactes de réalisation : ")]),
+            _vm._v(" "),
+            !_vm.duplicated_Info.newDateDeRealisation
+              ? _c("div", [_vm._v("--")])
+              : _vm._e(),
+            _vm._v(" "),
+            _c("div", [
+              _c(
+                "p",
+                {
+                  staticStyle: {
+                    display: "flex !important",
+                    "flex-wrap": "nowrap !important",
+                    "line-height": "1px"
+                  }
+                },
+                [
+                  _vm.newDates.new_date1
+                    ? _c("span", [
+                        _vm._v(
+                          _vm._s(
+                            _vm._f("moment")(
+                              _vm.newDates.new_date1,
+                              "DD/MM/YYYY"
+                            )
+                          ) + ";"
+                        )
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.newDates.new_date2
+                    ? _c("span", [
+                        _vm._v(
+                          _vm._s(
+                            _vm._f("moment")(
+                              _vm.newDates.new_date2,
+                              "DD/MM/YYYY"
+                            )
+                          ) + ";"
+                        )
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.newDates.new_date3
+                    ? _c("span", [
+                        _vm._v(
+                          _vm._s(
+                            _vm._f("moment")(
+                              _vm.newDates.new_date3,
+                              "DD/MM/YYYY"
+                            )
+                          ) + ";"
+                        )
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.newDates.new_date4
+                    ? _c("span", [
+                        _vm._v(
+                          _vm._s(
+                            _vm._f("moment")(
+                              _vm.newDates.new_date4,
+                              "DD/MM/YYYY"
+                            )
+                          ) + ";"
+                        )
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.newDates.new_date5
+                    ? _c("span", [
+                        _vm._v(
+                          _vm._s(
+                            _vm._f("moment")(
+                              _vm.newDates.new_date5,
+                              "DD/MM/YYYY"
+                            )
+                          ) + ";"
+                        )
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.newDates.new_date6
+                    ? _c("span", [
+                        _vm._v(
+                          _vm._s(
+                            _vm._f("moment")(
+                              _vm.newDates.new_date6,
+                              "DD/MM/YYYY"
+                            )
+                          ) + ";"
+                        )
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.newDates.new_date7
+                    ? _c("span", [
+                        _vm._v(
+                          _vm._s(
+                            _vm._f("moment")(
+                              _vm.newDates.new_date7,
+                              "DD/MM/YYYY"
+                            )
+                          ) + ";"
+                        )
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.newDates.new_date8
+                    ? _c("span", [
+                        _vm._v(
+                          _vm._s(
+                            _vm._f("moment")(
+                              _vm.newDates.new_date8,
+                              "DD/MM/YYYY"
+                            )
+                          ) + ";"
+                        )
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.newDates.new_date9
+                    ? _c("span", [
+                        _vm._v(
+                          _vm._s(
+                            _vm._f("moment")(
+                              _vm.newDates.new_date9,
+                              "DD/MM/YYYY"
+                            )
+                          ) + ";"
+                        )
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.newDates.new_date10
+                    ? _c("span", [
+                        _vm._v(
+                          _vm._s(
+                            _vm._f("moment")(
+                              _vm.newDates.new_date10,
+                              "DD/MM/YYYY"
+                            )
+                          ) + ";"
+                        )
+                      ])
+                    : _vm._e()
+                ]
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticStyle: { "margin-top": "10px" } }, [
             _c("strong", [_vm._v("Organisation horaire initiale :")]),
             _vm._v(" "),
             _c("div", { staticClass: "d-flex" }, [
@@ -51469,12 +51119,8 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "d-flix" }, [
-              this.duplicated_Info.old_pause
-                ? _c("p", [
-                    _vm._v(
-                      "\n            Avec pause déjeuner de : 1 heure\n          "
-                    )
-                  ])
+              _vm.duplicated_Info.pause
+                ? _c("p", [_vm._v("Avec pause déjeuner de : 1 heure")])
                 : _vm._e()
             ])
           ]),
@@ -51482,28 +51128,38 @@ var render = function() {
           _c("div", { staticStyle: { "margin-top": "10px" } }, [
             _c("strong", [_vm._v("Nouvelle organisation horaire :")]),
             _vm._v(" "),
-            _c("div", { staticClass: "d-flex" }, [
-              _c("div", [
-                _c("span", [_vm._v("heure début : ")]),
-                _vm._v(" "),
-                _c("input", {
-                  attrs: { type: "text", disabled: "" },
-                  domProps: { value: _vm.duplicated_Info.heurDebutNew }
-                })
-              ]),
-              _vm._v(" "),
-              _c("div", [
-                _c("span", [_vm._v("heure fin : ")]),
-                _vm._v(" "),
-                _c("input", {
-                  attrs: { type: "text", disabled: "" },
-                  domProps: { value: _vm.duplicated_Info.heurFinNew }
-                })
-              ])
-            ]),
+            !_vm.duplicated_Info.newHeurDebut || !_vm.duplicated_Info.newHeurFin
+              ? _c("div", [_vm._v("\n          --\n        ")])
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.duplicated_Info.newHeurDebut || _vm.duplicated_Info.newHeurFin
+              ? _c("div", { staticClass: "d-flex" }, [
+                  _c("div", [
+                    _c("span", [_vm._v("heure début : ")]),
+                    _vm._v(" "),
+                    _c("input", {
+                      attrs: { type: "text", disabled: "" },
+                      domProps: { value: _vm.duplicated_Info.newHeurDebut }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", [
+                    _c("span", [_vm._v("heure fin : ")]),
+                    _vm._v(" "),
+                    _c("input", {
+                      attrs: { type: "text", disabled: "" },
+                      domProps: { value: _vm.duplicated_Info.newHeurFin }
+                    })
+                  ])
+                ])
+              : _vm._e(),
             _vm._v(" "),
             _c("div", { staticClass: "d-flix" }, [
-              this.duplicated_Info.pause
+              !_vm.duplicated_Info.new_pause
+                ? _c("div", [_vm._v("--")])
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.duplicated_Info.new_pause
                 ? _c("p", [
                     _vm._v(
                       "\n            Avec pause déjeuner de : 1 heure\n          "
@@ -51517,11 +51173,13 @@ var render = function() {
             _c(
               "strong",
               [
-                _vm._v("Nom du responsable :\n          "),
+                _vm._v("\n          Nom du responsable :\n          "),
+                !_vm.nom_responsable ? _c("div", [_vm._v("--")]) : _vm._e(),
+                _vm._v(" "),
                 _vm._l(_vm.nom_responsable, function(resp, index) {
                   return _c("span", { key: index }, [
                     _vm._v(
-                      _vm._s(_vm.nom_responsable == null ? "--" : resp.nom_resp)
+                      "\n            " + _vm._s(resp.nom_resp) + "\n          "
                     )
                   ])
                 })
@@ -51597,7 +51255,9 @@ var staticRenderFns = [
       { staticClass: "d-flex", staticStyle: { "margin-top": "50px" } },
       [
         _c("strong", { staticStyle: { "margin-left": "auto" } }, [
-          _vm._v("Cachet de l’entreprise, Signature et qualité du responsable")
+          _vm._v(
+            "\n          Cachet de l’entreprise, Signature et qualité du responsable\n        "
+          )
         ])
       ]
     )
@@ -72765,8 +72425,7 @@ var actions = {
               _context.next = 3;
               return axios.get("/fill-clients").then(function (_ref2) {
                 var data = _ref2.data;
-                commit("SET_CLIENTS", data);
-                console.log("clients : ", data);
+                commit("SET_CLIENTS", data); // console.log("clients : ", data);
               })["catch"](function (err) {
                 return console.error("err FillClients", err);
               });
@@ -72813,8 +72472,7 @@ var actions = {
                 }
               }).then(function (_ref5) {
                 var data = _ref5.data;
-                commit("SET_REFERENCE_PLANS", data);
-                console.log("reference_plans : ", data);
+                commit("SET_REFERENCE_PLANS", data); // console.log("reference_plans : ", data);
               })["catch"](function (err) {
                 return console.log("err FillReferencesPlan", err);
               });
@@ -72839,8 +72497,7 @@ var actions = {
               _context4.next = 3;
               return axios.get("/fill-all-organisme").then(function (_ref7) {
                 var data = _ref7.data;
-                commit("SET_ORGANISME", data);
-                console.log("Cabinets :", data);
+                commit("SET_ORGANISME", data); // console.log("Cabinets :", data);
               });
 
             case 3:
@@ -72867,8 +72524,7 @@ var actions = {
                 }
               }).then(function (_ref9) {
                 var data = _ref9.data;
-                commit("SET_ACTION_BY_PLAN", data);
-                console.log("actions_by_plan : ", data);
+                commit("SET_ACTION_BY_PLAN", data); // console.log("actions_by_plan : ", data);
               }).then(function () {// fill dates action
                 //commit('SET_DATES_ACTION');
               })["catch"](function (err) {
@@ -72899,8 +72555,7 @@ var actions = {
                 }
               }).then(function (_ref11) {
                 var data = _ref11.data;
-                commit("SET_NOM_THEME", data);
-                console.log("theme", data);
+                commit("SET_NOM_THEME", data); // console.log("theme" , data);
               })["catch"](function (err) {
                 return console.error("can't get theme", err);
               });
@@ -72929,8 +72584,7 @@ var actions = {
                 }
               }).then(function (_ref13) {
                 var data = _ref13.data;
-                commit("SET_NOM_RESPONSABLE", data);
-                console.log("Responsable", data);
+                commit("SET_NOM_RESPONSABLE", data); // console.log("Responsable", data);
               })["catch"](function (err) {
                 return console.error("can't get responsable", err);
               });
@@ -72959,8 +72613,7 @@ var actions = {
                 }
               }).then(function (_ref15) {
                 var data = _ref15.data;
-                commit("SET_INITIAL_INFO_AVISMODIF", data);
-                console.log("initial info :", data);
+                commit("SET_INITIAL_INFO_AVISMODIF", data); // console.log("initial info :", data);
               })["catch"](function (err) {
                 console.log("err Fetching Info Initial Avis Modif", err);
               });
@@ -72988,8 +72641,7 @@ var actions = {
                 }
               }).then(function (_ref17) {
                 var data = _ref17.data;
-                commit("SET_INFO_GROUPE", data);
-                console.log("groupe info :", data);
+                commit("SET_INFO_GROUPE", data); // console.log("groupe info :" , data);
               })["catch"](function (err) {
                 console.log("err Fetching group info", err);
               });
@@ -73002,7 +72654,7 @@ var actions = {
       }, _callee9);
     }))();
   },
-  FetchOldAvisInfo: function FetchOldAvisInfo(_ref18, nForm) {
+  FetchNewAvisInfo: function FetchNewAvisInfo(_ref18, nForm) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee10() {
       var commit;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee10$(_context10) {
@@ -73011,14 +72663,14 @@ var actions = {
             case 0:
               commit = _ref18.commit;
               _context10.next = 3;
-              return axios.get("/old-avis-modif-by-theme", {
+              return axios.get("/new-avis-modif-by-theme", {
                 params: {
                   nForm: nForm
                 }
               }).then(function (_ref19) {
                 var data = _ref19.data;
-                commit("SET_OLD_AVIS_MODFI_INFO", data);
-                console.log("old avis modif", data);
+                commit("SET_NEW_AVIS_MODFI_INFO", data);
+                console.log("New avis modif", data);
               })["catch"](function (err) {
                 console.log("err feetching old avis modif", err);
               });
@@ -73046,26 +72698,49 @@ var actions = {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getters", function() { return getters; });
 var getters = {
-  initialDates: function initialDates(state) {
-    var initInfo, oldInfo, dates, result;
-    initInfo = oldInfo = dates = [];
-    initInfo = state.Info_AvisModif;
-    oldInfo = state.Old_AvisModif;
+  newDates: function newDates(state) {
+    var initInfo, newInfo, dates, result;
+    initInfo = newInfo = dates = []; // initInfo = state.Info_AvisModif
 
-    for (var i = 0; i < initInfo.length; i++) {
-      if (oldInfo.length != 0) {
-        for (var j = 0; j < oldInfo.length; j++) {
-          result = initInfo[i].id_form == oldInfo[j].id_form;
-          if (result) dates = oldInfo;
-          if (!result) dates = [initInfo[i], oldInfo[j]];
-        }
-      }
+    newInfo = state.NewAvisModif; // for (let i = 0; i < initInfo.length; i++) {
+    //   if (newInfo.length != 0) {
+    //     for (let j = 0; j < newInfo.length; j++) {
+    //   result = initInfo[i].id_form == newInfo[j].id_form;
+    //   if (result) dates = newInfo
+    //   if (!result) dates = [initInfo[i], newInfo[j]]
+    //     dates = newInfo
+    //   }
+    // }
+    // if (newInfo.length == 0) dates = initInfo;
+    // }
 
-      if (oldInfo.length == 0) dates = initInfo;
+    for (var j = 0; j < newInfo.length; j++) {
+      //   result = initInfo[i].id_form == newInfo[j].id_form;
+      //   if (result) dates = newInfo
+      //   if (!result) dates = [initInfo[i], newInfo[j]]
+      dates = newInfo;
     }
 
-    return dates;
+    return dates[0];
   },
+  // newDates: state => {
+  //   let initInfo, newInfo, dates, result
+  //   initInfo = newInfo = dates = []
+  //   initInfo = state.Info_AvisModif
+  //   newInfo = state.NewAvisModif
+  //   for (let i = 0; i < initInfo.length; i++) {
+  //     if (newInfo.length != 0) {
+  //       for (let j = 0; j < newInfo.length; j++) {
+  //         result = initInfo[i].id_form == newInfo[j].id_form;
+  //         if (result) dates = newInfo
+  //         if (!result) dates = [initInfo[i], newInfo[j]]
+  //       }
+  //     }
+  //     if (newInfo.length == 0) dates = initInfo;
+  //   }
+  //   console.log('---', dates);
+  //   return dates
+  // },
   GetNbTotalBenif: function GetNbTotalBenif(state) {
     var initialInfo = [],
         sum = 0,
@@ -73078,9 +72753,9 @@ var getters = {
 
     return sum;
   } // getOnlyDates: state => {
-  //   let initInfo = [], oldInfo = [],  myDates = [], result
+  //   let initInfo = [], newInfo = [],  myDates = [], result
   //   initInfo = state.Info_AvisModif
-  //   oldInfo = state.Old_AvisModif
+  //   newInfo = state.NewAvisModif
   //   for (let i = 0; i < initInfo.length; i++) {
   //     initInfo[i] = [
   //        initInfo[i].date1,
@@ -73186,25 +72861,15 @@ var mutations = {
   SET_INFO_GROUPE: function SET_INFO_GROUPE(state, data) {
     state.groupe_info = data;
   },
-  SET_OLD_AVIS_MODFI_INFO: function SET_OLD_AVIS_MODFI_INFO(state, data) {
-    state.Old_AvisModif = data;
+  SET_NEW_AVIS_MODFI_INFO: function SET_NEW_AVIS_MODFI_INFO(state, data) {
+    state.NewAvisModif = data;
   },
   SET_NOM_RESPONSABLE: function SET_NOM_RESPONSABLE(state, data) {
     state.nom_responsable = data;
   },
   SET_NOM_THEME: function SET_NOM_THEME(state, data) {
     state.nom_theme = data;
-  } // SET_DATES_ACTION(state) {
-  //   state.actions_by_plan.forEach((action) => {
-  //     this.FillDates(action.n_form);
-  //   });
-  // },
-  // SET_CLIENTS(state, data) { state.clients = data; },
-  // SET_CLIENTS(state, data) { state.clients = data; },
-  // SET_CLIENTS(state, data) { state.clients = data; },
-  // SET_CLIENTS(state, data) { state.clients = data; },
-  // SET_CLIENTS(state, data) { state.clients = data; }
-
+  }
 };
 
 /***/ }),
@@ -73236,7 +72901,7 @@ var state = {
   cabinets: [],
   Info_AvisModif: [],
   groupe_info: [],
-  Old_AvisModif: [],
+  NewAvisModif: [],
   nom_responsable: [],
   nom_theme: []
 };
