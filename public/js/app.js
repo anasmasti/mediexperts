@@ -6222,6 +6222,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -6246,14 +6250,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         heurPauseDebutInitial: "",
         heurPauseFinInitial: "",
         heurPauseDebutNew: "",
-        heurFinNew: "",
+        newHeurFin: "",
+        newHeurDebut: "",
         dateDeRealisation: false,
+        newDateDeRealisation: false,
         organismeDeFormation: false,
         lieuDeFormation: false,
         organisationHoraire: false,
         typeAction: "",
         pause: false,
-        old_pause: false,
+        new_pause: false,
         dates: {
           date1: "",
           date2: "",
@@ -6266,7 +6272,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           date9: "",
           date10: ""
         },
-        hasSameDates: true
+        hasSameDates: true,
+        newHasSameDates: true
       },
       title: {
         ref: "",
@@ -6324,15 +6331,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       if (this.Info_AvisModif) {
         // Inserting duplicated Information in duplicated_Info object
-        this.duplicated_Info.initialOrganisme = this.NewAvisModif.length != 0 ? this.NewAvisModif[0].old_organisme : this.Info_AvisModif[0].organisme;
-        this.duplicated_Info.initialLieu = this.NewAvisModif != 0 ? this.NewAvisModif[0].old_lieu : this.Info_AvisModif[0].lieu;
-        this.duplicated_Info.heurDebutInitial = this.NewAvisModif != 0 ? this.NewAvisModif[0].old_hr_debut : this.Info_AvisModif[0].hr_debut;
-        this.duplicated_Info.heurFinInitial = this.NewAvisModif != 0 ? this.NewAvisModif[0].old_hr_fin : this.Info_AvisModif[0].hr_fin;
-        this.duplicated_Info.old_pause = this.NewAvisModif != 0 ? this.NewAvisModif[0].old_pause : false;
-        this.duplicated_Info.newOrganisme = this.Info_AvisModif[0].organisme;
-        this.duplicated_Info.newLieu = this.Info_AvisModif[0].lieu;
-        this.duplicated_Info.heurDebutNew = this.Info_AvisModif[0].hr_debut;
-        this.duplicated_Info.heurFinNew = this.Info_AvisModif[0].hr_fin;
+        this.duplicated_Info.newOrganisme = this.NewAvisModif.length != 0 ? this.NewAvisModif[0].old_organisme : null;
+        this.duplicated_Info.newLieu = this.NewAvisModif ? this.NewAvisModif[0].new_lieu : null;
+        this.duplicated_Info.newHeurDebut = this.NewAvisModif != 0 ? this.NewAvisModif[0].new_hr_debut : null;
+        this.duplicated_Info.newHeurFin = this.NewAvisModif != 0 ? this.NewAvisModif[0].new_hr_fin : null;
+        this.duplicated_Info.new_pause = this.NewAvisModif != 0 ? this.NewAvisModif[0].new_pause : false;
+        this.duplicated_Info.newDateDeRealisation = this.NewAvisModif != 0 ? this.NewAvisModif[0].new_date_realisation : false;
+        this.duplicated_Info.initialOrganisme = this.Info_AvisModif[0].organisme;
+        this.duplicated_Info.initialLieu = this.Info_AvisModif[0].lieu;
+        this.duplicated_Info.heurDebutInitial = this.Info_AvisModif[0].hr_debut;
+        this.duplicated_Info.heurFinInitial = this.Info_AvisModif[0].hr_fin;
         this.duplicated_Info.dateDeRealisation = this.Info_AvisModif[0].date_realisation;
         this.duplicated_Info.organismeDeFormation = this.Info_AvisModif[0].organisme_formations;
         this.duplicated_Info.lieuDeFormation = this.Info_AvisModif[0].lieu_formations;
@@ -6340,6 +6348,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.duplicated_Info.typeAction = this.Info_AvisModif[0].type_action;
         this.duplicated_Info.pause = this.Info_AvisModif[0].pause;
         this.duplicated_Info.hasSameDates = this.Info_AvisModif[0].Has_Same_Dates;
+        this.duplicated_Info.newHasSameDates = this.NewAvisModif[0].new_has_same_dates;
         this.duplicated_Info.dates.date1 = this.Info_AvisModif[0].date1, this.duplicated_Info.dates.date2 = this.Info_AvisModif[0].date2, this.duplicated_Info.dates.date3 = this.Info_AvisModif[0].date3, this.duplicated_Info.dates.date4 = this.Info_AvisModif[0].date4, this.duplicated_Info.dates.date5 = this.Info_AvisModif[0].date5, this.duplicated_Info.dates.date6 = this.Info_AvisModif[0].date6, this.duplicated_Info.dates.date7 = this.Info_AvisModif[0].date7, this.duplicated_Info.dates.date8 = this.Info_AvisModif[0].date8, this.duplicated_Info.dates.date9 = this.Info_AvisModif[0].date9, this.duplicated_Info.dates.date10 = this.Info_AvisModif[0].date10;
       } //set title of model 3
 
@@ -50444,15 +50453,7 @@ var render = function() {
       ),
       _vm._v(" "),
       _c("div", { staticClass: "paper" }, [
-        _c("div", { staticClass: "text-center" }, [
-          _c("h2", [_vm._v("Modèle 3")]),
-          _vm._v(" "),
-          _c("div", [_vm._v(_vm._s(_vm.duplicated_Info) + "}")]),
-          _vm._v(" "),
-          _c("h4", { staticClass: "uppercase" }, [
-            _vm._v("MODELE D’AVIS D’ANNULATION OU DE MODIFICATION")
-          ])
-        ]),
+        _vm._m(0),
         _vm._v(" "),
         _c("table", { staticStyle: { "background-color": "#eaeaea" } }, [
           _c("tr", [
@@ -50475,7 +50476,7 @@ var render = function() {
             )
           ]),
           _vm._v(" "),
-          _vm._m(0),
+          _vm._m(1),
           _vm._v(" "),
           _c("tr", [
             _c("th", { staticStyle: { width: "15%" } }, [
@@ -50561,7 +50562,7 @@ var render = function() {
             2
           ),
           _vm._v(" "),
-          _vm._m(1),
+          _vm._m(2),
           _vm._v(" "),
           _c("div", { staticStyle: { "margin-top": "20px" } }, [
             _c("strong", [_vm._v("Effectif des participants :")]),
@@ -50596,16 +50597,16 @@ var render = function() {
             [
               _c("strong", [_vm._v("Nouvel Organisme de formation : ")]),
               _vm._v(" "),
-              _c("input", {
-                attrs: { type: "text", disabled: "" },
-                domProps: {
-                  value:
-                    _vm.duplicated_Info.newOrganisme ==
-                    _vm.duplicated_Info.initialOrganisme
-                      ? "--"
-                      : _vm.duplicated_Info.newOrganisme
-                }
-              })
+              !_vm.duplicated_Info.newOrganisme
+                ? _c("div", [_vm._v("--")])
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.duplicated_Info.newOrganisme
+                ? _c("input", {
+                    attrs: { type: "text", disabled: "" },
+                    domProps: { value: _vm.duplicated_Info.newOrganisme }
+                  })
+                : _vm._e()
             ]
           ),
           _vm._v(" "),
@@ -50629,431 +50630,23 @@ var render = function() {
             [
               _c("strong", [_vm._v("Nouveau lieu : ")]),
               _vm._v(" "),
-              _c("input", {
-                staticStyle: { width: "550px" },
-                attrs: { type: "text", disabled: "" },
-                domProps: {
-                  value:
-                    _vm.duplicated_Info.newLieu ==
-                    _vm.duplicated_Info.initialLieu
-                      ? "--"
-                      : _vm.duplicated_Info.newLieu
-                }
-              })
+              !_vm.duplicated_Info.newLieu
+                ? _c("div", [_vm._v("--")])
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.duplicated_Info.newLieu
+                ? _c("input", {
+                    staticStyle: { width: "550px" },
+                    attrs: { type: "text", disabled: "" },
+                    domProps: { value: _vm.duplicated_Info.newLieu }
+                  })
+                : _vm._e()
             ]
           ),
           _vm._v(" "),
-          _vm.duplicated_Info.hasSameDates
-            ? _c("div", { staticStyle: { "margin-top": "10px" } }, [
-                _c("strong", [_vm._v("Dates initiales de réalisation : ")]),
-                _vm._v(" "),
-                _c("div", [
-                  _c(
-                    "p",
-                    {
-                      staticStyle: {
-                        display: "flex !important",
-                        "flex-wrap": "nowrap !important",
-                        "line-height": "1px"
-                      }
-                    },
-                    [
-                      _vm.duplicated_Info.dates.date1
-                        ? _c("span", [
-                            _vm._v(
-                              _vm._s(
-                                _vm._f("moment")(
-                                  _vm.duplicated_Info.dates.date1,
-                                  "DD/MM/YYYY"
-                                )
-                              ) + ";"
-                            )
-                          ])
-                        : _vm._e(),
-                      _vm._v(" "),
-                      _vm.duplicated_Info.dates.date2
-                        ? _c("span", [
-                            _vm._v(
-                              _vm._s(
-                                _vm._f("moment")(
-                                  _vm.duplicated_Info.dates.date2,
-                                  "DD/MM/YYYY"
-                                )
-                              ) + ";"
-                            )
-                          ])
-                        : _vm._e(),
-                      _vm._v(" "),
-                      _vm.duplicated_Info.dates.date3
-                        ? _c("span", [
-                            _vm._v(
-                              _vm._s(
-                                _vm._f("moment")(
-                                  _vm.duplicated_Info.dates.date3,
-                                  "DD/MM/YYYY"
-                                )
-                              ) + ";"
-                            )
-                          ])
-                        : _vm._e(),
-                      _vm._v(" "),
-                      _vm.duplicated_Info.dates.date4
-                        ? _c("span", [
-                            _vm._v(
-                              _vm._s(
-                                _vm._f("moment")(
-                                  _vm.duplicated_Info.dates.date4,
-                                  "DD/MM/YYYY"
-                                )
-                              ) + ";"
-                            )
-                          ])
-                        : _vm._e(),
-                      _vm._v(" "),
-                      _vm.duplicated_Info.dates.date5
-                        ? _c("span", [
-                            _vm._v(
-                              _vm._s(
-                                _vm._f("moment")(
-                                  _vm.duplicated_Info.dates.date5,
-                                  "DD/MM/YYYY"
-                                )
-                              ) + ";"
-                            )
-                          ])
-                        : _vm._e(),
-                      _vm._v(" "),
-                      _vm.duplicated_Info.dates.date6
-                        ? _c("span", [
-                            _vm._v(
-                              _vm._s(
-                                _vm._f("moment")(
-                                  _vm.duplicated_Info.dates.date6,
-                                  "DD/MM/YYYY"
-                                )
-                              ) + ";"
-                            )
-                          ])
-                        : _vm._e(),
-                      _vm._v(" "),
-                      _vm.duplicated_Info.dates.date7
-                        ? _c("span", [
-                            _vm._v(
-                              _vm._s(
-                                _vm._f("moment")(
-                                  _vm.duplicated_Info.dates.date7,
-                                  "DD/MM/YYYY"
-                                )
-                              ) + ";"
-                            )
-                          ])
-                        : _vm._e(),
-                      _vm._v(" "),
-                      _vm.duplicated_Info.dates.date8
-                        ? _c("span", [
-                            _vm._v(
-                              _vm._s(
-                                _vm._f("moment")(
-                                  _vm.duplicated_Info.dates.date8,
-                                  "DD/MM/YYYY"
-                                )
-                              ) + ";"
-                            )
-                          ])
-                        : _vm._e(),
-                      _vm._v(" "),
-                      _vm.duplicated_Info.dates.date9
-                        ? _c("span", [
-                            _vm._v(
-                              _vm._s(
-                                _vm._f("moment")(
-                                  _vm.duplicated_Info.dates.date9,
-                                  "DD/MM/YYYY"
-                                )
-                              ) + ";"
-                            )
-                          ])
-                        : _vm._e(),
-                      _vm._v(" "),
-                      _vm.duplicated_Info.dates.date10
-                        ? _c("span", [
-                            _vm._v(
-                              _vm._s(
-                                _vm._f("moment")(
-                                  _vm.duplicated_Info.dates.date10,
-                                  "DD/MM/YYYY"
-                                )
-                              ) + ";"
-                            )
-                          ])
-                        : _vm._e()
-                    ]
-                  )
-                ])
-              ])
-            : _vm._e(),
-          _vm._v(" "),
           !_vm.duplicated_Info.hasSameDates
             ? _c("div", { staticStyle: { "margin-top": "10px" } }, [
-                _c("strong", [_vm._v("Dates initiales de réalisation : ")]),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  _vm._l(_vm.initDates, function(initd, index) {
-                    return _c("div", { key: index }, [
-                      _c(
-                        "p",
-                        {
-                          staticStyle: {
-                            display: "flex !important",
-                            "flex-wrap": "nowrap !important",
-                            "line-height": "1px"
-                          }
-                        },
-                        [
-                          initd.old_date1
-                            ? _c("span", [
-                                _vm._v(
-                                  _vm._s(
-                                    _vm._f("moment")(
-                                      initd.new_date1,
-                                      "DD/MM/YYYY"
-                                    )
-                                  ) + ";"
-                                )
-                              ])
-                            : _vm._e(),
-                          _vm._v(" "),
-                          initd.old_date2
-                            ? _c("span", [
-                                _vm._v(
-                                  _vm._s(
-                                    _vm._f("moment")(
-                                      initd.new_date2,
-                                      "DD/MM/YYYY"
-                                    )
-                                  ) + ";"
-                                )
-                              ])
-                            : _vm._e(),
-                          _vm._v(" "),
-                          initd.old_date3
-                            ? _c("span", [
-                                _vm._v(
-                                  _vm._s(
-                                    _vm._f("moment")(
-                                      initd.new_date3,
-                                      "DD/MM/YYYY"
-                                    )
-                                  ) + ";"
-                                )
-                              ])
-                            : _vm._e(),
-                          _vm._v(" "),
-                          initd.old_date4
-                            ? _c("span", [
-                                _vm._v(
-                                  _vm._s(
-                                    _vm._f("moment")(
-                                      initd.new_date4,
-                                      "DD/MM/YYYY"
-                                    )
-                                  ) + ";"
-                                )
-                              ])
-                            : _vm._e(),
-                          _vm._v(" "),
-                          initd.old_date5
-                            ? _c("span", [
-                                _vm._v(
-                                  _vm._s(
-                                    _vm._f("moment")(
-                                      initd.new_date5,
-                                      "DD/MM/YYYY"
-                                    )
-                                  ) + ";"
-                                )
-                              ])
-                            : _vm._e(),
-                          _vm._v(" "),
-                          initd.old_date6
-                            ? _c("span", [
-                                _vm._v(
-                                  _vm._s(
-                                    _vm._f("moment")(
-                                      initd.new_date6,
-                                      "DD/MM/YYYY"
-                                    )
-                                  ) + ";"
-                                )
-                              ])
-                            : _vm._e(),
-                          _vm._v(" "),
-                          initd.old_date7
-                            ? _c("span", [
-                                _vm._v(
-                                  _vm._s(
-                                    _vm._f("moment")(
-                                      initd.new_date7,
-                                      "DD/MM/YYYY"
-                                    )
-                                  ) + ";"
-                                )
-                              ])
-                            : _vm._e(),
-                          _vm._v(" "),
-                          initd.old_date8
-                            ? _c("span", [
-                                _vm._v(
-                                  _vm._s(
-                                    _vm._f("moment")(
-                                      initd.old_date8,
-                                      "DD/MM/YYYY"
-                                    )
-                                  ) + ";"
-                                )
-                              ])
-                            : _vm._e(),
-                          _vm._v(" "),
-                          initd.old_date9
-                            ? _c("span", [
-                                _vm._v(
-                                  _vm._s(
-                                    _vm._f("moment")(
-                                      initd.old_date9,
-                                      "DD/MM/YYYY"
-                                    )
-                                  ) + ";"
-                                )
-                              ])
-                            : _vm._e(),
-                          _vm._v(" "),
-                          initd.old_date10
-                            ? _c("span", [
-                                _vm._v(
-                                  _vm._s(
-                                    _vm._f("moment")(
-                                      initd.old_date10,
-                                      "DD/MM/YYYY"
-                                    )
-                                  ) + ";"
-                                )
-                              ])
-                            : _vm._e(),
-                          _vm._v(" "),
-                          initd.date1
-                            ? _c("span", [
-                                _vm._v(
-                                  _vm._s(
-                                    _vm._f("moment")(initd.date1, "DD/MM/YYYY")
-                                  ) + ";"
-                                )
-                              ])
-                            : _vm._e(),
-                          _vm._v(" "),
-                          initd.date2
-                            ? _c("span", [
-                                _vm._v(
-                                  _vm._s(
-                                    _vm._f("moment")(initd.date2, "DD/MM/YYYY")
-                                  ) + ";"
-                                )
-                              ])
-                            : _vm._e(),
-                          _vm._v(" "),
-                          initd.date3
-                            ? _c("span", [
-                                _vm._v(
-                                  _vm._s(
-                                    _vm._f("moment")(initd.date3, "DD/MM/YYYY")
-                                  ) + ";"
-                                )
-                              ])
-                            : _vm._e(),
-                          _vm._v(" "),
-                          initd.date4
-                            ? _c("span", [
-                                _vm._v(
-                                  _vm._s(
-                                    _vm._f("moment")(initd.date4, "DD/MM/YYYY")
-                                  ) + ";"
-                                )
-                              ])
-                            : _vm._e(),
-                          _vm._v(" "),
-                          initd.date5
-                            ? _c("span", [
-                                _vm._v(
-                                  _vm._s(
-                                    _vm._f("moment")(initd.date5, "DD/MM/YYYY")
-                                  ) + ";"
-                                )
-                              ])
-                            : _vm._e(),
-                          _vm._v(" "),
-                          initd.date6
-                            ? _c("span", [
-                                _vm._v(
-                                  _vm._s(
-                                    _vm._f("moment")(initd.date6, "DD/MM/YYYY")
-                                  ) + ";"
-                                )
-                              ])
-                            : _vm._e(),
-                          _vm._v(" "),
-                          initd.date7
-                            ? _c("span", [
-                                _vm._v(
-                                  _vm._s(
-                                    _vm._f("moment")(initd.date7, "DD/MM/YYYY")
-                                  ) + ";"
-                                )
-                              ])
-                            : _vm._e(),
-                          _vm._v(" "),
-                          initd.date8
-                            ? _c("span", [
-                                _vm._v(
-                                  _vm._s(
-                                    _vm._f("moment")(initd.date8, "DD/MM/YYYY")
-                                  ) + ";"
-                                )
-                              ])
-                            : _vm._e(),
-                          _vm._v(" "),
-                          initd.date9
-                            ? _c("span", [
-                                _vm._v(
-                                  _vm._s(
-                                    _vm._f("moment")(initd.date9, "DD/MM/YYYY")
-                                  ) + ";"
-                                )
-                              ])
-                            : _vm._e(),
-                          _vm._v(" "),
-                          initd.date10
-                            ? _c("span", [
-                                _vm._v(
-                                  _vm._s(
-                                    _vm._f("moment")(initd.date10, "DD/MM/YYYY")
-                                  ) + ";"
-                                )
-                              ])
-                            : _vm._e()
-                        ]
-                      )
-                    ])
-                  }),
-                  0
-                )
-              ])
-            : _vm._e(),
-          _vm._v(" "),
-          !_vm.duplicated_Info.hasSameDates
-            ? _c("div", { staticStyle: { "margin-top": "10px" } }, [
-                _c("strong", [
-                  _vm._v("Nouvelles Dates exactes de réalisation : ")
-                ]),
+                _c("strong", [_vm._v("Dates initiales de réalisation :")]),
                 _vm._v(" "),
                 !_vm.duplicated_Info.dateDeRealisation
                   ? _c("div", [_vm._v("--")])
@@ -51215,9 +50808,7 @@ var render = function() {
           _vm._v(" "),
           _vm.duplicated_Info.hasSameDates
             ? _c("div", { staticStyle: { "margin-top": "10px" } }, [
-                _c("strong", [
-                  _vm._v("Nouvelles Dates exactes de réalisation : ")
-                ]),
+                _c("strong", [_vm._v("Dates initiales de réalisation :")]),
                 _vm._v(" "),
                 !_vm.duplicated_Info.dateDeRealisation
                   ? _c("div", [_vm._v("--")])
@@ -51371,6 +50962,324 @@ var render = function() {
               ])
             : _vm._e(),
           _vm._v(" "),
+          _vm.duplicated_Info.newHasSameDates
+            ? _c("div", { staticStyle: { "margin-top": "10px" } }, [
+                _c("strong", [
+                  _vm._v("Nouvelles Dates exactes de réalisation :")
+                ]),
+                _vm._v(" "),
+                !_vm.duplicated_Info.newDateDeRealisation
+                  ? _c("div", [_vm._v("--")])
+                  : _vm._e(),
+                _vm._v(" "),
+                _c("div", [
+                  _c(
+                    "p",
+                    {
+                      staticStyle: {
+                        display: "flex !important",
+                        "flex-wrap": "nowrap !important",
+                        "line-height": "1px"
+                      }
+                    },
+                    [
+                      _vm.duplicated_Info.dates.date1
+                        ? _c("span", [
+                            _vm._v(
+                              _vm._s(
+                                _vm._f("moment")(
+                                  _vm.duplicated_Info.dates.date1,
+                                  "DD/MM/YYYY"
+                                )
+                              ) + ";"
+                            )
+                          ])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm.duplicated_Info.dates.date2
+                        ? _c("span", [
+                            _vm._v(
+                              _vm._s(
+                                _vm._f("moment")(
+                                  _vm.duplicated_Info.dates.date2,
+                                  "DD/MM/YYYY"
+                                )
+                              ) + ";"
+                            )
+                          ])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm.duplicated_Info.dates.date3
+                        ? _c("span", [
+                            _vm._v(
+                              _vm._s(
+                                _vm._f("moment")(
+                                  _vm.duplicated_Info.dates.date3,
+                                  "DD/MM/YYYY"
+                                )
+                              ) + ";"
+                            )
+                          ])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm.duplicated_Info.dates.date4
+                        ? _c("span", [
+                            _vm._v(
+                              _vm._s(
+                                _vm._f("moment")(
+                                  _vm.duplicated_Info.dates.date4,
+                                  "DD/MM/YYYY"
+                                )
+                              ) + ";"
+                            )
+                          ])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm.duplicated_Info.dates.date5
+                        ? _c("span", [
+                            _vm._v(
+                              _vm._s(
+                                _vm._f("moment")(
+                                  _vm.duplicated_Info.dates.date5,
+                                  "DD/MM/YYYY"
+                                )
+                              ) + ";"
+                            )
+                          ])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm.duplicated_Info.dates.date6
+                        ? _c("span", [
+                            _vm._v(
+                              _vm._s(
+                                _vm._f("moment")(
+                                  _vm.duplicated_Info.dates.date6,
+                                  "DD/MM/YYYY"
+                                )
+                              ) + ";"
+                            )
+                          ])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm.duplicated_Info.dates.date7
+                        ? _c("span", [
+                            _vm._v(
+                              _vm._s(
+                                _vm._f("moment")(
+                                  _vm.duplicated_Info.dates.date7,
+                                  "DD/MM/YYYY"
+                                )
+                              ) + ";"
+                            )
+                          ])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm.duplicated_Info.dates.date8
+                        ? _c("span", [
+                            _vm._v(
+                              _vm._s(
+                                _vm._f("moment")(
+                                  _vm.duplicated_Info.dates.date8,
+                                  "DD/MM/YYYY"
+                                )
+                              ) + ";"
+                            )
+                          ])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm.duplicated_Info.dates.date9
+                        ? _c("span", [
+                            _vm._v(
+                              _vm._s(
+                                _vm._f("moment")(
+                                  _vm.duplicated_Info.dates.date9,
+                                  "DD/MM/YYYY"
+                                )
+                              ) + ";"
+                            )
+                          ])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm.duplicated_Info.dates.date10
+                        ? _c("span", [
+                            _vm._v(
+                              _vm._s(
+                                _vm._f("moment")(
+                                  _vm.duplicated_Info.dates.date10,
+                                  "DD/MM/YYYY"
+                                )
+                              ) + ";"
+                            )
+                          ])
+                        : _vm._e()
+                    ]
+                  )
+                ])
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          !_vm.duplicated_Info.newHasSameDates
+            ? _c("div", { staticStyle: { "margin-top": "10px" } }, [
+                _c("strong", [
+                  _vm._v("Nouvelles Dates exactes de réalisation : ")
+                ]),
+                _vm._v(" "),
+                !_vm.duplicated_Info.newDateDeRealisation
+                  ? _c("div", [_vm._v("--")])
+                  : _vm._e(),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  _vm._l(_vm.initDates, function(initd, index) {
+                    return _c("div", { key: index }, [
+                      _c(
+                        "p",
+                        {
+                          staticStyle: {
+                            display: "flex !important",
+                            "flex-wrap": "nowrap !important",
+                            "line-height": "1px"
+                          }
+                        },
+                        [
+                          initd.new_date1
+                            ? _c("span", [
+                                _vm._v(
+                                  _vm._s(
+                                    _vm._f("moment")(
+                                      initd.new_date1,
+                                      "DD/MM/YYYY"
+                                    )
+                                  ) + ";"
+                                )
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          initd.new_date2
+                            ? _c("span", [
+                                _vm._v(
+                                  _vm._s(
+                                    _vm._f("moment")(
+                                      initd.new_date2,
+                                      "DD/MM/YYYY"
+                                    )
+                                  ) + ";"
+                                )
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          initd.new_date3
+                            ? _c("span", [
+                                _vm._v(
+                                  _vm._s(
+                                    _vm._f("moment")(
+                                      initd.new_date3,
+                                      "DD/MM/YYYY"
+                                    )
+                                  ) + ";"
+                                )
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          initd.new_date4
+                            ? _c("span", [
+                                _vm._v(
+                                  _vm._s(
+                                    _vm._f("moment")(
+                                      initd.new_date4,
+                                      "DD/MM/YYYY"
+                                    )
+                                  ) + ";"
+                                )
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          initd.new_date5
+                            ? _c("span", [
+                                _vm._v(
+                                  _vm._s(
+                                    _vm._f("moment")(
+                                      initd.new_date5,
+                                      "DD/MM/YYYY"
+                                    )
+                                  ) + ";"
+                                )
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          initd.new_date6
+                            ? _c("span", [
+                                _vm._v(
+                                  _vm._s(
+                                    _vm._f("moment")(
+                                      initd.new_date6,
+                                      "DD/MM/YYYY"
+                                    )
+                                  ) + ";"
+                                )
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          initd.new_date7
+                            ? _c("span", [
+                                _vm._v(
+                                  _vm._s(
+                                    _vm._f("moment")(
+                                      initd.new_date7,
+                                      "DD/MM/YYYY"
+                                    )
+                                  ) + ";"
+                                )
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          initd.new_date8
+                            ? _c("span", [
+                                _vm._v(
+                                  _vm._s(
+                                    _vm._f("moment")(
+                                      initd.new_date8,
+                                      "DD/MM/YYYY"
+                                    )
+                                  ) + ";"
+                                )
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          initd.new_date9
+                            ? _c("span", [
+                                _vm._v(
+                                  _vm._s(
+                                    _vm._f("moment")(
+                                      initd.new_date9,
+                                      "DD/MM/YYYY"
+                                    )
+                                  ) + ";"
+                                )
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          initd.new_date10
+                            ? _c("span", [
+                                _vm._v(
+                                  _vm._s(
+                                    _vm._f("moment")(
+                                      initd.new_date10,
+                                      "DD/MM/YYYY"
+                                    )
+                                  ) + ";"
+                                )
+                              ])
+                            : _vm._e()
+                        ]
+                      )
+                    ])
+                  }),
+                  0
+                )
+              ])
+            : _vm._e(),
+          _vm._v(" "),
           _c("div", { staticStyle: { "margin-top": "10px" } }, [
             _c("strong", [_vm._v("Organisation horaire initiale :")]),
             _vm._v(" "),
@@ -51395,12 +51304,8 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "d-flix" }, [
-              this.duplicated_Info.old_pause
-                ? _c("p", [
-                    _vm._v(
-                      "\n            Avec pause déjeuner de : 1 heure\n          "
-                    )
-                  ])
+              _vm.duplicated_Info.pause
+                ? _c("p", [_vm._v("Avec pause déjeuner de : 1 heure")])
                 : _vm._e()
             ])
           ]),
@@ -51408,28 +51313,38 @@ var render = function() {
           _c("div", { staticStyle: { "margin-top": "10px" } }, [
             _c("strong", [_vm._v("Nouvelle organisation horaire :")]),
             _vm._v(" "),
-            _c("div", { staticClass: "d-flex" }, [
-              _c("div", [
-                _c("span", [_vm._v("heure début : ")]),
-                _vm._v(" "),
-                _c("input", {
-                  attrs: { type: "text", disabled: "" },
-                  domProps: { value: _vm.duplicated_Info.heurDebutNew }
-                })
-              ]),
-              _vm._v(" "),
-              _c("div", [
-                _c("span", [_vm._v("heure fin : ")]),
-                _vm._v(" "),
-                _c("input", {
-                  attrs: { type: "text", disabled: "" },
-                  domProps: { value: _vm.duplicated_Info.heurFinNew }
-                })
-              ])
-            ]),
+            !_vm.duplicated_Info.newHeurDebut || !_vm.duplicated_Info.newHeurFin
+              ? _c("div", [_vm._v("\n          --\n        ")])
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.duplicated_Info.newHeurDebut || _vm.duplicated_Info.newHeurFin
+              ? _c("div", { staticClass: "d-flex" }, [
+                  _c("div", [
+                    _c("span", [_vm._v("heure début : ")]),
+                    _vm._v(" "),
+                    _c("input", {
+                      attrs: { type: "text", disabled: "" },
+                      domProps: { value: _vm.duplicated_Info.newHeurDebut }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", [
+                    _c("span", [_vm._v("heure fin : ")]),
+                    _vm._v(" "),
+                    _c("input", {
+                      attrs: { type: "text", disabled: "" },
+                      domProps: { value: _vm.duplicated_Info.newHeurFin }
+                    })
+                  ])
+                ])
+              : _vm._e(),
             _vm._v(" "),
             _c("div", { staticClass: "d-flix" }, [
-              this.duplicated_Info.pause
+              !_vm.duplicated_Info.new_pause
+                ? _c("div", [_vm._v("--")])
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.duplicated_Info.new_pause
                 ? _c("p", [
                     _vm._v(
                       "\n            Avec pause déjeuner de : 1 heure\n          "
@@ -51456,7 +51371,7 @@ var render = function() {
             )
           ]),
           _vm._v(" "),
-          _vm._m(2)
+          _vm._m(3)
         ])
       ])
     ],
@@ -51464,6 +51379,18 @@ var render = function() {
   )
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "text-center" }, [
+      _c("h2", [_vm._v("Modèle 3")]),
+      _vm._v(" "),
+      _c("h4", { staticClass: "uppercase" }, [
+        _vm._v("MODELE D’AVIS D’ANNULATION OU DE MODIFICATION")
+      ])
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -72679,8 +72606,7 @@ var actions = {
               _context.next = 3;
               return axios.get("/fill-clients").then(function (_ref2) {
                 var data = _ref2.data;
-                commit("SET_CLIENTS", data);
-                console.log("clients : ", data);
+                commit("SET_CLIENTS", data); // console.log("clients : ", data);
               })["catch"](function (err) {
                 return console.error("err FillClients", err);
               });
@@ -72727,8 +72653,7 @@ var actions = {
                 }
               }).then(function (_ref5) {
                 var data = _ref5.data;
-                commit("SET_REFERENCE_PLANS", data);
-                console.log("reference_plans : ", data);
+                commit("SET_REFERENCE_PLANS", data); // console.log("reference_plans : ", data);
               })["catch"](function (err) {
                 return console.log("err FillReferencesPlan", err);
               });
@@ -72753,8 +72678,7 @@ var actions = {
               _context4.next = 3;
               return axios.get("/fill-all-organisme").then(function (_ref7) {
                 var data = _ref7.data;
-                commit("SET_ORGANISME", data);
-                console.log("Cabinets :", data);
+                commit("SET_ORGANISME", data); // console.log("Cabinets :", data);
               });
 
             case 3:
@@ -72781,8 +72705,7 @@ var actions = {
                 }
               }).then(function (_ref9) {
                 var data = _ref9.data;
-                commit("SET_ACTION_BY_PLAN", data);
-                console.log("actions_by_plan : ", data);
+                commit("SET_ACTION_BY_PLAN", data); // console.log("actions_by_plan : ", data);
               }).then(function () {// fill dates action
                 //commit('SET_DATES_ACTION');
               })["catch"](function (err) {
@@ -72813,8 +72736,7 @@ var actions = {
                 }
               }).then(function (_ref11) {
                 var data = _ref11.data;
-                commit("SET_NOM_THEME", data);
-                console.log("theme", data);
+                commit("SET_NOM_THEME", data); // console.log("theme" , data);
               })["catch"](function (err) {
                 return console.error("can't get theme", err);
               });
@@ -72843,8 +72765,7 @@ var actions = {
                 }
               }).then(function (_ref13) {
                 var data = _ref13.data;
-                commit("SET_NOM_RESPONSABLE", data);
-                console.log("Responsable", data);
+                commit("SET_NOM_RESPONSABLE", data); // console.log("Responsable", data);
               })["catch"](function (err) {
                 return console.error("can't get responsable", err);
               });
@@ -72873,8 +72794,7 @@ var actions = {
                 }
               }).then(function (_ref15) {
                 var data = _ref15.data;
-                commit("SET_INITIAL_INFO_AVISMODIF", data);
-                console.log("initial info :", data);
+                commit("SET_INITIAL_INFO_AVISMODIF", data); // console.log("initial info :", data);
               })["catch"](function (err) {
                 console.log("err Fetching Info Initial Avis Modif", err);
               });
@@ -72902,8 +72822,7 @@ var actions = {
                 }
               }).then(function (_ref17) {
                 var data = _ref17.data;
-                commit("SET_INFO_GROUPE", data);
-                console.log("groupe info :", data);
+                commit("SET_INFO_GROUPE", data); // console.log("groupe info :" , data);
               })["catch"](function (err) {
                 console.log("err Fetching group info", err);
               });
@@ -72931,9 +72850,7 @@ var actions = {
                 }
               }).then(function (_ref19) {
                 var data = _ref19.data;
-                commit("SET_NEW_AVIS_MODFI_INFO", data);
-                console.log("New avis modif", data);
-                console.log("-----------", nForm);
+                commit("SET_NEW_AVIS_MODFI_INFO", data); // console.log("New avis modif" , data);
               })["catch"](function (err) {
                 console.log("err feetching old avis modif", err);
               });
@@ -72962,23 +72879,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getters", function() { return getters; });
 var getters = {
   initialDates: function initialDates(state) {
-    var initInfo, oldInfo, dates, result;
-    initInfo = oldInfo = dates = [];
+    var initInfo, newInfo, dates, result;
+    initInfo = newInfo = dates = [];
     initInfo = state.Info_AvisModif;
-    oldInfo = state.NewAvisModif;
+    newInfo = state.NewAvisModif;
 
     for (var i = 0; i < initInfo.length; i++) {
-      if (oldInfo.length != 0) {
-        for (var j = 0; j < oldInfo.length; j++) {
-          result = initInfo[i].id_form == oldInfo[j].id_form;
-          if (result) dates = oldInfo;
-          if (!result) dates = [initInfo[i], oldInfo[j]];
+      if (newInfo.length != 0) {
+        for (var j = 0; j < newInfo.length; j++) {
+          result = initInfo[i].id_form == newInfo[j].id_form;
+          if (result) dates = newInfo;
+          if (!result) dates = [initInfo[i], newInfo[j]];
         }
       }
 
-      if (oldInfo.length == 0) dates = initInfo;
+      if (newInfo.length == 0) dates = initInfo;
     }
 
+    console.log('---', dates);
     return dates;
   },
   GetNbTotalBenif: function GetNbTotalBenif(state) {
@@ -72993,9 +72911,9 @@ var getters = {
 
     return sum;
   } // getOnlyDates: state => {
-  //   let initInfo = [], oldInfo = [],  myDates = [], result
+  //   let initInfo = [], newInfo = [],  myDates = [], result
   //   initInfo = state.Info_AvisModif
-  //   oldInfo = state.NewAvisModif
+  //   newInfo = state.NewAvisModif
   //   for (let i = 0; i < initInfo.length; i++) {
   //     initInfo[i] = [
   //        initInfo[i].date1,

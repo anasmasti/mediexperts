@@ -13,7 +13,7 @@ export const actions = {
       .get("/fill-clients")
       .then(({ data }) => {
         commit("SET_CLIENTS", data);
-        console.log("clients : ", data);
+        // console.log("clients : ", data);
       })
       .catch(err => console.error("err FillClients", err));
   },
@@ -27,7 +27,7 @@ export const actions = {
       .get(`/fill-reference-plan`, { params: { nrcEntrp: nrcEntrp } })
       .then(({ data }) => {
         commit("SET_REFERENCE_PLANS", data);
-        console.log("reference_plans : ", data);
+        // console.log("reference_plans : ", data);
       })
       .catch(err => console.log("err FillReferencesPlan", err));
   },
@@ -36,7 +36,7 @@ export const actions = {
   async FetchAllCabinets({ commit }) {
     await axios.get(`/fill-all-organisme`).then(({ data }) => {
       commit("SET_ORGANISME", data);
-      console.log("Cabinets :", data);
+      // console.log("Cabinets :", data);
     });
   },
 
@@ -46,7 +46,7 @@ export const actions = {
       .get(`/fill-plans-by-reference`, { params: { idPlan: idPlan } })
       .then(({ data }) => {
         commit("SET_ACTION_BY_PLAN", data);
-        console.log("actions_by_plan : ", data);
+        // console.log("actions_by_plan : ", data);
       })
       .then(() => {
         // fill dates action
@@ -61,7 +61,7 @@ export const actions = {
       .get(`get-nom-theme` , {params : {nForm : nForm }})
       .then(({data}) => {
         commit("SET_NOM_THEME", data)
-        console.log("theme" , data);
+        // console.log("theme" , data);
       })
       .catch(err => console.error("can't get theme", err));
   },
@@ -72,7 +72,7 @@ export const actions = {
     .get(`get-nom-responsable-m3` ,{params : {nrcEntrp: nrcEntrp}})
     .then(({data}) => {
       commit("SET_NOM_RESPONSABLE", data);
-      console.log("Responsable", data);
+      // console.log("Responsable", data);
     })
     .catch(err => console.error("can't get responsable", err));
   },
@@ -83,7 +83,7 @@ export const actions = {
       .get(`/fill-avis-modif`, { params: { nForm: nForm } })
       .then(({ data }) => {
         commit("SET_INITIAL_INFO_AVISMODIF", data);
-        console.log("initial info :", data);
+        // console.log("initial info :", data);
       })
       .catch(err => {
         console.log("err Fetching Info Initial Avis Modif", err);
@@ -95,7 +95,7 @@ export const actions = {
       .get(`fill-avis-modif-by-groupe` , {params : {idForm : idForm} })
       .then(({ data }) => {
         commit("SET_INFO_GROUPE", data);
-        console.log("groupe info :" , data);
+        // console.log("groupe info :" , data);
       })
       .catch(err =>{
         console.log("err Fetching group info" , err);
@@ -107,8 +107,7 @@ export const actions = {
       .get(`/old-avis-modif-by-theme` , { params: {nForm : nForm}})
       .then(({data})=>{
         commit("SET_NEW_AVIS_MODFI_INFO" , data);
-        console.log("New avis modif" , data);
-        console.log("-----------" ,nForm);
+        // console.log("New avis modif" , data);
       })
       .catch(err => {
         console.log("err feetching old avis modif", err);
