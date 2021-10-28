@@ -104,9 +104,14 @@ class FormulaireController extends Controller
           ->join('themes', 'themes.id_theme', 'plan_formations.id_thm')
           ->where([['formations.id_form', $idform], ['themes.id_theme', $id_theme["id_theme"]]])
           ->first();
+          
       // $bdg_letter = \App\Helper\Helper::NumberToLetter(($formation["bdg_total"] * .2 + $formation["bdg_total"]));
 
-      return view('_modeles.m4', ['formation' => $formation/*, 'bdg_letter' => $bdg_letter*/]);
+      $avis_modifications = AvisModification::select('avis_modifications.*')
+        ->where('avis_modifications.id_form', $idform)
+        ->get();
+
+      return view('_modeles.m4', ['formation' => $formation, 'avis_modifications' => $avis_modifications ]);
     }
 
     //FORMULAIRE 4

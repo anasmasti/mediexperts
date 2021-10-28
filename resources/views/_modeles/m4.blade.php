@@ -90,6 +90,9 @@
 <div class="" id="paper" style="font-family:Calibri, 'Segoe UI', Geneva, Verdana, sans-serif; background-color: #fff;">
 
 <div style="width:100%; height:130px;"><!--space--></div>
+<div>
+  {{$avis_modifications}}
+</div>
 
   <input type="hidden" id="idForm" value="{{$formation->id_form}}" readonly>
   <table>
