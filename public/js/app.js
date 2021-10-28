@@ -6691,7 +6691,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 _context4.next = 2;
                 return axios.get("/fill-dates-plan?nForm=".concat(nform)).then(function (res) {
-                  _this4.dates_actions = res.data;
+                  _this4.dates_actions = res.data[0];
                 }).then(function () {
                   _this4.AssignDates(nform);
                 })["catch"](function (err) {
