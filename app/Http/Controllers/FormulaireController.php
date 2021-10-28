@@ -127,7 +127,8 @@ class FormulaireController extends Controller
           ->join('themes', 'plan_formations.id_thm', 'themes.id_theme')
           ->where('plan_formations.n_form', $request->nForm)
           ->where('plan_formations.type_action', '!=' , 'annulé')
-        ->get();
+          // ->orderBy('avis_modifications.id' , 'desc')
+          ->get();
       return response()->json([$data , $avis_modifications]);
     }
     public function FillPersonnelF4(Request $request) {
@@ -138,6 +139,7 @@ class FormulaireController extends Controller
         ->get();
       $avis_modifications = AvisModification::select('avis_modifications.*')
         ->where('avis_modifications.id_form', $request->idForm)
+        ->orderBy('avis_modifications.id' , 'desc')
         ->get();
       return response()->json([$data, $avis_modifications]);
     }

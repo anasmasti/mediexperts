@@ -354,6 +354,7 @@
                     type="date"
                     id="date1"
                     :value="info.date1"
+                    readonly
                   />
                 </div>
 
@@ -366,6 +367,7 @@
                     type="date"
                     id="date2"
                     :value="info.date2"
+                    readonly
                   />
                 </div>
 
@@ -378,6 +380,7 @@
                     type="date"
                     id="date3"
                     :value="info.date3"
+                    readonly
                   />
                 </div>
 
@@ -390,6 +393,7 @@
                     type="date"
                     id="date4"
                     :value="info.date4"
+                    readonly
                   />
                 </div>
 
@@ -402,6 +406,7 @@
                     type="date"
                     id="date5"
                     :value="info.date5"
+                    readonly
                   />
                 </div>
 
@@ -414,6 +419,7 @@
                     type="date"
                     id="date6"
                     :value="info.date6"
+                    readonly
                   />
                 </div>
 
@@ -426,6 +432,7 @@
                     type="date"
                     id="date7"
                     :value="info.date7"
+                    readonly
                   />
                 </div>
 
@@ -438,6 +445,7 @@
                     type="date"
                     id="date8"
                     :value="info.date8"
+                    readonly
                   />
                 </div>
 
@@ -450,6 +458,7 @@
                     type="date"
                     id="date9"
                     :value="info.date9"
+                    readonly
                   />
                 </div>
 
@@ -462,6 +471,7 @@
                     type="date"
                     id="date10"
                     :value="info.date10"
+                    readonly
                   />
                 </div>
 
@@ -538,15 +548,13 @@
                       id="initial_hr_debut"
                       name="hr_debut"
                       :value="info.hr_debut"
+                      readonly
                     />
                     <div
                       class="input-group-append"
                       data-target="#timepicker"
                       data-toggle="datetimepicker"
                     ></div>
-                    <div class="input-group-text">
-                      <i class="far fa-clock"></i>
-                    </div>
                   </div>
                 </div>
 
@@ -559,15 +567,13 @@
                       id="initial_hr_fin"
                       name="hr_fin"
                       :value="info.hr_fin"
+                      readonly
                     />
                     <div
                       class="input-group-append"
                       data-target="#timepicker"
                       data-toggle="datetimepicker"
                     ></div>
-                    <div class="input-group-text">
-                      <i class="far fa-clock"></i>
-                    </div>
                   </div>
                 </div>
               </div>
@@ -599,9 +605,6 @@
                       data-target="#timepicker"
                       data-toggle="datetimepicker"
                     ></div>
-                    <div class="input-group-text">
-                      <i class="far fa-clock"></i>
-                    </div>
                   </div>
                 </div>
                 <!-- {{--  --}} -->
@@ -620,9 +623,6 @@
                       data-target="#timepicker"
                       data-toggle="datetimepicker"
                     ></div>
-                    <div class="input-group-text">
-                      <i class="far fa-clock"></i>
-                    </div>
                   </div>
                 </div>
               </div>
@@ -726,8 +726,6 @@ export default {
     this.$store.dispatch("model3/FetchAllCabinets");
   },
 
-  updated() {},
-
   computed: {
     ...mapState("model3", {
       curr_nrc_entrp: (state) => state.curr_nrc_entrp,
@@ -745,6 +743,7 @@ export default {
     handleAction(actionName, value) {
       this.$store.dispatch(actionName, value);
     },
+
     getSameDates() {
       setTimeout(() => {
         if (this.Info_AvisModif) {
@@ -780,6 +779,7 @@ export default {
       }, 500);
       return this.selected_pause, this.old_pause;
     },
+
     // fonction pour l'état d'avis annulation
     getSelected() {
       let annul = document.getElementById("etat");
@@ -823,6 +823,7 @@ export default {
         chk_horaire.disabled = false;
       }
     },
+
     // update the Model 3 and save archive data
     async storeUpdateModel3() {
       // let date1 = document.getElementById("date1");
@@ -848,7 +849,7 @@ export default {
       let planifie = document.getElementById("planifie");
       let initial_organisme = document.getElementById("initial_organisme");
       let initial_lieu = document.getElementById("initial_lieu");
-      // let nouvel_organisme = document.getElementById("nouvel_organisme");
+      let nouvel_organisme = document.getElementById("nouvel_organisme");
       let nouvel_lieu = document.getElementById("nouvel_lieu");
       let initial_hr_debut = document.getElementById("initial_hr_debut");
       let initial_hr_fin = document.getElementById("initial_hr_fin");

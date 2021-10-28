@@ -1,24 +1,24 @@
 export const getters = {
 
   initialDates: state => {
-
-    let initInfo, oldInfo, dates, result
+    let initInfo, newInfo, dates, result
     
-    initInfo = oldInfo = dates = []
+    initInfo = newInfo = dates = []
 
     initInfo = state.Info_AvisModif
-    oldInfo = state.Old_AvisModif
+    newInfo = state.NewAvisModif
 
     for (let i = 0; i < initInfo.length; i++) {
-      if (oldInfo.length != 0) {
-        for (let j = 0; j < oldInfo.length; j++) {
-          result = initInfo[i].id_form == oldInfo[j].id_form;
-          if (result) dates = oldInfo
-          if (!result) dates = [initInfo[i], oldInfo[j]]
+      if (newInfo.length != 0) {
+        for (let j = 0; j < newInfo.length; j++) {
+          result = initInfo[i].id_form == newInfo[j].id_form;
+          if (result) dates = newInfo
+          if (!result) dates = [initInfo[i], newInfo[j]]
         }
       }
-      if (oldInfo.length == 0) dates = initInfo;
+      if (newInfo.length == 0) dates = initInfo;
     }
+    console.log('---', dates);
     return dates
   },
 
@@ -35,10 +35,10 @@ export const getters = {
   },
 
   // getOnlyDates: state => {
-  //   let initInfo = [], oldInfo = [],  myDates = [], result
+  //   let initInfo = [], newInfo = [],  myDates = [], result
 
   //   initInfo = state.Info_AvisModif
-  //   oldInfo = state.Old_AvisModif
+  //   newInfo = state.NewAvisModif
 
   //   for (let i = 0; i < initInfo.length; i++) {
 

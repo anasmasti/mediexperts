@@ -14,7 +14,7 @@ export const mutations = {
   SET_NB_PARTICIPENTS(state,data) {state.nb_participents = data},
   SET_INITIAL_INFO_AVISMODIF(state, data) {state.Info_AvisModif = data},
   SET_INFO_GROUPE(state, data) {state.groupe_info = data},
-  SET_OLD_AVIS_MODFI_INFO(state , data) {state.Old_AvisModif = data},
+  SET_NEW_AVIS_MODFI_INFO(state , data) {state.NewAvisModif = data},
   SET_NOM_RESPONSABLE(state, data) {state.nom_responsable = data},
   SET_NOM_THEME(state , data) {state.nom_theme = data}
   
