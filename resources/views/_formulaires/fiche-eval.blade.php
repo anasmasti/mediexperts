@@ -128,7 +128,7 @@
   {{-- ENTREPRISE --}}
   <div style="width:100%; display:flex; flex-wrap:nowrap;">
     <div style="width:30%; margin-bottom: 5px;">
-      <span>Nom de l’entreprise &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; :</span>
+      <span>Nom de l’entreprise &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; :</span>
     </div>
     <div class="" style="width:70%;">
       <span type="text" id="entrp">
@@ -163,7 +163,7 @@
       <div style="width:1%"><!--space--></div>
 
       <div style="min-width: 10%; max-width:17%">
-          <span style="font-size: 12px;">Nombre de participants :</span>
+          <span style="font-size: 12px;">Nombre de participants :</span>
       </div>
       <div style="width:3%">
           <input type="text" id="nbParticip" value="..." readonly>
@@ -172,7 +172,7 @@
       <div style="width:5%"><!--space--></div>
 
       <div style="width:10%">
-          <span>N° du Groupe :</span>
+          <span>N° du Groupe :</span>
       </div>
       <div style="width:3%">
           <input type="text" id="groupe" value="..." style="font-size: 12px;" readonly>
@@ -354,7 +354,6 @@
 
 <script type="text/javascript">
   $(document).ready(function() {
-
     $('#client').on('change', function() {
       let nrc = $('#client').val();
       let fillDropdown = '';
@@ -376,7 +375,6 @@
         }) //done
         .catch(err => console.log("error getting actions !!", error));
     });
-
     $('#plans').on('change', function() {
       let idPlan = $('#plans').val();
       let fillDropdown = '';
@@ -386,7 +384,6 @@
           data.forEach(elem => {
             fillDropdown += `<option value="${elem.n_form}">${elem.annee} > ${elem.nom_theme} </option>`;
           });
-
           // affecter les données dans select
           $('#action').html("");
           if (data.length) {
@@ -399,7 +396,6 @@
         }) // done
         .catch(err => console.log("error getting actions !!", error));
     }); //onChange "plans"
-
     $('#action').on('change', function() {
       // vider les champs
       $('#formation').html("");
@@ -417,7 +413,6 @@
           // let groupe;
           // // database date syntaxe
           // let dateSyntaxe;
-
           // if(data[1].length > 0) 
           //   groupe = data[1][0].new_groupe 
           // else 
@@ -444,12 +439,10 @@
           // let groupe;
           // // database date syntaxe
           // let dateSyntaxe;
-
           // if(data[1].length > 0) 
           //   groupe = data[1][0].new_groupe 
           // else 
           //   groupe = data[0][0].groupe 
-
           // let fillFormation = '<option selected disabled>--veuillez sélectionner le thème </option>';
           // // console.log('success formations test !!', fitchedData);
           // if (fitchedData.length > 0) {
@@ -465,22 +458,34 @@
         error: function(error) { console.log("error getting formations !!", error) }
       }); //ajax
     }); //onChange "plan"
-
-
     $('#formation').on('change', function() {
       let idForm = $('#formation').val();
+      let nForm = $('#action').val();
       $.ajax({
         type: 'GET',
         url: '{!! URL::to('/fill-dates-form') !!}',
-        data: {'idForm': idForm},
+        data: {'idForm': idForm , 'nForm': nForm},
         success: function(data) {
           console.log("success fiche eval infos !!", data);
+
+          let FetchedDATA = data[0]
+          let Dates;
+          // Database date syntaxe
+          let DateSynx;
+
+          if (data[1].length > 0){
+            Dates = data[1][0];
+            DateSynx = 'new_date'
+          } 
+          else {
+            Dates = data[0];
+            DateSynx = 'date'
+          }
           // --------------------------------------
           // let FetchedDATA = data[0]
           // let Dates;
           // // Database date syntaxe
           // let DateSynx;
-
           // if (data[1].length > 0){
           //   Dates = data[1];
           //   DateSynx = 'new_date'
@@ -491,6 +496,7 @@
           // }
           // --------------------------------------
           let last_nonull_date = "";
+<<<<<<< HEAD
           if (data) {
             for (let i = 0; i < Object.keys(data).length; i++) {
               let tmpIndex = "date"+(i+1);
@@ -499,20 +505,29 @@
               //get last nonull date
               if (data[tmpIndex] != null && data[(tmpIndex+1)] == null) {
                 last_nonull_date = data[tmpIndex];
+=======
+          if (Dates) {
+            for (let i = 0; i < Object.keys(Dates).length; i++) {
+              let tmpIndex = DateSynx+(i+1);
+                // console.log("tmpIndex date : ", tmpIndex);
+                
+              //get last nonull date
+              if (Dates[tmpIndex] != null && Dates[(tmpIndex+1)] == null) {
+                last_nonull_date = Dates[tmpIndex];
+>>>>>>> 62850a2e180d0627fd4fab1e1a72e0d0a1521d5f
                 // console.log("last non null date", last_nonull_date);
                 // console.log("data[tmpIndex] ==>",data[tmpIndex]);
               }
             } //endfor
           } //endif 'data
-          $('#nbParticip').val(data['nb_benif']);
-          $('#groupe').val(data['groupe']);
-          let fillDate = "De "+DateFormat(data['date1'])+" à "+DateFormat(last_nonull_date);
+          $('#nbParticip').val(FetchedDATA['nb_benif']);
+          $('#groupe').val(FetchedDATA['groupe']);
+          let fillDate = "De "+DateFormat(Dates[ DateSynx + '1' ])+" à "+DateFormat(last_nonull_date);
           $('#dates').val(fillDate);
         },
         error: function(error) { console.log("error getting formations !!", error) }
       }); //ajax
     }); //onChange "formation"
-
   }); //ready
 </script>
 

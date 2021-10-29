@@ -106,7 +106,27 @@ class FormulaireController extends Controller
 
     public function FillDatesForm(Request $request) {
       $data = Formation::findOrFail($request->idForm);
-      return response()->json($data);
+      // $data = PlanFormation::select('formations.n_form', 'formations.date1','formations.date2','formations.date3','formations.date4','formations.date5',
+      //   'formations.date6','formations.date7','formations.date8','formations.date9','formations.date10',
+      //   'formations.date11','formations.date12','formations.date13','formations.date14','formations.date15',
+      //   'formations.date16','formations.date17','formations.date18','formations.date19','formations.date20',
+      //   'formations.date21','formations.date22','formations.date23','formations.date24','formations.date25',
+      //   'formations.date26','formations.date27','formations.date28','formations.date29','formations.date30','plan_formations.nb_partcp_total' , 'plan_formations.organisme')
+      //   ->join('formations', 'plan_formations.n_form', 'formations.n_form') 
+      //   // ->join('avis_modifications', 'formations.id_form', '=', 'avis_modifications.id_form')
+      //   ->where('formations.n_form', $request->nForm)
+      //   ->orderBy('plan_formations.dt_debut', 'asc')
+      //   ->orderBy('plan_formations.created_at', 'asc')
+      //   ->get();
+
+      $avis_modification = AvisModification::select('avis_modifications.*')
+      ->where('avis_modifications.n_form' , $request->nForm)
+      ->orderby('avis_modifications.id' , 'desc')
+      ->get();
+      
+      
+      return response()->json([$data , $avis_modification]);
+      // return response()->json($data);
     }
 
     //MODELE 4
