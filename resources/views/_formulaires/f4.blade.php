@@ -457,15 +457,20 @@
         url : '{!! URL::to('/fill-form-f4') !!}',
         data: {'nForm': nForm},
         success: function(data) {
+          console.log('Teeeeeeeeeeest : ' ,data);
           let fitchedData = data[0];
+          let test = data[1]
           let groupe;
           // database date syntaxe
           let dateSyntaxe;
-
-          if(data[1].length > 0) 
-            groupe = data[1][0].new_groupe 
+          // console.log('----' , test);
+          if(test.length > 0) 
+           { groupe = test[0]['new_groupe'] }
           else 
-            groupe = data[0][0].groupe 
+            {
+              // console.log('Test' , fitchedData);
+              groupe = fitchedData[0]['groupe']
+            } 
 
           let fillFormation = '<option selected disabled>--veuillez sélectionner le thème </option>';
           // console.log('success formations test !!', fitchedData);
@@ -519,7 +524,7 @@
         url : '{!! URL::to('/fill-personnel-f4') !!}',
         data: {'idForm': idForm},
         success: function(data) {
-
+//  console.log('teeeeeest ' , data);
           let FetchedDATA = data[0]
           let Dates;
           // Database date syntaxe
@@ -535,7 +540,7 @@
           }
 
           console.log('success personnel !!', FetchedDATA);
-          console.log('Test' , FetchedDATA[0]['groupe']);
+          // console.log('Test' , FetchedDATA[0]['groupe']);
           let fillPersonnel = '<option selected disabled>--veuillez sélectionner le personnel</option>';
           let last_nonull_date = "";
           let fillDate = "";
@@ -560,7 +565,7 @@
               $('#ville').val(FetchedDATA[0].local_2)
             }
             
-            $('#groupe').val(FetchedDATA[0]['groupe']);
+            // $('#groupe').val(FetchedDATA[0]['groupe']);
             cin.html("");
             cin.append(fillPersonnel);
             }

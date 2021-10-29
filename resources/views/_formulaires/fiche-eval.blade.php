@@ -494,13 +494,13 @@
           if (data) {
             for (let i = 0; i < Object.keys(data).length; i++) {
               let tmpIndex = "date"+(i+1);
-                console.log("tmpIndex date : ", tmpIndex);
+                // console.log("tmpIndex date : ", tmpIndex);
                 
               //get last nonull date
               if (data[tmpIndex] != null && data[(tmpIndex+1)] == null) {
                 last_nonull_date = data[tmpIndex];
-                console.log("last non null date", last_nonull_date);
-                console.log("data[tmpIndex] ==>",data[tmpIndex]);
+                // console.log("last non null date", last_nonull_date);
+                // console.log("data[tmpIndex] ==>",data[tmpIndex]);
               }
             } //endfor
           } //endif 'data

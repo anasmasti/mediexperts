@@ -89,7 +89,8 @@ class FormulaireController extends Controller
       ->where('avis_modifications.n_form' , $request->nForm)
       ->orderBy('plan_formations.dt_debut', 'asc')
       ->orderBy('plan_formations.created_at', 'asc')
-      ->orderby('avis_modifications.id' , 'DESC')
+      ->orderby('avis_modifications.id' , 'desc')
+      // ->first();
       ->get();
 
       // $avis_modification = $request->nForm;
@@ -156,8 +157,9 @@ class FormulaireController extends Controller
       return response()->json([$data , $avis_modifications]);
     }
     public function FillPersonnelF4(Request $request) {
-      $data = Formation::select('personnels.*', 'formations.*', 'formation_personnels.*')
+      $data = Formation::select('personnels.*', 'formations.*', 'formation_personnels.*','plan_formations.dt_debut' , 'plan_formations.dt_fin' , 'plan_formations.n_form')
         ->join('formation_personnels', 'formations.id_form', 'formation_personnels.id_form')
+        ->join('plan_formations', 'formations.n_form', 'plan_formations.n_form')
         ->join('personnels', 'formation_personnels.cin', 'personnels.cin')
         ->where('formations.id_form', $request->idForm)
         ->get();
