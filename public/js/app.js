@@ -6204,7 +6204,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -6219,7 +6218,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       id_plan: null,
       selected_nrc_entrp: null,
       total_benif: null,
-      newDates: "",
+      // newDates: "",
       //Initial and new Info that Duplicated
       duplicated_Info: {
         initialOrganisme: "",
@@ -6300,23 +6299,23 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     handleAction: function handleAction(actionName, value) {
       this.$store.dispatch(actionName, value);
     },
-    initialDates: function initialDates() {
-      this.newDates = this.$store.getters["model3/newDates"];
-    },
+    // initialDates() {
+    //   this.newDates = this.$store.getters["model3/newDates"];
+    // },
     CalculNbTotalBenif: function CalculNbTotalBenif() {
       var _this = this;
 
-      this.total_benif = this.$store.getters["model3/GetNbTotalBenif"];
+      this.total_benif = this.$store.getters["model3/GetNbTotalBenif"]; // console.log('ppppppppppp', this.Info_AvisModif[0]);
 
-      if (this.Info_AvisModif) {
+      if (this.Info_AvisModif[0]) {
         // Inserting duplicated Information in duplicated_Info object
-        this.duplicated_Info.newOrganisme = this.NewAvisModif.length != 0 ? this.NewAvisModif[0].new_organisme : null;
-        this.duplicated_Info.newLieu = this.NewAvisModif.length != 0 ? this.NewAvisModif[0].new_lieu : null;
-        this.duplicated_Info.newHeurDebut = this.NewAvisModif.length != 0 ? this.NewAvisModif[0].new_hr_debut : null;
-        this.duplicated_Info.newHeurFin = this.NewAvisModif.length != 0 ? this.NewAvisModif[0].new_hr_fin : null;
-        this.duplicated_Info.new_pause = this.NewAvisModif.length != 0 ? this.NewAvisModif[0].new_pause : false;
-        this.duplicated_Info.newDateDeRealisation = this.NewAvisModif.length != 0 ? this.NewAvisModif[0].new_date_realisation : false;
-        this.duplicated_Info.newHasSameDates = this.NewAvisModif.length != 0 ? this.NewAvisModif[0].new_has_same_dates : true;
+        this.duplicated_Info.newOrganisme = this.NewAvisModif.length != 0 ? this.NewAvisModif.new_organisme : ' ';
+        this.duplicated_Info.newLieu = this.NewAvisModif.length != 0 ? this.NewAvisModif.new_lieu : null;
+        this.duplicated_Info.newHeurDebut = this.NewAvisModif.length != 0 ? this.NewAvisModif.new_hr_debut : null;
+        this.duplicated_Info.newHeurFin = this.NewAvisModif.length != 0 ? this.NewAvisModif.new_hr_fin : null;
+        this.duplicated_Info.new_pause = this.NewAvisModif.length != 0 ? this.NewAvisModif.new_pause : false;
+        this.duplicated_Info.newDateDeRealisation = this.NewAvisModif.length != 0 ? this.NewAvisModif.new_date_realisation : false;
+        this.duplicated_Info.newHasSameDates = this.NewAvisModif.length != 0 ? this.NewAvisModif.new_has_same_dates : true;
         this.duplicated_Info.initialOrganisme = this.Info_AvisModif[0].organisme;
         this.duplicated_Info.initialLieu = this.Info_AvisModif[0].lieu;
         this.duplicated_Info.heurDebutInitial = this.Info_AvisModif[0].hr_debut;
@@ -50441,7 +50440,6 @@ var render = function() {
                 click: function($event) {
                   _vm.handleAction("model3/GetSelectedTheme", _vm.nForm),
                     _vm.CalculNbTotalBenif(),
-                    _vm.initialDates(),
                     _vm.handleAction(
                       "model3/GetNomResponsable",
                       _vm.selected_nrc_entrp
@@ -50657,7 +50655,7 @@ var render = function() {
                 _vm.duplicated_Info.dateDeRealisation
                   ? _c(
                       "div",
-                      _vm._l(_vm.Info_AvisModif, function(initinf) {
+                      _vm._l(_vm.Info_AvisModif[0], function(initinf) {
                         return _c("div", { key: initinf.id_form }, [
                           _c(
                             "p",
@@ -50982,12 +50980,12 @@ var render = function() {
                   }
                 },
                 [
-                  _vm.newDates.new_date1
+                  _vm.NewAvisModif.new_date1
                     ? _c("span", [
                         _vm._v(
                           _vm._s(
                             _vm._f("moment")(
-                              _vm.newDates.new_date1,
+                              _vm.NewAvisModif.new_date1,
                               "DD/MM/YYYY"
                             )
                           ) + ";"
@@ -50995,12 +50993,12 @@ var render = function() {
                       ])
                     : _vm._e(),
                   _vm._v(" "),
-                  _vm.newDates.new_date2
+                  _vm.NewAvisModif.new_date2
                     ? _c("span", [
                         _vm._v(
                           _vm._s(
                             _vm._f("moment")(
-                              _vm.newDates.new_date2,
+                              _vm.NewAvisModif.new_date2,
                               "DD/MM/YYYY"
                             )
                           ) + ";"
@@ -51008,12 +51006,12 @@ var render = function() {
                       ])
                     : _vm._e(),
                   _vm._v(" "),
-                  _vm.newDates.new_date3
+                  _vm.NewAvisModif.new_date3
                     ? _c("span", [
                         _vm._v(
                           _vm._s(
                             _vm._f("moment")(
-                              _vm.newDates.new_date3,
+                              _vm.NewAvisModif.new_date3,
                               "DD/MM/YYYY"
                             )
                           ) + ";"
@@ -51021,12 +51019,12 @@ var render = function() {
                       ])
                     : _vm._e(),
                   _vm._v(" "),
-                  _vm.newDates.new_date4
+                  _vm.NewAvisModif.new_date4
                     ? _c("span", [
                         _vm._v(
                           _vm._s(
                             _vm._f("moment")(
-                              _vm.newDates.new_date4,
+                              _vm.NewAvisModif.new_date4,
                               "DD/MM/YYYY"
                             )
                           ) + ";"
@@ -51034,12 +51032,12 @@ var render = function() {
                       ])
                     : _vm._e(),
                   _vm._v(" "),
-                  _vm.newDates.new_date5
+                  _vm.NewAvisModif.new_date5
                     ? _c("span", [
                         _vm._v(
                           _vm._s(
                             _vm._f("moment")(
-                              _vm.newDates.new_date5,
+                              _vm.NewAvisModif.new_date5,
                               "DD/MM/YYYY"
                             )
                           ) + ";"
@@ -51047,12 +51045,12 @@ var render = function() {
                       ])
                     : _vm._e(),
                   _vm._v(" "),
-                  _vm.newDates.new_date6
+                  _vm.NewAvisModif.new_date6
                     ? _c("span", [
                         _vm._v(
                           _vm._s(
                             _vm._f("moment")(
-                              _vm.newDates.new_date6,
+                              _vm.NewAvisModif.new_date6,
                               "DD/MM/YYYY"
                             )
                           ) + ";"
@@ -51060,12 +51058,12 @@ var render = function() {
                       ])
                     : _vm._e(),
                   _vm._v(" "),
-                  _vm.newDates.new_date7
+                  _vm.NewAvisModif.new_date7
                     ? _c("span", [
                         _vm._v(
                           _vm._s(
                             _vm._f("moment")(
-                              _vm.newDates.new_date7,
+                              _vm.NewAvisModif.new_date7,
                               "DD/MM/YYYY"
                             )
                           ) + ";"
@@ -51073,12 +51071,12 @@ var render = function() {
                       ])
                     : _vm._e(),
                   _vm._v(" "),
-                  _vm.newDates.new_date8
+                  _vm.NewAvisModif.new_date8
                     ? _c("span", [
                         _vm._v(
                           _vm._s(
                             _vm._f("moment")(
-                              _vm.newDates.new_date8,
+                              _vm.NewAvisModif.new_date8,
                               "DD/MM/YYYY"
                             )
                           ) + ";"
@@ -51086,12 +51084,12 @@ var render = function() {
                       ])
                     : _vm._e(),
                   _vm._v(" "),
-                  _vm.newDates.new_date9
+                  _vm.NewAvisModif.new_date9
                     ? _c("span", [
                         _vm._v(
                           _vm._s(
                             _vm._f("moment")(
-                              _vm.newDates.new_date9,
+                              _vm.NewAvisModif.new_date9,
                               "DD/MM/YYYY"
                             )
                           ) + ";"
@@ -51099,12 +51097,12 @@ var render = function() {
                       ])
                     : _vm._e(),
                   _vm._v(" "),
-                  _vm.newDates.new_date10
+                  _vm.NewAvisModif.new_date10
                     ? _c("span", [
                         _vm._v(
                           _vm._s(
                             _vm._f("moment")(
-                              _vm.newDates.new_date10,
+                              _vm.NewAvisModif.new_date10,
                               "DD/MM/YYYY"
                             )
                           ) + ";"
@@ -72634,7 +72632,8 @@ var actions = {
                 }
               }).then(function (_ref15) {
                 var data = _ref15.data;
-                commit("SET_INITIAL_INFO_AVISMODIF", data); // console.log("initial info :", data);
+                commit("SET_INITIAL_INFO_AVISMODIF", data);
+                console.log("initial info :", data);
               })["catch"](function (err) {
                 console.log("err Fetching Info Initial Avis Modif", err);
               });
@@ -72690,8 +72689,7 @@ var actions = {
                 }
               }).then(function (_ref19) {
                 var data = _ref19.data;
-                commit("SET_NEW_AVIS_MODFI_INFO", data);
-                console.log("New avis modif", data);
+                commit("SET_NEW_AVIS_MODFI_INFO", data); // console.log("New avis modif" , data);
               })["catch"](function (err) {
                 console.log("err feetching old avis modif", err);
               });
@@ -72723,7 +72721,8 @@ var getters = {
     var initInfo, newInfo, dates, result;
     initInfo = newInfo = dates = []; // initInfo = state.Info_AvisModif
 
-    newInfo = state.NewAvisModif; // for (let i = 0; i < initInfo.length; i++) {
+    newInfo = state.NewAvisModif;
+    console.log('9bel daaaaaaaate', newInfo); // for (let i = 0; i < initInfo.length; i++) {
     //   if (newInfo.length != 0) {
     //     for (let j = 0; j < newInfo.length; j++) {
     //   result = initInfo[i].id_form == newInfo[j].id_form;
@@ -72740,9 +72739,10 @@ var getters = {
       //   if (result) dates = newInfo
       //   if (!result) dates = [initInfo[i], newInfo[j]]
       dates = newInfo;
+      console.log('daaaaaaaate', dates);
     }
 
-    return dates[0];
+    return dates;
   },
   // newDates: state => {
   //   let initInfo, newInfo, dates, result

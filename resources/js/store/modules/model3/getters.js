@@ -7,7 +7,8 @@ export const getters = {
 
     // initInfo = state.Info_AvisModif
     newInfo = state.NewAvisModif
-
+    console.log('9bel daaaaaaaate', newInfo);
+    
     // for (let i = 0; i < initInfo.length; i++) {
     //   if (newInfo.length != 0) {
     //     for (let j = 0; j < newInfo.length; j++) {
@@ -25,9 +26,10 @@ export const getters = {
       //   if (result) dates = newInfo
       //   if (!result) dates = [initInfo[i], newInfo[j]]
       dates = newInfo
+      console.log('daaaaaaaate', dates);
     }
 
-    return dates[0]
+    return dates
   },
 
   // newDates: state => {
