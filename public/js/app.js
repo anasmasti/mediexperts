@@ -2743,14 +2743,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return axios.get("/fill-plans-by-reference?idPlan=".concat(_this4.id_plan)).then(function (res) {
                   _this4.actions_by_ref = res.data;
                   _this4.curr_annee = res.data[0].annee;
-                  console.log("actions_by_ref : ", _this4.actions_by_ref);
                 }).then(function () {
                   // fill dates action
                   _this4.actions_by_ref.forEach(function (action) {
                     // calculer le cout estimatif
                     _this4.coutTotalPlan += action.bdg_total;
 
-                    _this4.FillDates(action.n_form);
+                    _this4.FillDates(action.n_form, action.id_form);
                   });
                 })["catch"](function (err) {
                   return console.error("err FillPlanByReference", err);
@@ -2759,7 +2758,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 3:
                 _this4.isAllLoaded = true; // console.log("isallloaded", this.isAllLoaded);
 
-              case 4:
+                console.log("actions_by_ref : ", _this4.actions_by_ref);
+
+              case 5:
               case "end":
                 return _context4.stop();
             }
@@ -2767,28 +2768,35 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee4);
       }))();
     },
-    FillDates: function FillDates(nform) {
+    FillDates: function FillDates(nform, idform) {
       var _this5 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
+        var DateSynx;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
           while (1) {
             switch (_context5.prev = _context5.next) {
               case 0:
-                console.log('test');
-                _context5.next = 3;
+                console.log('nform', nform);
+                console.log('idform', idform);
+                _context5.next = 4;
                 return axios.get("/fill-dates-plan?nForm=".concat(nform)).then(function (res) {
-                  // if (condition) {
-                  // }
-                  _this5.dates_actions = res.data;
-                  console.log(_this5.dates_actions);
+                  console.log('--', res.data);
+
+                  if (res.data[1].length > 0) {
+                    _this5.dates_actions = res.data[1];
+                    DateSynx = 'new_date';
+                  } else {
+                    _this5.dates_actions = res.data[0];
+                    DateSynx = 'date';
+                  }
                 }).then(function () {
-                  _this5.AssignDates(nform);
+                  _this5.AssignDates(nform, DateSynx);
                 })["catch"](function (err) {
                   return console.error("err FillDates", err);
                 });
 
-              case 3:
+              case 4:
               case "end":
                 return _context5.stop();
             }
@@ -2796,7 +2804,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee5);
       }))();
     },
-    AssignDates: function AssignDates(nform) {
+    AssignDates: function AssignDates(nform, DateSynx) {
       var _this6 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee6() {
@@ -2814,8 +2822,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                         });
 
                         for (var i = 1; i < 30; i++) {
+                          // if (action.dates.date1) {
                           //************************ vvv [dynamic key assignement] vvv */
-                          Object.assign(action.dates, _defineProperty({}, "date".concat(i), forma["date".concat(i)]));
+                          Object.assign(action.dates, _defineProperty({}, "date".concat(i), forma["".concat(DateSynx).concat(i)])); // }
+                          // else
+                          //   Object.assign(action.dates, {[`date${i}`]: forma[`date${i}`]});
                         }
                       } // console.log("assign dates action: ", action);
 
