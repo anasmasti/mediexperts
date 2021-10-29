@@ -382,7 +382,7 @@
       let fillDropdown = '';
       $.get('/fill-action-form', {'idPlan': idPlan})
         .done((data) => {
-          console.log("success action !!", data);
+          console.log("success fill action data !!", data);
           data.forEach(elem => {
             fillDropdown += `<option value="${elem.n_form}">${elem.annee} > ${elem.nom_theme} </option>`;
           });
@@ -409,8 +409,24 @@
         type: 'GET',
         url: '{!! URL::to('/fill-fiche-evaluation') !!}',
         data: {'nForm': nForm},
+<<<<<<< HEAD
+=======
+        // console.log('==>',data);
+>>>>>>> 0d60c007bd8accd0f36af95f1c5547ef09901b05
         success: function(data) {
           console.log("success fiche eval infos !!", data);
+// ---------------------------------------------
+          // let fitchedData = data[0];
+          // let groupe;
+          // // database date syntaxe
+          // let dateSyntaxe;
+
+          // if(data[1].length > 0) 
+          //   groupe = data[1][0].new_groupe 
+          // else 
+          //   groupe = data[0][0].groupe 
+// ---------------------------------------------
+          
           let fillFormation = `<option selected disabled>--sélectionner la formation</option>`;
           if (data.length > 0) {
             for (let i = 0; i < data.length; i++) {
@@ -427,6 +443,27 @@
           $('#lieu').html(data[0]['lieu'].toUpperCase());
           $('#ville').val(data[0]['local_2'].toUpperCase());
           $('#animateur').val(data[0]['nom_interv'].toUpperCase()+" "+data[0]['prenom_interv'].toUpperCase());
+          // let fitchedData = data[0];
+          // let groupe;
+          // // database date syntaxe
+          // let dateSyntaxe;
+
+          // if(data[1].length > 0) 
+          //   groupe = data[1][0].new_groupe 
+          // else 
+          //   groupe = data[0][0].groupe 
+
+          // let fillFormation = '<option selected disabled>--veuillez sélectionner le thème </option>';
+          // // console.log('success formations test !!', fitchedData);
+          // if (fitchedData.length > 0) {
+          //   for (let i = 0; i < fitchedData.length; i++) {
+          //     fillFormation += `<optgroup label=" groupe: ${groupe}"><option value="`+fitchedData[i].id_form+`"> ${fitchedData[i].nom_theme}  </option></optgroup>`;
+            
+          //   formation.html("");
+          //   formation.append(fillFormation);
+          //   }
+          // }
+         
         },
         error: function(error) { console.log("error getting formations !!", error) }
       }); //ajax
@@ -441,15 +478,32 @@
         data: {'idForm': idForm},
         success: function(data) {
           console.log("success fiche eval infos !!", data);
+          // --------------------------------------
+          // let FetchedDATA = data[0]
+          // let Dates;
+          // // Database date syntaxe
+          // let DateSynx;
+
+          // if (data[1].length > 0){
+          //   Dates = data[1];
+          //   DateSynx = 'new_date'
+          // } 
+          // else {
+          //   Dates = data[0];
+          //   DateSynx = 'date'
+          // }
+          // --------------------------------------
           let last_nonull_date = "";
           if (data) {
             for (let i = 0; i < Object.keys(data).length; i++) {
               let tmpIndex = "date"+(i+1);
                 console.log("tmpIndex date : ", tmpIndex);
+                
               //get last nonull date
               if (data[tmpIndex] != null && data[(tmpIndex+1)] == null) {
                 last_nonull_date = data[tmpIndex];
                 console.log("last non null date", last_nonull_date);
+                console.log("data[tmpIndex] ==>",data[tmpIndex]);
               }
             } //endfor
           } //endif 'data
