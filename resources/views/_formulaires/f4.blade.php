@@ -460,17 +460,17 @@
           console.log('Teeeeeeeeeeest : ' ,data);
           let fitchedData = data[0];
           let test = data[1]
-          let groupe;
+          let groupe = fitchedData['groupe'];
           // database date syntaxe
           let dateSyntaxe;
           // console.log('----' , test);
-          if(test.length > 0) 
-           { groupe = test[0]['new_groupe'] }
-          else 
-            {
-              // console.log('Test' , fitchedData);
-              groupe = fitchedData[0]['groupe']
-            } 
+          // if(test.length > 0) 
+          //  { groupe = test[0]['new_groupe'] }
+          // else 
+          //   {
+          //     // console.log('Test' , fitchedData);
+          //     groupe = fitchedData[0]['groupe']
+          //   } 
 
           let fillFormation = '<option selected disabled>--veuillez sélectionner le thème </option>';
           // console.log('success formations test !!', fitchedData);
@@ -565,7 +565,7 @@
               $('#ville').val(FetchedDATA[0].local_2)
             }
             
-            // $('#groupe').val(FetchedDATA[0]['groupe']);
+            $('#groupe').val(FetchedDATA[0]['groupe']);
             cin.html("");
             cin.append(fillPersonnel);
             }

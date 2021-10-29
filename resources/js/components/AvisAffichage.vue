@@ -173,7 +173,7 @@ export default {
     </div>
 
     <div class="btn-group">
-      <button class="btn-btn-primary" id="dateBtn" v-on:click="FillReferencesPlan(),setLieuAndAnnee();" style="background: #00ff11; margin: .5rem 0; padding: .5rem;">
+      <button class="btn-btn-primary" id="dateBtn" v-on:click="FillReferencesPlan(),setLieuAndAnnee();" style="background: #0ACBC1; margin: .5rem 0; padding: 1rem;border: none;border-radius:10px; color:white;cursor:pointer">
         Remplir les dates
       </button>
     </div>
