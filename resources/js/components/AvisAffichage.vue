@@ -69,45 +69,57 @@ export default {
         .then((res) => {
           this.actions_by_ref = res.data;
           this.curr_annee = res.data[0].annee;
-          console.log("actions_by_ref : ", this.actions_by_ref)
         })
         .then(() => {
           // fill dates action
           this.actions_by_ref.forEach((action) => {
             // calculer le cout estimatif
             this.coutTotalPlan += action.bdg_total;
-            this.FillDates(action.n_form);
+            this.FillDates(action.n_form , action.id_form);
           });
         })
         .catch((err) => console.error("err FillPlanByReference", err));
       this.isAllLoaded = true;
       // console.log("isallloaded", this.isAllLoaded);
+            console.log("actions_by_ref : ", this.actions_by_ref)
     },
-    async FillDates(nform) {
-      console.log('test');
+    async FillDates(nform , idform) {
+      console.log('nform' , nform);
+      console.log('idform' , idform);
+      let DateSynx;
       await axios.get(`/fill-dates-plan?nForm=${nform}`)
         .then((res) => {
-          // if (condition) {
-            
-          // }
-          this.dates_actions = res.data;
-          console.log(this.dates_actions);
+          console.log('--' , res.data);
+          if (res.data[1].length > 0)
+          {
+             this.dates_actions = res.data[1];
+             DateSynx = 'new_date'
+          }
+          else
+          {
+            this.dates_actions = res.data[0];
+            DateSynx = 'date'
+          }
         })
         .then(() => {
-          this.AssignDates(nform);
+          this.AssignDates(nform , DateSynx);
         })
         .catch((err) => console.error("err FillDates", err));
          
     },
-    async AssignDates(nform) {
+    async AssignDates(nform , DateSynx) {
       await this.actions_by_ref.forEach(action => {
         if (action.n_form == nform) {
           this.dates_actions.forEach(forma => {
             if (forma.n_form == nform) {
               Object.assign(action, {dates: {}});
               for (let i = 1; i < 30; i++) {
+                // if (action.dates.date1) {
                 //************************ vvv [dynamic key assignement] vvv */
-                Object.assign(action.dates, {[`date${i}`]: forma[`date${i}`]});
+                  Object.assign(action.dates, {[`date${i}`]: forma[`${DateSynx}${i}`]});
+                // }
+                // else
+                //   Object.assign(action.dates, {[`date${i}`]: forma[`date${i}`]});
               }
             }
             // console.log("assign dates action: ", action);

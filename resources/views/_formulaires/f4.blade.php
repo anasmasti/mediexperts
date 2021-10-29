@@ -552,7 +552,7 @@
                   }
               }
 
-              // fetch dates 
+              // fetch dates
               fillDate = "De "+DateFormat(Dates[0][DateSynx + '1'])+" à "+DateFormat(last_nonull_date);
               $('#dates').html("");
               $('#dates').val(fillDate);
