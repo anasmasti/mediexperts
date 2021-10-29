@@ -234,11 +234,11 @@
         <!-- DATES -->
         <div style="margin-top: 10px" v-if="!duplicated_Info.hasSameDates">
           <strong>Dates initiales de réalisation :</strong>
-          <div v-if="!duplicated_Info.dateDeRealisation">--</div>
-          <div v-if="duplicated_Info.dateDeRealisation">
+          <!-- <div v-if="!duplicated_Info.dateDeRealisation">--</div> -->
+          <div>
             <div
               class=""
-              v-for="initinf in Info_AvisModif[0]"
+              v-for="initinf in Info_AvisModif"
               :key="initinf.id_form"
             >
               <p
@@ -453,30 +453,31 @@
         </div>
         <div style="margin-top: 10px">
           <strong>Nouvelle organisation horaire :</strong>
-          <div
-            v-if="!duplicated_Info.newHeurDebut || !duplicated_Info.newHeurFin"
-          >
-            --
-          </div>
-          <div
-            class="d-flex"
-            v-if="duplicated_Info.newHeurDebut || duplicated_Info.newHeurFin"
-          >
+
+          <div class="d-flex">
             <div>
               <span>heure début : </span>
               <input
+                v-if="duplicated_Info.newHeurDebut"
                 type="text"
                 :value="duplicated_Info.newHeurDebut"
                 disabled
               />
+              <span v-if="!duplicated_Info.newHeurDebut">--</span>
             </div>
             <div>
               <span>heure fin : </span>
-              <input type="text" :value="duplicated_Info.newHeurFin" disabled />
+              <input
+                v-if="duplicated_Info.newHeurFin"
+                type="text"
+                :value="duplicated_Info.newHeurFin"
+                disabled
+              />
+              <span v-if="!duplicated_Info.newHeurFin">--</span>
             </div>
           </div>
           <div class="d-flix">
-            <div v-if="!duplicated_Info.new_pause">--</div>
+            <!-- <div v-if="!duplicated_Info.new_pause">--</div> -->
             <p v-if="duplicated_Info.new_pause">
               Avec pause déjeuner de : 1 heure
             </p>
@@ -601,24 +602,16 @@ export default {
       if (this.Info_AvisModif[0]) {
         // Inserting duplicated Information in duplicated_Info object
         this.duplicated_Info.newOrganisme =
-          this.NewAvisModif.length != 0
-            ? this.NewAvisModif.new_organisme
-            : ' ';
+          this.NewAvisModif.length != 0 ? this.NewAvisModif.new_organisme : " ";
 
         this.duplicated_Info.newLieu =
           this.NewAvisModif.length != 0 ? this.NewAvisModif.new_lieu : null;
         this.duplicated_Info.newHeurDebut =
-          this.NewAvisModif.length != 0
-            ? this.NewAvisModif.new_hr_debut
-            : null;
+          this.NewAvisModif.length != 0 ? this.NewAvisModif.new_hr_debut : null;
         this.duplicated_Info.newHeurFin =
-          this.NewAvisModif.length != 0
-            ? this.NewAvisModif.new_hr_fin
-            : null;
+          this.NewAvisModif.length != 0 ? this.NewAvisModif.new_hr_fin : null;
         this.duplicated_Info.new_pause =
-          this.NewAvisModif.length != 0
-            ? this.NewAvisModif.new_pause
-            : false;
+          this.NewAvisModif.length != 0 ? this.NewAvisModif.new_pause : false;
         this.duplicated_Info.newDateDeRealisation =
           this.NewAvisModif.length != 0
             ? this.NewAvisModif.new_date_realisation

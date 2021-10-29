@@ -6204,6 +6204,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -6309,7 +6310,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       if (this.Info_AvisModif[0]) {
         // Inserting duplicated Information in duplicated_Info object
-        this.duplicated_Info.newOrganisme = this.NewAvisModif.length != 0 ? this.NewAvisModif.new_organisme : ' ';
+        this.duplicated_Info.newOrganisme = this.NewAvisModif.length != 0 ? this.NewAvisModif.new_organisme : " ";
         this.duplicated_Info.newLieu = this.NewAvisModif.length != 0 ? this.NewAvisModif.new_lieu : null;
         this.duplicated_Info.newHeurDebut = this.NewAvisModif.length != 0 ? this.NewAvisModif.new_hr_debut : null;
         this.duplicated_Info.newHeurFin = this.NewAvisModif.length != 0 ? this.NewAvisModif.new_hr_fin : null;
@@ -50652,161 +50653,155 @@ var render = function() {
             ? _c("div", { staticStyle: { "margin-top": "10px" } }, [
                 _c("strong", [_vm._v("Dates initiales de réalisation :")]),
                 _vm._v(" "),
-                !_vm.duplicated_Info.dateDeRealisation
-                  ? _c("div", [_vm._v("--")])
-                  : _vm._e(),
-                _vm._v(" "),
-                _vm.duplicated_Info.dateDeRealisation
-                  ? _c(
-                      "div",
-                      _vm._l(_vm.Info_AvisModif[0], function(initinf) {
-                        return _c("div", { key: initinf.id_form }, [
-                          _c(
-                            "p",
-                            {
-                              staticStyle: {
-                                display: "flex !important",
-                                "flex-wrap": "nowrap !important",
-                                "line-height": "1px"
-                              }
-                            },
-                            [
-                              initinf.date1
-                                ? _c("span", [
-                                    _vm._v(
-                                      _vm._s(
-                                        _vm._f("moment")(
-                                          initinf.date1,
-                                          "DD/MM/YYYY"
-                                        )
-                                      ) + ";"
+                _c(
+                  "div",
+                  _vm._l(_vm.Info_AvisModif, function(initinf) {
+                    return _c("div", { key: initinf.id_form }, [
+                      _c(
+                        "p",
+                        {
+                          staticStyle: {
+                            display: "flex !important",
+                            "flex-wrap": "nowrap !important",
+                            "line-height": "1px"
+                          }
+                        },
+                        [
+                          initinf.date1
+                            ? _c("span", [
+                                _vm._v(
+                                  _vm._s(
+                                    _vm._f("moment")(
+                                      initinf.date1,
+                                      "DD/MM/YYYY"
                                     )
-                                  ])
-                                : _vm._e(),
-                              _vm._v(" "),
-                              initinf.date2
-                                ? _c("span", [
-                                    _vm._v(
-                                      _vm._s(
-                                        _vm._f("moment")(
-                                          initinf.date2,
-                                          "DD/MM/YYYY"
-                                        )
-                                      ) + ";"
+                                  ) + ";"
+                                )
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          initinf.date2
+                            ? _c("span", [
+                                _vm._v(
+                                  _vm._s(
+                                    _vm._f("moment")(
+                                      initinf.date2,
+                                      "DD/MM/YYYY"
                                     )
-                                  ])
-                                : _vm._e(),
-                              _vm._v(" "),
-                              initinf.date3
-                                ? _c("span", [
-                                    _vm._v(
-                                      _vm._s(
-                                        _vm._f("moment")(
-                                          initinf.date3,
-                                          "DD/MM/YYYY"
-                                        )
-                                      ) + ";"
+                                  ) + ";"
+                                )
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          initinf.date3
+                            ? _c("span", [
+                                _vm._v(
+                                  _vm._s(
+                                    _vm._f("moment")(
+                                      initinf.date3,
+                                      "DD/MM/YYYY"
                                     )
-                                  ])
-                                : _vm._e(),
-                              _vm._v(" "),
-                              initinf.date4
-                                ? _c("span", [
-                                    _vm._v(
-                                      _vm._s(
-                                        _vm._f("moment")(
-                                          initinf.date4,
-                                          "DD/MM/YYYY"
-                                        )
-                                      ) + ";"
+                                  ) + ";"
+                                )
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          initinf.date4
+                            ? _c("span", [
+                                _vm._v(
+                                  _vm._s(
+                                    _vm._f("moment")(
+                                      initinf.date4,
+                                      "DD/MM/YYYY"
                                     )
-                                  ])
-                                : _vm._e(),
-                              _vm._v(" "),
-                              initinf.date5
-                                ? _c("span", [
-                                    _vm._v(
-                                      _vm._s(
-                                        _vm._f("moment")(
-                                          initinf.date5,
-                                          "DD/MM/YYYY"
-                                        )
-                                      ) + ";"
+                                  ) + ";"
+                                )
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          initinf.date5
+                            ? _c("span", [
+                                _vm._v(
+                                  _vm._s(
+                                    _vm._f("moment")(
+                                      initinf.date5,
+                                      "DD/MM/YYYY"
                                     )
-                                  ])
-                                : _vm._e(),
-                              _vm._v(" "),
-                              initinf.date6
-                                ? _c("span", [
-                                    _vm._v(
-                                      _vm._s(
-                                        _vm._f("moment")(
-                                          initinf.date6,
-                                          "DD/MM/YYYY"
-                                        )
-                                      ) + ";"
+                                  ) + ";"
+                                )
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          initinf.date6
+                            ? _c("span", [
+                                _vm._v(
+                                  _vm._s(
+                                    _vm._f("moment")(
+                                      initinf.date6,
+                                      "DD/MM/YYYY"
                                     )
-                                  ])
-                                : _vm._e(),
-                              _vm._v(" "),
-                              initinf.date7
-                                ? _c("span", [
-                                    _vm._v(
-                                      _vm._s(
-                                        _vm._f("moment")(
-                                          initinf.date7,
-                                          "DD/MM/YYYY"
-                                        )
-                                      ) + ";"
+                                  ) + ";"
+                                )
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          initinf.date7
+                            ? _c("span", [
+                                _vm._v(
+                                  _vm._s(
+                                    _vm._f("moment")(
+                                      initinf.date7,
+                                      "DD/MM/YYYY"
                                     )
-                                  ])
-                                : _vm._e(),
-                              _vm._v(" "),
-                              initinf.date8
-                                ? _c("span", [
-                                    _vm._v(
-                                      _vm._s(
-                                        _vm._f("moment")(
-                                          initinf.date8,
-                                          "DD/MM/YYYY"
-                                        )
-                                      ) + ";"
+                                  ) + ";"
+                                )
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          initinf.date8
+                            ? _c("span", [
+                                _vm._v(
+                                  _vm._s(
+                                    _vm._f("moment")(
+                                      initinf.date8,
+                                      "DD/MM/YYYY"
                                     )
-                                  ])
-                                : _vm._e(),
-                              _vm._v(" "),
-                              initinf.date9
-                                ? _c("span", [
-                                    _vm._v(
-                                      _vm._s(
-                                        _vm._f("moment")(
-                                          initinf.date9,
-                                          "DD/MM/YYYY"
-                                        )
-                                      ) + ";"
+                                  ) + ";"
+                                )
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          initinf.date9
+                            ? _c("span", [
+                                _vm._v(
+                                  _vm._s(
+                                    _vm._f("moment")(
+                                      initinf.date9,
+                                      "DD/MM/YYYY"
                                     )
-                                  ])
-                                : _vm._e(),
-                              _vm._v(" "),
-                              initinf.date10
-                                ? _c("span", [
-                                    _vm._v(
-                                      _vm._s(
-                                        _vm._f("moment")(
-                                          initinf.date10,
-                                          "DD/MM/YYYY"
-                                        )
-                                      ) + ";"
+                                  ) + ";"
+                                )
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          initinf.date10
+                            ? _c("span", [
+                                _vm._v(
+                                  _vm._s(
+                                    _vm._f("moment")(
+                                      initinf.date10,
+                                      "DD/MM/YYYY"
                                     )
-                                  ])
-                                : _vm._e()
-                            ]
-                          )
-                        ])
-                      }),
-                      0
-                    )
-                  : _vm._e()
+                                  ) + ";"
+                                )
+                              ])
+                            : _vm._e()
+                        ]
+                      )
+                    ])
+                  }),
+                  0
+                )
               ])
             : _vm._e(),
           _vm._v(" "),
@@ -51151,37 +51146,39 @@ var render = function() {
           _c("div", { staticStyle: { "margin-top": "10px" } }, [
             _c("strong", [_vm._v("Nouvelle organisation horaire :")]),
             _vm._v(" "),
-            !_vm.duplicated_Info.newHeurDebut || !_vm.duplicated_Info.newHeurFin
-              ? _c("div", [_vm._v("\n          --\n        ")])
-              : _vm._e(),
-            _vm._v(" "),
-            _vm.duplicated_Info.newHeurDebut || _vm.duplicated_Info.newHeurFin
-              ? _c("div", { staticClass: "d-flex" }, [
-                  _c("div", [
-                    _c("span", [_vm._v("heure début : ")]),
-                    _vm._v(" "),
-                    _c("input", {
+            _c("div", { staticClass: "d-flex" }, [
+              _c("div", [
+                _c("span", [_vm._v("heure début : ")]),
+                _vm._v(" "),
+                _vm.duplicated_Info.newHeurDebut
+                  ? _c("input", {
                       attrs: { type: "text", disabled: "" },
                       domProps: { value: _vm.duplicated_Info.newHeurDebut }
                     })
-                  ]),
-                  _vm._v(" "),
-                  _c("div", [
-                    _c("span", [_vm._v("heure fin : ")]),
-                    _vm._v(" "),
-                    _c("input", {
+                  : _vm._e(),
+                _vm._v(" "),
+                !_vm.duplicated_Info.newHeurDebut
+                  ? _c("span", [_vm._v("--")])
+                  : _vm._e()
+              ]),
+              _vm._v(" "),
+              _c("div", [
+                _c("span", [_vm._v("heure fin : ")]),
+                _vm._v(" "),
+                _vm.duplicated_Info.newHeurFin
+                  ? _c("input", {
                       attrs: { type: "text", disabled: "" },
                       domProps: { value: _vm.duplicated_Info.newHeurFin }
                     })
-                  ])
-                ])
-              : _vm._e(),
+                  : _vm._e(),
+                _vm._v(" "),
+                !_vm.duplicated_Info.newHeurFin
+                  ? _c("span", [_vm._v("--")])
+                  : _vm._e()
+              ])
+            ]),
             _vm._v(" "),
             _c("div", { staticClass: "d-flix" }, [
-              !_vm.duplicated_Info.new_pause
-                ? _c("div", [_vm._v("--")])
-                : _vm._e(),
-              _vm._v(" "),
               _vm.duplicated_Info.new_pause
                 ? _c("p", [
                     _vm._v(
