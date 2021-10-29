@@ -80,7 +80,7 @@
 
       <button
         class="hide-from-print"
-        style="background-color: #eaeaea; padding: 0.5rem; margin-top: 10px"
+        style="background: #0ACBC1; margin: .5rem 0; padding: 1rem;border: none;border-radius:10px; color:white;cursor:pointer"
         type="button"
         @click="
           handleAction('model3/GetSelectedTheme', nForm),

@@ -50431,9 +50431,13 @@ var render = function() {
             {
               staticClass: "hide-from-print",
               staticStyle: {
-                "background-color": "#eaeaea",
-                padding: "0.5rem",
-                "margin-top": "10px"
+                background: "#0ACBC1",
+                margin: ".5rem 0",
+                padding: "1rem",
+                border: "none",
+                "border-radius": "10px",
+                color: "white",
+                cursor: "pointer"
               },
               attrs: { type: "button" },
               on: {
@@ -72947,8 +72951,8 @@ var state = {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\HP\Desktop\Projects\Work\Mediexperts_App\mediexperts_dev\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\HP\Desktop\Projects\Work\Mediexperts_App\mediexperts_dev\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\HP\Desktop\Project\Mediexperts-App\mediexperts\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\HP\Desktop\Project\Mediexperts-App\mediexperts\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
