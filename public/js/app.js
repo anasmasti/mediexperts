@@ -2749,7 +2749,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     // calculer le cout estimatif
                     _this4.coutTotalPlan += action.bdg_total;
 
-                    _this4.FillDates(action.n_form, action.id_form);
+                    _this4.FillDates(action.n_form);
                   });
                 })["catch"](function (err) {
                   return console.error("err FillPlanByReference", err);
@@ -2757,10 +2757,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 3:
                 _this4.isAllLoaded = true; // console.log("isallloaded", this.isAllLoaded);
+                // console.log("actions_by_ref : ", this.actions_by_ref)
 
-                console.log("actions_by_ref : ", _this4.actions_by_ref);
-
-              case 5:
+              case 4:
               case "end":
                 return _context4.stop();
             }
@@ -2768,23 +2767,21 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee4);
       }))();
     },
-    FillDates: function FillDates(nform, idform) {
+    FillDates: function FillDates(nform) {
       var _this5 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
-        var DateSynx;
+        var DateSynx, avi_modif;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
           while (1) {
             switch (_context5.prev = _context5.next) {
               case 0:
-                console.log('nform', nform);
-                console.log('idform', idform);
-                _context5.next = 4;
+                _context5.next = 2;
                 return axios.get("/fill-dates-plan?nForm=".concat(nform)).then(function (res) {
-                  console.log('--', res.data);
+                  avi_modif = res.data[1];
 
-                  if (res.data[1].length > 0) {
-                    _this5.dates_actions = res.data[1];
+                  if (avi_modif.length > 0) {
+                    _this5.dates_actions = [avi_modif[0]];
                     DateSynx = 'new_date';
                   } else {
                     _this5.dates_actions = res.data[0];
@@ -2796,7 +2793,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   return console.error("err FillDates", err);
                 });
 
-              case 4:
+              case 2:
               case "end":
                 return _context5.stop();
             }
@@ -6693,15 +6690,24 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this4 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+        var DateSynx, avi_modif;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
           while (1) {
             switch (_context4.prev = _context4.next) {
               case 0:
                 _context4.next = 2;
                 return axios.get("/fill-dates-plan?nForm=".concat(nform)).then(function (res) {
-                  _this4.dates_actions = res.data[0];
+                  avi_modif = res.data[1];
+
+                  if (avi_modif.length > 0) {
+                    _this4.dates_actions = [avi_modif[0]];
+                    DateSynx = 'new_date';
+                  } else {
+                    _this4.dates_actions = res.data[0];
+                    DateSynx = 'date';
+                  }
                 }).then(function () {
-                  _this4.AssignDates(nform);
+                  _this4.AssignDates(nform, DateSynx);
                 })["catch"](function (err) {
                   return console.error("err FillDates", err);
                 });
@@ -6714,7 +6720,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee4);
       }))();
     },
-    AssignDates: function AssignDates(nform) {
+    AssignDates: function AssignDates(nform, DateSynx) {
       var _this5 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
@@ -6733,7 +6739,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                         for (var i = 1; i < 30; i++) {
                           //************************ vvv [dynamic key assignement] vvv */
-                          Object.assign(action.dates, _defineProperty({}, "date".concat(i), forma["date".concat(i)]));
+                          Object.assign(action.dates, _defineProperty({}, "date".concat(i), forma["".concat(DateSynx).concat(i)]));
                         }
                       }
 
@@ -72937,8 +72943,8 @@ var state = {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\HP\Desktop\Projects\Work\Mediexperts_App\mediexperts_dev\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\HP\Desktop\Projects\Work\Mediexperts_App\mediexperts_dev\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\HP\Desktop\Projects\Laravel\mediexperts\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\HP\Desktop\Projects\Laravel\mediexperts\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

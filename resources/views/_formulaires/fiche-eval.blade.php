@@ -496,6 +496,16 @@
           // }
           // --------------------------------------
           let last_nonull_date = "";
+<<<<<<< HEAD
+          if (data) {
+            for (let i = 0; i < Object.keys(data).length; i++) {
+              let tmpIndex = "date"+(i+1);
+                // console.log("tmpIndex date : ", tmpIndex);
+                
+              //get last nonull date
+              if (data[tmpIndex] != null && data[(tmpIndex+1)] == null) {
+                last_nonull_date = data[tmpIndex];
+=======
           if (Dates) {
             for (let i = 0; i < Object.keys(Dates).length; i++) {
               let tmpIndex = DateSynx+(i+1);
@@ -504,6 +514,7 @@
               //get last nonull date
               if (Dates[tmpIndex] != null && Dates[(tmpIndex+1)] == null) {
                 last_nonull_date = Dates[tmpIndex];
+>>>>>>> 62850a2e180d0627fd4fab1e1a72e0d0a1521d5f
                 // console.log("last non null date", last_nonull_date);
                 // console.log("data[tmpIndex] ==>",data[tmpIndex]);
               }
