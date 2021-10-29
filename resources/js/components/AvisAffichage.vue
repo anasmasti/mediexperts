@@ -75,24 +75,23 @@ export default {
           this.actions_by_ref.forEach((action) => {
             // calculer le cout estimatif
             this.coutTotalPlan += action.bdg_total;
-            this.FillDates(action.n_form , action.id_form);
+            this.FillDates(action.n_form);
           });
         })
         .catch((err) => console.error("err FillPlanByReference", err));
       this.isAllLoaded = true;
       // console.log("isallloaded", this.isAllLoaded);
-            console.log("actions_by_ref : ", this.actions_by_ref)
+            // console.log("actions_by_ref : ", this.actions_by_ref)
     },
-    async FillDates(nform , idform) {
-      console.log('nform' , nform);
-      console.log('idform' , idform);
+    async FillDates(nform ) {
       let DateSynx;
+      let avi_modif;
       await axios.get(`/fill-dates-plan?nForm=${nform}`)
         .then((res) => {
-          console.log('--' , res.data);
-          if (res.data[1].length > 0)
+          avi_modif = res.data[1]
+          if (avi_modif.length > 0)
           {
-             this.dates_actions = res.data[1];
+             this.dates_actions = [avi_modif[0]];
              DateSynx = 'new_date'
           }
           else
@@ -174,7 +173,7 @@ export default {
     </div>
 
     <div class="btn-group">
-      <button class="btn-btn-primary" id="dateBtn" v-on:click="FillReferencesPlan(),setLieuAndAnnee();" style="background: #00ff11; margin: .5rem 0; padding: .5rem;">
+      <button class="btn-btn-primary" id="dateBtn" v-on:click="FillReferencesPlan(),setLieuAndAnnee();" style="background: #0ACBC1; margin: .5rem 0; padding: 1rem;border: none;border-radius:10px; color:white;cursor:pointer">
         Remplir les dates
       </button>
     </div>

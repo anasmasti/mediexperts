@@ -89,7 +89,8 @@
 
 <div class="" id="paper" style="font-family:Calibri, 'Segoe UI', Geneva, Verdana, sans-serif; background-color: #fff;">
 
-<div style="width:100%; height:130px;"><!--space--></div>
+  <div style="width:100%; height:130px;"><!--space--></div>
+
   <input type="hidden" id="idForm" value="{{$formation->id_form}}" readonly>
   <table>
     <tr>
@@ -136,17 +137,21 @@
       <td>
         {{ $formation["nom_theme"] }} <br />
         @php
-          $action = \App\PlanFormation::select('plan_formations.nb_grp')
+          $action = \App\PlanFormation::select('plan_formations.*', 'formations.*')
             ->join('formations', 'plan_formations.n_form', 'formations.n_form')
             ->where('plan_formations.n_form', $formation["n_form"])
             ->first();
+           $avis_modification = \App\AvisModification:: select('avis_modifications.*')
+            ->where('avis_modifications.n_form', $action['n_form'])
+            ->orderby('created_at','DESC')
+            ->first(); 
         @endphp
         @if ($action["nb_grp"] > 1)
           Groupe {{ $formation["groupe"] }}
         @endif
       </td>
       <td>
-        @empty($avis_modifications)
+      @empty($avis_modification)
         @if ($formation["date1"] != null) <span class="dates"> {{ Carbon\Carbon::parse($formation["date1"])->format('d/m/Y') }}</span> @endif
         @if ($formation["date2"] != null) <span class="dates"> {{ Carbon\Carbon::parse($formation["date2"])->format('d/m/Y') }}</span> @endif
         @if ($formation["date3"] != null) <span class="dates"> {{ Carbon\Carbon::parse($formation["date3"])->format('d/m/Y') }}</span> @endif
@@ -177,21 +182,20 @@
         @if ($formation["date28"] != null) <span class="dates"> {{ Carbon\Carbon::parse($formation["date28"])->format('d/m/Y') }}</span> @endif
         @if ($formation["date29"] != null) <span class="dates"> {{ Carbon\Carbon::parse($formation["date29"])->format('d/m/Y') }}</span> @endif
         @if ($formation["date30"] != null) <span class="dates"> {{ Carbon\Carbon::parse($formation["date30"])->format('d/m/Y') }}</span> @endif
-        @endempty
-       
-       @empty(!$avis_modifications)
-       @if ($avis_modifications["new_date1"] != null) <span class="dates"> {{ Carbon\Carbon::parse($avis_modifications["new_date1"])->format('d/m/Y') }}</span> @endif
-       @if ($avis_modifications["new_date2"] != null) <span class="dates"> {{ Carbon\Carbon::parse($avis_modifications["new_date2"])->format('d/m/Y') }}</span> @endif
-       @if ($avis_modifications["new_date3"] != null) <span class="dates"> {{ Carbon\Carbon::parse($avis_modifications["new_date3"])->format('d/m/Y') }}</span> @endif
-       @if ($avis_modifications["new_date4"] != null) <span class="dates"> {{ Carbon\Carbon::parse($avis_modifications["new_date4"])->format('d/m/Y') }}</span> @endif
-       @if ($avis_modifications["new_date5"] != null) <span class="dates"> {{ Carbon\Carbon::parse($avis_modifications["new_date5"])->format('d/m/Y') }}</span> @endif
-       @if ($avis_modifications["new_date6"] != null) <span class="dates"> {{ Carbon\Carbon::parse($avis_modifications["new_date6"])->format('d/m/Y') }}</span> @endif
-       @if ($avis_modifications["new_date7"] != null) <span class="dates"> {{ Carbon\Carbon::parse($avis_modifications["new_date7"])->format('d/m/Y') }}</span> @endif
-       @if ($avis_modifications["new_date8"] != null) <span class="dates"> {{ Carbon\Carbon::parse($avis_modifications["new_date8"])->format('d/m/Y') }}</span> @endif
-       @if ($avis_modifications["new_date9"] != null) <span class="dates"> {{ Carbon\Carbon::parse($avis_modifications["new_date9"])->format('d/m/Y') }}</span> @endif
-       @if ($avis_modifications["new_date10"] != null) <span class="dates"> {{ Carbon\Carbon::parse($avis_modification["new_date10"])->format('d/m/Y') }}</span> @endif
-       @endempty
+      @endempty
 
+      @empty(!$avis_modification)
+        @if ($avis_modification["new_date1"] != null) <span class="dates"> {{ Carbon\Carbon::parse($avis_modification["new_date1"])->format('d/m/Y') }}</span> @endif
+        @if ($avis_modification["new_date2"] != null) <span class="dates"> {{ Carbon\Carbon::parse($avis_modification["new_date2"])->format('d/m/Y') }}</span> @endif
+        @if ($avis_modification["new_date3"] != null) <span class="dates"> {{ Carbon\Carbon::parse($avis_modification["new_date3"])->format('d/m/Y') }}</span> @endif
+        @if ($avis_modification["new_date4"] != null) <span class="dates"> {{ Carbon\Carbon::parse($avis_modification["new_date4"])->format('d/m/Y') }}</span> @endif
+        @if ($avis_modification["new_date5"] != null) <span class="dates"> {{ Carbon\Carbon::parse($avis_modification["new_date5"])->format('d/m/Y') }}</span> @endif
+        @if ($avis_modification["new_date6"] != null) <span class="dates"> {{ Carbon\Carbon::parse($avis_modification["new_date6"])->format('d/m/Y') }}</span> @endif
+        @if ($avis_modification["new_date7"] != null) <span class="dates"> {{ Carbon\Carbon::parse($avis_modification["new_date7"])->format('d/m/Y') }}</span> @endif
+        @if ($avis_modification["new_date8"] != null) <span class="dates"> {{ Carbon\Carbon::parse($avis_modification["new_date8"])->format('d/m/Y') }}</span> @endif
+        @if ($avis_modification["new_date9"] != null) <span class="dates"> {{ Carbon\Carbon::parse($avis_modification["new_date9"])->format('d/m/Y') }}</span> @endif
+        @if ($avis_modification["new_date10"] != null) <span class="dates"> {{ Carbon\Carbon::parse($avis_modification["new_date10"])->format('d/m/Y') }}</span> @endif
+      @endempty
       </td>
       <td>{{ $formation["nb_benif"] }}</td>
       <td>{{ $formation["bdg_jour"] }} DH</td>

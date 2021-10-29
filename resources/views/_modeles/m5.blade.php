@@ -315,6 +315,7 @@
         url : '{!! URL::to('/fill-personnel-f4') !!}',
         data: {'idForm': idForm},
         success: function(data) {
+      console.log('Teeeeeeeeeeeeeeeeeeeeeeeeeeest' , data);
           let FetchedDATA = data[0]
           let Dates;
           // Database date syntaxe
