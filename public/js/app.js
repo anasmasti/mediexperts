@@ -44778,9 +44778,13 @@ var render = function() {
           {
             staticClass: "btn-btn-primary",
             staticStyle: {
-              background: "#00ff11",
+              background: "#0ACBC1",
               margin: ".5rem 0",
-              padding: ".5rem"
+              padding: "1rem",
+              border: "none",
+              "border-radius": "10px",
+              color: "white",
+              cursor: "pointer"
             },
             attrs: { id: "dateBtn" },
             on: {
