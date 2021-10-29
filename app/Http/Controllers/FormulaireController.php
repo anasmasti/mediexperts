@@ -197,6 +197,7 @@ class FormulaireController extends Controller
         ->join('themes', 'plan_formations.id_thm', 'themes.id_theme')
         ->join('domaines', 'themes.id_dom', 'domaines.id_domain')
         ->where('plans.id_plan', $request->idPlan)
+        ->where([['plans.id_plan', $request->idPlan],['plan_formations.etat','!=','annulé']])
         ->get();
       return response()->json($data);
     }
@@ -264,7 +265,6 @@ class FormulaireController extends Controller
         // ->orderBy('plan_formations.dt_debut')
         ->orderBy('plan_formations.n_form', 'asc')
         ->get();
-     
       return response()->json($data);
     }
 
@@ -287,8 +287,9 @@ class FormulaireController extends Controller
     public function GetOldInfoAvisModif(Request $request) {
       $data = AvisModification::select('avis_modifications.*')
       ->where('avis_modifications.n_form' , $request->nForm)
-      ->orderby('created_at' , 'DESC')
+      // ->orderby('groupe' , 'ASC')
       ->get();
+
       return response()->json($data);
     }
 
@@ -351,8 +352,22 @@ class FormulaireController extends Controller
         ->join('intervenants', 'plan_formations.id_inv', 'intervenants.id_interv')
         ->join('cabinets', 'intervenants.nrc_c', 'cabinets.nrc_cab')
         ->join('themes', 'plan_formations.id_thm', 'themes.id_theme')
+        ->where('formations.n_form', $request->nForm)
+        // ->where([['plans.id_plan', $request->idPlan],['plan_formations.etat','!=','annulé']])
         ->get();
-    return response()->json($data);
+        // $avis_modifications = AvisModification::select('avis_modifications.*')
+        // ->where('avis_modifications.id_form', $request->idForm)
+        // ->orderBy('avis_modifications.id' , 'desc')
+        // ->get();
+        // return response()->json([$data , $avis_modifications]);
+        
+        // $avis_modifications = Formation::select('avis_modifications.*')
+        // ->join('avis_modifications', 'formations.id_form', '=', 'avis_modifications.id_form')
+        // ->where('formations.n_form', $request->nForm)
+        // // ->where('plan_formations.type_action', '!=' , 'annulé')
+        // // ->orderBy('avis_modifications.id' , 'desc')
+        // ->get();
+            return response()->json($data);
     }
 
     public function print_att_reference_plan() {
