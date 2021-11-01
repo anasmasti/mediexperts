@@ -286,17 +286,29 @@ export default {
       console.log("isallloaded", this.isAllLoaded);
     },
     async FillDates(nform) {
+      let DateSynx;
+      let avi_modif;
       await axios
         .get(`/fill-dates-plan?nForm=${nform}`)
         .then((res) => {
-          this.dates_actions = res.data[0];
+          avi_modif = res.data[1]
+          if (avi_modif.length > 0)
+          {
+             this.dates_actions = [avi_modif[0]];
+             DateSynx = 'new_date'
+          }
+          else
+          {
+            this.dates_actions = res.data[0];
+            DateSynx = 'date'
+          }
         })
         .then(() => {
-          this.AssignDates(nform);
+          this.AssignDates(nform , DateSynx);
         })
         .catch((err) => console.error("err FillDates", err));
     },
-    async AssignDates(nform) {
+    async AssignDates(nform , DateSynx) {
       await this.actions_by_ref.forEach((action) => {
         if (action.n_form == nform) {
           this.dates_actions.forEach((forma) => {
@@ -305,7 +317,7 @@ export default {
               for (let i = 1; i < 30; i++) {
                 //************************ vvv [dynamic key assignement] vvv */
                 Object.assign(action.dates, {
-                  [`date${i}`]: forma[`date${i}`],
+                  [`date${i}`]: forma[`${DateSynx}${i}`],
                 });
               }
             }

@@ -32,6 +32,7 @@ class CreateAvisModificationsTable extends Migration
             $table->string('new_organisme', 250)->nullable();
             $table->string('new_lieu', 250)->nullable();
             $table->boolean('new_has_same_dates')->default(false);
+            $table->string('groupe', 250)->nullable();
             $table->date('new_date1')->nullable();
             $table->date('new_date2')->nullable();
             $table->date('new_date3')->nullable();
