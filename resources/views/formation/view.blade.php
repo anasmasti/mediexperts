@@ -56,30 +56,29 @@
         ->join('plan_formations','plan_formations.id_plan' , 'plans.id_plan' )
         ->join('themes', 'plan_formations.id_thm', 'themes.id_theme')
         ->join('formations', 'plan_formations.n_form', 'formations.n_form')
-        ->where('plan_formations.type_action' , '!=' , 'annulé')
         ->get();
       @endphp
       <tbody>
         @foreach ($data as $fm)
-        <tr>
-          <td class="text-bold">{{ $fm['refpdf'] }}</td>
-          <td class="">{{ $fm['n_action'] }}</td>
-          <td class="">{{ $fm['nom_theme'] }}</td>
-          <td class="">{{ $fm->groupe }}</td>
-          <td class="">{{ $fm->nb_benif }}</td>
-          <td class="th-last d-inline-block text-truncate">{{ $fm->commentaire }}</td>
-          <td class="action py-0 align-middle">
-            <div class="btn-group btn-group-sm">
-              @if (Auth::user()->type_user != "comptable")
-              <a href="/detail-form/{{ $fm->id_form }}" class="btn btn-primary"><i class="fas fa-eye"></i></a>
-              <a href="/edit-form/{{ $fm->id_form }}" class="btn btn-warning"><i class="fas fa-edit"></i></a>
-              <a href="#" class="btn btn-danger" onclick="confirmDelete({{$fm->id_form}}, 'form/')"><i class="fas fa-trash-alt"></i></a>
-              @endif
-
-              <a id="buPrintM4" href="/print-m4/{{ $fm->id_form }}" class="btn btn-info"><i class="fa fa-print"></i></a>
-            </div>
-          </td>
-        </tr>
+          <tr>
+            <td class="text-bold">{{ $fm['refpdf'] }}</td>
+            <td class="">{{ $fm['n_action'] }}</td>
+            <td class="">{{ $fm['nom_theme'] }}</td>
+            <td class="">{{ $fm->groupe }}</td>
+            <td class="">{{ $fm->nb_benif }}</td>
+            <td class="th-last d-inline-block text-truncate">{{ $fm->commentaire }}</td>
+            <td class="action py-0 align-middle">
+              <div class="btn-group btn-group-sm">
+                @if (Auth::user()->type_user != "comptable")
+                <a href="/detail-form/{{ $fm->id_form }}" class="btn btn-primary"><i class="fas fa-eye"></i></a>
+                <a href="/edit-form/{{ $fm->id_form }}" class="btn btn-warning"><i class="fas fa-edit"></i></a>
+                <a href="#" class="btn btn-danger" onclick="confirmDelete({{$fm->id_form}}, 'form/')"><i class="fas fa-trash-alt"></i></a>
+                @endif
+  
+                <a id="buPrintM4" href="/print-m4/{{ $fm->id_form }}" class="btn btn-info"><i class="fa fa-print"></i></a>
+              </div>
+            </td>
+          </tr>
         @endforeach
       </tbody>
 
