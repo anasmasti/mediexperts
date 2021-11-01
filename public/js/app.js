@@ -72949,6 +72949,7 @@ var state = {
 /***/ (function(module, exports, __webpack_require__) {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 __webpack_require__(/*! C:\Users\HP\Desktop\mediexperts\resources\js\app.js */"./resources/js/app.js");
 module.exports = __webpack_require__(/*! C:\Users\HP\Desktop\mediexperts\resources\sass\app.scss */"./resources/sass/app.scss");
 =======
@@ -72960,6 +72961,10 @@ __webpack_require__(/*! C:\Users\HP\Desktop\Projects\Work\Mediexperts_App\mediex
 module.exports = __webpack_require__(/*! C:\Users\HP\Desktop\Projects\Work\Mediexperts_App\mediexperts-v2\resources\sass\app.scss */"./resources/sass/app.scss");
 >>>>>>> bdcbf9ecbffe93c4d90c707ac562e5f0dec492c5
 >>>>>>> 94b7e55850ca41a8b1b1b401ab4cf8a96366bf3d
+=======
+__webpack_require__(/*! C:\Users\HP\Desktop\Projects\Work\Mediexperts_App\mediexperts-v2\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\HP\Desktop\Projects\Work\Mediexperts_App\mediexperts-v2\resources\sass\app.scss */"./resources/sass/app.scss");
+>>>>>>> 2418337f313b962f94fdaa2c787152b75c07e474
 
 
 /***/ })
