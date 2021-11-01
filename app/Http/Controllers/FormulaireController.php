@@ -48,178 +48,6 @@ class FormulaireController extends Controller
     return view(
       '_modeles.m3'
       //, ['client' => $client]
-<<<<<<< HEAD
-    );
-  }
-  public function print_G6(Request $request)
-  {
-
-    return view('_formulaires.G6');
-  }
-  public function FillClients(Request $request)
-  {
-    $data = Client::all();
-    return response()->json($data);
-  }
-  public function FillClientPlans(Request $request)
-  {
-    $data = Client::select(
-      'plan_formations.*',
-      'themes.nom_theme',
-      'plans.annee',
-      'cabinets.raisoci as raisoci_cab',
-      'cabinets.ncnss as ncnss_cab',
-      'clients.raisoci as raisoci',
-      'plans.annee'
-    )
-      ->join('plans', 'clients.nrc_entrp', '=', 'plans.nrc_e')
-      ->join('plan_formations', 'plans.id_plan', '=', 'plan_formations.id_plan')
-      ->join('themes', 'plan_formations.id_thm', 'themes.id_theme')
-      ->join('intervenants', 'plan_formations.id_inv', 'intervenants.id_interv')
-      ->join('cabinets', 'intervenants.nrc_c', 'cabinets.nrc_cab')
-      ->where('clients.nrc_entrp', $request->nrcEntrp)
-      ->orderBy('plan_formations.n_action')
-      ->get();
-    return response()->json($data);
-  }
-  public function FillDatesPlan(Request $request)
-  {
-
-    $data = PlanFormation::select('formations.*', 'plan_formations.nb_partcp_total', 'plan_formations.organisme')
-      ->join('formations', 'plan_formations.n_form', 'formations.n_form')
-      // ->join('avis_modifications', 'formations.id_form', '=', 'avis_modifications.id_form')
-      ->where('formations.n_form', $request->nForm)
-      ->orderBy('plan_formations.dt_debut', 'asc')
-      ->orderBy('plan_formations.created_at', 'asc')
-      ->get();
-    $avis_modifications = AvisModification::select('avis_modifications.*')
-      ->where('avis_modifications.n_form', $request->nForm)
-      ->orderBy('avis_modifications.id', 'desc')
-      ->get();
-    return response()->json([$data, $avis_modifications]);
-  }
-
-  public function FillDatesForm(Request $request)
-  {
-    $data = Formation::findOrFail($request->idForm);
-    return response()->json($data);
-  }
-
-  //MODELE 4
-  public function print_m4($idform)
-  {
-    $id_theme = Theme::select('themes.id_theme')
-      ->join('plan_formations', 'themes.id_theme', 'plan_formations.id_thm')
-      ->join('formations', 'formations.n_form', 'plan_formations.n_form')
-      ->where('formations.id_form', $idform)
-      ->first();
-    $formation = Formation::select('clients.raisoci', 'clients.ice', 'plans.type_contrat', 'themes.nom_theme', 'plan_formations.*', 'formations.*')
-      ->join('plan_formations', 'plan_formations.n_form', 'formations.n_form')
-      ->join('plans', 'plans.id_plan', '=', 'plan_formations.id_plan')
-      ->join('clients', 'clients.nrc_entrp', '=', 'plans.nrc_e')
-      ->join('themes', 'themes.id_theme', 'plan_formations.id_thm')
-      ->where([['formations.id_form', $idform], ['themes.id_theme', $id_theme["id_theme"]]])
-      ->first();
-
-    // $bdg_letter = \App\Helper\Helper::NumberToLetter(($formation["bdg_total"] * .2 + $formation["bdg_total"]));
-
-    $avis_modifications = AvisModification::select('avis_modifications.*')
-      ->where('avis_modifications.id_form', $idform)
-      ->orderBy('created_at', 'DESC')
-      ->first();
-
-    return view('_modeles.m4', ['formation' => $formation, 'avis_modifications' => $avis_modifications]);
-  }
-
-  //FORMULAIRE 4
-  public function print_f4(Request $request)
-  {
-    $clients = Client::all();
-
-    return view('_formulaires.f4', ['clients' => $clients]);
-  }
-
-  public function FillFormationF4(Request $request)
-  {
-    $data = Formation::select('formations.*', 'themes.nom_theme', 'clients.raisoci', 'clients.ville', 'clients.local_2')
-      ->join('plan_formations', 'formations.n_form', 'plan_formations.n_form')
-      ->join('plans', 'plans.id_plan', '=', 'plan_formations.id_plan')
-      ->join('Clients', 'clients.nrc_entrp', '=', 'plans.nrc_e')
-      ->join('themes', 'plan_formations.id_thm', 'themes.id_theme')
-      ->where('plan_formations.n_form', $request->nForm)
-      ->where('plan_formations.type_action', '!=', 'annulé')
-      ->get();
-    $avis_modifications = Formation::select('avis_modifications.*', 'themes.nom_theme', 'clients.raisoci', 'clients.ville', 'clients.local_2')
-      ->join('avis_modifications', 'formations.id_form', '=', 'avis_modifications.id_form')
-      ->join('plan_formations', 'formations.n_form', 'plan_formations.n_form')
-      ->join('plans', 'plans.id_plan', '=', 'plan_formations.id_plan')
-      ->join('Clients', 'clients.nrc_entrp', '=', 'plans.nrc_e')
-      ->join('themes', 'plan_formations.id_thm', 'themes.id_theme')
-      ->where('plan_formations.n_form', $request->nForm)
-      ->where('plan_formations.type_action', '!=', 'annulé')
-      // ->orderBy('avis_modifications.id' , 'desc')
-      ->get();
-    return response()->json([$data, $avis_modifications]);
-  }
-  public function FillPersonnelF4(Request $request)
-  {
-    $data = Formation::select('personnels.*', 'formations.*', 'formation_personnels.*')
-      ->join('formation_personnels', 'formations.id_form', 'formation_personnels.id_form')
-      ->join('personnels', 'formation_personnels.cin', 'personnels.cin')
-      ->where('formations.id_form', $request->idForm)
-      ->get();
-    $avis_modifications = AvisModification::select('avis_modifications.*')
-      ->where('avis_modifications.id_form', $request->idForm)
-      ->orderBy('avis_modifications.id', 'desc')
-      ->get();
-    return response()->json([$data, $avis_modifications]);
-  }
-  public function FillPersonInfoF4(Request $request)
-  {
-    $data = Personnel::select('personnels.*')
-      ->where('personnels.cin', $request->cin)
-      ->first();
-    return response()->json($data);
-  }
-  // END FORMULAIRE
-
-  //MODELE 5
-  public function print_m5()
-  {
-    $client = Client::all();
-
-    return view('_modeles.m5', ['client' => $client]);
-  }
-
-  //FORMULAIRE 2
-  public function print_f2()
-  {
-    $clients = Client::all();
-
-    return view('_formulaires.f2', ['clients' => $clients]);
-  }
-
-  public function FillActionFormation(Request $request)
-  {
-    $data = PlanFormation::select('plan_formations.*', 'themes.nom_theme as nom_theme', 'domaines.nom_domain', 'clients.raisoci', 'plans.annee')
-      ->join('plans', 'plans.id_plan', 'plan_formations.id_plan')
-      ->join('clients', 'plans.nrc_e', 'clients.nrc_entrp')
-      ->join('formations', 'plan_formations.n_form', 'formations.n_form')
-      ->join('themes', 'plan_formations.id_thm', 'themes.id_theme')
-      ->join('domaines', 'themes.id_dom', 'domaines.id_domain')
-      ->where('plans.id_plan', $request->idPlan)
-      ->get();
-    return response()->json($data);
-  }
-  public function FillFormationF2(Request $request)
-  {
-    $id_theme = Theme::select('themes.id_theme')
-      ->join('plan_formations', 'themes.id_theme', 'plan_formations.id_thm')
-      ->where('plan_formations.n_form', $request->nForm)
-      ->first();
-
-    $id_domain = Domaine::select('domaines.id_domain')
-=======
       );
     }
     public function print_G6 (Request $request) {
@@ -272,10 +100,6 @@ class FormulaireController extends Controller
       ->get();
 
       // $avis_modification = $request->nForm;
-
-      
-      
-
       // if (json($avis_modification).length > 0) 
       //   return response()->json($avis_modification);
       // else 
@@ -387,7 +211,6 @@ class FormulaireController extends Controller
         ->first();
 
       $id_domain = Domaine::select('domaines.id_domain')
->>>>>>> 0d60c007bd8accd0f36af95f1c5547ef09901b05
       ->join('plan_formations', 'domaines.id_domain', 'plan_formations.id_dom')
       ->where('plan_formations.n_form', $request->nForm)
       ->first();
@@ -443,63 +266,6 @@ class FormulaireController extends Controller
       ->where('plans.id_plan', $request->idPlan)
       ->get();
 
-<<<<<<< HEAD
-    return response()->json($data);
-  }
-  public function FillPlansByReference(Request $request)
-  {
-    $data = Client::select(
-      'plan_formations.*',
-      'themes.nom_theme',
-      'domaines.nom_domain',
-      'plans.*',
-      'cabinets.raisoci as raisoci_cab',
-      'cabinets.ncnss as ncnss_cab',
-      'plans.annee',
-      'plan_formations.etat as etat_formation'
-    )
-      ->join('plans', 'clients.nrc_entrp', 'plans.nrc_e')
-      ->join('plan_formations', 'plans.id_plan', 'plan_formations.id_plan')
-      ->join('themes', 'plan_formations.id_thm', 'themes.id_theme')
-      ->join('domaines', 'themes.id_dom', 'domaines.id_domain')
-      ->join('intervenants', 'plan_formations.id_inv', 'intervenants.id_interv')
-      ->join('cabinets', 'intervenants.nrc_c', 'cabinets.nrc_cab')
-      // ->where('plans.id_plan', $request->idPlan)
-      ->where([['plan_formations.id_plan', $request->idPlan], ['plan_formations.etat', '!=', "annulé"]])
-      // ->orderBy('plan_formations.dt_debut')
-      ->orderBy('plan_formations.n_form', 'asc')
-      ->get();
-
-    return response()->json($data);
-  }
-
-  public function FillavisModif(Request $request)
-  {
-    $data = Formation::select('formations.*', 'plan_formations.*')
-      ->join('plan_formations', 'formations.n_form', 'plan_formations.n_form')
-      ->where('plan_formations.n_form', $request->nForm)
-      ->get();
-    return response()->json($data);
-  }
-
-  public function GetInfoAvisModifByGroupe(Request $request)
-  {
-    $data = Formation::select('formations.*', 'plan_formations.*')
-      ->join('plan_formations', 'formations.n_form', 'plan_formations.n_form')
-      ->where('formations.id_form', $request->idForm)
-      ->get();
-    return response()->json($data);
-  }
-
-  public function GetOldInfoAvisModif(Request $request)
-  {
-    $data = AvisModification::select('avis_modifications.*')
-      ->where('avis_modifications.n_form', $request->nForm)
-      ->orderby('created_at', 'DESC')
-      ->get();
-    return response()->json($data);
-  }
-=======
       return response()->json($data);
     }
     public function FillPlansByReference(Request $request) {
@@ -543,7 +309,6 @@ class FormulaireController extends Controller
 
       return response()->json($data);
     }
->>>>>>> 0d60c007bd8accd0f36af95f1c5547ef09901b05
 
   public function GetNomResponsableModel3(Request $request)
   {
@@ -561,64 +326,6 @@ class FormulaireController extends Controller
       ->where('plan_formations.n_form', $request->nForm)
       ->get();
 
-<<<<<<< HEAD
-    return response()->json($data);
-  }
-
-  public function print_avis_aff(Request $request)
-  {
-    $client = Client::all();
-    return view('_formulaires.avis-affichage', ['client' => $client]);
-  }
-
-  // MODELE 6
-  public function print_m6(Request $request)
-  {
-    $client = Client::all();
-    $cabinet = Cabinet::all();
-    return view('_modeles.m6', ['client' => $client, 'cabinet' => $cabinet]);
-  }
-  public function FillPlanTheme(Request $request)
-  {
-    $data = Client::select('plan_formations.*', 'themes.nom_theme', 'clients.*', 'plans.annee')
-      ->join('plans', 'clients.nrc_entrp', '=', 'plans.nrc_e')
-      ->join('plan_formations', 'plans.id_plan', '=', 'plan_formations.id_plan')
-      ->join('themes', 'plan_formations.id_thm', 'themes.id_theme')
-      ->where([['plans.id_plan', $request->idPlan], ['plan_formations.etat', "réalisé"]])
-      ->orWhere([['plans.id_plan', $request->idPlan], ['plan_formations.etat', "modifié"]])
-      ->get();
-    return response()->json($data);
-  }
-  public function FillCabinet(Request $request)
-  {
-    $data = Cabinet::find($request->nrcCab);
-    return response()->json($data);
-  }
-
-  // FICHE D'ÉVALUATION
-  public function print_fiche_evaluation(Request $request)
-  {
-    $client = Client::all();
-    return view('_formulaires.fiche-eval', ['client' => $client]);
-  }
-
-  public function FillFicheEval(Request $request)
-  {
-    $data = PlanFormation::select(
-      'formations.*',
-      'plan_formations.lieu',
-      'themes.nom_theme',
-      'clients.raisoci',
-      'clients.ville',
-      'clients.local_2',
-      'intervenants.nom as nom_interv',
-      'intervenants.prenom as prenom_interv',
-      'cabinets.raisoci as raisoci_cab',
-      'plans.annee'
-    )
-      ->join('formations', 'formations.n_form', 'plan_formations.n_form')
-      ->join('plans', 'plans.id_plan', '=', 'plan_formations.id_plan')
-=======
       return response()->json($data);
     }
 
@@ -681,30 +388,6 @@ class FormulaireController extends Controller
         // ->get();
             return response()->json($data);
     }
-
-    public function print_att_reference_plan() {
-      return view('_formulaires.att-reference-plan');
-    }
-
-    public function FillCabinetInfo(Request $request) {
-      $data = Cabinet::select('cabinets.*')
-        ->where('cabinets.raisoci', 'LIKE', $request->raisociCab)
-        ->first();
-      return response()->json($data);
-    }
-
-    public function FillPlansByClient(Request $request)
-    {
-      $data = Plan::select('plans.*','clients.raisoci')
->>>>>>> 0d60c007bd8accd0f36af95f1c5547ef09901b05
-      ->join('Clients', 'clients.nrc_entrp', '=', 'plans.nrc_e')
-      ->join('intervenants', 'plan_formations.id_inv', 'intervenants.id_interv')
-      ->join('cabinets', 'intervenants.nrc_c', 'cabinets.nrc_cab')
-      ->join('themes', 'plan_formations.id_thm', 'themes.id_theme')
-      ->get();
-    return response()->json($data);
-  }
-
   public function print_att_reference_plan()
   {
     return view('_formulaires.att-reference-plan');
