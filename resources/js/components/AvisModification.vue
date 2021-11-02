@@ -61,9 +61,11 @@
                 getDisabled();
               "
             >
-              <option selected value="modifié">Modification</option>
+              <option value="--Selectionner--" disabled selected>--Selectionner--</option>
+              <option value="modifié">Modification</option>
               <option value="annulé">Annulation</option>
             </select>
+            <div class="etat_avis_message_validation"></div>
           </div>
 
           <table
@@ -862,6 +864,12 @@ export default {
       // let groupe = document.getElementById("groupe");
       let pause_debut = $("#pause_debut");
       let pause_fin = $("#pause_fin");
+
+
+      if(etat_avis.value == '--Selectionner--'){
+      //  var validation_message = "<p>État d'avis est obligatoir</p>"
+        document.querySelector('.etat_avis_message_validation').innerHTML = `<p style="color:red">État d'avis est obligatoir*</p>`
+      }
 
       let infoavismodif = {
         n_form: this.selected_nForm,

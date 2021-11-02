@@ -20,7 +20,10 @@ class FormationController extends Controller
         $request->session()->forget(['added', 'updated']);
         $request->session()->forget(['success', 'info', 'warning', 'error']);
 
-        $formation = Formation::all();
+        $formation = Formation::select('formations.*','plan_formations.*')
+        ->join('plan_formations','plan_formations.n_form', 'formations.n_form')
+        // ->join('formations','formations.id_form','avis_modifications.id_form',)
+        ->get();
         // $plan = PlanFormation::all();
 
         return view('formation.view', ['formation' => $formation/*, 'plan' => $plan*/]);
@@ -28,8 +31,8 @@ class FormationController extends Controller
 
     public function search_form(Request $request)
     {
-        $search_input = $request->input ( 'search_input' );
-        $formation = Plan::select('formations.*')
+        $search_input = $request->input( 'search_input' );
+        $formation = Plan::select('formations.*','plan_formations.etat')
             ->join('plan_formations', 'plan_formations.id_plan', 'plans.id_plan')
             ->join('formations', 'plan_formations.n_form', 'formations.n_form')
             ->where('plans.refpdf', 'LIKE', '%'. $search_input . '%')

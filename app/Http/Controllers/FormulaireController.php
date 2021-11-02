@@ -73,37 +73,20 @@ class FormulaireController extends Controller
       return response()->json($data);
     }
     public function FillDatesPlan(Request $request) {
-      $data = PlanFormation::select('formations.n_form', 'formations.date1','formations.date2','formations.date3','formations.date4','formations.date5',
-        'formations.date6','formations.date7','formations.date8','formations.date9','formations.date10',
-        'formations.date11','formations.date12','formations.date13','formations.date14','formations.date15',
-        'formations.date16','formations.date17','formations.date18','formations.date19','formations.date20',
-        'formations.date21','formations.date22','formations.date23','formations.date24','formations.date25',
-        'formations.date26','formations.date27','formations.date28','formations.date29','formations.date30','plan_formations.nb_partcp_total' , 'plan_formations.organisme')
+      $data = PlanFormation::select('formations.*','plan_formations.*')
         ->join('formations', 'plan_formations.n_form', 'formations.n_form') 
-        // ->join('avis_modifications', 'formations.id_form', '=', 'avis_modifications.id_form')
         ->where('formations.n_form', $request->nForm)
         ->orderBy('plan_formations.dt_debut', 'asc')
         ->orderBy('plan_formations.created_at', 'asc')
         ->get();
 
-      $avis_modification = AvisModification::select('avis_modifications.n_form', 'avis_modifications.new_date1','avis_modifications.new_date2','avis_modifications.new_date3','avis_modifications.new_date4','avis_modifications.new_date5',
-        'avis_modifications.new_date6','avis_modifications.new_date7','avis_modifications.new_date8','avis_modifications.new_date9','avis_modifications.new_date10',
-        'avis_modifications.new_date11','avis_modifications.new_date12','avis_modifications.new_date13','avis_modifications.new_date14','avis_modifications.new_date15',
-        'avis_modifications.new_date16','avis_modifications.new_date17','avis_modifications.new_date18','avis_modifications.new_date19','avis_modifications.new_date20',
-        'avis_modifications.new_date21','avis_modifications.new_date22','avis_modifications.new_date23','avis_modifications.new_date24','avis_modifications.new_date25',
-        'avis_modifications.new_date26','avis_modifications.new_date27','avis_modifications.new_date28','avis_modifications.new_date29','avis_modifications.new_date30','plan_formations.nb_partcp_total' , 'plan_formations.organisme')
+      $avis_modification = AvisModification::select('avis_modifications.*','plan_formations.*')
       ->join('plan_formations', 'plan_formations.n_form', 'avis_modifications.n_form') 
       ->where('avis_modifications.n_form' , $request->nForm)
       ->orderBy('plan_formations.dt_debut', 'asc')
       ->orderBy('plan_formations.created_at', 'asc')
       ->orderby('avis_modifications.id' , 'desc')
-      // ->first();
       ->get();
-
-      // $avis_modification = $request->nForm;
-      // if (json($avis_modification).length > 0) 
-      //   return response()->json($avis_modification);
-      // else 
         return response()->json([ $data , $avis_modification ]);
     }
 
@@ -222,7 +205,7 @@ class FormulaireController extends Controller
         ->join('themes', 'plan_formations.id_thm', 'themes.id_theme')
         ->join('domaines', 'themes.id_dom', 'domaines.id_domain')
         ->where('plans.id_plan', $request->idPlan)
-        ->where([['plans.id_plan', $request->idPlan],['plan_formations.etat','!=','annulé']])
+        ->where([['plans.id_plan', $request->idPlan]])
         ->get();
       return response()->json($data);
     }
@@ -292,15 +275,16 @@ class FormulaireController extends Controller
     }
     public function FillPlansByReference(Request $request) {
       $data = Client::select('plan_formations.*', 'themes.nom_theme','domaines.nom_domain','plans.*',
-        'cabinets.raisoci as raisoci_cab', 'cabinets.ncnss as ncnss_cab', 'plans.annee','plan_formations.etat as etat_formation')
+        'cabinets.raisoci as raisoci_cab','cabinets.ncnss as ncnss_cab', 'plans.annee','plan_formations.etat as etat_formation')
         ->join('plans', 'clients.nrc_entrp', 'plans.nrc_e')
         ->join('plan_formations', 'plans.id_plan', 'plan_formations.id_plan')
+        // ->join('plan_formations', 'plan_formations.n_form','formations.n_form')
         ->join('themes', 'plan_formations.id_thm', 'themes.id_theme')
         ->join('domaines', 'themes.id_dom', 'domaines.id_domain')
         ->join('intervenants', 'plan_formations.id_inv', 'intervenants.id_interv')
         ->join('cabinets', 'intervenants.nrc_c', 'cabinets.nrc_cab')
         // ->where('plans.id_plan', $request->idPlan)
-        ->where([['plan_formations.id_plan', $request->idPlan], ['plan_formations.etat', '!=', "annulé"]])
+        ->where([['plan_formations.id_plan', $request->idPlan]])
         // ->orderBy('plan_formations.dt_debut')
         ->orderBy('plan_formations.n_form', 'asc')
         ->get();

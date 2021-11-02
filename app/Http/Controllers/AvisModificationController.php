@@ -19,6 +19,17 @@ class AvisModificationController extends Controller
            
             // return response($request, 200);
 
+            $rules = [
+                'new_type_action' => 'required',
+            ];
+        
+            $customMessages = [
+                'required' => 'The :attribute field is required.'
+            ];
+        
+            $this->validate($request, $rules, $customMessages);
+
+
             $AvisModif = new AvisModification();
 
             $AvisModif->n_form = $request->n_form;
