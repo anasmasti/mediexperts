@@ -80,12 +80,11 @@
 
       <button
         class="hide-from-print"
-        style="background-color: #eaeaea; padding: 0.5rem; margin-top: 10px"
+        style="background: #0ACBC1; margin: .5rem 0; padding: 1rem;border: none;border-radius:10px; color:white;cursor:pointer"
         type="button"
         @click="
           handleAction('model3/GetSelectedTheme', nForm),
             CalculNbTotalBenif(),
-            initialDates(),
             handleAction('model3/GetNomResponsable', selected_nrc_entrp)
         "
       >
@@ -235,8 +234,8 @@
         <!-- DATES -->
         <div style="margin-top: 10px" v-if="!duplicated_Info.hasSameDates">
           <strong>Dates initiales de réalisation :</strong>
-          <div v-if="!duplicated_Info.dateDeRealisation">--</div>
-          <div v-if="duplicated_Info.dateDeRealisation">
+          <!-- <div v-if="!duplicated_Info.dateDeRealisation">--</div> -->
+          <div>
             <div
               class=""
               v-for="initinf in Info_AvisModif"
@@ -388,35 +387,35 @@
                 line-height: 1px;
               "
             >
-              <span v-if="newDates.new_date1"
-                >{{ newDates.new_date1 | moment("DD/MM/YYYY") }};</span
+              <span v-if="NewAvisModif.new_date1"
+                >{{ NewAvisModif.new_date1 | moment("DD/MM/YYYY") }};</span
               >
-              <span v-if="newDates.new_date2"
-                >{{ newDates.new_date2 | moment("DD/MM/YYYY") }};</span
+              <span v-if="NewAvisModif.new_date2"
+                >{{ NewAvisModif.new_date2 | moment("DD/MM/YYYY") }};</span
               >
-              <span v-if="newDates.new_date3"
-                >{{ newDates.new_date3 | moment("DD/MM/YYYY") }};</span
+              <span v-if="NewAvisModif.new_date3"
+                >{{ NewAvisModif.new_date3 | moment("DD/MM/YYYY") }};</span
               >
-              <span v-if="newDates.new_date4"
-                >{{ newDates.new_date4 | moment("DD/MM/YYYY") }};</span
+              <span v-if="NewAvisModif.new_date4"
+                >{{ NewAvisModif.new_date4 | moment("DD/MM/YYYY") }};</span
               >
-              <span v-if="newDates.new_date5"
-                >{{ newDates.new_date5 | moment("DD/MM/YYYY") }};</span
+              <span v-if="NewAvisModif.new_date5"
+                >{{ NewAvisModif.new_date5 | moment("DD/MM/YYYY") }};</span
               >
-              <span v-if="newDates.new_date6"
-                >{{ newDates.new_date6 | moment("DD/MM/YYYY") }};</span
+              <span v-if="NewAvisModif.new_date6"
+                >{{ NewAvisModif.new_date6 | moment("DD/MM/YYYY") }};</span
               >
-              <span v-if="newDates.new_date7"
-                >{{ newDates.new_date7 | moment("DD/MM/YYYY") }};</span
+              <span v-if="NewAvisModif.new_date7"
+                >{{ NewAvisModif.new_date7 | moment("DD/MM/YYYY") }};</span
               >
-              <span v-if="newDates.new_date8"
-                >{{ newDates.new_date8 | moment("DD/MM/YYYY") }};</span
+              <span v-if="NewAvisModif.new_date8"
+                >{{ NewAvisModif.new_date8 | moment("DD/MM/YYYY") }};</span
               >
-              <span v-if="newDates.new_date9"
-                >{{ newDates.new_date9 | moment("DD/MM/YYYY") }};</span
+              <span v-if="NewAvisModif.new_date9"
+                >{{ NewAvisModif.new_date9 | moment("DD/MM/YYYY") }};</span
               >
-              <span v-if="newDates.new_date10"
-                >{{ newDates.new_date10 | moment("DD/MM/YYYY") }};</span
+              <span v-if="NewAvisModif.new_date10"
+                >{{ NewAvisModif.new_date10 | moment("DD/MM/YYYY") }};</span
               >
             </p>
           </div>
@@ -454,30 +453,31 @@
         </div>
         <div style="margin-top: 10px">
           <strong>Nouvelle organisation horaire :</strong>
-          <div
-            v-if="!duplicated_Info.newHeurDebut || !duplicated_Info.newHeurFin"
-          >
-            --
-          </div>
-          <div
-            class="d-flex"
-            v-if="duplicated_Info.newHeurDebut || duplicated_Info.newHeurFin"
-          >
+
+          <div class="d-flex">
             <div>
               <span>heure début : </span>
               <input
+                v-if="duplicated_Info.newHeurDebut"
                 type="text"
                 :value="duplicated_Info.newHeurDebut"
                 disabled
               />
+              <span v-if="!duplicated_Info.newHeurDebut">--</span>
             </div>
             <div>
               <span>heure fin : </span>
-              <input type="text" :value="duplicated_Info.newHeurFin" disabled />
+              <input
+                v-if="duplicated_Info.newHeurFin"
+                type="text"
+                :value="duplicated_Info.newHeurFin"
+                disabled
+              />
+              <span v-if="!duplicated_Info.newHeurFin">--</span>
             </div>
           </div>
           <div class="d-flix">
-            <div v-if="!duplicated_Info.new_pause">--</div>
+            <!-- <div v-if="!duplicated_Info.new_pause">--</div> -->
             <p v-if="duplicated_Info.new_pause">
               Avec pause déjeuner de : 1 heure
             </p>
@@ -522,7 +522,7 @@ export default {
       id_plan: null,
       selected_nrc_entrp: null,
       total_benif: null,
-      newDates: "",
+      // newDates: "",
 
       //Initial and new Info that Duplicated
       duplicated_Info: {
@@ -592,40 +592,33 @@ export default {
       this.$store.dispatch(actionName, value);
     },
 
-    initialDates() {
-      this.newDates = this.$store.getters["model3/newDates"];
-    },
+    // initialDates() {
+    //   this.newDates = this.$store.getters["model3/newDates"];
+    // },
 
     CalculNbTotalBenif() {
       this.total_benif = this.$store.getters["model3/GetNbTotalBenif"];
-
-      if (this.Info_AvisModif) {
+      // console.log('ppppppppppp', this.Info_AvisModif[0]);
+      if (this.Info_AvisModif[0]) {
         // Inserting duplicated Information in duplicated_Info object
         this.duplicated_Info.newOrganisme =
-          this.NewAvisModif.length != 0
-            ? this.NewAvisModif[0].new_organisme
-            : null;
+          this.NewAvisModif.length != 0 ? this.NewAvisModif.new_organisme : " ";
+
         this.duplicated_Info.newLieu =
-          this.NewAvisModif.length != 0 ? this.NewAvisModif[0].new_lieu : null;
+          this.NewAvisModif.length != 0 ? this.NewAvisModif.new_lieu : null;
         this.duplicated_Info.newHeurDebut =
-          this.NewAvisModif.length != 0
-            ? this.NewAvisModif[0].new_hr_debut
-            : null;
+          this.NewAvisModif.length != 0 ? this.NewAvisModif.new_hr_debut : null;
         this.duplicated_Info.newHeurFin =
-          this.NewAvisModif.length != 0
-            ? this.NewAvisModif[0].new_hr_fin
-            : null;
+          this.NewAvisModif.length != 0 ? this.NewAvisModif.new_hr_fin : null;
         this.duplicated_Info.new_pause =
-          this.NewAvisModif.length != 0
-            ? this.NewAvisModif[0].new_pause
-            : false;
+          this.NewAvisModif.length != 0 ? this.NewAvisModif.new_pause : false;
         this.duplicated_Info.newDateDeRealisation =
           this.NewAvisModif.length != 0
-            ? this.NewAvisModif[0].new_date_realisation
+            ? this.NewAvisModif.new_date_realisation
             : false;
         this.duplicated_Info.newHasSameDates =
           this.NewAvisModif.length != 0
-            ? this.NewAvisModif[0].new_has_same_dates
+            ? this.NewAvisModif.new_has_same_dates
             : true;
 
         this.duplicated_Info.initialOrganisme =
