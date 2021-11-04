@@ -150,9 +150,9 @@ class FormationController extends Controller
 
     public function DetailActionFormation(Request $request)
     {
-        $formation = Formation::select('formations.*','plan_formations.*','plans.*')
+        $formation = Formation::select('formations.*','plan_formations.*')
             ->join('plan_formations', 'plan_formations.n_form','=', 'formations.n_form')
-            ->join('plans', 'plans.id_plan','=', 'plan_formations.id_plan')
+            // ->join('plans', 'plans.id_plan','=', 'plan_formations.id_plan')
             ->where('plan_formations.n_form', $request->nForm)
             ->get();
 
