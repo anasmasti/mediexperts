@@ -1,4 +1,3 @@
-
 <script>
 export default {
   runtimeCompiler: true,
@@ -38,6 +37,7 @@ export default {
       await axios.get('/fill-clients')
         .then((res) => {
           this.clients = res.data;
+          // console.log("clients : ", this.clients)
         })
         .catch((err) => console.error("err FillClients", err));
     },
@@ -47,11 +47,11 @@ export default {
         .then((res) => {
           this.reference_plan = res.data;
           this.curr_client = res.data[0].raisoci;
+          console.log("reference_plan : ", this.reference_plan)
         })
         .catch((err) => console.log("err FillReferencesPlan", err));
     },
     async FillPlanByReference() {
-
       await axios.get(`/fill-plans-by-reference?idPlan=${this.id_plan}`)
         .then((res) => {
           this.actions_by_ref = res.data;
@@ -71,7 +71,7 @@ export default {
     async FillDates(nform) {
       await axios.get(`/fill-dates-plan?nForm=${nform}`)
         .then((res) => {
-          this.dates_actions = res.data;
+          this.dates_actions = res.data[0];
         })
         .then(() => {
           this.AssignDates(nform);

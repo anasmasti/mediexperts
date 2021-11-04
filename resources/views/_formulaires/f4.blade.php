@@ -480,6 +480,7 @@
             
             formation.html("");
             formation.append(fillFormation);
+            $('#ville').val(fitchedData[0].local_2)
             }
           }
           else {
@@ -487,6 +488,7 @@
             formation.html("");
             formation.append(fillFormation);
             cin.html(""); nom.val(""); prenom.val(""); nCnss.val("");
+            $('#ville').val('')
           }
         },
         error: function() {
@@ -562,7 +564,7 @@
               $('#dates').html("");
               $('#dates').val(fillDate);
               $('#dateF4').val((last_nonull_date));
-              $('#ville').val(FetchedDATA[0].local_2)
+              // $('#ville').val('Test')
             }
             
             $('#groupe').val(FetchedDATA[0]['groupe']);

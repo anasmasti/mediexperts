@@ -41,6 +41,7 @@
     <table class="table table-md">
       <thead class="thead">
         <tr>
+          <th>Etat</th>
           <th>Réf. PF</th>
           <th>N. Action</th>
           <th class="th-last">Thème</th>
@@ -51,32 +52,43 @@
         </tr>
       </thead>
 
-      @php
-        $data = App\Plan::select('themes.nom_theme', 'plan_formations.*' , 'plans.refpdf' , 'formations.*')
-        ->join('plan_formations','plan_formations.id_plan' , 'plans.id_plan' )
-        ->join('themes', 'plan_formations.id_thm', 'themes.id_theme')
-        ->join('formations', 'plan_formations.n_form', 'formations.n_form')
-        ->where('plan_formations.type_action' , '!=' , 'annulé')
-        ->get();
-      @endphp
       <tbody>
-        @foreach ($data as $fm)
+        @foreach ($formation as $fm)
+
         <tr>
-          <td class="text-bold">{{ $fm['refpdf'] }}</td>
-          <td class="">{{ $fm['n_action'] }}</td>
-          <td class="">{{ $fm['nom_theme'] }}</td>
+
+          @php
+            $pdf = App\PlanFormation::select('themes.nom_theme', 'plan_formations.n_action')
+            ->join('themes', 'plan_formations.id_thm', 'themes.id_theme')
+            ->join('formations', 'plan_formations.n_form', 'formations.n_form')
+            ->where('formations.id_form', $fm->id_form)
+            ->first();
+            $reference = App\Plan::select('plans.refpdf')
+            ->join('plan_formations', 'plans.id_plan', 'plan_formations.id_plan')
+            ->join('formations', 'plan_formations.n_form', 'formations.n_form')
+            ->where('formations.id_form', $fm->id_form)
+            ->first();
+          @endphp
+          <td class="{{ ($fm->etat == "réalisé") ? 'font-weight-bold badge-success' : ($fm->etat == "planifié" ? 'font-weight-bold badge-warning' : ($fm->etat == "modifié"  ? 'font-weight-bold badge-primary' : 'font-weight-bold badge-danger')) }}">{{$fm->etat}}</td>
+          <td class="text-bold">{{ $reference['refpdf'] }}</td>
+          <td class="">{{ $pdf['n_action'] }}</td>
+          <td class="">{{ $pdf['nom_theme'] }}</td>
           <td class="">{{ $fm->groupe }}</td>
           <td class="">{{ $fm->nb_benif }}</td>
           <td class="th-last d-inline-block text-truncate">{{ $fm->commentaire }}</td>
+
           <td class="action py-0 align-middle">
-            <div class="btn-group btn-group-sm">
+            <div class="btn-group ml-0 btn-group-sm">
+
               @if (Auth::user()->type_user != "comptable")
               <a href="/detail-form/{{ $fm->id_form }}" class="btn btn-primary"><i class="fas fa-eye"></i></a>
               <a href="/edit-form/{{ $fm->id_form }}" class="btn btn-warning"><i class="fas fa-edit"></i></a>
               <a href="#" class="btn btn-danger" onclick="confirmDelete({{$fm->id_form}}, 'form/')"><i class="fas fa-trash-alt"></i></a>
               @endif
 
+              @if($fm->etat != 'annulé')
               <a id="buPrintM4" href="/print-m4/{{ $fm->id_form }}" class="btn btn-info"><i class="fa fa-print"></i></a>
+              @endif
             </div>
           </td>
         </tr>

@@ -3563,6 +3563,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   runtimeCompiler: true,
@@ -3749,6 +3751,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
                 pause_debut = $("#pause_debut");
                 pause_fin = $("#pause_fin");
+
+                if (etat_avis.value == '--Selectionner--') {
+                  //  var validation_message = "<p>État d'avis est obligatoir</p>"
+                  document.querySelector('.etat_avis_message_validation').innerHTML = "<p style=\"color:red\">\xC9tat d'avis est obligatoir*</p>";
+                }
+
                 infoavismodif = {
                   n_form: _this3.selected_nForm,
                   id_form: _this3.selected_idForm,
@@ -3819,7 +3827,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
                 };
                 console.log("-*-*-*-*-*-*-*-*-", infoavismodif);
-                _context.next = 29;
+                _context.next = 30;
                 return axios({
                   method: "POST",
                   url: "api/store-avis-modif",
@@ -3834,7 +3842,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                   throw e;
                 });
 
-              case 29:
+              case 30:
               case "end":
                 return _context.stop();
             }
@@ -5498,7 +5506,6 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-//
 /* harmony default export */ __webpack_exports__["default"] = (_defineProperty({
   runtimeCompiler: true,
   data: function data() {
@@ -5541,7 +5548,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 _context.next = 2;
                 return axios.get('/fill-clients').then(function (res) {
-                  _this.clients = res.data;
+                  _this.clients = res.data; // console.log("clients : ", this.clients)
                 })["catch"](function (err) {
                   return console.error("err FillClients", err);
                 });
@@ -5567,6 +5574,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return axios.get("/fill-reference-plan?nrcEntrp=".concat(_this2.nrc_entrp)).then(function (res) {
                   _this2.reference_plan = res.data;
                   _this2.curr_client = res.data[0].raisoci;
+                  console.log("reference_plan : ", _this2.reference_plan);
                 })["catch"](function (err) {
                   return console.log("err FillReferencesPlan", err);
                 });
@@ -5623,7 +5631,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 _context4.next = 2;
                 return axios.get("/fill-dates-plan?nForm=".concat(nform)).then(function (res) {
-                  _this4.dates_actions = res.data;
+                  _this4.dates_actions = res.data[0];
                 }).then(function () {
                   _this4.AssignDates(nform);
                 })["catch"](function (err) {
@@ -45391,7 +45399,19 @@ var render = function() {
                   }
                 },
                 [
-                  _c("option", { attrs: { selected: "", value: "modifié" } }, [
+                  _c(
+                    "option",
+                    {
+                      attrs: {
+                        value: "--Selectionner--",
+                        disabled: "",
+                        selected: ""
+                      }
+                    },
+                    [_vm._v("--Selectionner--")]
+                  ),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "modifié" } }, [
                     _vm._v("Modification")
                   ]),
                   _vm._v(" "),
@@ -45399,7 +45419,9 @@ var render = function() {
                     _vm._v("Annulation")
                   ])
                 ]
-              )
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "etat_avis_message_validation" })
             ]),
             _vm._v(" "),
             _c(

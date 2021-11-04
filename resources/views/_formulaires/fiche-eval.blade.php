@@ -405,7 +405,6 @@
         type: 'GET',
         url: '{!! URL::to('/fill-fiche-evaluation') !!}',
         data: {'nForm': nForm},
-        // console.log('==>',data);
         success: function(data) {
           console.log("success fiche eval infos !!", data);
 // ---------------------------------------------

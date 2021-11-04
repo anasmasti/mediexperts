@@ -20,7 +20,10 @@ class FormationController extends Controller
         $request->session()->forget(['added', 'updated']);
         $request->session()->forget(['success', 'info', 'warning', 'error']);
 
-        $formation = Formation::all();
+        $formation = Formation::select('formations.*','plan_formations.*')
+        ->join('plan_formations','plan_formations.n_form', 'formations.n_form')
+        // ->join('formations','formations.id_form','avis_modifications.id_form',)
+        ->get();
         // $plan = PlanFormation::all();
 
         return view('formation.view', ['formation' => $formation/*, 'plan' => $plan*/]);
@@ -28,8 +31,8 @@ class FormationController extends Controller
 
     public function search_form(Request $request)
     {
-        $search_input = $request->input ( 'search_input' );
-        $formation = Plan::select('formations.*')
+        $search_input = $request->input( 'search_input' );
+        $formation = Plan::select('formations.*','plan_formations.etat')
             ->join('plan_formations', 'plan_formations.id_plan', 'plans.id_plan')
             ->join('formations', 'plan_formations.n_form', 'formations.n_form')
             ->where('plans.refpdf', 'LIKE', '%'. $search_input . '%')
@@ -134,6 +137,7 @@ class FormationController extends Controller
       $data = Formation::find($request->idForm);
       return response()->json(['msg' => "Enregistré", $data]);
     }
+
     //find nb jour de Plan de formation
     public function VerifyGroupe(Request $request) {
         $data = Formation::select('formations.groupe')
@@ -146,12 +150,22 @@ class FormationController extends Controller
 
     public function DetailActionFormation(Request $request)
     {
-        $formation = Formation::select('formations.*')
-            ->join('plan_formations', 'plan_formations.n_form', '=', 'formations.n_form')
-            // ->join('plans', 'plans.id_plan', '=', 'plan_formations.id_plan')
+
+      // $formation = Formation::select('formations.*','plan_formations.*')
+      // ->join('plan_formations','plan_formations.n_form', 'formations.n_form')
+      // // ->join('formations','formations.id_form','avis_modifications.id_form',)
+      // ->get();
+      // // $plan = PlanFormation::all();
+
+        // $formation = Formation::select('formations.*','plan_formations.*','plans.*')
+        $formation = Formation::select('formations.*','plan_formations.*')
+            ->join('plan_formations', 'plan_formations.n_form','=', 'formations.n_form')
+            // ->join('plans', 'plans.id_plan','=', 'plan_formations.id_plan')
             ->where('plan_formations.n_form', $request->nForm)
             ->get();
 
+            // return response()->json($formation);
+          
         return view('formation.view', ['formation' => $formation]);
     }
 
