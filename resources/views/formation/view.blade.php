@@ -54,6 +54,7 @@
 
       <tbody>
         @foreach ($formation as $fm)
+
         <tr>
 
           @php
