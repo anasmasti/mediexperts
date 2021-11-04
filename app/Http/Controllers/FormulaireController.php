@@ -148,7 +148,7 @@ class FormulaireController extends Controller
         ->join('Clients', 'clients.nrc_entrp', '=', 'plans.nrc_e')
         ->join('themes', 'plan_formations.id_thm', 'themes.id_theme')
         ->where('plan_formations.n_form', $request->nForm)
-        ->where('plan_formations.type_action', '!=' , 'annulé')
+        // ->where('plan_formations.type_action', '!=' , 'annulé')
         ->get();
       $avis_modifications = Formation::select('avis_modifications.*', 'themes.nom_theme', 'clients.raisoci', 'clients.ville', 'clients.local_2')
           ->join('avis_modifications', 'formations.id_form', '=', 'avis_modifications.id_form')
@@ -157,7 +157,7 @@ class FormulaireController extends Controller
           ->join('Clients', 'clients.nrc_entrp', '=', 'plans.nrc_e')
           ->join('themes', 'plan_formations.id_thm', 'themes.id_theme')
           ->where('plan_formations.n_form', $request->nForm)
-          ->where('plan_formations.type_action', '!=' , 'annulé')
+          // ->where('plan_formations.type_action', '!=' , 'annulé')
           // ->orderBy('avis_modifications.id' , 'desc')
           ->get();
       return response()->json([$data , $avis_modifications]);
