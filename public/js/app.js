@@ -72970,13 +72970,8 @@ var state = {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-<<<<<<< HEAD
 __webpack_require__(/*! C:\Users\HP\Desktop\Projects\Laravel\mediexperts\resources\js\app.js */"./resources/js/app.js");
 module.exports = __webpack_require__(/*! C:\Users\HP\Desktop\Projects\Laravel\mediexperts\resources\sass\app.scss */"./resources/sass/app.scss");
-=======
-__webpack_require__(/*! C:\Users\HP\Desktop\Projects\Work\Mediexperts_App\mediexperts-v2\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\HP\Desktop\Projects\Work\Mediexperts_App\mediexperts-v2\resources\sass\app.scss */"./resources/sass/app.scss");
->>>>>>> d2664c27434e99d36ddd0f0076d360663701b3b9
 
 
 /***/ })
