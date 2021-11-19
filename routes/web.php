@@ -64,7 +64,6 @@ Route::get('/import-client', 'Import\ImportClientController@index')->name('clien
 Route::post('/import/import-client', 'Import\ImportClientController@import')->name('client.import');
 /********************************************************************/
 
-
 //*************** CABINET ROUTES ***************
 Route::get('/cabinet', 'CabinetController@index')->name('cabinet.index');
 Route::get('/detail-cab/{nrc}', 'CabinetController@show')->name('cabinet.show');
