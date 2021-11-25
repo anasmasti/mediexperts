@@ -370,13 +370,21 @@
             $('#listPersonnel').append(fillPersonnel);
 
             //Fetch date list
-            for (let i = 0; i <= data.length; i++) {
+            for (let i = 0; i < 30; i++) {
               let date = ( DateSynx +(i+1)+ `` );
               if (Dates[0][date] != null) {
                 var customDate = DateFormat(Dates[0][date]);
                 fillDates += `<option value="`+customDate+`">`+customDate+`</option>`;
               }
             } //endfor
+            // for (let i = 0; i <= data.length; i++) {
+            //   console.log("fetching dates" , data );
+            //   let date = ( DateSynx +(i+1)+ `` );
+            //   if (Dates[0][date] != null) {
+            //     var customDate = DateFormat(Dates[0][date]);
+            //     fillDates += `<option value="`+customDate+`">`+customDate+`</option>`;
+            //   }
+            // } //endfor
 
             $('#dates').html("");
             ((fillDates != null) && $('#dates').append(fillDates))
