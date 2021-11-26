@@ -230,6 +230,10 @@
     <div class="row">
       <div class="form-group col-12"><!--**************HR**************--><hr></div>
     </div>
+    <div>
+      <label for="label-control">Filter :</label>
+      <input class="form-control mb-3 wx-5" type="text" id="filtredValue" onkeyup="personnelFilter()">
+    </div>
 
     <div class="row" id="personnelsInput">
       {{-- <span class="col-12 text-lg bg-dark p-2 mb-3">Modifier les personnels pour cette formation</span>
@@ -266,12 +270,80 @@
 </div><!-- ./CARD -->
 
 <script>
+  function FindPersonnel(filtredValue) {
+    //---------- personnels ----------
+    var nForm = $('#n_form').val();
+    var personnelsInput = $('#personnelsInput');
+    var titleSection = `<span class="col-12 text-lg bg-dark p-2 mb-3">Sélectionner les personnels pour cette formation</span>`;
+    $.ajax({
+      type: 'GET',
+      url: '{!! URL::to('/findpersonnel') !!}',
+      data: {'nForm': nForm},
+      success: function(data) {
+        let responsData = data.filter( function(index) {
+          return index['nom'].startsWith(filtredValue);
+   
+        })
+        console.log('filter 1 ===>', responsData);
+        var grabData = "";
+        for (let i = 0; i < responsData.length; i++) {
+          grabData +=
+          `<div class="form-group col-lg-4 col-sm-6">
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" name="cin[]" id="`+responsData[i]["cin"]+`" class="custom-control-input" value="`+responsData[i]["cin"]+`">
+            <label for="`+responsData[i]["cin"]+`" class="custom-control-label">`+responsData[i]["nom"]+' '+responsData[i]["prenom"]+'<br>'+ responsData[i]["fonction"]+`</label>
+          </div>
+          </div>`;
+        }
+        personnelsInput.html("");
+        personnelsInput.append(titleSection);
+        personnelsInput.append(grabData);
+      },
+      error: function(error) { },
+    }); //ajax fun 2
+  } //fun
+
+  function FindPersonnelFormation(filtredValue) {
+    setTimeout(() => {
+        var idForm = $('#id_form').val();
+        $.ajax({
+        type: 'GET',
+        url: '{!! URL::to('/findpersonnelformation') !!}',
+        data: {'idForm': idForm},
+        success: function(data) {
+          let responsData = data.filter( function(index) {
+     
+          return index['nom'].startsWith(filtredValue);
+      
+        })
+        console.log('filter 2 ===>', responsData);
+            for (let i = 0; i < responsData.length; i++) {
+            let cin = responsData[i]['cin'];
+            let targetCheckbox = document.getElementById(cin);
+            // if (targetCheckbox) {
+                // targetCheckbox.prop("checked", true);
+                targetCheckbox.checked = true;
+            // }
+            } //endfor
+        },
+        error: function(error) { }
+        });
+    }, 400);
+  }
+
+  async function personnelFilter(){
+    let filtredValue = $('#filtredValue').val();
+    
+    await FindPersonnel(filtredValue);
+    FindPersonnelFormation(filtredValue);
+  }
+
 $(document).ready(function() {
 
   // APPELER LES FONCTIONS EN ORDRE
   MakeInputDates();
-  FindPersonnel();
-  FindPersonnelFormation();
+  // FindPersonnel();
+  // FindPersonnelFormation();
   // FindPersonnelFormationDeja();
 
   function MakeInputDates() {
@@ -324,55 +396,55 @@ $(document).ready(function() {
     MakeInputDates();
   });
 
-  function FindPersonnel() {
-    //---------- personnels ----------
-    var nForm = $('#n_form').val();
-    var personnelsInput = $('#personnelsInput');
-    var titleSection = `<span class="col-12 text-lg bg-dark p-2 mb-3">Sélectionner les personnels pour cette formation</span>`;
-    $.ajax({
-      type: 'GET',
-      url: '{!! URL::to('/findpersonnel') !!}',
-      data: {'nForm': nForm},
-      success: function(data) {
-        var grabData = "";
-        for (let i = 0; i < data.length; i++) {
-          grabData +=
-          `<div class="form-group col-lg-4 col-sm-6">
-          <div class="custom-control custom-checkbox">
-            <input type="checkbox" name="cin[]" id="`+data[i]["cin"]+`" class="custom-control-input" value="`+data[i]["cin"]+`">
-            <label for="`+data[i]["cin"]+`" class="custom-control-label">`+data[i]["nom"]+' '+data[i]["prenom"]+'<br>'+ data[i]["fonction"]+`</label>
-          </div>
-          </div>`;
-        }
-        personnelsInput.html("");
-        personnelsInput.append(titleSection);
-        personnelsInput.append(grabData);
-      },
-      error: function(error) { },
-    }); //ajax fun 2
-  } //fun
+  // function FindPersonnel() {
+  //   //---------- personnels ----------
+  //   var nForm = $('#n_form').val();
+  //   var personnelsInput = $('#personnelsInput');
+  //   var titleSection = `<span class="col-12 text-lg bg-dark p-2 mb-3">Sélectionner les personnels pour cette formation</span>`;
+  //   $.ajax({
+  //     type: 'GET',
+  //     url: '{!! URL::to('/findpersonnel') !!}',
+  //     data: {'nForm': nForm},
+  //     success: function(data) {
+  //       var grabData = "";
+  //       for (let i = 0; i < data.length; i++) {
+  //         grabData +=
+  //         `<div class="form-group col-lg-4 col-sm-6">
+  //         <div class="custom-control custom-checkbox">
+  //           <input type="checkbox" name="cin[]" id="`+data[i]["cin"]+`" class="custom-control-input" value="`+data[i]["cin"]+`">
+  //           <label for="`+data[i]["cin"]+`" class="custom-control-label">`+data[i]["nom"]+' '+data[i]["prenom"]+'<br>'+ data[i]["fonction"]+`</label>
+  //         </div>
+  //         </div>`;
+  //       }
+  //       personnelsInput.html("");
+  //       personnelsInput.append(titleSection);
+  //       personnelsInput.append(grabData);
+  //     },
+  //     error: function(error) { },
+  //   }); //ajax fun 2
+  // } //fun
 
-  function FindPersonnelFormation() {
-    setTimeout(() => {
-        var idForm = $('#id_form').val();
-        $.ajax({
-        type: 'GET',
-        url: '{!! URL::to('/findpersonnelformation') !!}',
-        data: {'idForm': idForm},
-        success: function(data) {
-            for (let i = 0; i < data.length; i++) {
-            let cin = data[i]['cin'];
-            let targetCheckbox = document.getElementById(cin);
-            // if (targetCheckbox) {
-                // targetCheckbox.prop("checked", true);
-                targetCheckbox.checked = true;
-            // }
-            } //endfor
-        },
-        error: function(error) { }
-        });
-    }, 400);
-  }
+  // function FindPersonnelFormation() {
+  //   setTimeout(() => {
+  //       var idForm = $('#id_form').val();
+  //       $.ajax({
+  //       type: 'GET',
+  //       url: '{!! URL::to('/findpersonnelformation') !!}',
+  //       data: {'idForm': idForm},
+  //       success: function(data) {
+  //           for (let i = 0; i < data.length; i++) {
+  //           let cin = data[i]['cin'];
+  //           let targetCheckbox = document.getElementById(cin);
+  //           // if (targetCheckbox) {
+  //               // targetCheckbox.prop("checked", true);
+  //               targetCheckbox.checked = true;
+  //           // }
+  //           } //endfor
+  //       },
+  //       error: function(error) { }
+  //       });
+  //   }, 400);
+  // }
 
   function FindPersonnelFormationDeja() {
     setTimeout(() => {
