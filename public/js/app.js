@@ -2389,10 +2389,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                _this2.ChangeFontSize();
+                _this2.ChangeFontSize(); // console.log("nrc_entrp", this.nrc_entrp);
 
-                console.log("nrc_entrp", _this2.nrc_entrp);
-                _context2.next = 4;
+
+                _context2.next = 3;
                 return axios.get("/fill-reference-plan?nrcEntrp=".concat(_this2.nrc_entrp)).then(function (res) {
                   _this2.reference_plan = res.data;
                   _this2.curr_client_nrc = _this2.clients.nrc_entrp;
@@ -2408,7 +2408,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   return console.log("err FillReferencesPlan", err);
                 });
 
-              case 4:
+              case 3:
               case "end":
                 return _context2.stop();
             }
@@ -2499,15 +2499,24 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this5 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
+        var DateSynx, avi_modif;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
           while (1) {
             switch (_context5.prev = _context5.next) {
               case 0:
                 _context5.next = 2;
                 return axios.get("/fill-dates-plan?nForm=".concat(nform)).then(function (res) {
-                  _this5.dates_actions = res.data;
+                  avi_modif = res.data[1];
 
-                  _this5.AssignDates(nform);
+                  if (avi_modif.length > 0) {
+                    _this5.dates_actions = [avi_modif[0]];
+                    DateSynx = 'new_date';
+                  } else {
+                    _this5.dates_actions = res.data[0];
+                    DateSynx = 'date';
+                  }
+                }).then(function () {
+                  _this5.AssignDates(nform, DateSynx);
                 })["catch"](function (err) {
                   return console.error("err FillDates", err);
                 });
@@ -2520,7 +2529,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee5);
       }))();
     },
-    AssignDates: function AssignDates(nform) {
+    AssignDates: function AssignDates(nform, DateSynx) {
       var _this6 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee6() {
@@ -2540,12 +2549,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                         for (var i = 1; i < 30; i++) {
                           //************************ vvv [dynamic key assignement] vvv */
                           if (i == 1) {
-                            Object.assign(action.dates, _defineProperty({}, "date_debut", _this6.DateFormat(forma["date".concat(i)])));
+                            Object.assign(action.dates, _defineProperty({}, "date_debut", _this6.DateFormat(forma["".concat(DateSynx).concat(i)])));
                             console.log("date_debut", action.dates.date_debut);
                           }
 
-                          if (forma["date".concat(i)]) {
-                            Object.assign(action.dates, _defineProperty({}, "date_fin", _this6.DateFormat(forma["date".concat(i)])));
+                          if (forma["".concat(DateSynx).concat(i)]) {
+                            Object.assign(action.dates, _defineProperty({}, "date_fin", _this6.DateFormat(forma["".concat(DateSynx).concat(i)])));
                             console.log("date_fin", action.dates.date_fin);
                           }
                         }
@@ -2743,6 +2752,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return axios.get("/fill-plans-by-reference?idPlan=".concat(_this4.id_plan)).then(function (res) {
                   _this4.actions_by_ref = res.data;
                   _this4.curr_annee = res.data[0].annee;
+                  console.log("actions_by_ref : ", _this4.actions_by_ref);
                 }).then(function () {
                   // fill dates action
                   _this4.actions_by_ref.forEach(function (action) {
