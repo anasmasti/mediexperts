@@ -273,8 +273,9 @@ class FormulaireController extends Controller
 
       return response()->json($data);
     }
+    
     public function FillPlansByReference(Request $request) {
-      $data = Client::select('plan_formations.*', 'themes.nom_theme','domaines.nom_domain','plans.*',
+      $data = Client::select('plan_formations.*', 'themes.nom_theme','domaines.nom_domain','plans.*', 'intervenants.*','cabinets.nom_gr1', 'cabinets.pren_gr1',
         'cabinets.raisoci as raisoci_cab','cabinets.ncnss as ncnss_cab', 'plans.annee','plan_formations.etat as etat_formation')
         ->join('plans', 'clients.nrc_entrp', 'plans.nrc_e')
         ->join('plan_formations', 'plans.id_plan', 'plan_formations.id_plan')

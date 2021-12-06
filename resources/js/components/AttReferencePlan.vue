@@ -338,7 +338,6 @@ export default {
       curr_client_ville: null,
       curr_client_fonct_dg1: null,
       curr_client_nom_dg1: null,
-
       // cabinet data
       curr_cabinet_nrc: null,
       curr_cabinet_raisoci: null,
@@ -347,7 +346,6 @@ export default {
       curr_cabinet_ncnss: null,
       curr_cabinet_adress: null,
       curr_cabinet_ville: null,
-
       // plan data
       id_plan: undefined,
       curr_annee: null,
@@ -359,7 +357,6 @@ export default {
       dates_actions: [],
       current_dates: null,
       isAllLoaded: false,
-
       // title of page
       title: {
         ref_plan: "",
@@ -369,11 +366,9 @@ export default {
   mounted() {
     this.FillClients();
   },
-
   updated() {
     document.title = `AR - ${this.title.ref_plan}`;
   },
-
   methods: {
     DateFormat(date) {
       if (date) {
@@ -414,7 +409,6 @@ export default {
           this.curr_client_sg_soci = res.data[0].sg_soci;
           this.curr_client_fonct_dg1 = res.data[0].fonct_dg1;
           this.curr_client_nom_dg1 = res.data[0].nom_dg1;
-
           console.log("reference_plan : ", this.reference_plan);
         })
         .catch((err) => console.log("err FillReferencesPlan", err));
@@ -482,11 +476,7 @@ export default {
         })
         .catch((err) => console.error("err FillDates", err));
          
-
       // ------------------------------------------
-
-
-
       // console.log('teeeeeeeeeeeeeeeeeeeest');
       // await axios
       //   .get(`/fill-dates-plan?nForm=${nform}`)
@@ -555,4 +545,3 @@ export default {
   computed: {}, // computed
 };
 </script>
-

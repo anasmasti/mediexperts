@@ -487,7 +487,7 @@
               <span class="info-box-icon"><i class="fas fa-print"></i></span>
 
               <div class="info-box-content">
-                <span class="info-box-text">Attes. référence formation</span>
+                <span class="info-box-text">Attes. référence intervenant</span>
                 <span class="info-box-number"><a href="/print-att-reference-formation">Imprimer</a></span>
               </div>
               <!-- /.info-box-content -->
