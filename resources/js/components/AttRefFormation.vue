@@ -228,10 +228,16 @@
             margin-top: 50px;
           "
         >
-          Le cabinet conseil
-          <strong id="cabinet_2">
-            {{ curr_cabinet_raisoci || "(organisme)" }}
-          </strong>
+          <select class="select highlighted" style="font-size: 16px">
+            <option value="">M.</option>
+            <option value="">Mme.</option>
+          </select>
+          <span class="highlighted-danger">
+          {{ (selectedInterv && selectedInterv.nom) || "(Non intervenant)" }}
+          {{
+            (selectedInterv && selectedInterv.prenom) || "(Prénom intervenant)"
+          }}
+          </span>
           a répondu à nos attentes et a donné entière satisfaction.
         </p>
 
@@ -288,12 +294,16 @@
           </p>
 
           <div class="text-center" style="margin: 20px; margin-left: 50%">
-            <span class="select highlighted" style="font-size: 16px">
-              Direction
+            <select class="select highlighted" style="font-size: 16px">
+              <option value="">M.</option>
+              <option value="">Mme.</option>
+            </select>
+
+            <span class="highlighted-danger" id="entrpDgNom">
+              {{ curr_cabinet_directeur_nom || "(Nom directeur entrp.)" }}
+              {{ curr_cabinet_directeur_prenom || "(Prénom directeur entrp.)" }}
             </span>
-            <p class="highlighted-danger" style="display: block">
-              {{ curr_client_raisoci || "(entreprise)" }}
-            </p>
+            <p>Gérant</p>
           </div>
         </div>
       </div>
@@ -514,7 +524,7 @@ export default {
         .catch((err) => console.error("err FillDates", err));
 
       // ------------------------------------------
-      
+
       // await axios
       //   .get(`/fill-dates-plan?nForm=${nform}`)
       //   .then((res) => {

@@ -2281,6 +2281,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   runtimeCompiler: true,
   data: function data() {
@@ -45095,11 +45105,20 @@ var render = function() {
               }
             },
             [
-              _vm._v("\n        Le cabinet conseil\n        "),
-              _c("strong", { attrs: { id: "cabinet_2" } }, [
+              _vm._m(4),
+              _vm._v(" "),
+              _c("span", { staticClass: "highlighted-danger" }, [
                 _vm._v(
-                  "\n          " +
-                    _vm._s(_vm.curr_cabinet_raisoci || "(organisme)") +
+                  "\n        " +
+                    _vm._s(
+                      (_vm.selectedInterv && _vm.selectedInterv.nom) ||
+                        "(Non intervenant)"
+                    ) +
+                    "\n        " +
+                    _vm._s(
+                      (_vm.selectedInterv && _vm.selectedInterv.prenom) ||
+                        "(Prénom intervenant)"
+                    ) +
                     "\n        "
                 )
               ]),
@@ -45166,29 +45185,32 @@ var render = function() {
                   staticStyle: { margin: "20px", "margin-left": "50%" }
                 },
                 [
+                  _vm._m(5),
+                  _vm._v(" "),
                   _c(
                     "span",
                     {
-                      staticClass: "select highlighted",
-                      staticStyle: { "font-size": "16px" }
-                    },
-                    [_vm._v("\n            Direction\n          ")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "p",
-                    {
                       staticClass: "highlighted-danger",
-                      staticStyle: { display: "block" }
+                      attrs: { id: "entrpDgNom" }
                     },
                     [
                       _vm._v(
                         "\n            " +
-                          _vm._s(_vm.curr_client_raisoci || "(entreprise)") +
+                          _vm._s(
+                            _vm.curr_cabinet_directeur_nom ||
+                              "(Nom directeur entrp.)"
+                          ) +
+                          "\n            " +
+                          _vm._s(
+                            _vm.curr_cabinet_directeur_prenom ||
+                              "(Prénom directeur entrp.)"
+                          ) +
                           "\n          "
                       )
                     ]
-                  )
+                  ),
+                  _vm._v(" "),
+                  _c("p", [_vm._v("Gérant")])
                 ]
               )
             ]
@@ -45275,6 +45297,40 @@ var staticRenderFns = [
         ])
       ])
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "select",
+      {
+        staticClass: "select highlighted",
+        staticStyle: { "font-size": "16px" }
+      },
+      [
+        _c("option", { attrs: { value: "" } }, [_vm._v("M.")]),
+        _vm._v(" "),
+        _c("option", { attrs: { value: "" } }, [_vm._v("Mme.")])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "select",
+      {
+        staticClass: "select highlighted",
+        staticStyle: { "font-size": "16px" }
+      },
+      [
+        _c("option", { attrs: { value: "" } }, [_vm._v("M.")]),
+        _vm._v(" "),
+        _c("option", { attrs: { value: "" } }, [_vm._v("Mme.")])
+      ]
+    )
   }
 ]
 render._withStripped = true
