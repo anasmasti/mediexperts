@@ -45046,6 +45046,7 @@ var render = function() {
           _vm._v(" "),
           _c(
             "table",
+            { staticStyle: { "margin-top": "30px" } },
             [
               _vm._m(3),
               _vm._v(" "),
@@ -74423,8 +74424,13 @@ var state = {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
+<<<<<<< HEAD
 __webpack_require__(/*! C:\Users\HP\Desktop\mediexperts\resources\js\app.js */"./resources/js/app.js");
 module.exports = __webpack_require__(/*! C:\Users\HP\Desktop\mediexperts\resources\sass\app.scss */"./resources/sass/app.scss");
+=======
+__webpack_require__(/*! C:\Users\anasm\Documents\Projects\Work\Mediexperts_App\app\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\anasm\Documents\Projects\Work\Mediexperts_App\app\resources\sass\app.scss */"./resources/sass/app.scss");
+>>>>>>> 8a3f55a14b4a10b54ca830bb1b1f2bca8b636d94
 
 
 /***/ })
