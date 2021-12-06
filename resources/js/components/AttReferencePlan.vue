@@ -66,7 +66,7 @@
         <button
           class="btn-btn-primary"
           id="dateBtn"
-          v-on:click="FillReferencesPlan()"
+          v-on:click="FillReferencesPlan();"
           style="background: #00ff11; margin: 0.5rem 0; padding: 0.5rem"
         >
           Remplir les dates
@@ -401,7 +401,7 @@ export default {
     },
     async FillReferencesPlan() {
       this.ChangeFontSize();
-      console.log("nrc_entrp", this.nrc_entrp);
+      // console.log("nrc_entrp", this.nrc_entrp);
       await axios
         .get(`/fill-reference-plan?nrcEntrp=${this.nrc_entrp}`)
         .then((res) => {
@@ -461,15 +461,42 @@ export default {
         .catch((err) => console.error("err FillCabinetInfo", err));
     },
     async FillDates(nform) {
-      await axios
-        .get(`/fill-dates-plan?nForm=${nform}`)
+      let DateSynx;
+      let avi_modif;
+      await axios.get(`/fill-dates-plan?nForm=${nform}`)
         .then((res) => {
-          this.dates_actions = res.data;
-          this.AssignDates(nform);
+          avi_modif = res.data[1]
+          if (avi_modif.length > 0)
+          {
+             this.dates_actions = [avi_modif[0]];
+             DateSynx = 'new_date'
+          }
+          else
+          {
+            this.dates_actions = res.data[0];
+            DateSynx = 'date'
+          }
+        })
+        .then(() => {
+          this.AssignDates(nform , DateSynx);
         })
         .catch((err) => console.error("err FillDates", err));
+         
+
+      // ------------------------------------------
+
+
+
+      // console.log('teeeeeeeeeeeeeeeeeeeest');
+      // await axios
+      //   .get(`/fill-dates-plan?nForm=${nform}`)
+      //   .then((res) => {
+      //     this.dates_actions = res.data;
+      //     this.AssignDates(nform);
+      //   })
+      //   .catch((err) => console.error("err FillDates", err));
     },
-    async AssignDates(nform) {
+    async AssignDates(nform , DateSynx) {
       await this.actions_by_ref.forEach((action) => {
         if (action.n_form == nform) {
           this.dates_actions.forEach((forma) => {
@@ -479,13 +506,13 @@ export default {
                 //************************ vvv [dynamic key assignement] vvv */
                 if (i == 1) {
                   Object.assign(action.dates, {
-                    [`date_debut`]: this.DateFormat(forma[`date${i}`]),
+                    [`date_debut`]: this.DateFormat(forma[`${DateSynx}${i}`]),
                   });
                   console.log("date_debut", action.dates.date_debut);
                 }
-                if (forma[`date${i}`]) {
+                if (forma[`${DateSynx}${i}`]) {
                   Object.assign(action.dates, {
-                    [`date_fin`]: this.DateFormat(forma[`date${i}`]),
+                    [`date_fin`]: this.DateFormat(forma[`${DateSynx}${i}`]),
                   });
                   console.log("date_fin", action.dates.date_fin);
                 }
