@@ -45046,6 +45046,7 @@ var render = function() {
           _vm._v(" "),
           _c(
             "table",
+            { staticStyle: { "margin-top": "30px" } },
             [
               _vm._m(3),
               _vm._v(" "),

@@ -188,7 +188,7 @@
         </div>
 
         <!-- {{-- FORMATIONS --}} -->
-        <table>
+        <table style="margin-top:30px;">
           <thead style="text-align: left">
             <tr>
               <th style="width: 50%">Thème de l’action</th>
