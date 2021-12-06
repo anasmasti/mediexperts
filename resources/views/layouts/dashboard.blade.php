@@ -482,6 +482,18 @@
             </div>
           </div>
 
+          <div class="col-lg-4 col-sm-12 col-md-4">
+            <div class="info-box mb-3 bg-light">
+              <span class="info-box-icon"><i class="fas fa-print"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Attes. référence formation</span>
+                <span class="info-box-number"><a href="/print-att-reference-formation">Imprimer</a></span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+          </div>
+
           @endif
 
 

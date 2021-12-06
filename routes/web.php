@@ -379,6 +379,7 @@ Route::get('/fill-action-form', 'FormulaireController@FillActionFormation')->nam
 Route::get('/print-avis-aff', 'FormulaireController@print_avis_aff')->name('PlanFormation.print_avis_aff');
 
 Route::get('/print-att-reference-plan', 'FormulaireController@print_att_reference_plan')->name('PlanFormation.print_att_reference_plan');
+Route::get('/print-att-reference-formation', 'FormulaireController@print_att_reference_formation')->name('PlanFormation.print_att_reference_formation');
 Route::get('/fill-cabinet-info', 'FormulaireController@FillCabinetInfo')->name('PlanFormation.FillCabinetInfo');
 Route::get('/fill-plan-by-client', 'FormulaireController@FillPlansByClient')->name('PlanByClinet');
 Route::get('/fill-all-organisme' , 'FormulaireController@FillAllCabinets')->name('FillOrganisme');

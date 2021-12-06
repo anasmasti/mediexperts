@@ -394,9 +394,15 @@ class FormulaireController extends Controller
         // ->get();
             return response()->json($data);
     }
+
   public function print_att_reference_plan()
   {
     return view('_formulaires.att-reference-plan');
+  }
+
+  public function print_att_reference_formation()
+  {
+    return view('_formulaires.att-reference-formation');
   }
 
   public function FillCabinetInfo(Request $request)
