@@ -92,7 +92,7 @@
                     <td v-if="info.type_contrat == 'tiers payant'">
                       {{ info.bdg_total * 0.3 + info.bdg_total * 0.2 }}
                     </td>
-                    <td v-if="info.type_contrat == 'normal' || ''"></td>
+                    <td v-if="info.type_contrat == 'normal' || ''">-</td>
                     <td>{{ info.n_facture }}</td>
                     <td>
                       <input
@@ -747,15 +747,15 @@ export default {
             QtRegl = data[item].bdg_total * 0.3 + data[item].bdg_total * 0.2;
             this.total_regl = this.total_regl - QtRegl;
           }
-        } else if(data[item].type_contrat == 'normal'){
-           if (Pdate == "" && dtPaimentEntr != "") {
+        } else if (data[item].type_contrat == "normal") {
+          if (Pdate == "" && dtPaimentEntr != "") {
             if (data[item].id_thm == dbId[1]) {
-              QtRegl = data[item].bdg_total + (data[item].bdg_total * 0.2);
+              QtRegl = data[item].bdg_total + data[item].bdg_total * 0.2;
               this.total_regl += QtRegl;
               this.getPrvDate(id);
             }
           } else if (dtPaimentEntr == "" && data[item].id_thm == dbId[1]) {
-            QtRegl = data[item].bdg_total + (data[item].bdg_total * 0.2);
+            QtRegl = data[item].bdg_total + data[item].bdg_total * 0.2;
             this.total_regl = this.total_regl - QtRegl;
           }
         }
