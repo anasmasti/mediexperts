@@ -32,6 +32,7 @@ Vue.component('model-3', require('../js/components/Model3.vue').default);
 Vue.component('plan-formation', require('../js/components/PlanFormation.vue').default);
 Vue.component('avis-affichage', require('../js/components/AvisAffichage.vue').default);
 Vue.component('att-reference-plan', require('../js/components/AttReferencePlan.vue').default);
+Vue.component('att-ref-formation', require('../js/components/AttRefFormation.vue').default);
 Vue.component('avis-modification', require('../js/components/AvisModification.vue').default);
 Vue.component('print-g6', require('../js/components/G6.vue').default);
 Vue.component('List', require('../js/components/DRB_OFPPT/List.vue').default);
