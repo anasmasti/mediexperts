@@ -4654,7 +4654,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Edit",
@@ -4682,7 +4681,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       comment: "",
       montant_rembrs: null,
       date_depot_dmd_rembrs: null,
-      date_rembrs: null,
+      date_rembrs: 'jj/mm/aaaa',
       select_all_ch: null,
       date_paiement: [],
       ModeReferencePaiement: [],
@@ -4714,6 +4713,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       _this.accuse_model6 = _this.DRB_Ofppts[0].accuse_model6 === "préparé";
       _this.montant_rembrs = _this.DRB_Ofppts[0].montant_rembrs;
       _this.date_depot_dmd_rembrs = _this.DRB_Ofppts[0].date_depot_dmd_rembrs;
+      console.log(_this.date_depot_dmd_rembrs = _this.DRB_Ofppts[0].date_depot_dmd_rembrs);
       _this.date_rembrs = _this.DRB_Ofppts[0].date_rembrs;
       _this.select_all_ch = _this.DRB_Ofppts[0].payerAllPF;
     }, 1000);
@@ -4765,7 +4765,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var Date_depo_dem = document.getElementById("date_depot_dmd_rembrs");
 
       if (Date_depo_dem.value == "" || Date_depo_dem.value > Date_remb.value) {
-        // document.getElementById('date_rembrs').value = '';
         document.getElementById("date_rembrs").disabled = true;
         this.$toastr.e("Date dépot demande de Remboursement doit etre inferieur a la Date de Remboursement ");
       } else if (Date_depo_dem.value != "") {
@@ -47376,7 +47375,7 @@ var render = function() {
                                   : _vm._e(),
                                 _vm._v(" "),
                                 info.type_contrat == "normal" || ""
-                                  ? _c("td")
+                                  ? _c("td", [_vm._v("-")])
                                   : _vm._e(),
                                 _vm._v(" "),
                                 _c("td", [_vm._v(_vm._s(info.n_facture))]),
@@ -48104,9 +48103,6 @@ var render = function() {
                                 },
                                 domProps: { value: _vm.date_depot_dmd_rembrs },
                                 on: {
-                                  change: function($event) {
-                                    return _vm.DateValidation()
-                                  },
                                   input: function($event) {
                                     if ($event.target.composing) {
                                       return
@@ -48344,7 +48340,13 @@ var render = function() {
                                   : _vm._e(),
                                 _vm._v(" "),
                                 info.type_contrat == "normal" || ""
-                                  ? _c("td")
+                                  ? _c("td", [
+                                      _vm._v(
+                                        _vm._s(
+                                          (info.bdg_total * 0.7).toFixed(2)
+                                        )
+                                      )
+                                    ])
                                   : _vm._e(),
                                 _vm._v(" "),
                                 _c("td", [
@@ -48390,12 +48392,12 @@ var render = function() {
                                         domProps: {
                                           value:
                                             (
-                                              info.bdg_total * (70 / 100) -
+                                              info.bdg_total * 0.7 -
                                               _vm.rmb_ofppt[index]
                                             ).toFixed(2) == "NaN"
                                               ? "0"
                                               : (
-                                                  info.bdg_total * (70 / 100) -
+                                                  info.bdg_total * 0.7 -
                                                   _vm.rmb_ofppt[index]
                                                 ).toFixed(2)
                                         }
@@ -48415,12 +48417,12 @@ var render = function() {
                                         domProps: {
                                           value:
                                             (
-                                              info.bdg_total -
+                                              info.bdg_total * 0.7 -
                                               _vm.rmb_ofppt[index]
                                             ).toFixed(2) == "NaN"
                                               ? "0"
                                               : (
-                                                  info.bdg_total -
+                                                  info.bdg_total * 0.7 -
                                                   _vm.rmb_ofppt[index]
                                                 ).toFixed(2)
                                         }
