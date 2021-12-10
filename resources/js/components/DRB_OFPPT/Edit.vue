@@ -391,7 +391,7 @@
                       <td v-if="info.type_contrat == 'tiers payant'">
                         {{ (info.bdg_total * 0.7).toFixed(2) }}
                       </td>
-                      <td v-if="info.type_contrat == 'normal' || ''"></td>
+                      <td v-if="info.type_contrat == 'normal' || ''">{{(info.bdg_total*0.7).toFixed(2)}}</td>
                       <td>
                         <input
                           type="text"
@@ -408,12 +408,12 @@
                           :name="`EcartOFPPT:${info.id_thm}`"
                           :value="
                             (
-                              info.bdg_total * (70 / 100) -
+                              info.bdg_total * 0.7 -
                               rmb_ofppt[index]
                             ).toFixed(2) == 'NaN'
                               ? '0'
                               : (
-                                  info.bdg_total * (70 / 100) -
+                                  info.bdg_total * 0.7 -
                                   rmb_ofppt[index]
                                 ).toFixed(2)
                           "
@@ -426,10 +426,10 @@
                           :id="`EcartOFPPT:${info.id_thm}`"
                           :name="`EcartOFPPT:${info.id_thm}`"
                           :value="
-                            (info.bdg_total - rmb_ofppt[index]).toFixed(2) ==
+                            ((info.bdg_total * 0.7) - rmb_ofppt[index]).toFixed(2) ==
                             'NaN'
                               ? '0'
-                              : (info.bdg_total - rmb_ofppt[index]).toFixed(2)
+                              : ((info.bdg_total * 0.7) - rmb_ofppt[index]).toFixed(2)
                           "
                           disabled
                         />

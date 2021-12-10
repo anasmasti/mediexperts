@@ -115,8 +115,6 @@ class PlanController extends Controller
               $drb->n_contrat = $plans->n_contrat;
               $drb->etat = 'initié';
               $drb->montant_rembrs = '0';
-              $drb->date_depot_dmd_rembrs = '2020-01-01';
-              $drb->date_rembrs = '2020-01-01';
 
               $docs = ['model5','model6','accuse_model6','fiche_eval_sythetique',
                         'factures','compris_cheques','compris_remise',

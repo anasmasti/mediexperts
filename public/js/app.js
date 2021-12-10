@@ -49728,7 +49728,13 @@ var render = function() {
                                   : _vm._e(),
                                 _vm._v(" "),
                                 info.type_contrat == "normal" || ""
-                                  ? _c("td")
+                                  ? _c("td", [
+                                      _vm._v(
+                                        _vm._s(
+                                          (info.bdg_total * 0.7).toFixed(2)
+                                        )
+                                      )
+                                    ])
                                   : _vm._e(),
                                 _vm._v(" "),
                                 _c("td", [
@@ -49774,12 +49780,12 @@ var render = function() {
                                         domProps: {
                                           value:
                                             (
-                                              info.bdg_total * (70 / 100) -
+                                              info.bdg_total * 0.7 -
                                               _vm.rmb_ofppt[index]
                                             ).toFixed(2) == "NaN"
                                               ? "0"
                                               : (
-                                                  info.bdg_total * (70 / 100) -
+                                                  info.bdg_total * 0.7 -
                                                   _vm.rmb_ofppt[index]
                                                 ).toFixed(2)
                                         }
@@ -49799,12 +49805,12 @@ var render = function() {
                                         domProps: {
                                           value:
                                             (
-                                              info.bdg_total -
+                                              info.bdg_total * 0.7 -
                                               _vm.rmb_ofppt[index]
                                             ).toFixed(2) == "NaN"
                                               ? "0"
                                               : (
-                                                  info.bdg_total -
+                                                  info.bdg_total * 0.7 -
                                                   _vm.rmb_ofppt[index]
                                                 ).toFixed(2)
                                         }
