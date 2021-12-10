@@ -5331,7 +5331,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Edit",
@@ -5443,7 +5442,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
       if (Date_depo_dem.value == "" || Date_depo_dem.value > Date_remb.value) {
         // document.getElementById('date_rembrs').value = '';
-        document.getElementById("date_rembrs").disabled = true;
+        // document.getElementById("date_rembrs").disabled = true;
         this.$toastr.e("Date dépot demande de Remboursement doit etre inferieur a la Date de Remboursement ");
       } else if (Date_depo_dem.value != "") {
         document.getElementById("date_rembrs").disabled = false;
@@ -49488,9 +49487,6 @@ var render = function() {
                                 },
                                 domProps: { value: _vm.date_depot_dmd_rembrs },
                                 on: {
-                                  change: function($event) {
-                                    return _vm.DateValidation()
-                                  },
                                   input: function($event) {
                                     if ($event.target.composing) {
                                       return

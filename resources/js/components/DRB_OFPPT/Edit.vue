@@ -294,7 +294,6 @@
                       onmouseover="(this.type='date')"
                       placeholder="Date réalisation"
                       v-model="date_depot_dmd_rembrs"
-                      @change="DateValidation()"
                     />
                   </div>
                 </div>
@@ -673,7 +672,7 @@ export default {
 
       if (Date_depo_dem.value == "" || Date_depo_dem.value > Date_remb.value) {
         // document.getElementById('date_rembrs').value = '';
-        document.getElementById("date_rembrs").disabled = true;
+        // document.getElementById("date_rembrs").disabled = true;
         this.$toastr.e(
           "Date dépot demande de Remboursement doit etre inferieur a la Date de Remboursement "
         );
