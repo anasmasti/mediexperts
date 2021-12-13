@@ -117,9 +117,9 @@
         font-size: 20px;
       "
     >
-      <div class="container">
+      <div class="container" id='print-section'>
         <h3
-          class="text-center"
+          class="text-center print-title"
           style="text-decoration: underline; padding: 40px 0"
         >
           ATTESTATION DE REFERENCE
