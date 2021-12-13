@@ -92,7 +92,7 @@
                     <td v-if="info.type_contrat == 'tiers payant'">
                       {{ info.bdg_total * 0.3 + info.bdg_total * 0.2 }}
                     </td>
-                    <td v-if="info.type_contrat == 'normal' || ''"></td>
+                    <td v-if="info.type_contrat == 'normal' || ''">-</td>
                     <td>{{ info.n_facture }}</td>
                     <td>
                       <input
@@ -294,7 +294,6 @@
                       onmouseover="(this.type='date')"
                       placeholder="Date réalisation"
                       v-model="date_depot_dmd_rembrs"
-                      @change="DateValidation()"
                     />
                   </div>
                 </div>
@@ -391,7 +390,7 @@
                       <td v-if="info.type_contrat == 'tiers payant'">
                         {{ (info.bdg_total * 0.7).toFixed(2) }}
                       </td>
-                      <td v-if="info.type_contrat == 'normal' || ''"></td>
+                      <td v-if="info.type_contrat == 'normal' || ''">{{(info.bdg_total*0.7).toFixed(2)}}</td>
                       <td>
                         <input
                           type="text"
@@ -408,12 +407,12 @@
                           :name="`EcartOFPPT:${info.id_thm}`"
                           :value="
                             (
-                              info.bdg_total * (70 / 100) -
+                              info.bdg_total * 0.7 -
                               rmb_ofppt[index]
                             ).toFixed(2) == 'NaN'
                               ? '0'
                               : (
-                                  info.bdg_total * (70 / 100) -
+                                  info.bdg_total * 0.7 -
                                   rmb_ofppt[index]
                                 ).toFixed(2)
                           "
@@ -426,10 +425,10 @@
                           :id="`EcartOFPPT:${info.id_thm}`"
                           :name="`EcartOFPPT:${info.id_thm}`"
                           :value="
-                            (info.bdg_total - rmb_ofppt[index]).toFixed(2) ==
+                            ((info.bdg_total * 0.7) - rmb_ofppt[index]).toFixed(2) ==
                             'NaN'
                               ? '0'
-                              : (info.bdg_total - rmb_ofppt[index]).toFixed(2)
+                              : ((info.bdg_total * 0.7) - rmb_ofppt[index]).toFixed(2)
                           "
                           disabled
                         />
@@ -673,7 +672,7 @@ export default {
 
       if (Date_depo_dem.value == "" || Date_depo_dem.value > Date_remb.value) {
         // document.getElementById('date_rembrs').value = '';
-        document.getElementById("date_rembrs").disabled = true;
+        // document.getElementById("date_rembrs").disabled = true;
         this.$toastr.e(
           "Date dépot demande de Remboursement doit etre inferieur a la Date de Remboursement "
         );
@@ -747,15 +746,15 @@ export default {
             QtRegl = data[item].bdg_total * 0.3 + data[item].bdg_total * 0.2;
             this.total_regl = this.total_regl - QtRegl;
           }
-        } else if(data[item].type_contrat == 'normal'){
-           if (Pdate == "" && dtPaimentEntr != "") {
+        } else if (data[item].type_contrat == "normal") {
+          if (Pdate == "" && dtPaimentEntr != "") {
             if (data[item].id_thm == dbId[1]) {
-              QtRegl = data[item].bdg_total + (data[item].bdg_total * 0.2);
+              QtRegl = data[item].bdg_total + data[item].bdg_total * 0.2;
               this.total_regl += QtRegl;
               this.getPrvDate(id);
             }
           } else if (dtPaimentEntr == "" && data[item].id_thm == dbId[1]) {
-            QtRegl = data[item].bdg_total + (data[item].bdg_total * 0.2);
+            QtRegl = data[item].bdg_total + data[item].bdg_total * 0.2;
             this.total_regl = this.total_regl - QtRegl;
           }
         }
