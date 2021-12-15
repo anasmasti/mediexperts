@@ -44897,325 +44897,337 @@ var render = function() {
         }
       },
       [
-        _c("div", { staticClass: "container" }, [
-          _c(
-            "h3",
-            {
-              staticClass: "text-center",
-              staticStyle: { "text-decoration": "underline", padding: "40px 0" }
-            },
-            [_vm._v("\n        ATTESTATION DE REFERENCE\n      ")]
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticStyle: {
-                "text-align": "justify",
-                "text-justify": "initial",
-                "font-weight": "300"
-              }
-            },
-            [
-              _vm._v("\n        Nous soussignés, «\n        "),
-              _c(
-                "strong",
-                { staticClass: "highlighted-danger", attrs: { id: "entrp" } },
-                [_vm._v(_vm._s(_vm.curr_cabinet_raisoci || "(Cabinet)"))]
-              ),
-              _vm._v("\n        »,\n\n        "),
-              _c(
-                "span",
-                {
-                  staticClass: "highlighted-danger",
-                  attrs: { id: "entrpFormJury" }
-                },
-                [
-                  _vm._v(
-                    "\n          " +
-                      _vm._s(
-                        _vm.curr_cabinet_formjury || "(forme juridique entrp.)"
-                      ) +
-                      "\n        "
-                  )
-                ]
-              ),
-              _vm._v("\n\n        au capital de\n        "),
-              _c(
-                "span",
-                {
-                  staticClass: "highlighted-danger",
-                  attrs: { id: "entrpCapital" }
-                },
-                [
-                  _vm._v(
-                    "\n          " +
-                      _vm._s(_vm.curr_cabinet_capt_soci || "(capital entrp.)") +
-                      "\n        "
-                  )
-                ]
-              ),
-              _vm._v("\n        Dirhams, dont le siège est sis au\n        "),
-              _c(
-                "span",
-                {
-                  staticClass: "highlighted-danger",
-                  attrs: { id: "entrpSiege" }
-                },
-                [
-                  _vm._v(
-                    "\n          " +
-                      _vm._s(_vm.curr_cabinet_adress || "(siège entreprise)") +
-                      "\n        "
-                  )
-                ]
-              ),
-              _vm._v("\n\n        représentée par son gérant\n        "),
-              _vm._v(" "),
-              _vm._m(1),
-              _vm._v(" "),
-              _c(
-                "span",
-                {
-                  staticClass: "highlighted-danger",
-                  attrs: { id: "entrpDgNom" }
-                },
-                [
-                  _vm._v(
-                    "\n          " +
-                      _vm._s(
-                        _vm.curr_cabinet_directeur_nom ||
-                          "(Nom directeur entrp.)"
-                      ) +
+        _c(
+          "div",
+          { staticClass: "container", attrs: { id: "print-section" } },
+          [
+            _c(
+              "h3",
+              {
+                staticClass: "text-center print-title",
+                staticStyle: {
+                  "text-decoration": "underline",
+                  padding: "40px 0"
+                }
+              },
+              [_vm._v("\n        ATTESTATION DE REFERENCE\n      ")]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticStyle: {
+                  "text-align": "justify",
+                  "text-justify": "initial",
+                  "font-weight": "300"
+                }
+              },
+              [
+                _vm._v("\n        Nous soussignés, «\n        "),
+                _c(
+                  "strong",
+                  { staticClass: "highlighted-danger", attrs: { id: "entrp" } },
+                  [_vm._v(_vm._s(_vm.curr_cabinet_raisoci || "(Cabinet)"))]
+                ),
+                _vm._v("\n        »,\n\n        "),
+                _c(
+                  "span",
+                  {
+                    staticClass: "highlighted-danger",
+                    attrs: { id: "entrpFormJury" }
+                  },
+                  [
+                    _vm._v(
                       "\n          " +
-                      _vm._s(
-                        _vm.curr_cabinet_directeur_prenom ||
-                          "(Prénom directeur entrp.)"
-                      ) +
-                      " "
+                        _vm._s(
+                          _vm.curr_cabinet_formjury ||
+                            "(forme juridique entrp.)"
+                        ) +
+                        "\n        "
+                    )
+                  ]
+                ),
+                _vm._v("\n\n        au capital de\n        "),
+                _c(
+                  "span",
+                  {
+                    staticClass: "highlighted-danger",
+                    attrs: { id: "entrpCapital" }
+                  },
+                  [
+                    _vm._v(
+                      "\n          " +
+                        _vm._s(
+                          _vm.curr_cabinet_capt_soci || "(capital entrp.)"
+                        ) +
+                        "\n        "
+                    )
+                  ]
+                ),
+                _vm._v("\n        Dirhams, dont le siège est sis au\n        "),
+                _c(
+                  "span",
+                  {
+                    staticClass: "highlighted-danger",
+                    attrs: { id: "entrpSiege" }
+                  },
+                  [
+                    _vm._v(
+                      "\n          " +
+                        _vm._s(
+                          _vm.curr_cabinet_adress || "(siège entreprise)"
+                        ) +
+                        "\n        "
+                    )
+                  ]
+                ),
+                _vm._v("\n\n        représentée par son gérant\n        "),
+                _vm._v(" "),
+                _vm._m(1),
+                _vm._v(" "),
+                _c(
+                  "span",
+                  {
+                    staticClass: "highlighted-danger",
+                    attrs: { id: "entrpDgNom" }
+                  },
+                  [
+                    _vm._v(
+                      "\n          " +
+                        _vm._s(
+                          _vm.curr_cabinet_directeur_nom ||
+                            "(Nom directeur entrp.)"
+                        ) +
+                        "\n          " +
+                        _vm._s(
+                          _vm.curr_cabinet_directeur_prenom ||
+                            "(Prénom directeur entrp.)"
+                        ) +
+                        " "
+                    )
+                  ]
+                ),
+                _vm._v(", attestons par la présente que\n\n        "),
+                _vm._m(2),
+                _vm._v(" "),
+                _c(
+                  "span",
+                  {
+                    staticClass: "select text-bold highlighted-danger",
+                    staticStyle: { "font-size": "18px" },
+                    attrs: { id: "cabinet" }
+                  },
+                  [
+                    _vm._v(
+                      "\n          " +
+                        _vm._s(
+                          (_vm.selectedInterv && _vm.selectedInterv.nom) ||
+                            "(Non intervenant)"
+                        ) +
+                        "\n          " +
+                        _vm._s(
+                          (_vm.selectedInterv && _vm.selectedInterv.prenom) ||
+                            "(Prénom intervenant)"
+                        ) +
+                        "\n        "
+                    )
+                  ]
+                ),
+                _vm._v(
+                  "\n        a réalisé pour le compte de notre client\n\n        "
+                ),
+                _c(
+                  "span",
+                  {
+                    staticClass: "highlighted-danger",
+                    attrs: { id: "cabinetCapital" }
+                  },
+                  [
+                    _vm._v(
+                      "\n          " +
+                        _vm._s(_vm.curr_client_raisoci || "(Client)") +
+                        "\n        "
+                    )
+                  ]
+                ),
+                _vm._v("\n        les formations suivantes :\n      ")
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "table",
+              { staticStyle: { "margin-top": "30px" } },
+              [
+                _vm._m(3),
+                _vm._v(" "),
+                _vm._l(_vm.formationsByInterv, function(action, idx) {
+                  return _c(
+                    "tbody",
+                    {
+                      key: "plan" + idx,
+                      staticClass: "center",
+                      attrs: { id: "tableFormation" }
+                    },
+                    _vm._l(action, function(act, i) {
+                      return _c("tr", { key: i }, [
+                        _c("td", [
+                          _vm._v(
+                            "\n              " +
+                              _vm._s(act.nom_theme) +
+                              "\n            "
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _vm._v(
+                            "\n              " +
+                              _vm._s(act.nb_jour) +
+                              "\n            "
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { attrs: { id: act.n_form } }, [
+                          _vm._v(
+                            "\n              De " +
+                              _vm._s(act.dates && act.dates.date_debut) +
+                              " à\n              " +
+                              _vm._s(act.dates && act.dates.date_fin) +
+                              "\n            "
+                          )
+                        ])
+                      ])
+                    }),
+                    0
                   )
-                ]
-              ),
-              _vm._v(", attestons par la présente que\n\n        "),
-              _vm._m(2),
-              _vm._v(" "),
-              _c(
-                "span",
-                {
-                  staticClass: "select text-bold highlighted-danger",
-                  staticStyle: { "font-size": "18px" },
-                  attrs: { id: "cabinet" }
-                },
-                [
+                })
+              ],
+              2
+            ),
+            _vm._v(" "),
+            _c(
+              "p",
+              {
+                staticStyle: {
+                  "text-align": "justify",
+                  "text-justify": "initial",
+                  "line-height": "1.7rem",
+                  "font-weight": "300",
+                  "margin-top": "50px"
+                }
+              },
+              [
+                _vm._m(4),
+                _vm._v(" "),
+                _c("span", { staticClass: "highlighted-danger" }, [
                   _vm._v(
-                    "\n          " +
+                    "\n        " +
                       _vm._s(
                         (_vm.selectedInterv && _vm.selectedInterv.nom) ||
                           "(Non intervenant)"
                       ) +
-                      "\n          " +
+                      "\n        " +
                       _vm._s(
                         (_vm.selectedInterv && _vm.selectedInterv.prenom) ||
                           "(Prénom intervenant)"
                       ) +
                       "\n        "
                   )
-                ]
-              ),
-              _vm._v(
-                "\n        a réalisé pour le compte de notre client\n\n        "
-              ),
-              _c(
-                "span",
-                {
-                  staticClass: "highlighted-danger",
-                  attrs: { id: "cabinetCapital" }
-                },
-                [
-                  _vm._v(
-                    "\n          " +
-                      _vm._s(_vm.curr_client_raisoci || "(Client)") +
-                      "\n        "
-                  )
-                ]
-              ),
-              _vm._v("\n        les formations suivantes :\n      ")
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "table",
-            { staticStyle: { "margin-top": "30px" } },
-            [
-              _vm._m(3),
-              _vm._v(" "),
-              _vm._l(_vm.formationsByInterv, function(action, idx) {
-                return _c(
-                  "tbody",
-                  {
-                    key: "plan" + idx,
-                    staticClass: "center",
-                    attrs: { id: "tableFormation" }
-                  },
-                  _vm._l(action, function(act, i) {
-                    return _c("tr", { key: i }, [
-                      _c("td", [
-                        _vm._v(
-                          "\n              " +
-                            _vm._s(act.nom_theme) +
-                            "\n            "
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("td", [
-                        _vm._v(
-                          "\n              " +
-                            _vm._s(act.nb_jour) +
-                            "\n            "
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("td", { attrs: { id: act.n_form } }, [
-                        _vm._v(
-                          "\n              De " +
-                            _vm._s(act.dates && act.dates.date_debut) +
-                            " à\n              " +
-                            _vm._s(act.dates && act.dates.date_fin) +
-                            "\n            "
-                        )
-                      ])
-                    ])
-                  }),
-                  0
-                )
-              })
-            ],
-            2
-          ),
-          _vm._v(" "),
-          _c(
-            "p",
-            {
-              staticStyle: {
-                "text-align": "justify",
-                "text-justify": "initial",
-                "line-height": "1.7rem",
-                "font-weight": "300",
-                "margin-top": "50px"
-              }
-            },
-            [
-              _vm._m(4),
-              _vm._v(" "),
-              _c("span", { staticClass: "highlighted-danger" }, [
+                ]),
                 _vm._v(
-                  "\n        " +
-                    _vm._s(
-                      (_vm.selectedInterv && _vm.selectedInterv.nom) ||
-                        "(Non intervenant)"
-                    ) +
-                    "\n        " +
-                    _vm._s(
-                      (_vm.selectedInterv && _vm.selectedInterv.prenom) ||
-                        "(Prénom intervenant)"
-                    ) +
-                    "\n        "
+                  "\n        a répondu à nos attentes et a donné entière satisfaction.\n      "
                 )
-              ]),
-              _vm._v(
-                "\n        a répondu à nos attentes et a donné entière satisfaction.\n      "
-              )
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "p",
-            {
-              staticStyle: {
-                "text-align": "justify",
-                "text-justify": "initial",
-                "line-height": "1.7rem",
-                "font-weight": "300"
-              }
-            },
-            [
-              _vm._v(
-                "\n        La présente attestation est établie pour servir et valoir ce que de\n        droit.\n      "
-              )
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass: "container",
-              staticStyle: {
-                position: "fixed !important",
-                bottom: "0",
-                width: "100%",
-                "padding-bottom": "20px"
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "p",
+              {
+                staticStyle: {
+                  "text-align": "justify",
+                  "text-justify": "initial",
+                  "line-height": "1.7rem",
+                  "font-weight": "300"
+                }
               },
-              attrs: { id: "footer" }
-            },
-            [
-              _c(
-                "p",
-                { staticStyle: { margin: "20px", "margin-left": "50%" } },
-                [
-                  _vm._v("\n          Fait à\n          "),
-                  _c("span", [
-                    _vm._v(
-                      "\n            " +
-                        _vm._s(_vm.curr_client_ville || "(ville)") +
-                        "\n          "
-                    )
-                  ]),
-                  _vm._v("\n          le\n          "),
-                  _c("input", {
-                    staticStyle: { width: "45%", "font-size": "17px" },
-                    attrs: { type: "date", name: "", id: "lastDate" }
-                  })
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass: "text-center",
-                  staticStyle: { margin: "20px", "margin-left": "50%" }
+              [
+                _vm._v(
+                  "\n        La présente attestation est établie pour servir et valoir ce que de\n        droit.\n      "
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "container",
+                staticStyle: {
+                  position: "fixed !important",
+                  bottom: "0",
+                  width: "100%",
+                  "padding-bottom": "20px"
                 },
-                [
-                  _vm._m(5),
-                  _vm._v(" "),
-                  _c(
-                    "span",
-                    {
-                      staticClass: "highlighted-danger",
-                      attrs: { id: "entrpDgNom" }
-                    },
-                    [
+                attrs: { id: "footer" }
+              },
+              [
+                _c(
+                  "p",
+                  { staticStyle: { margin: "20px", "margin-left": "50%" } },
+                  [
+                    _vm._v("\n          Fait à\n          "),
+                    _c("span", [
                       _vm._v(
                         "\n            " +
-                          _vm._s(
-                            _vm.curr_cabinet_directeur_nom ||
-                              "(Nom directeur entrp.)"
-                          ) +
-                          "\n            " +
-                          _vm._s(
-                            _vm.curr_cabinet_directeur_prenom ||
-                              "(Prénom directeur entrp.)"
-                          ) +
+                          _vm._s(_vm.curr_client_ville || "(ville)") +
                           "\n          "
                       )
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c("p", [_vm._v("Gérant")])
-                ]
-              )
-            ]
-          )
-        ])
+                    ]),
+                    _vm._v("\n          le\n          "),
+                    _c("input", {
+                      staticStyle: { width: "45%", "font-size": "17px" },
+                      attrs: { type: "date", name: "", id: "lastDate" }
+                    })
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "text-center",
+                    staticStyle: { margin: "20px", "margin-left": "50%" }
+                  },
+                  [
+                    _vm._m(5),
+                    _vm._v(" "),
+                    _c(
+                      "span",
+                      {
+                        staticClass: "highlighted-danger",
+                        attrs: { id: "entrpDgNom" }
+                      },
+                      [
+                        _vm._v(
+                          "\n            " +
+                            _vm._s(
+                              _vm.curr_cabinet_directeur_nom ||
+                                "(Nom directeur entrp.)"
+                            ) +
+                            "\n            " +
+                            _vm._s(
+                              _vm.curr_cabinet_directeur_prenom ||
+                                "(Prénom directeur entrp.)"
+                            ) +
+                            "\n          "
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("p", [_vm._v("Gérant")])
+                  ]
+                )
+              ]
+            )
+          ]
+        )
       ]
     )
   ])
