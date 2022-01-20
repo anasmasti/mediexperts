@@ -3419,7 +3419,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return axios.get("/fill-plans-by-reference?idPlan=".concat(_this4.id_plan)).then(function (res) {
                   _this4.actions_by_ref = res.data;
                   _this4.curr_annee = res.data[0].annee;
-                  console.log("actions_by_ref : ", _this4.actions_by_ref);
                 }).then(function () {
                   // fill dates action
                   _this4.actions_by_ref.forEach(function (action) {
