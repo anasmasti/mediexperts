@@ -168,7 +168,7 @@
 
     <div id="footer" class="container" style="position:fixed !important; bottom:0; width:100%; padding-bottom:150px;">
       <p style="margin: 20px; margin-left: 50%">
-        Fait à Casablanca le
+        Fait à <span id='entrpVille'>--</span> le
         <input type="date" name="" id="lastDate" style="width: 50%; font-size: 17px;" />
 
         <div class="text-center" style="margin: 20px; margin-left: 50%;">
@@ -215,6 +215,7 @@
             $('#entrpDgNom').html(data[0].nom_dg1);
             $('#entrpDgFonction').html(data[0].fonct_dg1);
             $('#entrpNom').html(data[0].raisoci);
+            $('#entrpVille').html(data[0].ville);
             $('#titleNomEntrp').val(data[0].raisoci);
           } else {
             fillDropdownDS = '<option selected disabled>(vide) aucune mission</option>';
