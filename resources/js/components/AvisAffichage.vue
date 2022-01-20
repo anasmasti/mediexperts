@@ -69,6 +69,7 @@ export default {
         .then((res) => {
           this.actions_by_ref = res.data;
           this.curr_annee = res.data[0].annee;
+          console.log("actions_by_ref : ", this.actions_by_ref);
         })
         .then(() => {
           // fill dates action

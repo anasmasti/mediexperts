@@ -214,13 +214,13 @@ class PlanController extends Controller
             $plans->etat = $request->input("etat");
             $plans->commentaire = $request->input("commentaire");
 
-            // // si le "plan" est réalisé! mettre à jour l'etat de toutes les "actions formations"
-            // if (mb_strtolower($plans->etat) === "réalisé") {
-            //     DB::table('plan_formations')
-            //     ->join('plans', 'plan_formations.id_plan', 'plans.id_plan')
-            //     ->where('plan_formations.id_plan', $id_plan)
-            //     ->update(['plan_formations.etat' => "réalisé"]);
-            // }
+            // si le "plan" est réalisé! mettre à jour l'etat de toutes les "actions formations"
+            if (mb_strtolower($plans->etat) === "réalisé") {
+                DB::table('plan_formations')
+                ->join('plans', 'plan_formations.id_plan', 'plans.id_plan')
+                ->where('plan_formations.id_plan', $id_plan)
+                ->update(['plan_formations.etat' => "réalisé"]);
+            }
 
             $plans->save();
 
