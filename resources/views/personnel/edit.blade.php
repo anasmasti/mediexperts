@@ -52,7 +52,7 @@
         </div>
 
         <div class="form-group col-lg-3 col-sm-12"><label>CIN</label>
-          <input class="form-control {{ $errors->has('cin') ? 'is-invalid' : '' }}" value="{{$personnel->cin}}" type="text" name="cin"  min="0" maxlength="7" onkeypress="return isNumberKey(event)" placeholder="cin">
+          <input class="form-control {{ $errors->has('cin') ? 'is-invalid' : '' }}" value="{{$personnel->cin}}" type="text" name="cin"  min="0" onkeypress="return isNumberKey(event)" placeholder="cin">
           @if ($errors->has('cin'))
           <span class="invalid-feedback" role="alert">
             <strong>{{ $errors->first('cin') }}</strong>
