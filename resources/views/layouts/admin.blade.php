@@ -708,14 +708,14 @@
       </div>
       <!-- Default to the left -->
       <strong><a href="#" style="color:#dab515;">Mediexperts&nbsp;</a>
-      Copyright &copy; 2021</strong>
+      Copyright &copy; 2022</strong>
     </footer> --}}
 
     <footer class="main-footer">
       <strong class="">&copy; Mediexperts</strong>
       <strong>{{ date('Y') }}</strong>
       <div class="float-right d-none d-sm-inline-block">
-      <b>Version : </b> <strong>2.6.4</strong>
+      <b>Version : </b> <strong>2.6.4:a</strong>
       </div>
     </footer>
 
