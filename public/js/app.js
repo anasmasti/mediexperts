@@ -3419,6 +3419,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return axios.get("/fill-plans-by-reference?idPlan=".concat(_this4.id_plan)).then(function (res) {
                   _this4.actions_by_ref = res.data;
                   _this4.curr_annee = res.data[0].annee;
+                  console.log("actions_by_ref : ", _this4.actions_by_ref);
                 }).then(function () {
                   // fill dates action
                   _this4.actions_by_ref.forEach(function (action) {
@@ -74438,12 +74439,17 @@ var state = {
 /***/ (function(module, exports, __webpack_require__) {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 __webpack_require__(/*! C:\Users\anasm\Documents\Projects\Work\Mediexperts_App\dev\resources\js\app.js */"./resources/js/app.js");
 module.exports = __webpack_require__(/*! C:\Users\anasm\Documents\Projects\Work\Mediexperts_App\dev\resources\sass\app.scss */"./resources/sass/app.scss");
 =======
 __webpack_require__(/*! C:\Users\HP\Desktop\Projects\Laravel\mediexperts\resources\js\app.js */"./resources/js/app.js");
 module.exports = __webpack_require__(/*! C:\Users\HP\Desktop\Projects\Laravel\mediexperts\resources\sass\app.scss */"./resources/sass/app.scss");
 >>>>>>> bea67bc9e50d261d1e6c4e101f7c5a48bf2f39ec
+=======
+__webpack_require__(/*! C:\Users\anasm\Documents\Projects\Work\Mediexperts_App\app\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\anasm\Documents\Projects\Work\Mediexperts_App\app\resources\sass\app.scss */"./resources/sass/app.scss");
+>>>>>>> ee27333afae3de65f681dbd417c692a7f0d28d56
 
 
 /***/ })

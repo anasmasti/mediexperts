@@ -493,6 +493,7 @@
               <!-- /.info-box-content -->
             </div>
           </div>
+
           @endif
 
 

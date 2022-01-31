@@ -177,20 +177,20 @@ class PlanController extends Controller
      */
     public function update(Request $request, $id_plan)
     {
-        if ($request -> isMethod('POST')) {
-            
+        if ($request -> isMethod('POST')) {            
             $plans = Plan::findOrFail($id_plan);
 
-            $request->validate([
-                'nrc_e' => 'required|max:15',
-                'annee' => 'required|min:4|starts_with:20',
-                'n_contrat' => 'nullable|max:15',
-                'type_contrat'=> 'required',
-                'dt_contrat_PFOPT' => 'nullable|date|before_or_equal:'.date('Y-m-d'), //7
-                'dt_accuse_PFOPT' => 'nullable|date|before_or_equal:'.date('Y-m-d'), //7
-                'etat' => 'required|max:50',
-            ]);
-
+            // $request->validate([
+                //     'nrc_e' => 'required|max:15',
+                //     'annee' => 'required|min:4|starts_with:20',
+                //     'n_contrat' => 'nullable|max:15',
+                //     'type_contrat'=> 'required',
+                //     'dt_contrat_PFOPT' => 'nullable|date|before_or_equal:'.date('Y-m-d'), //7
+                //     'dt_accuse_PFOPT' => 'nullable|date|before_or_equal:'.date('Y-m-d'), //7
+                //     'etat' => 'required|max:50',
+                // ]);
+                // echo $plans;
+                
             $docs = ['l_tierpay_PF','at_approb_ds','at_approb_if','rpt_IF_PFOPT','f2_PFOPT',
                 'model1_PFOPT','rib_PFOPT','f3_PFOPT','at_qualif_PFOPT',
                 'eligib_cab_PFOPT','accuse_PFOPT'];
@@ -202,7 +202,7 @@ class PlanController extends Controller
             $plans->annee = $request->input("annee");
             $plans->n_contrat = $request->input("n_contrat");
             $plans->type_contrat = $request->input("type_contrat");
-            //Génerer le Ref pf
+            // Génerer le Ref pf
             $rais_abrev = Client::select('clients.rais_abrev')
                 ->where('clients.nrc_entrp', $plans->nrc_e)
                 ->first();
@@ -214,7 +214,7 @@ class PlanController extends Controller
             $plans->etat = $request->input("etat");
             $plans->commentaire = $request->input("commentaire");
 
-            // // si le "plan" est réalisé! mettre à jour l'etat de toutes les "actions formations"
+            // si le "plan" est réalisé! mettre à jour l'etat de toutes les "actions formations"
             // if (mb_strtolower($plans->etat) === "réalisé") {
             //     DB::table('plan_formations')
             //     ->join('plans', 'plan_formations.id_plan', 'plans.id_plan')

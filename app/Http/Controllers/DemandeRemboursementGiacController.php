@@ -57,7 +57,14 @@ class DemandeRemboursementGiacController extends Controller
     public function searchdrb(Request $request)
     {
         $searchdrb = $request->input ('searchdrb');
-        $drb = DemandeRemboursementGiac::where('n_drb', 'LIKE', '%'. $searchdrb . '%')->get();
+        // $drb = DemandeRemboursementGiac::where('n_drb', 'LIKE', '%'. $searchdrb . '%')->get();
+        $drb = DemandeRemboursementGiac::select('demande_remboursement_giacs.*')
+            ->join('demande_financements', 'demande_remboursement_giacs.n_df', 'demande_financements.n_df')
+            ->join('clients', 'demande_financements.nrc_e', 'clients.nrc_entrp')
+            ->where('n_drb', 'LIKE', '%'. $searchdrb . '%')
+            ->orWhere('demande_financements.annee_exerc', 'LIKE', '%'. $searchdrb . '%')
+            ->orWhere('clients.raisoci', 'LIKE', '%'. $searchdrb . '%')
+            ->get();
         return view('DRB_Giac.view', ['drb' => $drb]);
     }
     /**
