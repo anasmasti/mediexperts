@@ -79,6 +79,12 @@
         appearance:none;
         cursor: pointer;
       }
+      .paper{
+        margin-top: 90px
+      }
+      #footer {
+        margin-bottom: 150px
+      }
     }
   </style>
 

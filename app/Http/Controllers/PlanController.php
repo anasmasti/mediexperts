@@ -115,8 +115,6 @@ class PlanController extends Controller
               $drb->n_contrat = $plans->n_contrat;
               $drb->etat = 'initié';
               $drb->montant_rembrs = '0';
-              $drb->date_depot_dmd_rembrs = '2020-01-01';
-              $drb->date_rembrs = '2020-01-01';
 
               $docs = ['model5','model6','accuse_model6','fiche_eval_sythetique',
                         'factures','compris_cheques','compris_remise',
@@ -216,13 +214,13 @@ class PlanController extends Controller
             $plans->etat = $request->input("etat");
             $plans->commentaire = $request->input("commentaire");
 
-            // si le "plan" est réalisé! mettre à jour l'etat de toutes les "actions formations"
-            if (mb_strtolower($plans->etat) === "réalisé") {
-                DB::table('plan_formations')
-                ->join('plans', 'plan_formations.id_plan', 'plans.id_plan')
-                ->where('plan_formations.id_plan', $id_plan)
-                ->update(['plan_formations.etat' => "réalisé"]);
-            }
+            // // si le "plan" est réalisé! mettre à jour l'etat de toutes les "actions formations"
+            // if (mb_strtolower($plans->etat) === "réalisé") {
+            //     DB::table('plan_formations')
+            //     ->join('plans', 'plan_formations.id_plan', 'plans.id_plan')
+            //     ->where('plan_formations.id_plan', $id_plan)
+            //     ->update(['plan_formations.etat' => "réalisé"]);
+            // }
 
             $plans->save();
 
