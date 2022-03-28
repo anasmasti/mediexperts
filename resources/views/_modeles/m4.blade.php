@@ -219,7 +219,7 @@
         <div></div>
     @else
     <tr>
-      <th colspan="3">QUOTE PART OFFPT TIERS PAYANT H.T</th>
+      <th colspan="3">QUOTE PART OFPPT TIERS PAYANT H.T</th>
       {{-- <th></th> --}}
       <th>{{ $formation["bdg_total"] * .7 }} DH</th>
     </tr>
