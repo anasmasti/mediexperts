@@ -223,8 +223,9 @@
 
   <div style="width:100%; height:25px;"><!--space--></div>
 
-  <div id="footer" class="container" style="position:fixed !important; bottom:0; width:100%; padding-bottom:150px;">
-    <p style="margin: 20px; margin-left: 60%">RAID SOUFIANE, ADIL BELMOKADEM </br> CO-GÉRANTS</p>
+  <div id="footer" class="container" style="display:flex;flex-direction:column;justify-content:center;position:fixed !important; bottom:0; width:100%; padding-bottom:150px;background-color:red !important">
+    <p style="margin: 20px; margin-left: 60%;text-align:center">RAID SOUFIANE, ADIL BELMOKADEM</p>
+    <p style="margin: 5px; margin-left: 60%;text-align:center">CO-GÉRANTS</p>
   </div>
 
 </div>
