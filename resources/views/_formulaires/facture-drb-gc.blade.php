@@ -224,7 +224,7 @@
   <div style="width:100%; height:25px;"><!--space--></div>
 
   <div id="footer" class="container" style="position:fixed !important; bottom:0; width:100%; padding-bottom:150px;">
-    <p style="margin: 20px; margin-left: 60%">RAID SOUFIANE, Gérant Associé </p>
+    <p style="margin: 20px; margin-left: 60%">RAID SOUFIANE, ADIL BELMOKADEM </br> CO-GÉRANTS</p>
   </div>
 
 </div>
