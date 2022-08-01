@@ -208,7 +208,8 @@
   <div id="footer" class="container flex-row" style="position:fixed !important; bottom:0; width:100%; padding-bottom:170px;">
     <div style="width:35%;" class="text-center">
       <p class="text-bold text-center" style="padding-top: 10px;">Cachet de l’organisme de formation <br>Et identité du signataire</p>
-      <strong class="text-center">Soufiane RAID, Gérant</strong>
+      <p style="">RAID SOUFIANE, ADIL BELMOKADEM</p>
+    <p style="">CO-GÉRANTS</p>
     </div>
 
     <div style="width:25%;"><!--space--></div>
